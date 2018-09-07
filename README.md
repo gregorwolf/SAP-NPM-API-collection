@@ -7,7 +7,7 @@ everything in one place for ease of reference.
 
 Each packages api's can be found in the apis folder.
 
-These are the currently listed packages from SAP, found with an npm search, with brief descriptions
+These are the currently listed packages from SAP, found with an npm search, with brief descriptions(click 'Raw')
 
 You could also find 3 other packages in the node_modules, downloaded as dependencies, so I've included them.
 
