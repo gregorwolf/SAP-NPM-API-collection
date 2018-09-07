@@ -1,0 +1,25 @@
+{
+  "name": "sap-npm-api-collection",
+  "version": "1.0.0",
+  "description": "Collection of current SAP package api's",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Seeker0/SAP-NPM-API-collection.git"
+  },
+  "keywords": [
+    "SAP",
+    "NPM",
+    "API"
+  ],
+  "author": "Jeff Dederick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Seeker0/SAP-NPM-API-collection/issues"
+  },
+  "homepage": "https://github.com/Seeker0/SAP-NPM-API-collection#readme",
+  "dependencies": {}
+}
