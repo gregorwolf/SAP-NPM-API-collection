@@ -6,15 +6,46 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-
-## Version 2.8.1
+## Version 2.10.3
 ### Fixes
-- Packages `@sap/cds-ql` and `@sap/cds-services` are now found.
-- Implementations connected to services through `@impl` are resolved correctly.
+- During `cds init/new` only install `@sap/generator-cds` 1.x
+
+## Version 2.10.2
+### Fixes
+- An issue where `cds deploy` did not detect database connection settings in package.json
+
+## Version 2.10.0
+### Added
+- Draft support
+
+### Fixes
+- Enhanced server.js to also include links to entities
 
 ### Also see
-- Changes of `@sap/cds-ql` 0.9.1
-- Changes of `@sap/cds-services` 0.9.2
+- Changes of `@sap/cds-compiler` 1.1.3
+- Changes of `@sap/cds-reflect` 1.7.0
+- Changes of `@sap/cds-ql` 0.11.0
+- Changes of `@sap/cds-services` 0.11.0
+
+## Version 2.9.1
+### Fixes
+- `cds build` no longer blocks if running inside a Maven build.
+
+## Version 2.9.0
+### Added
+- `common.cds` model got annotations for title, description, and value lists.
+- `cds` executable now can read from stdin, e.g. `echo 'entity Foo {ID:UUID;}' | cds -2 sql`
+- `cds -2 sql` now outputs plain (non-HANA) SQL.  Use `-2 hana` for HANA SQL.
+- `cds config` shows the current CDS configuration.  Use `cds help config` to learn more.
+
+### Fixes
+- Entities from `common.cds` like `Languages`, `Countries`, and `Currencies` are now only persisted to the database if they are actually used.
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.1.2
+- Changes of `@sap/cds-reflect` 1.6.0
+- Changes of `@sap/cds-ql` 0.10.0
+- Changes of `@sap/cds-services` 0.10.1
 
 ## Version 2.8.0
 ### Added

@@ -6,15 +6,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 0.10.0 - tbd
+## Version 0.11.0 - 2018-10-04
 
 ### Added
-   
-### Changed
+
+- Support of string values bei fluid usage in .where
 
 ### Fixed
 
-### Removed
+- Promise rejection in Session.run
+
+## Version 0.10.0 - 2018-09-17
+
+### Added
+
+- Auto lookup of db service if no configuration given at connect but is available at environmental VCAP_SERVICES
+- Support of an array as argument in .where
 
 ## Version 0.9.1 - 2018-09-05
    

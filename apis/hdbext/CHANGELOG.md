@@ -5,6 +5,44 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.0.0 - 2018-09-27
+
+### Removed
+- Node 0.12 support.
+- The `constants` property.
+- The `getPool` property.
+- The `createPool` property.
+- The `updateConnectionOptions` property.
+- The `session` property is no longer considered for setting session variables.
+
+### Changed
+- Now the package provides convenient functions on top of the *@sap/hana-client* package instead of the *hdb* package.
+- The package expects schema and table names to be provided unescaped everywhere, e.g. `my"TABLE` instead of `"my""Table"`.
+- A string containing a table name and optionally a schema name is no longer accepted for input table parameters. An object with `table` property (mandatory) and `schema` property (optional) should be provided instead, e.g. `{ schema: 'my"Schema', table: 'my"Table' }`
+- `hdbext.createConnection` throws if the input is not an object.
+- `hdbext.createConnection` throws if provided value for `autoCommit` is not a boolean.
+- Format of the object returned from `hdbext.connectionOptions.getGlobalOptions`, from `{ session: { APPLICATION: '', APPLICATIONVERSION: '' } }` to `{ 'sessionVariable:APPLICATION': '', 'sessionVariable:APPLICATIONVERSION': '' }`
+- `hdbext.connectionOptions.getGlobalOptions` may return an object without a `'sessionVariable:APPLICATIONVERSION'` property if an appropriate value cannot be determined.
+- Format of the object returned from `hdbext.connectionOptions.getRequestOptions` from `{ session: { XS_APPLICATIONUSER: '', SAP_PASSPORT: '', locale: '' } }` to `{ 'sessionVariable:XS_APPLICATIONUSER': '', 'sessionVariable:SAP_PASSPORT': '', locale: '' }`
+- `hdbext.connectionOptions.getRequestOptions` may return an object without a `locale` property if an appropriate value cannot be determined.
+- `hdbext.middleware` no longer takes pool options as second argument.
+- `hdbext.middleware` does not work with pooled connections by default.
+
+## 4.7.5 - 2018-09-18
+
+### Fixed
+- Update `lodash` package to 4.17.11
+
+## 4.7.4 - 2018-07-27
+
+### Fixed
+- Passing a Buffer as a single input argument for a procedure
+
+## 4.7.3 - 2018-06-29
+
+### Fixed
+- Updated `hdb` package to 0.16.0
+
 ## 4.7.2 - 2018-04-03
 
 ### Fixed

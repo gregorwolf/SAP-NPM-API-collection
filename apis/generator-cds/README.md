@@ -50,8 +50,7 @@ Global Options:
         --skip-install                   # Do not automatically install dependencies  Default: false
         --force                          # Overwrite all existing files without notice
         --verbose                        # Make console output verbose
-        --compact                        # Less console output
-        
+
  Commands:
      new <projectName>                   # Generate a new project with the name <projectName>
      

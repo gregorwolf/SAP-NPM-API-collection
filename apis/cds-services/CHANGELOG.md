@@ -6,15 +6,49 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 0.10.0 - tbd
+## Version 0.11.0 - 2018-10-04
 
 ### Added
 
+- Generic support for Create, Update, Delete on draft-enabled entities
+- Generic support for draftEdit, draftPrepare, draftActivate actions
+- Logger is available in handlers via context.log
+
 ### Changed
+
+- Log warning if database connection is missing
 
 ### Fixed
 
-### Removed
+- Service requests now return promises instead of thenables
+
+## Version 0.10.1 - 2018-09-18
+
+### Added
+
+- Generic support for Read on draft-enabled entities
+
+### Fixed
+
+- $user annotation works without authorization
+
+## Version 0.10.0 - 2018-09-17
+
+### Added
+
+- Delete Draft
+- Audit Logging of GDPR related events
+- Auto lookup of to be used CF/XSA services from environmental VCAP_SERVICES
+- OData to context.query for nested $filter, $orderby, $op and $skip at $expand
+- Custom types on top of associations
+
+### Changed
+
+- Default for maxPageSize increased to 1000 from 100
+
+### Fixed
+
+- Values for annotated columns (user/now) are included in the response
 
 ## Version 0.9.2 - 2018-09-05
 

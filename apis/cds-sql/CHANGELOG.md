@@ -6,15 +6,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 0.10.0 - tbd
+## Version 0.11.0 - 2018-10-04
 
 ### Added
 
-### Changed
+- Expanding of drafts entries at list pages
+- Expanding of drafts entries at object pages
 
-### Fixed
+## Version 0.10.0 - 2018-09-17
 
-### Removed
+### Added
+
+- Support of now/user annotations in structured type
+- Support of expand in combination with contains at where
+- Support of LIMIT/OFFSET, ORDER BY and WHERE at expanded items
+- Custom types on top of associations
+- Support columns: ['*'] at CQN
 
 ## Version 0.9.2 - 2018-09-05
 

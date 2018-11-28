@@ -12,6 +12,7 @@ Compatibility layer for SAP HANA extended application services, classic model (S
     + [formData](#formdata)
     + [mail](#mail)
     + [destinationProvider](#destinationprovider)
+    + [auditLog](#auditlog)
     + [context](#context)
     + [libraryCache](#librarycache)
     + [Multitenant usage](#multitenant-usage)
@@ -21,6 +22,7 @@ Compatibility layer for SAP HANA extended application services, classic model (S
 - [Destinations support](#destinations-support)
     + [Via user provided services](#via-user-provided-services)
     + [Via custom provider function](#via-custom-provider-function)
+- [Accessing column values by index in *$.hdb.ResultSet* rows](#accessing-column-values-by-index-in-hdbresultset-rows)
 - [Tracing via *$.trace* API](#tracing-via-trace-api)
 - [Troubleshooting](#troubleshooting)
 - [Differences with HANA XS Classic](#differences-with-hana-xs-classic)
@@ -45,7 +47,8 @@ var options = xsenv.getServices({
     hana: 'hana-hdi',
     jobs: 'scheduler',
     mail: 'mail',
-    secureStore: 'secureStore'
+    secureStore: 'secureStore',
+    auditLog: 'audit-log'
 });
 xsjs(options).listen(port);
 
@@ -75,12 +78,13 @@ Here is a list with options you can provide:
 | [mail](#mail) |  | Mail options, used by $.net.Mail API |
 | maxBodySize | '1mb' | Maximum body size accepted by xsjs. The value is passed to the [bytes library](https://www.npmjs.com/package/bytes) for parsing. |
 | anonymous | false | Enable anonymous access, i.e. without credentials |
-| [formData](#formData) |  | Special restrictions over form-data submitted to server |
+| [formData](#formdata) |  | Special restrictions over form-data submitted to server |
 | [destinationProvider](#destinationProvider) |  | Custom function, synchronous or asynchronous, to be used when $.net.http.readDestination is called in XSJS code. For more information on destinations support, check the detailed description for this configuration option. |
 | ca | certificates listed in `XS_CACERT_PATH` env var | Trusted SSL certificates for any outgoing HTTPS connections. Should be an array of loaded certificates. |
 | compression | true | By default text resources over 1K are compressed. |
+| [auditLog](#auditlog) |  | **Required** Object containing Audit log service credentials. In non-productive setup (e.g. local development) can be set to `{ logToConsole: true }`.|
 | [context](#context) | {} | Extend the default context in xsjs scripts. |
-| [libraryCache](#libraryCache) | {} | Contains the xsjslibs that should be cached. |
+| [libraryCache](#librarycache) | {} | Contains the xsjslibs that should be cached. |
 | redirectUrl | | If specified, a redirect to this url is triggered when the root path is requested. **Note**: When xsjs is behind a reverse proxy (Application Router for instance), the value of this property should be aligned with the path rewriting rules that may apply. |
 
 **Note:** When there are several rootDirs (for example: repo1 and repo2) and their file strucutre is equivalent (/repo1/hello.xsjs and /repo2/hello.xsjs) the file from the first directory (as listed in the 'rootDirs' property) will be used (/repo1/hello.xsjs) and the file from the second directory (/repo2/hello.xsjs) will be ignored with a warning message in the logs.
@@ -179,6 +183,62 @@ function getDestinationAsync(packagename, objectname, dtDescriptor, callback) {
 | objectname | the object name of the destination supplied to $.net.http.readDestination |
 | dtDescriptor | object containing all properties contained in the corresponding .xshttpdest file, if such file is available, otherwise __undefined__ |
 | callback | provided only in the asynchronous case - should be called by your provider function to return the destination or report error  |
+
+#### auditLog
+
+This package audit logs entries in the following cases:
+- when the validation of the incoming JWT token fails
+- when the token in the request used to trigger a job does not contain the required scope
+
+Applications can also write audit log messages:
+
+```js
+var xsjs = require('@sap/xsjs');
+var xsenv = require('@sap/xsenv');
+var auditLogging = require('@sap/audit-logging');
+
+var port = process.env.PORT || 3000;
+var options = xsenv.getServices({ auditLog: 'audit-log', uaa: 'xsuaa', hana: 'hana-hdi' });
+
+// Using Audit log REST API v2
+auditLogging.v2(options.auditLog, function (err, auditLog) {
+  if (err) {
+    return console.log('Could not create audit log client:', err);
+  }
+
+  options.context = { auditLog: auditLog };
+  xsjs(options).listen(port);
+});
+```
+
+**Note**: Check in advance whether the Audit log service to be used supports REST API v2
+(note the invocation of the `v2` method of `auditLogging`).
+Otherwise instantiate a client object that works with Audit log REST API v1:
+
+```js
+// Using Audit log REST API v1
+var auditLog = auditLogging(options.auditLog);
+```
+
+It is recommended to use Audit log REST API v2 if available.
+Refer to the documentation of the _@sap/audit-logging_ package for more information.
+
+The audit log client object can then be used as following:
+
+```js
+auditLog
+  .securityMessage('Content of the message')
+  .by($.session.getUsername())
+  .sync.log();
+```
+
+**Note**: The usage of `sync` before `log` - this ensures that the call to the Audit log service is synchronous.
+
+**Note**: `$.session.getUsername()` returns `undefined` in case `anonymous` mode is used. It is up to applications whether to use another string as user or not audit log at all.
+
+In non-productive setup (e.g. during local development) `{ logToConsole: true }` can be used instead of Audit log service credentials.
+
+**Note**: `{ logToConsole: true }` should not be used in a productive environment.
 
 #### context
 
@@ -381,6 +441,16 @@ When destination is read the content of the design time descriptor is merged wit
 #### Via custom provider function
 
 If the default support is not enough for your use case, you can provide custom destination provider function. For details how to do that, see the __destinationProvider__ configuration option explained above.
+
+## Accessing column values by index in *$.hdb.ResultSet* rows
+
+Column values from within a row of a *$.hdb.ResultSet* in XS Classic can be accessed either by column name or by column index.
+If an application does not make use of accessing columns by index, then this capability can be turned off which will result in
+improved performance:
+
+```js
+var connection = $.hdb.getConnection({ enableColumnIndices: false });
+```
 
 ## Tracing via *$.trace* API
 

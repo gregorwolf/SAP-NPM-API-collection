@@ -6,15 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 0.8.0 - tbd
-
-### Added
-
-### Changed
+## Version 0.9.0 - 2018-10-04
 
 ### Fixed
 
-### Removed
+ - limit and order when expanding a to many association
+
+## Version 0.8.0 - 2018-09-17
+
+### Changed
+
+- Updated version of @sap/cds-sql to 0.10.0
 
 ## Version 0.7.1 - 2018-09-05
    

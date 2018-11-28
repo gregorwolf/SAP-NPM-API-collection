@@ -1,5 +1,47 @@
 # ChangeLog for cdx compiler and backends
 
+## Version 1.1.3
+
+Features
+* A `;` is now always optional before `}` and more often optional after a `}`.
+
+Changes
+* In `toOdata()` for v2, in the edmx the
+  **names of bound actions and functions now are prefixed with the corresponding entity's name**
+  in order to disambiguate actions and functions with the same name at two or more entities.
+  The corresponding implementation code in the CDS runtime needs to be adapted.
+* Check `redirected to` target.
+
+Fixes
+* Make the compiler more robust wrt/ parse errors and redefinitions.
+* Correctly propagate properties inside `returns` and `items`.
+* Some corrections to EDM `ActionImport` and `FunctionImport` in ODATA V2 and V4.
+* Generate correct joins for mixin associations that are traversed with different filters.
+* Generate joins not only for views, but also for projections.
+* For entities annotated with `@odata.draft.enabled`, make all non-key fields nullable in
+  `toOdata()`.
+
+## Version 1.1.2
+
+Features
+* Allow reserved names for annotations/properties in assignments.
+* Allow final `,` for much more "lists" (e.g. arguments).
+* It is now possible to omit the select list in a view definition,
+  which is the same as writing `select from <name> {*}`.
+* Allow `array of` as type spec for a parameter definition.
+* SQL generation for sqlite now supports a mode where associations are resolved
+  to joins.
+
+Changes
+* Improved messages for syntax errors.
+* `where` now is a reserved keyword and so cannot be used anymore as name at many places.
+
+Fixes
+* In `toOdata()` with the `hdbcds` naming convention, the value of the `@cds.persistence.name`
+  annotation now uses `.` rather than `_` as separator for the names of flattened structured
+  entity elements.
+* Numeric values in OData annotations are now correctly mapped to edmx.
+
 ## Version 1.1.1
 
 Fixes

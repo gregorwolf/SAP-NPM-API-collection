@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 2.2.4 - 2018-08-14
+
+### Fixed
+- Update dependencies.
+
 ## 2.2.3 - 2018-07-17
 
 ### Fixed

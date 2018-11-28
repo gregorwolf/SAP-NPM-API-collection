@@ -26,12 +26,13 @@
   * [*login* property](#login-property)
   * [*logout* property](#logout-property)
   * [*destinations* property](#destinations-property)
+  * [*services* property](#services-property)
   * [*compression* property](#compression-property)
   * [*pluginMetadataEndpoint* property](#pluginmetadataendpoint-property)
   * [*whitelistService* property](#whitelistservice-property)
   * [*websockets* property](#websockets-property)
   * [*errorPage* property](#errorpage-property)
-  * [Complete example of an *xs-app.json* configuration file:](#complete-example-of-an-xs-appjson-configuration-file)
+  * [Complete example of an *xs-app.json* configuration file](#complete-example-of-an-xs-appjson-configuration-file)
 - [Headers](#headers)
   * [Forwarding Headers](#forwarding-headers)
   * [Hop-by-hop Headers](#hop-by-hop-headers)
@@ -39,7 +40,9 @@
 - [CSRF Protection](#csrf-protection)
 - [Connectivity](#connectivity)
 - [SaaS Application Registration in CF](#saas-application-registration-in-cloud-foundry)
-  * [How To Expose Approuter for CIS Subscription](#how-to-expose-approuter-for-saas-subscription)
+  * [How To Expose Approuter for SaaS Subscription](#how-to-expose-approuter-for-saas-subscription)
+- [Integration with HTML5 Application Repository](#integration-with-html5-application-repository)
+- [Integration with Business Services](#integration-with-business-services)
 - [Web Sockets](#web-sockets)
 - [Session Handling](#session-handling)
   * [Session Contents](#session-contents)
@@ -222,7 +225,7 @@ timeout | Number | x | Positive integer representing the maximum wait time for a
 proxyType | String | x | Configures whether the destination is used to access applications in on-premise networks or on public Internet. Possible value: `OnPremise`. if the property is not provided, it is assumed that it is a public Internet access. <br />**Note:** if `OnPremise` value is set,  binding to SAP Cloud Platform connectivity service is required, and `forwardAuthToken` property should not be set.
 
 
-**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) (if you have set one). <br />
+**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or  [service's logout path](#services-property) (if you have set one). <br />
 **Note:** `proxyHost` and `proxyPort` are optional, but if one of them is defined, then the other one becomes mandatory.
 
 Sample content of the destinations environment variable:
@@ -270,15 +273,16 @@ ProxyType |   | Supported proxy type : `on-premise`, `internet`.<br> **Note:** i
 Property  | Additional Property | Description
 -------- |:--------:| -----------
 ForwardAuthToken | x | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.<br> **Note:** if ProxyType set to `on-premise`, ForwardAuthToken property should not be set.
-Timeout |  x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) (if you have set one). 
+Timeout |  x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or [service's logout path](#services-property) (if you have set one). 
 PreserveHostHeader | x | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
 sap-client | x | If `true`, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
 
 
 <br />**Note:** 
 * In case destination with the same name is defined both in environment destination and destination service, the destination configuration will load from the environment.
-*	When configuration of a destination is updated on runtime, the changes will not be reflected automatically to Approuter. It is required to restart  Approuter in order to apply the changes.
+* When configuration of a destination is updated on runtime, the changes will not be reflected automatically to Approuter. It is required to restart  Approuter in order to apply the changes.
 * Destination service available only in Cloud Foundry.
+* Destinations on destination service instance level are not supported.
 
 
 ### UAA configuration
@@ -465,6 +469,8 @@ source | String/Object | | Describes a regular expression that matches the incom
 httpMethods | Array of upper-case HTTP methods | x | Which HTTP methods will be served by this route; the methods supported are: `DELETE`, `GET`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`, `PATCH` (no extension methods are supported). If this option is not specified, the route will serve any HTTP method.
 target | String | x | Defines how the incoming request path will be rewritten for the corresponding destination or static resource.
 destination | String | x | The name of the destination to which the incoming request should be forwarded.
+service | String | x | The name of the service to which the incoming request should be forwarded.
+endpoint | String | x | The name of the endpoint within the service to which the incoming request should be forwarded. Can only be used in a route containing a service attribute.
 localDir | String | x | Folder in the [working directory](#working-directory) from which the application router will serve static content **Note:** localDir routes support only HEAD and GET requests; requests with any other method receive a 405 Method Not Allowed.
 replace | Object | x | An object that contains the configuration for replacing placeholders with values from the environment. *It is only relevant for static resources*. Its structure is described in [Replacements](#replacements).
 authenticationType | String | x | The value can be `xsuaa`, `basic` or `none`. The default one is `xsuaa`. When `xsuaa` is used the specified UAA server will handle the authentication (the user is redirected to the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used then no authentication is needed for this route.
@@ -473,7 +479,7 @@ scope | Array/String/Object | x | Scopes are related to the permissions a user n
 cacheControl | String | x | String representing the value of the `Cache-Control` header, which is set on the response when serving static resources. By default the `Cache-Control` header is not set. *It is only relevant for static resources.*
 
 
-**Note:** The properties `destination` and `localDir` are both optional, but exactly one of them must be defined. <br />
+**Note:** The properties `destination`, `localDir` and `service` are optional, but exactly one of them must be defined. <br />
 **Note:** When using the properties `replace` or `cacheControl` it is mandatory to define the `localDir` property.
 
 ### Example routes
@@ -528,6 +534,16 @@ That means if we receive */ApP1/a/B*, then a request to *http://localhost:3001/A
     "source": "^/app1/(.*)$",
     "target": "/before/$1/after",
     "destination": "app-1"
+}
+```
+* Route with a `service`, a `target` and an `endpoint`
+
+```json
+{
+     "source": "^/odata/v2/(.*)$",
+     "target": "$1",
+     "service": "com.sap.appbasic.country",
+     "endpoint": "countryservice"
 }
 ```
 
@@ -815,6 +831,7 @@ sessionTimeout | Number | x | Used to set session timeout. The default is 15 min
 [login](#login-property) | Object | x | Contains the configuration for the endpoint of the application router which will be used by the UAA during the OAuth2 authentication routine. By default this endpoint is `/login/callback`.
 [logout](#logout-property) | Object | x | Provides options for a [Central Logout](#central-logout) endpoint and a page to which the client to be redirected by the UAA after logout.
 [destinations](#destinations-property) | Object | x | Additional options for your destinations (besides the ones in the `destinations` environment variable).
+[services](#services-property) | Object | x | Additional options for your business services.
 [compression](#compression-property) | Object | x | Configuration regarding compressing resources before responding to the client. If the [COMPRESSION](#compression-property) environment variable is set it will overwrite existing values.
 [pluginMetadataEndpoint](#pluginmetadataendpoint-property) | String | x | Adds an endpoint that will serve a JSON representing all configured plugins.
 [whitelistService](#whitelistservice-property) | Object | x | Options for the whitelist service preventing clickjack attacks.
@@ -980,6 +997,37 @@ The `logoutMethod` property specifies the HTTP method with which the `logoutPath
 }
 ```
 
+### *services* property
+
+Let's say you have a service called `com.sap.appbasic.country`. You can specify options for it by adding the `services` property in your xs-app.json:
+```json
+"services": {
+  "com.sap.appbasic.country": {}
+}
+```
+The value of `com.sap.appbasic.country` should be an object with the following properties:
+
+Property | Type | Optional | Description
+-------- | ---- |:--------:| -----------
+endpoint | String | x | The name of the attribute in the VCAP_SERVICES that contains the URL of the service.  
+logoutPath | String | x | The path to be used when logging out from the service.
+logoutMethod | String | x | Could be POST, PUT, GET. The default value is POST.
+
+The `logoutPath` will be called when [Central Logout](#central-logout) is triggered or a session is deleted due to timeout.
+The request to the `logoutPath` will contain additional headers, including the JWT token.
+The `logoutMethod` property specifies the HTTP method with which the `logoutPath` will be requested. For example:
+```json
+{
+  "services": {
+    "com.sap.appbasic.country": {
+      "endpoint": "countryservice",
+      "logoutPath": "/countrieslogout",
+      "logoutMethod": "GET"
+    }
+  }
+}
+```
+
 ### *compression* property
 By default text resources are compressed before being sent to the client.
 The default threshold for using compression is 1K. Text resources under this size will not be compressed.
@@ -1077,9 +1125,10 @@ Example:
 ```
 In the example above 400, 401 and 402 errors would be shown the content of  `./custom-err-4xx.html` and for 501 errors the user would see `./http_resources/custom-err-501.html`.
 
-**Note:** The errorPage conifugration section has no effect on errors generated outside of the application router.
+**Note:** The errorPage conifiguration section has no effect on errors generated outside of the application router.
 
-### Complete example of an *xs-app.json* configuration file:
+### Complete example of an *xs-app.json* configuration file 
+#### Without HTML5 Application Repository integration:
 ```json
 {
   "welcomeFile": "index.html",
@@ -1139,6 +1188,53 @@ In the example above 400, 401 and 402 errors would be shown the content of  `./c
   ]
 }
 ```
+#### With HTML5 Application Repository integration (xs-app.json file stored in HTML5 Application Repository):
+```json
+{
+  "welcomeFile": "index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "/employeeData/(.*)",
+      "target": "/services/employeeService/$1",
+      "destination": "employeeServices",
+      "authenticationType": "xsuaa",
+      "scope": ["$XSAPPNAME.viewer", "$XSAPPNAME.writer"],
+      "csrfProtection": true
+    },
+    {
+       "source": "^/odata/v2/(.*)$",
+       "target": "$1",
+       "service": "com.sap.appbasic.country",
+       "endpoint": "countryservice"
+    },
+    {
+      "source": "^(/.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ],
+  "logout": {
+    "logoutEndpoint": "/my/logout",
+    "logoutPage": "/logout-page.html"
+  },
+  "destinations": {
+    "employeeServices": {
+      "logoutPath": "/services/employeeService/logout",
+      "logoutMethod": "GET"
+    }
+  },
+  "services": {
+    "com.sap.appbasic.country": {
+      "logoutPath": "/countryService/logout",
+      "endpoint": "countryservice",
+      "logoutMethod": "GET"
+    }
+  }
+}
+```
+**Note:** The route in bold is the route that provides access to the HTML5 Application Repository service.
 
 ## Headers
 
@@ -1249,7 +1345,200 @@ The instance of saas-registry is created with a configuration json - *saas-confi
 }   
 
 ```
+## Integration with HTML5 Application Repository
 
+The application router supports seamless integration with the HTML5 Application Repository service. 
+When the application router interacts with HTML5 Application Repository to serve HTML5 Applications, all static content and routes (xs-app.json) are retrieved from HTML5 Application Repository. 
+In case application router needs to route to non HTML5 Applications, it is possible to model that in the xs-app.json of the application router.
+
+To integrate HTML5 Application Repository to an application router based it is required to create an instance of html5-apps-repo service of plan app-runtime and bind it to the application.
+xs-app.json routes that are used to retrieve static content from HTML5 Application Repository may be modeled in the following format:
+
+```
+ { 
+     "source": "^(/.*)",                                    
+     "target": "$1",                                        
+     "service": "html5-apps-repo-rt", 
+     "authenticationType": "xsuaa"                      
+ }
+```
+
+### Known Gaps in Integration with HTML5 Application Repository
+
+The following limitations apply when application router is bound to HTML5 Application Repository service:
+
+1. It is not possible to implement the "first" middleware slot to provide routes dynamically.
+2. No option apart from workingDir can be provided in application router start.
+3. Websockets are not supported.
+4. Destination property is not supported.
+5. External session management via extensibility is not supported
+
+
+**Note:** Mixed scenario of modeling part of the static content in local resources folder and also retrieving static content from HTML5 Application Repository is not supported.</br>
+**Note:** This feature is only supported in Cloud Foundry. There is no HTML5 Application Repository service in XSA.
+
+### Runtime Processing
+
+During runtime, based on request url path (see URL Format), application router will try to fetch the xs-app.json file from the corresponding HTML5 Application in HTML5 Application Repository and use it for routing the request.
+The following algorithm is applied for request processing:
+* If no HTML5 Application is found in HTML5 Application Repository for current request, central application router xs-app.json will be used for routing
+* If HTML5 Application exists in HTML5 Application Repository but no xs-app.json file is returned, an error message will be issued and request processing will be stopped.
+
+#### URL Format
+
+A valid request to application router that uses HTML5 Application Repository must have the following format:
+```
+https://<tenantId>.<appRouterHost>.<domain>/<bsPrefix>.<appName-appVersion>/<resourcePath>
+
+```
+bsPrefix (business service prefix) - Optional
+* It should be used in case the application is provided by a business service bound to this approuter
+
+appName (application name) - Mandatory
+* Used to uniquely identify the application in HTML5 Application Repository persistence
+* Must not contain dots or special characters
+
+appVersion (application version) - Optional
+* Used to uniquely identify a specific application version in HTML5 Application Repository persistence
+* If no version provided, default application version will be used
+
+resourcePath (path to file)
+* The path to the file as it was stored in HTML5 Application Repository persistence
+
+### Cache Buster Handling
+A cache buster allows the application router to notify the browser to refresh the resources only when the application resources have been changed. Otherwise the resources are always fetched from the browser's cache.
+This flow applies to requests that should be forwarded to HTML5 Application Repository. If requests are forwarded to backend applications that return data, cache buster handling is not applied.
+
+* When the second path segment of the request url contains the pattern “~timestamp~”, this segment is removed from the subsequent request to HTML5 Application Repository
+* In case the request had a cache buster segment, application router adds to corresponding response the header: Cache-Control: public, max-age=31536000
+
+**Note:** Cache buster flow is only supported in HTML5 Application Repository integration flow.
+
+### Integration with Business Services
+
+Application router supports integration with Business Services. 
+Business Services are a flavour of reuse-services that expose specific information in VCAP_SERVICES credentials block that enable application router to serve Business Service UI and/or data.
+* Business Service UI must be stored in HTML5 Application Repository to be accessible from application router
+* Business Service UI must be defined as "public" to be accessible from an application router in a different space than the one from where the UI was uploaded 
+* Business Service data is served after JWT token exchange between login JWT token and Business Service token
+
+#### Business Service Credentials
+While binding a Business Service instance to application router the following information should be provided in VCAP_SERVICES credentials:
+
+* sap.cloud.service: Service name as referenced from xs-app.json route and business service prefix (if Business Service UI provided) - Mandatory
+* sap.cloud.service.alias: Short service name alias for user friendly URL business service prefix- Optional
+* endpoints: One or more endpoints that can be used to access Business Service data. If not provided url or uri attributes will be used - Optional
+* html5-apps-repo: html5-apps-repo.app_host_id contains one or more html5-apps-repo service instance GUIDs that can be used to retrieve Business Service UIs - Optional
+* saasregistryenabled: flag that indicates that this Business Service supports SaaS Registry subscription. If provided, application router will return this Business Service xsappname in SaaS Registry 
+  getDependencies callback - Optional
+
+For example:
+```
+"country": [
+   {
+    ...
+    "credentials": {
+     "sap.cloud.service": "com.sap.appbasic.country", 
+     "sap.cloud.service.alias": "country",            
+     "endpoints": {                                   
+      "countryservice": "https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/odata/v2/countryservice",
+      "countryconfig": "https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/rest/v1/countryconfig"
+     },
+     "html5-apps-repo": {                           
+      "app_host_id": "1bd7c044-6cf4-4c5a-b904-2d3f44cd5569, 1cd7c044-6cf4-4c5a-b904-2d3f44cd54445"
+     },
+     "saasregistryenabled": true
+   ....
+```
+
+#### Accessing Business Service Data
+To access Business Service data xs-app.json configuration file should have a route referencing a specific sap.cloud.service or sap.cloud.service.alias via the service attribute.
+If an endpoint attribute is also modeled, it will be used to get the service url otherwise the fallback url or uri attribute will be used.
+
+For example:
+```
+"routes": [
+    {
+      "source": "^/odata/v2/(.*)$",
+      "target": "$1",
+      "service": "com.sap.appbasic.country",
+      "endpoint": "countryservice"
+    },
+
+```
+
+In order to support JWT token exchange, the login JWT token should contain the uaa.user scope. For that the xs-security configuration must contain a role template that references the uaa.user scope.
+For example:
+```
+{
+    "xsappname"   : "simple-approuter",
+    "tenant-mode" : "shared",
+    "scopes": [
+        {
+            "name": "uaa.user",
+            "description": "UAA"
+        },
+        {
+            "name": "$XSAPPNAME.simple-approuter.admin",
+            "description": "Simple approuter administrator"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "Token_Exchange",
+            "description": "UAA",
+            "scope-references": [
+                "uaa.user"
+            ]
+        },
+        {
+            "name": "simple-approuter-admin",
+            "description": "Simple approuter administrator",
+            "scope-references": [
+                "$XSAPPNAME.simple-approuter.admin"
+            ]
+        }
+    ]
+}
+```
+
+#### Accessing Business Service UI
+Business Service UI's must be stored in HTML5 Application Repository and defined in their manifest.json files as "public: true" in order to be accessible from an application router
+application that is typically running in a different space than the Business Service space. In addition dataSources uris must be relative to base url (no slash as first character).
+
+Business Service manifest.json example:
+
+```
+{
+  “sap.app”: {
+    “id”:“com.sap.appbasic.country.list”,
+    “applicationVersion: {
+    “version”: “1.0.0”
+  },
+  "dataSources": {
+    "mainService":{
+      "uri": "odata/v2/countryservice",
+      "type": "OData"
+    }
+  },
+  “sap.cloud”: {
+    "public": true,
+    “service”: “com.sap.appbasic.country“
+  }
+}
+```
+
+A Business Service that exposes UI must provide one or more app-host GUIDs in an html5-apps-repo block in VCAP_SERVICES credentials (see Business Service credentials).
+
+To access Business Service UI the request url that hits application router must contain a business service prefix as described above.
+
+Request URL example:
+```
+  https://approuter-repo-examples.cfapps.sap.hana.ondemand.com/comsapappbasiccountry.comsapappbasicscountrylist/test/flpSandbox.html
+
+```
+In this example "comsapappbasiccountry" is the business service prefix which matches the sap.cloud.service attribute in country service VCAP_SERVICES credentials (without dots).
+The "comsapappbasicscountrylist" is the name of the HTML5 Application as defined in the app.id attribute in the manifest.json (without dots).
 
 ## Web Sockets
 The application router is capable of forwarding web socket communication.
@@ -1290,11 +1579,13 @@ Central Logout can be client initiated or can be triggered due to session timeou
 * Client initiated
   * Deletes the user session.
   * Requests all backend services logout paths (if configured in the [destinations property](#destinations-property)).
+  * Request all business services logout paths (if configured in the [services property](#services-property)).
   * Redirects the client to logout from UAA.
   * If configured, redirects back to a custom page (for XS OnPremise Runtime only). For more information, see [logout-property](#logout-property).
 * Session timeout
   * Deletes the user session.
   * Requests all backend services logout paths (if configured in the [destinations property](#destinations-property)).
+  * Requests all business services logout paths (if configured in the [services property](#services-property)).
 
 The session timeout can be configured with the [SESSION_TIMEOUT](#session-timeout) variable through the environment.
 

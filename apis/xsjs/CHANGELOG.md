@@ -5,6 +5,81 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+<a name="4.0.1"></a>
+## 4.0.1 - 2018-10-22
+
+### Fixed
+- Update _@sap/xsodata_ to v4.3.0.
+
+## 4.0.0 - 2018-10-04
+
+### Changed
+- Providing `auditLog` options is now mandatory.
+- Underlying database driver is now *@sap/hana-client*.
+- Due to the changed driver, precision and scale in metadata may differ for some data types (e.g. REAL, FLOAT, DOUBLE, BLOB).
+- `$.db.ResultSetMetaData.getCatalogName` now throws an exception instead of returning a value.
+- `$.db.ResultSetMetaData.getColumnDisplaySize` now throws an exception instead of returning a value.
+- String representations of SECONDDATE and TIMESTAMP are in a different format (without 'T'). The format now is: *YYYY-MM-DD HH24:MI:SS.FF*, the format in previous versions was: *YYYY-MM-DDTHH24:MI:SS.FF*.
+- `$.hdb`, calling stored procedures with input table parameters: since default data type conversions are not performed over input table parameters,
+and since *@sap/hana-client* is more restrictive on values provided for DATE and TIME types compared to the hdb driver,
+scenarios with input table parameters and table content provided as an array of objects will now throw if the input table parameter has DATE or TIME columns and the values  are provided as Date objects.
+- `$.db.ResultSet.close` does not close the result set. All results will be closed when the corresponding statement is closed.
+
+### Added
+- `typeName` property in result set metadata of `$.hdb`.
+
+### Fixed
+- `$.db`, string representations of TIMESTAMPs have all the digits from the fractional seconds that are stored in the database.
+- Return values of `$.db.ParameterMetaData.getParameterMode` is now aligned with XS Classic.
+- `$.db`, parameter and result set metadata - prior to this version `getPrecision` returned the scale and `getScale` returned the precision. These methods are now fixed.
+- `$.db.PreparedStatement.executeBatch` now returns a value - an array with integers representing the number of updated rows per batch.
+- Type of ALPHANUM columns is now ALPHANUM instead of NVARCHAR.
+- Type of SECONDDATE columns is now SECONDDATE instead of TIMESTAMP.
+- Type of SHORTTEXT columns in result set metadata is now SHORTTEXT instead of NVARCHAR. Note that parameter metadata returns NSTRING for SHORTTEXT as in versions prior to this one.
+- Type of TEXT columns is now TEXT instead of NCLOB.
+- Type of BINTEXT columns is now BINTEXT instead of NCLOB.
+
+## 3.7.0 - 2018-10-04
+
+### Added
+- Integration with Audit log service.
+
+## 3.6.0 - 2018-09-20
+
+### Added
+- Support for CF Log format (via adopting _@sap/logging_ v4).
+
+### Fixed
+- Updated dependencies.
+
+## 3.5.0 - 2018-09-04
+
+### Added
+- `enableColumnIndices` option in `$.hdb.getConnection` with which column indices for result sets can be turned off (improves performance).
+Defaults to `true`.
+- Warning log for aborted requests.
+
+### Fixed
+- Conversion of input strings for binary data types.
+- Documentation improvements.
+- Updated dependencies.
+
+## 3.4.2 - 2018-07-10
+
+### Fixed
+- Updated @sap/hdbext to 4.7.3
+- Fix regression caused by performance optimization in `$.import` for Node.js 6 and up ( this optimization has been removed )
+- Clean up acquired database connections for aborted requests
+
+## 3.4.1 - 2018-06-26
+
+### Fixed
+- Imported (via `$.import`) but unused `xsjslib`s are no longer loaded
+(applicable to Node.js 6 and up)
+- Performance during attaching column indices for `$.hdb` result sets
+(applicable to Node.js 6 and up)
+
 ## 3.4.0 - 2018-05-28
 
 ### Added
