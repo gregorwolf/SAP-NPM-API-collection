@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.3.13 - 14/08/2018
+## 1.3.20 - 25/11/2018
+
+### Fixed
+
+- The rule "plugin-provides-valid" was fixed to reduce the number of false positive warnnings
+
+## 1.3.19 - 28/10/2018
+
+### Fixed
+
+- The rule "no-private-apis" was fixed to reduce the number of false positive warnnings
+
+## 1.3.17 - 14/08/2018
 
 ### Fixed
 

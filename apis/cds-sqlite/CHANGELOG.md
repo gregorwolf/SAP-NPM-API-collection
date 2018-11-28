@@ -6,15 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 0.8.0 - tbd
-
-### Added
+## Version 0.9.0 - 2018-10-04
 
 ### Changed
 
+- Updated version of @sap/cds-sql to 0.11.0
+
+## Version 0.8.0 - 2018-09-17
+
 ### Fixed
 
-### Removed
+- CQN queries with contains and expand (limitation: expanded columns cannot be part of contains)
 
 ## Version 0.7.1 - 2018-09-05
    

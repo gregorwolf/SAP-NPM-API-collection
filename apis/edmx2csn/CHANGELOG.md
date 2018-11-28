@@ -8,6 +8,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [1.0.5] - 2018-10-03
+### Fixed
+- Edm.DateTimeOffset is now mapped to Date for any property having the attribute `sap:display-format="Date"`.
+- Errors generated from this tool is now propagated back to the system process that invokes this tool.
+
+## [1.0.4] - 2018-09-24
+### Fixed
+- Edm.single is now mapped to DecimalFloat in the HANA database.
+- Fixed an issue when mapping navigation in the OData model to `onCond` in the CSN model.
+- New option `-p` has been added to ignore `@cds.persistence.skip` annotation specified on any entity in the model.
+
 ## [1.0.3] - 2018-08-20
 ### Fixed
 Modified open source dependency to a specific version.

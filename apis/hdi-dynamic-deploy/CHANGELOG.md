@@ -1,3 +1,9 @@
+## 1.4.2
+
+Features:
+- export the internal HTTP server
+- use hdi-deploy version 3.8.2
+
 ## 1.2.2
 
 Fixes:

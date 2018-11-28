@@ -13,7 +13,8 @@ The dynamic deployer is built upon `@sap/hdi-deploy` which should be used direct
 
 **Dynamic deployment**:
 - [Triggering a dynamic deployment by a HTTP POST request](#triggering-a-dynamic-deployment-by-a-http-post-request)
-- [How to use it in a multi-target application](how-to-use-it-in-a-multi-target-application)
+- [How to use it in a multi-target application](#how-to-use-it-in-a-multi-target-application)
+- [Accessing the underlying HTTP server](#accessing-the-underlying-http-server)
 
 ## Integration into a Database Module
 
@@ -25,7 +26,7 @@ Usually, `@sap/hdi-dynamic-deploy` gets installed via a `package.json`-based dep
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-dynamic-deploy": "1.2.2"
+    "@sap/hdi-dynamic-deploy": "1.4.2"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-dynamic-deploy/"
@@ -186,4 +187,43 @@ modules:
   - name: db-dynamic-3
     type: com.sap.xs.hdi-dynamic
     path: db-dynamic-3
+```
+
+## Accessing the underlying HTTP server
+By requiring the dynamic deploy package, you can access the internal HTTP server. This way, you can decide when to start/stop the server.
+
+The exported object offers two methods:
+```javascript
+    /**
+     * Start the HTTP server on this.port.
+     *
+     * @param {any} cb Callback function (error, result).
+     * @returns {undefined}
+     */
+    function start(cb){
+      <..>
+    };
+
+    /**
+     * Stop the HTTP server.
+     *
+     * @param {any} cb Callback function (error, result).
+     * @returns {undefined}
+     */
+    function stop(cb){
+      <..>
+    };
+```
+Furthermore, the object has the property `port`. This has to be set to the port that you want the server to listen on.
+
+Example:
+```javascript
+'use strict';
+
+const {server} = require('@sap/hdi-dynamic-deploy');
+
+server.port = process.env.PORT;
+server.start(function(){
+  console.log(`@sap/hdi-dynamic-deploy HTTP server up and running, listening on port ${  server.port}`);
+});
 ```

@@ -26,27 +26,29 @@
   * works for unicode characters (e.g. if the column from the ResultSet is NSTRING)
 * `$.db.ResultSet.getClob()`
   * works for unicode characters (e.g. if the column from the ResultSet is NCLOB)
+* `$.db.ResultSet.close` does not close the result set. All results will be closed when the corresponding statement is closed.
 * ParameterMetaData
   * getParameterType and getParameterTypeName may return different values from HANA XS Classic, e.g.
-    * NSTRING returned instead of NVARCHAR
-    * TIMESTAMP returned instead of SECONDDATE
+    * NSTRING returned instead of SHORTTEXT
     * DECIMAL returned instead of SMALLDECIMAL
-    * NVARCHAR returned instead of ALPHANUM
   * table output parameters from stored procedures are not described in ParameterMetaData
   * isNullable - Not supported
   * isSigned - Not supported
   * hasDefault - Not supported
+* ResultSetMetaData
+  * getColumnType and getColumnTypeName may return different values from HANA XS Classic, similarly to ParameterMetaData
+  * getCatalogName - Not supported
+  * getColumnDisplaySize - Not supported
 * PreparedStatement, CallableStatement - setDate, setTime, setTimestamp
   * not all date/time formats are supported
 
 ## Database API ($.hdb)
-* The ResultSet metadata object is incompatible with the metadata in XS Classic. It does not contain the following properties:
+* The ResultSet metadata object does not contain the following properties:
   * catalogName
   * displaySize
-  * typeName.
+* The ResultSet metadata uses `true` and `false` instead of `1` and `0` for the isNullable property
 * Date objects received for the TIME data type may have arbitrary values for year, month and day.
-* Values returned for the TEXT data type are strings instead of ArrayBuffers.
-* Fractional seconds for TIMESTAMPs can be of up to 3 digits instead of up to 7.
+* Values returned for the TEXT and BINTEXT data types are strings instead of ArrayBuffers.
 * Objects representing a date-time value via a string and optionally a format for parsing (for example, `{ '$date': '...' }` or `{ '$timestamp': '...', '$format': '...' }`) are not supported as input parameters.
 * Default conversions are not applied for input table parameters.
 * `$.hdb.ResultSet`

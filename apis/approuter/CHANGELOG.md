@@ -5,6 +5,36 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.8.0 - 2018-10-27
+
+### Fixed
+
+- Fix login flow for URLs with empty query (URL that ends with '?')
+
+### Added
+
+- Documentation of integration with HTML5 Apps Repo
+
+### Updated dependencies
+ - deps: ws@1.1.5
+ - deps: lodash@4.17.11
+ - deps: @sap/logging@4.0.2
+    - deps: lodash@4.17.11
+
+## 5.7.0 - 2018-10-08
+
+### Added
+ - Propagate client id to UAA during Logout
+ 
+## 5.6.4 - 2018-08-27
+
+### Updated dependencies
+- deps: @sap/audit-logging@2.2.4
+- deps: sync-request@5.0.0
+     
+### Fixed
+- Duplicate destination names in xs-app.json bug
+
 ## 5.6.3 - 2018-08-15
 
 ### Updated dependencies

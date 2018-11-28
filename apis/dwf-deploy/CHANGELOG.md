@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 2.3.0 - 2018-03-02
+## [2.4.0] - 2018-09-13
+Added:
+- .dwfdlmtablegroup - the design time artifact for modeling text, where the content of the file can be any valid text
+- .dwfndso - the design time artifact for modeling text, where the content of the file can be any valid text
+
+Fixed:
+- .dwfnamespace - calculation and handling
+
+## [2.3.0] - 2018-03-05
 Added:
 - Released for DWF 2 SP03
 

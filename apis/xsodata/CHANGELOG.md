@@ -8,6 +8,24 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [4.3.0] - 2018-10-19
+
+### Info
+
+- Minimal required @sap/hana-client version is 2.3.123
+- Improved test exits
+- **IMPORTANT** Conversion: When converting TIMESTAMP db type to OData V2 json payload, only the first 3 digits 
+ of the fractional part are used (OData V2 type DateTime does only supports millisecond precision). With the old 
+ hdb db driver the xsodata library got already only millisecond precision, with the new hana-client db-driver the xsodata 
+ library itself has to remove any digits and use only the millisecond part. The check if the digits for micro- or nanoseconds 
+ are zero and throwing an error if not (added with release 4.0.0) has been removed due to backward  compatibility reasons.
+ 
+## [4.2.0] - 2018-09-18
+
+### Changed
+
+- Upgraded lodash module dependency to 4.17.11
+
 ## [4.1.0] - 2018-08-31
 
 ### Added
