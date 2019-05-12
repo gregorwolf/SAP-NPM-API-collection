@@ -1,13 +1,13 @@
 @sap/hdi-deploy
 ===============
 
-`@sap/hdi-deploy` is the [Node.js](https://nodejs.org)-based deployment module for SAP HANA DI (HDI)-based persistence models, HDI Deployer for short. The HDI Deployer can be used in XS Advanced (XSA) and in SAP Cloud Platform (SAP CP)/Cloud Foundry (CF), and it is also used by the SAP Web IDE for interactive development scenarios.
+`@sap/hdi-deploy` is a [Node.js](https://nodejs.org)-based deployment module for SAP HANA DI (HDI)-based persistence models, HDI Deployer for short. The HDI Deployer can be used in XS Advanced (XSA) and in SAP Cloud Platform (SAP CP)/Cloud Foundry (CF), and it is also used by the SAP Web IDE for interactive development scenarios. It can also be used in scenarios without XSA (or SAP CP), e.g. for deploying HDI persistence models into a HANA database where no XSA is installed.
 
-For more information about HANA DI, please check the [SAP HANA Developer Guide](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.02/en-US/eaa4e37394ea4efba8148d595d025261.html).
+For more information about HANA DI, please check the [SAP HANA Developer Guide](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.03/en-US/eaa4e37394ea4efba8148d595d025261.html) and the [SAP HANA Administration Guide](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.03/en-US/3ef0ee9da11440e4b01708455b8497a9.html).
 
-The HDI Deployer is packaged into a database module, a `db` module, as part of a Multi-Target Application (MTA) and is used to deploy HDI design-time artifacts of the `db` module to the respective HDI container. When an MTA is deployed via the Deploy Service, the `db` module is pushed first so that it can "prepare" the SAP HANA persistence; by the time defined services are started, the HDI container is ready for use.
+Usually, the HDI Deployer is packaged into a database module, a `db` module, as part of a Multi-Target Application (MTA) and is used to deploy HDI design-time artifacts of the `db` module to the respective HDI container. When an MTA is deployed via the Deploy Service, the `db` module is pushed first so that it can "prepare" the SAP HANA persistence; by the time defined services are started, the HDI container is ready for use.
 
-The HDI Deployer can also be used without the Deploy Service and MTAs, and also for interactive scenarios or automation scripts.
+The HDI Deployer can also be used without the Deploy Service and MTAs, without XSA, and also for interactive scenarios or automation scripts.
 
 For an MTA with different modules, e.g. a `db` module, a Node.js module, etc., this looks as follows:
 
@@ -56,7 +56,7 @@ The following diagram illustrates the different users who are involved in this s
 
 The HDI Deployer is packaged into the `db` module of the MTA. So, in order to use a new HDI Deployer, you need to reference a new version of the HDI Deployer in the `db` module's `package.json` file.
 
-The HDI Deployer supports HANA 1 SPS11/SPS12 and HANA 2 SPS00/SPS01/SPS02. The HDI Deployer assumes that for newer versions of HANA, a corresponding version of the HANA Service Broker is used to create the CF/XSA service bindings.
+The HDI Deployer supports HANA 1 SPS11/SPS12 and HANA 2. The HDI Deployer assumes that for newer versions of HANA, a corresponding version of the HANA Service Broker is used to create the CF/XSA service bindings.
 
 Note: The HDI Deployer assumes ownership of the `src/`, `cfg/`, and `lib/` folders in the bound target HDI container. Binding more than 1 instance of the HDI Deployer to the same HDI container as the target container, e.g. the `db` modules of 2 MTAs or 2 applications are bound to the same HDI container as the target container, is not supported and results in undefined behavior.
 
@@ -65,11 +65,14 @@ Note: The HDI Deployer assumes ownership of the `src/`, `cfg/`, and `lib/` folde
 **Installation**:
 - [Integration into a Database Module](#integration-into-a-database-module)
 - [Database Connection Details](#database-connection-details)
+- [Deployment via Push and Tasks](#deployment-via-push-and-tasks)
+- [Deployment via Local Run](#deployment-via-local-run)
 
 **The Database Module**:
 - [A Database Module's File System Structure](#a-database-modules-file-system-structure)
 - [Delta Deployment and Undeploy Whitelist](#delta-deployment-and-undeploy-whitelist)
 - [The default_access_role Role](#the-default_access_role-role)
+- [The development_debug_role Role](#the-development_debug_role-role)
 - [Reusable Database Modules](#reusable-database-modules)
 - [Configuration File Templating](#configuration-file-templating)
 - [Permissions to Container-External Objects](#permissions-to-container-external-objects)
@@ -83,6 +86,8 @@ Note: The HDI Deployer assumes ownership of the `src/`, `cfg/`, and `lib/` folde
 
 **Dynamic Deployment**:
  - [Deployment via hdi-dynamic-deploy](#deployment-via-hdi-dynamic-deploy)
+ 
+**Library Usage**:
  - [Using hdi-deploy as a Node.js library](#using-hdi-deploy-as-a-nodejs-library)
 
 
@@ -96,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.8.2"
+    "@sap/hdi-deploy": "3.10.0"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -105,12 +110,216 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 ```
 ## Database Connection Details
 
-Connection details for the database, e.g. host, port, credentials, and certificates, are looked up by the HDI Deployer from the standard CF/XSA [`VCAP_SERVICES`](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) environment variable which contains the bound services.
+Connection details for the database, e.g. host, port, credentials, certificates, hostname_in_certificate, encrypt and validate_certificate, are looked up by the HDI Deployer from the standard CF/XSA `VCAP_SERVICES` environment variable which contains the bound services.
+
+In order to use mutual authentication, `client_authentication_private_key` and `client_authentication_certificate` can be supplied via the service binding.
 
 For local testing, the HDI Deployer supports default configurations via the following configuration files:
 
-- `default-services.json`: a JSON file which contains a set of service bindings
 - `default-env.json`: a JSON file which contains a set of environment variables and their values
+- `default-services.json`: a JSON file which contains a set of service bindings
+
+Details of a bound service from a HANA-Service-Broker-based service binding in CF/XSA usually look as follows:
+
+```
+{
+  "name" : "foo",
+  "label" : "hana",
+  "tags" : [ "hana", "database", "relational" ],
+  "plan" : "hdi-shared",
+  "credentials" : {
+    "schema" : "FOO",
+    "user" : "FOO_345999596729_RT",
+    "password" : "<password>",
+    "hdi_user" : "FOO_645927945801_DT,
+    "hdi_password" : "<password>",
+    "host" : "srv1234567.host.name",
+    "port" : "30115",
+    "db_hosts" : [ {
+      "port" : 30115,
+      "host" : "srv1234567.host.name"
+    } ],
+    "url" : "jdbc:sap://srv1234567.host.name:30115/?currentschema=FOO",
+    "driver" : "com.sap.db.jdbc.Driver"
+  }
+}
+```
+
+Here, the credentials section contains all the data which is needed by the HDI Deployer for connecting to the database. The HDI Deployer uses the `hdi_user`/`hdi_password` credentials from a direct service binding.
+
+### Splitting passwords across services
+
+The `password` property and the `hdi_password` property can also be specified as a combination of passwords from other bound services. Consider the following service binding:
+
+``` JSON
+{
+    "hana" : [],
+    "user-provided" : [ 
+      {
+      "name" : "split_password_service",
+      "label" : "user-provided",
+      "tags" : [],
+      "credentials" : {
+        "user" : "user",
+        "schema": "schema",
+        "password": ["password_and_hdi_password_service", "password_only_service"],
+        "hdi_password": ["password_and_hdi_password_service", "hdi_password_only_service"],
+        "tags" : [ "hana" ]
+      }
+    },
+    {
+      "name" : "password_and_hdi_password_service",
+      "label" : "user-provided",
+      "tags" : [],
+      "credentials" : {
+        "password" : "PASSWORD",
+        "hdi_password": "HDI_PASSWORD",
+        "tags" : [ "password" ]
+      }
+    },
+    {
+      "name" : "hdi_password_only_service",
+      "label" : "user-provided",
+      "tags" : [],
+      "credentials" : {
+        "hdi_password": "123",
+        "tags" : [ "password" ]
+      }
+    },
+    {
+      "name" : "password_only_service",
+      "label" : "user-provided",
+      "tags" : [],
+      "credentials" : {
+        "password" : "456",
+        "tags" : [ "password" ]
+      }
+    } ]
+  }
+```
+
+When the service `shared_password_service` is used, the services specified in `password` and/or `hdi_password` will be checked and their `password` and/or `hdi_password` will be concatenated. The services will be accessed in the order they are defined. The resulting `shared_password_service` would have the `password` "PASSWORD456" and the `hdi_password` "HDI_PASSWORD123".
+
+0 to n services can be specified, specifying 0 services results in the `password`/`hdi_password` ''.
+
+### VCAP_SERVICES
+
+Connection details for the database are stored in the following format in the [`VCAP_SERVICES`](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) environment variable:
+
+`VCAP_SERVICES`:
+```
+{
+  "hana" : [
+    <hana-service-binding-1>,
+    <hana-service-binding-2>,
+    ...
+    <hana-service-binding-n>
+  ],
+  "user-provided" : [
+    <user-provided-service-binding-1>,
+    <user-provided-service-binding-2>,
+    ...
+    <user-provided-service-binding-m>
+  ]
+}
+'
+```
+
+### default-env.json
+
+A `default-env.json` file can contain a set of environment variables and their values. The HDI Deployer will pick up these settings on startup:
+
+`default-env.json:`
+```
+{
+  "TARGET_CONTAINER" : "<name-of-the-service-instance-to-use-as-deployment-target>",
+  "VCAP_SERVICES" : {
+    "hana" : [
+      <hana-service-binding-1>,
+      <hana-service-binding-2>,
+      ...
+      <hana-service-binding-n>
+    ],
+    "user-provided" : [
+      <user-provided-service-binding-1>,
+      <user-provided-service-binding-2>,
+      ...
+      <user-provided-service-binding-m>
+    ]
+  }
+}
+```
+
+`default-env.json` example file with a target container binding and a user-provided service:
+
+```
+{
+  "TARGET_CONTAINER" : "target-service",
+  "VCAP_SERVICES" : {
+    "hana" : [ {
+     "name" : "target-service",
+      "label" : "hana",
+      "tags" : [ "hana", "database", "relational" ],
+      "plan" : "hdi-shared",
+      "credentials" : {
+        "schema" : "SCHEMA",
+        "hdi_user" : "USER_DT",
+        "hdi_password" : "PASSWORD_DT",
+        "certificate" : "-----BEGIN CERTIFICATE-----\nABCD...1234\n-----END CERTIFICATE-----\n",
+        "host" : "host",
+        "port" : "30015"
+      }
+    } ],
+    "user-provided" : [ {
+      "name" : "GRANTING_SERVICE",
+      "label" : "user-provided",
+      "tags" : [ ],
+      "credentials" : {
+        "schema" : "SYS",
+        "user" : "GRANT_USER",
+        "password" : "PASSWORD",
+        "procedure_schema" : "PRIVILEGE_PROCEDURE_GRANTOR_DEFINER",
+        "procedure" : "GRANT",
+        "type" : "procedure",
+        "tags" : [ "hana" ]
+      }
+    } ]
+  }
+}
+```
+
+## Deployment via Push and Tasks
+
+There are two ways of using the HDI Deployer as an application:
+
+- Push the application with one instance. The application will then start and do the HDI deployment of the data model. After a successful deployment, the application will enter an idle loop and can be stopped.
+- Push the application with zero instances and then trigger a task on the application which does the HDI deployment of the data model. After deployment of the data model, the task will be completed. An instance of the application is only running while the task is being executed.
+
+In order to push the application with zero instances, the application can either be pushed with the `--no-start` option or the number of instances can be set to zero in the `manifest.yml` file via `instances: 0`.
+
+The deployment task can be started via `xs run-task <app> deployment-task "npm run start -- --exit" --wait-for-completion` on XSA. The task will run and the call will propagate the success/failure of the deployment task. On CF, the `--wait-for-completion` option is not available and the status of the task needs to be checked periodically.
+
+## Deployment via Local Run
+
+An HDI deployment can also be triggered without using an application. In this case, the HDI Deployer will be run locally and directly connects to the database. This is possible in the following scenarios: the database is accessible locally from a network point of view or a network tunnel with a local endpoint was established, e.g. a `cf ssh`-based tunnel is set up in CF.
+
+Apply the following steps to run the HDI Deployer locally: run `npm install` in the db module's folder to install the HDI Deployer module, then create a `default-env.json` file in the db module's folder which contains the required service bindings and the `TARGET_CONTAINER` setting, then run `npm run start -- --exit` in the db module's folder to trigger the deployment of the data model.
+
+If the database uses SSL/TLS encryption, please ensure that the `hostname_in_certificate` value is set up correctly in the service bindings, because the network tunnel's local endpoint (e.g. localhost:9000) doesn't match the hostname in the SSL/TLS certificate.
+
+## A Database Module's File System Structure
+
+The HDI Deployer expects the following file system structure for the HDI content in your `db` module:
+
+- `src/`: folder which contains your HDI source artifacts
+- `cfg/`: optional folder with HDI configuration artifacts
+- `package.json`: this file is used by npm (the Node.js package manager) to bootstrap and start the application
+
+Other files in the root directory will be ignored by `@sap/hdi-deploy`.
+
+Please note that the `cfg/` folder also might need a `.hdiconfig` file, e.g. in case `.hdbsynonymconfig` files are placed there.
+
+In combination with resuable database modules, the HDI Deployer will also consider database modules which are located in the `node_modules/` folder and which will be mapped to a corresponding sub-folder hierarchy in the container's `lib/` folder.
 
 ## A Database Module's File System Structure
 
@@ -179,29 +388,31 @@ The following diagram illustrates the binding-specific application users and the
 
 Exemplary service binding:
 
-    {
-       "hana" : [ {
-         "name" : "foo",
-         "label" : "hana",
-         "tags" : [ "hana", "database", "relational" ],
-         "plan" : "hdi-shared",
-         "credentials" : {
-           "schema" : "FOO",
-           "driver" : "com.sap.db.jdbc.Driver",
-           "port" : "30115",
-           "host" : "srv1234567.host.name",
-           "db_hosts" : [ {
-             "port" : 30115,
-             "host" : "srv1234567.host.name"
-           } ],
-           "user" : "SBSS_34599959672902195741875760873853766555404727822156060056836149475",
-           "password" : "<password>",
-           "hdi_user" : "SBSS_64592794580116217572062412157356606994624009694957290675610125954",
-           "hdi_password" : "<password>",
-           "url" : "jdbc:sap://srv1234567.host.name:30115/?currentschema=FOO"
-         }
-       } ]
-    }
+```
+{
+   "hana" : [ {
+     "name" : "foo",
+     "label" : "hana",
+     "tags" : [ "hana", "database", "relational" ],
+     "plan" : "hdi-shared",
+     "credentials" : {
+       "schema" : "FOO",
+       "user" : "FOO_345999596729_RT",
+       "password" : "<password>",
+       "hdi_user" : "FOO_645927945801_DT,
+       "hdi_password" : "<password>",
+       "host" : "srv1234567.host.name",
+       "port" : "30115",
+       "db_hosts" : [ {
+         "port" : 30115,
+         "host" : "srv1234567.host.name"
+       } ],
+       "url" : "jdbc:sap://srv1234567.host.name:30115/?currentschema=FOO",
+       "driver" : "com.sap.db.jdbc.Driver"
+     }
+   } ]
+}
+```
 
 In order to assign roles from the HDI content to the application binding users (the `user` users), the HDI Deployer implements an automatic assignment of the `default_access_role` role if it is present in the deployed content:
 
@@ -260,6 +471,14 @@ A role with the default permission set which is granted by the HANA Service Brok
 }
 ```
 
+## The development_debug_role Role
+
+Similarly to the default_access_role, a development_debug_role can be used to add additional privileges to the access role. This is only intended for development and debugging, not for productive use!
+
+If a role definition file exists at the path `src/defaults/development_debug_role.hdbrole`, and this file defines a role named `development_debug_role`, and this file is explicitly included in the deployment via the `--deploy` option, then the HDI Deployer grants the deployed `development_debug_role` role to the service instance's global access role (e.g. `FOO::access_role`).
+
+In order to remove the privileges granted this way, the file has to be undeployed.
+
 ## Reusable Database Modules
 
 In order to allow that an application uses (parts of) the database persistence of a reusable component inside its own persistence model, the HDI Deployer allows to link/include the design-time files of reusable components in a consuming application in an automated way. This mechanism is based on the Node.js package management mechanism for defining, publishing, and consuming reusable database modules which also supports versioning based on the semantic versioning concepts (cf. http://semver.org).
@@ -306,7 +525,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.8.2",
+    "@sap/hdi-deploy": "3.10.0",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -731,6 +950,7 @@ Example `manifest.yml`:
     applications:
     - name: app-db
       path: db
+      health-check-type: process
       services:
         - app-database
         - real-grantor-service
@@ -753,8 +973,13 @@ Example `manifest.yml`:
 
 `@sap/hdi-deploy` supports (re-)configuration via the following environment variables for infrastructure / development tools like the Deploy Service or internal build tools of the WEB IDE
 
+- `EXIT`: (optional) if set, the HDI Deployer will exit when the deployment is done; using the environment variable is equivalent to passing a `--exit` on the command line
 - `DEPLOY_ID`: (optional) if set, the given id will be written to the final application log entry (custom id, to support processes in parsing log output
-- `HDI_DEPLOY_OPTIONS`: (optional) JSON-structured set of options for the HDI Deployer, e.g. `{ "auto_undeploy" : true, "exit" : true, "root" : "/volumes/A/workspaces/B/db/", "include_filter" : [ "src/", "cfg/" ] }`
+- `HDI_DEPLOY_OPTIONS`: (optional) JSON-structured set of options for the HDI Deployer, e.g. `{ "auto_undeploy" : true, "exit" : true, "root" : "/volumes/A/workspaces/B/db/", "include_filter" : [ "src/", "cfg/" ] }`; command line options can be translated to `HDI_DEPLOY_OPTIONS` options by replacing the `-`s in the option names with `_`s; options which can accept multiple values require a JSON array with the values, e.g. path options like the include-filter option.
+- `APPLICATION_ID`: (optional, fallback `SAP_HDI`) this will be used, in conjunction with the `space_name` and the `organization_name` of the `VCAP_APPLICATION` to set the session variable `APPLICATION` for all connections to the database. This setting may only be used by applications from SAP.
+- `APPLICATION_VERSION_INFO`: (optional) this will be logged to the command line, to allow logging of some additional information about the application.
+
+Options from `HDI_DEPLOY_OPTIONS` override options which are passed on the command line.
 
 ## Ignore List
 The hdi deployer supports ignoring certain files via an `.hdiignore` file. The file has to be placed at the root of the project folder, just like the `undeploy.json`.
@@ -781,12 +1006,15 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--[no-]treat-unmodified-as-modified`: [don't] treat unmodified files during delta detection as modified files
 - `--undeploy [<file> ..]`: explicitly schedule the given files for undeploy
 - `--parameter [<key>=<value> ..]`: pass the given list of key-value parameters to the deployment
+- `--path-parameter [<path>:<key>=<value> ..]`: pass the given list of path-key-value parameters to the deployment
 - `--[no-]auto-undeploy`: [don't] undeploy artifacts automatically based on delta detection and ignore the `undeploy.json` file
 - `--[no-]treat-warnings-as-errors`: [don't] treat warnings as errors
 - `--[no-]simulate-make`: [don't] simulate the make and skip post-make activities; pre-make activities still take effect, e.g. grants
 - `--connection-timeout <ms>`: number of milliseconds to wait for the database connection(s)
 - `--lock-container-timeout <ms>`: number of milliseconds to wait for the container lock
 - `--exclude-filter [<path> ..]`: exclude the given paths during: file walk, delta detection and when explicitly scheduled via --(un)deploy
+- `--[no-]treat-wrong-ownership-as-errors`: [don't] treat wrong ownership of objects as errors, not enabled by default
+- `--[no-]migrationtable-development-mode`: [don't] pass the development mode flag for migration tables to HDI, if the parameter is supported by the server, not enabled by default
 
 See `--help` for details and defaults.
 
@@ -819,7 +1047,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "3.8.2",
+        "version": "3.10.0",
         "features": {
             "info": 2,
             "verbose": 1,
@@ -833,6 +1061,7 @@ For a `--info client` call, the document looks as follows:
             "treat-unmodified-as-modified": 1,
             "undeploy": 1,
             "parameter": 1,
+            "path-parameter": 1,
             "treat-warnings-as-errors": 1,
             "simulate-make": 1,
             "service-replacements": 1,

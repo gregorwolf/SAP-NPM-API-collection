@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.1.0 - 2019-01-11
+
+### Added
+- Support for `hostname_in_certificate`, `validate_certificate`, `client_authentication_certificate`, `client_authentication_private_key` properties from HANA service binding
+
+### Fixed
+- Check for non-existing procedure
+
 ## 5.0.0 - 2018-09-27
 
 ### Removed

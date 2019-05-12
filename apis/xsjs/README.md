@@ -86,6 +86,7 @@ Here is a list with options you can provide:
 | [context](#context) | {} | Extend the default context in xsjs scripts. |
 | [libraryCache](#librarycache) | {} | Contains the xsjslibs that should be cached. |
 | redirectUrl | | If specified, a redirect to this url is triggered when the root path is requested. **Note**: When xsjs is behind a reverse proxy (Application Router for instance), the value of this property should be aligned with the path rewriting rules that may apply. |
+| xsApplicationUser | true | If set to false, the session variable `XS_APPLICATIONUSER` will not be set. |
 
 **Note:** When there are several rootDirs (for example: repo1 and repo2) and their file strucutre is equivalent (/repo1/hello.xsjs and /repo2/hello.xsjs) the file from the first directory (as listed in the 'rootDirs' property) will be used (/repo1/hello.xsjs) and the file from the second directory (/repo2/hello.xsjs) will be ignored with a warning message in the logs.
 

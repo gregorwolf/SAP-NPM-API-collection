@@ -5,8 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="4.0.2"></a>
+## 4.0.2 - 2019-01-21
 
-<a name="4.0.1"></a>
+### Added
+- Flag to disable setting XS_APPLICATIONUSER
+
+### Fixed
+- Update _@sap/hdbext_ to v5.1.0.
+
 ## 4.0.1 - 2018-10-22
 
 ### Fixed

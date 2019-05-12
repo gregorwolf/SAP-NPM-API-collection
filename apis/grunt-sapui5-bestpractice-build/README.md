@@ -3,7 +3,7 @@
 Grunt tasks for SAP WebIDE.
 
 ## Pre-requisites
-Make sure that you have installed npm version 3 (not 2).
+Make sure that you have installed npm version >=5.6.0.
 
 ## Getting Started
 
@@ -33,12 +33,21 @@ Once the plugin has been installed, it may be enabled inside your wcGruntfile.js
 
 module.exports = function(grunt) {         
 	'use strict';
-    grunt.loadNpmTasks('@sap/grunt-sapui5-bestpractice-build');
-
-    grunt.registerTask('default', [
-        'clean',
-        'lint',
-        'build'
-    ]);                
+	
+    grunt.loadNpmTasks("@sap/grunt-sapui5-bestpractice-build");   
+    grunt.config.merge({
+        compatVersion: "1.56",
+        deploy_mode: "html_repo"
+    });    
+    grunt.registerTask("default", [
+        "clean",
+        "lint",
+        "build"
+    ]);
+    
 };
 ```
+
+Optional Parameters:        
+"compatVersion" - UI5 version in which the built artifact will be deployed.    
+"deploy_mode" - Indication whether the deployed artifact will be hosted by an HTML5 repository. If so, the value should be "html_repo". 

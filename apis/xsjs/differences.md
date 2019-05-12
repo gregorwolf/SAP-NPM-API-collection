@@ -72,7 +72,7 @@ in XS Classic returns `undefined` while in XS Advanced it returns the column val
 
 ## Network API ($.net)
 * Destinations
-  * only the following properties are supported - host, port, pathPrefix, useProxy, proxyPort, authType, username, password
+  * only the following properties are supported - host, port, pathPrefix, useProxy, proxyHost, proxyPort, authType, username, password
 * Mail, SMTPConnection
   * proxy support and Digest-MD5 authentication method are not supported
 

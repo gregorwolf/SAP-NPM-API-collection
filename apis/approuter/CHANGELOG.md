@@ -5,15 +5,84 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.15.0 - 2019-04-29
+
+### Added
+- Support for Service to Application Router functionality (Beta version).
+- Added destination in host support.
+
+## 5.14.1 - 2019-04-17
+
+### Added
+- Enhanced Approuter application logs when serving of static content (from HTML5 App Repo) was failed.
+
+### Fixed
+- Fixed subscription callbacks url.
+
+## 5.14.0 - 2019-04-04
+
+### Added
+- Websockets support for HTML5 Application Repository.
+
+### Fixed
+- onSubscription callback.
+
+## 5.13.1 - 2019-03-27
+
+### Added
+- Added automatic recovery of Approuter after recovery of UAA.
+
+### Fixed
+- Fixed subscription callbacks url.
+- Fixed avoid central appConfig routes overrides.
+
+### Updated dependencies
+ - deps: @sap/xssec@2.1.16
+
+## 5.13.0 - 2019-02-14
+
+### Added
+- Ability to define identity provider for authentication in the route.
+
+## 5.12.0 - 2019-02-05
+
+### Added
+- Dynamic destination support.
+
+## 5.11.0 - 2019-01-22
+
+### Added
+- Client credentials token support.
+
+## 5.10.2 - 2019-01-08
+
+### Fixed
+- Fix proxy issue in Connectivity flow.
+
+## 5.10.1 - 2019-01-03
+
+### Fixed
+- Fixed flow of access destination via desination service.
+
+## 5.10.0 - 2018-12-30
+
+### Added
+- Propagation of approuter host during logout.
+
+## 5.9.0 - 2018-12-18
+
+### Added
+- Ability to change destination without restarting application on CF
+- Access destination that is exposed on destination service instance level.
+- Enabled all authentication types defined in the destination service.
+
 ## 5.8.0 - 2018-10-27
 
 ### Fixed
-
-- Fix login flow for URLs with empty query (URL that ends with '?')
+- Fix login flow for URLs with empty query (URL that ends with '?').
 
 ### Added
-
-- Documentation of integration with HTML5 Apps Repo
+- Documentation of integration with HTML5 Apps Repo.
 
 ### Updated dependencies
  - deps: ws@1.1.5

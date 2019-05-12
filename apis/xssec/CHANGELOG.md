@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.1.16 - 2019-01-28
+
+- Fix token parser: switch ASCII to Utf8 decode
+
 ## 2.1.15 - 2018-08-13
 
 - Update version of module request

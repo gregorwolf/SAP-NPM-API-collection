@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [4.4.0] - 2019-01-25
+
+- Update module dependencies
+- The code field inside an OData error response (error.code) is now correctly send as string (not as number)
+- For calcviews the columns type length is determined from the COLUMN_SQL_TYPE if LENGTH is not set.  
+- Fixed error while parsing multipart/mixed batch requests  
+
 ## [4.3.0] - 2018-10-19
 
 ### Info

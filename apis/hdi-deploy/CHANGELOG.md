@@ -1,3 +1,41 @@
+## 3.10.0
+Features:
+- passwords can be split over multiple services
+
+## 3.9.4
+Fixes:
+- update handlebars
+
+## 3.9.3
+Fixes:
+- add full support for .hdbmigrationtable files by adding the --[no-]migrationtable-development-mode flag
+
+## 3.9.2
+Fixes:
+- the private key used for mutual authentication was logged if tracing is enabled
+- mutual auth was missing on some database connections
+- some database connections were not closed correctly
+
+## 3.9.1
+Fixes:
+- revert changes to hdi actions that could possibly cause a behavior change
+
+## 3.9.0
+Features:
+- allow passing ssl connection parameters in service binding
+- allow mutual auth via parameters in service binding
+- set session variable APPLICATION on all HANA connections
+- support path parameters for HDI
+- allow development debug role similar to the default access role
+- update @sap/hdi dependency
+- better handling of invalid undeploy.json files
+- improved timestamps in logging output
+- check ownership of objects in the container via --treat-wrong-ownership-as-errors
+- allow logging of additional application data
+
+Fixes:
+- issue with schema privileges and global roles in the same .hdbgrants file
+
 ## 3.8.2
 
 Features:

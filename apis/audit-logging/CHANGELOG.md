@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 2.3.0 - 2018-12-18
+
+### Added
+- Node.js version 10 support
+
+### Fixed
+- Update `lodash` to 4.17.11
+
 ## 2.2.4 - 2018-08-14
 
 ### Fixed

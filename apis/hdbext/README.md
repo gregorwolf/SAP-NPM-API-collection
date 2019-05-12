@@ -51,11 +51,15 @@ hdbext.createConnection(hanaConfig, function(error, client) {
 
 The HANA options provided to *@sap/hdbext* should be in the same format as expected by the *@sap/hana-client* package.
 
-For convenience these properties set by the HANA service broker in the SAP HANA XS Advanced platform are also accepted:
+For convenience these properties set by the HANA service broker are also accepted:
 * `schema` - can be used instead of the `currentSchema` property of *@sap/hana-client*.
 * `db_hosts` - can be used instead of the `hosts` property of *@sap/hana-client*.
 * `certificate` - can be used instead of `ca` property of *@sap/hana-client*.
 __Note:__ `certificate` is a string containing one certificate, while `ca` is an array of certificates.
+* `hostname_in_certificate` - can be used instead of `sslHostNameInCertificate` property of *@sap/hana-client*.
+* `validate_certificate ` - can be used instead of `sslValidateCertificate` property of *@sap/hana-client*. The default value is `true`.
+* `client_authentication_certificate` - can be used instead of `cert` property of *@sap/hana-client*.
+* `client_authentication_private_key` - can be used instead of `key` property of *@sap/hana-client*. 
 
 #### Additional options
 
