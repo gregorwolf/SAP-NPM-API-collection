@@ -1,3 +1,14 @@
+## 3.11.0
+Features:
+- added option `--liveness-ping` to periodically send a signal that notifies the user that the deployer is still working
+- added option `--live-messages` to display the make messages while the make is still in progress
+- added function `clean-env` to `library.js` to allow cleaning a passed environment of all deployer-related variables
+
+Fixes:
+- `library.js` would sometimes return with `exitCode` null because of unexpected closing of the child process
+- update dependencies
+- add missing options to HDI_DEPLOY_OPTIONS
+
 ## 3.10.0
 Features:
 - passwords can be split over multiple services

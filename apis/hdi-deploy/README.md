@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.10.0"
+    "@sap/hdi-deploy": "3.11.0"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -145,7 +145,7 @@ Details of a bound service from a HANA-Service-Broker-based service binding in C
 }
 ```
 
-Here, the credentials section contains all the data which is needed by the HDI Deployer for connecting to the database. The HDI Deployer uses the `hdi_user`/`hdi_password` credentials from a direct service binding.
+Here, the credentials section contains all the data which is needed by the HDI Deployer for connecting to the database. The HDI Deployer uses the `hdi_user`/`hdi_password` credentials from a direct service binding. The `hdi_user` should be minimal, i.e. only have the privileges required to fulfill the deployment. In most cases, access to a container FOO's API in the FOO#DI schema is sufficient.
 
 ### Splitting passwords across services
 
@@ -295,6 +295,8 @@ There are two ways of using the HDI Deployer as an application:
 - Push the application with one instance. The application will then start and do the HDI deployment of the data model. After a successful deployment, the application will enter an idle loop and can be stopped.
 - Push the application with zero instances and then trigger a task on the application which does the HDI deployment of the data model. After deployment of the data model, the task will be completed. An instance of the application is only running while the task is being executed.
 
+For both scenarios, ensure that the `health-check-type` in the manifest is set to `process`, instead of the default, `port`-based health check.
+
 In order to push the application with zero instances, the application can either be pushed with the `--no-start` option or the number of instances can be set to zero in the `manifest.yml` file via `instances: 0`.
 
 The deployment task can be started via `xs run-task <app> deployment-task "npm run start -- --exit" --wait-for-completion` on XSA. The task will run and the call will propagate the success/failure of the deployment task. On CF, the `--wait-for-completion` option is not available and the status of the task needs to be checked periodically.
@@ -319,21 +321,9 @@ Other files in the root directory will be ignored by `@sap/hdi-deploy`.
 
 Please note that the `cfg/` folder also might need a `.hdiconfig` file, e.g. in case `.hdbsynonymconfig` files are placed there.
 
-In combination with resuable database modules, the HDI Deployer will also consider database modules which are located in the `node_modules/` folder and which will be mapped to a corresponding sub-folder hierarchy in the container's `lib/` folder.
+In combination with reusable database modules, the HDI Deployer will also consider database modules which are located in the `node_modules/` folder and which will be mapped to a corresponding sub-folder hierarchy in the container's `lib/` folder.
 
-## A Database Module's File System Structure
-
-The HDI Deployer expects the following file system structure for the HDI content in your `db` module:
-
-- `src/`: folder which contains your HDI source artifacts
-- `cfg/`: optional folder with HDI configuration artifacts
-- `package.json`: this file is used by npm (the Node.js package manager) to bootstrap and start the application
-
-Other files in the root directory will be ignored by `@sap/hdi-deploy`.
-
-Please note that the `cfg/` folder also might need a `.hdiconfig` file, e.g. in case `.hdbsynonymconfig` files are placed there.
-
-In combination with resuable database modules, the HDI Deployer will also consider database modules which are located in the `node_modules/` folder and which will be mapped to a corresponding sub-folder hierarchy in the container's `lib/` folder.
+Note: The design-time files should be protected against unauthorized modifications to guard against unwanted undeployments or deployment of foreign objects. For applications running on XSA or Cloud Foundry, this is taken care of by the platform.
 
 ## Delta Deployment and Undeploy Whitelist
 
@@ -352,7 +342,7 @@ In order to undeploy deleted files, an application needs to include an undeploy 
         "src/Procedure.hdbprocedure"
     ]
 
-The file must list all artifacts which should be undeployed. The file path of the artifacts must be relative to the root directory of the `db` module, must use the HDI file path delimiter '/', and must be based on the HDI server-side folder structure. In case of resuable database modules, the server-side top-level folder `lib/` needs to be used instead of the local folder `node_modules/`.
+The file must list all artifacts which should be undeployed. The file path of the artifacts must be relative to the root directory of the `db` module, must use the HDI file path delimiter '/', and must be based on the HDI server-side folder structure. In case of reusable database modules, the server-side top-level folder `lib/` needs to be used instead of the local folder `node_modules/`.
 
 For interactive scenarios, it's possible to pass the `auto-undeploy` option to the HDI Deployer, e.g.
 
@@ -525,7 +515,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.10.0",
+    "@sap/hdi-deploy": "3.11.0",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -615,7 +605,7 @@ The HDI Deployer also supports old-style `.hdbsynonymtemplate` template files: I
 
 ## Permissions to Container-External Objects
 
-An HDI container is by default equipped with nearly zero database privileges, e.g. the object owner (`#OO` user) is mainly equipped with the `CREATE ANY` privilege on the container's runtime schema (e.g. schema `FOO` for an HDI contaner `FOO`). Since HANA 2 SPS00, the object owner is equipped with an additional restricted set of privileges for system views in the database's `SYS` schema, e.g. `SYS.VIEWS` or `SYS.TABLES`. These system views apply an additional row-level filter based on the object owner's other privileges, e.g. the object owner can only see metadata in `SYS.VIEWS` for views he has privileges on. So, without additional privileges, the object owner can only see metadata for the objects in his container schema.
+An HDI container is by default equipped with nearly zero database privileges, e.g. the object owner (`#OO` user) is mainly equipped with the `CREATE ANY` privilege on the container's runtime schema (e.g. schema `FOO` for an HDI container `FOO`). Since HANA 2 SPS00, the object owner is equipped with an additional restricted set of privileges for system views in the database's `SYS` schema, e.g. `SYS.VIEWS` or `SYS.TABLES`. These system views apply an additional row-level filter based on the object owner's other privileges, e.g. the object owner can only see metadata in `SYS.VIEWS` for views he has privileges on. So, without additional privileges, the object owner can only see metadata for the objects in his container schema.
 
 In order to access database objects inside other database schemata or other HDI containers, and in order to deploy synonyms into the HDI container which point to these container-external objects, at least the object owner needs additional privileges, e.g. for an object `object` in schema `X` `SELECT` privileges on `X.object`:
 
@@ -769,10 +759,10 @@ Such a user-provided service can be created as follows:
   - `"certificate"`: If the database is configured to only accept secure connections, then the granting-service requires an SSL certificate that must be included in the user-provided service, for example, using the "certificate":"<myCertificate>" parameter.
   - `"user"/"password"`: Connection details for a database user that has grant permissions for the objects in the schema.
   - `"schema"`: The database schema that contains the objects to which access is to be granted.
-  - `"type"`: The type of the grantor mechanism; valid values are `"hdi"`, `"sql"`, or `"procedure"`. If the type is specified, then the type is auto-sensed (see details below).
+  - `"type"`: The type of the grantor mechanism; valid values are `"hdi"`, `"sql"`, or `"procedure"`. If the type is not specified, then the type is auto-sensed (see details below).
 - Use the command `xs services` to display a list of services available in the current space; the 'grantor-service' service should be visible.
 
-For Clound Foundry, use the corresponding `cf` commands.
+For Cloud Foundry, use the corresponding `cf` commands.
 
 Note: Starting with version 3.0.0 of the HDI Deployer, the `"host"`, `"port"`, and `"certificate"` parameters are no longer required since they can be obtained from the target container binding. In this case, you must only specify the `"user"`, `"password"`, and `"schema"` when creating the user-provided service, e.g. `xs cups grantor-service -p '{ "user": "TARGET_USER", "password": "Grant_123", "schema": "TARGET_SCHEMA", "tags": [ "hana" ] }'`.
 
@@ -780,7 +770,7 @@ If the `"type"` is not specified, then the type is selected based on the followi
 
 If the technical database user does not have GRANT privileges by its own, but only EXECUTE privileges on a stored procedure which can grant the privileges, then the following settings are required:
 
-- At the datababase, a GRANT procedure must exist (or be visible) in the schema which is used in the user-provided service; an example is shown below.
+- At the database, a GRANT procedure must exist (or be visible) in the schema which is used in the user-provided service; an example is shown below.
 - The technical database user must have EXECUTE privileges on the GRANT procedure.
 - The name of the GRANT procedure must be specified in the user-provided service in the `"procedure"` field, e.g. `"procedure": "GRANT"`.
 - The scheme name of the GRANT procedure can be specified in the user-provided service in the `"procedure_schema"` field, e.g. `"procedure_schema": "A_SCHEMA"`.
@@ -1015,6 +1005,8 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--exclude-filter [<path> ..]`: exclude the given paths during: file walk, delta detection and when explicitly scheduled via --(un)deploy
 - `--[no-]treat-wrong-ownership-as-errors`: [don't] treat wrong ownership of objects as errors, not enabled by default
 - `--[no-]migrationtable-development-mode`: [don't] pass the development mode flag for migration tables to HDI, if the parameter is supported by the server, not enabled by default
+- `--[no-]liveness-ping`: [don't] send a sign of life from time to time, by default, a sign of life will be sent
+- ` --[no-]live-messages`: [don't] display the make messages while the make is still in progress, by default, the messages will be displayed while the make is in progress
 
 See `--help` for details and defaults.
 
@@ -1047,7 +1039,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "3.10.0",
+        "version": "3.11.0",
         "features": {
             "info": 2,
             "verbose": 1,
@@ -1109,8 +1101,17 @@ with the following parameters:
 ```
 {
   messages: [<list of result messages from the di server>],
-  exitCode: <exit code of the call to the deployer app>
+  exitCode: <exit code of the call to the deployer app, one of -1, 0, 1.>,
+  signal: <signal that the child process was closed with>
 }
 ```
   
 - `io` (optional): javascript object containing two callback functions `io.stdoutCB` and `io.stderrCB` of the form `function(data)` for streaming stdout and stderr of the call to the deployer, defaults to piping stdout and stderr of the deployer to stdout and stderr of the calling Node.js app
+
+The exit codes have different meanings:
+
+- -1: The child process was most likely killed externally, check the signal property for details.
+- 0: Deployment done succesfully.
+- 1: Deployment failed, errors occurred.
+
+The signal property is only set, if exitCode is -1.

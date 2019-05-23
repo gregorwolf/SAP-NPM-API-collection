@@ -36,7 +36,7 @@
     "@sap/di.code-validation.grunt": "^1.0.7",
     "@sap/di.code-validation.js": "^1.1.6",
     "@sap/di.code-validation.json": "^1.0.8",
-    "@sap/di.code-validation.xml": "^1.1.12",
+    "@sap/di.code-validation.xml": "^1.1.13",
     "@sap/dwf-core": "^2.2.1",
     "@sap/dwf-deploy": "^2.4.0",
     "@sap/dwf-dlm-backend": "^2.3.0",
@@ -55,7 +55,7 @@
     "@sap/hana-client": "^2.3.123",
     "@sap/hdbext": "^5.1.0",
     "@sap/hdi": "^1.1.4",
-    "@sap/hdi-deploy": "^3.10.0",
+    "@sap/hdi-deploy": "^3.11.0",
     "@sap/hdi-dynamic-deploy": "^1.4.2",
     "@sap/html5-app-deployer": "^2.0.1",
     "@sap/instance-manager": "^1.4.0",
@@ -84,6 +84,6 @@
     "@sap/xsjs-test": "^2.0.16",
     "@sap/xsodata": "^4.4.0",
     "@sap/xss-secure": "^2.1.0",
-    "@sap/xssec": "^2.1.16"
+    "@sap/xssec": "^2.1.17"
   }
 }

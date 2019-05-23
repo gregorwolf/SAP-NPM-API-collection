@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.1.17 - 2019-05-17
+
+- Introduce http timeout of two seconds
+- Update version of module debug, lru-cache and @sap/xsenv
+- Fix token verification for broker master instance subscriptions
+
 ## 2.1.16 - 2019-01-28
 
 - Fix token parser: switch ASCII to Utf8 decode
