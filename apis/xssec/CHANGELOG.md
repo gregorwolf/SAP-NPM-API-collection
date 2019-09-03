@@ -1,6 +1,22 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.2.3 - 2019-08-07
+
+- Add retry for recieving keys
+
+## 2.2.2 - 2019-06-24
+
+- Use verification key from binding as backup if online key retrieval fails
+
+## 2.2.1 - 2019-06-17
+
+- Fix uaaDomain comparison in key cache
+
+## 2.2.0 - 2019-06-17
+
+- Align key cache implementation with other container security libraries
+
 ## 2.1.17 - 2019-05-17
 
 - Introduce http timeout of two seconds

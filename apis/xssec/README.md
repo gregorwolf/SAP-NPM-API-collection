@@ -178,6 +178,10 @@ Note that this example assumes additional test configuration in the file `defaul
 }
 ```
 
+### Usage in Docker
+
+If you intend to use XS Advanced Container Security inside a Docker image make sure to use a base image other than **alpine**. The alpine base system is lacking needed symbols for system calls.
+
 ## API Description
 
 ### createSecurityContext

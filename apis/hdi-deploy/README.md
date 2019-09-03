@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.11.0"
+    "@sap/hdi-deploy": "3.11.2"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -121,7 +121,7 @@ For local testing, the HDI Deployer supports default configurations via the foll
 
 Details of a bound service from a HANA-Service-Broker-based service binding in CF/XSA usually look as follows:
 
-```
+``` JSON
 {
   "name" : "foo",
   "label" : "hana",
@@ -131,7 +131,7 @@ Details of a bound service from a HANA-Service-Broker-based service binding in C
     "schema" : "FOO",
     "user" : "FOO_345999596729_RT",
     "password" : "<password>",
-    "hdi_user" : "FOO_645927945801_DT,
+    "hdi_user" : "FOO_645927945801_DT",
     "hdi_password" : "<password>",
     "host" : "srv1234567.host.name",
     "port" : "30115",
@@ -515,7 +515,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.11.0",
+    "@sap/hdi-deploy": "3.11.2",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1039,7 +1039,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "3.11.0",
+        "version": "3.11.2",
         "features": {
             "info": 2,
             "verbose": 1,

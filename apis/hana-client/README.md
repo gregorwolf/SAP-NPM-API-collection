@@ -14,7 +14,7 @@ for additional prerequisites including Python 2.7, and C/C++ tool chain.
 
 The official hosted version includes precompiled libraries for Linux, Windows and Mac OS X.
 
-The @sap/hana-client driver supports node.js 4.x, 6.x and 8.x.
+The @sap/hana-client driver supports node.js 4.x, 6.x, 8.x and 10.x.
 
 ##Getting Started
 ```js

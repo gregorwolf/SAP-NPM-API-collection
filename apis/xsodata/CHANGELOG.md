@@ -8,6 +8,37 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [4.5.4] - 2019-08-26
+
+### Info
+
+- Update module dependencies
+
+## [4.5.3] - 2019-08-26
+
+### Info
+
+- Update module dependencies
+
+## [4.5.1] - 2019-08-23
+
+### Info
+
+- Updated documentation
+
+## [4.5.0] - 2019-08-23
+
+### Info
+
+- Update module dependencies
+- Adopt to new async behaviour
+- Adopt to new calcview metadata
+
+### Fixed
+
+- Fix bug in error case (duplicate call of callback)
+
+
 ## [4.4.0] - 2019-01-25
 
 - Update module dependencies

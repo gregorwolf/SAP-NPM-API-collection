@@ -1,5 +1,654 @@
 # ChangeLog for cdx compiler and backends
 
+## Version 1.17.2
+
+Fixes
+
+* Fix stack overflow bug in EDM Preprocessing
+
+## Version 1.17.1
+
+Changes
+
+* OData: Add type facet `Precision=7` to `Edm.DataTimeOffset` if CDS type is `cds.Timestamp`.
+* Add semantic check to prevent the usage of `hana.ST_POINT` and `hana.ST_GEOMETRY` as primary key types.
+
+Fixes
+
+* OData: Do not generate `NavigationPropertyBinding` (V4) or `AssociationSet` (V2) for non-existing `EntitySet`
+  of the Proxy `EntityType`s introduced with Version 1.16.2.
+
+
+## Version 1.17.0
+
+Features
+
+* OData V4:
+  + With `--beta-mode` enabled, compositions become containment navigation properties. This
+    is performed by annotating all compositions with `@odata.contained`. Existing assignments
+    are not overwritten.
+    Enabling containment is an incompatible change to existing OData metadata documents
+    as all composition targets are no longer accessible as EntitySets but only through their
+    container.
+* Release keyword `event`.
+
+Changes
+
+* OData: Update all known Odata vocabularies, this also includes SAP vocabularies which now
+  may contain Term definitions marked as *experimental*.
+* HANA Datatype Support in SQLite: Render `ST_GEOMETRY` and `ST_POINT` as `CHAR(5000)`.
+* Use association names as table aliases during the association to join transformation instead of
+  using the association target (this makes the transformed view more comprehensible).
+
+Fixes
+
+* Parameter lists and filters in ON condition paths are rejected in association to join transformation.
+* Append the temporal `WHERE` clause to views that already have a `WHERE` clause.
+* View elements with @cds.valid.from/@cds.valid.key are no longer marked as key in the columns.
+* CSN validator accepts select statements with a having or a group by clause containing a function call.
+
+## Version 1.16.2
+
+Features
+
+* Introduce builtin-types for the (HANA) SQL types `SMALLINT`, `TINYINT`,
+  `SMALLDECIMAL`, `REAL`, `CHAR`, `NCHAR`, `VARCHAR`, `CLOB`, `BINARY`,
+  `ST_POINT`, `ST_GEOMETRY`.  In the CSN, they appear as `cds.hana.SMALLINT`,
+  ….  In CDL, they can be referred to by `hana.SMALLINT`, ….
+  
+  Mapping of the types is as follows:
+
+  |CDS|HANA|SQLite|OData V4|OData V2|
+  |----|----|-----|--------|--------|
+  |SMALLINT|SMALLINT|INT|Edm.Int16|Edm.Int16|
+  |TINYINT|TINYINT|INT|Edm.Byte|Edm.Byte|
+  |SMALLDECIMAL|SMALLDECIMAL|DECIMAL|Edm.Decimal Scale="floating" Precision="16"|Edm.Decimal|
+  |REAL|REAL|FLOAT|Edm.Single|Edm.Single|
+  |CHAR|CHAR|CHAR|Edm.String|Edm.String|
+  |NCHAR|NCHAR|CHAR|Edm.String|Edm.String|
+  |VARCHAR|VARCHAR|CHAR|Edm.String|Edm.String|
+  |CLOB|CLOB|CHAR|Edm.String|Edm.String|
+  |BINARY|BINARY|CHAR|Edm.Binary|Edm.Binary|
+  |ST_POINT|ST_POINT|CHAR|Edm.GeometryPoint|n/a|
+  |ST_GEOMETRY|ST_GEOMETRY|CHAR|Edm.Geometry|n/a|
+
+Changes
+
+* OData: Create proxy `EntityType`s for association targets that are not
+  part of the current service. This maintains the navigation path in the
+  EDM model and exposes the primary key tuple of the otherwise unreachable
+  target. The primary keys of a proxy entity must be scalar types. No
+  complex types are supported. Also all outbound navigations are removed
+  from a proxy. This proxy generation replaces the previously introduced
+  auto-exclusion of 'dangling' associations from the model.
+* The package require node version 8 or higher.
+
+Fixes
+
+* Forbid publishing associations inside unions.
+* Fix a bug in the creation of localized convenience views that lead to an erroneously JOIN
+  expression if such a view gets transformed into a SQL query with `toSql --assoc joins`.
+
+* OData: be robust against erroneoulsy assigned @odata.foreignKey4 annotation.
+* Improve ON condition path checks in Association to Join transformation.
+* Fix crash in forHana generation when determining the type of an enum.
+
+## Version 1.16.1
+
+Features
+
+* API: If the compiler frontend reports messages and the `compile` function
+  had been called without options having a `messages` property, then
+  the resulting CSN contains a non-enumerable `messages` property containing the messages.
+
+Changes
+
+* Removed TNT specific behaviours for HANA CDS, SQL and OData from the code.
+* Perform usage check of entities annotated with `@cds.persistence.skip` if
+  using entity really exists on the database (not annotated with `cds.persistence.table`).
+* Remove mixin associations with a target entity annotated with `@cds.persistence.skip` and
+  its select item that eventually expose this association.
+* csn2edm: Produce all services in a given model in one pass removing the requirement
+  to call the EDM transformation for each service individually. The existing API is still
+  compatible. If an EDM for only one service is requested, only this EDM will be produced.
+* Odata:
+  + Don't omit containee's foreign keys if they are also primary key.
+  + Remove warning that containment association must be `NOT NULL` .
+  + Support annotation `@cds.etag` as (backward compabible) replacement for `@odata.etag`.
+  + Update broken UI vocabulary.
+  
+Fixes
+
+* Make property propagation from query sources using associations work.
+* Consider associations in `from` clause for `on` condition rewrite.
+* Make the CSN parser always produce the correct result for `null`.
+* Propagate `@cds.autoexpose` along primary query source in all circumstances.
+* Make `annotate` statements on autoexposed entities work in circumstances.
+* Do not dump when magic variables like `$now` or `current_date` had been used
+  in an entitiy for which the compiler creates a localized convenience view.
+* Fix order problem in creation of association `DraftAdministrativeData` for draft enabled entities.
+* Fix runtime error in `forHana` in handling of mixin forward and backward associations.
+
+## Version 1.15.0
+
+Features
+
+* Release aspect `temporal`.
+
+Changes
+
+* Improve handling for entities are either `abstract` or annotated with `@cds.persistence.skip` in `toHana` and `toSql`:
+  + Such entities are not part of the generated database model and thus non-existing in the database schema.
+  + Associations/compositions to non-existing entities are removed from the generated model but not their eventually
+    generated foreign keys (for managed associations). An info message is raised for each removal.
+  + An error message is raised if a non-existing entity is used (either directly or indirectly through an association).
+
+Fixes
+
+* OData
+  + Do not assign `@Core.AlternateKeys` for `temporal` aspects if the annotation already assigned.
+  + Resolve primitive return types for actions
+  + Mark localized _texts entities and convenience views with `@odata.draft.enabled: false`
+* JSON parser
+  + Allow JavaScript objects as input, as well as JSON
+
+## Version 1.14.1
+
+Changes
+
+* Primary key definitions are only allowed in first `union`. Raise an error if primary keys are defined in
+  subordinate `union` clauses when generating `toHana`.
+
+Fixes
+
+* HANA CDS
+  + Don't generate primary keys in subordinate `union` clauses if the element is a key-element of the source entity.
+  + In case of multiple chained `union`s, generate all `union` clauses correctly.
+* OData
+  + Generate unique Names for `<edmx:Association>` elements in Version 2 to avoid name clashes with other entries in `<edmx:Schema>`.
+  + Raise error for duplicate definitions in `<edmx:Schema>`.
+* CSN Input
+  + validation - joins can have value literals in the on condition
+
+## Version 1.14.0
+
+Features
+
+* Support aspect `temporal` with option `--beta-mode`:
+  + Support magic variables `$at.from` and `$at.to`.
+  + OData:
+    - Add element annotated with `@cds.valid.from` to the key in the metadata document but not in the CSN, requiring a valid
+      primary key in the projection to exist.
+    - An element annotated with `@cds.valid.key` becomes the sole primary key in the EntityType.
+      Add an `@Core.AlternateKeys` annotation that lists the original primary key tuple as well as the element annotated with `@cds.valid.from`.
+  + SQL/HANA CDS:
+    - Translate `$at.from` to `SESSION_CONTEXT('VALID-FROM')` in HANA and `current_time` in Sqlite.
+    - Translate `$at.to` to `SESSION_CONTEXT('VALID-TO')` in HANA and `current_time` in Sqlite.
+    - A `WHERE` claues that allows time travel queries is generated for projection that contain exactly one element annotated
+      with `@cds.valid.from` and `@cds.valid.to` that stem from the same origin.
+    - An entity elementannotated with `@cds.valid.from` is added to the primary key tuple of the resulting database table.
+    - If an entity element is annotated with `@cds.valid.key`, it becomes the sole primary key of the resulting database table.
+* Redirect targets of associations in `localized` convenience views to their respective `localized` convenience views.
+  In addition to that, create a `localized` convenience view for all entities that contain associations that lead directly
+or indirectly (via n other association steps) to a localized entity, so that these associations can also be redirected.
+`Localized` convenience views are only created in case the model is error free.
+
+Changes
+
+* Allow to `extend` an entity with an empty structure
+* OData:
+  + An error is raised for entities that have become empty (no elements) due to automatic exclusion of associations.
+  + Update the vocabulary `UI`
+  + Allow multiple 'backlink' associations via `$self` ON condition, first 'backlink' establishes the partnership
+  + Allow 'backlink' associations to define their own target multiplicity.
+  + Raise a warning if the forward association is not included in the service (due to autoexclusion).
+  + Reclassify error on containment association to be `NOT NULL` down to a warning.
+  + `@cds.api.ignore` suppresses annotations.
+  
+
+Fixes
+
+* OData: Fix issues with `@cds.odata.bindingparameter.collection`:
+  + Correct `$Collection` to `Collection` in EDMX
+  + No referential constraints for NavigationProperties with target multiplicity '*'
+* Avoid internal errors on cyclic view definitions
+* Strengthen checks on reserved names
+
+
+## Version 1.13.4
+
+Feature
+
+* `extend projection` with elements
+* `extend` entity with aspect, i.e. not by specifying new elements, but via a definition which has elements.
+
+Changes
+
+* Localized convenience views (introduced in Version 1.12.0 as beta feature) are now available.
+  + The convenience views for views and projections are created as a copy of the regular artifact in
+    the `localized` namespace which selects from the corresponding localized artifacts.
+  + Associations within localized convenience views aren't redirected yet; they still point to their
+    original non-localized target.
+  + Convenience views for views containing associations in their `FROM` clause aren't supported yet.
+    For those views an `Info` message is produced stating that no convenience view could be created for the given view.
+  + In contrast to the beta feature it isn't required anymore to expose the `localized` association or the primary key.
+* The automatic exposure of entities, redirection and exclusion of
+  associations has been moved from `forHana` and `forOdata` post-processing into the core compiler:
+  + When an association is projected, the compiler checks whether all elements are propagated
+    which are referred to in the `on` condition of the projected assocation.
+    Please __reexamine warnings__ for your model.
+  + The compiler checks whether a redirection target (directly or indirectly) projects from the
+    original target (and/or uses the original target as structure include).
+  + Elements can be renamed in the redirected target and the `on` condition is rewritten correspondingly
+    (currently not if the projected association is an indirect one, i.e. if we project `assoc1.assoc2`,
+    which _was an Error in v1.12.0_) → this means that those DB artifacts can be deployed.
+  + When following an implicitily redirected association,
+    potentially renamed elements are taken into account.
+  + Implicit redirections fail less often as the compiler tries to find a "minimal" exposure.
+  + Auto-exposure via `Composition of` now works in all circumstances.
+  + Other features like "localized" work for auto-exposed entity and/or with implicitly redirected association.
+  + __Redirections for associations which are sub elements do not work__.
+* The name of an autoexposed entity now looks like `<Service>.<LastNamePart>`
+  where `<LastNamePart>` is the part of the name of the original entity after the final dot.
+  If you get an error because of name clashes, just expose one entity explicitly
+  (or use the option `longAutoexposed`).
+* Multiple backlink associations for one forward association make the OData backend report an error.
+
+Fixes
+
+* Forward the `key` property to the select items of generated HANA CDS views.
+* Remove some issues of the `$projection` and `$self` handling in the association to join translation.
+* Add alias for select items that are primary key in HANA CDS.
+* Fix support for union queries in localized convenience views.
+
+## Version 1.12.1
+
+Changes
+* With option `--beta-mode`, automatic exposure of entities, redirection and exclusion of
+  associations has been moved from `forHana` and `forOdata` post-processing into the core compiler.
+
+Fixes
+* With option `--beta-mode` in v1.12.0, a just inherited `@cds.autoexpose` had not been considered.
+* With option `--beta-mode` in v1.12.0, projecting indirect associations (`assoc1.assoc2`) lead to an error.
+
+## Version 1.12.0
+
+Features
+* With option `--beta-mode`, support `localized` convenience views:
+  Create a view named `localized.<EntityName>` for an entity with `localized` elements.
+  This view allows a coalesced access to `localized` elements and either returns
+  the default or translated content, depending on the locale setting.
+  + A convencience view is only created if both the `localized` association and some
+    localized elements are exposed in the entity.
+  + When exposing the `localized` association in an entity, also the complete primary key
+    has to be exposed, otherwise an error is thrown.
+* Mark calculated and virtual elements as `@Core.Computed:true`. If `@Core.Computed` has
+  been set manually, it remains unchanged.
+
+Changes
+
+* With option `--beta-mode`, automatic exposure of entities, redirection and exclusion of
+  associations has been moved from `forHana` and `forOdata` post-processing into the core compiler.
+  _Update to v1.12.1_ if you experience problems – an inherited `@cds.autoexpose` had not been considered.
+* In `toSql` and `toHana` errors are raised
+  + for duplicate definitions of elements that differ only in spelling,
+  + if the the entity is not `abstract` or annotated with any `@cds.persistence` set to true and
+    - an element is typed to be an `array of` a `type`,
+    - an implicit managed composition has cardinality to many.
+* Raise a warning if an element is to be `localized` which is not of type `cds.String`.
+
+Fixes
+* OData:
+  + On `@Aggregation.ApplySupported.PropertyRestrictions` apply `@sap.sortable':false, '@sap.filterable':false`
+    at new `ID__` property.
+  + Allow `@Core.OperationAvailable: null`
+  + Abstract entities and all inbound navigation properties are removed from the metadata document.
+  + Non-properties are not considered as referential constraints.
+* Correct annotation `cds.autoexposed`.
+
+## Version 1.11.0
+
+Features
+* Support `localized` elements:
+  + Add sibling entity `<entityName>_texts` to store the localized content.
+  + Add two associations `texts` and `localized` to the original entity.
+  + Add view `localized.<entityName>` to retrieve either the translated or original content.
+* Annotate elements that are `virtual` or annotated with `@odata.on.insert` or
+  `@odata.on.update` with `@Core.Computed`.
+* Support OData `@Common.ValueList` by either
+    + annotating an element for which a value help entity shall be used with
+      `@Common.ValueList.viaAssociation`. The value is the association to the value list entity.
+    + annotating an entity with `@cds.odata.valuelist`. All associations targeting to this entity
+      are then annotated with `@Common.ValueList.viaAssociation`.
+    + annotating an element statically with `@Common.ValueList.entity`. The annotation value
+      is a static entity name and cannot be dynamically adapted during autoexposure.
+* Add annotation `@cds.odata.bindingparameter: {name: String, collection: Boolean }`
+  which allows overriding the binding parameter name and cardinality of a bound action in
+  OData V4. Default is: `name='in'`, `collection=false`.
+* Allow a colon in `FROM` and `TYPE OF` references.
+* Support using and publishing a mixin association in the same view when activating for HANA CDS.
+
+Changes
+* Produce all CSN output in version 1.0 by default.
+* Virtual elements cannot be used in expressions.
+* Command `toRename` creates a stored procedure instead of individual statements.
+* Don't autoexpose composition target which is annotated with `@cds.autoexpose: false`.
+  
+Fixes
+* OData:
+  + Rename OData annotation vocabulary `Auth` to `Authorization`.
+  + Correct exposure of entities with parameters:
+    - Set attribute `EntityType` of  element `edm:EntitySet` to the correct type
+    - Set attribute `EntitySet` of element `edm:End` in `edm:AssociationSet` to
+      the correct set.
+  + `EnumMember` in element `edm:Annotation` has only one delimiting slash
+* Rewrite ON condition of a mixin backlink association for an inferred and redirected
+  forward association.
+
+## Version 1.10.0
+
+Features
+* Annotate entities with `@cds.autoexposed` that are autoexposed in a service.
+* Always autoexpose composition targets without annotating them with `@cds.autoexpose`.
+* For associations in a service with targets which are not in a service:
+  + automatically exclude them if the associaiton is inferred (via select * or include),
+  + signal an error if the association is explicitly defined in the service.
+* Support the OData annotation vocabulary `Authorization`.
+
+
+Changes
+* Generate `null as …` for virtual view elements.
+* Update OData annotation vocabulary `Core`.
+* Change the tranlation of annotation `@readonly` at an element from `@Core.Immutable` to
+  `@Core.Computed` when processing for OData.
+
+Fixes
+* Avoid unnecessary aliases for paths that terminate on an association in the FROM clause.
+* Fix an issue with table alias handling in Association to Join translation.
+* Translate type `Cds.DateTime` to SQL type `TIMESTAMP` for Sqlite.
+* Fix an internal error when parsing `view V as select distinct from E`
+* Raise an error that an empty service cannot be used to generate an OData metadata document
+* Correctly set the OData principal in a referential constraint for compositions with
+  free defined ON conditions.
+
+## Version 1.9.0
+
+Changes
+* Always use quotes around identifiers for `toSql` and `toHana` with `quoted` or
+  `hdbcds` names.
+* Never use quotes around identifiers for `toSql` and `toHana` with `plain` names.
+  Issue a warning if an identifier may conflict with a language keyword.
+* Generate `.hdbtable`, `.hdbview` etc. files if option `toSql.src` is `hdi` (default
+  `sql` generates `.sql` files).
+
+Features
+* Allow `select` clauses with standard SQL syntax (i.e. also accept `select ... from ...`
+  in addition to the CDS-specific form `select from ... { ... }`).
+* Support `count(*)` etc.
+* Support function calls with names arguments.
+* Support `aspect` definitions.
+
+Fixes
+* Omit unused vocabularies in OData-generated EDMX files.
+* For `toOdata`, handle nested anonymous types correctly (also with arrays, e.g. in
+  action/function parameters)
+* Handle mixins correctly when transforming associations to joins.
+
+## Version 1.8.1
+
+Changes
+* With `--new-redirect-impl`, associations and compositions in services
+  are implicitely redirected to a (unique) projection of the original target
+  if the projection is "simple and similar enough" and defined in the service.
+  This is now always done, not only by the `toOdata` backend;
+  association targets explicitly provided in the service are not implicitly redirected.
+* With option `--new-csn` (or `--beta-mode`) alone, we do not properly rewrite the
+  `on` condition or `keys` anymore.
+  Use option `--assoc-on-rewrite` and `--new-redirect-impl` to do so.
+
+Fixes
+* With `--new-redirect-impl`, the navigation along implicitly redirected associations now
+  properly considers that elements could have been renamed in the new association target.
+* With `--new-redirect-impl`, the code completion candidates are the elements
+  of the new association target calculated by the implicit redirection.
+* With `--new-redirect-impl` and `--assoc-on-rewrite`,
+  the `on` condition or `keys` are rewritten with implicit redirections.
+* With `toSwagger`, enum constants without values are now correctly rendered.
+* With `toSql` in `sqlite` dialect, a warning is now issued if an identifier collides
+  with a known SQL keyword.
+* For OData, annotations with `null` values are now ignored (this can also be used to
+  "delete" an annotation in an extension).
+* In OData, structured types that are anonymous or not exposed in a service are now
+  automatically exposed (unless used as an entity element - in that case they are still
+  flattened).
+* For OData v2, the namespace for service annotations is now correctly set.
+* For `toHana` with `plain` names, all type properties (including `length` ...) are now
+  propagated correctly when derived types are used explicitly in view columns.
+* CSN version 0.2.0 is now accepted by the compiler.
+
+## Version 1.8.0
+
+Features
+* Support the OData annotation vocabularies `PersonalData` and `Aggregation`.
+  The vocabulary for `PersonalData` contains a number of annotations that are flagged
+  as "experimental". Their usage will result in a warning.
+* New option for specifying the locale in SQLite dialect. As part of the `toSql`
+  command is now available the options `'-l, --locale <locale>'` for specifying
+  value for the "$user.locale" variable.
+
+Changes
+* Entity definitions with elements of type `array` and structure type definitions with
+  association elements will now lead to an error message when generating edmx for OData v2.
+  These constructs are not allowed in OData v2, but there was no corresponding check in the
+  cds compiler yet.
+
+## Version 1.7.1
+
+Fixes
+* Restore version function which was deleted by accident
+
+## Version 1.7.0
+
+Features
+* Allow entities to have parameters. They can be referred to inside the query with
+  `:Param`. Entites with parameters are not allowed in `toSql` for dialect "sqlite".
+  When generating for HANA, parameters cannot be used in combination with associations:
+  an entity with parameters cannot have associations, and an association must not point
+  to an entity with parameters.
+* The parameters and return value of actions and functions can now have structured types.
+* In the annotation translation for OData, falsy values of the special variable `$value`
+  (that is used to provide nested annotations for scalar values) are correctly handled.
+* When (new-style) csn is used as input, the compiler ignores unknown attributes.
+* Implicit redirection and auto-exposure are now applied recursively, i.e. the associations
+  of an auto-exposed entity are considered for implicit redirection and auto-exposure,
+  if necessary.
+
+Changes
+* With `--new-csn`, consider `redirected to` on projected associations and
+  adapt the `on` condition and the `keys` specification accordingly.  There are
+  also Info messages if an element referred to in the `on` condition or `keys`
+  specification has not been projected to the new association target.
+  _The severity of these messages will be increased if implicit redirections
+  will have been performed by the core compiler._
+* `toHana` and `toSql` now reject entities that only contain unmanaged associations.
+  Such entites would lead to a deployment error later.
+* SQL name mapping modes `quoted` and `hdbcds` are only allowed when generating for HANA.
+* In the csn, the csn language version is now stored in the top level attribute `$version`.
+  The version information via `version.csn` is deprecated and will be removed in a future
+  release. The information about the creator of the csn has been moved inside the new
+  top level attribute `meta`.
+
+Fixes
+* Provide code completion for references in complex select item expressions not
+  (yet) having an alias (complex = not consisting of just a reference).
+* With `--new-csn`, avoid internal error while rewriting the `on` condition
+  from an element of a source entity which refers to a `mixin` definition with
+  an `on` condition containing a reference like `$projection.<elem>`.
+* OData, edmx generation: correctly escape the characters `<`, `>`, `&`, and `"`.
+* When an entity is auto-exposed, it's annotations are transferred to the generated
+  projection.
+
+## Version 1.6.0
+
+Features
+* Provide code completion for `using` declarations.
+* Support the OData annotation vocabulary "Validation".
+* For compositions in EDM, add `<OnDelete Action="Cascade"/>` to the navigation
+  property where required.
+
+Changes
+* With `--new-csn`, complain more often about projected associations whose `on`
+  condition could not be rewritten correctly.
+* Make `associations: 'joins'` the default for `toSql` (because the default for
+  `dialect` is already `sqlite`, which requires joins).
+* Adapt the command line interface to use commands instead of the `--to...` generation
+  options (e.g. `cdsc toHana --src --names plain` instead of `cdsc --toHana src,plain`).
+  Please see the [Command Line Migration guide](doc/CommandLineMigration.md)
+  for details.
+* Add a `generated by cds-compiler version x.y.z` comment to all generated SQL and `hdbcds`
+  sources.
+* Replace the CSN validator (formerly `ajv`) with a new own implementation.
+
+Fixes
+* With `--new-csn`, do not change references to magic variables like `$user.id`
+  while rewriting the `on` conditition of a projected association.
+* Apply OData specific checks (e.g. that all elements of an entity must have a type)
+  applied only to objects that are exposed in a service.
+* When generating SQL for SQLite, replace the the special variables `$now`, `$user.id`
+  and `$user.locale` by `CURRENT_TIMESTAMP`, `'$user.id'`, and `'EN'`, respectively.
+* Issue a warning for conflicting cardinality declarations (e.g. `association[1] to many ...`).
+* Handle filters with cardinality correctly when translating associations to joins.
+* Avoid crash when checking structured action parameters.
+* Handle `$self` as the first of multiple path steps correctly in `toOdata`.
+* In `toHana`, render the combination of enums and `type of` correctly.
+* In mixins generated by `toHana`, handle special variables starting with `$` correctly.
+
+## Version 1.5.0
+
+Features
+* The DDL statements in the output of `toSql` are now sorted according to kind
+  (views after tables), so that they can be deployed sequentially to HANA (view
+  dependencies not yet considered).
+* (Still work in progress): The output of `toSql` now also contains kind-specific
+  dictionaries for `hdbtable`, `hdbview` etc., which should be directly deployable
+  to HDI.
+
+Changes
+* Element definitions in multiple entity/structure extensions are now sorted
+  according to the layer hierarchy – elements from highest layers come last.
+  Report such multiple extensions only if they are potentially problematic.
+* The values for the `names` option of `toSql`, `toHana` and `toOdata` have
+  been renamed: `flat` (default) is now `plain`, `deep` is now `quoted`. The old
+  values are still accepted (with a warning) but **will be removed in a subsequent
+  release**.
+
+Fixes
+* OData, annotation processing for v2: In a view where translation of analytical annotations
+  is switched on, the annotations `@Common.Text`, `@Common.Label`, and
+  `@Measures.ISOCurrency/@Measures.Unit` are now translated into the corresponding v2-style annotations
+  `sap:label`, `sap:text`, and `sap:unit`, respectively, even if the value is a path or
+  has a nested annotation.
+* OData V2, generation of EDMX: The Parameters of a FunctionImport now always have
+  an attribute `Nullable="true"` if not specified as `not null` in CDS.
+* Produce better parentheses for nested set operations (`union`, `intersect`, ...) in views
+  for SQL output.
+* Correctly strip off the `enum` property of types for HANA CDS, even when derived types are
+  involved.
+
+## Version 1.4.0
+
+Features
+* OData, annotation processing: Provide a shortcut for the nesting of the `TextArrangement`
+  annotation: In order to annotate a `@Common.Text` annotation, just put an annotation
+  `@Common.TextArrangement` next to it.
+* Parameters can now be referred to with `:param`, `:1` or `?` in the parse API functions.
+
+Changes
+* More checks for the correct usage of `$self` and associations as values in expressions.
+* Backlink-Assocations: When transforming an ON-condition `on $self = foo.bar`, check that
+  the association `bar` really points to the entity enclosing association `foo`.
+* Allow and transform multiple `$self`-comparisons in one association ON-condition
+  (but a true backlink association still requires exactly one such comparison).
+* Warn if a "to many" association or composition does not have an ON-condition
+  (likely not intended because the resulting managed association will at most match a single
+  item)
+
+Fixes
+* Add missing `as` for flattened structured elements.
+* Allow `using cds;` to make the namespace `cds` explicitly known, which is
+  useful if that had been shadowed by a namespace declaration ending with `cds`.
+* OData: don't generate empty `<Annotations ...>` elements any more.
+* Draft for OData v2: in the `DraftRoot` and `DraftNode` annotations, the path
+  to the draft annotations now contains `EntityContainer`.
+* Improved checks for parameters of actions and functions. Inappropriate warnings like
+  "The type of input parameter ... must be from the current service" and
+  "The action ... can only return an array of entities" don't appear any more.
+* Correctly generate foreign key fields for associations in structured types.
+* For `toHana()` and `toSql()`, enclose the artificial condition resulting from
+  `$self`-comparisons in parentheses.
+* Warn properly when draft-enabled artifacts are not exposed in a service.
+* Do not render a full entity name for paths like `$self.foo` to SQL (just skip `$self`).
+
+## Version 1.3.0
+
+Features
+* The `using` declaration can now appear top-level also after artifact definitions.
+* Support for `$user.locale` and `$user.id` with HANA generation `SESSION_CONTEXT(…)`.
+* For entities annotated with `@odata.draft.enabled`, the generated `DraftAdministrativeData`
+  association for ODATA is now annotated with `@odata.contained: true` (avoiding the
+  generation of an `<Attribute>` for its foreign key in ODATA V4).
+
+Changes
+* Having just `$user` in CDL is now rendered as `{ref:['$user','id'], as:'$user'}`
+  in new-style CSN.
+* Using SQL's parameter-less functions not having parentheses (like `current_date`)
+  is now rendered as `{func:'current_date'}` in new-style CSN.
+* `betaMode` is currently required for entities with parameters.
+* In old-style CSN, the `on` condition as source text has been removed.
+* Explicit redirection of an association to a target that is completely unrelated to
+  the original target is now an error, not just a warning.
+* The API function `toI18n()` and the corresponding command line option `--to-i18n` have
+  been removed.
+* Annotation assignments after sub structure definitions, enum definitions, and
+  parameters are now considered an error instead of just a warning.
+* For bound actions and functions, the name of the corresponding function import in
+  OData v2 edmx is now prefixed with the name of the entity.
+
+Fixes
+* For ODATA V2, create correct `<Principal>` and `<Dependent>` for backlink associations
+  having `@odata.navigable:false`.
+* Avoid the `Expecting artifact to be part of a service` error that occurred when generating
+  multiple entities with `@odata.draft.enabled` to SQL.
+* Generate correct (fully qualified) action names into the `@Common.DraftRoot` and
+  `@Common.DraftNode` annotations.
+* When generating the `DRAFT.DraftAdministrativeData` entity for SQL, provide proper
+  lengths for all `NVARCHAR` fields.
+
+## Version 1.2.0
+
+Features
+* Provide semantic code completion for the `excluding` clause.
+* Add support for "deep drafts", i.e. follow compositions from entities annotated
+  with `@odata.draft.enabled` ("draft roots") and draft-enable them as "draft nodes".
+
+Changes
+* Finalize the propagation of the `key` property.
+  Provide Info messages if it is not obvious why it has not been propagated.
+* Finalize the propagation of the `keys` property and `items` property.
+* Check for illegal use of `$self` and associations in expressions (may only occur
+  as values in an expression as part of the ON-condition in a backlink association).
+
+Fixes
+* Produce warnings instead of errors in the translation of OData annotations.
+* For ODATA, in case of managed associations to draft-enabled entities, do not add
+  an extra foreign key for the ODATA-generated key field `IsActiveEntity`.
+* For HANA, in the generated draft shadow entities, redirect all associations (not
+  just compositions) so that they point to the draft shadow entities.
+* For ODATA V2, produce an `<EntitySet>` for `DraftAdministrativeData`, too. Ignore
+  the `@cds.odata.NoEntitySet` annotation.
+* For ODATA V4, do not generate `<Nullable>` for `<NavigationProperty>`s that are
+  collections.
+
 ## Version 1.1.3
 
 Features
@@ -749,7 +1398,7 @@ Fixes
 ## Version 1.0.1-MS1
 
 Features
-* New implementation of name resolution (according to [spec](https://github.wdf.sap.corp/CDS/cdsv/blob/master/doc/NameResolution.md))
+* New implementation of name resolution (according to [spec](doc/NameResolution.md)
 * Support for bound and unbound actions and functions
 * More semantic checks
 * Support for `implemented in` (HANA)

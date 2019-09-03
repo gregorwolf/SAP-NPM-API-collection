@@ -1,3 +1,12 @@
+## 3.11.2
+Features:
+- Update dependencies
+
+## 3.11.1
+Features:
+- Node 10 support
+- Updated dependencies
+
 ## 3.11.0
 Features:
 - added option `--liveness-ping` to periodically send a signal that notifies the user that the deployer is still working
