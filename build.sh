@@ -1,6 +1,4 @@
-npm search sap --registry https://npm.sap.com --json > npm.sap.com.json
-cat npm.sap.com.json | jq > npm.sap.com-formatted.json
-mv npm.sap.com-formatted.json npm.sap.com.json
+npm search sap --registry https://npm.sap.com --json | jq > npm.sap.com.json
 cat npm.sap.com.json | jq 'reduce .[] as $i ({}; .[$i.name] = $i.version)' > packages.json
 cat npm.sap.com.json | jq '.[] | .name' | sort > packages.txt
 rpl -q '"' '' packages.txt
