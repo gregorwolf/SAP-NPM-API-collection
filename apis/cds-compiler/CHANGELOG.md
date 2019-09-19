@@ -1,5 +1,76 @@
 # ChangeLog for cdx compiler and backends
 
+Note: `betaMode` fixes, changes and features are usually not listed in this ChangeLog.
+The compiler behaviour concerning `betaMode` features can change at any time without notice.
+
+
+## Version 1.18.2
+
+Fixes
+
+* Issue warning instead error when CDS type `cds.DecimalFloat` is used with OData v2.
+  Also issue the warning for CDS type `cds.hana.SMALLDECIMAL`.
+* Properly render n-ary `cross join`s, typically produced by `select from A, B, C`.
+
+Features
+
+* Allow to provide HANA-specific magic variables like `current_utctimestamp` via the
+  function syntax `current_utctimestamp()`.  Similar for `sysuuid`, `current_connection`,
+  `current_schema`, `current_transaction_isolation_level`, `current_utcdate` and `current_utctime`.
+  Support SQL Standard magic variable `system_user` (without parentheses); be aware that
+  it is not supported (by that syntax) in HANA.
+
+## Version 1.18.1
+
+Changes
+
+* Hide the experimental swagger backend behind `betaMode` and issue a warning even then.
+
+Fixes
+
+* Properly establish EDMX partnership again between forward and backward association
+  even in the presense of "hidden" associations (v1.18.0 had introduced a bug).
+  Issue a warning if there are multiple (non hidden) partnership candidates.
+
+Features
+
+* `using from <module>` also tries file extensions `.csn` and `.csn.json`.
+
+## Version 1.18.0
+
+Changes
+
+* OData: add type facet `Scale: floating`, `Precision: 34` to `Edm.Decimal`
+  for mapped CDS type `cds.DecimalFloat`.
+  Issue __error if `cds.DecimalFloat` is used with OData v2__.
+
+Fixes
+
+* If a projection in a service selects from a source in a model,
+  associations in the projection source are _implicitly redirected_
+  to a target in the service.
+  The corresponding redirection must also happen for the _localized convenience view_
+  for the projection in the service: the new target should be
+  the localized convenience view for the "original" redirection target
+  (if it does not exist: the "original" redirection target itself).
+
+## Version 1.17.3
+
+Changes
+
+* OData:
+  Disable proxy generation again due to too many runtime conflicts. This effectively
+  auto-excludes the associations as navigation properties from the service that reference targets outside the service;
+  properties from the foreign keys of managed associations remain.
+  As opposed to the pre-v1.16.2 behaviour, this only affects the OData backend.
+* OData: Raise error if `EntityType` has no primary key.
+* Raise warning if compiler is invoked in `--beta-mode`
+
+Fixes
+
+* Make `annotate` statements on members of autoexposed entities and
+  automatically created text entities work.
+
 ## Version 1.17.2
 
 Fixes
@@ -24,12 +95,12 @@ Fixes
 Features
 
 * OData V4:
-  + With `--beta-mode` enabled, compositions become containment navigation properties. This
-    is performed by annotating all compositions with `@odata.contained`. Existing assignments
-    are not overwritten.
-    Enabling containment is an incompatible change to existing OData metadata documents
-    as all composition targets are no longer accessible as EntitySets but only through their
-    container.
+  With `--beta-mode` enabled, compositions become containment navigation properties. This
+  is performed by annotating all compositions with `@odata.contained`. Existing assignments
+  are not overwritten.
+  Enabling containment is an incompatible change to existing OData metadata documents
+  as all composition targets are no longer accessible as EntitySets but only through their
+  container.
 * Release keyword `event`.
 
 Changes
@@ -74,13 +145,14 @@ Features
 
 Changes
 
+* Associations in services with targets outside the service
+  are not auto-excluded anymore.
 * OData: Create proxy `EntityType`s for association targets that are not
   part of the current service. This maintains the navigation path in the
   EDM model and exposes the primary key tuple of the otherwise unreachable
   target. The primary keys of a proxy entity must be scalar types. No
   complex types are supported. Also all outbound navigations are removed
-  from a proxy. This proxy generation replaces the previously introduced
-  auto-exclusion of 'dangling' associations from the model.
+  from a proxy.
 * The package require node version 8 or higher.
 
 Fixes

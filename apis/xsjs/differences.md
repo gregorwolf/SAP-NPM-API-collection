@@ -147,6 +147,7 @@ Node.js uses V8 from Google, while HANA XS uses SpiderMonkey from Mozilla.
  This issue applies for built-in types like:  **Array**, **String**, **RegExp**, **Number**, etc.<br />
  For **Array**, you should use `Array.isArray` instead of `instanceof Array`.<br />
  For **String** it is suitable to use `typeof`.
+* With newer versions of Node.js (and V8 respectively), there might be fixes in the time zone offsets which can result in different string representations of `Date` objects (which take the timezone offset into consideration) compared to XS Classic.
 
 ## Other
  * DXC (Direct Extractor Connection) and xsxmla are not supported.

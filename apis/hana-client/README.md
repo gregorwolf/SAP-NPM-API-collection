@@ -8,13 +8,10 @@ npm install @sap/hana-client
 ####Prerequisites
 
 This driver communicates with the native HANA libraries, and thus requires
-platform-specific native binaries. Native compilation is managed by
-[`node-gyp`](https://github.com/TooTallNate/node-gyp/). Please see that project
-for additional prerequisites including Python 2.7, and C/C++ tool chain.
+platform-specific native binaries. The official hosted version includes
+precompiled libraries for Linux, Windows and Mac OS X.
 
-The official hosted version includes precompiled libraries for Linux, Windows and Mac OS X.
-
-The @sap/hana-client driver supports node.js 4.x, 6.x, 8.x and 10.x.
+The @sap/hana-client driver supports node.js 4.x, 6.x, 8.x, 10.x and 12.x.
 
 ##Getting Started
 ```js

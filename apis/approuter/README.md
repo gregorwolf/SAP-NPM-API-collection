@@ -37,7 +37,7 @@
   * [Forwarding Headers](#forwarding-headers)
   * [Hop-by-hop Headers](#hop-by-hop-headers)
   * [Custom Headers](#custom-headers)
-  * [Authorization Header](#authorization-header)
+  * [Authorization Header (Beta version)](#authorization-header-beta-version)
 - [CSRF Protection](#csrf-protection)
 - [Connectivity](#connectivity)
 - [SaaS Application Registration in CF](#saas-application-registration-in-cloud-foundry)
@@ -225,6 +225,7 @@ proxyPort | String | x | The port of the proxy server used in case the request s
 forwardAuthToken | Boolean | x | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.
 strictSSL | Boolean | x | Configures whether the application router should reject untrusted certificates. The default value is `true`.<br />**Note:** Do not use this in production as it compromises security!
 timeout | Number | x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.
+setXForwardedHeaders | Boolean | x | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
 proxyType | String | x | Configures whether the destination is used to access applications in on-premise networks or on public Internet. Possible value: `OnPremise`. if the property is not provided, it is assumed that it is a public Internet access. <br />**Note:** if `OnPremise` value is set,  binding to SAP Cloud Platform connectivity service is required, and `forwardAuthToken` property should not be set.
 
 
@@ -275,9 +276,11 @@ ProxyType |   | Supported proxy type : `on-premise`, `internet`.<br> **Note:** i
 
 Property  | Additional Property | Description
 -------- |:--------:| -----------
-ForwardAuthToken | x | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.<br> **Note:** if ProxyType set to `on-premise`, ForwardAuthToken property should not be set.<br> **Note:** if Authentication type is other than NoAuthentication, ForwardAuthToken property should not be set.
-Timeout |  x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or [service's logout path](#services-property) (if you have set one). 
-PreserveHostHeader | x | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
+HTML5.ForwardAuthToken | x | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.<br> **Note:** if ProxyType set to `on-premise`, ForwardAuthToken property should not be set.<br> **Note:** if Authentication type is other than NoAuthentication, ForwardAuthToken property should not be set.
+HTML5.Timeout |  x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or [service's logout path](#services-property) (if you have set one). 
+HTML5.PreserveHostHeader | x | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
+HTML5.DynamicDestination | x | If `true` , the application router allows to use this destination dynamically on host or path level.
+HTML5.SetXForwardedHeaders | x | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
 sap-client | x | If provided, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
 
 
@@ -470,7 +473,7 @@ Property | Type | Optional | Description
 source | String/Object | | Describes a regular expression that matches the incoming [request URL](https://nodejs.org/api/http.html#http_message_url).</br> **Note:** A request matches a particular route if its path __contains__  the given pattern. To ensure the RegExp matches the complete path, use the following form: ^<path>$`. </br> **Note:** Be aware that the RegExp is applied to on the full URL including query parameters.
 httpMethods | Array of upper-case HTTP methods | x | Which HTTP methods will be served by this route; the methods supported are: `DELETE`, `GET`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`, `PATCH` (no extension methods are supported). If this option is not specified, the route will serve any HTTP method.
 target | String | x | Defines how the incoming request path will be rewritten for the corresponding destination or static resource.
-destination | String | x | The name of the destination to which the incoming request should be forwarded.  The destination name can be a static string or a regex that defines the destination to be taken from the source property or from the host.
+destination | String | x | The name of the destination to which the incoming request should be forwarded.  The destination name can be a static string or a regular expression that defines how to dynamically fetch the destination name from the source property or from the host.
 service | String | x | The name of the service to which the incoming request should be forwarded.
 endpoint | String | x | The name of the endpoint within the service to which the incoming request should be forwarded. Can only be used in a route containing a service attribute.
 localDir | String | x | Folder in the [working directory](#working-directory) from which the application router will serve static content **Note:** localDir routes support only HEAD and GET requests; requests with any other method receive a 405 Method Not Allowed.
@@ -483,8 +486,11 @@ identityProvider | String | x | The name of the identity provider to use if prov
 
 
 **Note:** The properties `destination`, `localDir` and `service` are optional, but exactly one of them must be defined. <br />
-**Note:** When using the properties `replace` or `cacheControl` it is mandatory to define the `localDir` property.
-
+**Note:** When using the property `replace` it is mandatory to define the `localDir` property. <br />
+**Note:** The cacheControl property is effective only when one of the following settings is performed:
+*	The localDir property was set
+*	A service pointing to HTML5 Application Repository ("service": "html5-apps-repo-rt") was set
+ 
 ### Example routes
 
 For example, if you have a configuration with the following destination:
@@ -635,6 +641,17 @@ under the working directory will be served.</br> **Note:** The capturing group u
   "source": "^/web-pages/",
   "localDir": "my-static-resources",
   "cacheControl": "public, max-age=1000,must-revalidate"
+}
+```
+
+* Route with `service` "html5-apps-repo-rt" and `cacheControl`
+
+```json
+{
+  "source": "^/index.html$",
+  "service": "html5-apps-repo-rt",
+  "authenticationType": "xsuaa",
+  "cacheControl":"public,max-age=1000,must-revalidate"
 }
 ```
 
@@ -1016,6 +1033,23 @@ It may hold:
 
 - URL path - the UAA will redirect the user back to the application router and the path will be interpreted according the configured [routes](#routes).
 
+The `logoutEndpoint` can be called with query parameters. For example:
+```javascript
+window.location.replace('/my/logout?siteId=3');
+```
+These parameters will be appended as is to the redirect url set by the `logoutPage` property.
+For example, if the logout section is the following:
+```
+"logout": {
+    "logoutEndpoint": "/logout",
+    "logoutPage": "/logoff.html"
+  },
+```
+The redirect url will end with:
+```
+/logoff.html?siteId=3
+```
+
 **Note**: The resource that matches the path should not require authentication. The property `authenticationType` should be set to `none` for that particular route.
 
 Example:
@@ -1380,8 +1414,10 @@ In a multi-tenancy landscape, the application router will calculate the tenant i
  - x-custom-host header or host if EXTERNAL_REVERSE_PROXY is true
  - x-forwarded-host header or host if EXTERNAL_REVERSE_PROXY is false or not specified
 
-### Authorization Header
-* x-approuter-authorization: Contains the JWT token to support [Service to Application Router](#service-to-application-router-beta-version) Scenario. 
+### Authorization Header (Beta version)
+* x-approuter-authorization: Contains the JWT token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
+
+**Caution**: You should not use SAP Cloud Platform beta features in subaccounts that belong to productive enterprise accounts. Any use of beta functionality is at the customer's own risk, and SAP shall not be liable for errors or damages caused by the use of beta features. For more information, see [Using Beta Features in Subaccounts](<https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/8ed4a705efa0431b910056c0acdbf377.html#43dfee6e1c174d978195197a8fb0a24a.html>).
 
 ## CSRF Protection
 
@@ -1446,7 +1482,9 @@ In the manifest.yaml, which is used for the multi-tenant application deployment,
 For a customer to be able to subscribe to an application through the SAP Cloud Platform cockpit, each SaaS business application should register itself on all CF landscapes where it is deployed.
 
 To register a SaaS application in LPS, a service instance of saas-registry should be created and the SaaS business application should be bound to it.
-The instance of saas-registry is created with a configuration json - *saas-config.json:* 
+The instance of saas-registry is created with a configuration json - *saas-config.json:*.
+In the configuration.json file a url for the getDependencies and onSubscription callbacks must be provided. 
+Note that the path segment of these urls are configurable however the tenantId url variable in onSubscription callback must be provided anyway.
 
 ```
 {
@@ -1484,8 +1522,7 @@ The following limitations apply when application router is bound to HTML5 Applic
 
 1. It is not possible to implement the "first" middleware slot to provide routes dynamically.
 2. No option apart from workingDir can be provided in application router start.
-3. Destination property is not supported.
-4. External session management via extensibility is not supported
+3. External session management via extensibility is not supported
 
 
 **Note:** Mixed scenario of modeling part of the static content in local resources folder and also retrieving static content from HTML5 Application Repository is not supported.</br>
@@ -1693,13 +1730,13 @@ This can also be configured via the `JWT_REFRESH` environment variable (the valu
 **Note:** If the JWT is close to expiration and the session is still active a JWT refresh will be triggered in `JWT_REFRESH` minutes before expiration.
 `JWT_REFRESH` is an environment variable stating the number of minutes before the JWT expiration the refresh will be triggered. The default value is 5 minutes.
 
-## Service to Application Router Beta version
+## Service to Application Router (Beta version)
 
-The application router can receive a consumer service xsuaa JWT token and use it to access the UI and the data. The JWT token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header).
+The application router can receive a consumer service xsuaa JWT token and use it to access the UI and the data. The JWT token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
 
 **Note**: The xsuaa JWT token is generated with the same xsuaa service instance that is bound to the application router. 
 
-**Caution**: You should not use SAP Cloud Platform beta features in subaccounts that belong to productive enterprise accounts. Any use of beta functionality is at the customer's own risk, and SAP shall not be liable for errors or damages caused by the use of beta features. For more information, see Using [Beta Features in Subaccounts](<https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/8ed4a705efa0431b910056c0acdbf377.html#43dfee6e1c174d978195197a8fb0a24a.html>).
+**Caution**: You should not use SAP Cloud Platform beta features in subaccounts that belong to productive enterprise accounts. Any use of beta functionality is at the customer's own risk, and SAP shall not be liable for errors or damages caused by the use of beta features. For more information, see [Using Beta Features in Subaccounts](<https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/8ed4a705efa0431b910056c0acdbf377.html#43dfee6e1c174d978195197a8fb0a24a.html>).
 
 ## Central Logout
 

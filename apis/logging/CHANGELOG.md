@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.0.2 - 2019-07-10
+
+### Fixed
+- Update *lodash* dependency to v4.17.13.
+
+## 5.0.1 - 2019-05-13
+
+### Fixed
+- Update *@sap/e2e-trace* dependency to v2.0.0.
+
+## 5.0.0 - 2019-05-02
+
+### Removed
+- Node.js v4 support
+
 ## 4.1.0 - 2019-01-16
 
 ### Added

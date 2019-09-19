@@ -6,17 +6,389 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.16.2 - 2019-08-27
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.17.1
+
+
+## Version 3.16.0 - 2019-08-22
+
+### Added
+- `cds run` has learned a new `--in-memory` option, which connects and deploys to an SQLite in-memory database. There is no need to call `cds deploy` before.
+- `cds deploy --to hana` now can also be executed in Java projects
+- `cds run`'s index.html got a favicon, to give a visual clue in browsers.
+- `cds.requires.<datasource>.model` configuration can now also point to a node.js module, e.g. `@my/module`.
+  Previously, only a relative file path was supported.
+- Improved logging of query objects
+- `cds compile` now understands `--to edmx-v2` and `--to edmx-v4` to produce OData metadata of versions 2 or 4, respectively.
+
+### Changed
+- Fiori preview in `cds run` now is only added if OData services are being served.
+  For other protocols like `rest`, no Fiori preview is provided.  Same holds true for the `$metadata` link.
+- `cds compile` now behaves better in non-TTY scenarios (e.g. when piping to files).  It writes a proper JSON
+  string instead of a Javascript object.  Previously, one had to enforce JSON using the `--to json` processor.  Compare e.g. the output of `cds compile model.cds` to `cds compile model.cds > model.json`.
+
+### Fixed
+- Fiori preview in `cds run` now also works for services with namespaces
+- In services of CF marketplace, `cds deploy --to hana` now only accepts services with plan `hdi-shared`.
+  Previously, it could get confused with services of type `hana` but of other (non-HDI) plans.
+- Localized edmx files are now produced also for i18n.json files.
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.17.0
+- Changes of `@sap/cds-ql` 1.17.0
+- Changes of `@sap/cds-services` 1.17.0
+- Changes of `@sap/generator-cds` 2.7.0
+
+
+## Version 3.15.0 - 2019-07-26
+
+### Added
+- `hdbtabledata` files are now generated automatically as part of `cds deploy --to hana` for given set of CSV files.  CSV file names must follow the pattern `<namespace>-entity.csv` (same as for SQLite deployment) and be located in `db/csv` or `db/data`.
+- For Node.js, multiple configuration profiles can now be activated at the same time, e.g. by setting both `NODE_ENV` and `CDS_ENV`, or by setting a multi-value list: `CDS_ENV=profile1,profile2`.
+- New labels for `sap.common.*.code` and `sap.common.Currencies.symbol` (part of `@sap/cds/common`).
+- Better message for `Duplicate definition` errors, where the same `cds` file is referenced from different locations.
+  To fix this, check all dependencies to `@sap/cds` in your package.json and those of reused packages and ensure they allow deduped use of `@sap/cds`.
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.16.1
+- Changes of `@sap/cds-ql` 1.16.0
+- Changes of `@sap/cds-services` 1.16.0
+- Changes of `@sap/generator-cds` 2.6.1
+
+## Version 3.14.0 - 2019-07-11
+
+### Added
+- Support for `SELECT.distinct.from(Foo)` and `SELECT.one.from(Foo)` queries in Node.js
+- [Beta] `cds deploy --to hana` deploys to SAP HANA on Cloud Foundry
+- For Node.js, `cds env` now activates the `development` profile automatically,
+  unless `CDS_ENV` or `NODE_ENV` are set.  This is in line with `NODE_ENV` defaulting to `development`.
+
+### Also see
+- Changes of `@sap/cds-ql` 1.15.0
+- Changes of `@sap/cds-services` 1.15.0
+- Changes of `@sap/generator-cds` 2.5.0
+
+## Version 3.13.0 - 2019-06-26
+
+### Added
+- `cds serve` now provides a preview of the services in a list page of SAP Fiori Elements
+
+### Changed
+- `cds serve` now yields an error if there are no services defined in the model
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.15.0
+- Changes of `@sap/cds-ql` 1.14.0
+- Changes of `@sap/cds-services` 1.14.0
+- Changes of `@sap/generator-cds` 2.4.11
+
+
+## Version 3.12.0 - 2019-06-17
+
+### Added
+- On request, `cds build/all` now generates OData EDMX files for node.js services
+- Performance optimizations for `cds build/all`
+
+### Fixed
+- `cds deploy` no longer fails if `data` dir is not present
+- `cds build/all` no longer prints a message if `mta.yaml` does not exist
+
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.14.1
+- Changes of `@sap/cds-ql` 1.13.0
+- Changes of `@sap/cds-services` 1.13.0
+
+## Version 3.11.1 - 2019-06-03
+
+### Fixed
+- `cds deploy` honors saved datasource configuration again
+- localization works again for sqlite datasources defined in `package.json`
+
+## Version 3.11.0 - 2019-06-03
+
+### Added
+
+- `cds deploy` now also finds `.csv` files in imported reuse packages
+- Better error messages for various `cds` CLI calls
+
+### Changed
+- `cds build/all` for Node.js projects generates proper CSN in `gen/csn.json`.
+   A warning is emitted if `cds serve` is run with the previous format.  Rebuild the project if you see this warning.
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.14.0
+- Changes of `@sap/cds-ql` 1.12.0
+- Changes of `@sap/cds-services` 1.12.0
+- Changes of `@sap/generator-cds` 2.4.10
+
+## Version 3.10.0 - 2019-05-21
+
+### Added
+- Tables and view for localized entities are created by default now, both for HANA and SQLite.
+- Internal errors are now marked as such in all CLI commands, with a request to report them.
+
+### Changed
+- `cds compile --service all` no longer fails in case no services are found.
+  This better matches higher level commands like `cds build` that should not fail in this instance.
+  Note that `--service Foo` fails as before in case `Foo` is not found.
+- `cds run` and `cds serve` now serve the generic index page at `/`, while previously this was `/$index`.
+- `cds build/all` now auto-creates build tasks from `mta.yaml` definition if no build tasks have been
+  defined in `.cdsrc.json`. If no `mta.yaml` file exists, cds configuration data respectively defaults
+  are used for build task configuration.
+
+### Fixed
+- CLI now shows compilation warnings in all commands, e.g. in `build`, `deploy`, or `compile`.
+  Previously warnings were only shown in case of compilation errors.
+- `cds help` no longer inserts terminal escape sequences if stdout is redirected to a file.
+- Errors in custom handlers are no longer shadowed in `cds serve` or `cds run`.
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.13.4
+- Changes of `@sap/cds-ql` 1.11.1
+- Changes of `@sap/cds-reflect` 2.5.0
+- Changes of `@sap/cds-services` 1.11.1
+- Changes of `@sap/generator-cds` 2.4.8
+
+
+## Version 3.9.0 - 2019-05-08
+
+### Added
+- `cds.serve` now reads passport for services from `auth.passport` configuration property
+
+### Fixed
+- `cds.compile` now really skips entities marked with `if-unused`
+- Build tasks are now listed with `cds env`
+- `cds serve` now supports the `--at`, `--to`, and `--with` arguments as specified.
+- `cds deploy --to sqlite` now better handles csv files with empty values
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.12.0
+- Changes of `@sap/cds-ql` 1.10.2
+- Changes of `@sap/cds-reflect` 2.5.0
+- Changes of `@sap/cds-services` 1.10.2
+- Changes of `@sap/generator-cds` 2.4.6
+
+
+## Version 3.8.1 - 2019-04-30
+
+### Fixed
+- Texts in deep annotations, e.g. `@UI.Facet`, are now properly localized in OData metadata
+
+## Version 3.8.0 - 2019-04-09
+
+### Fixed
+- Make tests run on Windows again
+- Various fixes in `cds build/all`
+- Adjustments to latest compiler for localizing models
+- `.hdbcds` and `.hdbtabledata` files are now copied over in `cds build/all`
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.11.0
+- Changes of `@sap/cds-ql` 1.8.1
+- Changes of `@sap/cds-services` 1.8.1
+- Changes of `@sap/generator-cds` 2.4.4
+
+
+## Version 3.7.1 - 2019-03-25
+
+### Fixed
+- `cds serve` now honors `newCsn` configuration when serving from precompiled csn.json files.
+- `cds init` creates samples correctly when project already contains files.
+- `cds build` for node.js projects will now show up compilation errors.  Formatting has been improved as well.
+- Better support for finding `cds` executable in VSCode.
+
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.10.0
+- Changes of `@sap/cds-ql` 1.7.1
+- Changes of `@sap/cds-services` 1.7.2
+- Changes of `@sap/generator-cds` 2.4.4
+
+
+## Version 3.6.0 - 2019-02-27
+
+### Added
+- In `cds init`:
+  - Add modules via `cds init --modules` to an existing project.
+  - Do not allow project creation via `cds init` outside of current working folder, e.g. init ../../some/where/else is not allowed.
+  - No output at all (not even error messages) when using `cds init --quiet`.
+  - Create a module folder using `cds init --modules...` even if it is empty based on the supplied options.
+  - Parameter `--modules` only supports one folder of each type.
+- Alpha support for `@cds.odata.valuelist`: Adding `@cds.odata.valuelist` to `@cds.autoexposed` entities will automatically equip all associations referring to such entities with a corresponding `@Common.ValueList.entity`
+
+### Changed
+- Simplified code lists: removed superfluous types `LanguageCode`, `CountryCode`, and `CurrencyCode` from `@sap/cds/common`
+- `cds build/all` now does `--clean` by default and is less verbose in its output
+
+### Fixed
+- `cds.load` no longer fails if reading in a CSN file in version `0.1.0`
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.9.0
+- Changes of `@sap/cds-reflect` 2.4.0
+- Changes of `@sap/cds-ql` 1.6.0
+- Changes of `@sap/cds-services` 1.6.0
+- Changes of `@sap/generator-cds` 2.4.0
+
+
+## Version 3.5.2 - 2019-02-20
+
+### Fixed
+- Node.js projects created with `cds init` now
+  - Bind the service module to an HDI service in `mta.yaml`.
+  - Invoke CDS build when building the database module.
+  - No longer create old-style `service` configuration in `package.json`.
+- For datasources with kind `hana` we now also find `hanatrial` services in trial landscapes by matching their tag `hana`.
+
+
+## Version 3.5.1 - 2019-02-14
+
+### Fixed
+- In `cds serve` service providers where added twice to the express app.  This is fixed.
+- In the logs of `cds serve` false warnings on fiori requests are now gone.
+- `cds serve` no longer fails on localization for unbound actions.
+- The project template was fixed to properly wire up the connection to SAP HANA.
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.8.1
+- Changes of `@sap/cds-ql` 1.5.1
+- Changes of `@sap/cds-services` 1.5.2
+- Changes of `@sap/generator-cds` 2.3.7
+
+
+## Version 3.5.0 - 2019-02-07
+
+### Added
+- `cds compile -2 xsuaa` now generates default values for `xsappname` and `tenant-mode`
+- All commands now can be called with `--help`, where previously only `cds help <command>` was allowed.
+
+### Changed
+- The minimum required Node.js version is now set more specifically to _8.9_ LTS.  Previously, just Node.js 8 was mentioned.
+- The `cds build/all` (experimental build command for Node.js) emits a warning for existing projects to add build task configuration.  Watch out for such a warning in the console and follow its instructions.
+
+### Fixed
+- Service handlers are now also found on CF if CDS models are served from a `csn.json` file instead as from `.cds` sources.
+- An issue where projects w/o `db` dir could not be built using `cds build`.
+- Unclear documentation of `cds deploy` on where it looks up the data source.
+- `cds env` to load configuration profiles in lower-prio files (`.cdsrc.json`) with higher precedence than default configuration in higher-prio files (`package.json`).
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.8.0
+- Changes of `@sap/cds-reflect` 2.3.0
+- Changes of `@sap/cds-ql` 1.5.0
+- Changes of `@sap/cds-services` 1.5.0
+- Changes of `@sap/generator-cds` 2.3.6
+
+## Version 3.4.1 - 2019-01-24
+
+### Fixed
+
+- Restore cds-compiler `.version`
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.7.1
+- Changes of `@sap/cds-reflect` 2.2.1
+- Changes of `@sap/cds-ql` 1.4.0
+- Changes of `@sap/cds-services` 1.4.0
+- Changes of `@sap/generator-cds` 2.2.0
+
+## Version 3.4.0 - 2019-01-22
+
+### Added
+
+- `cds.env` supports loading from `default-env.json`
+- Support base models for `cds compile -2 xsuaa`
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.7.0
+- Changes of `@sap/cds-reflect` 2.2.0
+- Changes of `@sap/cds-ql` 1.4.0
+- Changes of `@sap/cds-services` 1.4.0
+- Changes of `@sap/generator-cds` 2.2.0
+
+## Version 3.3.0 - 2019-01-11
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.6.0
+- Changes of `@sap/cds-reflect` 2.1.0
+- Changes of `@sap/cds-ql` 1.3.0
+- Changes of `@sap/cds-services` 1.3.0
+- Changes of `@sap/generator-cds` 2.2.0
+
+## Version 3.2.0 - 2018-12-21
+### Changed
+- cdsc 2sql output may also contain .types
+- Add labels to CodeLists in common.cds
+- Improved cds error messages
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.6.0
+- Changes of `@sap/cds-reflect` 2.1.0
+- Changes of `@sap/cds-ql` 1.2.0
+- Changes of `@sap/cds-services` 1.2.0
+- Changes of `@sap/generator-cds` 2.2.0
+
+## Version 3.1.1 - 2018-12-13
+### Changed
+- Better console output from cds compile
+
+### Fixed
+- cds.compile ignored configured odata.version
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.6.0
+- Changes of `@sap/cds-reflect` 2.1.0
+- Changes of `@sap/cds-ql` 1.1.0
+- Changes of `@sap/cds-services` 1.1.0
+- Changes of `@sap/generator-cds` 2.2.0
+
+## Version 3.0.0
+### Changed
+- Reworked configuration options to center around required 'data sources'.
+  - As an example see the snippted that e.g. `cds deploy --to sqlite:my.db` generates into `package.json`.
+  - The former `cds` options from `package.json` are deprectated but still supported.
+- Clean up of many Node.js APIs, mainly for `cds.serve` and `cds.connect`.  See the [Javacript APIs documentation](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/a131984aefe94ff884e6b6819ee76bd9.html) for details.
+- Node.js 8 is now the minimum required runtime version.
+- Simplified `cds init`.  By default it creates a plain project suitable for local CDS development.
+
+### Added
+- `cds env` allows for inspecting the effective configuration
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.5.0
+- Changes of `@sap/cds-reflect` 2.0.0
+- Changes of `@sap/cds-ql` 1.0.0
+- Changes of `@sap/cds-services` 1.0.0
+- Changes of `@sap/generator-cds` 2.0.0
+
+## Version 2.11.2
+### Fixes
+- During `cds init/new` only install `@sap/generator-cds` 1.x
+
+## Version 2.11.0
+### Added
+- Reuse aspect `cuid` to `@sap/cds/common`
+- Support for smart to-many Associations finding backlinks automatically (&rarr;not for production!)
+- Support to fill DBs with initial data from CSV files (fetched from folder `db/csv/`)
+- New CLI command `cds run` - today a mere wrapper for `cds serve all` but meant to serve microservice test scenarios
+- `cds deploy` can be configured not to modify `package.json` through the `--no-save` option.
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.2.0
+- Changes of `@sap/cds-reflect` 1.8.0
+- Changes of `@sap/cds-ql` 0.12.0
+- Changes of `@sap/cds-services` 0.12.0
+
 ## Version 2.10.3
 ### Fixes
 - During `cds init/new` only install `@sap/generator-cds` 1.x
 
-## Version 2.10.2
-### Fixes
-- An issue where `cds deploy` did not detect database connection settings in package.json
-
 ## Version 2.10.0
 ### Added
-- Draft support
+- Support for Fiori Draft
 
 ### Fixes
 - Enhanced server.js to also include links to entities
@@ -76,7 +448,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Version 2.5.0
 ### Added
-- Instead of compiling each `.cds` service file separately, `cds build` now combines all those files from the same directory, creating only one `csn.json` file for them.
+- Instead of compiling each `.cds` service file separately, `cds build` now combines all those files from the same folder, creating only one `csn.json` file for them.
 
 ### Fixes
 - Shortcuts of `cds init` work again

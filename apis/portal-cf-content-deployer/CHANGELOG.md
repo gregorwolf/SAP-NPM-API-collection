@@ -5,6 +5,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [3.15.0]
+#### Added
+- Added BlueBoxMetaData in deploy process
+
+## [3.14.0]
+### Changed
+- Update to Node10
+- Changed axios to version 0.18.1
+
+## [3.11.0]
+### Changed
+- Changed axios to version 0.19.0
+
+## [3.10.0]
+#### Changed
+- Changed buildpacks to version 1.6.50
+- Change @sap/xsenv version to 2.0.0
+- Change form-data version to 2.3.3
+- Change glob version to 7.1.4
+- Change jszip version to 3.2.1
+
 ## [3.6.0]
 #### Added
 - Added business app support

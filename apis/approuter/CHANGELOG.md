@@ -4,6 +4,60 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+## 6.4.0 - 2019-09-16
+
+### Added
+- Allowed dynamic destinations 
+- Return CSP header with no cache
+- Added setXForwardedHeaders option
+
+## 6.3.0 - 2019-09-10
+
+### Added
+- Support Cache-Control for static content from html5-repo
+
+## 6.2.0 - 2019-09-03
+
+### Added
+- Support Subscription url from vcap.
+- Adding validation - Session created for one tenant must not be used by other tenants
+
+### Updated dependencies
+ - deps: @sap/xssec@2.2.2
+
+## 6.1.2 - 2019-08-28
+- Support Xsuaa credentials in request body
+
+## 6.1.1 - 2019-08-27
+- Fix in destination middleware - session.update
+ 
+## 6.1.0 - 2019-07-31
+
+### Added
+- Support for redirection to logout page with query parameters after central logout
+- Connectivity is now returned in subscription getDependencies callback
+
+### Fixed
+- Error when processing unknown authentication types
+
+## 6.0.2 - 2019-07-14
+
+### Fixed
+- Validation of destination with OnPremise proxyType
+- CSRF protection in Service to Approuter flow
+### Updated dependencies
+- deps: lodash@4.17.13
+
+## 6.0.1 - 2019-05-30
+
+### Fixed
+- Fixed TypeError bug when Approuter saves a cookie from backend and should logout when session timeout exceeded. 
+- Fixed calculation of location after login.
+
+## 6.0.0 - 2019-05-06
+
+### Added
+- Support node version 8 and node version 10 instead of node version 4.5 and node version 6
 
 ## 5.15.0 - 2019-04-29
 

@@ -5,6 +5,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.0.1"></a>
+## 6.0.1 - 2019-07-10
+
+### Fixed
+- Update `lodash` package to 4.17.13
+
+<a name="6.0.0"></a>
+## 6.0.0 - 2019-05-20
+
+### Removed
+- Node 4 support
+- Stored procedures: caching of prepared CALL statements for simple procedures
+
+### Fixed
+- Statement leak due to caching of prepared CALL statements for simple procedures
+- Update *@sap/hana-client* to v2.4.139
+
+### Added
+- Node.js 10 support
+
 ## 5.1.0 - 2019-01-11
 
 ### Added

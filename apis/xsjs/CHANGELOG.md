@@ -5,6 +5,37 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="5.2.0"></a>
+## 5.2.0 - 2019-06-06
+
+### Added
+- Node 10 support
+
+### Fixed
+- Updated dependencies
+
+<a name="5.1.0"></a>
+## 5.1.0 - 2019-05-20
+
+### Fixed
+- Remove `x-powered-by` response header
+- Update `nodemailer` to v4.3.1
+- Update `express` to v4.16.4
+
+### Added
+- Adopt *@sap/hana-client* v2.4.139
+
+<a name="5.0.0"></a>
+## 5.0.0 - 2019-02-05
+
+### Fixed
+- Update _@sap/xsodata_ to v4.4.0
+- Update _@sap/fibers_ to 3.1.1-1
+- Update _@sap/fibrous_ to 0.5.0-4
+
+### Removed
+- The support for Node.js v4.x
+
 <a name="4.0.2"></a>
 ## 4.0.2 - 2019-01-21
 

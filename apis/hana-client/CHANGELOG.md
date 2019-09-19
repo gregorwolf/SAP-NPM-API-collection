@@ -1,5 +1,44 @@
 # Hana Client 2.4.x Drivers
 
+## Version 2.4.155
+
+### Underlying SQLDBC changes:
+
+ - Bug: 228735 - [SQLDBC] Unintialized scalar value in Connection
+ - Bug: 226661 - [SQLDBC] Client not work well with deferred_lob_writing ON
+
+## Version 2.4.154
+
+### Changes:
+
+ - Bug: 225625 - [node] "stderr maxBuffer length exceeded" error when deploying an mtar to CF
+
+### Underlying SQLDBC changes:
+
+ - Bug: 220794 - [SQLDBC] Enable frequent TCP keepalive probes
+
+## Version 2.4.153
+
+### Changes:
+
+ - Bug: 221808 - [node] mdx get_axisinfo return garbage data
+
+### Underlying SQLDBC changes:
+
+ - Bug: 225784 - [SQLDBC] Crash when OOM during error reporting
+ - Bug: 224703 - [SQLDBC] Send networkGroup in DBConnectInfo
+
+## Version 2.4.151
+
+### Underlying SQLDBC changes:
+
+ - Bug: 225299 - [SQLDBC] Show tracing category & level at start of restarted trace files
+ - Bug: 224855 - [SQLDBC] Windows trace file archiving stop at first copy
+ - Bug: 224764 - [SQLDBC] crash at: time::Transaction::xa_remote_rollback - Assertion failed: is_global_coordinator_
+ - Bug: 223866 - [SQLDBC] Include original value in conversion failure situations
+ - Bug: 223751 - [SQLDBC] Remove RANGE_RESTRICTION test against CE server
+ - Bug: 192870 - [SQLDBC] Support returning TIMESTAMP with 'T' seperator instead of space (like ISO 8601)
+
 ## Version 2.4.144 (HANA 2.0 SPS03 Rev 37.02)
 
 ### Changes:

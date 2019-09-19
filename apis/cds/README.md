@@ -21,4 +21,5 @@ cds -e "cds.load('db') .then (cds.compile.to.hana)"
 cds -e "cds.load('srv').then (cds.compile.to.edmx)"
 ```
 
-See the [docs](https://help.sap.com/viewer/DRAFT/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/a131984aefe94ff884e6b6819ee76bd9.html) for more.
+See the [docs](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/a131984aefe94ff884e6b6819ee76bd9.html) for more.
+<!-- TODO link to .../capire once available externally -->

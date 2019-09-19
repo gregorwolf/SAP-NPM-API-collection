@@ -8,75 +8,8 @@
  * uses standard technology, is extendable
 
 ## Installation
+This module is intended to be used within @sap/cds project and not as standalone library or cli.
 
-Install @sap/generator-cds using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
-
-
-#### Installation of latest milestone:
-```bash
-npm install -g @sap/generator-cds
-```
-
-
-## Update
-
-#### To latest milestone:
-
-```bash
-npm install -g @sap/generator-cds
-```
-
-## Usage
-
-Generate your new project in a seperate folder:
-
-```bash
-cds-gen new myProject
-```
-
-## Help
-
-````bash
-cds-gen help
-````
-
-````bash
-Usage:
-  cds-gen [command] [args] [options]
- 
-Global Options:
-  -h,   --help                           # Print the generator's options and usage
-        --skip-cache                     # Do not remember prompt answers             Default: false
-        --skip-install                   # Do not automatically install dependencies  Default: false
-        --force                          # Overwrite all existing files without notice
-        --verbose                        # Make console output verbose
-
- Commands:
-     new <projectName>                   # Generate a new project with the name <projectName>
-     
-     Options:
-        --projectName <projectName>      # Project name
-        --projectNamespace <namespace>   # Project namespace
-        --modules <modules>              # The modules to create, valid values: db, srv, app
-        --srv-technology                 # The technology of the srv module, valid values: java, node
-        
-     generate module <module>            # Generate a new module of type db, srv or app   
-        --projectName <projectName>      # Project name
-        --projectNamespace <namespace>   # Project namespace
-        
-        srv module specific options:        
-        --srv-technology                 # The technology of the srv module, valid values: java, node
-        
-     doctor                              # Do some basic checks   
-````
-
-## Verify Installation / Check for Setup Problems
-The generator comes with a built-in "doctor" that checks your setup for potential problems/misconfigurations that could harm the generator execution.
-  
-Use the following call to check your setup:
-```
-cds-gen doctor
-```
 
 ## License
 <details>

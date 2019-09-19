@@ -1,5 +1,9 @@
 # Migration Guide
 
+## Version 5 ==> Version 6
+
+Support for Node.js 4 has been droppped, *@sap/hdbext* APIs have not been changed.
+
 ## Version 4 ==> Version 5
 
 ### Changes to application code
