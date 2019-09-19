@@ -6,6 +6,48 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.17.4 - 2019-09-19
+
+### Also see
+- Changes of `@sap/cds-rest` 1.1.2
+
+## Version 3.17.3 - 2019-09-19
+
+### Fixed
+
+- `cds deploy --to hana`
+
+## Version 3.17.2 - 2019-09-19
+
+### Also see
+- Changes of `@sap/cds-services` 1.18.2
+- Changes of `@sap/generator-cds` 2.8.2
+
+## Version 3.17.1 - 2019-09-18
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.18.2
+- Changes of `@sap/cds-ql` 1.18.2
+- Changes of `@sap/cds-services` 1.18.1
+
+## Version 3.17.0 - 2019-09-10
+
+### Added
+- `cds run` has learned a new `--watch` option, which provides automatic restarts of the server on file changes.  [nodemon](https://www.npmjs.com/package/nodemon) package is required for this to work.
+
+### Fixed
+- `cds deploy` now writes `true` and `false` values in csv files as boolean to sqlite
+- Console output of `cds run` now waits until the server is really up and running before it declares success.
+- `cds deploy` and `build/all` do not write `hdbtabledata` files if some are already present.
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.18.1
+- Changes of `@sap/cds-ql` 1.18.1
+- Changes of `@sap/cds-reflect` 2.7.1
+- Changes of `@sap/cds-services` 1.18.0
+- Changes of `@sap/generator-cds` 2.8.1
+
+
 ## Version 3.16.2 - 2019-08-27
 
 ### Also see
