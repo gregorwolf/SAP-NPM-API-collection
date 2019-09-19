@@ -1,21 +1,358 @@
-[{"name":"@sap/approuter","version":"6.1.2","description":"Node.js based application router","keywords":[],"date":"2019-08-29T13:58:11.755Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/site-entry","version":"1.30.0","description":"SAP Portal Approuter for Fiori Launchpad","keywords":[],"date":"2019-08-07T09:04:16.765Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":{"username":"Portal Team","email":null},"maintainers":[{"username":"Portal Team","email":null}]}
-,{"name":"@sap/grunt-sapui5-bestpractice-build","version":"1.4.1","description":"Grunt tasks around Devx grunt build","keywords":[],"date":"2019-06-05T09:14:15.670Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/xssec","version":"2.2.3","description":"XS Advanced Container Security API for node.js","keywords":["xs"],"date":"2019-09-02T05:58:10.979Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/node-jwt","version":"1.6.4","description":"JWT validation library for Node.js","keywords":["jwt","security","sap","xs"],"date":"2019-09-02T05:52:50.617Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/xsjs","version":"5.2.0","description":"Compatibility layer to run XS Classic applications on XS Advanced","keywords":[],"date":"2019-06-11T14:54:33.783Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/cds","version":"3.16.3","description":"Entry Point and API Facade for CDS","keywords":[],"date":"2019-08-30T10:32:24.285Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/xsodata","version":"4.5.4","description":"Expose data from a HANA database as OData V2 service with help of .xsodata files.","keywords":["odata","xsjs"],"date":"2019-09-02T07:35:14.871Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/hdbext","version":"6.0.1","description":"Hana-client extension library and utility functions for using SAP HANA in node.js","keywords":["HDB","hana","sap","sql","hdi"],"date":"2019-07-11T10:21:00.432Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/di.code-validation.xml","version":"1.1.16","description":"","keywords":[],"date":"2019-06-04T12:11:18.524Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/portal-cf-content-deployer","version":"3.14.0-20190708082053","description":"SAP portal site content deployer","keywords":["portal","content-deployer"],"date":"2019-07-18T11:52:08.445Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":{"username":"Portal Team","email":null},"maintainers":[{"username":"Portal Team","email":null}]}
-,{"name":"@sap/generator-cds","version":"2.7.0","description":"Project generator for cds projects","keywords":["cds","cdx"],"date":"2019-08-26T12:25:02.028Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/logging","version":"5.0.2","description":"Provides logging and tracing functionalities for Node.js applications","keywords":[],"date":"2019-07-10T16:27:15.845Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/audit-logging","version":"3.0.2","description":"Provides audit logging functionalities for Node.js applications","keywords":[],"date":"2019-07-16T11:28:04.678Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/cds-compiler","version":"1.17.2","description":"CDS (Core Data Services) compiler and backends","keywords":["CDS"],"date":"2019-08-30T10:29:46.169Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/site-content-deployer","version":"1.20.0","description":"SAP site deployer for independent mta","keywords":[],"date":"2019-03-26T14:18:28.437Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":{"username":"Portal Team","email":null},"maintainers":[{"username":"Portal Team","email":null}]}
-,{"name":"@sap/hdi-deploy","version":"3.11.2","description":"HDI content deployment","keywords":[],"date":"2019-08-09T08:37:10.378Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
-,{"name":"@sap/eslint-plugin-webide-feature","version":"1.3.22","description":"Custom ESlint rules and recommended configuration specific for SAP Web IDE features","keywords":[],"date":"2019-03-14T13:23:20.046Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":{"username":"SAP SE","email":null},"maintainers":[{"username":"SAP SE","email":null}]}
-,{"name":"@sap/hana-client","version":"2.4.144","description":"HANA JavaScript Driver.","keywords":[],"date":"2019-07-17T11:12:45.239Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":{"username":"SAP","email":null},"maintainers":[{"username":"SAP","email":null}]}
-,{"name":"@sap/node-vsi","version":"1.4.15","description":"VSI bindings for Node.js","keywords":["vsi","security","sap"],"date":"2019-08-05T15:46:24.952Z","links":{"npm":null,"homepage":null,"repository":null,"bugs":null},"publisher":null,"maintainers":[]}
+[
+  {
+    "name": "@sap/approuter",
+    "version": "6.4.0",
+    "description": "Node.js based application router",
+    "keywords": [],
+    "date": "2019-09-16T12:08:51.378Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/site-entry",
+    "version": "1.30.0",
+    "description": "SAP Portal Approuter for Fiori Launchpad",
+    "keywords": [],
+    "date": "2019-08-07T09:04:16.765Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": {
+      "username": "Portal Team",
+      "email": null
+    },
+    "maintainers": [
+      {
+        "username": "Portal Team",
+        "email": null
+      }
+    ]
+  },
+  {
+    "name": "@sap/grunt-sapui5-bestpractice-build",
+    "version": "1.4.1",
+    "description": "Grunt tasks around Devx grunt build",
+    "keywords": [],
+    "date": "2019-06-05T09:14:15.670Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/xssec",
+    "version": "2.2.3",
+    "description": "XS Advanced Container Security API for node.js",
+    "keywords": [
+      "xs"
+    ],
+    "date": "2019-09-02T05:58:10.979Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/node-jwt",
+    "version": "1.6.4",
+    "description": "JWT validation library for Node.js",
+    "keywords": [
+      "jwt",
+      "security",
+      "sap",
+      "xs"
+    ],
+    "date": "2019-09-02T05:52:50.617Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/xsjs",
+    "version": "5.2.0",
+    "description": "Compatibility layer to run XS Classic applications on XS Advanced",
+    "keywords": [],
+    "date": "2019-06-11T14:54:33.783Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cds",
+    "version": "3.16.3",
+    "description": "Entry Point and API Facade for CDS",
+    "keywords": [],
+    "date": "2019-08-30T10:32:24.285Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/xsodata",
+    "version": "4.5.4",
+    "description": "Expose data from a HANA database as OData V2 service with help of .xsodata files.",
+    "keywords": [
+      "odata",
+      "xsjs"
+    ],
+    "date": "2019-09-02T07:35:14.871Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/hdbext",
+    "version": "6.0.1",
+    "description": "Hana-client extension library and utility functions for using SAP HANA in node.js",
+    "keywords": [
+      "HDB",
+      "hana",
+      "sap",
+      "sql",
+      "hdi"
+    ],
+    "date": "2019-07-11T10:21:00.432Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/portal-cf-content-deployer",
+    "version": "3.18.0-20190911111653",
+    "description": "SAP portal site content deployer",
+    "keywords": [
+      "portal",
+      "content-deployer"
+    ],
+    "date": "2019-09-12T09:15:07.007Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": {
+      "username": "Portal Team",
+      "email": null
+    },
+    "maintainers": [
+      {
+        "username": "Portal Team",
+        "email": null
+      }
+    ]
+  },
+  {
+    "name": "@sap/di.code-validation.xml",
+    "version": "1.1.16",
+    "description": "",
+    "keywords": [],
+    "date": "2019-06-04T12:11:18.524Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/generator-cds",
+    "version": "2.8.2",
+    "description": "Project generator for cds projects",
+    "keywords": [
+      "cds",
+      "cdx"
+    ],
+    "date": "2019-09-19T14:41:47.653Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cds-compiler",
+    "version": "1.18.2",
+    "description": "CDS (Core Data Services) compiler and backends",
+    "keywords": [
+      "CDS"
+    ],
+    "date": "2019-09-19T14:38:33.686Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/logging",
+    "version": "5.0.2",
+    "description": "Provides logging and tracing functionalities for Node.js applications",
+    "keywords": [],
+    "date": "2019-07-10T16:27:15.845Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/audit-logging",
+    "version": "3.0.2",
+    "description": "Provides audit logging functionalities for Node.js applications",
+    "keywords": [],
+    "date": "2019-07-16T11:28:04.678Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/hana-client",
+    "version": "2.4.155",
+    "description": "HANA JavaScript Driver.",
+    "keywords": [],
+    "date": "2019-09-13T05:52:38.386Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": {
+      "username": "SAP",
+      "email": null
+    },
+    "maintainers": [
+      {
+        "username": "SAP",
+        "email": null
+      }
+    ]
+  },
+  {
+    "name": "@sap/site-content-deployer",
+    "version": "1.20.0",
+    "description": "SAP site deployer for independent mta",
+    "keywords": [],
+    "date": "2019-03-26T14:18:28.437Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": {
+      "username": "Portal Team",
+      "email": null
+    },
+    "maintainers": [
+      {
+        "username": "Portal Team",
+        "email": null
+      }
+    ]
+  },
+  {
+    "name": "@sap/hdi-deploy",
+    "version": "3.11.2",
+    "description": "HDI content deployment",
+    "keywords": [],
+    "date": "2019-08-09T08:37:10.378Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cds-hana",
+    "version": "1.17.1",
+    "description": "Driver package for access to hana database, including setting up the client, configuring all the necessary options to initiate the connection and handling database specifics so that they can be processed on our end.",
+    "keywords": [],
+    "date": "2019-09-19T14:28:24.632Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cds-ql",
+    "version": "1.18.2",
+    "description": "This package deals with creating a  pool of connection clients, connecting to a driver (read: db) and using these connection clients from the pool to insert, delete, select and update values or rows from a specific table. Performing these insert, delete, select and update operations also includes executing embedded queries and plain statements.",
+    "keywords": [],
+    "date": "2019-09-19T14:31:16.014Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  }
 ]
