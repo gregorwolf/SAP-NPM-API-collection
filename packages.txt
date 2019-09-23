@@ -18,3 +18,4 @@
 @sap/xsjs
 @sap/xsodata
 @sap/xssec
+@sap/cds-rest
