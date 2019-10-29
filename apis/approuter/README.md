@@ -1580,12 +1580,20 @@ While binding a Business Service instance to application router the following in
 
 * sap.cloud.service: Service name as referenced from xs-app.json route and business service prefix (if Business Service UI provided) - Mandatory
 * sap.cloud.service.alias: Short service name alias for user friendly URL business service prefix- Optional
-* endpoints: One or more endpoints that can be used to access Business Service data. If not provided url or uri attributes will be used - Optional
+* endpoints: One or more endpoints that can be used to access Business Service data. 
 * html5-apps-repo: html5-apps-repo.app_host_id contains one or more html5-apps-repo service instance GUIDs that can be used to retrieve Business Service UIs - Optional
 * saasregistryenabled: flag that indicates that this Business Service supports SaaS Registry subscription. If provided, application router will return this Business Service xsappname in SaaS Registry 
   getDependencies callback - Optional
 * grant_type: the grant type that should be used to trigger requests to the Business Service. Allowed values: user_token or client_credentials. 
   Default value, in case this attribute is not provided, user_token - Optional
+
+
+The value of `endpoints` should be an object with the following properties:
+
+Property | Type | Optional | Default |Description
+-------- | ---- |:--------:| ---- |-----------
+url | String |   | |URL to access the Business Service data.
+timeout | Number | x | 30000ms |Positive integer representing the maximum wait time for a response (in milliseconds) from the Business Service. 
 
 
 For example:
@@ -1597,8 +1605,11 @@ For example:
      "sap.cloud.service": "com.sap.appbasic.country", 
      "sap.cloud.service.alias": "country",            
      "endpoints": {                                   
-      "countryservice": "https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/odata/v2/countryservice",
-      "countryconfig": "https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/rest/v1/countryconfig"
+      "countryservice": { "url": https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/odata/v2/countryservice"},
+      "countryconfig":  { 
+            "url": https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/rest/v1/countryconfig",
+            "timeout": 120000 
+      }
      },
      "html5-apps-repo": {                           
       "app_host_id": "1bd7c044-6cf4-4c5a-b904-2d3f44cd5569, 1cd7c044-6cf4-4c5a-b904-2d3f44cd54445"

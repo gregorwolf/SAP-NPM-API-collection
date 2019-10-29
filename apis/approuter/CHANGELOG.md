@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+
+## 6.5.1 - 2019-10-10
+
+### Fixed
+- Adding sec-websocket-protocol header as the protocol of websockets
+
+## 6.5.0 - 2019-10-03
+
+### Added
+- Timeout for Business Service
+
+### Fixed
+- Adding destination token middleware for websockets
+
+## 6.4.1 - 2019-09-23
+
+### Fixed
+- CSP header fix return frame-ancestors in login
+
 ## 6.4.0 - 2019-09-16
 
 ### Added

@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.1.0"></a>
+## 6.1.0 - 2019-10-25
+
+### Added
+- Support for synonyms as table parameters in procedures
+
 <a name="6.0.1"></a>
 ## 6.0.1 - 2019-07-10
 

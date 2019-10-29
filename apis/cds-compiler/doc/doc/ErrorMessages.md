@@ -1,10 +1,15 @@
 # Error Messages Explained
 
+> Status Oct 2019: up-to-date
+
 This document tries to explain some of the less-obvious error messages.
 
 ## Common Compiler Messages (Independent From Backend)
 
 ### Duplicate definitions
+
+In most cases, you really have just used the same name twice when defining an artifact.
+This section is about a situation where you are pretty sure that you have not done that.
 
 ```
 node_modules/Base/index.cds:1:6-7: Error: Duplicate definition of artifact "T"
@@ -13,8 +18,8 @@ node_modules/dep/node_modules/model/index.cds:1:8-9: Error: Duplicate definition
 node_modules/model/index.cds:1:8-9: Error: Duplicate definition of artifact "E"
 ```
 
-Here, the CDS Compiler does consider `…/Base/index.cds` to be different to `…/base/index.cds`,
-and also considers the two `…/model/index.cds` files to be the different files.
+Here, the CDS Compiler considers `…/Base/index.cds` to be different to `…/base/index.cds`,
+and also considers the two `…/model/index.cds` files to be different files.
 Why is that the case?  Consider the following "top-level" file
 
 ```
@@ -63,13 +68,15 @@ The CDL code/package can be corrected as follows:
   (or be a symlink to `node_modules/model/index.cds`).
 
 
-### Extensions
+### Nested extensions
+
+If you use nested extensions, you might get messages like:
 
 ```
-e.cds:3:20-26: Error: No `EXTEND artifact` within CONTEXT extensions
-e.cds:4:20-28: Error: No `ANNOTATE artifact` within SERVICE extensions
-e.cds:5:14-22: Error: Elements only exist in entities, types or typed constructs
-e.cds:6:12-36: Error: Elements only exist in entities, types or typed constructs
+nested-extensions.cds:3:20-26: Error: No `EXTEND artifact` within CONTEXT extensions
+nested-extensions.cds:4:20-28: Error: No `ANNOTATE artifact` within SERVICE extensions
+nested-extensions.cds:5:14-22: Error: Elements only exist in entities, types or typed constructs
+nested-extensions.cds:6:12-36: Error: Elements only exist in entities, types or typed constructs
 ```
 
 Artifacts (entities, types, …) should not be extended within other extensions –

@@ -3,6 +3,58 @@
 Note: `betaMode` fixes, changes and features are usually not listed in this ChangeLog.
 The compiler behaviour concerning `betaMode` features can change at any time without notice.
 
+## Version 1.19.2
+
+Changes
+
+* Improve the semantic checks for `Association to many` with a partial key, not complaining
+  about a missing `ON` condition anymore.
+  
+* HANA:
+  + When using `names: quoted`, raise a warning when artifacts with `@cds.persistence.exists` belong to a CDS namespace, context or service.
+  
+* OData:
+  + Raise an `info` message on the usage of deprectated OData vocabulary terms.
+  + Raise a `warning` message when applying `@odata.Type` with another type as `Edm.String`, `Edm.Int16`,
+    `Edm.Int32`, `Edm.Int64`.
+  + Support shorthand annotation `@description` for `@Core.Description`.
+
+* Never complain about `localization` views when recompiling a CSN file that has localized convenience views
+  already expanded. If the definition's absolute name is `localized`, it must be a context. If the definition's
+  absolute name starts with `localized.`, it must either be a context or a query entity. An error message is
+  raised in all other cases. In all cases, definitions in the namespace `localized` are ignored for further processing.
+
+Fixes
+
+* Fix a dump when compiling from CSN for query elements without a `key` property that have no column
+  counterpart.
+
+## Version 1.19.1
+
+Fixes
+
+* Make sure that we really create all localized convenience views for entities
+  which have localized elements, select localized elements or can directly or
+  indirectly reach (via navigation along associations and compositions) such entities.
+
+Features
+
+* Allow annotations with `@odata.Type: 'Edm.Int16'` and likewise with value `'Edm.Int32'`
+  and `'Edm.Int64'` to influence the type which is chosen in the generated EDMX.
+
+## Version 1.19.0
+
+Changes
+
+* Event definitions are now properly listed in the CSN:
+  the `kind` is `event`, the property for its members is called `payload`.
+* Omit redundant `kind: 'param'` for parameters in the `params` dictionary of a CSN.
+
+Fixes
+
+* Do not use upcoming OData v4.01 facet values for `cds.DecimalFloat`, i.e.
+  revert v1.18.0 change which had added `Scale: floating` and `Precision: 34`.
+* In CSN frontend, support direct `{func: …}` objects in `orderBy` and `groupBy`.
 
 ## Version 1.18.2
 

@@ -6,6 +6,74 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.18.3 - 2019-10-28
+### Fixed
+- Fixed a crash in `cds run --watch` with changing directories.
+- `cds watch` is now also found if called from an NPM script.
+- `cds watch` now uses the same lookup paths for models as `cds run`
+
+## Version 3.18.1 - 2019-10-17
+### Fixed
+- Fixed a crash during sqlite deployment if there were csv files that did not match an entity name
+- `cds deploy --to hana` now does a build for SAP HANA even if no matching build task is available.
+- `cds deploy` now tries to add `.gitignore` entries only once
+- In `@source` annotations of csn.json files generated for cloud deployments,
+  now posix file paths (with `/`) are written, and no Windows paths.
+- `cds serve` and `run` now shuts down gracefully in case of `SIGHUP` signals emitted by
+  e.g. the VS Code terminal.
+- `cds watch` now is found even if `@sap/cds-dk` is not installed locally.
+
+### Also see
+- Changes of `@sap/cds-ql` 1.19.2
+- Changes of `@sap/cds-services` 1.19.1
+- Changes of `@sap/cds-messaging` 1.2.1
+
+## Version 3.18.0 - 2019-10-09
+
+### Added
+- Compiler options for SAP HANA backend can now be set in configuration in the `cdsc.toHana` block
+  (e.g. `cds.cdsc.toHana.joins`)
+- `service.tx()` as a shortcut for `service.transaction()`
+
+### Fixed
+- `cds deploy --to hana` now adds the tunnel address to the JDBC URL
+- Boolean and number values from `default-env.json` now are accepted in configuration (`cds env`)
+- For applications deployed to Cloud Foundry, custom handlers are now properly resolved using their names.
+- `cds serve`/`run` now properly log `$batch` requests of OData
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.19.1
+- Changes of `@sap/cds-messaging` 1.2.0
+- Changes of `@sap/cds-ql` 1.19.1
+- Changes of `@sap/cds-reflect` 2.8.0
+- Changes of `@sap/cds-rest` 1.2.0
+- Changes of `@sap/cds-services` 1.19.0
+- Changes of `@sap/generator-cds` 2.9.0
+
+## Version 3.17.8 - 2019-09-25
+
+### Fixed
+
+- `UPDATE(entity, key)` statement
+
+## Version 3.17.7 - 2019-09-24
+
+### Fixed
+
+- `cds deploy`
+
+## Version 3.17.6 - 2019-09-23
+
+### Changed
+
+- Improved `cds env`
+
+## Version 3.17.5 - 2019-09-20
+
+### Fixed
+
+- `cds deploy` did not work properly
+
 ## Version 3.17.4 - 2019-09-19
 
 ### Also see

@@ -1,5 +1,8 @@
 # To Swagger transformation
 
+> Status Oct 2019: outdated.  As long as the `toSwagger` backend only works with `--beta-mode`, this doc should be in internalDoc/.
+> Some JSON code snippets might be a bit too long.
+
 "The OpenAPI Specification, originally known as the Swagger Specification, is
 a specification for machine-readable interface files for describing, producing,
 consuming, and visualizing RESTful Web services." - [Wikipedia](https://en.wikipedia.org/wiki/OpenAPI_Specification)
@@ -40,6 +43,7 @@ The corresponding definitions of paths in CDS model are the (un)bound actions an
 Such an action or a function must be annotated with the specified annotation so the generator takes
 it in mind. The annotation declares the desired HTTP method and the response code.
 Three different syntaxes are available:
+
  1. __@Swagger.GET : 200__ - a GET operation with response code 200 is generated
  2. __@Swagger.POST__ - a POST operation with the default response code is generated
  3. __@Swagger.DELETE : [202, 204, 200]__ - a DELETE operation with responses for every of 202, 204 and 200 codes
@@ -70,7 +74,7 @@ annotation. The custom path can include parameters e.g. ``@Swagger.path : '/MyPa
 
 #### Operations parameters
 
-The OpenAPI specification states that a parameter can have location([the property 'in' of a parameter object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterObject))
+The OpenAPI specification states that a parameter can have location ([the property 'in' of a parameter object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterObject))
 with one of the following values:
 - query
 - header
@@ -85,7 +89,7 @@ With the __@Swagger.parameter__ annotation applied to a parameter this location 
 The parameter location resolving is illustrated with the following example:
 
 Given is the CDS model
-````
+```
 ...
 actions {
   @Swagger.GET
@@ -96,10 +100,10 @@ actions {
   action booksByAuthor(authorName: String) returns array of Book;
 };
 ...
-````
+```
 
 the result will look like:
-````json
+```json
 ...
 "paths": {
   "/Bookstore/Book/bookById/{bookId}": {
@@ -236,7 +240,7 @@ the result will look like:
   }
 }
 ...
-````
+```
 
 #### Request body
 
@@ -251,7 +255,7 @@ a __requestBody__ property will be generated for the path object.
 As seen in the example above, if an action/function has a return type ``... returns array of <entity_name>``, then for the
 OpenAPI document the schema for this specific response is of type array with items of type the pointed entity and a header, which
 is a link to the next page of responses, or:
-````json
+```json
 "200": {
   "description": "Expected response to a valid request",
   "content": {
@@ -273,7 +277,7 @@ is a link to the next page of responses, or:
     }
   }
 },
-````
+```
 
 ### Schemas
 
@@ -337,7 +341,7 @@ This redirection is expressed in switching the target of an association, which i
 to the corresponding projection(on the target of the association in the underlying context) from the current service.
 For example the following model:
 
-````
+```
 service Bookstore {
   entity Book as projection on BookstoreContext.Book;
   entity Author as projection on BookstoreContext.Author;
@@ -358,9 +362,9 @@ context BookstoreContext {
     lastName : String;
   };
 };
-````
+```
 will result in:
-````json
+```json
 {
   "openapi": "3.0.0",
   "info": {
@@ -461,7 +465,7 @@ will result in:
     }
   }
 }
-````
+```
 The same redirection is performed for user-defined types, as the type declaration should be also exposed to the service in question.
 
 #### CDS Views
@@ -473,15 +477,15 @@ the logic from the view is not applicable for describe in the API spec.
 
 Declared in the CDS model enums are generated as the values are taken in mind.
 
-````
+```
 ...
   entity MyEntity {
     elem : String enum { foo = 'bar'; };
   };
 ...
-````
+```
 The output:
-````json
+```json
 ...
   "components": {
     "schemas": {
@@ -496,4 +500,4 @@ The output:
         }
       },
 ...
-````
+```

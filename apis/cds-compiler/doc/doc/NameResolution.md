@@ -1,12 +1,16 @@
-# Name Resolution in CDL (CDx/Language)
+# Name Resolution in CDS
+
+> Status Oct 2019: TODOs must be filled, say more about name resolution in CSN.
 
 Name resolution refers to the resolution of names (identifiers) within expressions of the source to the intended artifact or member in the model.
 
 As CDL is related to SQL, its name resolution strategy must be natural to SQL programmers.
 This forbids us to use the simple _lexical scoping_ name resolution for all language constructs.
 
-This document presents the exact **semantics** of the resolution in CDL,
+This document presents the exact **semantics** of the resolution in CDS
 especially how it is influenced by the language constructs where the reference is embedded in.
+
+In explanations, we have CDL as the main focus, but name resolution in CSN is covered as well.
 
 The overall goal is that the name resolution is low on surprises throughout the complete life-cycle of any CDS model,
 and robust concerning any model extensions.
@@ -39,7 +43,7 @@ others might want to [skip the introduction](#design-principles).
 ## Introduction
 
 If you look at typical examples given in introductionary documents about CDS,
-you might wonder why there is a lengthy document about the name resolution in CDL.
+you might wonder why there is a lengthy document about the name resolution.
 So, let us start with such an example:
 
 ```
@@ -78,7 +82,7 @@ In the example above, we have 3 types with the absolute names
 For **convenience**, we do not use these lengthy names in CDL,
 but shorter names without the common prefix.
 These are then "translated" by the name resolution into the absolute names.
-This also allow us to easily change the common name prefix in the development phase.
+This also allows us to easily change the common name prefix in the development phase.
 
 In which area of the code do we assume which common name prefix?
 In the example above, we refer to these 3 types by `types.Price`, just `Amount`, and `CurrencySymbol`.
@@ -98,7 +102,7 @@ but also in languages like C (for labels after `goto`).
 
 ---
 
-Let is now see why the name resolution is not as obvious as it might seem to be…
+Let us now look at the name resolution and why it is not as obvious as it might seem to be…
 
 > What happens if an inner block introduces the same name as an outer block?
 
@@ -115,7 +119,7 @@ or an element of the corresponding main artifact?
 > How do we access artifacts which are defined in another file?
 
 That is an easy one: the `using` declarations introduce a file-local alias name to an absolute name
-for accessing artifacts in other files or in the current files (useful to refer to shadowd definitions).
+for accessing artifacts in other files or in the current file (useful to refer to shadowed definitions).
 
 > Can something bad happen if extensions come into play?
 
@@ -124,7 +128,7 @@ if two extensions decide to add an element with the same name to the same entity
 there is nothing we can do about it.
 
 But we make sure that something real bad cannot happen:
-an **extension cannot silently changes the semantics of a model** –
+an **extension cannot silently change the semantics of a model** –
 the name resolution is defined in such a way that a valid reference
 does not silently (without errors or warnings) point to another artifact
 when the extension is applied to the model.
@@ -155,7 +159,7 @@ Our task is to
 
 * generalize the semantics to make it applicable for CDS features not found in SQL:
   sub structures, associations, extensions, …
-* find argument positions which are "similar" to arguments positions with a given name resolution semantics –
+* find argument positions which are "similar" to argument positions with given name resolution semantics –
   we then apply the same semantics to the "new" argument positions
 
 As an example for the latter,
@@ -213,8 +217,8 @@ This is not only a good thing for itself
 it also enables lexical scoping, as the table alias names are defined in the query expression itself.
 
 Any "convenience" declaration which "extends" lexical scoping
-is usually soon be declared as obsolute,
-because its **little convenience benefit of is not worth the addition issues**.
+is usually soon to be declared as obsolete,
+because its **little convenience benefit is not worth the additional issues**.
 As an example, see the fate of the `with` statement in JavaScript.
 
 ---
@@ -258,7 +262,7 @@ The name resolution rules in the following sections are based on the following d
  6. Convenience: there must be a more convenient solution than always using absolute names.
 
 Please note that these principles are ordered.
-There are many cases where one principle cannot be fulfilled in order to fulfil a higher prioritized design principles.
+There are __many cases where one principle cannot be fulfilled__ in order to fulfill a higher prioritized design principles.
 The first design principle is therefore always fulfilled.
 This can be seen in the following examples.
 
@@ -310,7 +314,7 @@ We start with some terminology:
 
 * An **environment** is a dictionary binding/mapping (local) names to language constructs (e.g. entities or elements).
 
-* An **navigation environment** of a construct is the dictionary for definitions within that construct or a type/entity referred by that construct.
+* A **navigation environment** of a construct is the dictionary for definitions within that construct or a type/entity referred by that construct.
 
   For contexts (and services), these are the sub artifacts defined within that context.
   For types, entities, elements, these are the elements (or enum symbols) defined within that object or the object's (direct or indirect) type;
@@ -327,15 +331,15 @@ type T: S;                       // type "T" supplies the same env as type "S"
 
 ### Common rules
 
-Name resolution name is **case sensitive**.
+Name resolution is **case sensitive**.
 In general, a model can contain artifacts and members whose name differ in case only;
-there might be an linter check which informs model writers if they make use of this "feature".
+there might be a linter check which informs model writers if they make use of this "feature".
 
 While being case sensitive might be against the original intention of SQL,
 it actually _conforms_ to the SQL Specification after abstraction from the lexical syntax,
 see e.g. [SQL-92, §5.2.10 and 5.2.12…14](http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt)
 for the semantics of quoted and non-quoted identifiers.
-In CDL, we just do not transform non-quoted identifiers to all-upper names.
+In CDL, we just do *not* transform non-quoted identifiers to all-upper names.
 
 Also, CSN-processors are cumbersome to write if they have to deal with (partial/feigned) case-insensitivity.
 
@@ -346,7 +350,7 @@ which produce SQL DDL statements without quoted identifiers
 ---
 
 In CDL, an identifier may be used before its definitions,
-there is **no need of forward declarations**
+there is **no need of forward declarations**.
 Thus, the sequence of definitions inside a block does not matter for the scope rules:
 
 ```
@@ -444,12 +448,12 @@ When we have an argument position where we expect a main artifact,
 * the list of lexical search environments depends on the blocks containing the current statement, and
 * the last, non-lexical search environment is independent from the block structure or a current object of interest.
 
-A reference to a main artifact can be a references to a
+A reference to a main artifact can be a reference to a
 
 * **projection or view source** (table reference after `SELECT … FROM` in SQL),
 * **association target**,
 * **type** (but not the reference after `type of`, see below)
-* **annotation** for a annotation assignment,
+* **annotation** for an annotation assignment,
 * to-be-extended main artifact of an **outer extend**
 * **structure include**,
 * **type parameter** (should be a constant, not yet).
@@ -457,7 +461,7 @@ A reference to a main artifact can be a references to a
 ---
 
 The construction of the list of lexical search environments **starts at the innermost block** containing the current statement,
-and then continue to the next outer block:
+and then continues to the next outer block:
 
 * As opposed to HANA-CDS, we skip blocks containing just element definitions
   (or generally definitions of members like actions).
@@ -466,7 +470,7 @@ and then continue to the next outer block:
 * For the top-level block of the current source,
   we add the top-level definitions and the bindings for the `using` declarations.
 
-The last, non-lexical search environment is the environments for built-in artifacts.
+The last, non-lexical search environment is the environment for built-in artifacts.
 Currently, it contains `String` for `cds.String`, similarly `LargeString`,
 `Integer`, `Integer64`, `Binary`, `LargeBinary`, `Decimal`, `DecimalFloat`, `Double`,
 `Date`, `Time`, `Timestamp`, `DateTime`, and `Boolean`.
@@ -660,7 +664,7 @@ _TODO_: more use cases, like references inside filter conditions of paths.
 
 We can also use paths as annotation assignment values.
 
-If there is _no annotation definition_ (there might be a warning for this),
+If there is _no annotation definition_ (there might be a warning for this)
 then the path cannot be resolved at all.
 The same is true if the annotation type
 does not allow path values (then there might be a warning for this)
@@ -672,10 +676,10 @@ then the path resolution works as described in
 [Section "References to Main Artifacts"](#references-to-main-artifacts).
 
 If there is a annotation definition which allows to use paths
-by specifying the type _`cds.ElementRef`_,
+by specifying the type _`cds.ElementRef`_
 then the path resolution works as described in
 [Section "References sibling elements"](#references-to-sibling-elements).
-If that annotation is assigned to a main artifact,
+If that annotation is assigned to a main artifact
 then _same main artifact_ mean the main artifact itself.
 
 
@@ -685,13 +689,13 @@ then _same main artifact_ mean the main artifact itself.
 The most visible differences in the name resolution semantics of CDx/Language compared to HANA CDS are:
 
 * Using constant values requires to prefix the path (referring to the constant) with a `:`.
-* There is a new semantics for paths (without initial `:`) used in annotation assignments.
+* There is a new semantic for paths (without initial `:`) used in annotation assignments.
 * In the definitions of sub elements, accessing elements supplied by the corresponding main artifact
   requires to prefix the path with `$self.`.
   Accessing sibling elements works the same as in HANA CDS.
 * It is no problem to define elements which have the same (local) name as the referenced type.
 * In views with more than one source entity,
-  selecting an element `e` from one source without the use of a table alias (which is not recommented anyway!)
+  selecting an element `e` from one source without the use of a table alias (which is not recommended anyway!)
   suddenly does not compile anymore if another source entity is extended by a new element `e`.
 
 In HANA-CDS, the name resolution works quite uniformly for all argument positions,
@@ -765,7 +769,7 @@ For example, if `a` is a structured element, we try to find `b` in all sub eleme
 it does not matter
 whether the sub element `b` has been directly defined with the definition of element `a`, or
 whether is has been defined externally:
-via an extensions or as an element of the referenced type.
+via an extension or as an element of the referenced type.
 
 **Resolving the first name of a path when looking for artifacts**.
 

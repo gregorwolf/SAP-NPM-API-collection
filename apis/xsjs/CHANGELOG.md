@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="5.2.2"></a>
+## 5.2.2 - 2019-10-25
+
+### Fixed
+- Update _@sap/xsodata_ to v4.6.0
+- Update _@sap/hdbext_ to v6.1.0 (adds support for synonyms as table parameters in procedures)
+
+<a name="5.2.1"></a>
+## 5.2.1 - 2019-09-19
+
+### Fixed
+- Integrate _nodemailer_ v6.2.1
+- Update dependencies
+- Locale of database connections when no locale information is present in the incoming request (the driver's default is now used)
+- `var`s and `function`s from `xsjslib`s are now enumerable
+
 <a name="5.2.0"></a>
 ## 5.2.0 - 2019-06-06
 

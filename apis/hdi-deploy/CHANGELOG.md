@@ -1,11 +1,29 @@
+## 3.11.5
+Fixes:
+- when used as a library, do not exit until all messages have been sent to the parent process
+
+Features:
+- use hana-client 2.4.162
+
+## 3.11.4
+Fixes:
+- update handlebars
+
+## 3.11.3
+Features:
+- update dependencies
+
+Fixes:
+- correctly handle SQL grantors
+
 ## 3.11.2
 Features:
-- Update dependencies
+- update dependencies
 
 ## 3.11.1
 Features:
-- Node 10 support
-- Updated dependencies
+- node 10 support
+- updated dependencies
 
 ## 3.11.0
 Features:

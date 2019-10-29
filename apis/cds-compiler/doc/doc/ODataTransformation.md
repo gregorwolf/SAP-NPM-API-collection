@@ -1,5 +1,8 @@
 # ODATA Transformation
 
+> Status Oct 2019: outdated, uses old-style CSN, to be reworked completely -> move to internalDoc/.
+> For users, OData is a backend, they do not care too much that it works via a CSN transformation.
+
 Prior to the generation of EDMX (Entity Data Model XML) files from a CDS model,
 the following transformations are applied to the model. Most (but not all) of
 them become visible both in Augmented CSN and in Plain CSN:

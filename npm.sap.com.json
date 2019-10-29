@@ -1,10 +1,10 @@
 [
   {
     "name": "@sap/approuter",
-    "version": "6.4.0",
+    "version": "6.5.1",
     "description": "Node.js based application router",
     "keywords": [],
-    "date": "2019-09-16T12:08:51.378Z",
+    "date": "2019-10-10T09:46:19.100Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -39,10 +39,10 @@
   },
   {
     "name": "@sap/grunt-sapui5-bestpractice-build",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "description": "Grunt tasks around Devx grunt build",
     "keywords": [],
-    "date": "2019-06-05T09:14:15.670Z",
+    "date": "2019-10-03T10:40:53.084Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -71,7 +71,7 @@
   },
   {
     "name": "@sap/node-jwt",
-    "version": "1.6.4",
+    "version": "1.6.5",
     "description": "JWT validation library for Node.js",
     "keywords": [
       "jwt",
@@ -79,7 +79,7 @@
       "sap",
       "xs"
     ],
-    "date": "2019-09-02T05:52:50.617Z",
+    "date": "2019-09-27T11:25:55.743Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -91,10 +91,10 @@
   },
   {
     "name": "@sap/cds",
-    "version": "3.17.4",
+    "version": "3.18.3",
     "description": "Entry Point and API Facade for CDS",
     "keywords": [],
-    "date": "2019-09-19T16:15:20.179Z",
+    "date": "2019-10-28T15:22:51.539Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -106,10 +106,10 @@
   },
   {
     "name": "@sap/xsjs",
-    "version": "5.2.0",
+    "version": "5.2.2",
     "description": "Compatibility layer to run XS Classic applications on XS Advanced",
     "keywords": [],
-    "date": "2019-06-11T14:54:33.783Z",
+    "date": "2019-10-28T15:17:16.772Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -121,13 +121,13 @@
   },
   {
     "name": "@sap/xsodata",
-    "version": "4.5.4",
+    "version": "4.7.0",
     "description": "Expose data from a HANA database as OData V2 service with help of .xsodata files.",
     "keywords": [
       "odata",
       "xsjs"
     ],
-    "date": "2019-09-02T07:35:14.871Z",
+    "date": "2019-10-28T15:11:07.611Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -139,7 +139,7 @@
   },
   {
     "name": "@sap/hdbext",
-    "version": "6.0.1",
+    "version": "6.1.0",
     "description": "Hana-client extension library and utility functions for using SAP HANA in node.js",
     "keywords": [
       "HDB",
@@ -148,7 +148,25 @@
       "sql",
       "hdi"
     ],
-    "date": "2019-07-11T10:21:00.432Z",
+    "date": "2019-10-25T14:41:32.231Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/generator-cds",
+    "version": "2.9.0",
+    "description": "Project generator for cds projects",
+    "keywords": [
+      "cds",
+      "cdx"
+    ],
+    "date": "2019-10-21T07:28:19.978Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -185,6 +203,23 @@
     ]
   },
   {
+    "name": "@sap/cds-compiler",
+    "version": "1.19.2",
+    "description": "CDS (Core Data Services) compiler and backends",
+    "keywords": [
+      "CDS"
+    ],
+    "date": "2019-10-21T07:18:28.464Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
     "name": "@sap/di.code-validation.xml",
     "version": "1.1.16",
     "description": "",
@@ -200,76 +235,11 @@
     "maintainers": []
   },
   {
-    "name": "@sap/generator-cds",
-    "version": "2.8.2",
-    "description": "Project generator for cds projects",
-    "keywords": [
-      "cds",
-      "cdx"
-    ],
-    "date": "2019-09-19T14:41:47.653Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/cds-compiler",
-    "version": "1.18.2",
-    "description": "CDS (Core Data Services) compiler and backends",
-    "keywords": [
-      "CDS"
-    ],
-    "date": "2019-09-19T14:38:33.686Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/logging",
-    "version": "5.0.2",
-    "description": "Provides logging and tracing functionalities for Node.js applications",
-    "keywords": [],
-    "date": "2019-07-10T16:27:15.845Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/audit-logging",
-    "version": "3.0.2",
-    "description": "Provides audit logging functionalities for Node.js applications",
-    "keywords": [],
-    "date": "2019-07-16T11:28:04.678Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
     "name": "@sap/hana-client",
-    "version": "2.4.155",
+    "version": "2.4.167",
     "description": "HANA JavaScript Driver.",
     "keywords": [],
-    "date": "2019-09-13T05:52:38.386Z",
+    "date": "2019-10-23T15:32:38.962Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -288,34 +258,11 @@
     ]
   },
   {
-    "name": "@sap/site-content-deployer",
-    "version": "1.20.0",
-    "description": "SAP site deployer for independent mta",
-    "keywords": [],
-    "date": "2019-03-26T14:18:28.437Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": {
-      "username": "Portal Team",
-      "email": null
-    },
-    "maintainers": [
-      {
-        "username": "Portal Team",
-        "email": null
-      }
-    ]
-  },
-  {
     "name": "@sap/hdi-deploy",
-    "version": "3.11.2",
+    "version": "3.11.5",
     "description": "HDI content deployment",
     "keywords": [],
-    "date": "2019-08-09T08:37:10.378Z",
+    "date": "2019-10-18T15:15:03.264Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -326,30 +273,75 @@
     "maintainers": []
   },
   {
-    "name": "@sap/cds-hana",
-    "version": "1.17.1",
-    "description": "Driver package for access to hana database, including setting up the client, configuring all the necessary options to initiate the connection and handling database specifics so that they can be processed on our end.",
+    "name": "@sap/cloud-sdk-core",
+    "version": "1.11.3",
+    "description": "SAP Cloud SDK for JavaScript core",
     "keywords": [],
-    "date": "2019-09-19T14:28:24.632Z",
+    "date": "2019-10-24T14:49:50.857Z",
     "links": {
       "npm": null,
-      "homepage": null,
-      "repository": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
       "bugs": null
     },
     "publisher": null,
     "maintainers": []
   },
   {
-    "name": "@sap/cds-ql",
-    "version": "1.18.2",
-    "description": "This package deals with creating a  pool of connection clients, connecting to a driver (read: db) and using these connection clients from the pool to insert, delete, select and update values or rows from a specific table. Performing these insert, delete, select and update operations also includes executing embedded queries and plain statements.",
+    "name": "@sap/cloud-sdk-test-util",
+    "version": "1.11.3",
+    "description": "SAP Cloud SDK for JavaScript test utilities",
     "keywords": [],
-    "date": "2019-09-19T14:31:16.014Z",
+    "date": "2019-10-24T14:54:06.374Z",
     "links": {
       "npm": null,
-      "homepage": null,
-      "repository": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-accounting-document-service",
+    "version": "1.11.3",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud accounting document service",
+    "keywords": [],
+    "date": "2019-10-24T14:55:44.625Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-attachment-service",
+    "version": "1.11.3",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud attachment service",
+    "keywords": [],
+    "date": "2019-10-24T14:57:45.344Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-bank-detail-service",
+    "version": "1.11.3",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bank detail service",
+    "keywords": [],
+    "date": "2019-10-24T14:59:31.497Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
       "bugs": null
     },
     "publisher": null,

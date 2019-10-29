@@ -1,5 +1,14 @@
 # Command Line Migration
 
+> Status Oct 2019: this document is still basically valid.
+> The future version of this document (renamed to `CommandLine.md`) will basically explain the recommended CLI options,
+> the migration will only be a minor aspect and explained in a later section.
+
+<!-- The option handling might also change: -->
+<!-- the backend-specific structure is overly complex and not always appriopriate (e.g. naming mode). -->
+<!-- The placement of options should not depend on a not always apparent distinction between command-specific and general options. -->
+
+
 With revision 1.5.1, the `cdsc` command line interface has been adapted to use commands with
 options.
 

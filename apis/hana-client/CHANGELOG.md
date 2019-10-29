@@ -1,5 +1,20 @@
 # Hana Client 2.4.x Drivers
 
+## Version 2.4.167
+
+### Underlying SQLDBC changes:
+
+ - Bug: 233843 - [SQLDBC] SNI is not set correctly when sslValidateCertificate is false
+ - Bug: 228317 - [SQLDBC] Audit log APPLICATION_USER_NAME column is single character on slave node and it works fine on master node
+
+## Version 2.4.162
+
+### Underlying SQLDBC changes:
+
+ - Bug: 230135 - [SQLDBC] SQLDBC will now trace the initial connection reply packet
+ - Bug: 229397 - [SQLDBC] Fixed incorrect reporting of rows-affected for LOB datatype
+ - Bug: 228712 - [SQLDBC] DBSL could have given a Secure store error: Timeout waiting for the secure store access lock
+
 ## Version 2.4.155
 
 ### Underlying SQLDBC changes:

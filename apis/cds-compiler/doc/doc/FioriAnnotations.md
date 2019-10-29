@@ -1,5 +1,7 @@
 # Translation of Fiori annotations
 
+> Status Oct 2019: too vague, old links, to be moved to internalDoc if we want to keep it.
+
 Fiori annotations are translated in a generic way. Essentially, write down in CDS precisely what you want to get in edmx.
 
 A more detailed description will follow soon, for the time being we hope the following example will give the idea:

@@ -8,6 +8,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [4.7.0] - 2019-10-28
+
+### Fixed 
+
+Fixed error causing duplicate properties and property references in the metadata document. Prerequisites:
+* The error occurs if an calculation view has been used as source for an entityset
+* This calculation view contains an input parameter which is used in more than one measures
+* Example: Input parameter "Input_Currency" (a calcview variable) is used in the currency conversion for the measures "VALUE" and "TAX" 
+
+## [4.6.0] - 2019-10-11
+
+### Fixed
+
+Fixed error "Error while executing a DB query" when using an navigation property to navigate from a calculation view to an related entity.
+
 ## [4.5.4] - 2019-08-26
 
 ### Info

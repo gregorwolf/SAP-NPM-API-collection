@@ -151,3 +151,4 @@ Node.js uses V8 from Google, while HANA XS uses SpiderMonkey from Mozilla.
 
 ## Other
  * DXC (Direct Extractor Connection) and xsxmla are not supported.
+ * Constants inside `.xsjslib` (defined with `const`) are not visible outside the library.
