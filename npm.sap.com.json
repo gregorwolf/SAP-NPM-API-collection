@@ -90,11 +90,11 @@
     "maintainers": []
   },
   {
-    "name": "@sap/cds",
-    "version": "3.18.3",
-    "description": "Entry Point and API Facade for CDS",
+    "name": "@sap/xsjs",
+    "version": "5.2.3",
+    "description": "Compatibility layer to run XS Classic applications on XS Advanced",
     "keywords": [],
-    "date": "2019-10-28T15:22:51.539Z",
+    "date": "2019-11-04T08:58:32.367Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -105,11 +105,11 @@
     "maintainers": []
   },
   {
-    "name": "@sap/xsjs",
-    "version": "5.2.2",
-    "description": "Compatibility layer to run XS Classic applications on XS Advanced",
+    "name": "@sap/cds",
+    "version": "3.18.3",
+    "description": "Entry Point and API Facade for CDS",
     "keywords": [],
-    "date": "2019-10-28T15:17:16.772Z",
+    "date": "2019-10-28T15:22:51.539Z",
     "links": {
       "npm": null,
       "homepage": null,
