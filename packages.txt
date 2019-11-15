@@ -6,12 +6,12 @@
 @sap/cloud-sdk-vdm-accounting-document-service
 @sap/cloud-sdk-vdm-attachment-service
 @sap/cloud-sdk-vdm-bank-detail-service
-@sap/di.code-validation.xml
+@sap/cloud-sdk-vdm-batch-service
+@sap/cloud-sdk-vdm-bill-of-material-comparison-service
+@sap/cloud-sdk-vdm-bill-of-material-service
 @sap/generator-cds
 @sap/grunt-sapui5-bestpractice-build
-@sap/hana-client
 @sap/hdbext
-@sap/hdi-deploy
 @sap/node-jwt
 @sap/portal-cf-content-deployer
 @sap/site-entry

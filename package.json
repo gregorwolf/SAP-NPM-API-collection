@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Seeker0/SAP-NPM-API-collection#readme",
   "dependencies": {
-    "@sap/approuter": "6.5.1",
+    "@sap/approuter": "6.6.0",
     "@sap/site-entry": "1.30.0",
     "@sap/grunt-sapui5-bestpractice-build": "1.4.2",
     "@sap/xssec": "2.2.3",
@@ -34,13 +34,13 @@
     "@sap/generator-cds": "2.9.0",
     "@sap/portal-cf-content-deployer": "3.18.0-20190911111653",
     "@sap/cds-compiler": "1.19.2",
-    "@sap/di.code-validation.xml": "1.1.16",
-    "@sap/hana-client": "2.4.167",
-    "@sap/hdi-deploy": "3.11.5",
-    "@sap/cloud-sdk-core": "1.11.3",
-    "@sap/cloud-sdk-test-util": "1.11.3",
-    "@sap/cloud-sdk-vdm-accounting-document-service": "1.11.3",
-    "@sap/cloud-sdk-vdm-attachment-service": "1.11.3",
-    "@sap/cloud-sdk-vdm-bank-detail-service": "1.11.3"
+    "@sap/cloud-sdk-core": "1.12.0",
+    "@sap/cloud-sdk-test-util": "1.12.0",
+    "@sap/cloud-sdk-vdm-accounting-document-service": "1.12.0",
+    "@sap/cloud-sdk-vdm-attachment-service": "1.12.0",
+    "@sap/cloud-sdk-vdm-bank-detail-service": "1.12.0",
+    "@sap/cloud-sdk-vdm-batch-service": "1.12.0",
+    "@sap/cloud-sdk-vdm-bill-of-material-comparison-service": "1.12.0",
+    "@sap/cloud-sdk-vdm-bill-of-material-service": "1.12.0"
   }
 }

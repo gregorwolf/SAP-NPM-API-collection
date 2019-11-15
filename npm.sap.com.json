@@ -1,10 +1,10 @@
 [
   {
     "name": "@sap/approuter",
-    "version": "6.5.1",
+    "version": "6.6.0",
     "description": "Node.js based application router",
     "keywords": [],
-    "date": "2019-10-10T09:46:19.100Z",
+    "date": "2019-11-12T12:00:16.530Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -220,64 +220,11 @@
     "maintainers": []
   },
   {
-    "name": "@sap/di.code-validation.xml",
-    "version": "1.1.16",
-    "description": "",
-    "keywords": [],
-    "date": "2019-06-04T12:11:18.524Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/hana-client",
-    "version": "2.4.167",
-    "description": "HANA JavaScript Driver.",
-    "keywords": [],
-    "date": "2019-10-23T15:32:38.962Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": {
-      "username": "SAP",
-      "email": null
-    },
-    "maintainers": [
-      {
-        "username": "SAP",
-        "email": null
-      }
-    ]
-  },
-  {
-    "name": "@sap/hdi-deploy",
-    "version": "3.11.5",
-    "description": "HDI content deployment",
-    "keywords": [],
-    "date": "2019-10-18T15:15:03.264Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
     "name": "@sap/cloud-sdk-core",
-    "version": "1.11.3",
+    "version": "1.12.0",
     "description": "SAP Cloud SDK for JavaScript core",
     "keywords": [],
-    "date": "2019-10-24T14:49:50.857Z",
+    "date": "2019-11-08T10:14:11.678Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -289,10 +236,10 @@
   },
   {
     "name": "@sap/cloud-sdk-test-util",
-    "version": "1.11.3",
+    "version": "1.12.0",
     "description": "SAP Cloud SDK for JavaScript test utilities",
     "keywords": [],
-    "date": "2019-10-24T14:54:06.374Z",
+    "date": "2019-11-08T10:20:32.250Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -304,10 +251,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-accounting-document-service",
-    "version": "1.11.3",
+    "version": "1.12.0",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud accounting document service",
     "keywords": [],
-    "date": "2019-10-24T14:55:44.625Z",
+    "date": "2019-11-08T10:22:36.454Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -319,10 +266,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-attachment-service",
-    "version": "1.11.3",
+    "version": "1.12.0",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud attachment service",
     "keywords": [],
-    "date": "2019-10-24T14:57:45.344Z",
+    "date": "2019-11-08T10:24:39.113Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -334,10 +281,55 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-bank-detail-service",
-    "version": "1.11.3",
+    "version": "1.12.0",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bank detail service",
     "keywords": [],
-    "date": "2019-10-24T14:59:31.497Z",
+    "date": "2019-11-08T10:26:38.679Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-batch-service",
+    "version": "1.12.0",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud batch service",
+    "keywords": [],
+    "date": "2019-11-08T10:28:38.276Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-bill-of-material-comparison-service",
+    "version": "1.12.0",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material comparison service",
+    "keywords": [],
+    "date": "2019-11-08T10:30:38.314Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-bill-of-material-service",
+    "version": "1.12.0",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material service",
+    "keywords": [],
+    "date": "2019-11-08T10:32:36.646Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",

@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.6.0 - 2019-11-12
+
+### Announcement
+- The Preserve URL fragment (PRESERVE_FRAGMENT) is being deprecated and will be removed in the near future
+
+### Updated dependencies
+- deps: sap/xsenv@2.1.0 Application Router uses xsenv library to access bound services credentials. We have upgraded the library to xsenv version 2.1.0 which supports reading credentials in Kubernetes.
+- deps: https-proxy-agent@2.2.4
 ## 6.5.1 - 2019-10-10
 
 ### Fixed
