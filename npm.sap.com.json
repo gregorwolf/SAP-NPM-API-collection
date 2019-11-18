@@ -70,6 +70,21 @@
     "maintainers": []
   },
   {
+    "name": "@sap/cds",
+    "version": "3.18.4",
+    "description": "Entry Point and API Facade for CDS",
+    "keywords": [],
+    "date": "2019-11-18T07:19:04.692Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
     "name": "@sap/node-jwt",
     "version": "1.6.5",
     "description": "JWT validation library for Node.js",
@@ -95,21 +110,6 @@
     "description": "Compatibility layer to run XS Classic applications on XS Advanced",
     "keywords": [],
     "date": "2019-11-04T08:58:32.367Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/cds",
-    "version": "3.18.3",
-    "description": "Entry Point and API Facade for CDS",
-    "keywords": [],
-    "date": "2019-10-28T15:22:51.539Z",
     "links": {
       "npm": null,
       "homepage": null,

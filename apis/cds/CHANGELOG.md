@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.18.4 - 2019-11-15
+
+### Fixed
+- `.cfignore` files now get created by `cds build/all` to improve the overall deployment turnaround
+  of `cf push`.  Also, this avoids failures of CF node.js buildpack trying to rebuild sqlite binaries.
+- Generated `manifest.yaml` files for Cloud Foundry now contain a `path` attribute that allows
+  pushing from an outside folder.  Also, they specify reduced memory requirements.
+- Generated `manifest.yaml` for HDI deployer does not create a route, and specifies a valid `health-check-type`.
+- `cds deploy --to hana` now also includes models in the `srv` folder.
+- `cds deploy` no longer writes model folders to `package.json` that do not exist.
+
 ## Version 3.18.3 - 2019-10-28
 ### Fixed
 - Fixed a crash in `cds run --watch` with changing directories.
