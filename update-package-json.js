@@ -5,6 +5,7 @@ var package = 'package.json'
 
 fs.readFile(packages, function (err, packagesData) {
   var packagesJson = JSON.parse(packagesData)
+  packagesJson["@sap/cds-odata-v2-adapter-proxy"] = "latest"
   fs.readFile(package, function (err, packageData) {
     var packageJson = JSON.parse(packageData)
     packageJson.dependencies = packagesJson
