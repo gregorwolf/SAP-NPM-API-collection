@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.1.1"></a>
+## 6.1.1 - 2019-11-19
+
+### Fixed
+- Update *@sap/hana-client* to v2.4.167
+
 <a name="6.1.0"></a>
 ## 6.1.0 - 2019-10-25
 

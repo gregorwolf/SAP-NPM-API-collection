@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="5.3.0"></a>
+## 5.3.0 - 2019-11-20
+
+### Added
+- Audit logging could be disabled now (providing audit log configuration is optional).
+
+### Fixed
+- Update _@sap/hana-client_ to v2.4.167
+
 <a name="5.2.3"></a>
 ## 5.2.3 - 2019-10-31
 

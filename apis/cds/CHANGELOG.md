@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.20.0 - 2019-11-19
+
+### Added
+- Mention xsuaa in help of `cds compile`
+
+### Fixed
+- Typings for `UPDATE` function no longer contain duplicates.
+
+### Also see
+- Changes of `@sap/cds-compiler` 1.20.3
+- Changes of `@sap/cds-ql` 1.21.0
+- Changes of `@sap/cds-services` 1.21.0
+- Changes of `@sap/cds-messaging` 1.4.0
+- Changes of `@sap/generator-cds` 2.10.2
+
 ## Version 3.18.4 - 2019-11-15
 
 ### Fixed
@@ -16,6 +31,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Generated `manifest.yaml` for HDI deployer does not create a route, and specifies a valid `health-check-type`.
 - `cds deploy --to hana` now also includes models in the `srv` folder.
 - `cds deploy` no longer writes model folders to `package.json` that do not exist.
+
+
+## Version 3.19.0 - 2019-10-31
+
+### Added
+- Deployments for sqlite and SAP HANA now find CSV files in the form `_texts_LOCALE.csv`,
+  like `Books_texts_fr.csv`.  This file layout allows splitting translated texts into one file
+  per language.
+- Deployment for sqlite now also imports initial data from JSON files
+- `cds version` has learned about `@sap/cds-dk`
+
+### Fixed
+- `cds watch --help` works again, if used from `@sap/cds-dk`
+
 
 ## Version 3.18.3 - 2019-10-28
 ### Fixed

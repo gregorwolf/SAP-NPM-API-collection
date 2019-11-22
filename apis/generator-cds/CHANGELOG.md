@@ -6,6 +6,31 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.10.2]
+
+### Feature
+- Use Maven Java `Archetype` version `1.35.4`.
+
+### Fixed
+- Improved launch config for VS Code to enable debugging.
+
+## [2.10.1]
+
+### Feature
+- Use Maven Java `Archetype` version `1.35.2`.
+
+### Fixed
+- Create launch config file with reference to cds.js instead of npx.
+
+## [2.10.0]
+
+### Feature
+- Add csv sample data for books, authors and orders
+- Use Maven Java `Archetype` version `1.35.0`.
+
+### Fixed
+- Add missing entries to generated `.gitignore` file.
+
 ## [2.9.0]
 
 ### Feature

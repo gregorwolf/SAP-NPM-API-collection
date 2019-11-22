@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [3.24.0]
+### Changed
+- Change ID for federation, after redeployment need to add again the apps in CFLP 
+
 ## [3.15.0]
 #### Added
 - Added BlueBoxMetaData in deploy process

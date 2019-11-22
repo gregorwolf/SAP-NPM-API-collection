@@ -2,7 +2,7 @@
 
 This package contains the OData VDM for the [Batch Service](https://api.sap.com/api/API_BATCH_SRV) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: Batch Management OData Integration (SAP_COM_0337).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com/viewer/af0594cca4ad44cb86e3a845c375d74b/latest/en-US/48b3c2ac60154137bb1d6411c7047e16.html).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/1911.500/EN/48/b3c2ac60154137bb1d6411c7047e16/frameset.htm).
 
 ### Helpful Links
 

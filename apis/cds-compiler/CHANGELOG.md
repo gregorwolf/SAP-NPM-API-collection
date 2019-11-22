@@ -3,6 +3,95 @@
 Note: `betaMode` fixes, changes and features are usually not listed in this ChangeLog.
 The compiler behaviour concerning `betaMode` features can change at any time without notice.
 
+## Version 1.20.3
+
+Changes
+
+* Core Compiler: Forbid navigating associations (to non foreign key elements) in the ON condition
+  of an association definition.
+* OData: Do not generate `OnDelete` for Containment Navigation Propertie, as this is redundant.
+
+Fixes
+
+* In `toSql` for  `Sqlite` generate `current_timestamp` for `$at`
+
+## Version 1.20.1
+
+Changes
+
+* Associations to 'abstract' artifacts and the usage of abstract entities in queries are now rejected.
+
+Fixes
+
+* OData:
+  + Raise level from 'info' to 'warning' for excluded NavigationProperties due to targets outside the service.
+  + Fix a bug in mapping of `@Capabilities` (see Version 1.20.0)
+  + Flattening of structured elements - @cds.persistence.name was semi-flattened
+
+* CSN Input:
+  + Support views with parameters in queries
+  + Support views with parameters in on-conditions of unmanaged associations
+  + Support 'not null' for enum elements
+
+## Version 1.20.0
+
+Changes
+
+* Issue error (instead of a warning) if a projected association uses a non-projected element
+  in its `on` condition (message id `rewrite-not-projected`).
+
+* Issue error (instead of a warning) if the redirected target does not originate from the original
+  target of an association (message id `redirected-to-unrelated`).
+
+* In `--beta-mode` remove the annotation `@odata.draft.enabled: false` from generated
+  `_texts` entities. Annotate the technical foreign keys of a `_texts` entity with
+  `@cds.odata.v4.ignore: true` to allow containment in OData V4 for `_texts`.
+
+* In `toHana` and `toSql` associations to entities annotated with `@cds.persistence.exists` are
+  removed from the generated model. This is an extension to the change introduced with version 1.15.0.
+  If a proxy artifact shall be an association target, another 1:1 projection entity shall be created
+  wich then can act as the association target.
+
+* OData:
+  + Reject non specification compliant CSN as input to csn2edmx
+  + Add annotation `@cds.odata.{v2|v4}.ignore` in `--beta-mode`
+  + Rewrite `@Capabilities` annotation to `@Capabilities.NavigationRestrictions` at the containment
+    association in case an entity set has been omitted due to containment in Odata V4.
+  + Update vocabularies `Common` and `UI`
+  + Improve error message when not generating a navigation property for association targets outside
+    the same service.
+
+* Draft:
+  + Raise an info message if a draft root has not exactly one primary key element of type `cds.UUID`
+  + Raise an info message if a draft node (subordinate to a draft root) has not exactly one primary key element
+    of type `cds.UUID` and optionally one more additional primary key.
+  + Raise an error message if the same draft node is reachable from two separate draft roots.
+  + Raise an info message if a service contains more than one draft root entities.
+  + Annotate technical elements `IsActiveEntity`, `HasActiveEntity`, `HasDraftEntity`,
+    `DraftAdministrativeData` and `DraftAdministrativeData_DraftUUID` with `@UI.Hidden`
+
+* CSN Input:
+  + New simplified parsing of CSN, can be enabled via compiler option stdJsonParser or
+    command line option --std-json-parser
+  + Support for $location
+
+Fixes
+* Compiler:
+  + Correctly reject the Promise if errors occur during parsing
+
+* OData:
+  + Correctly render annotations with `null` values in arrays.
+  + Correctly render annotations with records of complex types.
+  + Correctly annotate artifacts with parameters. Annotations are assigned to the resulting
+    EntityType `<name>Type`
+  + Correctly flatten substructures when used as types
+
+* CSN Validation:
+  + Correctly process views with parameters in unmanaged associations
+
+* Make `parseToCqn()` use filter in `FROM` clause as hint for (recommended) colon, i.e.
+  never discard the filter.
+
 ## Version 1.19.2
 
 Changes
@@ -11,7 +100,8 @@ Changes
   about a missing `ON` condition anymore.
   
 * HANA:
-  + When using `names: quoted`, raise a warning when artifacts with `@cds.persistence.exists` belong to a CDS namespace, context or service.
+  + When using `names: quoted`, raise a warning when artifacts with `@cds.persistence.exists`
+    belong to a CDS namespace, context or service.
   
 * OData:
   + Raise an `info` message on the usage of deprectated OData vocabulary terms.

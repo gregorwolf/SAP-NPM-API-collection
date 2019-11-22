@@ -2,7 +2,7 @@
 
 This package contains the OData VDM for the [Bill Of Material Comparison Service](https://api.sap.com/api/API_BILLOFMATERIAL_COMPARISON_SRV) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: Product Lifecycle Management - Master Data Integration (SAP_COM_0105).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com/viewer/224b4764832c492c99970fbadbf81d3b/latest/en-US/489007ed0e07467bb9efbf1f5616b36e.html).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/1911.500/EN/48/9007ed0e07467bb9efbf1f5616b36e/frameset.htm).
 
 ### Helpful Links
 

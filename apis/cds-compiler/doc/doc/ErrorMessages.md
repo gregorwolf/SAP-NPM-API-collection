@@ -140,3 +140,36 @@ extend context C {
 
 In summary, allowing artifact extensions inside `extend context`/`extend service`
 would provide little benefit, but would add complexity and confusion.
+
+
+### Redirection issues
+
+The target `OrigTarget` of an existing association can only be redirected to another target `NewTarget`
+if the `NewTarget` is a direct or indirect projection of `OrigTarget`
+(complex views are questionable and lead to a Warning),
+or an entity definition which directly or indirectly includes `OrigTarget`.
+
+```
+entity Base {
+    key i: Integer;
+}
+entity Proj as projection on Base;
+entity NewTarget as projection on Intermediate;
+entity Intermediate as projection on Base;
+
+entity Assocs {
+    base: association to Base;
+    proj: association to Proj;
+}
+entity Redirect as projection on Assocs {
+    base: redirected to NewTarget, // works
+    proj: redirected to NewTarget  // ERROR: does not originate from Proj
+}
+```
+
+For the above CDS code, you get the following error message:
+
+```
+redirect-to-unrelated.cds:16:25-34: Error: The redirected target does not originate from "Proj"
+    (in entity:"Redirect"/element:"proj")
+```

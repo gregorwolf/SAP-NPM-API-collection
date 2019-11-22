@@ -82,7 +82,7 @@ Here is a list with options you can provide:
 | [destinationProvider](#destinationProvider) |  | Custom function, synchronous or asynchronous, to be used when $.net.http.readDestination is called in XSJS code. For more information on destinations support, check the detailed description for this configuration option. |
 | ca | certificates listed in `XS_CACERT_PATH` env var | Trusted SSL certificates for any outgoing HTTPS connections. Should be an array of loaded certificates. |
 | compression | true | By default text resources over 1K are compressed. |
-| [auditLog](#auditlog) |  | **Required** Object containing Audit log service credentials. In non-productive setup (e.g. local development) can be set to `{ logToConsole: true }`.|
+| [auditLog](#auditlog) |  | Object containing Audit log service credentials. If not provied audit logging will be disabled. If set to `{ logToConsole: true }` audit log messages will be written on the console (only suitable for non-productive setup, e.g. local development).|
 | [context](#context) | {} | Extend the default context in xsjs scripts. |
 | [libraryCache](#librarycache) | {} | Contains the xsjslibs that should be cached. |
 | redirectUrl | | If specified, a redirect to this url is triggered when the root path is requested. **Note**: When xsjs is behind a reverse proxy (Application Router for instance), the value of this property should be aligned with the path rewriting rules that may apply. |
@@ -237,9 +237,6 @@ auditLog
 
 **Note**: `$.session.getUsername()` returns `undefined` in case `anonymous` mode is used. It is up to applications whether to use another string as user or not audit log at all.
 
-In non-productive setup (e.g. during local development) `{ logToConsole: true }` can be used instead of Audit log service credentials.
-
-**Note**: `{ logToConsole: true }` should not be used in a productive environment.
 
 #### context
 
