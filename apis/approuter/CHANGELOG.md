@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.7.0 - 2019-11-24
+
+### Added
+- Enhance the use of the xsenv@2.1.0 library to access bound destination service credentials, which support reading destination service credentials in Kubernetes.
+
+### Fixed
+- Anonymous login on destination flow
+
 ## 6.6.0 - 2019-11-12
 
 ### Announcement

@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.20.1 - 2019-11-26
+### Fixed
+- Fix 'duplicate versions' errors by loading `@sap/cds` again from the current project if possible.
+
 ## Version 3.20.0 - 2019-11-19
 
 ### Added

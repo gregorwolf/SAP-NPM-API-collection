@@ -1,10 +1,10 @@
 [
   {
     "name": "@sap/approuter",
-    "version": "6.6.0",
+    "version": "6.7.0",
     "description": "Node.js based application router",
     "keywords": [],
-    "date": "2019-11-12T12:00:16.530Z",
+    "date": "2019-11-25T15:20:13.204Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -38,11 +38,11 @@
     ]
   },
   {
-    "name": "@sap/grunt-sapui5-bestpractice-build",
-    "version": "1.4.2",
-    "description": "Grunt tasks around Devx grunt build",
+    "name": "@sap/cds",
+    "version": "3.20.1",
+    "description": "Entry Point and API Facade for CDS",
     "keywords": [],
-    "date": "2019-10-03T10:40:53.084Z",
+    "date": "2019-11-25T18:25:59.990Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -53,11 +53,11 @@
     "maintainers": []
   },
   {
-    "name": "@sap/cds",
-    "version": "3.20.0",
-    "description": "Entry Point and API Facade for CDS",
+    "name": "@sap/grunt-sapui5-bestpractice-build",
+    "version": "1.4.2",
+    "description": "Grunt tasks around Devx grunt build",
     "keywords": [],
-    "date": "2019-11-22T08:28:41.912Z",
+    "date": "2019-10-03T10:40:53.084Z",
     "links": {
       "npm": null,
       "homepage": null,
