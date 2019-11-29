@@ -42,6 +42,8 @@
     "@sap/cloud-sdk-vdm-batch-service": "1.13.1",
     "@sap/cloud-sdk-vdm-bill-of-material-comparison-service": "1.13.1",
     "@sap/cloud-sdk-vdm-bill-of-material-service": "1.13.1",
-    "@sap/cds-odata-v2-adapter-proxy": "latest"
+    "@sap/cds-odata-v2-adapter-proxy": "latest",
+    "@sap/xsenv": "latest",
+    "@sap/hana-client": "latest"
   }
 }
