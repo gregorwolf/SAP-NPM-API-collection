@@ -5,6 +5,7 @@ rpl -q '"' '' packages.txt
 echo "@sap/cds-odata-v2-adapter-proxy" >> packages.txt
 echo "@sap/xsenv" >> packages.txt
 echo "@sap/hana-client" >> packages.txt
+echo "@sap/faas" >> packages.txt
 node update-package-json.js
 jq '.' new-package.json > package.json
 rm new-package.json
