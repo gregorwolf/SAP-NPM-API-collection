@@ -1,6 +1,5 @@
 @sap/approuter
 @sap/cds
-@sap/cds-compiler
 @sap/cloud-sdk-core
 @sap/cloud-sdk-test-util
 @sap/cloud-sdk-vdm-accounting-document-service
@@ -9,11 +8,12 @@
 @sap/cloud-sdk-vdm-batch-service
 @sap/cloud-sdk-vdm-bill-of-material-comparison-service
 @sap/cloud-sdk-vdm-bill-of-material-service
-@sap/generator-cds
+@sap/cloud-sdk-vdm-bill-of-material-v2-service
+@sap/cloud-sdk-vdm-bill-of-material-where-used-service
+@sap/cloud-sdk-vdm-billing-document-request-service
 @sap/grunt-sapui5-bestpractice-build
 @sap/hdbext
 @sap/node-jwt
-@sap/portal-cf-content-deployer
 @sap/site-entry
 @sap/xsjs
 @sap/xsodata
@@ -21,3 +21,4 @@
 @sap/cds-odata-v2-adapter-proxy
 @sap/xsenv
 @sap/hana-client
+@sap/faas

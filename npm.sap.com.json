@@ -159,72 +159,11 @@
     "maintainers": []
   },
   {
-    "name": "@sap/generator-cds",
-    "version": "2.10.2",
-    "description": "Project generator for cds projects",
-    "keywords": [
-      "cds",
-      "cdx"
-    ],
-    "date": "2019-11-21T15:06:02.463Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/portal-cf-content-deployer",
-    "version": "3.24.0-20191119141917",
-    "description": "SAP portal site content deployer",
-    "keywords": [
-      "portal",
-      "content-deployer"
-    ],
-    "date": "2019-11-20T15:03:55.542Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": {
-      "username": "Portal Team",
-      "email": null
-    },
-    "maintainers": [
-      {
-        "username": "Portal Team",
-        "email": null
-      }
-    ]
-  },
-  {
-    "name": "@sap/cds-compiler",
-    "version": "1.20.3",
-    "description": "CDS (Core Data Services) compiler and backends",
-    "keywords": [
-      "CDS"
-    ],
-    "date": "2019-11-21T15:02:20.742Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
     "name": "@sap/cloud-sdk-core",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "description": "SAP Cloud SDK for JavaScript core",
     "keywords": [],
-    "date": "2019-11-21T07:41:29.323Z",
+    "date": "2019-12-04T15:24:58.562Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -236,10 +175,10 @@
   },
   {
     "name": "@sap/cloud-sdk-test-util",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "description": "SAP Cloud SDK for JavaScript test utilities",
     "keywords": [],
-    "date": "2019-11-21T07:46:46.708Z",
+    "date": "2019-12-04T15:30:08.935Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -251,10 +190,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-accounting-document-service",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud accounting document service",
     "keywords": [],
-    "date": "2019-11-21T07:48:50.683Z",
+    "date": "2019-12-04T15:32:15.536Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -266,10 +205,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-attachment-service",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud attachment service",
     "keywords": [],
-    "date": "2019-11-21T07:50:59.724Z",
+    "date": "2019-12-04T15:34:22.463Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -281,10 +220,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-bank-detail-service",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bank detail service",
     "keywords": [],
-    "date": "2019-11-21T07:53:08.909Z",
+    "date": "2019-12-04T15:36:27.975Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -296,10 +235,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-batch-service",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud batch service",
     "keywords": [],
-    "date": "2019-11-21T07:55:21.607Z",
+    "date": "2019-12-04T15:38:35.546Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -311,10 +250,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-bill-of-material-comparison-service",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material comparison service",
     "keywords": [],
-    "date": "2019-11-21T07:57:28.645Z",
+    "date": "2019-12-04T15:40:40.678Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -326,10 +265,55 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-bill-of-material-service",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material service",
     "keywords": [],
-    "date": "2019-11-21T07:59:37.542Z",
+    "date": "2019-12-04T15:42:49.540Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-bill-of-material-v2-service",
+    "version": "1.14.0",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material v2 service",
+    "keywords": [],
+    "date": "2019-12-04T15:44:58.579Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-bill-of-material-where-used-service",
+    "version": "1.14.0",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material where used service",
+    "keywords": [],
+    "date": "2019-12-04T15:47:02.540Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-billing-document-request-service",
+    "version": "1.14.0",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud billing document request service",
+    "keywords": [],
+    "date": "2019-12-04T15:49:07.904Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
