@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.2.4 - 2019-08-14
+
+ - Support for API methods getUserName and getUniquePrincipalName
+ 
 ## 2.2.3 - 2019-08-07
 
 - Add retry for recieving keys

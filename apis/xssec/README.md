@@ -214,6 +214,14 @@ not available for tokens of grant_type `client_credentials`, returns the family 
 
 not available for tokens of grant_type `client_credentials`, returns the email
 
+### getUserName
+
+returns unique principal name of a user `user/<origin>/<logon name>` or client id that the access token has been issued for `client/<client id>`
+
+### getUniquePrincipalName
+
+not available for tokens of grant_type `client_credentials`, returns unique principal name of a user. `user/<origin>/<logon name>`
+
 ### getOrigin
 
 * returns the user origin. The origin is an alias that refers to a user store in which the user is persisted. For example, users that are authenticated by the UAA itself with a username/password combination have their origin set to the value uaa.
