@@ -29,7 +29,7 @@
     "@sap/xssec": "2.2.4",
     "@sap/xsjs": "5.3.0",
     "@sap/node-jwt": "1.6.5",
-    "@sap/xsodata": "4.7.0",
+    "@sap/xsodata": "5.0.0",
     "@sap/hdbext": "6.1.1",
     "@sap/cloud-sdk-core": "1.14.0",
     "@sap/cloud-sdk-test-util": "1.14.0",

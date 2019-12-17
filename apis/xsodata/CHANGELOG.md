@@ -8,6 +8,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [5.0.0] - 2019-12-17
+
+### Info
+
+* Removed lock when opening a db connection
+  The new native hana-client driver used by xsjs is thread save, so the lock for retrieving a new db connection is not required anymore.
+  **IMPORTANT** If a custom open function is used, then this function must be reentrant or implement an own lock inside.
+  
+### Fixed
+
+* When using $count to determine the number of records of an entity set in junction with the limit feature, the 
+returned number was also capped by the limit, this was wrong. Now the correct full number of records is returned.  
+* Fixed typeError if a stored procedure used as custom exit does not return a proper error structure.
+ 
 ## [4.7.0] - 2019-10-28
 
 ### Fixed 

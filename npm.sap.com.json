@@ -121,13 +121,13 @@
   },
   {
     "name": "@sap/xsodata",
-    "version": "4.7.0",
+    "version": "5.0.0",
     "description": "Expose data from a HANA database as OData V2 service with help of .xsodata files.",
     "keywords": [
       "odata",
       "xsjs"
     ],
-    "date": "2019-10-28T15:11:07.611Z",
+    "date": "2019-12-17T13:52:00.404Z",
     "links": {
       "npm": null,
       "homepage": null,
