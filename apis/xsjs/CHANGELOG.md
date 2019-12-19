@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="5.3.1"></a>
+## 5.3.1 - 2019-12-17
+
+### Fixed
+- Update _@sap/xsenv_ to v2.2.0
+- Update _@sap/xsodata_ to v5.0.0
+
 <a name="5.3.0"></a>
 ## 5.3.0 - 2019-11-20
 

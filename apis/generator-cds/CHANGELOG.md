@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.11.1]
+
+### Feature
+- Use Maven Java `Archetype` version `1.36.1`.
+
+## [2.11.0]
+
+### Feature
+- Use Maven Java `Archetype` version `1.36.0`.
+
 ## [2.10.2]
 
 ### Feature

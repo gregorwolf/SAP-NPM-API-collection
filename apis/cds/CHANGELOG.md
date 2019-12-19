@@ -6,6 +6,31 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.21.0 - 2019-12-11
+
+### Added
+- New fluent variants of `cds.compile` like  `cds.compile(csn).for.odata()` and `.to.sql()`.
+- `cds add`, `import`, and `watch` now print installation hints if `@sap/cds-dk` is not installed
+- Experimental option `hana.syntax=hdi` to create `hdbtable` files instead of `hdbcds`.  May still change!
+
+### Changed
+- In development mode, the `mock` authorization strategy is automatically activated with two fake users `alice` and `bob`,
+  which allows for out-of-the-box testing of `@requires` annotations.
+  This means that, unlike before, the `JWT` authorization strategy needs to be activated explicitly (through `{auth: { passport: { strategy: 'mock' }}}`.  In production, no change is required.
+- You might see a `MODULE_NOT_FOUND` error for `@sap/xsenv` in case you use the `JWT` strategy but have not bound any xsuaa service.  In this case either bind such a service instance, add the `@sap/xsenv` dependency, or use a different strategy like `mock`.  The trigger of this error is `@sap/xssec` 2.2.4 no longer requiring `@sap/xsenv`.
+- Deprecated `cds init` in here in favor of the one in `@sap/cds-dk`.
+- `cds init` prints a hint that it wants to be used from `@sap/cds-dk`.
+- `cds init` prints a hint if it's called with old-style parameters.  Check out `cds help init` for more.
+- Removed the experimental `--args` parameter of `cds compile`.  This turned out to be cumbersome to use in shells.
+  Replacement is the standard configuration mechanism, e.g. use an environment variable `CDS_FOO_BAR` to activate
+  option `cds.foo.bar`.
+
+### Fixed
+- `SELECT.one/distinct(Fool,[...])` failed when passing an array for columns as argument two
+
+
+### Removed
+
 ## Version 3.20.1 - 2019-11-26
 ### Fixed
 - Fix 'duplicate versions' errors by loading `@sap/cds` again from the current project if possible.

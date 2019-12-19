@@ -3,6 +3,63 @@
 Note: `betaMode` fixes, changes and features are usually not listed in this ChangeLog.
 The compiler behaviour concerning `betaMode` features can change at any time without notice.
 
+## Version 1.21.1
+
+Features
+
+* OData: Support annotation `@insertonly` at an entity which translates to
+  `@Capabilities.DeleteRestrictions.Deletable: false`, `@Capabilities.ReadRestrictions.Readable:false`,
+  `@Capabilities.UpdateRestrictions.Updatable: false`.
+  A warning is raised if `@insertonly` and `@readonly` are applied at the same entity and no mapping is
+  done.
+  
+
+## Version 1.21.0
+
+Features
+
+* Support `cds.Decimal` without type facets `precision` and `scale` as substitute for the deprecated `cds.DecimalFloat`. Mapping is as follows:
+
+  | HANA CDS     | HANA SQL | SQLite  | Odata V4 | Odata V2 |
+  |--------------|----------|---------|----------|----------|  
+  | DecimalFloat | DECIMAL  | DECIMAL | Decimal  | Decimal  |
+
+* OData:
+  + Expand shorthand annotation `@mandatory` to `Common.FieldControl: #Mandatory`.
+  + Support edm:Singleton by annotating an entity with either  
+    `@odata.singleton: Boolean` or `@odata.singleton.nullable: Boolean`.
+
+    `@odata.singleton.nullable` is a shorthand for `@odata.singleton: true` and sets
+    the value for attribute `Nullable` (default is false).
+
+    If `odata.singleton` is `false`, no singleton is generated regardless of the existence of `@odata.singleton.nullable`.
+  + Option `odataContainment: true` renders compositions as `edm:NavigationProperty` with
+    containment. This option is only available for OData V4 and with `--beta-mode`.
+
+Changes
+
+* CSN frontend: use faster implementation by default.
+* CDL frontend: issue warning for suspicious-looking delimited identifiers;
+  some people think that they have written strings when they use double-quotes.
+* Models delivered with `@sap/cds` are now resolved from `cds.home`; e.g. `using ... from '@sap/cds/common'`.
+  This allows working without locally installed `@sap/cds`, for example in Java projects.
+  In that case, respective models will be fetched from a globally installed `@sap/cds-dk`.
+* OData:
+  + Improve `array of` checks and reject anonymous types and types that are not  
+    service members.
+  + Set draft properties  `HasActiveEntity` and `HasDraftEntity` to `Nullable: false`.
+* Reject old-style CSN from all CSN based transformers and renderers
+* `toHana` and `toSql`: Allow aliasing for foreign keys
+
+Fixes
+
+* OData:
+  + Fix `Nullable` attribute for parameters in EDM JSON V4.
+  + Do not annotate `edm:NavigationProperty` for term definitions with `AppliesTo: Property` and vice versa.
+* Fix bug in ON Condition rendering during transformation of associations to joins for stream based `$self` expressions.
+* `toHana`: Only render and allow keys in the leading query
+* `toHana` and `toSql`: When following an association, explicitly set the implicit alias to work around a HANA limitation
+
 ## Version 1.20.3
 
 Changes
@@ -98,11 +155,11 @@ Changes
 
 * Improve the semantic checks for `Association to many` with a partial key, not complaining
   about a missing `ON` condition anymore.
-  
+
 * HANA:
   + When using `names: quoted`, raise a warning when artifacts with `@cds.persistence.exists`
     belong to a CDS namespace, context or service.
-  
+
 * OData:
   + Raise an `info` message on the usage of deprectated OData vocabulary terms.
   + Raise a `warning` message when applying `@odata.Type` with another type as `Edm.String`, `Edm.Int16`,
@@ -268,7 +325,7 @@ Features
   `SMALLDECIMAL`, `REAL`, `CHAR`, `NCHAR`, `VARCHAR`, `CLOB`, `BINARY`,
   `ST_POINT`, `ST_GEOMETRY`.  In the CSN, they appear as `cds.hana.SMALLINT`,
   ….  In CDL, they can be referred to by `hana.SMALLINT`, ….
-  
+
   Mapping of the types is as follows:
 
   |CDS|HANA|SQLite|OData V4|OData V2|
@@ -330,7 +387,7 @@ Changes
   + Remove warning that containment association must be `NOT NULL` .
   + Support annotation `@cds.etag` as (backward compabible) replacement for `@odata.etag`.
   + Update broken UI vocabulary.
-  
+
 Fixes
 
 * Make property propagation from query sources using associations work.
@@ -418,7 +475,7 @@ Changes
   + Raise a warning if the forward association is not included in the service (due to autoexclusion).
   + Reclassify error on containment association to be `NOT NULL` down to a warning.
   + `@cds.api.ignore` suppresses annotations.
-  
+
 
 Fixes
 
@@ -547,7 +604,7 @@ Changes
 * Virtual elements cannot be used in expressions.
 * Command `toRename` creates a stored procedure instead of individual statements.
 * Don't autoexpose composition target which is annotated with `@cds.autoexpose: false`.
-  
+
 Fixes
 * OData:
   + Rename OData annotation vocabulary `Auth` to `Authorization`.
@@ -1020,7 +1077,7 @@ Fixes
 ## Version 1.0.31
 
 Features
-* Support multiple imported names in `using` declaration:  
+* Support multiple imported names in `using` declaration:
   `using { foo.bar, this as that } from './othermodule';`
 * Add new command line option `--to-rename`, generates SQL DDL statements
   renaming existing HANA tables for migration (work in progress, subject to
