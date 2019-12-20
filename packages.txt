@@ -1,6 +1,5 @@
 @sap/approuter
 @sap/cds
-@sap/cds-compiler
 @sap/cloud-sdk-core
 @sap/cloud-sdk-test-util
 @sap/cloud-sdk-vdm-accounting-document-service
@@ -10,9 +9,10 @@
 @sap/cloud-sdk-vdm-bill-of-material-comparison-service
 @sap/cloud-sdk-vdm-bill-of-material-service
 @sap/cloud-sdk-vdm-bill-of-material-v2-service
-@sap/generator-cds
+@sap/cloud-sdk-vdm-bill-of-material-where-used-service
+@sap/cloud-sdk-vdm-billing-document-request-service
+@sap/cloud-sdk-vdm-billing-document-service
 @sap/grunt-sapui5-bestpractice-build
-@sap/hdbext
 @sap/node-jwt
 @sap/site-entry
 @sap/xsjs
