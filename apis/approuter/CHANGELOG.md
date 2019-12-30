@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.7.1 - 2019-12-24
+
+### Added
+- Backend cookies secret variable (BACKEND_COOKIES_SECRET) Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
+
+
 ## 6.7.0 - 2019-11-24
 
 ### Added
