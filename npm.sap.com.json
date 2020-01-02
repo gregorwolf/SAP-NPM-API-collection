@@ -138,6 +138,32 @@
     "maintainers": []
   },
   {
+    "name": "@sap/portal-cf-content-deployer",
+    "version": "3.27.0-20200101090045",
+    "description": "SAP portal site content deployer",
+    "keywords": [
+      "portal",
+      "content-deployer"
+    ],
+    "date": "2020-01-02T11:37:27.140Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": {
+      "username": "Portal Team",
+      "email": null
+    },
+    "maintainers": [
+      {
+        "username": "Portal Team",
+        "email": null
+      }
+    ]
+  },
+  {
     "name": "@sap/cloud-sdk-core",
     "version": "1.15.0",
     "description": "SAP Cloud SDK for JavaScript core",
@@ -293,21 +319,6 @@
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud billing document request service",
     "keywords": [],
     "date": "2019-12-19T14:27:09.019Z",
-    "links": {
-      "npm": null,
-      "homepage": "https://www.sap.com/cloud-sdk",
-      "repository": "",
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/cloud-sdk-vdm-billing-document-service",
-    "version": "1.15.0",
-    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud billing document service",
-    "keywords": [],
-    "date": "2019-12-19T14:28:06.551Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",

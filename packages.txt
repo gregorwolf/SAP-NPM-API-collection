@@ -11,9 +11,9 @@
 @sap/cloud-sdk-vdm-bill-of-material-v2-service
 @sap/cloud-sdk-vdm-bill-of-material-where-used-service
 @sap/cloud-sdk-vdm-billing-document-request-service
-@sap/cloud-sdk-vdm-billing-document-service
 @sap/grunt-sapui5-bestpractice-build
 @sap/node-jwt
+@sap/portal-cf-content-deployer
 @sap/site-entry
 @sap/xsjs
 @sap/xsodata

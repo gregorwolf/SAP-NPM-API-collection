@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [3.29.0]
+### Added
+- Added Support of federating shell plugins in cFlp 
+
+## [3.27.0]
+### Changed
+- Changed form-data to version 3.0.0
+
 ## [3.24.0]
 ### Changed
 - Change ID for federation, after redeployment need to add again the apps in CFLP 
