@@ -6,6 +6,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.3.0 - 2019-10-29
+
+### Removed
+
+- `npm-shrinkwrap.json`
+
+## Version 1.2.0 - 2019-10-02
+
+### Added
+
+- If JWT token provided in context, it is forwarded to Cloud SDK
+
+### Changed
+
+- Version of `@sap/cloud-sdk-core` to `1.10.0`
+- Version of `@sap/cloud-sdk-util` to `1.10.0`
+
+## Version 1.1.3 - 2019-09-21
+
+### Added
+
+- Dependency to `@sap/cloud-sdk-util`
+
 ## Version 1.1.2 - 2019-09-19
 
 ### Fixed

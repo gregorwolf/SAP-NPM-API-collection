@@ -43,6 +43,7 @@
     "@sap/cloud-sdk-vdm-bill-of-material-where-used-service": "1.15.0",
     "@sap/cloud-sdk-vdm-billing-document-request-service": "1.15.0",
     "@sap/cds-odata-v2-adapter-proxy": "latest",
+    "@sap/cds-rest": "latest",
     "@sap/xsenv": "latest",
     "@sap/hana-client": "latest",
     "@sap/faas": "latest"
