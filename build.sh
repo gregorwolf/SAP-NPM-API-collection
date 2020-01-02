@@ -4,7 +4,12 @@ cat npm.sap.com.json | jq '.[] | .name' | sort > packages.txt
 rpl -q '"' '' packages.txt
 echo "@sap/cds-odata-v2-adapter-proxy" >> packages.txt
 echo "@sap/cds-hana" >> packages.txt
+echo "@sap/cds-messaging" >> packages.txt
+echo "@sap/cds-reflect" >> packages.txt
 echo "@sap/cds-rest" >> packages.txt
+echo "@sap/cds-services" >> packages.txt
+echo "@sap/cds-sql" >> packages.txt
+echo "@sap/cds-sqlite" >> packages.txt
 echo "@sap/xsenv" >> packages.txt
 echo "@sap/hana-client" >> packages.txt
 echo "@sap/faas" >> packages.txt

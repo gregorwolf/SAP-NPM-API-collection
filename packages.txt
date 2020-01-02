@@ -20,7 +20,12 @@
 @sap/xssec
 @sap/cds-odata-v2-adapter-proxy
 @sap/cds-hana
+@sap/cds-messaging
+@sap/cds-reflect
 @sap/cds-rest
+@sap/cds-services
+@sap/cds-sql
+@sap/cds-sqlite
 @sap/xsenv
 @sap/hana-client
 @sap/faas

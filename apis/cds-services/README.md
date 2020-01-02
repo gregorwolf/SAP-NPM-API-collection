@@ -8,7 +8,7 @@ TBD
 ## Prerequisites ##
 Dependencies:
 * @sap/cds-ql
-* @sap/odata-v4
+* @sap/odata-server
 
 ## Installation ##
 ~~~~

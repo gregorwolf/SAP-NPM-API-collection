@@ -1,10 +1,76 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project are documented in this file.
+The format is based on [Keep a Changelog](http://keepachangelog.com/) and
+this project adheres to [Semantic Versioning](http://semver.org/).
 
-This project adheres to [Semantic Versioning](http://semver.org/).
+## Version 2.9.1 - 2019-12-11
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+### Added
+- Preparations for streamlined compiler APIs
+
+## Version 2.8.0 - 2019-10-08
+
+### Added
+- Entity definitions know their service
+
+## Version 2.7.1 - 2019-09-09
+
+### Added
+
+- Support for `cds.extend(Foo)`
+
+## Version 2.7.0 - 2019-09-09
+
+### Added
+
+- Support for linking typeof refs
+
+## Version 2.6.0 - 2019-08-21
+
+### Added
+
+- `.valueOf` to easily construct qualified names
+
+### Changed
+
+- Improved stack traces
+
+## Version 2.5.0 - 2019-05-03
+
+### Added
+
+- `cds` now is an `EventEmitter` -- This allows server modules to inform interested listeners about notable events in a loose-coupling fashion.
+
+### Fixed
+- `model.services` now really filters
+- `cds.infer` supports paths with filters
+
+
+## Version 2.3.0
+
+### Changed
+- The minimum required Node.js version is now set more specifically to _8.9_ LTS.  Previously, just Node.js 8 was mentioned.
+
+
+## Version 2.2.1 - 2019-01-24
+
+### Fixed
+
+- Getter for `linked_entity.source`
+
+## Version 2.2.0
+
+### Added
+- Getter for `linked_entity.source` (better use: `linked_entity.query._target`)
+
+## Version 2.0.5
+### Features
+- Seperated iteration and recursion `.foreach` is now iteration only, use `.forall` to visit all definitions recursively.
+
+## Version 1.8.0
+### Features
+- Entities and services can be retrieved with namespace scope
 
 ## Version 1.7.0
 ### Changes

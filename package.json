@@ -44,7 +44,12 @@
     "@sap/cloud-sdk-vdm-billing-document-request-service": "1.15.0",
     "@sap/cds-odata-v2-adapter-proxy": "latest",
     "@sap/cds-hana": "latest",
+    "@sap/cds-messaging": "latest",
+    "@sap/cds-reflect": "latest",
     "@sap/cds-rest": "latest",
+    "@sap/cds-services": "latest",
+    "@sap/cds-sql": "latest",
+    "@sap/cds-sqlite": "latest",
     "@sap/xsenv": "latest",
     "@sap/hana-client": "latest",
     "@sap/faas": "latest"

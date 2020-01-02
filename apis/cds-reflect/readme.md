@@ -1,14 +1,13 @@
 ## cds.reflect
 
-Provides core reflection for CDS models in CSN format. 
-
-Find the 'official' documentation here: https://github.wdf.sap.corp/pages/cdx/API#cds-reflect
+Provides core reflection for CDS models in CSN format.
 
 ### Local usage in a project
 
 ```
-npm i https://github.wdf.sap.corp/cdx/cds-reflect.git
+npm i @sap/cds-reflect
 ```
+
 
 ```js
 const cds = require('@sap/cds-reflect')
@@ -17,10 +16,10 @@ const cds = require('@sap/cds-reflect')
 let model = cds.reflect ({
   namespace: 'foo.bar',
   definitions: {
-    Foo: {kind:'entity', elements:{
+    'foo.bar.Foo': {kind:'entity', elements:{
       bar: {type:'cds.Association', target:'foo.bar.Bar'}
     }},
-    Bar: {kind:'entity'},
+    'foo.bar.Bar': {kind:'entity'},
   }
 })
 let { Foo, Bar } = m.exports
