@@ -19,6 +19,7 @@
 @sap/xsodata
 @sap/xssec
 @sap/cds-odata-v2-adapter-proxy
+@sap/cds-hana
 @sap/cds-rest
 @sap/xsenv
 @sap/hana-client

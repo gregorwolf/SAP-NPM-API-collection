@@ -6,6 +6,7 @@ var package = 'package.json'
 fs.readFile(packages, function (err, packagesData) {
   var packagesJson = JSON.parse(packagesData)
   packagesJson["@sap/cds-odata-v2-adapter-proxy"] = "latest"
+  packagesJson["@sap/cds-hana"] = "latest"
   packagesJson["@sap/cds-rest"] = "latest"
   packagesJson["@sap/xsenv"] = "latest"
   packagesJson["@sap/hana-client"] = "latest"

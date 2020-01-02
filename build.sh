@@ -3,6 +3,7 @@ cat npm.sap.com.json | jq 'reduce .[] as $i ({}; .[$i.name] = $i.version)' > pac
 cat npm.sap.com.json | jq '.[] | .name' | sort > packages.txt
 rpl -q '"' '' packages.txt
 echo "@sap/cds-odata-v2-adapter-proxy" >> packages.txt
+echo "@sap/cds-hana" >> packages.txt
 echo "@sap/cds-rest" >> packages.txt
 echo "@sap/xsenv" >> packages.txt
 echo "@sap/hana-client" >> packages.txt

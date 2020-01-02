@@ -6,6 +6,48 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.21.0 - 2019-12-10
+
+### Changed
+
+- Updated version of @sap/cds-sql to 1.21.0
+
+## Version 1.20.1 - 2019-11-29
+
+### Changed
+
+- Updated version of @sap/cds-sql to 1.20.1
+
+## Version 1.20.0 - 2019-11-19
+
+### Added
+
+- Method to set session context
+
+## Version 1.19.1 - 2019-10-30
+
+### Changed
+
+- Updated version of @sap/cds-sql to 1.19.1
+
+## Version 1.19.0 - 2019-10-29
+
+### Removed
+
+- `npm-shrinkwrap.json`
+
+## Version 1.18.1 - 2019-10-16
+
+### Changed
+
+- Updated version of @sap/cds-sql to 1.18.1
+ 
+## Version 1.18.0 - 2019-10-02
+
+### Changed
+
+- Updated version of @sap/cds-sql to 1.18.0
+
 ## Version 1.17.1 - 2019-09-18
 
 ### Fixed
