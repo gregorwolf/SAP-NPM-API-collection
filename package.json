@@ -24,7 +24,7 @@
   "dependencies": {
     "@sap/approuter": "6.7.1",
     "@sap/site-entry": "1.30.0",
-    "@sap/cds": "3.21.0",
+    "@sap/cds": "3.21.1",
     "@sap/grunt-sapui5-bestpractice-build": "1.4.2",
     "@sap/xsjs": "5.3.1",
     "@sap/xssec": "2.2.4",

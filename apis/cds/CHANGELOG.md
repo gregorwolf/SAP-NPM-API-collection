@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.21.1 - 2020-01-07
+### Changed
+- Fiori preview no longer crashes since it's pinned to SAP UI5 1.72.3.  Actual cause still needs to be investigated.
+
 ## Version 3.21.0 - 2019-12-11
 
 ### Added
