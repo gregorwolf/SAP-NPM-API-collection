@@ -5,7 +5,6 @@
 const URL = require("url");
 const express = require("express");
 const axios = require("axios");
-const bodyparser = require("body-parser");
 const proxy = require("http-proxy-middleware");
 const cds = require("@sap/cds");
 const logging = require("@sap/logging");
@@ -18,20 +17,19 @@ const SeverityMap = {
   4: "error"
 };
 
-const UUIDRegex = /(guid'[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}')/gi;
+const UUIDRegex = /guid'([0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})'/gi;
+// https://www.w3.org/TR/xmlschema11-2/#nt-duDTFrag
+const DurationRegex = /^PT(?:(\d{1,2})H)?(?:(\d{2})M)?(?:(\d{2}(?:\.\d+)?)S)?$/i;
 
 const DataTypeMap = {
-  "cds.UUID": {
-    v2: `guid'$1'`,
-    v4: /guid'([0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})'/gi
-  },
+  "cds.UUID": { v2: `guid'$1'`, v4: UUIDRegex },
   "cds.Binary": { v2: `binary'$1'`, v4: /X'(?:[0-9a-f][0-9a-f])+?'/gi },
   "cds.LargeBinary": { v2: `binary'$1'`, v4: /X'(?:[0-9a-f][0-9a-f])+?'/gi },
   "cds.Time": { v2: `time'$1'`, v4: /time'(.+?)'/gi },
   "cds.Date": { v2: `datetime'$1'`, v4: /datetime'(.+?)'/gi },
   "cds.DateTime": { v2: `datetimeoffset'$1'`, v4: /datetimeoffset'(.+?)'/gi },
   "cds.Timestamp": { v2: `datetimeoffset'$1'`, v4: /datetimeoffset'(.+?)'/gi },
-  "cds.Double": { v2: `$1d`, v4: /[-]?[0-9]+?\.[0-9]+?(?:E[+-]?[0-9]+?)?d/gi },
+  "cds.Double": { v2: `$1d`, v4: /([-]?[0-9]+?\.[0-9]+?(?:E[+-]?[0-9]+?)?)d/gi },
   "cds.Decimal": { v2: `$1m`, v4: /([-]?[0-9]+?\.[0-9]+?)m/gi },
   "cds.DecimalFloat": { v2: `$1f`, v4: /([-]?[0-9]+?\.[0-9]+?)f/gi },
   "cds.Integer64": { v2: `$1L`, v4: /([-]?[0-9]+?)L/gi },
@@ -47,6 +45,11 @@ const AggregationMap = {
   COUNT_DISTINCT: "countdistinct"
 };
 
+const FilterFunctions = {
+  "substringof($,$)": "contains($2,$1)",
+  "gettotaloffsetminutes($)": "totaloffsetminutes($1)"
+};
+
 const BodyParserLimit = "100mb";
 const DefaultTenant = "00000000-0000-0000-0000-000000000000";
 const AggregationPrefix = "__AGGREGATION__";
@@ -56,10 +59,9 @@ const AggregationPrefix = "__AGGREGATION__";
  * @param options CDS OData v2 Adapter Proxy options.
  * @param [options.base] Base path, under which the service is reachable. Default is ''.
  * @param [options.path] Path, under which the proxy is reachable. Default is 'v2'.
- * @param [options.model] CDS service model path. Default is 'all'.
+ * @param [options.model] CDS service model (path or CSN). Default is 'all'.
  * @param [options.port] Target port, which points to OData v4 backend port. Default is '4004'.
  * @param [options.target] Target, which points to OData v4 backend host/port. Default is 'http://localhost:4004'.
- * @param [options.services] Service mapping, from url path name to service name. If omitted CDS defaults apply.
  * @param [options.standalone] Indication, that OData v2 Adapter proxy is a standalone process. Default is 'false'.
  * @param [options.mtxEndpoint] Endpoint to retrieve MTX metadata. Default is '/mtx/v1'
  * @returns {Router}
@@ -78,13 +80,12 @@ module.exports = (options = undefined) => {
   const pathRewrite = { [`^${sourcePath}`]: targetPath };
   const port = optionWithFallback("port", "4004");
   const target = optionWithFallback("target", `http://localhost:${port}`);
-  const services = optionWithFallback("services", {});
   const standalone = optionWithFallback("standalone", false);
   const mtxEndpoint = optionWithFallback("mtxEndpoint", "/mtx/v1");
 
   let model = optionWithFallback("model", "all");
   if (model === "all" || (Array.isArray(model) && model[0] === "all")) {
-    model = [cds.env.folders.app, cds.env.folders.srv, "services", "."].find(m => cds.resolve(m));
+    model = [[cds.env.folders.app, cds.env.folders.srv], "services", "."].find(m => cds.resolve(m));
   }
 
   if (cds.mtx && cds.mtx.eventEmitter && cds.env.requires && cds.env.requires.db && cds.env.requires.db.multiTenant) {
@@ -97,15 +98,38 @@ module.exports = (options = undefined) => {
 
   router.get(`/${path}/*/\\$metadata`, async (req, res) => {
     try {
-      const { csn } = await getMetadata(req);
-      req.csn = csn;
-      const service = serviceFromRequest(req);
-      const { edmx } = await getMetadata(req, service.name);
-      res.setHeader("content-type", "application/xml");
-      res.send(edmx);
+      const result = await Promise.all([
+        // HEAD: cap/issues/3480
+        axios.get(getV4RequestUrl(req), {
+          headers: req.headers,
+          validateStatus: null
+        }),
+        (async () => {
+          const { csn } = await getMetadata(req);
+          req.csn = csn;
+          const service = serviceFromRequest(req);
+          const { edmx } = await getMetadata(req, service.name);
+          return edmx;
+        })()
+      ]);
+      const [metadataResponse, edmx] = result;
+      const headers = convertBasicHeaders(metadataResponse.headers);
+      let body;
+      if (metadataResponse.status === 200) {
+        body = edmx;
+      } else {
+        const contentType = headers["content-type"];
+        if (isApplicationJSON(contentType)) {
+          body = JSON.stringify(metadataResponse.data);
+        } else {
+          body = metadataResponse.data;
+        }
+      }
+      headers["content-length"] = Buffer.byteLength(body);
+      respond(req, res, metadataResponse.status, headers, body);
     } catch (err) {
       // Error
-      trace(req, "Error", err.stack || err.message);
+      traceError(req, "Error", err.stack || err.message);
       res.status(500).send("Internal Server Error");
     }
   });
@@ -121,9 +145,9 @@ module.exports = (options = undefined) => {
       }
 
       if (contentType.startsWith("application/json")) {
-        bodyparser.json({ limit: BodyParserLimit })(req, res, next);
+        express.json({ limit: BodyParserLimit })(req, res, next);
       } else if (contentType.startsWith("multipart/mixed")) {
-        bodyparser.text({ type: "multipart/mixed", limit: BodyParserLimit })(req, res, next);
+        express.text({ type: "multipart/mixed", limit: BodyParserLimit })(req, res, next);
       } else {
         next();
       }
@@ -136,7 +160,7 @@ module.exports = (options = undefined) => {
         req.csn = csn;
       } catch (err) {
         // Error
-        trace(req, "Error", err.stack || err.message);
+        traceError(req, "Error", err.stack || err.message);
         res.status(500).send("Internal Server Error");
         return;
       }
@@ -166,48 +190,29 @@ module.exports = (options = undefined) => {
   );
 
   function serviceFromRequest(req) {
-    const requestPath = req.params["0"];
-    const normalizedRequestPath = requestPath.replace(/^\/?(.*)\/?$/g, "$1");
-
-    let servicePath;
-    let service = Object.keys(req.csn.definitions).find(definitionName => {
-      const definition = req.csn.definitions[definitionName];
-      if (definition && definition.kind === "service" && definition["@path"]) {
-        const normalizedDefinitionPath = definition["@path"].replace(/\/?(.*)\/?/g, "$1");
-        if (
-          normalizedRequestPath === normalizedDefinitionPath ||
-          normalizedRequestPath.startsWith(`${normalizedDefinitionPath}/`)
-        ) {
-          servicePath = normalizedDefinitionPath;
-          return true;
-        }
+    const requestPath = req.params["0"].replace(/^\/?(.*?)\/?$/g, "$1");
+    let servicePath = requestPath.split("/").shift();
+    let serviceName = Object.keys(cds.services).find(service => {
+      const path = cds.services[service].path;
+      if (path) {
+        return (
+          path.toLowerCase() === servicePath.toLowerCase() || path.toLowerCase() === `/${servicePath.toLowerCase()}`
+        );
       }
       return false;
     });
-    if (!service) {
-      Object.keys(services).find(configServicePath => {
-        const normalizedConfigServicePath = configServicePath.replace(/\/?(.*)\/?/g, "$1");
-        if (
-          normalizedRequestPath === normalizedConfigServicePath ||
-          normalizedRequestPath.startsWith(`${normalizedConfigServicePath}/`)
-        ) {
-          service = services[configServicePath];
-          servicePath = normalizedConfigServicePath;
-          return true;
-        }
-        return false;
+    if (!serviceName) {
+      serviceName = Object.keys(cds.services).find(service => {
+        const path = cds.services[service].path;
+        return path === "/";
       });
-    }
-    if (!service) {
-      servicePath = requestPath.split("/").shift();
-      service = servicePath.charAt(0).toUpperCase() + servicePath.slice(1) + "Service";
-    }
-    if (!req.csn.definitions[service]) {
-      service = "Service";
       servicePath = "";
     }
+    if (!serviceName || !req.csn.definitions[serviceName]) {
+      traceWarning(req, "Service", `Service definition not found for request path '${requestPath}'`);
+    }
     return {
-      name: service,
+      name: serviceName,
       path: servicePath
     };
   }
@@ -273,6 +278,12 @@ module.exports = (options = undefined) => {
       determineLocale(req),
       DefaultTenant,
       async () => {
+        if (cds.model && cds.env.features.snapi) {
+          return cds.model;
+        }
+        if (typeof model === "object" && !Array.isArray(model)) {
+          return model;
+        }
         return await cds.load(model);
       },
       service
@@ -282,7 +293,7 @@ module.exports = (options = undefined) => {
   async function compileService(locale, tenantId, loadCsn, service) {
     if (!proxyCache[tenantId]) {
       const csnRaw = await loadCsn();
-      const csn = cds.linked(cds.compile.for.odata(csnRaw));
+      const csn = cds.linked(cds.compile.for.odata(csnRaw, { version: "v2" }));
       proxyCache[tenantId] = {
         csnRaw,
         csn,
@@ -434,8 +445,8 @@ module.exports = (options = undefined) => {
   }
 
   function parseURL(urlPath, req) {
-    const url = URL.parse(decodeURI(urlPath), true);
-    url.pathname = decodeURI(url.pathname);
+    const url = URL.parse(decodeURISafe(urlPath), true);
+    url.pathname = decodeURISafe(url.pathname);
     url.basePath = "";
     url.servicePath = "";
     url.contextPath = url.pathname;
@@ -491,7 +502,7 @@ module.exports = (options = undefined) => {
           context = lookupBoundDefinition(name, req);
         }
         if (!context) {
-          trace(req, "Context", `Definition '${name}' not found`);
+          traceWarning(req, "Context", `Definition '${name}' not found`);
         }
         return context;
       }
@@ -517,7 +528,7 @@ module.exports = (options = undefined) => {
       if (context && context.params && name === "Set") {
         return context;
       }
-      trace(req, "Context", `Definition '${name}' not found`);
+      traceWarning(req, "Context", `Definition '${name}' not found`);
     }
   }
 
@@ -579,7 +590,7 @@ module.exports = (options = undefined) => {
               return part;
             } catch (err) {
               // Error
-              trace(req, "Error", err.stack || err.message);
+              traceError(req, "Error", err.stack || err.message);
             }
           } else {
             const keys = keyPart.split(",");
@@ -617,22 +628,7 @@ module.exports = (options = undefined) => {
     // Query
     Object.keys(url.query).forEach(name => {
       if (name === "$filter") {
-        url.query[name] = url.query[name]
-          .split(UUIDRegex)
-          .map((part, index) => {
-            if (index % 2 === 0) {
-              if (part.length > 0) {
-                Object.keys(DataTypeMap).forEach(type => {
-                  const v4Regex = RegExp("([ ,(=])" + DataTypeMap[type].v4.source, DataTypeMap[type].v4.flags);
-                  part = part.replace(v4Regex, "$1$2");
-                });
-              }
-              return part;
-            } else {
-              return part.replace(DataTypeMap["cds.UUID"].v4, "$1");
-            }
-          })
-          .join("");
+        url.query[name] = convertUrlFilter(url.query[name], context);
       } else if (!name.startsWith("$")) {
         if (context && context.elements && context.elements[name]) {
           const element = context.elements[name];
@@ -667,6 +663,96 @@ module.exports = (options = undefined) => {
         }
       }
     });
+  }
+
+  function buildQuoteParts(input) {
+    let quote = false;
+    let quoteEscape = false;
+    let quoteTypeStart = false;
+    let part = "";
+    const parts = [];
+    input.split("").forEach((char, index) => {
+      part += char;
+      if (char === "'") {
+        if (quote) {
+          if (quoteEscape) {
+            quoteEscape = false;
+            return;
+          }
+          const nextChar = input.substr(index + 1, 1);
+          if (nextChar === "'") {
+            quoteEscape = true;
+            return;
+          }
+        }
+        const typeStart = !!Object.keys(DataTypeMap)
+          .filter(type => type !== "cds.String")
+          .find(type => {
+            const v2Pattern = DataTypeMap[type].v2;
+            return v2Pattern.includes("'") && part.endsWith(v2Pattern.split("'").shift() + "'");
+          });
+        if (!typeStart && !quoteTypeStart) {
+          if (part.length > 0) {
+            parts.push({
+              content: part,
+              quote: quote
+            });
+            part = "";
+          }
+          quote = !quote;
+        }
+        quoteTypeStart = typeStart;
+      }
+    });
+    if (part.length > 0) {
+      parts.push({
+        content: part,
+        quote: quote
+      });
+    }
+    return parts;
+  }
+
+  function convertUrlFilter(filter, context) {
+    return buildQuoteParts(filter)
+      .map(part => {
+        if (!part.quote) {
+          if (context && context.elements) {
+            Object.keys(context.elements).forEach(name => {
+              const element = context.elements[name];
+              if (element.type !== "cds.Composition" && element.type !== "cds.Association") {
+                if (DataTypeMap[element.type]) {
+                  const v4Regex = RegExp(
+                    `(${element.name})(\\s+?(?:eq|ne|gt|ge|lt|le])\\s+?)${DataTypeMap[element.type].v4.source}`,
+                    DataTypeMap[element.type].v4.flags
+                  );
+                  part.content = part.content.replace(v4Regex, (_, name, op, value) => {
+                    return `${name}${op}${convertDataTypeToV4(value, element.type)}`;
+                  });
+                }
+              }
+            });
+          }
+          part.content = part.content
+            .split(UUIDRegex)
+            .map((part, index) => {
+              if (index % 2 === 0) {
+                if (part.length > 0) {
+                  Object.keys(DataTypeMap).forEach(type => {
+                    const v4Regex = RegExp("([ ,(=])" + DataTypeMap[type].v4.source, DataTypeMap[type].v4.flags);
+                    part = part.replace(v4Regex, "$1$2");
+                  });
+                }
+                return part;
+              } else {
+                return part.replace(DataTypeMap["cds.UUID"].v4, "$1");
+              }
+            })
+            .join("");
+        }
+        return part.content;
+      })
+      .join("");
   }
 
   function convertUrlCount(url, req) {
@@ -850,11 +936,66 @@ module.exports = (options = undefined) => {
   }
 
   function convertFilter(url, req) {
-    if (url.query["$filter"]) {
-      // substringof
-      url.query["$filter"] = url.query["$filter"].replace(/substringof\((.*?),(.*?)\)/gi, "contains($2,$1)");
-      // gettotaloffsetminutes
-      url.query["$filter"] = url.query["$filter"].replace(/gettotaloffsetminutes\(/gi, "totaloffsetminutes(");
+    const _ = "§§";
+
+    let filter = url.query["$filter"];
+    if (filter) {
+      let quote = false;
+      let lookBehind = "";
+      let bracket = 0;
+      let brackets = [];
+      let bracketMax = 0;
+
+      filter = filter
+        .split("")
+        .map(char => {
+          if (char === "'") {
+            quote = !quote;
+          }
+          if (!quote) {
+            if (char === "(") {
+              bracket++;
+              const filterFunctionStart = !!Object.keys(FilterFunctions).find(name => {
+                return lookBehind.endsWith(name.split("(").shift());
+              });
+              if (filterFunctionStart) {
+                brackets.push(bracket - 1);
+                bracketMax = Math.max(bracketMax, brackets.length);
+                return `${_}(${brackets.length}${_}`;
+              }
+            } else if (char === ")") {
+              bracket--;
+              const [mark] = brackets.slice(-1);
+              if (mark === bracket) {
+                brackets.pop();
+                return `${_})${brackets.length + 1}${_}`;
+              }
+            } else if (char === ",") {
+              if (bracket > 0) {
+                return `${_},${brackets.length}${_}`;
+              }
+            }
+            lookBehind += char;
+          } else {
+            lookBehind = "";
+          }
+          return char;
+        })
+        .join("");
+
+      if (bracketMax > 0) {
+        for (let i = 1; i <= bracketMax; i++) {
+          Object.keys(FilterFunctions).forEach(name => {
+            let pattern = name
+              .replace(/([()])/g, `${_}\\$1${i}${_}`)
+              .replace(/([,])/g, `${_}$1${i}${_}`)
+              .replace(/[$]/g, "(.*?)");
+            filter = filter.replace(new RegExp(pattern, "gi"), FilterFunctions[name]);
+          });
+          filter = filter.replace(new RegExp(`${_}([(),])${i}${_}`, "g"), "$1");
+        }
+        url.query["$filter"] = filter;
+      }
     }
   }
 
@@ -1045,9 +1186,21 @@ module.exports = (options = undefined) => {
       const milliseconds = match && match.pop();
       if (milliseconds) {
         value = new Date(parseFloat(milliseconds)).toISOString();
-        if (["cds.DateTime"].includes(type)) {
-          value = value.slice(0, 19) + "Z";
-        }
+      }
+      if (["cds.DateTime"].includes(type)) {
+        value = value.slice(0, 19) + "Z";
+      }
+    } else if (["cds.Date"].includes(type)) {
+      const match = value.match(/\/Date\((.*)\)\//);
+      const milliseconds = match && match.pop();
+      if (milliseconds) {
+        value = new Date(parseFloat(milliseconds)).toISOString();
+      }
+      value = value.slice(0, 10);
+    } else if (["cds.Time"].includes(type)) {
+      const match = value.match(DurationRegex);
+      if (match) {
+        value = `${match[1] || "00"}:${match[2] || "00"}:${match[3] || "00"}`;
       }
     }
     return value;
@@ -1109,7 +1262,7 @@ module.exports = (options = undefined) => {
       respond(req, res, proxyRes.statusCode, headers, body);
     } catch (err) {
       // Error
-      trace(req, "Error", err.stack || err.message);
+      traceError(req, "Error", err.stack || err.message);
       respond(req, res, proxyRes.statusCode, proxyRes.headers, convertResponseError(proxyRes.body, proxyRes.headers));
     }
   }
@@ -1127,7 +1280,7 @@ module.exports = (options = undefined) => {
       );
       const mediaTypeElement = findElementByAnnotation(context.definition, "@Core.MediaType");
       if (contentDispositionFilenameElement && mediaTypeElement) {
-        const parts = getRequestUrl(req).split("/");
+        const parts = getV2RequestUrl(req).split("/");
         if (parts[parts.length - 1] === "$value") {
           parts.pop();
         }
@@ -1159,11 +1312,11 @@ module.exports = (options = undefined) => {
     if (req.method === "HEAD") {
       bodyParser = null;
     } else if (isApplicationJSON(contentType)) {
-      bodyParser = bodyparser.json({ limit: BodyParserLimit });
+      bodyParser = express.json({ limit: BodyParserLimit });
     } else if (isPlainText(contentType) || isXML(contentType)) {
-      bodyParser = bodyparser.text({ type: () => true, limit: BodyParserLimit });
+      bodyParser = express.text({ type: () => true, limit: BodyParserLimit });
     } else if (isMultipart(contentType)) {
-      bodyParser = bodyparser.text({ type: "multipart/mixed", limit: BodyParserLimit });
+      bodyParser = express.text({ type: "multipart/mixed", limit: BodyParserLimit });
     }
     if (bodyParser) {
       await promisify(bodyParser)(proxyRes, null);
@@ -1174,6 +1327,7 @@ module.exports = (options = undefined) => {
   function convertBasicHeaders(headers) {
     delete headers["odata-version"];
     headers.dataserviceversion = "2.0";
+    return headers;
   }
 
   function convertHeaders(body, headers, req) {
@@ -1441,7 +1595,10 @@ module.exports = (options = undefined) => {
       key: req.context.$apply.key.reduce((result, keyElement) => {
         let value = data[keyElement.name];
         if (value !== undefined && value !== null && DataTypeMap[keyElement.type]) {
-          value = String(value).replace(/(.*)/, DataTypeMap[keyElement.type].v2);
+          value = convertDataTypeToV2Uri(String(value), keyElement.type).replace(
+            /(.*)/,
+            DataTypeMap[keyElement.type].v2
+          );
         }
         result[keyElement.name] = value;
         return result;
@@ -1472,8 +1629,24 @@ module.exports = (options = undefined) => {
       value = `${value}`;
     } else if (["cds.Date", "cds.DateTime", "cds.Timestamp"].includes(type)) {
       value = `/Date(${new Date(value).getTime()})/`;
+    } else if (["cds.Time"].includes(type)) {
+      value = convertToDayTimeDuration(value);
     }
     return value;
+  }
+
+  function convertDataTypeToV2Uri(value, type) {
+    if (["cds.Date"].includes(type)) {
+      value = `${value}T00:00`;
+    } else if (["cds.Time"].includes(type)) {
+      value = convertToDayTimeDuration(value);
+    }
+    return value;
+  }
+
+  function convertToDayTimeDuration(value) {
+    const timeParts = value.split(":");
+    return `PT${timeParts[0] || "00"}H${timeParts[1] || "00"}M${timeParts[2] || "00"}S`;
   }
 
   function addResultsNesting(data, headers, definition, root, req) {
@@ -1535,7 +1708,10 @@ module.exports = (options = undefined) => {
       .map(keyElement => {
         let value = data[keyElement.name];
         if (value !== undefined && value !== null && DataTypeMap[keyElement.type]) {
-          value = String(value).replace(/(.*)/, DataTypeMap[keyElement.type].v2);
+          value = convertDataTypeToV2Uri(String(value), keyElement.type).replace(
+            /(.*)/,
+            DataTypeMap[keyElement.type].v2
+          );
         }
         if (keyElements.length === 1) {
           return `${value}`;
@@ -1598,8 +1774,16 @@ module.exports = (options = undefined) => {
     return key.replace(/%20/g, " ").replace(/%2F/g, "/");
   }
 
-  function getRequestUrl(req) {
+  function getV2RequestUrl(req) {
     return getBaseUrl(req) + req.originalUrl;
+  }
+
+  function getV4RequestUrl(req) {
+    let path = req.originalUrl;
+    Object.entries(pathRewrite).forEach(([key, value]) => {
+      path = path.replace(new RegExp(key, "g"), value);
+    });
+    return getBaseUrl(req) + path;
   }
 
   function getBaseUrl(req) {
@@ -1680,7 +1864,7 @@ module.exports = (options = undefined) => {
               headers = (result && result.headers) || headers;
             } catch (err) {
               // Error
-              trace(req, "Error", err.stack || err.message);
+              traceError(req, "Error", err.stack || err.message);
             }
           }
           Object.entries(headers).forEach(([name, value]) => {
@@ -1751,22 +1935,41 @@ module.exports = (options = undefined) => {
     return newParts.join("\r\n");
   }
 
+  function decodeURISafe(text) {
+    try {
+      return decodeURI(text);
+    } catch (e) {
+      console.log(e);
+    }
+    return text;
+  }
+
   function traceRequest(req, name, method, url, headers, body) {
-    const _url = decodeURI(url) || "";
-    const _headers = decodeURI(JSON.stringify(headers || {}));
-    const _body = typeof body === "string" ? decodeURI(body) : body ? decodeURI(JSON.stringify(body)) : "";
+    const _url = decodeURISafe(url) || "";
+    const _headers = decodeURISafe(JSON.stringify(headers || {}));
+    const _body = typeof body === "string" ? decodeURISafe(body) : body ? decodeURISafe(JSON.stringify(body)) : "";
     trace(req, name, `${method} ${_url}`, _headers, _body);
   }
 
   function traceResponse(req, name, statusCode, statusMessage, headers, body) {
-    const _headers = decodeURI(JSON.stringify(headers || {}));
-    const _body = typeof body === "string" ? decodeURI(body) : body ? decodeURI(JSON.stringify(body)) : "";
+    const _headers = decodeURISafe(JSON.stringify(headers || {}));
+    const _body = typeof body === "string" ? decodeURISafe(body) : body ? decodeURISafe(JSON.stringify(body)) : "";
     trace(req, name, `${statusCode || ""} ${statusMessage || ""}`, _headers, _body);
   }
 
   function trace(req, name, ...messages) {
     const message = messages.filter(message => message !== null && message !== undefined).join("\n");
-    req.loggingContext.getTracer(name).info(message);
+    req.loggingContext.getTracer(name).debug(message);
+  }
+
+  function traceError(req, name, ...messages) {
+    const message = messages.filter(message => message !== null && message !== undefined).join("\n");
+    req.loggingContext.getTracer(name).error(message);
+  }
+
+  function traceWarning(req, name, ...messages) {
+    const message = messages.filter(message => message !== null && message !== undefined).join("\n");
+    req.loggingContext.getTracer(name).warning(message);
   }
 
   return router;
