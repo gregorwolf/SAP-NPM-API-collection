@@ -1,5 +1,23 @@
 # Hana Client 2.4.x Drivers
 
+## Version 2.4.177
+
+### Changes:
+
+ - Bug: 233849 - [node] The ResultSet object could be prematurely freed by node.js GC
+
+## Version 2.4.171
+
+### Changes:
+
+ - Bug: 233849 - [node] fix heap-use-after-free
+
+### Underlying SQLDBC changes:
+
+ - Bug: 233843 - [SQLDBC] SNI is not set correctly when sslValidateCertificate is false
+ - Bug: 231977 - [SQLDBC] ALTER CLIENTSIDE ENCRYPTION COLUMN KEY <column key name> ADD KEYCOPY ENCRYPTED WITH KEYPAIR <keypair name> fails with error -10429: Encryption of Column Encryption Key failed: Failed to create temporary Key ID table
+ - Bug: 231823 - [SQLDBC] Corrupted debug trace
+
 ## Version 2.4.167
 
 ### Underlying SQLDBC changes:

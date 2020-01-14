@@ -6,6 +6,39 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- New version information is automatically added after line 8 -->
+## Version 1.4.15 - 2019-12-20
+
+### Fixed
+- Fix authentication prompt for $metadata
+- Improve trace handling
+
+## Version 1.4.14 - 2019-12-19
+
+### Fixed
+- Protect $metadata call
+- Fix $filter parentheses nesting
+- Fix "all" model loading from app, srv
+- Improve $filter handling, incl. data type and negative tests
+
+## Version 1.4.13 - 2019-12-12
+
+### Fixed
+- Remove "services" configuration, as it is obsolete
+- Fix nested functions in $filter 
+
+## Version 1.4.12 - 2019-12-06
+
+### Fixed
+- Fix service and CSN model detection
+
+## Version 1.4.9 - 2019-12-05
+
+### Fixed
+- Allow CSN JSON object as model option
+- Raise error, if service not found based on path
+- Fix service paths with hyphen
+- Fix cds.Date, cds.Time data type mappings 
+
 ## Version 1.4.8 - 2019-11-14
 
 ### Fixed
