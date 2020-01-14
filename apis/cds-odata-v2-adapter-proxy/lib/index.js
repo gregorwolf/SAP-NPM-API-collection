@@ -408,6 +408,9 @@ module.exports = (options = undefined) => {
     }
     if (contentType) {
       if (body !== undefined) {
+        if(isApplicationJSON(contentType)) {
+          proxyReq.setHeader("content-type", "application/json;charset=UTF-8;IEEE754Compatible=true");
+        }
         proxyReq.setHeader("content-length", Buffer.byteLength(body));
         proxyReq.write(body);
         proxyReq.end();
@@ -1177,7 +1180,9 @@ module.exports = (options = undefined) => {
   function convertDataTypeToV4(value, type, headers = {}) {
     const contentType = headers["content-type"];
     const ieee754Compatible = contentType && contentType.includes("IEEE754Compatible=true");
-    if (["cds.Decimal", "cds.DecimalFloat", "cds.Integer64"].includes(type)) {
+    if (["cds.Decimal"].includes(type)) {
+      value = value;
+    } else if (["cds.DecimalFloat", "cds.Integer64"].includes(type)) {
       value = ieee754Compatible ? `${value}` : parseFloat(value);
     } else if (["cds.Double"].includes(type)) {
       value = parseFloat(value);
