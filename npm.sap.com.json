@@ -138,37 +138,11 @@
     "maintainers": []
   },
   {
-    "name": "@sap/portal-cf-content-deployer",
-    "version": "3.27.0-20200101090045",
-    "description": "SAP portal site content deployer",
-    "keywords": [
-      "portal",
-      "content-deployer"
-    ],
-    "date": "2020-01-02T11:37:27.140Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": {
-      "username": "Portal Team",
-      "email": null
-    },
-    "maintainers": [
-      {
-        "username": "Portal Team",
-        "email": null
-      }
-    ]
-  },
-  {
     "name": "@sap/cloud-sdk-core",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript core",
     "keywords": [],
-    "date": "2019-12-19T14:16:45.249Z",
+    "date": "2020-01-15T15:26:37.784Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -180,10 +154,10 @@
   },
   {
     "name": "@sap/cloud-sdk-test-util",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript test utilities",
     "keywords": [],
-    "date": "2019-12-19T14:18:53.481Z",
+    "date": "2020-01-15T15:29:28.550Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -195,10 +169,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-accounting-document-service",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud accounting document service",
     "keywords": [],
-    "date": "2019-12-19T14:19:41.374Z",
+    "date": "2020-01-15T15:30:33.165Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -210,10 +184,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-attachment-service",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud attachment service",
     "keywords": [],
-    "date": "2019-12-19T14:20:28.109Z",
+    "date": "2020-01-15T15:31:39.407Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -225,10 +199,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-bank-detail-service",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bank detail service",
     "keywords": [],
-    "date": "2019-12-19T14:21:16.166Z",
+    "date": "2020-01-15T15:32:43.394Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -240,10 +214,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-batch-service",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud batch service",
     "keywords": [],
-    "date": "2019-12-19T14:22:04.226Z",
+    "date": "2020-01-15T15:33:49.041Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -255,10 +229,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-bill-of-material-comparison-service",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material comparison service",
     "keywords": [],
-    "date": "2019-12-19T14:22:52.597Z",
+    "date": "2020-01-15T15:34:54.475Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -270,10 +244,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-bill-of-material-service",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material service",
     "keywords": [],
-    "date": "2019-12-19T14:23:41.013Z",
+    "date": "2020-01-15T15:35:58.399Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -285,10 +259,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-bill-of-material-v2-service",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material v2 service",
     "keywords": [],
-    "date": "2019-12-19T14:24:31.610Z",
+    "date": "2020-01-15T15:37:03.523Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -300,10 +274,10 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-bill-of-material-where-used-service",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material where used service",
     "keywords": [],
-    "date": "2019-12-19T14:25:21.432Z",
+    "date": "2020-01-15T15:38:09.412Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
@@ -315,10 +289,25 @@
   },
   {
     "name": "@sap/cloud-sdk-vdm-billing-document-request-service",
-    "version": "1.15.0",
+    "version": "1.15.1",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud billing document request service",
     "keywords": [],
-    "date": "2019-12-19T14:27:09.019Z",
+    "date": "2020-01-15T15:39:15.269Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-billing-document-service",
+    "version": "1.15.1",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud billing document service",
+    "keywords": [],
+    "date": "2020-01-15T15:40:19.461Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
