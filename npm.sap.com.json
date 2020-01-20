@@ -15,6 +15,21 @@
     "maintainers": []
   },
   {
+    "name": "@sap/cds",
+    "version": "3.21.2",
+    "description": "Entry Point and API Facade for CDS",
+    "keywords": [],
+    "date": "2020-01-20T11:39:52.817Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
     "name": "@sap/site-entry",
     "version": "1.30.0",
     "description": "SAP Portal Approuter for Fiori Launchpad",
@@ -36,21 +51,6 @@
         "email": null
       }
     ]
-  },
-  {
-    "name": "@sap/cds",
-    "version": "3.21.1",
-    "description": "Entry Point and API Facade for CDS",
-    "keywords": [],
-    "date": "2020-01-07T15:05:44.446Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
   },
   {
     "name": "@sap/grunt-sapui5-bestpractice-build",

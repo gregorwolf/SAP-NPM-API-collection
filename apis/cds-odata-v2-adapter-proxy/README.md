@@ -74,6 +74,7 @@ Instantiates an CDS OData v2 Adapter Proxy Express Router for a CDS based OData 
   - **[options.target]:** Target, which points to OData v4 backend host/port. Default is 'http://localhost:4004'.
   - **[options.standalone]** Indication, that OData v2 Adapter proxy is a standalone process. Default is 'false'.
   - **[options.mtxEndpoint]** Endpoint to retrieve MTX metadata. Default is '/mtx/v1'
+  - **[options.ieee754Compatible]** Edm.Decimal and Edm.Int64 are serialized IEEE754 compatible. Default is 'true'.
 
 Logging is controlled with XSA environment variable `XS_APP_LOG_LEVEL`.
 

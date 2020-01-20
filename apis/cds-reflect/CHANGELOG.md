@@ -4,6 +4,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and
 this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.9.2 - 2020-01-17
+
+### Fixed
+
+- Linked view entities erroneously inherited their base entities' `.keys` e.g.:
+```js
+const m = cds.linked(cds.parse(`
+  entity Foo { key ID : UUID }
+  entity Bar as select from Foo { ID as Kennung };
+`))
+const { Foo, Bar } = m.entities
+Foo.keys //> { ID: string { key: true, type: 'cds.UUID' } }
+Bar.keys //> { Kennung: string { key: true, type: 'cds.UUID' } }
+// The latter before was erronously:
+Bar.keys //> { ID: string { key: true, type: 'cds.UUID' } } -> WRONG
+```
+
 ## Version 2.9.1 - 2019-12-11
 
 ### Added

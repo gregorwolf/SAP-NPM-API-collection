@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.21.2 - 2020-01-17
+### Fixed
+- `@restrict.where` clauses are now properly stored in `csn.json` files
+
+### Also see
+- Changes of `@sap/cds-reflect` 2.9.2
+
+
 ## Version 3.21.1 - 2020-01-07
 ### Changed
 - Fiori preview no longer crashes since it's pinned to SAP UI5 1.72.3.  Actual cause still needs to be investigated.
