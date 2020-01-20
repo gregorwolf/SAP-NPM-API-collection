@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.2.0 - 2020-01-08
+
+### Added
+- Added `organization_id` and `organization_name` to the log output
+
+## 5.1.0 - 2019-12-02
+
+### Added
+- Node.js 12.x support.
+
 ## 5.0.2 - 2019-07-10
 
 ### Fixed

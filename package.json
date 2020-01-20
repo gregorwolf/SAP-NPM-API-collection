@@ -52,6 +52,7 @@
     "@sap/cds-sql": "latest",
     "@sap/cds-sqlite": "latest",
     "@sap/xsenv": "latest",
+    "@sap/logging": "latest",
     "@sap/hana-client": "latest",
     "@sap/faas": "latest"
   }

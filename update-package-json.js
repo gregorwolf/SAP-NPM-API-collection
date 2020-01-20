@@ -15,6 +15,7 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/cds-sql"] = "latest"
   packagesJson["@sap/cds-sqlite"] = "latest"
   packagesJson["@sap/xsenv"] = "latest"
+  packagesJson["@sap/logging"] = "latest"
   packagesJson["@sap/hana-client"] = "latest"
   packagesJson["@sap/faas"] = "latest"
   fs.readFile(package, function (err, packageData) {
