@@ -29,6 +29,7 @@ sap/portal-cf-content-deployer
 @sap/cds-sql
 @sap/cds-sqlite
 @sap/xsenv
+@sap/site-entry
 @sap/logging
 @sap/hana-client
 @sap/faas
