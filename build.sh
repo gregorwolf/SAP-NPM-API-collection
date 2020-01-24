@@ -6,6 +6,7 @@ rpl -q '"' '' packages.txt
 echo "sap/portal-cf-content-deployer" >> packages.txt
 echo "@sap/cds-odata-v2-adapter-proxy" >> packages.txt
 echo "@sap/cds-hana" >> packages.txt
+echo "@sap/cds-dk" >> packages.txt
 echo "@sap/cds-messaging" >> packages.txt
 echo "@sap/cds-reflect" >> packages.txt
 echo "@sap/cds-rest" >> packages.txt

@@ -21,6 +21,7 @@
 sap/portal-cf-content-deployer
 @sap/cds-odata-v2-adapter-proxy
 @sap/cds-hana
+@sap/cds-dk
 @sap/cds-messaging
 @sap/cds-reflect
 @sap/cds-rest

@@ -8,6 +8,7 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/portal-cf-content-deployer"] = "latest"
   packagesJson["@sap/cds-odata-v2-adapter-proxy"] = "latest"
   packagesJson["@sap/cds-hana"] = "latest"
+  packagesJson["@sap/cds-dk"] = "latest"
   packagesJson["@sap/cds-messaging"] = "latest"
   packagesJson["@sap/cds-reflect"] = "latest"
   packagesJson["@sap/cds-rest"] = "latest"

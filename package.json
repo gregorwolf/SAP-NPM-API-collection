@@ -45,6 +45,7 @@
     "@sap/portal-cf-content-deployer": "latest",
     "@sap/cds-odata-v2-adapter-proxy": "latest",
     "@sap/cds-hana": "latest",
+    "@sap/cds-dk": "latest",
     "@sap/cds-messaging": "latest",
     "@sap/cds-reflect": "latest",
     "@sap/cds-rest": "latest",
