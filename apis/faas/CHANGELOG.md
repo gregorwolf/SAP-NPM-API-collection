@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [0.7.0] - 2020-01-24
+
+- optimized runtime (full separation of sdk support)
+- added: context methods for service credentials
+- added: event.setBadRequest()
+- added: event.setUnauthorized()
+
 ## [0.6.3] - 2019-09-23
 
 - fixed: function codes console.log() reaches runtime log in Node.js 10 or higher

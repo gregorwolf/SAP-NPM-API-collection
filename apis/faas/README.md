@@ -3,6 +3,7 @@ Provides the SAP Cloud Platform Functions runtime for Node.js and basic SDK feat
 
 ## Table of contents
 * [Overview](#overview)
+* [Package](#package)
 * [Install](#install)
 * [Service Instances](#service-instances)
 * [Naming Rules](#naming-rules)
@@ -21,21 +22,36 @@ Provides the SAP Cloud Platform Functions runtime for Node.js and basic SDK feat
 * [Function Unit Test](#function-unit-tests)
 
 ## Overview
+
 SAP Cloud Platform Functions are provided as a service (__FaaS__).
 Developers can focus on pure application logic while writing the code,
 whereas FaaS takes responsibility to run the code in a secure, reliable and cost-efficient way.
-Technically, __FaaS__ runs on Kubernetes (__K8s__).
-The deployment of artifacts is currently managed using a __FaaS__ service instance in Cloud Foundry (CF) as entry point.
 
-This package comprises two functional parts, which may be split into separate modules at a later point in time.
-First, it provides the function runtime for Node.js (version 8.11.3 or higher).
-Secondly, it offers basic SDK functionality to:
-* find consistency errors before deployment
-* run (or debug) functions locally
-* support function unit tests
-* create deployment files (`values.yaml`)
+Technically, FaaS runs on Kubernetes (__K8s__).
+Artifact deployments are managed using a service API, also running in K8s, next to the runtime of course.
+The overall architecture would allow integration of different serverless runtimes. However, currently K8s is used.
 
-The function code is provided with a usual `js` file.
+In Cloud Foundry (__CF__) service `xsf-runtime` (Extension Factory, serverless runtime) is used as entry point.
+Each service instance represents a K8s namespace in a shared cluster.
+All artifacts deployed to a given service will end up as resource in the corresponding namespace.
+K8s namespaces (Faas tenants) are strictly isolated from each other.
+
+Function development is based on projects, using file `faas.json` as manifest.
+Any local IDE as well as WebIDE (Wing) can be used for implementation.
+
+## Package
+
+This package comprises two functional parts.
+First, it provides the function runtime for Node.js (version 8.11.3 or higher):
+* runtime components as such
+* http server to run (or debug) functions locally
+* test runner to support function unit tests
+
+Secondly, it offers basic SDK functionality by installing command ` faas-sdk`:
+* check project consistency
+* create and test deployment files (`values.yaml`)
+
+The function code is provided with usual `js` files.
 ```javascript
 'use strict';
 
@@ -54,6 +70,7 @@ Different trigger types are supported to invoke functions under various conditio
 Secrets provide an appropriate storage for credentials. Config maps can be used in addition for any further settings.
 
 ## Install
+
 There are two FaaS client tools, waiting to support local development:
 * __faas-sdk__: supports the development phase, checks project consistency, runs functions locally in a similar environments like in __K8s__, enables unit test implementation
 * __faas-cli__: used to manage artifact deployment into __K8s__, uses FaaS instances in the Cloud Foundry as entry point
@@ -85,25 +102,6 @@ The natural home of a FaaS project is a git repository.
 Based on that you can later easily switch between local IDE and SAP Web IDE.
 In the long term FaaS runtime may also support knative builds, fetching project files directly from git.
 Hence, we recommend to set up a git repository for your project from the beginning.
-
-## Service Instances
-__FaaS__ instances are created in the context of a Cloud Foundry (__CF__) space.
-The context may change to sub-account level in future.
-When creating a service instance you will (for now!) need to provide a service descriptor: e.g.
-```json
-{
-  "name": "my-faas-service-instance"
-}
-```
-It provides a friendly name `my-faas-service-instance` to be displayed in the service dashboard later on.
-Usually, you will provide the service name that you select in the last wizard step.
-
-Each service instance represents a __K8s__ namespace in a shared cluster.
-All artifacts deployed to a given service will end up as resource in the corresponding namespace.
-__K8s__ namespaces are isolated from each other.
-
-To deploy of artifacts __faas-cli__ can be used.
-It requires a preceding successful cf login. Verify this with `cf target`.
 
 ## Naming Rules
 All runtime artifacts need a name that matches the following constraints:
@@ -301,7 +299,8 @@ Let's start with an example again:
       "handler": "",
       "secrets": [ "sec-xbem", "sec-ebaas" ],
       "configs": [],
-      "timeout": 180
+      "timeout": 180,
+      "maxBody": "1MiB"
     }
   }
 }
@@ -313,6 +312,7 @@ In addition to the unique object name `my-new-fnc` the following attributes can 
 * __`secrets`__: array of secrets used by the function
 * __`configs`__: array of config maps used by the function
 * __`timeout`__: seconds the function can run, minimum between 10 and 180 seconds
+* __`maxBody`__: limit for body size (payload) of incoming requests provided to the function, default `1MiB`
 
 The function handler may require built-in modules, further local module files or external packages.
 External dependencies (or devDependencies, for example for unit testing) are defined as usual in `package.json`.
@@ -550,15 +550,17 @@ __Attributes__:
   * __`type`__: first part of HTTP authorization header, e.g. `Basic`, `Bearer`, ..: 
   * __`credentials`__: plain data corresponding to `type`
 * __`ce`__: [cloud event context attributes](https://github.com/cloudevents/spec/blob/v0.2/spec.md#context-attributes), only defined if available
-  * __`type`__: type of occurrence which has happened
   * __`specVersion`__: version of the CloudEvents specification which the event uses
-  * __`source`__: event producer
+  * __`source`__: event producer `"sap/app/01"`
+  * __`type`__: event type, e.g. `"sap.common.alert"`
   * __`id`__: ID of the event
+  * __`subject`__: subject of the event
   * __`time`__: timestamp of when the event happened
-  * __`schemaUrl`__: link to the schema that the data attribute adheres to
-  * __`contentType`__: data encoding format
+  * __`dataContentType`__: data encoding format
+  * __`dataSchema`__: link to the schema that the data attribute adheres to
+  * __`data`__: event payload, please note `event.ce.data` will always be equal to `event.data`
   * __`extensions`__: additional metadata not covered by the specification
-* __`data`__: payload data (HTTP body) related to invocation, depending on the received content type, either `string`, `Buffer` or `Object`,
+* __`data`__: payload data (HTTP body) related to invocation, depending on the received content type, either `string`, `Buffer` or `Object`, data can always be found here, with or without cloud event.
 * __`http`__: only defined if explicitly requested, provides access to HTTP `request` and `response` if available
 
 __Methods__:
@@ -571,6 +573,14 @@ The token itself is provided in field `event.auth.credentials`.
 Decodes event credentials as basic authentication data.
 Returns `null` if the mechanism is not 'Basic' or if the credentials do not match the expected structure.
 Does not validate the credentials against any provider, as this will be function logic already.
+* __`setBadRequest()`__:
+Sets the event status to `bad request`.
+Event will not be processed, handler may still add data to the response, for example as hint. 
+In contrast, throwing any error would be treated as internal error.
+* __`setUnauthorized()`__:
+Sets the event status to `unauthorized`.
+Event will not be processed, handler may still add data to the response, for example as hint.
+In contrast, throwing any error would be treated as internal error.
 * __`getContentType():string`__:
 Provides the received content type.
 In the case of cloud events it will be taken from the event itself.
@@ -582,7 +592,11 @@ Fallback strategy is based on the returned data type only.
 * __`getResponseStream(contentType):WritableStream`__:
 The response content type is defined and the corresponding stream is returned.
 It is possible to write data directly to the stream or to pipe data from other streams.
-The handler shall return a `Promise` to indicate the asynchronous end of processing.
+The function handler shall return a `Promise` to the runtime to indicate the asynchronous end of processing.
+* __`sendResponseEvent(ce)`__:
+The cloud event is returned as result of function execution.
+Http-Triggers would return it to the caller.
+AMQP or CE trigger can send the event, depending on its configuration. Source will be adjusted.
 
 If the function returns a simple value without defining the content type, a matching response content type will be selected automatically.
 And if the client was sending an HTTP request with `Accept` header this will also be taken into account.
@@ -594,23 +608,25 @@ __Attributes__:
 * __`funcName`__: function name
 * __`timeoutMS`__: milliseconds that the function is allowed to run
 
-__Methods__:
-* __`getSecretValueStream(name, key)`__: provides secret value stream
-* __`getSecretValue(name, key)`__: provides secret value as binary data (Buffer)
-* __`getSecretValueString(name, key)`__: provides secret value as text
-* __`getSecretValueJSON(name, key)`__: provides secret value as parsed JSON data
-* __`getSecretValueYAML(name, key)`__: provides secret value as parsed YAML data
-* __`getConfigValueStream(name, key)`__: provides config value stream
-* __`getConfigValue(name, key)`__: provides config value as binary data (Buffer)
-* __`getConfigValueString(name, key)`__: provides config value as text
-* __`getConfigValueJSON(name, key)`__: provides config value as parsed JSON data
-* __`getConfigValueYAML(name, key)`__: provides config value as parsed YAML data
-* __`callFunction(name, content, callback): Promise`__:
+__Methods__: (runtime nodejs8 provides the same methods, but __not__ async)
+* __`async getServiceCredentials(faas-json-alias)`__: provides service credentials as binary data (Buffer)`
+* __`async getServiceCredentialsString(faas-json-alias)`__: provides service credentials as text`
+* __`async getServiceCredentialsJSON(faas-json-alias)`__: provides service credentials as parsed JSON data`
+* __`async getSecretValueStream(name, key)`__: provides secret value stream
+* __`async getSecretValue(name, key)`__: provides secret value as binary data (Buffer)
+* __`async getSecretValueString(name, key)`__: provides secret value as text
+* __`async getSecretValueJSON(name, key)`__: provides secret value as parsed JSON data
+* __`async getSecretValueYAML(name, key)`__: provides secret value as parsed YAML data
+* __`async getConfigValueStream(name, key)`__: provides config value stream
+* __`async getConfigValue(name, key)`__: provides config value as binary data (Buffer)
+* __`async getConfigValueString(name, key)`__: provides config value as text
+* __`async getConfigValueJSON(name, key)`__: provides config value as parsed JSON data
+* __`async getConfigValueYAML(name, key)`__: provides config value as parsed YAML data
+* __`async callFunction(name, content): response`__:
 Calls another function by `name` within the same __K8s__ namespace,
 `content.data` provides the request payload, `content.type` the request content type.
-If a callback is provided it will be called to handle the end of the call, providing the parameters `error` and `result`.
-Otherwise a `Promise` is returned which resolves with the result.
-`result.data` contains the received payload, `result.type` the received content type.
+`response.data` contains the received payload, `response.type` the received content type.
+Special handling with runtime `nodejs8`: the method accepts a JsCallback as third parameter or returns a promise otherwise.
 * __`getFunctionEndpoint(name):string`__: Only available with enabled HTTP API,
 expects a function name (inside the same __K8s__ namespace) and returns the corresponding HTTP endpoint.
 
