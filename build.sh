@@ -1,4 +1,4 @@
-rm -r node_modules/@sap
+# rm -r node_modules/@sap
 npm search sap --registry https://npm.sap.com --json | jq > npm.sap.com.json
 cat npm.sap.com.json | jq 'reduce .[] as $i ({}; .[$i.name] = $i.version)' > packages.json
 cat npm.sap.com.json | jq '.[] | .name' | sort > packages.txt
@@ -8,6 +8,7 @@ echo "@sap/cds-odata-v2-adapter-proxy" >> packages.txt
 echo "@sap/cds-hana" >> packages.txt
 echo "@sap/cds-dk" >> packages.txt
 echo "@sap/cds-messaging" >> packages.txt
+echo "@sap/cds-mtx" >> packages.txt
 echo "@sap/cds-reflect" >> packages.txt
 echo "@sap/cds-rest" >> packages.txt
 echo "@sap/cds-services" >> packages.txt

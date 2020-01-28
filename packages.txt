@@ -23,6 +23,7 @@ sap/portal-cf-content-deployer
 @sap/cds-hana
 @sap/cds-dk
 @sap/cds-messaging
+@sap/cds-mtx
 @sap/cds-reflect
 @sap/cds-rest
 @sap/cds-services

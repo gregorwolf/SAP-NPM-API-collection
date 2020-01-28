@@ -10,6 +10,7 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/cds-hana"] = "latest"
   packagesJson["@sap/cds-dk"] = "latest"
   packagesJson["@sap/cds-messaging"] = "latest"
+  packagesJson["@sap/cds-mtx"] = "latest"
   packagesJson["@sap/cds-reflect"] = "latest"
   packagesJson["@sap/cds-rest"] = "latest"
   packagesJson["@sap/cds-services"] = "latest"

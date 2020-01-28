@@ -47,6 +47,7 @@
     "@sap/cds-hana": "latest",
     "@sap/cds-dk": "latest",
     "@sap/cds-messaging": "latest",
+    "@sap/cds-mtx": "latest",
     "@sap/cds-reflect": "latest",
     "@sap/cds-rest": "latest",
     "@sap/cds-services": "latest",
