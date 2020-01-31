@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [0.7.1] - 2020-01-28
+
 ## [0.7.0] - 2020-01-24
 
 - optimized runtime (full separation of sdk support)

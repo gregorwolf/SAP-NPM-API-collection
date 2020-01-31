@@ -1,4 +1,4 @@
-# rm -r node_modules/@sap
+rm -r node_modules/@sap
 npm search sap --registry https://npm.sap.com --json | jq > npm.sap.com.json
 cat npm.sap.com.json | jq 'reduce .[] as $i ({}; .[$i.name] = $i.version)' > packages.json
 cat npm.sap.com.json | jq '.[] | .name' | sort > packages.txt

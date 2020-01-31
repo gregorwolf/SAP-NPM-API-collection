@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.7.2 - 2020-01-30
+
+### Added
+- Support SameSite cookie attribute
+
+### Updated dependencies
+ - deps: express-session@1.17.0
+ - deps: @sap/logging@5.2.0
+
 ## 6.7.1 - 2019-12-24
 
 ### Added

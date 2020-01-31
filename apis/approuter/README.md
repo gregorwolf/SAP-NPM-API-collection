@@ -12,6 +12,7 @@
     + [Destination-service](#destination-service)
   * [UAA configuration](#uaa-configuration)
   * [Additional headers configuration](#additional-headers-configuration)
+  * [Additional cookies configuration](#additional-cookies-configuration)
   * [Plugins configuration](#plugins-configuration)
   * [Session timeout](#session-timeout)
   * [X-Frame-Options configuration](#x-frame-options-configuration)
@@ -188,6 +189,7 @@ Configuration | Environment variable | Description
 [UAA service name](#uaa-configuration) | `UAA_SERVICE_NAME` | Contains the name of the UAA service to be used.
 [Destinations](#destinations) | `destinations` | Provides information about the available destinations.
 [Additional headers](#additional-headers-configuration) | `httpHeaders` | Provides headers that the application router will return to the client in its responses.
+[Additional cookies](#additional-cookies-configuration) | `COOKIES` | Provides cookies that the application router will return to the client in its responses. Currently only SameSite cookie is supported.
 [Plugins](#plugins-configuration) | `plugins` | A plugin is just like a [*route*](#routes) except that you can't configure some inner properties.
 [Session timeout](#session-timeout) | `SESSION_TIMEOUT` | Positive integer representing the session timeout in minutes. The default timeout is 15 minutes.
 [X-Frame-Options](#x-frame-options-configuration) | `SEND_XFRAMEOPTIONS`, `httpHeaders` | Configuration for the X-Frame-Options header value.
@@ -334,6 +336,22 @@ Sample configuration for additional headers:
 ]
 ```
 In this case the application router will send two additional headers in the responses to the client.
+
+### Additional cookies configuration
+
+If configured, the application router will send additional cookies in its responses to the client.
+Additional cookies can be set in the `COOKIES` environment variable.
+
+Sample configuration for cookies in manifest.yml :
+
+```json
+  env:
+   COOKIES: >
+        { "SameSite":"None" }
+```
+In this case the application router will set SameSite cookie attribute to None for JSESSIONID cookie in the responses to the client.
+
+Note that currently only SameSite cookie is supported
 
 ### Plugins configuration
 
