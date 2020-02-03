@@ -8,7 +8,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [0.7.2] - 2020-01-31
+
+- fixed: code completion for vscode and intellij
+
 ## [0.7.1] - 2020-01-28
+
+- fixed: service credentials, provide only credentials content
 
 ## [0.7.0] - 2020-01-24
 
