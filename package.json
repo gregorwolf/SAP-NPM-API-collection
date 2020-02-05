@@ -53,6 +53,7 @@
     "@sap/cds-services": "latest",
     "@sap/cds-sql": "latest",
     "@sap/cds-sqlite": "latest",
+    "@sap/edm-converters": "latest",
     "@sap/xsenv": "latest",
     "@sap/logging": "latest",
     "@sap/hana-client": "latest",
