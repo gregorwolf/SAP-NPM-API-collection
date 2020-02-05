@@ -1,4 +1,4 @@
-rm -r node_modules/@sap
+# rm -r node_modules/@sap
 npm search sap --registry https://npm.sap.com --json | jq > npm.sap.com.json
 cat npm.sap.com.json | jq 'reduce .[] as $i ({}; .[$i.name] = $i.version)' > packages.json
 cat npm.sap.com.json | jq '.[] | .name' | sort > packages.txt
@@ -16,6 +16,7 @@ echo "@sap/cds-sql" >> packages.txt
 echo "@sap/cds-sqlite" >> packages.txt
 echo "@sap/edm-converters" >> packages.txt
 echo "@sap/xsenv" >> packages.txt
+echo "@sap/edmx2csn" >> packages.txt
 echo "@sap/site-entry" >> packages.txt
 echo "@sap/logging" >> packages.txt
 echo "@sap/hana-client" >> packages.txt
