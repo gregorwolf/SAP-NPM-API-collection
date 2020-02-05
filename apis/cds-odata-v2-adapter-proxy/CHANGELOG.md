@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- New version information is automatically added after line 8 -->
+## Version 1.4.18 - 2020-02-03
+
+### Fixed
+- Improve $value handling for streaming
+- Fix stream filename retrieval
+- Optimize edmx localization
+- Improve logging and tracing handling
+- Fix for external service (Java) support
+- Re-add "services" configuration, for external service mapping
+- Fix for search phrase
+
 ## Version 1.4.17 - 2020-01-20
 
 ### Fixed
