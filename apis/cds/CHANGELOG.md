@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+# Version 3.21.3 - 2020-02-05
+## Fixed
+- Fiori preview no longer catches service URLs with an arbitrary prefix (e.g. `/foo/browse` instead of just `/browse`).
+
+
 ## Version 3.21.2 - 2020-01-17
 ### Fixed
 - `@restrict.where` clauses are now properly stored in `csn.json` files
