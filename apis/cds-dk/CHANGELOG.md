@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.4.4 - 2020-02-05
+### Also see
+- Changes of `@sap/cds` 3.21.3
+
+
 ## Version 1.4.3 - 2020-01-20
 ### Also see
 - Changes of `@sap/cds` 3.21.2

@@ -1,5 +1,11 @@
 # Hana Client 2.4.x Drivers
 
+## Version 2.4.182
+
+### Changes:
+
+ - Bug 236802: SQLDBC 2.4.132 and later may infinitely loop on reading finished NCLOB into a more than large enough UCS2 destination buffer if the payload contains non-BMP characters
+
 ## Version 2.4.177
 
 ### Changes:
