@@ -1,0 +1,120 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/).
+
+## Unreleased
+
+## [1.3.9] - 2019-10-28
+
+### Fixed
+- removed @odata.metadataEtag annotation in JSON responses (with exception of the service-document)
+- additional notice regarding IEEE754Compatible content-type parameter in error messages if necessary
+
+## [1.3.8] - 2019-10-01
+
+### Added
+- support for annotations `@odata.mediaEditLink` and `@odata.mediaReadLink` in entity serialization
+
+## [1.3.7] - 2019-09-19
+
+### Fixed
+- npm-shrinkwrap.json remains unchanged during xmake build
+
+## [1.3.6] - 2019-09-18
+
+### Fixed
+- result type of $apply with aliases for custom aggregates (#49)
+
+## [1.3.5] - 2019-09-02
+
+### Fixed
+- serialization of navigation properties for concat transformations in $apply
+- HEAD requests with valid if-none-match header on the ServiceDocument return 304 Not Modified
+
+## [1.3.4] - 2019-06-18
+
+## [1.3.3] - 2019-05-08
+
+### Added
+- support in URI resource-path parsing for key-as-segment convention
+
+## [1.3.2] - 2019-04-26
+
+## [1.3.1] - 2019-04-23
+
+## [1.3.0] - 2019-04-23
+
+### Added
+- preliminary optional switch to use non-validating serializer (not yet stable API)
+
+### Fixed
+- context URL for $select with same property more than once
+
+## [1.2.1] - 2019-04-12
+
+### Added
+- support for batch requests and responses in JSON format as defined in OData version 4.01
+- parallel processing of batch requests
+- encoder for primitive values used in serializing made a component that can be overridden
+
+### Fixed
+- improved serializing performance
+
+## [1.2.0] - 2019-03-29
+
+### Added
+- advertisement for operations
+
+## [1.1.0] - 2019-03-15
+
+### Added
+- Deserialization of delta payloads and deep updates
+- Adaption of Oasis Issue 1221: If Oasis CSDL JSON Specification version 4.01-CS02 is found,
+  all annotations expressions based on string values will lead to an error
+
+## [1.0.1] - 2019-01-21
+
+## [1.0.0] - 2019-01-15
+
+- first release version of the new odata-server module
+- CSDL provider to provide your OData EDM model via the JSON format
+- annotations in metadata
+- basic cross service referencing
+- content negotiation
+- support for request Prefer header and response Preference-Applied header
+- support for request Accept-Charset header
+- URI resource-path parser
+- parsers for the system query options $filter, $orderby,
+  $expand (also in combination with query options for expanded entities), $select,
+  $search, $format, and $apply
+- dispatching of requests to handler methods
+- support for metadata requests with automatic metadata ETag and the possibility to
+  use a custom metadata handler for locale-specific metadata
+- read scenarios like read EntityCollection, read Entity, read navigation between entities
+  (including containment navigation), read EntitySet(Key)/property
+  (primitive property, complex property, and their collections), read function imports,
+  and read bound functions
+- CRUD entity and property requests (primitive, complex, and collection properties),
+  including linking with existing entities via bind operations and deep inserts
+- upsert requests (PUT/PATCH on entity set with key and navigation to many with key)
+- server-driven paging
+- CRUD operations for references (also for references reached via navigation)
+- ActionImports and bound actions
+- $batch requests (including retrying requests for ChangeSets)
+- HEAD requests on the service document
+- conditional request handling with ETags
+- $apply support for simple aggregate, groupby, filter, compute, identity,
+  concat, bottomcount, topcount, orderby, skip, and top transformations
+- JSON serialization and deserialization of entities, entity collections, and properties,
+  including support for JSON format parameters IEEE754Compatible and ExponentialDecimals,
+  built-in Context URI Builder, and automatic odata.metadataEtag annotation
+- metadata/annotations in data structure
+- instance annotations in JSON serializer
+- serialization of primitive-property raw values
+- node.js 8.x and 10.x support
+- debug view in JSON and HTML formats
+- logging/tracing facade

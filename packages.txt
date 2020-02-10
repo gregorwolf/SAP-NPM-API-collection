@@ -34,5 +34,6 @@ sap/portal-cf-content-deployer
 @sap/edmx2csn
 @sap/site-entry
 @sap/logging
+@sap/odata-server
 @sap/hana-client
 @sap/faas

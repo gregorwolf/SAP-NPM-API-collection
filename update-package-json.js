@@ -20,6 +20,7 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/edmx2csn"] = "latest"
   packagesJson["@sap/xsenv"] = "latest"
   packagesJson["@sap/site-entry"] = "latest"
+  packagesJson["@sap/odata-server"] = "latest"
   packagesJson["@sap/logging"] = "latest"
   packagesJson["@sap/hana-client"] = "latest"
   packagesJson["@sap/faas"] = "latest"
