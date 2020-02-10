@@ -55,6 +55,7 @@
     "@sap/cds-sqlite": "latest",
     "@sap/edm-converters": "latest",
     "@sap/edmx2csn": "latest",
+    "@sap/cloud-sdk-generator": "latest",
     "@sap/xsenv": "latest",
     "@sap/odata-server": "latest",
     "@sap/logging": "latest",

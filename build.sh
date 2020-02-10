@@ -15,6 +15,7 @@ echo "@sap/cds-services" >> packages.txt
 echo "@sap/cds-sql" >> packages.txt
 echo "@sap/cds-sqlite" >> packages.txt
 echo "@sap/edm-converters" >> packages.txt
+echo "@sap/cloud-sdk-generator" >> packages.txt
 echo "@sap/xsenv" >> packages.txt
 echo "@sap/edmx2csn" >> packages.txt
 echo "@sap/site-entry" >> packages.txt
