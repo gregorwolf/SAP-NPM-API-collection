@@ -31,6 +31,7 @@ sap/portal-cf-content-deployer
 @sap/cds-sqlite
 @sap/edm-converters
 @sap/cloud-sdk-generator
+@sap/cloud-sdk-util
 @sap/xsenv
 @sap/edmx2csn
 @sap/site-entry

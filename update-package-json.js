@@ -19,6 +19,7 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/edm-converters"] = "latest"
   packagesJson["@sap/edmx2csn"] = "latest"
   packagesJson["@sap/cloud-sdk-generator"] = "latest"
+  packagesJson["@sap/cloud-sdk-util"] = "latest"
   packagesJson["@sap/xsenv"] = "latest"
   packagesJson["@sap/site-entry"] = "latest"
   packagesJson["@sap/odata-server"] = "latest"
