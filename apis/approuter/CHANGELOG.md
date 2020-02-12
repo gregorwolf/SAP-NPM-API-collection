@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 6.8.0 - 2020-02-10
+
+### Added
+- Enable external session manager extensibility when using HTML5 Repository
+
 ## 6.7.2 - 2020-01-30
 
 ### Added

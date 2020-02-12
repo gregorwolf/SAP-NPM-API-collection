@@ -342,16 +342,16 @@ In this case the application router will send two additional headers in the resp
 If configured, the application router will send additional cookies in its responses to the client.
 Additional cookies can be set in the `COOKIES` environment variable.
 
-Sample configuration for cookies in manifest.yml :
+Example of configuration for cookies in the manifest.yml :
 
 ```json
   env:
    COOKIES: >
         { "SameSite":"None" }
 ```
-In this case the application router will set SameSite cookie attribute to None for JSESSIONID cookie in the responses to the client.
+In this example, the application router sets the SameSite cookie attribute to None for the JSESSIONID cookie in the responses to the client.
 
-Note that currently only SameSite cookie is supported
+Note: Currently, only the SameSite cookie is supported
 
 ### Plugins configuration
 
@@ -1756,6 +1756,7 @@ The application router refreshes the JWT automatically before it expires (if the
 This can also be configured via the `JWT_REFRESH` environment variable (the value is in minutes). If `JWT_REFRESH` is set to 0 then the refresh is disabled.
 * OAuth scopes - scopes owned by the current user, used to check if the user has the scope required for each request. See `scope` in [Routes](#routes).
 * Backend session cookies - all session cookies sent by backend services.
+* Business Services OAuth tokens - JSON Web Token (JWT) exchanged and used to access re-use services bound to the application router
 
 **Note:** If the JWT is close to expiration and the session is still active a JWT refresh will be triggered in `JWT_REFRESH` minutes before expiration.
 `JWT_REFRESH` is an environment variable stating the number of minutes before the JWT expiration the refresh will be triggered. The default value is 5 minutes.
