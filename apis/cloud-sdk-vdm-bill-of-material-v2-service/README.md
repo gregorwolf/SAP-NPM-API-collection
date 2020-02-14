@@ -2,7 +2,7 @@
 
 This package contains the OData VDM for the [Bill Of Material V2 Service](https://api.sap.com/api/API_BILL_OF_MATERIAL_SRV;v=0002) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: Product Lifecycle Management - Master Data Integration (SAP_COM_0105).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/1911.500/EN/8a/8b08aab6cd47f4a3e35e8bd8d86ca2/frameset.htm).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/8a/8b08aab6cd47f4a3e35e8bd8d86ca2/frameset.htm).
 
 ### Helpful Links
 

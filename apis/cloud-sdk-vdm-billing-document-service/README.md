@@ -2,7 +2,7 @@
 
 This package contains the OData VDM for the [Billing Document Service](https://api.sap.com/api/API_BILLING_DOCUMENT_SRV) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: Billing Integration (SAP_COM_0120).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/1911.500/EN/fe/6f3eda2f914d81b512493fd79e9769/frameset.htm).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/fe/6f3eda2f914d81b512493fd79e9769/frameset.htm).
 
 ### Helpful Links
 

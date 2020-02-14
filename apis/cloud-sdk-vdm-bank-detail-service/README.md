@@ -2,7 +2,7 @@
 
 This package contains the OData VDM for the [Bank Detail Service](https://api.sap.com/api/API_BANKDETAIL_SRV) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: Finance - Bank Integration (SAP_COM_0127), Employee Central Financial Master Data Integration (SAP_COM_0441).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/1911.500/EN/34/c80bfa05f740bca57c17b941bc28bf/frameset.htm).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/34/c80bfa05f740bca57c17b941bc28bf/frameset.htm).
 
 ### Helpful Links
 

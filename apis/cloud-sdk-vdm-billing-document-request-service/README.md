@@ -2,7 +2,7 @@
 
 This package contains the OData VDM for the [Billing Document Request Service](https://api.sap.com/api/API_BILLING_DOCUMENT_REQUEST_SRV) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: External Billing Document Request Integration (SAP_COM_0176).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com/viewer/715321bf04e04099a8f4a13a468ce6b3/latest/en-US/ddcccb0282774476869bc499812cf793.html).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/dd/cccb0282774476869bc499812cf793/frameset.htm).
 
 ### Helpful Links
 

@@ -1,8 +1,8 @@
-# @sap/cloud-sdk-vdm-bill-of-material-service
+# @sap/cloud-sdk-vdm-business-area-service
 
-This package contains the OData VDM for the [Bill Of Material Service](https://api.sap.com/api/API_BILL_OF_MATERIAL_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Product Lifecycle Management - Master Data Integration (SAP_COM_0105).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/15/3a455816dda007e10000000a441470/frameset.htm).
+This package contains the OData VDM for the [Business Area Service](https://api.sap.com/api/API_BUSINESSAREA_SRV) of SAP S/4HANA Cloud.
+This service is part of the following communication scenarios: SAP Analytics Cloud for Planning Integration (SAP_COM_0087), Finance - Cloud Consolidation Data Collection Integration (SAP_COM_0241).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/c6/cac6aefe1e4505bb0674fecfd5ad39/frameset.htm).
 
 ### Helpful Links
 

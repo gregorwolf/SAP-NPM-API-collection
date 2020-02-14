@@ -2,7 +2,7 @@
 
 This package contains the OData VDM for the [Attachment Service](https://api.sap.com/api/API_CV_ATTACHMENT_SRV) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: Purchase Requisition Integration (SAP_COM_0102), Distributed Manufacturing Integration (SAP_COM_0077), Product Lifecycle Management - Master Data Integration (SAP_COM_0105), Supplier Invoice Integration (SAP_COM_0057), Defect Processing Integration (SAP_COM_0153), Finance - Posting Integration (SAP_COM_0002), SAP S/4HANA Procurement Hub - Ariba GB - Hub to Ariba GB Integration (SAP_COM_0292), Legal Document Integration (SAP_COM_0178).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/1911.500/EN/2e/1be0a60d08400b8e4b1f6b57140a28/frameset.htm).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/2e/1be0a60d08400b8e4b1f6b57140a28/frameset.htm).
 
 ### Helpful Links
 

@@ -12,11 +12,11 @@
 @sap/cloud-sdk-vdm-bill-of-material-where-used-service
 @sap/cloud-sdk-vdm-billing-document-request-service
 @sap/cloud-sdk-vdm-billing-document-service
+@sap/cloud-sdk-vdm-business-area-service
 @sap/grunt-sapui5-bestpractice-build
 @sap/node-jwt
 @sap/site-entry
 @sap/xsjs
-@sap/xsodata
 @sap/xssec
 sap/portal-cf-content-deployer
 @sap/cds-odata-v2-adapter-proxy
