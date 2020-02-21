@@ -1,10 +1,10 @@
 [
   {
     "name": "@sap/approuter",
-    "version": "6.8.0",
+    "version": "6.8.1",
     "description": "Node.js based application router",
     "keywords": [],
-    "date": "2020-02-12T07:50:19.466Z",
+    "date": "2020-02-21T07:14:18.811Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -101,7 +101,7 @@
   },
   {
     "name": "@sap/node-jwt",
-    "version": "1.6.5",
+    "version": "1.6.6",
     "description": "JWT validation library for Node.js",
     "keywords": [
       "jwt",
@@ -109,7 +109,7 @@
       "sap",
       "xs"
     ],
-    "date": "2019-09-27T11:25:55.743Z",
+    "date": "2020-02-17T07:22:06.218Z",
     "links": {
       "npm": null,
       "homepage": null,

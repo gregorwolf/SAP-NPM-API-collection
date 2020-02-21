@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.8.1 - 2020-02-20
+
+### Fixed
+- Fix default route
 
 ## 6.8.0 - 2020-02-10
 
