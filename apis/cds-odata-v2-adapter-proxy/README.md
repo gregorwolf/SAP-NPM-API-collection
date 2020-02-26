@@ -3,6 +3,7 @@
 OData v2 Adapter Proxy for CDS OData v4 Services
 
 ## Build Status
+
 [![Build Status](https://gkecdxodata.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=cds-community%2Fcds-odata-v2-adapter-proxy%2Fmaster)](https://gkecdxodata.jaas-gcp.cloud.sap.corp/job/cds-community/job/cds-odata-v2-adapter-proxy/job/master/)
 
 ## Getting Started
@@ -10,19 +11,46 @@ OData v2 Adapter Proxy for CDS OData v4 Services
 - Install: `npm install`
 - Unit Tests: `npm test`
 - Test Server: `npm start`
-    - Service: `http://localhost:4004/v2/main`
-    - Metadata: `http://localhost:4004/v2/main/$metadata`
-    - Data: `http://localhost:4004/v2/main/Header?$expand=Items`
+  - Service: `http://localhost:4004/v2/main`
+  - Metadata: `http://localhost:4004/v2/main/$metadata`
+  - Data: `http://localhost:4004/v2/main/Header?$expand=Items`
 
 ## Usage
 
-### CDS combined backend (Node.js)
+### CDS combined backend (Node.js) - integrated
 
 In your existing `@sap/cds` project:
-- Run `npm install @sap/cds-odata-v2-adapter-proxy`
-    - Internal NPM Registry: `http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.releases.npm/`
-    - External NPM Registry: `https://npm.sap.com`
-- Create new file e.g. `index.js` in the service folder `srv` of your project:
+
+- Run `npm install @sap/cds-odata-v2-adapter-proxy -s`
+  - External NPM Registry: `https://npm.sap.com`
+  - Internal NPM Registry: `http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.milestones.npm/`
+- Create new file `server.js` in the service folder `srv` of your project: `./srv/server.js`
+
+```
+"use strict";
+
+const cds = require("@sap/cds");
+const proxy = require("@sap/cds-odata-v2-adapter-proxy");
+
+cds.on("bootstrap", app => app.use(proxy()));
+
+module.exports = cds.server;
+```
+
+- Run `cds run` from the project root to start the server:
+  - OData v2 service will be available at http://localhost:4004/v2/<service-path>
+  - OData v4 service will be available at http://localhost:4004/<service-path>
+
+Note that `@sap/cds` and `express` are peer dependency and needs to be available as module as well.
+
+### CDS combined backend (Node.js) - custom
+
+In your existing `@sap/cds` project:
+
+- Run `npm install @sap/cds-odata-v2-adapter-proxy -s`
+  - External NPM Registry: `https://npm.sap.com`
+  - Internal NPM Registry: `http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.releases.npm/`
+- Create new file `index.js` in the service folder `srv` of your project: `./srv/index.js`
 
 ```
 "use strict";
@@ -57,20 +85,21 @@ const port = process.env.PORT || 4004;
 ```
 
 - Run `node srv/index` from the project root to start the server:
-    - OData v2 service will be available at http://localhost:4004/v2/<service-path>
-    - OData v4 service will be available at http://localhost:4004/<service-path>
+  - OData v2 service will be available at http://localhost:4004/v2/<service-path>
+  - OData v4 service will be available at http://localhost:4004/<service-path>
 
 Note that `@sap/cds` and `express` are peer dependency and needs to be available as module as well.
 
 ### CDS standalone backend (e.g. Java)
 
-In a new Node.js project:
-- Run `npm install @sap/cds`
-- Run `npm install @sap/cds-odata-v2-adapter-proxy`
-    - Internal NPM Registry: `http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.releases.npm/`
-    - External NPM Registry: `https://npm.sap.com`
+In a new Node.js express project:
+
+- Run `npm install @sap/cds -s`
+- Run `npm install @sap/cds-odata-v2-adapter-proxy -s`
+  - External NPM Registry: `https://npm.sap.com`
+  - Internal NPM Registry: `http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.releases.npm/`
 - Place CDS models in `db` and `srv` model folders
-- Create new file e.g. `index.js` in the service folder `srv` of the project:
+- Create new file `index.js` in the service folder `srv` of the project: `./srv/index.js`
 
 ```
 "use strict";
@@ -78,7 +107,7 @@ In a new Node.js project:
 const express = require("express");
 const http = require("http");
 
-const odatav2proxy = "@sap/cds-odata-v2-adapter-proxy"
+const proxy = require("@sap/cds-odata-v2-adapter-proxy");
 
 const host = "0.0.0.0";
 const port = process.env.PORT || 4004;
@@ -88,9 +117,9 @@ const port = process.env.PORT || 4004;
 
   // serve odata v2
   process.env.XS_APP_LOG_LEVEL = "warning";
-  app.use(odatav2proxy({
+  app.use(proxy({
     path: "v2",
-    port: 8080, // target port
+    target: "http://localhost:8080",
     services: {
       "<odata-v4-service-path>": "<qualified.ServiceName>"
     }
@@ -102,15 +131,25 @@ const port = process.env.PORT || 4004;
 })();
 ```
 
+- Make sure, that your CDS models are also available in the project.
+  Those reside either in `db` and `srv` folders, or a compiled `csn.json` is provided.
+  If not detected automatically, the model path can be set with option `model`.
+
 - Run `node srv/index` from the project root to start the server:
-    - OData v2 service will be available at http://localhost:4004/v2/<odata-v4-service-path>
-    - OData v4 service shall be available at http://localhost:8080/<odata-v4-service-path>
+
+  - OData v2 service will be available at http://localhost:4004/v2/<odata-v4-service-path>
+  - OData v4 service shall be available at http://localhost:8080/<odata-v4-service-path>
+
+- A deployed version of OData v2 proxy shall have option `target` set to the deployed OData v4 backend URL.
+  This can be retrieved from the CF environment using [node-xsenv](https://github.wdf.sap.corp/xs2/node-xsenv) module, e.g.
+  from the `destinations` environment variable.
 
 Note that `@sap/cds` and `express` are peer dependency and needs to be available as module as well.
 
 ## Documentation
 
 Instantiates an CDS OData v2 Adapter Proxy Express Router for a CDS based OData v4 Server
+
 - **options:** CDS OData v2 Adapter Proxy options
   - **[options.base]** Base path, under which the service is reachable. Default is ''.
   - **[options.path]:** Path, under which the proxy is reachable. Default is 'v2'.
@@ -121,6 +160,7 @@ Instantiates an CDS OData v2 Adapter Proxy Express Router for a CDS based OData 
   - **[options.standalone]** Indication, that OData v2 Adapter proxy is a standalone process. Default is 'false'.
   - **[options.mtxEndpoint]** Endpoint to retrieve MTX metadata for standalone proxy. Default is '/mtx/v1'
   - **[options.ieee754Compatible]** Edm.Decimal and Edm.Int64 are serialized IEEE754 compatible. Default is 'true'.
+  - **[options.pathRewrite]** Custom path rewrite rules. Default uses 'path' option as rule: { "^/odata/v2": "" }
 
 Logging is controlled with XSA environment variable `XS_APP_LOG_LEVEL`.
 Details can be found at [xs2/node-logging](https://github.wdf.sap.corp/xs2).
@@ -138,9 +178,9 @@ Details can be found at [xs2/node-logging](https://github.wdf.sap.corp/xs2).
 - IEEE754Compatible
 - Messages/Error Handling
 - Location Header
-- $inlinecount / $count / $value
+- $inlinecount / $count / \$value
 - Entity with Parameters
-- Octet Stream, Content Disposition
+- Stream Support (Octet and Url), Content Disposition
 - Multitenancy, Extensibility (proxy in same process only)
 - Content-ID
 - Draft Support
@@ -148,13 +188,15 @@ Details can be found at [xs2/node-logging](https://github.wdf.sap.corp/xs2).
 - Localization
 - Tracing
 - Logging Correlation
+- ETag Support (Concurrency Control)
 
 ## OData v2/v4 Delta
- 
- http://docs.oasis-open.org/odata/new-in-odata/v4.0/cn01/new-in-odata-v4.0-cn01.html
+
+http://docs.oasis-open.org/odata/new-in-odata/v4.0/cn01/new-in-odata-v4.0-cn01.html
 
 **Open:**
+
 - $links -> $ref
-- KEY(...) -> $root
+- KEY(...) -> \$root
 - years, months, days, minutes, seconds
 - Function Parameters as Query Options
