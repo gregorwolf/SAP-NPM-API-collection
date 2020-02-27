@@ -6,6 +6,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.23.1 - 2020-02-26
+
+### Removed
+
+- `npm-shrinkwrap.json`
+
+## Version 1.23.0 - 2020-02-19
+
+### Changed
+
+- Updated version of @sap/cds-sql to 1.23.0
+
+## Version 1.22.0 - 2020-02-05
+
+### Added
+
+- Allow setting the [journal mode](https://www.sqlite.org/draft/pragma.html#pragma_journal_mode) via credentials.journalMode
+
+### Changed
+
+- Pool options can once again be overwritten
+
 ## Version 1.21.0 - 2019-12-10
 
 ### Changed

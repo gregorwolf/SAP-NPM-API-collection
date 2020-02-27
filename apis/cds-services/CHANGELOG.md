@@ -6,6 +6,92 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.26.0 - 2020-02-26
+
+### Removed
+
+- `npm-shrinkwrap.json`
+
+## Version 1.25.0 - 2020-02-25
+
+### Added
+
+- Support for OData singletons
+- Streaming from draft
+- Navigations in aggregate expressions
+
+### Changed
+
+- use odata-server 1.5.2
+
+### Fixed
+
+- handling of virtual field in column generation
+- callstack exceeded in SELECT
+
+## Version 1.24.1 - 2020-02-21
+
+### Added
+
+- Support draft for localized texts (to be enabled by @sap/cds and @sap/cds-compiler)
+
+## Version 1.24.0 - 2020-02-20
+
+### Added
+
+- Support for OData `$apply` with `count distinct`
+
+### Changed
+
+- use odata-server 1.5.1
+
+### Fixed
+
+- Column generation for `SELECT.from()` queries without specifying `.columns()`
+  - `HasDraftEntity` was not properly calculated
+  - Virtual properties were not excluded
+- Where secure annotations with localized entities
+- Handling of `@cds.on.insert/update` annotated properties of draft-enabled entities
+- Keys in root element were not correctly calculated for deep operations
+- `@Core.MediaType` could not be used in entity annotated with `@cds.persistence.skip` 
+
+### Removed
+
+- Annotation `@Search.fuzzinessThreshold`
+
+## Version 1.23.0 - 2020-02-05
+
+### Added
+
+- Support non-UUID field as ETags
+- Support draft and ETags
+- Support for complex where in annotations
+- Additional argument `target` for `req.info`
+
+### Changed
+
+- Direct access to auto-exposed entities in draft case
+- Errors normalized based on OData v4 standard
+- Messages (i.e., header `sap-messages`) normalized based on Fiori standard
+- Referential integrity checks are now executed before the commit
+- Result of create and update queries is read from the data source to include computed values (update: root only, i.e., w/o compositons, etc.)
+
+### Fixed
+
+- Race condition when there are erros when saving draft
+- Handling of where from @restrict annotation of draft enabled entity
+- Saving a draft will not ignore readonly fields anymore
+- Not having a connection for unauthorized users will not crash the server anymore
+- In mocked authorization, users don't need the `ID` property
+- Filtering using the `NE` operator handles null values properly
+- For insertable-only entities default values are correctly handled now
+- Immutable values are now ignored during PATCH or UPDATE requests
+- Batch input via REST
+- SELECT * by customer handlers will work also on Hana in case the columns are lowercase
+- Support "userAttributes" by Mocked Authentication, "xs.user.attributes" is deprecated and will
+be removed in the next releases
+- Arbitrary users are allowed if fake user '*'= true exist by Mocked Authentication
+
 ## Version 1.22.0 - 2019-12-11
 
 ### Added
@@ -14,6 +100,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Support for subselects and aliasing for remote service definitions
 - Support for `@cds.persistence.table`.
 - Actions/functions support $select and $expand query params in odata
+- Support cds annotation on insert and update with # (e.g @cds.on.update: #user)
 
 ### Changed
 
@@ -84,7 +171,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- Empty user attributes in where conditions 
+- Empty user attributes in where conditions
 - Queries in custom handler executed twice
 
 ## Version 1.19.0 - 2019-10-02
@@ -101,7 +188,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- Draft service having column names from draft admin table 
+- Draft service having column names from draft admin table
 - POST and PUT on views with renaming and excluding
 - Draft with custom `oncond` in backlink
 - Batch with multitenancy
@@ -121,7 +208,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - Draft activation by multiple views
-- Binary processing in rest adapter 
+- Binary processing in rest adapter
 
 ## Version 1.18.0 - 2019-09-09
 
@@ -137,8 +224,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- READ with `@cds.api.ignore` annotation 
-- Navigation on Entities with multiple keys did not work correctly 
+- READ with `@cds.api.ignore` annotation
+- Navigation on Entities with multiple keys did not work correctly
 - UPDATE and UPSERT requests with `@cds.on.update` and `@cds.on.insert` annotations
 - Logging of missing permissions if no authentication strategy is detected
 
@@ -323,7 +410,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Improved performance
 
 ## Version 1.9.0 - 2016-04-16
- 
+
 ### Added
 
 - 'mock' strategy accepts any user credentials if none configured
@@ -335,7 +422,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Changed
 
 - Handlers for `failed` events must only have the error object as an argument
-- Handlers for `succeeded` and `done` events must have no argument at all 
+- Handlers for `succeeded` and `done` events must have no argument at all
 - used new function notation in generated CQN
 - Reduction of round trips to data source by not using transactional blocks at reading requests
 
@@ -358,7 +445,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- Generic `onCommit` or `onRollback` handlers end the transaction of potentially multiple db sessions in the request 
+- Generic `onCommit` or `onRollback` handlers end the transaction of potentially multiple db sessions in the request
 context
 - Merged client adapter into service
 
@@ -544,7 +631,7 @@ context
 
 ### Changed
 
-- Update entry makes insert if the entry doesn't exist 
+- Update entry makes insert if the entry doesn't exist
 - Log messages are used directly instead of being wrapped
 - Bound functions now have a query value
 - Function next is implicitly executed in synchronous on-handlers
@@ -648,7 +735,7 @@ context
 
 ### Added
 
-- API to support the implementation of authorization restrictions 
+- API to support the implementation of authorization restrictions
 - Local service client
 - Support for to-one-navigation in $filter
 - Support for annotation @Search.defaultSearchElement to restrict searchable columns in $search
@@ -677,11 +764,11 @@ context
 ### Added
 
 - OData Service: $search supports Unary and Binary Expressions without brackets
-- Registration of global handler using star symbol like "this.on('*', () => {})"   
+- Registration of global handler using star symbol like "this.on('*', () => {})"
 - Registration of express middleware using this.use()
 - Improved FeautureNotSupported error message
-- context.reject supported for before, on and after handlers 
-- Support of context.run().then.run() shortcut
+- context.reject supported for before, on and after handlers
+<!-- Was never documented publicly: - Support of context.run().then.run() shortcut -->
 
 ### Changed
 

@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
 
+## [1.5.2] - 2020-02-21
+
+### Fixed
+- handling of Path for navigation-property binding and EntitySetPath for bound actions and functions (#84)
+
 ## [1.5.1] - 2020-02-12
 
 ### Fixed

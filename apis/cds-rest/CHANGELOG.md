@@ -6,6 +6,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.5.1 - 2020-02-27
+
+### Removed
+
+- remove npm-shrinkwrap.json
+
+## Version 1.5.0 - 2020-02-19
+
+### Changed
+
+- Updated version number for public release
+
+## Version 1.4.0 - 2020-02-05
+
+### Added
+
+- Where x in (a,b,...) predicates are translated to series of (x eq a) or (x eq b) in OData `$filter` options
+
+### Changed
+
+- Version of `@sap/cloud-sdk-core` pinned to `1.15.1`
+- Version of `@sap/cloud-sdk-util` pinned to `1.15.1`
+
 ## Version 1.3.0 - 2019-10-29
 
 ### Removed
