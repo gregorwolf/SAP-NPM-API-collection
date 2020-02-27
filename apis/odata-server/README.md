@@ -5,7 +5,7 @@ OData V4.0 Server Library
 
 - [Overview](#overview)
 - [Installation](#installation)
-- [Usage](#usage)
+- [Supported Requests](#supported-requests)
 - [Releases and Milestones](#releases-and-milestones)
 
 # Overview
@@ -42,6 +42,7 @@ The library is modular and consists of the following main components:
   external OData services).
 
 # Installation
+
 ```npm install @sap/odata-server```
 
 # Usage
@@ -94,7 +95,7 @@ const server = http.createServer((req, res) => service.process(req, res))
 | Deep insert                   | POST http&#58;//host/serviceRoot/EntitySet                                               | 
 | Entity with bind operations   | POST http&#58;//host/serviceRoot/EntitySet                                               | 
 | Reference                     | POST http&#58;//host/serviceRoot/EntitySet(Key)/NavigationPropertyToMany/$ref            | 
-| *Update Requests*             | *PUT/PATCH*                                                                              | 
+| **Update Requests**           | **PUT/PATCH**                                                                            | 
 | Entity                        | PUT/PATCH http&#58;//host/serviceRoot/EntitySet(Key)                                     |
 | Reference                     | PUT http&#58;//host/serviceRoot/EntitySet(Key)/NavigationPropertyToOne/$ref              | 
 | Complex property              | PUT/PATCH http&#58;//host/serviceRoot/EntitySet(Key)/ComplexProperty                     |
@@ -127,7 +128,7 @@ const server = http.createServer((req, res) => service.process(req, res))
 | boundAction                   | POST http&#58;//host/serviceRoot/EntitySet(Key)/PrimitiveProperty/boundAction            |
 | boundAction                   | POST http&#58;//host/serviceRoot/EntitySet(Key)/PrimitivePropertyCollection/boundAction  |
 
-# Supported System Query Options
+## Supported System Query Options
 
 | System Query Option           | OASIS OData V4.0 Errata 3 - Query Option Description    | 
 |:----------------|:-------------------------------------------------------------------------------------|
@@ -140,7 +141,11 @@ const server = http.createServer((req, res) => service.process(req, res))
 | **$search**            | [Supported values see OASIS specification](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part2-url-conventions/odata-v4.0-errata03-os-part2-url-conventions-complete.html#_Toc453752364)|
 | **$format**            | [Supported values see OASIS specification](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part2-url-conventions/odata-v4.0-errata03-os-part2-url-conventions-complete.html#_Toc453752365)|
 
-# [Analytical Queries - $apply](http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs01/odata-data-aggregation-ext-v4.0-cs01.html)
+## Analytical Queries
+
+Analytical queries with `$apply` are described in the
+[specification](http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs01/odata-data-aggregation-ext-v4.0-cs01.html)
+for the OData data aggregration extension.
 
 | Transformation      | Sample                                                          | Limitations     |
 |:--------------------|:----------------------------------------------------------------| :---------------|

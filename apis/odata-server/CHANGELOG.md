@@ -2,11 +2,44 @@
 
 All notable changes to this project will be documented in this file.
 
-This project adheres to [Semantic Versioning](http://semver.org/).
+This project adheres to [Semantic Versioning](https://semver.org/).
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## Unreleased
+
+## [1.5.1] - 2020-02-12
+
+### Fixed
+- ensure fixed version numbers of dependencies (#79)
+
+## [1.5.0] - 2020-02-11
+
+### Added
+- support for node.js version 12
+- complete support of specified Unicode range in URI parsing of identifiers
+- URI parsing of search words according to OData 4.01 CS02
+
+### Fixed
+- ensure non-null field `code` in error responses
+
+### Removed
+- support for node.js version 8 due to its end of life
+
+## [1.4.1] - 2020-01-31
+
+### Fixed
+- If-Match and If-None-Match headers are allowed with value '*' on non-conditional PUT/PATCH requests (for upsert) (#50)
+- If-Match header with value '*' is allowed for all GET requests
+- allow annotations `@odata.type` in requests if they match the types specified in the metadata
+
+## [1.4.0] - 2020-01-14
+
+### Added
+- support for EDM singletons
+
+### Fixed
+- documentation: actions and functions are supported (#68)
 
 ## [1.3.9] - 2019-10-28
 

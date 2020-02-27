@@ -6,6 +6,41 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.23.2 - 2020-02-25
+
+### Fixed
+
+- Missing alias for orderBy caused column ambiguously defined error
+
+## Version 1.23.1 - 2020-02-21
+
+### Added
+
+- Support for set and data in UPDATE CQN
+- Support draft for localized texts 
+- Support for with and data in UPDATE CQN
+
+## Version 1.23.0 - 2020-02-19
+
+### Changed
+
+- Convert all search queries using `contains` to `like`
+
+### Fixed
+
+- Searching for `_` or `%` in `$search`
+
+## Version 1.22.0 - 2020-02-05
+
+### Changed
+
+- Managed fields are not removed anymore if they dont belong to operation (e.g. modifiedAt in INSERT, createdAt in UPDATE)
+- `null` is a valid value for a managed field (e. g. if `null` is provided for `@cds.on.insert`, `null` will be inserted to DB)
+
+### Fixed
+
+- Expand with composition to one for draft enabled entity
+
 ## Version 1.21.0 - 2019-12-10
 
 ### Fixed
@@ -158,7 +193,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - Expanding of on active draft documents lists without $filter
-- Expand of entities with compound key might return duplicate results 
+- Expand of entities with compound key might return duplicate results
 
 ## Version 1.6.0 - 2019-02-25
 
@@ -167,7 +202,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Support for 'func' as defined in cqn spec
 - Support for 'list' in expressions
 - Support for deep insert with recursive entities
- 
+
 ### Changed
 
 ### Fixed
@@ -337,7 +372,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
-- Shortcut for running queries with run().then.run()
+<!-- Was never documented publicly: - Shortcut for running queries with run().then.run() -->
 
 ### Fixed
 
@@ -348,7 +383,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 - custom builders can now be provided via options in SQL Builder
-- support create with views 
+- support create with views
 - added SQL Error to hide the internal information from other errors
 - support structured elements
 - support for complex types in Create Builder
@@ -388,7 +423,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - auto-generated columns in expand=* requests
 
-## Version 0.2.0 - 2018-03-16 
+## Version 0.2.0 - 2018-03-16
 ### Added
 
 - usage of npm-shrinkwrap

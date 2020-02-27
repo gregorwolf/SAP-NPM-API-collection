@@ -6,7 +6,44 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.10]
+
+### Fixed
+- Compatibility with snapi compiler mode (env variable CDS_FEATURES_SNAPI=y)
+    - WARNING: in this mode, it is currently not checked if annotations of the basemodel are overwritten in the extension
+- Tenant upgrade with undeploy=true is now working properly    
+
+## [1.0.9]
+
+### Fixed
+- Compatibility with older versions of @sap/cds
+
+## [1.0.8]
+
+### Added
+- possibility to store build / deployment logs in job log for asynchronous tenant update
+    - must currently be activated by environment variables (`MTX_COLLECT_LOGS=true` and `MTX_LOG_COLLECTION_LIMIT=<limit>`)
+- whitelist for entities and services that are allowed to be extended
+```
+"mtx": {
+           "element-prefix": "Z_",
+            "namespace-blacklist": ["com.sap.", "sap."],
+            "entity-whitelist": ["my.bookshop.Books"],
+            "service-whitelist": ["CatalogService"]
+       }
+```
+
+### Fixed
+- Enable compatibility with SAP HANA cloud edition (no hdbcds support)
+- Deployment error with very old tenants (conflict with custom_tenant_objects.hdbtable)
+
 ## [1.0.7]
+
+### Added
+- allows to enable auto-undeploy in base model update request
+
+### Fixed
+- datatype error in synchronous base model update api
 
 ## [1.0.6]
 

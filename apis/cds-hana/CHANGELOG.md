@@ -6,6 +6,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.24.0 - 2020-02-26
+
+### Added
+
+- Streaming from draft
+
+## Version 1.23.0 - 2020-02-19
+
+### Changed
+
+- Use `like` instead of `contains` fuzzy search for `$search` queries
+
+## Version 1.22.0 - 2020-02-05
+
+### Added
+
+- Implement statement drop
+
+### Changed
+
+- SESSION_CONTEXT('APPLICATIONUSER') instead of SESSION_CONTEXT('XS_APPLICATIONUSER')
+- @sap/hana-client is preferred over hdb
+
 ## Version 1.21.0 - 2019-12-10
 
 ### Changed

@@ -6,6 +6,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.7.0 - 2020-02-19
+
+### Changed
+
+- Updated version number for public release
+
+## Version 1.6.0 - 2020-02-05
+
+### Added
+
+- Support for `prefix` credentials options to prefix topics
+
+### Changed
+
+- You can no longer set the namespace outside of the `credentials` block
+
+### Fixed
+
+- Fixed bug where non-trimmed data causes problems in file-based messaging
+
 ## Version 1.5.0 - 2019-12-10
 
 ### Fixed
