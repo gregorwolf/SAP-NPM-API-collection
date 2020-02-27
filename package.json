@@ -44,6 +44,7 @@
     "@sap/cloud-sdk-vdm-business-area-service": "1.17.2",
     "@sap/portal-cf-content-deployer": "latest",
     "@sap/cds-odata-v2-adapter-proxy": "latest",
+    "@sap/cds-compiler": "latest",
     "@sap/cds-hana": "latest",
     "@sap/cds-dk": "latest",
     "@sap/cds-messaging": "latest",

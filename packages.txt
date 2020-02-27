@@ -20,6 +20,7 @@
 @sap/xssec
 sap/portal-cf-content-deployer
 @sap/cds-odata-v2-adapter-proxy
+@sap/cds-compiler
 @sap/cds-hana
 @sap/cds-dk
 @sap/cds-messaging

@@ -12,7 +12,7 @@
 With revision 1.5.1, the `cdsc` command line interface has been adapted to use commands with
 options.
 
-Usage is now `cdsc <command> [options] <file...>` instead of `cdsc [options] <file...>`.
+Usage is now `cdsc <command> [options] <files...>` instead of `cdsc [options] <file...>`.
 
 The generation options (`--toHana`, `--toSql`, ...) have been replaced by commands
 (`toHana`, `toSql`, ...). This allows for better per-command options, which can now be optional,
@@ -32,14 +32,14 @@ List of commands (as of v1.5.1):
 
 ```
   Commands
-    H, toHana [options] <file...>     Generate HANA CDS source files
-    O, toOdata [options] <file...>    Generate ODATA metadata and annotations
-    C, toCdl <file...>                Generate CDS source files
-    S, toSwagger [options] <file...>  Generate Swagger (OpenAPI) JSON
-    Q, toSql [options] <file...>      Generate SQL DDL statements
-       toCsn [options] <file...>      (default) Generate original model as CSN
-       toTntSpecificOutput <file...>  (internal) Generate TNT-specific post-processed CSN
-       toRename [options] <file...>   (internal) Generate SQL DDL rename statements
+    H, toHana [options] <files...>     Generate HANA CDS source files
+    O, toOdata [options] <files...>    Generate ODATA metadata and annotations
+    C, toCdl <files...>                Generate CDS source files
+    S, toSwagger [options] <files...>  Generate Swagger (OpenAPI) JSON
+    Q, toSql [options] <files...>      Generate SQL DDL statements
+       toCsn [options] <files...>      (default) Generate original model as CSN
+       toTntSpecificOutput <files...>  (internal) Generate TNT-specific post-processed CSN
+       toRename [options] <files...>   (internal) Generate SQL DDL rename statements
 ```
 
 Please see `cdsc --help` for the list of commands and general options, or `cdsc <command> --help`
