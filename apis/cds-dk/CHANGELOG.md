@@ -6,21 +6,37 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 1.4.4 - 2020-02-05
-### Also see
-- Changes of `@sap/cds` 3.21.3
+## Version 1.6.2 - 2020-02-28
+### Added
+- `cds init --add java` now also works with `--hana`
+
+### Changed
+- `cds add mta` now creates resources for SAP HANA with an explicit service type `hana`.  If deploying to trial landscapes, this needs to be changed manually to `hanatrial`.
+
+### Fixed
+- `cds add mta` now creates valid configuration for `uaa` and `auditlog` resources.
 
 
-## Version 1.4.3 - 2020-01-20
-### Also see
-- Changes of `@sap/cds` 3.21.2
+## Version 1.5.0 - 2020-02-10
 
+### Changed
+- `cds init` only supports new syntax. See `cds init help` for more info.
+- `cds init` now supports adding template `hana` to Java projects.
 
-## Version 1.4.2 - 2020-01-07
-### Also see
-- Changes of `@sap/cds` 3.21.1
+### Fixed
+- `cds add mta` fixes an issue in created mta.yaml for nodejs projects if used in xmake environment.
+- `cds add mta` fixes an build order issue in created mta.yaml for java projects. Now service module is built before db module.
+- `cds init` does not create `package.json` in db folder.
 
-## Version 1.4.1 - 2019-12-12
+### Added
+- `cds init` adds `private: true` and `license: "UNLICENSED"` to newly generated projects.
+- `cds init` adds a default `.hdiconfig` file when using template `hana`.
+- `cds init` supports Java package name via `--java:package` parameter.
+- `cds init` generates dependency entry for `@sap/hana-client` when using template `hana`.
+- `cds init` uses latest `Java archetype` version `1.3.0` for creating Java projects.
+- `cds init` now creates a `.cdsrc.json` file.
+
+## Version 1.4.0 - 2019-12-12
 
 ### Added
 - Abort installation with a hint if `@sap/cds` is installed globally.
