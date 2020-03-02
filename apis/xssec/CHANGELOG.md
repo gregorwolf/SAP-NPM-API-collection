@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 2.2.5 - 2020-02-28
+
+ - Update to node-jwt version 1.6.6
+
 ## 2.2.4 - 2019-08-14
 
  - Support for API methods getUserName and getUniquePrincipalName

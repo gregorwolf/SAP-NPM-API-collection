@@ -332,3 +332,10 @@ Parameters:
 ### getGrantType
 
 * returns the grant type of the JWT token, e.g. `authorization_code`, `password`, `client_credentials` or `urn:ietf:params:oauth:grant-type:saml2-bearer`.
+
+## Latest published Version
+Use this command to check for the latest version that is published to the NPM repository:
+
+```
+npm view --registry https://npm.sap.com @sap/xssec versions
+```

@@ -53,6 +53,23 @@
     ]
   },
   {
+    "name": "@sap/xssec",
+    "version": "2.2.5",
+    "description": "XS Advanced Container Security API for node.js",
+    "keywords": [
+      "xs"
+    ],
+    "date": "2020-02-28T12:39:44.224Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": "ssh://git@github.wdf.sap.corp/xs2/node-xs2sec.git",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
     "name": "@sap/grunt-sapui5-bestpractice-build",
     "version": "1.4.2",
     "description": "Grunt tasks around Devx grunt build",
@@ -77,23 +94,6 @@
       "npm": null,
       "homepage": null,
       "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/xssec",
-    "version": "2.2.4",
-    "description": "XS Advanced Container Security API for node.js",
-    "keywords": [
-      "xs"
-    ],
-    "date": "2019-12-06T12:01:17.265Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": "ssh://git@github.wdf.sap.corp/xs2/node-xs2sec.git",
       "bugs": null
     },
     "publisher": null,
