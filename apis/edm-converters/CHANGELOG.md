@@ -8,7 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
-## [1.0.19] - 2019-09-13
+## [1.0.21] - 2019-09-17
+
+Fix:
+   * Added fix for entities having more than one navigation property. Now all navigation property bindings are rendered correctly in OData V4 output (before only the last was added to the output).  
+
+## [2.0.0] - 2019-09-13
 
 Add:
    * CSN Generation For Mock Server Use Case V2. 
