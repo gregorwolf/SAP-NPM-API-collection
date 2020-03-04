@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.8.2 - 2020-03-04
+
+### Fixed
+- Fix extension of resolveUaaConfig
+
 ## 6.8.1 - 2020-02-20
 
 ### Fixed
