@@ -6,7 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 1.6.2 - 2020-02-28
+
+## Version 1.6.3 - 2020-03-05
+
+### Changed
+
+### Fixed
+- Proper `npm-shrinkwrap.json`
+- `cds init` is a bit more relaxed when checking for existing project content
+
+
+## Version 1.6.0 - 2020-02-25
 ### Added
 - `cds init --add java` now also works with `--hana`
 

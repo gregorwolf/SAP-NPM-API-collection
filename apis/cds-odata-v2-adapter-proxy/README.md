@@ -8,7 +8,7 @@ OData v2 Adapter Proxy for CDS OData v4 Services
 
 ## Getting Started
 
-- Install: `npm install`
+- Install: `npm install @sap/cds-odata-v2-adapter-proxy`
 - Unit Tests: `npm test`
 - Test Server: `npm start`
   - Service: `http://localhost:4004/v2/main`

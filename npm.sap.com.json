@@ -16,10 +16,10 @@
   },
   {
     "name": "@sap/cds",
-    "version": "3.31.1",
+    "version": "3.31.2",
     "description": "Entry Point and API Facade for CDS",
     "keywords": [],
-    "date": "2020-02-27T12:21:01.911Z",
+    "date": "2020-03-06T12:42:56.240Z",
     "links": {
       "npm": null,
       "homepage": null,

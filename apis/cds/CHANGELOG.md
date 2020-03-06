@@ -5,6 +5,16 @@
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+# Version 3.31.2 - 2020-03-05
+
+## Fixed
+- `cds deploy` does not crash if _texts.csv is provided for skipped entities
+- `cds serve foo.cds` does no longer load same model twice
+- `cds compile --to edmx` no longer creates files with csn instead of edmx content in case no language bundles are found
+- Both `cds env` and `cds compile` no longer write terminal escape sequences if only stdout is redirected, but not stderr.
+- No longer enforce Node.js version 8 in `db/package.json`.  Cloud Foundry environment does not support it anymore, as this version is out of maintenance.
+
+
 # Version 3.31.1 - 2020-02-26
 
 ## Fixed
