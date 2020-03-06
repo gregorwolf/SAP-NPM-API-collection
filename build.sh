@@ -25,6 +25,7 @@ echo "@sap/logging" >> packages.txt
 echo "@sap/odata-server" >> packages.txt
 echo "@sap/hana-client" >> packages.txt
 echo "@sap/faas" >> packages.txt
+echo "@sap/xsodata" >> packages.txt
 node update-package-json.js
 jq '.' new-package.json > package.json
 rm new-package.json

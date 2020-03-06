@@ -27,6 +27,7 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/logging"] = "latest"
   packagesJson["@sap/hana-client"] = "latest"
   packagesJson["@sap/faas"] = "latest"
+  packagesJson["@sap/xsodata"] = "latest"
   fs.readFile(package, function (err, packageData) {
     var packageJson = JSON.parse(packageData)
     packageJson.dependencies = packagesJson

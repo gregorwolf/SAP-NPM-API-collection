@@ -40,3 +40,4 @@ sap/portal-cf-content-deployer
 @sap/odata-server
 @sap/hana-client
 @sap/faas
+@sap/xsodata

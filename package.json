@@ -62,6 +62,7 @@
     "@sap/odata-server": "latest",
     "@sap/logging": "latest",
     "@sap/hana-client": "latest",
-    "@sap/faas": "latest"
+    "@sap/faas": "latest",
+    "@sap/xsodata": "latest"
   }
 }

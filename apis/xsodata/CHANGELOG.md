@@ -8,6 +8,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [6.1.0] - 2020-03-05
+
+## [6.0.0] - 2020-03-05
+
+* Add support for LTS Node.js version 12 and 10
+* Support for create/update/delete requests on calculation views if "parameter via keys" definition is used.
+Requirements:
+    * input parameters in the calculation view of type ALPHANUM, BLOB, DECIMAL, NVARCHAR, VARBINARY, VARCHAR must have length restriction
+    * input parameters in the calculation view of type DECIMAL must have scale restriction
+    * all key semantics also apply to keys coming from input parameters
+* **IMPORTANT** By default, now a maximum body size of "10mb" per request is allowed. More payload leads to an "413 Payload Too Large" error. This value of 10mb can be changed with the odata settings in the *.xsodata file 
+[see **XSOdata Settings**](/documentation/xsodataSettings.md)
+
 ## [5.0.0] - 2019-12-17
 
 ### Info
