@@ -6,6 +6,44 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.13.1]
+
+### Removed
+- Remove `engines.node` entry in package.json for `db` folder.
+
+## [2.13.0]
+
+### Feature
+- Use Maven Java `Archetype` version `1.38.0`.
+
+### Fixed
+- Add engine entry for `Nodejs 12.0` to package.json.
+
+## [2.12.2]
+
+### Feature
+- Use Maven Java `Archetype` version `1.37.1`.
+
+## [2.12.1]
+
+### Feature
+- Change warning text when used directly on command line.
+
+## [2.12.0]
+
+### Feature
+- Use Maven Java `Archetype` version `1.37.0`.
+
+## [2.11.3]
+
+### Feature
+- Use Maven Java `Archetype` version `1.36.2`.
+
+## [2.11.2]
+
+### Fixed
+- Do not use maven dependency `slf4j` in pom.xml anymore when technology is Java.
+
 ## [2.11.1]
 
 ### Feature

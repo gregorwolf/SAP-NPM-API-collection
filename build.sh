@@ -7,6 +7,7 @@ echo "sap/portal-cf-content-deployer" >> packages.txt
 echo "@sap/cds-odata-v2-adapter-proxy" >> packages.txt
 echo "@sap/cds-compiler" >> packages.txt
 echo "@sap/cds-hana" >> packages.txt
+echo "@sap/generator-cds" >> packages.txt
 echo "@sap/cds-dk" >> packages.txt
 echo "@sap/cds-messaging" >> packages.txt
 echo "@sap/cds-mtx" >> packages.txt
@@ -22,6 +23,7 @@ echo "@sap/xsenv" >> packages.txt
 echo "@sap/edmx2csn" >> packages.txt
 echo "@sap/site-entry" >> packages.txt
 echo "@sap/logging" >> packages.txt
+echo "@sap/node-jwt" >> packages.txt
 echo "@sap/odata-server" >> packages.txt
 echo "@sap/hana-client" >> packages.txt
 echo "@sap/faas" >> packages.txt

@@ -85,11 +85,16 @@
     "maintainers": []
   },
   {
-    "name": "@sap/xsjs",
-    "version": "5.3.1",
-    "description": "Compatibility layer to run XS Classic applications on XS Advanced",
-    "keywords": [],
-    "date": "2019-12-18T08:23:51.587Z",
+    "name": "@sap/node-jwt",
+    "version": "1.6.7",
+    "description": "JWT validation library for Node.js",
+    "keywords": [
+      "jwt",
+      "security",
+      "sap",
+      "xs"
+    ],
+    "date": "2020-03-06T14:12:45.082Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -100,16 +105,11 @@
     "maintainers": []
   },
   {
-    "name": "@sap/node-jwt",
-    "version": "1.6.6",
-    "description": "JWT validation library for Node.js",
-    "keywords": [
-      "jwt",
-      "security",
-      "sap",
-      "xs"
-    ],
-    "date": "2020-02-17T07:22:06.218Z",
+    "name": "@sap/xsjs",
+    "version": "5.3.1",
+    "description": "Compatibility layer to run XS Classic applications on XS Advanced",
+    "keywords": [],
+    "date": "2019-12-18T08:23:51.587Z",
     "links": {
       "npm": null,
       "homepage": null,

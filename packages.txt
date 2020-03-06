@@ -22,6 +22,7 @@ sap/portal-cf-content-deployer
 @sap/cds-odata-v2-adapter-proxy
 @sap/cds-compiler
 @sap/cds-hana
+@sap/generator-cds
 @sap/cds-dk
 @sap/cds-messaging
 @sap/cds-mtx
@@ -37,6 +38,7 @@ sap/portal-cf-content-deployer
 @sap/edmx2csn
 @sap/site-entry
 @sap/logging
+@sap/node-jwt
 @sap/odata-server
 @sap/hana-client
 @sap/faas
