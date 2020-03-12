@@ -6,6 +6,54 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.21.0 - 2019-11-19
+
+### Added
+
+- Acquire now sets session contexts `valid-from` and `valid-to`
+
+### Fixed
+
+- Single ticked entry in function now resolves to `val` instead of `ref`
+
+## Version 1.20.1 - 2019-10-30
+
+### Changed
+
+- Updated version of @sap/cds-sql to 1.19.1
+- Updated version of @sap/cds-sqlite to 1.19.1
+- Updated version of @sap/cds-hana to 1.19.1
+
+## Version 1.20.0 - 2019-10-29
+
+### Changed
+
+- Improved UPDATE error messages
+
+### Removed
+
+- `npm-shrinkwrap.json`
+
+## Version 1.19.2 - 2019-10-16
+
+### Changed
+
+- `.run` handles arrays in a `Promise.all` fashion
+
+## Version 1.19.1 - 2019-10-08
+
+### Fixed
+
+- Default mainkind in case of compound service (messaging and rest)
+
+## Version 1.19.0 - 2019-10-02
+
+### Changed
+
+- Updated version of @sap/cds-sql to 1.18.0
+- Updated version of @sap/cds-sqlite to 1.18.0
+- Updated version of @sap/cds-hana to 1.18.0
+
 ## Version 1.18.2 - 2019-09-18
 
 ### Changed

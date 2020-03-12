@@ -5,6 +5,7 @@ var package = 'package.json'
 
 fs.readFile(packages, function (err, packagesData) {
   var packagesJson = JSON.parse(packagesData)
+  packagesJson["@sap/audit-logging"] = "latest"
   packagesJson["@sap/portal-cf-content-deployer"] = "latest"
   packagesJson["@sap/cds-odata-v2-adapter-proxy"] = "latest"
   packagesJson["@sap/cds-compiler"] = "latest"
@@ -16,11 +17,14 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/cds-reflect"] = "latest"
   packagesJson["@sap/cds-rest"] = "latest"
   packagesJson["@sap/cds-services"] = "latest"
+  packagesJson["@sap/cds-ql"] = "latest"
   packagesJson["@sap/cds-sql"] = "latest"
   packagesJson["@sap/cds-sqlite"] = "latest"
+  packagesJson["@sap/dwf-core"] = "latest"
   packagesJson["@sap/edm-converters"] = "latest"
   packagesJson["@sap/edmx2csn"] = "latest"
   packagesJson["@sap/fibers"] = "latest"
+  packagesJson["@sap/cloud-sdk-core"] = "latest"
   packagesJson["@sap/cloud-sdk-generator"] = "latest"
   packagesJson["@sap/cloud-sdk-util"] = "latest"
   packagesJson["@sap/xsenv"] = "latest"

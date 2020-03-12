@@ -3,6 +3,7 @@ npm search sap --registry https://npm.sap.com --json | jq > npm.sap.com.json
 cat npm.sap.com.json | jq 'reduce .[] as $i ({}; .[$i.name] = $i.version)' > packages.json
 cat npm.sap.com.json | jq '.[] | .name' | sort > packages.txt
 rpl -q '"' '' packages.txt
+echo "@sap/audit-logging" >> packages.txt
 echo "sap/portal-cf-content-deployer" >> packages.txt
 echo "@sap/cds-odata-v2-adapter-proxy" >> packages.txt
 echo "@sap/cds-compiler" >> packages.txt
@@ -14,10 +15,13 @@ echo "@sap/cds-mtx" >> packages.txt
 echo "@sap/cds-reflect" >> packages.txt
 echo "@sap/cds-rest" >> packages.txt
 echo "@sap/cds-services" >> packages.txt
+echo "@sap/cds-ql" >> packages.txt
 echo "@sap/cds-sql" >> packages.txt
 echo "@sap/cds-sqlite" >> packages.txt
+echo "@sap/dwf-core" >> packages.txt
 echo "@sap/edm-converters" >> packages.txt
 echo "@sap/fibers" >> packages.txt
+echo "@sap/cloud-sdk-core" >> packages.txt
 echo "@sap/cloud-sdk-generator" >> packages.txt
 echo "@sap/cloud-sdk-util" >> packages.txt
 echo "@sap/xsenv" >> packages.txt

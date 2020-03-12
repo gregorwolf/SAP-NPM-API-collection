@@ -18,6 +18,7 @@
 @sap/site-entry
 @sap/xsjs
 @sap/xssec
+@sap/audit-logging
 sap/portal-cf-content-deployer
 @sap/cds-odata-v2-adapter-proxy
 @sap/cds-compiler
@@ -29,10 +30,13 @@ sap/portal-cf-content-deployer
 @sap/cds-reflect
 @sap/cds-rest
 @sap/cds-services
+@sap/cds-ql
 @sap/cds-sql
 @sap/cds-sqlite
+@sap/dwf-core
 @sap/edm-converters
 @sap/fibers
+@sap/cloud-sdk-core
 @sap/cloud-sdk-generator
 @sap/cloud-sdk-util
 @sap/xsenv

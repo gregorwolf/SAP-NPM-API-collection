@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.1.0 - 2019-12-06
+
+### Added
+- Node.js 12.x support
+- Retry logic when accessing the auditlog
+
+### Fixed
+- Update dependencies
+
 ## 3.0.2 - 2019-07-16
 
 ### Fixed
