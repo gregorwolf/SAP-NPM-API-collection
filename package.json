@@ -65,6 +65,9 @@
     "@sap/logging": "latest",
     "@sap/hana-client": "latest",
     "@sap/faas": "latest",
+    "@sap/xb-msg-amqp-v091": "latest",
+    "@sap/xb-msg-env": "latest",
+    "@sap/xb-msg-mqtt-v311": "latest",
     "@sap/xb-msg-amqp-v100": "latest",
     "@sap/xsodata": "latest"
   }

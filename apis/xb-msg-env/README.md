@@ -2,32 +2,34 @@
 Provides functions to setup messaging client options from CF (or XSA) environment variables.
 
 The following clients are supported:
-* **@sap/xb-msg**, protocol-agnostic API, multiple destinations per single client
-* **@sap/xb-msg-amqp-v100**, protocol-specific, single connection per client
-* **@sap/xb-msg-amqp-v091**, protocol-specific, single connection per client
-* **@sap/xb-msg-mqtt-v311**, protocol-specific, single connection per client.
+* `@sap/xb-msg`, protocol-agnostic API, multiple destinations per single client
+* `@sap/xb-msg-amqp-v100`, protocol-specific, single connection per client
+* `@sap/xb-msg-amqp-v091`, protocol-specific, single connection per client
+* `@sap/xb-msg-mqtt-v311`, protocol-specific, single connection per client.
 
 The following environment variables are used:
-* **VCAP_SERVICES** with bindings to RabbitMQ or Enterprise Messaging,
-* **SAP_XBEM_SERVICE_LABEL** to use an alternative service label for Enterprise Messaging,
-* **SAP_XBEM_BINDINGS** to define incoming and/or outgoing message streams.
+* `VCAP_SERVICES` with bindings to RabbitMQ or Enterprise Messaging,
+* `SAP_XBEM_SERVICE_LABEL` to use an alternative service label for Enterprise Messaging,
+* `SAP_XBEM_BINDINGS` to define incoming and/or outgoing message streams.
  
 ## Table of contents
 
-* [Prerequisites](#prerequisites)
 * [Install](#install)
 * [API](#api)
 * [Examples](#examples)
 * [Limitations](#limitations)
 
-## Prerequisites
-
-
 ## Install
-Direct from npm
+Add the SAP NPM Registry to your npm configuration for all `@sap` scoped modules.
 
 ```bash
-npm install @sap/xb-msg-env
+npm config set "@sap:registry=https://npm.sap.com"
+```
+
+Add the dependency to your applications `package.json` and run npm for it:
+
+```bash
+npm install
 ```
 
 ## API
@@ -36,25 +38,25 @@ npm install @sap/xb-msg-env
 The following parameters exist in the SAP_XBEM_BINDINGS environment variable.
 SAP_XBEM_BINDINGS contains an input and an output map.
 
-````
+```
 "SAP_XBEM_BINDINGS": {
     "outputs": {
     },
     "inputs": {
     }
 }
-````
+```
 
 A single input or output can have the following properties:
 
 | Parameter | Type | Input | Output | Description |
 | --- | --- | --- | --- | --- |
-| service | string | yes | yes | reference to the service entry, in example 'myService' |
-| address | string | yes | yes | defines either a queue or a topic in unified topic syntax, in example 'queue:MyQueue' or 'topic:my/unified/topic' |
-| reliable | boolean | yes | yes | shall acknowledges be used |
-| exclusive | boolean | yes | no | only one consumer instance can be used |
-| persistent | boolean | no | yes | the broker shall persist messages |
-| maxMsgInFlight | number | yes | no | |
+| service | string | yes | yes | Name of the messaging service to which this item is assigned |
+| address | string | yes | yes | Queue name (e.g. ‘queue:q001’) or topic in unified syntax (e.g. ‘topic:BO/Sales/Order/Released’) |
+| reliable | boolean | yes | yes | Indicates whether acknowledgements shall be used for reliable message transfers |
+| exclusive | boolean | yes | no | Indicates whether only one single consumer is allowed at a time |
+| persistent | boolean | no | yes | Indicates whether the message broker shall persist messages |
+| maxMsgInFlight | number | yes | no | The maximum number of unacknowledged messages the broker shall send to the consumer |
 
 ### Create xb-msg Client Options
 Create a messaging client and start consuming messages.
@@ -170,20 +172,21 @@ Below is an example of 'Environment Variables'. There is one Rabbit MQ instance 
 The messaging service inputs and outputs are maintained via another environment variable named SAP_XBEM_BINDINGS. 
 Here, one output name 'myOutA' is defined.
 
-```bash
-"VCAP_SERVICES": {
+```json
+{
+  "VCAP_SERVICES": {
     "rabbitmq": [
         {
             "credentials": {
-                "hostname": "10.11.241.27",
+                "hostname": "10.11.11.11",
                 "ports": {
-                    "15672/tcp": "37662",
-                    "5672/tcp": "45179"
+                    "15672/tcp": "8888",
+                    "5672/tcp": "9999"
                 },
-                "port": "45179",
-                "username": "stp79pjT3-PmTSKz",
-                "password": "R_BVWMaGocNNrX5P",
-                "uri": "amqp://stp79pjT3-PmTSKz:R_BVWMaGocNNrX5P@10.11.241.27:45179"
+                "port": "9999",
+                "username": "user",
+                "password": "pwd",
+                "uri": "amqp://user:pwd@10.11.11.11:9999"
             },
             "syslog_drain_url": null,
             "volume_mounts": [],
@@ -199,55 +202,55 @@ Here, one output name 'myOutA' is defined.
             ]
         }
     ]
-},
-"SAP_XBEM_BINDINGS": {
+  },
+  "SAP_XBEM_BINDINGS": {
     "outputs": {
       "myOutA" : {
         "service": "myService",
-        "topic": "Cars/Velocity/milesPerHour",
+        "address": "topic:Cars/Velocity/milesPerHour",
         "reliable": false
       }
     }
   }
 }
 ```
-The following @sap/xb-msg-env utility function invocation:
+The following call:
 
-```bash
-const msg_env = require('@sap/xb-msg-env');
-
-const destinations = msg_env.msgClientOptions('myService', [], ['myOutA']);
+```javascript
+const env = require('@sap/xb-msg-env');
+const opt = env.msgClientOptions('myService', [], ['myOutA']);
 ```
-... converts them to the following @sap/xb-msg Client options/destinations:
-```bash
+will provide the client options for `@sap/xb-msg`:
+
+```json
 {
-    "destinations": [
-            {
-                "name": "myService",
-                "type": "amqp-v091",
-                "net": {
-                    "host": "10.11.241.27",
-                    "port": 45179,
-                },
-                "sasl": {
-                    "user": "stp79pjT3-PmTSKz",
-                    "password": "R_BVWMaGocNNrX5P"
-                },
-                "amqp": {
-                    "vhost": "/",
-                },
-                "istreams": {
-                },
-                "ostreams": {
-                    "out": { 
-                        "channel": 1, 
-                        "exchange": "amq.topic", 
-                        "routingKey": "Cars.Velocity.milesPerHour", 
-                        "confirms": false 
-                    }
-                }
-            }
-    ]
+  "destinations": [
+    {
+      "name": "myService",
+      "type": "amqp-v091",
+      "net": {
+        "host": "10.11.11.11",
+        "port": 9999
+      },
+      "sasl": {
+        "user": "user",
+        "password": "pwd"
+      },
+      "amqp": {
+        "vhost": "/"
+      },
+      "istreams": {
+      },
+      "ostreams": {
+        "out": { 
+          "channel": 1, 
+          "exchange": "amq.topic", 
+          "routingKey": "Cars.Velocity.milesPerHour",
+          "confirms": false 
+        }
+      }
+    }
+  ]
 }
 ```
 

@@ -13,13 +13,16 @@ Provides a protocol implementation for [MQTT 3.1.1](http://docs.oasis-open.org/m
 Make sure to have an message broker available, e.g. [RabbitMQ](https://www.rabbitmq.com/download.html) with enabled MQTT plugin.
 
 ## Install
-Direct from GIT or from repository `https://npm.sap.com`.
+Add the SAP NPM Registry to your npm configuration for all `@sap` scoped modules.
+
 ```bash
-npm install @sap/xb-msg-mqtt-v311
+npm config set "@sap:registry=https://npm.sap.com"
 ```
-To generate API documentation run inside the package folder
+
+Add the dependency in applications `package.json` and run npm for it:
+
 ```bash
-npm run doc
+npm install
 ```
 
 ## Overview
@@ -233,4 +236,6 @@ In this case do not copy anything.
 
 ## Limitations
 Currently, you may only set the MQTT flag `cleanSession` to true.
+
+
 

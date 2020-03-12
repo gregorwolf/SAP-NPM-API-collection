@@ -43,6 +43,9 @@ sap/portal-cf-content-deployer
 @sap/odata-server
 @sap/hana-client
 @sap/faas
-@sap/xsodata
+@sap/xb-msg-amqp-v091
+@sap/xb-msg-env
+@sap/xb-msg-mqtt-v311
 @sap/xb-msg-amqp-v100
+@sap/xsodata
 @sap/xsjs

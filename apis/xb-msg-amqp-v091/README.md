@@ -12,9 +12,22 @@ Provides a client implementation for AMQP v0.9.1
 Make sure to have a message broker available, e.g. [RabbitMQ](https://www.rabbitmq.com/download.html).
  
 ## Install
-Direct from GIT or from repository `https://npm.sap.com`.
+Add the SAP NPM Registry to your npm configuration for all `@sap` scoped modules.
+
 ```bash
-npm install @sap/xb-msg-amqp-v091
+npm config set "@sap:registry=https://npm.sap.com"
+```
+
+Add the dependency in applications `package.json` and run npm for it:
+
+```bash
+npm install
+```
+
+To generate complete API documentation run inside the library package folder
+
+```bash
+npm run doc
 ```
 
 ## Overview
