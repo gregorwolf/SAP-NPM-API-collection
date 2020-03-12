@@ -10,6 +10,7 @@ Provides a protocol implementation for [AMQP 1.0](http://www.amqp.org/specificat
 * [API](#api)
     * [Client Options](#client-options)
     * [Server Options](#server-options)
+    * [Idle Timeout](#idle-timeout)
     * [Endpoints](#endpoints)
         * [Dynamic Endpoints](#dynamic-endpoints)
         * [Common Behavior](#common-endpoint-behavior)
@@ -31,6 +32,7 @@ Provides a protocol implementation for [AMQP 1.0](http://www.amqp.org/specificat
         * [Payload](#message-payload)
         * [Payload and AMQP values](#message-payload-and-amqp-values)
         * [Payload and Websocket Data Masking](#message-payload-and-websocket-data-masking)
+    * [Message Examples](#message-examples)
 * [Limitations](#limitations)
 * [Further Links](#further-links)
 
@@ -43,7 +45,7 @@ Make sure to have a message broker available for testing, e.g. [RabbitMQ](https:
 Add the SAP NPM Registry to your npm configuration for all `@sap` scoped modules.
 
 ```bash
-npm config set @sap:registry https://npm.sap.com
+npm config set "@sap:registry=https://npm.sap.com"
 ```
 
 Add the dependency in applications `package.json` and run npm for it:
@@ -61,6 +63,15 @@ npm run doc
 ## Overview
 
 This library provides a messaging client as well as classes to realize a server for [AMQP 1.0](http://www.amqp.org/specification/1.0/amqp-org-download).
+It has been tested successfully in combination with:
+* RabbitMQ, version `3.6.6`
+* Solace VMR, as of version `8.5.0.1008`
+* AMQPNetLite, version `2.1.1`
+* Apache Qpid Proton, version `0.23.0` (and electron go client)
+* Apache Qpid Proton-J, version `0.23.0`
+* Apache Qpid-JMS client, version `0.40.0`
+* Golang pack.ag/amqp, version `0.10.2`
+* Azure Service Bus, Queue
 
 Either TLS or NET socket is used, depending on the defined client options.
 Besides plain TCP/IP also WebSocket is supported, with and without [OAuth 2.0](https://oauth.net/2/), grant flows [ClientCredentialsFlow](https://tools.ietf.org/html/rfc6749#section-4.4) and [ResourceOwnerPasswordCredentialsFlow](https://tools.ietf.org/html/rfc6749#section-4.3).
@@ -76,12 +87,6 @@ There are test programs in the package folder `./examples` to demonstrate:
 
 All client examples shall run with provided defaults immediately if e.g. RabbitMQ is installed at localhost:5672 with user guest/guest, having the AMQP 1.0 plugin enabled.
 Alternatively, the producer may run in combination with the gateway example.
-
-The library has been tested successfully in combination with:
-* RabbitMQ, version `3.6.6`,
-* Solace VMR, as of version `8.5.0.1008`,
-* AMQPNetLite, version `2.1.1`,
-* Apache Qpid Proton-J, version `0.23.0`
 
 All examples accept individual settings, e.g. to use a remote host or to try different stream settings.
 It can be provided with a js-file given as command line parameter. The file shall just export the options.
@@ -102,14 +107,14 @@ module.exports = {
         port      : 5672
     },
     sasl: {
-        mechanism : '',
+        mechanism : 'PLAIN',
         user      : 'guest',
         password  : 'guest'
     },
     data: {
         source    : 'q001', // a queue name, source address for a receiver
         target    : 'q002', // a queue name, target address for a sender
-        payload   : new Buffer.allocUnsafe(50).fill('X'),
+        payload   : Buffer.allocUnsafe(50).fill('X'),
         maxCount  : 10000,
         logCount  : 1000
     }
@@ -202,7 +207,7 @@ Options to run AMQP over WebSocket, using TLS (HTTPS) with well-known CA:
 ```bash
 const options = {
     wss: {
-        host: 'localhost',
+        host: 'myhost',
         port: 443,
         path: '/'
     },
@@ -270,7 +275,7 @@ The client will start using the first URI and will try further URIs automaticall
 If the client fails with all URIs then it stops and waits for another explicit call to connect.
 At this point an event `'disconnected'` is raised.
 
-An application that requires a continuously opened connection shall always handle the `'disconnect'` event by calling `client.connect()` again, of course after a given delay time.
+An application that requires a continuously opened connection shall always handle the `'disconnected'` event by calling `client.connect()` again, of course after a given delay time.
 Timers or other mechanisms may be used, depending on the application design.
 But keep in mind that NodeJS runtime does not guarantee precise timer execution. The scheduling depends on the event queue load.
 
@@ -344,7 +349,7 @@ const options = {
 
 ### Server Options
 
-Similar to `Client` new server instances are created, using the constructor:
+Similar to the client class new `Server` instances are created, using the constructor:
 
 ```bash
 const AMQP = require('@sap/xb-msg-amqp-v100');
@@ -405,21 +410,21 @@ const options = {
 The server will create one `Connection` instance for each incoming client connection.
 When running an own (more specialized) server similar instances can be created.
 
-The AMQP protocol is completely handled by the `Connection` class. It requires the same options as the `Server` class, but uses only the sections `sasl`, `amqp` and `tune`.
+The AMQP protocol is completely handled by the `Connection` class.
+It requires the same options as the `Server` class, but uses only the sections `sasl`, `amqp` and `tune`.
 
 ```bash
 const AMQP = require('@sap/xb-msg-amqp-v100');
 
 const options = {
     sasl: {
-        mechanism: 'PLAIN EXTERNAL',
-        mandatory: true
+        mechanism: 'PLAIN'
     },
     amqp: {
         outgoingSessionWindow: 100,
         incomingSessionWindow: 100,
         maxReceiverLinkCredit: 10,
-        minReceiverLinkCredit: 5
+        minReceiverLinkCredit: 5,
         maxMessageSize: 10000 // bytes
     }
     tune: {
@@ -452,6 +457,39 @@ More details can also be found in JSDoc.
 
 `Connection` instances behave always the same, independent from the used server class.
 Each instance offers the expected endpoints: `Session`, `Sender`, `Receiver`.
+
+### Idle Timeout
+
+While opening a new connection both peers can declare an [idle timeout](https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#doc-doc-idle-time-out).
+It means to expect receiving any frame within this time or to close the connection otherwise.
+The behavior is similar for client and server. And for both sides this library supports the following options:
+
+* `idleTimeoutMilliseconds`: specifies the timeout value in milliseconds, 0 means no timeout. The value will be provided to [`net.setTimeout()`](https://nodejs.org/dist/latest-v12.x/docs/api/net.html#net_socket_settimeout_timeout_callback)
+* `idleTimeoutTryKeepAlive`: defines the timeout behavior, indicates whether to send an empty frame to keep the connection alive or to end the connection, sending a close frame with an appropriate error message.
+* `adjustSelfIdleTimeout`: optional callback to recalculate the own timeout after peer information are available, the default implementation calculates the minimum of the own timeout and the half of peers timeout, but only if running in keep alive mode.
+
+Client defaults:
+```bash
+const options = {
+    amqp: {
+        idleTimeoutMilliseconds: 90000,
+        idleTimeoutTryKeepAlive: true,
+        adjustSelfIdleTimeout: adjustSelfIdleTimeout // callback
+    }
+}
+
+```  
+Server defaults:
+```bash
+const options = {
+    amqp: {
+        idleTimeoutMilliseconds: 180000,
+        idleTimeoutTryKeepAlive: false,
+        adjustSelfIdleTimeout: adjustSelfIdleTimeout // callback
+    }
+}
+
+```  
 
 ### Endpoints
 
@@ -587,7 +625,7 @@ Overview on `OutgoingStream` events (check JSDoc for details):
 * all events of `Writable` and
 * `ready`: indicates the stream is attached and messages will now really be sent, not only queued.
 
-```bash
+```javascript
 stream
     .on('ready', () => {
         send();
@@ -597,20 +635,21 @@ stream
     })
     .on('finish', () => {
         client.disconnect();
-    });
+    })
+;
 ```
-
-#### Delivery Tags
-
-If the application writes a message without a deliveryTag to an outgoing stream then this tag will be generated automatically.
-The result will be the same as if the application would have called `stream.newDeliveryTag()`, but the application was not able to register the tag for any kind of message correlation later on.
-
-Generated delivery tags will start with `options.amqp.autoDeliveryTagPrefix`, by default 'tag-'.
-Hence, the application may also use own delivery tags in parallel with generated tags, easily avoiding duplicate tags being used.
 
 See also the [producer](examples/producer.js) example.
 
-#### Receiver 
+#### Delivery Tags
+
+If the application writes a message without a `message.target.deliveryTag` to an outgoing stream then this tag will be generated automatically.
+The result will be the same as if the application would have called `stream.newDeliveryTag()` first and would have assigned the new tag to a message, but the application was not able to register the tag for any kind of message correlation later on.
+
+Generated delivery tags will start with `options.amqp.autoDeliveryTagPrefix`, by default `'tag-'`.
+Hence, the application may also use own delivery tags in parallel with generated tags, easily avoiding duplicate tags being used.
+
+#### Receiver
 
 Each `Receiver` offers an `IncomingStream` which extends the NodeJS stream class `Readable`.
 The stream runs in object mode and manages plain message objects (see also [Message Streams](#message-streams)).
@@ -665,11 +704,12 @@ stream
         ...
         message.done();
         ...
-    });
+    })
+;
 ```
 
 As soon as the current credit reaches `minCredit`, the incoming stream will renew the credit with maxCredit automatically.
-If the application decides to set `minCredit = -1` then the application will have to renew the credit explicitly using method `stream.flow(maxCredit, minCredit)`.
+However, if the application decides to set `minCredit = -1` then the application will have to renew the credit explicitly using method `stream.flow(maxCredit, minCredit)`.
 
 The application must always call `message.done()`, independent from chosen settle mode.
 
@@ -687,7 +727,7 @@ These streams always run in object mode using `options.amqp.linkHighWaterMsgCoun
 Here, a single message is represented as a plain object with the following attributes:
 * `source`: defined by the incoming stream, providing transfer attributes as well as the message header, annotations and properties,
 * `target`: defined optionally by the application, similar to the source, accepted by the outgoing stream,
-* `payload`: message data to transfer, see next chapter for details,
+* `payload`: message data to transfer, see also this [chapter](#message-payload),
 * `done`: a callback function to confirm final message processing,  
 * `failed`: a callback function to indicate processing failure.
 
@@ -727,12 +767,14 @@ In this case both streams would directly handle `done` and `failed` correctly.
 
 ```bash
 class Processor extends Transform {
-    super({
-        writableObjectMode: true,
-        writableHighWaterMark: 16
-        readableObjectMode: true,
-        readableHighWaterMark: 16
-    });
+    constructor() {
+        super({
+            writableObjectMode: true,
+            writableHighWaterMark: 16,
+            readableObjectMode: true,
+            readableHighWaterMark: 16
+        });
+    }
     
     _transform(message, encoding, callback) {
         try {
@@ -808,9 +850,9 @@ With different combinations of sender and receiver settle mode the usual qualiti
 
 | quality | [sndSettleMode](http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#type-sender-settle-mode) | [rcvSettleMode](http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#type-receiver-settle-mode) |
 | :---: | :---: | :---: |
-| at-most-once  | 1 | 1 |
-| at-least-once | 0 | 0 |
-| exactly-once  | 0 | 1 |
+| at-most-once  | 1 (settled) | 0 (first) |
+| at-least-once | 0 (unsettled) | 0 (first) |
+| exactly-once  | 0 (unsettled) | 1 (second) |
 
 Sender and receiver will agree on its settle modes when the link is attached:
 ```bash
@@ -912,11 +954,11 @@ For an outgoing message payload with special type `'amqp-1.0'` the encoder will 
 Using a plain TCP connection the payload data will be sent unchanged. It may only be split into multiple transfers.
 But running a WebSocket connection the encoder will have to mask (means to modify) all data before sending.
 
-Hence, if (and only if) an application
+Hence, __if (and only if)__ an application
 
-* uses WebSocket connections and
-* uses payload `Buffer` objects larger than the defined payload copy limit and
-* re-uses the same buffer instance(s) for multiple messages then
+* uses WebSocket connections __and__
+* uses payload `Buffer` objects larger than `options.tune.ostreamPayloadCopyLimit` __and__
+* re-uses the same buffer instance(s) for multiple messages __then__
 
 it must take a copy of those buffers by itself before writing to an outgoing stream.
 
@@ -932,10 +974,153 @@ Similar to other libraries not the full scope of AMQP 1.0 could be implemented s
 * Multiple Transfer Frames for one delivery are collected until the whole message can be provided to the application,
 * Message Footer is not supported, received but not exposed at the API,
 * Message Delivery Annotations are not supported, received, but not exposed at the API,
+* Decimal values are provided/accepted as binary data only, using a `Buffer` instance; use a specialized library for the conversion,
 * Transactions are not supported,
 * Incoming streams handle Quality of Service _Exactly Once_ with one single callback to the application only,
 * Source filters are not supported,
 * Several fine-grained settings for endpoint lifecycle control may be ignored.
+
+### Message Examples
+Just a few copy&paste templates:
+
+* Payload as Buffer
+  ```javascript
+  const message = {
+    payload : Buffer.from('hello world'),
+    done: () => { console.log('message was sent'); },
+    failed: (err) => { console.log('message not sent,', err); }
+  };
+  ```
+
+* Payload as Buffer Array
+  ```javascript
+  const message = {
+    payload : [
+        Buffer.from('hello '),
+        Buffer.from('world'),
+    ],
+    done: () => { console.log('message was sent'); },
+    failed: (err) => { console.log('message not sent,', err); }
+  };
+  ```
+
+* Payload from JSON, application, properties, message properties and message header to be sent
+  ```javascript
+  const message = {
+    payload: {
+        chunks: [Buffer.from(JSON.stringify({
+            quantity: 100,
+            uom: 'kg',
+        }))],
+        properties:{ // application properties, data to read without parsing full payload
+            SalesOrder: '42',
+            DeliveryID: '1764'
+        },
+        type: 'application/json'
+    },
+    target: {
+        header: {
+            durable: true,
+            priority: 2,
+            ttl: null, // or number in milliseconds
+        },
+        properties: {
+            messageID: '100037877',
+            userID: '',
+            to: 'topic:a/b/c',
+            subject: '',
+            replyTo: '',
+        }
+    },
+    done: () => { console.log('message was sent'); },
+    failed: (err) => { console.log('message not sent,', err); }
+  };
+  ```
+
+* Cloud Event, structured format
+  ```javascript
+  
+  const message = {
+    payload: {
+        chunks: [Buffer.from(JSON.stringify({
+            specversion: '0.3',
+            source: 'sap/faas/demo',
+            type: 'com.sap.coffee.produced',
+            id: 'demo',
+            cause: 'demo',
+            subject: '',
+            data: 'espresso',
+            datacontenttype: 'text/plain'
+        }))],
+        type: 'application/cloudevents+json'
+    },
+    done: () => { console.log('message was sent'); },
+    failed: (err) => { console.log('message not sent,', err); }
+  };
+
+  ```
+
+* Cloud Event, binary format 
+  ```javascript
+  
+  const message = {
+    payload: {
+        chunks: [
+            Buffer.from('espresso')
+        ],
+        properties: {
+            'cloudEvents:specversion': '0.3',
+            'cloudEvents:source': 'sap/faas/demo',
+            'cloudEvents:type': 'com.sap.coffee.produced',
+            'cloudEvents:id': 'demo',
+            'cloudEvents:cause': 'demo',
+            'cloudEvents:subject': ''
+        },
+        type: 'text/plain'
+    },
+    done: () => { console.log('message was sent'); },
+    failed: (err) => { console.log('message not sent,', err); }
+  };
+
+  ```
+
+* No binary payload, but single AMQP Value, e.g. a string
+  ```javascript
+  
+  const AMQP = require('@sap/xb-msg-amqp-v100');
+  
+  const message = {
+    payload: {
+        type: 'amqp-1.0',
+        data: AMQP.Factory.String('Hello World')
+    },
+    done: () => { console.log('message was sent'); },
+    failed: (err) => { console.log('message not sent,', err); }
+  };
+
+  ```
+
+* Simulate text message from [Qpid JMS](https://qpid.apache.org/components/jms/index.html)
+  ```javascript
+  
+  const AMQP = require('@sap/xb-msg-amqp-v100');
+    
+  const message = {
+    target: {
+      annotations: {
+        'x-opt-jms-msg-type': AMQP.Factory.Byte(5)
+      }
+    },
+    payload: {
+      type: 'amqp-1.0',
+      data: AMQP.Factory.String('Hello World')
+    },
+    done: () => { console.log('message was sent'); },
+    failed: (err) => { console.log('message not sent,', err); }
+  },
+
+  ```
+
 
 ## Further Links
 
@@ -978,8 +1163,12 @@ Protocol Support by others:
 * [.Net Library: AMQP.Net Lite](https://github.com/Azure/amqpnetlite)
 * [Node Library: Rhea](https://github.com/amqp/rhea)
 * [Node Library: AMQP 1.0](https://github.com/noodlefrenzy/node-amqp10)
+* [Go Library (uses Qpid C library): Qpid Electron](https://godoc.org/qpid.apache.org/electron)
+* [Go Library (pure GO, context.Context support): vcabbage/amqp](https://github.com/vcabbage/amqp)
 
 Others:
 * [Introduction to AMQP 1.0](https://de.slideshare.net/ClemensVasters/amqp-10-introduction)
 * [Node: Backpressuring in Streams](https://nodejs.org/en/docs/guides/backpressuring-in-streams/)
+
+
 

@@ -1,7 +1,5 @@
 @sap/approuter
 @sap/cds
-@sap/cloud-sdk-core
-@sap/cloud-sdk-test-util
 @sap/cloud-sdk-vdm-accounting-document-service
 @sap/cloud-sdk-vdm-attachment-service
 @sap/cloud-sdk-vdm-bank-detail-service
@@ -13,6 +11,8 @@
 @sap/cloud-sdk-vdm-billing-document-request-service
 @sap/cloud-sdk-vdm-billing-document-service
 @sap/cloud-sdk-vdm-business-area-service
+@sap/cloud-sdk-vdm-business-event-queue-service
+@sap/cloud-sdk-vdm-business-event-subscription-service
 @sap/grunt-sapui5-bestpractice-build
 @sap/node-jwt
 @sap/site-entry
@@ -32,6 +32,7 @@ sap/portal-cf-content-deployer
 @sap/cds-sql
 @sap/cds-sqlite
 @sap/edm-converters
+@sap/fibers
 @sap/cloud-sdk-generator
 @sap/cloud-sdk-util
 @sap/xsenv
@@ -43,3 +44,5 @@ sap/portal-cf-content-deployer
 @sap/hana-client
 @sap/faas
 @sap/xsodata
+@sap/xb-msg-amqp-v100
+@sap/xsjs

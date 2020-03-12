@@ -17,6 +17,7 @@ echo "@sap/cds-services" >> packages.txt
 echo "@sap/cds-sql" >> packages.txt
 echo "@sap/cds-sqlite" >> packages.txt
 echo "@sap/edm-converters" >> packages.txt
+echo "@sap/fibers" >> packages.txt
 echo "@sap/cloud-sdk-generator" >> packages.txt
 echo "@sap/cloud-sdk-util" >> packages.txt
 echo "@sap/xsenv" >> packages.txt
@@ -27,7 +28,9 @@ echo "@sap/node-jwt" >> packages.txt
 echo "@sap/odata-server" >> packages.txt
 echo "@sap/hana-client" >> packages.txt
 echo "@sap/faas" >> packages.txt
+echo "@sap/xb-msg-amqp-v100" >> packages.txt
 echo "@sap/xsodata" >> packages.txt
+echo "@sap/xsjs" >> packages.txt
 node update-package-json.js
 jq '.' new-package.json > package.json
 rm new-package.json

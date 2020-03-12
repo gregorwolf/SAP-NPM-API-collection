@@ -20,6 +20,7 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/cds-sqlite"] = "latest"
   packagesJson["@sap/edm-converters"] = "latest"
   packagesJson["@sap/edmx2csn"] = "latest"
+  packagesJson["@sap/fibers"] = "latest"
   packagesJson["@sap/cloud-sdk-generator"] = "latest"
   packagesJson["@sap/cloud-sdk-util"] = "latest"
   packagesJson["@sap/xsenv"] = "latest"
@@ -29,7 +30,9 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/node-jwt"] = "latest"
   packagesJson["@sap/hana-client"] = "latest"
   packagesJson["@sap/faas"] = "latest"
+  packagesJson["@sap/xb-msg-amqp-v100"] = "latest"
   packagesJson["@sap/xsodata"] = "latest"
+  packagesJson["@sap/xsjs"] = "latest"
   fs.readFile(package, function (err, packageData) {
     var packageJson = JSON.parse(packageData)
     packageJson.dependencies = packagesJson

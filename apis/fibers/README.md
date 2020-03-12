@@ -1,8 +1,15 @@
 fibers(1) -- Fiber support for v8 and Node
 ==========================================
+[![npm version](https://badgen.now.sh/npm/v/fibers)](https://www.npmjs.com/package/fibers)
+[![isc license](https://badgen.now.sh/npm/license/fibers)](https://github.com/laverdet/node-fibers/blob/master/LICENSE)
+[![travis build](https://badgen.now.sh/travis/laverdet/node-fibers)](https://travis-ci.org/laverdet/node-fibers)
+[![npm downloads](https://badgen.now.sh/npm/dm/fibers)](https://www.npmjs.com/package/fibers)
+
+Fibers, sometimes called [coroutines](https://en.wikipedia.org/wiki/Coroutine), are a powerful tool which expose an API to jump between multiple call stacks from within a single thread. This can be useful to make code written for a synchronous library play nicely in an asynchronous environment.
 
 INSTALLING
 ----------
+[![NPM](https://nodei.co/npm/fibers.png)](https://www.npmjs.com/package/fibers)
 
 ### via npm
 * `npm install fibers`
@@ -32,18 +39,18 @@ Meteor, then start over. See
 information.
 
 ### supported platforms
-If you are running NodeJS version 4.x, 5.x, or 6.x on Linux, OS X, or Windows
-(7 or later) then you should be able to install fibers from npm just fine. If
-you are running an older (or newer) version of node or some other operating
-system you will have to compile fibers on your system.
+If you are running nodejs version 10.x or 12.x on Linux, OS X, or Windows (7 or later) then you
+should be able to install fibers from npm just fine. If you are running nodejs v8.x then you will
+need to use `npm install fibers@3`. If you are running nodejs v6.x then you will need to use `npm
+install fibers@2`. For nodejs v4.x you can use `npm install fibers@1`. If you are running an older
+(or newer) version of node or some other operating system you will have to compile fibers on your
+system.
 
-(special thanks to [Jeroen Janssen](https://github.com/japj) for his work on
-fibers in Windows)
+(special thanks to [Jeroen Janssen](https://github.com/japj) for his work on fibers in Windows)
 
-If you do end up needing to compile fibers first make sure you have node-gyp
-installed as a global dependency (`npm install -g node-gyp`), and that you have
-setup your build enviroment by following the instructions at
-[node-gyp](https://github.com/TooTallNate/node-gyp). Ubuntu-flavored Linux users
+If you do end up needing to compile fibers first make sure you have node-gyp installed as a global
+dependency (`npm install -g node-gyp`), and that you have setup your build environment by following
+the instructions at [node-gyp](https://github.com/TooTallNate/node-gyp). Ubuntu-flavored Linux users
 may need to run `sudo apt-get install g++` as well.
 
 
