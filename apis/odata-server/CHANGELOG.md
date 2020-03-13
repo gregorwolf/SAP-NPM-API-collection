@@ -6,7 +6,17 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## [1.5.5]### Added- If-Match and If-None-Match headers are allowed with value * on POST requests (#86) - 2020-03-11
+
+## [1.5.4] - 2020-03-06
+
+### Fixed
+- stricter determination of related entity set
+
+## [1.5.3] - 2020-03-04
+
+### Added
+- If-Match and If-None-Match headers are allowed with value * on non-conditional DELETE requests (#86)
 
 ## [1.5.2] - 2020-02-21
 
@@ -34,8 +44,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ## [1.4.1] - 2020-01-31
 
 ### Fixed
-- If-Match and If-None-Match headers are allowed with value '*' on non-conditional PUT/PATCH requests (for upsert) (#50)
-- If-Match header with value '*' is allowed for all GET requests
+- If-Match and If-None-Match headers are allowed with value * on non-conditional PUT/PATCH requests (for upsert) (#50)
+- If-Match header with value * is allowed for all GET requests
 - allow annotations `@odata.type` in requests if they match the types specified in the metadata
 
 ## [1.4.0] - 2020-01-14
