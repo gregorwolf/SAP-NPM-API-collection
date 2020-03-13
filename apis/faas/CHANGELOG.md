@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.7.7] - 2020-03-12
+
+## [0.7.6] - 2020-03-12
+
 ## [0.7.5] - 2020-03-11
 
 - fixed: special handling for cloudevent response in function call, e.g. in unit tests

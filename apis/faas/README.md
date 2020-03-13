@@ -10,8 +10,13 @@ Provides the SAP Cloud Platform Functions runtime for Node.js and basic SDK feat
 * [Function Projects](#function-projects)
   * [Project Attributes](#project-attributes)
   * [Secrets and Config Maps](#secrets-and-config-maps)
+  * [Service References](#service-references)
   * [Functions](#functions)
-  * [Function Triggers](#function-triggers)
+* [Function Triggers](#function-triggers)
+  * [HTTP](#http-trigger)
+  * [Timer](#timer-trigger)
+  * [AMQP](#amqp-trigger)
+  * [CloudEvents](#cloudevents-trigger)
 * [Function Runtime API](#function-runtime-api)
   * [Global Variables](#global-variables)
   * [Handler Exceptions](#handler-exceptions)
@@ -112,9 +117,11 @@ All runtime artifacts need a name that matches the following constraints:
 This applies to:
 * secrets
 * config maps
+* service references
 * functions
 * triggers
-* project names and version identifiers
+* project names and
+* project version identifiers
 
 Secret and config map __keys__ (names of its entries) are usually based on file names.
 That's why it may contain `.` as well, but not at the beginning or the end.
@@ -187,7 +194,6 @@ In this case the module file `main.js` exports two function handlers `f1` and `f
   }
 }
 ```
-
 ### Project Attributes
 At the top level of `faas.json` the following fields can be defined:
 * __`project`__: used as label for all runtime artifacts (see restrictions to [naming rules](#naming-rules))
@@ -283,6 +289,32 @@ faas-cli project deploy -y ./deploy/values.yaml -s my-cf-service -k my-cf-servic
 
 These deployment files can also be used to define mock data for [function unit tests](#function-unit-tests).
 
+### Service References
+
+Besides the option to use secrets there is a more simple way to provide credentials of SAP CP platform services to functions or triggers.
+First, you can use the command line tool to transfer service keys to a secure store in the faas runtime:
+* Run ```cf login```
+* Run ```faas-cli login```
+* Run ```faas-cli service register -s <service-name> -b <service-key>```
+
+To list all registered services (for your faas tenant, means service instance):
+* Run ```faas-cli service list```
+
+Then you can define in your project a service reference, for example to an enterprise messaging instance:
+```json
+{
+  "services": {
+    "my-ems": {
+      "type": "enterprise-messaging",
+      "instance": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "key": "xxx"
+    }
+  }
+}
+```
+Finally, use the alias `my-ems` inside `faas.json` at trigger definitions and/or within function code.
+The specific values of the reference can be provided with deploy values as well.
+
 ### Functions
 Let's start with an example again:
 ```json
@@ -325,7 +357,7 @@ Furthermore, it offers type definitions that your local IDE may use for code pro
   "dependencies": {
   },
   "devDependencies": {
-    "@sap/faas": ">=0.5.1"
+    "@sap/faas": ">=0.7.6"
   }
 }
 ```
@@ -335,9 +367,15 @@ The function handler in file `ìndex.js` may look like this:
 'use strict';
 
 /**
- * @param {FaasEvent} event
- * @param {FaasContext} context
- * @return {Promise|*}
+ * @namespace Faas
+ * @typedef {import("@sap/faas").Faas.Event} Faas.Event
+ * @typedef {import("@sap/faas").Faas.Context} Faas.Context
+ */
+
+/**
+ * @param {Faas.Event} event
+ * @param {Faas.Context} context
+ * @return {Promise<*>|*}
  */
 module.exports = function(event, context) {
     const rval = context.getSecretValueJSON('sec1', 'rv.json');
@@ -347,7 +385,7 @@ module.exports = function(event, context) {
 Please note how jsdoc annotations are used to declare the types.
 With that IDE shall support you in finding methods and attributes of `event` and `context` while typing.
 
-### Function Triggers
+## Function Triggers
 Functions are invoked by triggers.
 A single function may be referenced by multiple trigger instances of different types.
 In principle a single trigger may also invoke different functions, e.g. an AMQP trigger with multiple rules.
@@ -356,7 +394,7 @@ The following types are supported:
 * HTTP
 * Timer
 * AMQP
-* WebHook
+* CloudEvents
 
 A first example shows how triggers are defined in principle within `faas.json`:
 ```json
@@ -394,7 +432,7 @@ In parallel trigger `job1` will call function `my-fnc-02` each quarter of an hou
 ### HTTP Trigger
 
 For each trigger instance an external `HTTP` endpoint will be created.
-Each incoming request will be forwarded to the function, expect those for method 'OPTIONS'.
+Each incoming request will be forwarded to the function, except those for method 'OPTIONS'.
 The result of the function will be returned as response.
 
 __Attributes__:
@@ -403,23 +441,20 @@ __Attributes__:
 __Example__:
 ```json
 {
-  ...
   
   "triggers": {
     "demo": {
       "type": "HTTP",
       "function": "my-new-fnc"
     }
-  },
+  }
   
-  ...
-
 }
 ```
 
 Be aware that the endpoint is public visible.
 So far authentication/authorization has to be handled by the function code.
-As soon as [Istio](https://istio.io/) becomes available for usage in SCP e.g. an automated OAuth token validation could be offered using additional parameters.
+It is planned to support automated oauth token validation in future.
 
 ### Timer Trigger
 
@@ -500,7 +535,8 @@ It will connect to any peer either via WebSocket (with or without OAuth credenti
 Usually, the peer will be a message broker like Enterprise Messaging provides it for example.
 
 __Attributes__:
-* __`secret`__: a secret that provides credentials to connect
+* __`service`__: a service alias, it must be defined in the same project
+* __`secret`__: a secret that provides credentials to connect if no service reference is provided
 * __`config`__: a config map that provides the amqp link settings and binding rules
 
 Usually, the secret can be re-used by multiple triggers as it provides just connection data for a messaging broker.
@@ -516,6 +552,53 @@ __Config Entries__:
 
 It will be important to use a deployment file (values.yaml) to provide real credentials and settings for a specific deployment.
 Those data must not be stored in the secret and config defintion fields directly, as you probably will not wish to see it on git.
+
+### CloudEvents Trigger
+
+This trigger allows you to subscribe CloudEvents and to define a rule-based function invocation.
+It works similar to an AMQP trigger, but does not require secret or config map.
+Instead it is completely defined within `faas.json`.
+Furthermore, it will configure the messaging service automatically with the project deployment.
+
+```json
+{
+  "functions": {
+    "ce-coffee-handler": {
+      "module": "index.js",
+      "services": []
+    }
+  },
+  "triggers": {
+    "my-ce": {
+      "type": "CloudEvents",
+      "service": "my-ems",
+      "rules": [
+        {
+          "ce-source": "",
+          "ce-type": "com.sap.coffee.required",
+          "function": "ce-coffee-handler",
+          "failure": "accept"
+        },
+        {
+          "ce-source": "",
+          "ce-type": "com.sap.coffee.produced",
+          "function": "ce-coffee-handler",
+          "failure": "accept"
+        },
+        {
+          "ce-source": "",
+          "ce-type": "com.sap.coffee.consumed",
+          "function": "ce-coffee-handler",
+          "failure": "accept"
+        }
+      ]
+    }
+  }
+}
+```
+While deployment the referenced messaging service will be called to create a queue and topic subscriptions according to the given rules.
+For one single message only one single rule is applied, the first that matches.
+Currently SAP Enterprise Messaging is supported. The list may be extended according to development requests you raise.
 
 ## Function Runtime API
 The function handler is implemented as usual (anonymous) function, receiving two parameters: `event` and `context`.
