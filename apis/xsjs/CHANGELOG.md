@@ -5,6 +5,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.0.0"></a>
+## 6.0.0 - 2020-03-13
+
+### Added
+- Node.js 12.x support.
+
+### Removed
+- Support for Node.js versions 6.x and 8.x
+
+### Fixed
+- Update _@sap/xssec_ to v2.2.5
+- Update _@sap/xsodata_ to v6.0.0
+- Update _@sap/hana-client_ to v2.4.182
+- Update _@sap/hdbext_ to v6.2.0
+- Update _@sap/fibers_ to v4.0.3-0
+- Update _@sap/fibrous_ to v0.5.0-5
+- Update _@sap/node-jwt_ to v1.6.7
+- Update _@sap/node-vsi_ to v1.4.16
+
 <a name="5.3.1"></a>
 ## 5.3.1 - 2019-12-17
 
