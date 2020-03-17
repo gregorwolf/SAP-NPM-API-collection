@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [1.0.9] - 2020-03-17
+
 ## [1.0.8] - 2019-08-16
 
 ### Fixed
