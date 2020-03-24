@@ -53,6 +53,26 @@
     ]
   },
   {
+    "name": "@sap/node-jwt",
+    "version": "1.6.8",
+    "description": "JWT validation library for Node.js",
+    "keywords": [
+      "jwt",
+      "security",
+      "sap",
+      "xs"
+    ],
+    "date": "2020-03-20T09:15:32.384Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
     "name": "@sap/xsjs",
     "version": "6.0.0",
     "description": "Compatibility layer to run XS Classic applications on XS Advanced",
@@ -90,26 +110,6 @@
     "description": "Grunt tasks around Devx grunt build",
     "keywords": [],
     "date": "2019-10-03T10:40:53.084Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/node-jwt",
-    "version": "1.6.7",
-    "description": "JWT validation library for Node.js",
-    "keywords": [
-      "jwt",
-      "security",
-      "sap",
-      "xs"
-    ],
-    "date": "2020-03-06T14:12:45.082Z",
     "links": {
       "npm": null,
       "homepage": null,
