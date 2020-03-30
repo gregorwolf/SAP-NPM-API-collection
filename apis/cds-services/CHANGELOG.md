@@ -6,7 +6,48 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 1.26.0 - 2020-02-26
+## Version 1.27.1 - 2020-03-23
+
+### Fixed
+
+- Alias was added twice to CQN in case of a request including navigations on a draft enabled entity
+
+## Version 1.27.0 - 2020-03-19
+
+### Added
+
+- Transaction uses one timestamp for all queries
+- Pool acquire timeout is set by default and can be configured in pool options
+- Ordered OData singletons (`... as select from <entity> order by <property>`)
+
+### Changed
+
+- $count=true triggers handlers only once now
+- `draftPrepare` action can be called on the entity set of child nodes of the draft enabled entity
+- Normalize user.id if an email address
+- Allow functions and properties as 2nd param in contains, startswith, endswith
+
+### Fixed
+
+- Entity is now correctly resolved if there are conflicting names
+- Where conditions from security annotations were appended twice when using $count=true
+- `req._.req` always contains the incoming request - also in `$batch` requests
+- Error in delete when fields are renamed in views
+- Using view by draft & localized
+- context.diff() returns changes also for `PATCH` of drafts
+- OData requests using `/$count` on navigation-to-many
+- Authentication-requirement detected if in multi tenant mode (i.e., `multiTenant: true`)
+- Integrity check of atomicity group
+- Where annotation in case of draft and navigations
+- `/$count` on parameterized views
+- Streaming from draft in case localized and where annotations
+- @mandatory: empty strings (whitespaces only = empty) are not allowed
+
+## Version 1.25.1 - 2020-02-26
+
+### Fixed
+
+- update of localized text entries replies with 403 if no changes are detected
 
 ### Removed
 
@@ -409,7 +450,7 @@ be removed in the next releases
 
 - Improved performance
 
-## Version 1.9.0 - 2016-04-16
+## Version 1.9.0 - 2019-04-16
 
 ### Added
 

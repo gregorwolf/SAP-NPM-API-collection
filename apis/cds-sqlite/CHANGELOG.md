@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.24.0 - 2020-03-19
+
+### Added
+
+- Single timestamp per transaction
+- default timeout 5s for acquiring client from pool
+
+### Changed
+- deleted concat handling (done in cds-sql)
+
 ## Version 1.23.1 - 2020-02-26
 
 ### Removed

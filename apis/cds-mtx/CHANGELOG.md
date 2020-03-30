@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.12]
+
+### Added
+- reenabled the support of different domains (BETA)
+
+- Support for asynchronous extension activation to handle long-running jobs
+
+## [1.0.11]
+
+### Added
+
+- Support of asynchronous onboarding as specified by the [saas-registry](https://wiki.wdf.sap.corp/wiki/display/CPC15N/SaaS+Application+Registration+in+CF#SaaSApplicationRegistrationinCF-Asynchronouscallbacksimplementation)
+
 ## [1.0.10]
 
 ### Fixed

@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.39] - 2020-03-23
+
+- added: improved default options for better performance
+
 ## [0.9.38]- fixed: no disposition for early closed sessions (channels) - 2020-03-10
 
 ## [0.9.36] - 2020-02-12

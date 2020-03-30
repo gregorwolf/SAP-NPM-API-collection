@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.24.0 - 2020-03-19
+
+### Added
+
+- Support for different columns combinations in INSERT.entries
+- Support for $count in SELECT CQN
+- Support String objects in the annotation expressions
+- .setTransactionTimestamp in BaseClient
+- check for @cds.persistence.skip for deep operations
+
+### Changed
+
+- Use || for concat (works for HANA and sqlite)
+
+### Fixed
+
+- Using view by draft & localized 
+- Quote alias in orderBy to work on HANA
+- Expand from not draft enabled entity to draft enabled entity
+- `where` and `orderBy`clauses containing navigations in combination with expand are correctly translated to SQL
+
 ## Version 1.23.2 - 2020-02-25
 
 ### Fixed

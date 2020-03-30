@@ -5,6 +5,41 @@
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+# Version 3.33.1 - 2020-03-24
+## Fixed
+- `cds build` now correctly support options.model definitions of type string
+- Details navigation in Fiori preview works again since it's pinned to SAP UI5 1.73.  Actual cause still needs to be investigated.
+
+
+# Version 3.33.0 - 2020-03-19
+
+## Added
+
+- `cds version` now also lists all dependencies of your local package.json and has an updated CLI commend help, documenting option `--all`.
+- `cds compile` got a new option `--docs` to a preserve the content of `/** ... */` doc comments in CSN output as well as in EDMX outputs (as _Core.Description_ annotations).
+- `cds compile` got a new option `--clean` telling the compiler to not add any derived information, but return a CSN which reflects only what was actually found in a `.cds` source.
+
+## Changed
+
+- Labels for the `createdAt` and `changedAt` in the `@sap/cds/common#managed` entity have been adjusted to reflect the SAP Fiori design guidelines.
+- `cds build` now delegates to the modular build system by default (known as `cds build/all`). The modular build system is compatible, but supports additional
+  features, e.g. staging build, SAP HANA Cloud Edition support, populating initial data from .csv by generating .hdbtabledata files, etc. The legacy build is still available as a fallback in case of issues - use setting `cds.features.build.legacy: true` or ENV variable `CDS_FEATURES_BUILD_LEGACY=true`.
+
+## Fixed
+
+- `cds build` now correctly logs warnings returned by cds compiler. The message log level can be customized using cds configuration setting `cds.features.messageLevel` - default is `warn`.
+- `cds.env.roots` now properly picks up a changed value of `cds.env.folders`
+- `hdbtabledata` is no longer generated for entities that are marked with `@cds.persistence.skip`
+
+## Removed
+
+
+# Version 3.32.0 - 2020-03-06
+
+## Fixed
+- An issue where all Node.js runtime sessions where disconnected when one tenant offboarded.
+
+
 # Version 3.31.2 - 2020-03-05
 
 ## Fixed
@@ -16,6 +51,7 @@
 
 
 # Version 3.31.1 - 2020-02-26
+
 
 ## Fixed
 

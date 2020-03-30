@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.14.0]
+
+### Feature
+- Use Maven Java `Archetype` version `1.39.0`.
+
+## [2.13.2]
+
+### Changed
+- Engine entry for Nodejs is now `^10 || ^12` in `srv` and `root` package.json.
+
 ## [2.13.1]
 
 ### Removed

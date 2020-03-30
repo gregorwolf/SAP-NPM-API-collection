@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.8.2 - 2020-03-19
+
+### Added
+
+- It is now possible to set the queue configuration with the `queueConfig` property in the credentials section
+  https://help.sap.com/doc/75c9efd00fc14183abc4c613490c53f4/Cloud/en-US/rest-management-messaging.html#_queuep
+
+### Removed
+
+- Bound events are not supported anymore
+
 ## Version 1.7.0 - 2020-02-19
 
 ### Changed

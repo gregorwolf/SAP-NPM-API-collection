@@ -6,11 +6,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.25.1 - 2020-03-20
+
+### Removed
+
+- Timeout for update and delete statements (if needed: increase libuv's threadpool size via environment variable `UV_THREADPOOL_SIZE`)
+
+## Version 1.25.0 - 2020-03-19
+
+### Added
+
+ - Single timestamp per transaction
+ - default timeout 20s for acquiring client from pool
+
 ## Version 1.24.0 - 2020-02-26
 
 ### Added
 
 - Streaming from draft
+- Timeout for update and delete statements to handle locked records (@sap/hana-client only, default: 1s)
 
 ## Version 1.23.0 - 2020-02-19
 

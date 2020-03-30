@@ -6,11 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 1.5.1 - 2020-02-27
+## Version 1.6.2 - 2020-03-19
+
+### Changed
+
+- In case there is no credentials.destination provided the `destinations` environment variable is not created anymore.
+  The connection to the remote service is handled internally.
 
 ### Removed
 
-- remove npm-shrinkwrap.json
+- `npm-shrinkwrap.json`
 
 ## Version 1.5.0 - 2020-02-19
 
