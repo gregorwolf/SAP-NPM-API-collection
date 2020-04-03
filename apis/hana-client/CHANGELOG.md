@@ -1,5 +1,29 @@
 # Hana Client 2.4.x Drivers
 
+## Version 2.4.191
+
+### Changes:
+
+ - Issue Number 242230: Possible crash on queries with TEXT columns
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 243053: When specifying HOSTNAME environment variable and
+   using both JDBC and SQLDBC-based drivers to connect with SecureStore
+   entries, or Client Side Encryption operations, the JDBC operations could
+   have failed
+ - Issue Number 240995: Reading BLOB longer than SQLDBC packet size limit
+   resulted in silent truncation
+ - Issue Number 238492: There was no way for S/4 HANA to check if all internal
+   connections for routing were valid on a distributed system
+
+## Version 2.4.186
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 243922: WebSockets would have only reported 'HTTP Exception' from HTTP errors
+ - Issue Number 236729: HANA Client for Linux x86_64 was not backwards compatible with Red Hat Enterprise Linux 5
+
 ## Version 2.4.182
 
 ### Changes:

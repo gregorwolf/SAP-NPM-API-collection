@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.7.0 - 2020-03-24
+
+### Added
+- `cds init --add java` supports `--java:mvn` to add additional parameter.
+- Improvements when logging console output during `cds init`.
+- Link to Maven archetype documentation shown in `cds help init`.
+
+### Changed
+- `cds add mta` now activates the `production` profile when creating the `mta.yaml`, which is consistent with what the MTA build does.  This way, configuration like `"[production]: {"kind": "hana"}` gets activated automatically.
+
 
 ## Version 1.6.3 - 2020-03-05
 
