@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Seeker0/SAP-NPM-API-collection#readme",
   "dependencies": {
-    "@sap/approuter": "6.8.2",
+    "@sap/approuter": "7.0.0",
     "@sap/cds": "3.33.1",
     "@sap/site-entry": "latest",
     "@sap/node-jwt": "latest",

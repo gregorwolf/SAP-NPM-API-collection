@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.0.0 - 2020-04-06
+
+### Added
+- Support node version 10 and node version 12 instead of node version 8 and node version 10
+
 ## 6.8.2 - 2020-03-04
 
 ### Fixed
