@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.25 - 2020-04-08
+
+### Fixed
+
+- Add additional messages as details
+
+## Version 1.4.24 - 2020-04-07
+
+### Fixed
+
+- Fix for metadata transfer-encoding chunked
+- Filter '@' attributes
+
+## Version 1.4.23 - 2020-04-01
+
+### Fixed
+
+- Fix type conversion for "le" operator
+
 ## Version 1.4.22 - 2020-03-27
 
 ### Fixed
