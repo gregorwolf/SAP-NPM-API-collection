@@ -337,6 +337,9 @@ Sample configuration for additional headers:
 ```
 In this case the application router will send two additional headers in the responses to the client.
 
+
+**Caution:** For security reasons, the following headers must not be configured: authorization', 'cookie', and 'set-cookie'.
+
 ### Additional cookies configuration
 
 If configured, the application router will send additional cookies in its responses to the client.

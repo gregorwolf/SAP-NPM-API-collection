@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/Seeker0/SAP-NPM-API-collection#readme",
   "dependencies": {
-    "@sap/approuter": "7.0.0",
+    "@sap/approuter": "7.1.0",
     "@sap/cds": "3.33.1",
     "@sap/site-entry": "latest",
-    "@sap/node-jwt": "latest",
     "@sap/xsjs": "latest",
+    "@sap/node-jwt": "latest",
     "@sap/xssec": "2.2.5",
     "@sap/grunt-sapui5-bestpractice-build": "1.4.2",
     "@sap/cloud-sdk-vdm-accounting-document-service": "1.18.0",

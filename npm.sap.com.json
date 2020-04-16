@@ -1,10 +1,10 @@
 [
   {
     "name": "@sap/approuter",
-    "version": "7.0.0",
+    "version": "7.1.0",
     "description": "Node.js based application router",
     "keywords": [],
-    "date": "2020-04-07T10:20:14.384Z",
+    "date": "2020-04-16T10:29:44.187Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -53,16 +53,11 @@
     ]
   },
   {
-    "name": "@sap/node-jwt",
-    "version": "1.6.8",
-    "description": "JWT validation library for Node.js",
-    "keywords": [
-      "jwt",
-      "security",
-      "sap",
-      "xs"
-    ],
-    "date": "2020-03-20T09:15:32.384Z",
+    "name": "@sap/xsjs",
+    "version": "6.0.1",
+    "description": "Compatibility layer to run XS Classic applications on XS Advanced",
+    "keywords": [],
+    "date": "2020-04-16T11:37:07.904Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -73,11 +68,16 @@
     "maintainers": []
   },
   {
-    "name": "@sap/xsjs",
-    "version": "6.0.0",
-    "description": "Compatibility layer to run XS Classic applications on XS Advanced",
-    "keywords": [],
-    "date": "2020-03-13T16:19:15.242Z",
+    "name": "@sap/node-jwt",
+    "version": "1.6.8",
+    "description": "JWT validation library for Node.js",
+    "keywords": [
+      "jwt",
+      "security",
+      "sap",
+      "xs"
+    ],
+    "date": "2020-03-20T09:15:32.384Z",
     "links": {
       "npm": null,
       "homepage": null,
