@@ -1,5 +1,18 @@
 # Hana Client 2.4.x Drivers
 
+## Version 2.4.194
+
+### Changes:
+
+ - Issue Number 239769: Using HanaLobStream produced an incorrect streaming result of NULL value.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 244509: The wrong error message was displayed when the cseKeyStorePassword property was missing
+ - Issue Number 237977: When bulk fetching rows into buffers from a ResultSet, the driver may have returned success when an error occurred while fetching data.
+ - Issue Number 236457: There were several SQLDBC tracing issues with flushing disabled and trace only on error
+ - Issue Number 241887: VARCHARMODE session variable was not visible using the ClientInfo interface when connecting with ABAPVARCHARMODE=1
+
 ## Version 2.4.191
 
 ### Changes:

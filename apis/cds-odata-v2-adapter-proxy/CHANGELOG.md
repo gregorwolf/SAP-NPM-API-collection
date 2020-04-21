@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.26 - 2020-04-20
+
+### Fixed
+
+- Fix \$filter for navigation elements
+- Fix OData annotations conversion for Java backends
+- Add request authorization parsing for logging
+
 ## Version 1.4.25 - 2020-04-08
 
 ### Fixed
