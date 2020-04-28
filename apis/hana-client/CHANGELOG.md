@@ -1,5 +1,17 @@
 # Hana Client 2.4.x Drivers
 
+## Version 2.4.196
+
+### Changes:
+
+ - Issue Number 246837: node.js process crashes while executing a statement created by Stream.createProcStatement() when connection is closed.
+ - Issue Number 245618: Application crashes with 'Check failed: IsGlobalEmpty()'.
+ - Issue Number 244631: Fix Memory leaks caused by warnings.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 244599: Long-running plan execution cannot be canceled.
+
 ## Version 2.4.194
 
 ### Changes:

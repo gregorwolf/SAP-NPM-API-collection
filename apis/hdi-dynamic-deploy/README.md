@@ -15,6 +15,7 @@ The dynamic deployer is built upon `@sap/hdi-deploy` which should be used direct
 - [Triggering a dynamic deployment by a HTTP POST request](#triggering-a-dynamic-deployment-by-a-http-post-request)
 - [How to use it in a multi-target application](#how-to-use-it-in-a-multi-target-application)
 - [Accessing the underlying HTTP server](#accessing-the-underlying-http-server)
+- [Accessing the underlying HTTP server](#accessing-the-router-functions)
 
 ## Integration into a Database Module
 
@@ -26,7 +27,7 @@ Usually, `@sap/hdi-dynamic-deploy` gets installed via a `package.json`-based dep
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-dynamic-deploy": "1.4.2"
+    "@sap/hdi-dynamic-deploy": "1.6.0"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-dynamic-deploy/"
@@ -43,8 +44,16 @@ The dynamic deployer needs to be configured via the following environment variab
 - `PORT`: port the HTTP server listens to
 - `hdi_dynamic_deploy_user`: username for HTTP basic authentication
 - `hdi_dynamic_deploy_password`: password for HTTP basic authentication
+- `ENFORCE_AUDITING`: force usage of audit logging. If audit logging cannot be enabled, the server will throw an error and stop.
+- `ENFORCE_V2`: force usage of the V2 audit logging API. If audit logging V2 cannot be enabled, the server will throw an error and stop.
+- `AUDIT_LOG_TENANT`: specifies the tenant to use for audit logging. Likely this will be the [subaccount-id](https://help.sap.com/viewer/cca91383641e40ffbe03bdc78f00f681/Cloud/en-US/b43eff2df3f84124995f6acbc9e5c55b.html) where your app is deployed. If this is not specified you may be unable to view the logs.
 
-The `PORT` variable is automatically set by XSA. The username and password have to be given e.g. via the `mta.yaml` file:
+Note: Any client that knows the `hdi_dynamic_deploy_user` and the corresponding password will indirectly be able to read the database artifacts contained in the dynamic deploy server.
+
+If an auditlog service is bound to the dynamic deployer, invalid authentication attempts will be logger accordingly.
+
+The `PORT` variable is automatically set by XSA. `ENFORCE_AUDITING`, `ENFORCE_V2`, username and password have to be given e.g. via the `mta.yaml` file (see example below).
+When using the XSA deploy-service, a strong generated password will be used. In other use cases, sufficient password strength has to be ensured!
 
 ```
 modules:
@@ -220,10 +229,30 @@ Example:
 ```javascript
 'use strict';
 
-const {server} = require('@sap/hdi-dynamic-deploy');
+const {server} = require('@sap/hdi-dynamic-deploy/index');
 
 server.port = process.env.PORT;
 server.start(function(){
   console.log(`@sap/hdi-dynamic-deploy HTTP server up and running, listening on port ${  server.port}`);
 });
+```
+## Accessing the router functions
+By requiring the dynamic deploy package, you can access the functions used for the API endpoints and can use them in your own router.
+Both functions expect two parameters: 
+  - A HTTP request object
+  - A HTTP response object
+
+Example:
+```javascript
+'use strict';
+
+const {deploy_to_instance, deploy} = require('@sap/hdi-dynamic-deploy/index');
+
+/** 
+ * Now the functions can be added to a router.
+ * 
+ * deploy_to_instance is the function used for the /v1/deploy/to/instance route
+ * deploy is the function used for the /v1/deploy route
+ * 
+ */
 ```

@@ -33,6 +33,7 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/logging"] = "latest"
   packagesJson["@sap/node-jwt"] = "latest"
   packagesJson["@sap/hana-client"] = "latest"
+  packagesJson["@sap/hdi-dynamic-deploy"] = "latest"
   packagesJson["@sap/faas"] = "latest"
   packagesJson["@sap/xb-msg-amqp-v091"] = "latest"
   packagesJson["@sap/xb-msg-env"] = "latest"

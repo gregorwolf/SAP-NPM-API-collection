@@ -46,6 +46,7 @@ sap/portal-cf-content-deployer
 @sap/node-jwt
 @sap/odata-server
 @sap/hana-client
+@sap/hdi-dynamic-deploy
 @sap/faas
 @sap/xb-msg-amqp-v091
 @sap/xb-msg-env

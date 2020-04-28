@@ -31,6 +31,7 @@ echo "@sap/logging" >> packages.txt
 echo "@sap/node-jwt" >> packages.txt
 echo "@sap/odata-server" >> packages.txt
 echo "@sap/hana-client" >> packages.txt
+echo "@sap/hdi-dynamic-deploy" >> packages.txt
 echo "@sap/faas" >> packages.txt
 echo "@sap/xb-msg-amqp-v091" >> packages.txt
 echo "@sap/xb-msg-env" >> packages.txt

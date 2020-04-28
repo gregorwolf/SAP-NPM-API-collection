@@ -68,6 +68,7 @@
     "@sap/odata-server": "latest",
     "@sap/logging": "latest",
     "@sap/hana-client": "latest",
+    "@sap/hdi-dynamic-deploy": "latest",
     "@sap/faas": "latest",
     "@sap/xb-msg-amqp-v091": "latest",
     "@sap/xb-msg-env": "latest",
