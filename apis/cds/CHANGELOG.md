@@ -4,26 +4,63 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+# Version 3.34.0 - 2020-04-27
+
+## Added
+
+- `cds version` option `-ls` prints an `npm ls` subtree.
+- `cds serve` / `run` now also accept package names as arguments, e.g. `cds serve --project @capire/bookshop`.
+- `cds compile` option `--parse` provides minimal, parsed-only CSN output.
+- New Node.js method `cds.compile.cdl()` allows compiling CDS sources in-process.
+- `cds build` now supports cds configuration `requires.db.kind:"sql"` which allows seamless production deployments using HANA db and development deployments using sqlite db.
+- Default maximum query size limit of 1000 (overridable via `@cds.query.limit.max`).
+- Improved error message during `cds deploy` on Windows when `SAP CommonCryptoLib` is missing.
+- `cds build` now checks that `entity-whitelist` and `service-whitelist` have been defined for SaaS applications - a warning is reported otherwise. `cds build` will fail if invalid entries exist.
+- Parameter `--vcap-file` lets `cds deploy --to hana` use an existing `default-env.json` file for the deployment credentials, instead of always creating new credentials from Cloud Foundry. Note that this is a beta feature.
+- `cds build --log-level` allows to choose which messages to see, default log level is `warn`.
+- Labels of `@sap/cds/common` texts are now available in many languages
+
+## Changed
+
+- Node.js method `cds.parse()` has been changed to now truely return parsed-only models, with extensions not applied yet.
+**Note:** If you'need the former (erroneous) behaviour, please use `cds.compile.cdl` for that from now on.
+- Node.js method `cds.get()` now returns parsed-only models; same as `cds.parse()`.
+- `cds serve` / `run` / `watch` now reduce logging of details for the bound DB on connect, leading to less clutter.
+- Precision for `validTo` and `validFrom` defined in the `temporal` aspect in `@sap/cds/common` changed from `DateTime` to `Timestamp`.
+- Some administrative fields of SAP Fiori draft documents are now hidden on the UI.  The rest got labels.
+- Renamed cds configuration setting `features.messageLevel` to `log-level` to be consistent with command line option, e.g. `cds build --log-level`.
+
+## Fixed
+- `cds build` - improvements in the area of error handling and error reporting.
+- `cds env` and Node.js runtime now properly complete configuration like `requires.db.kind.sql` with VCAP_SERVICES, so that in `production` an SAP HANA service is bound.
+- `cds build` now localizes edmx files properly if `cds.env.features.snapi` is turned on.
+- `cds deploy --to hana` no longer crashes if called with `NODE_ENV=production`.
+
+## Removed
 
 # Version 3.33.1 - 2020-03-24
-## Fixed
-- `cds build` now correctly support options.model definitions of type string
-- Details navigation in Fiori preview works again since it's pinned to SAP UI5 1.73.  Actual cause still needs to be investigated.
 
+## Fixed
+- `cds build` now correctly supports options.model definitions of type string
+- Details navigation in Fiori preview works again since it's pinned to SAP UI5 1.73.  Actual cause still needs to be investigated.
+- `cds deploy` now adds `@sap/hana-client` to package.json instead of `hdb`.
+- `cds deploy` adds kind `sql` to requires section.
 
 # Version 3.33.0 - 2020-03-19
 
 ## Added
+- `cds deploy` uses information from existing `default-env.json`.
 
 - `cds version` now also lists all dependencies of your local package.json and has an updated CLI commend help, documenting option `--all`.
-- `cds compile` got a new option `--docs` to a preserve the content of `/** ... */` doc comments in CSN output as well as in EDMX outputs (as _Core.Description_ annotations).
-- `cds compile` got a new option `--clean` telling the compiler to not add any derived information, but return a CSN which reflects only what was actually found in a `.cds` source.
+- `cds compile` option `--docs` preserve contents of `/** ... */` doc comments in CSN output as well as in EDMX outputs (as _Core.Description_ annotations).
+- `cds compile` option `--clean` tells the compiler to not add any derived information, but return a CSN which reflects only what was actually found in a `.cds` source.
+- `cds serve` option `--watch` starts the specific serve command in nodemon watch mode
+- Node.js: `cds.env` now supports camel case env variables as well as dot-notated keys in `.env`
 
 ## Changed
 
 - Labels for the `createdAt` and `changedAt` in the `@sap/cds/common#managed` entity have been adjusted to reflect the SAP Fiori design guidelines.
-- `cds build` now delegates to the modular build system by default (known as `cds build/all`). The modular build system is compatible, but supports additional
-  features, e.g. staging build, SAP HANA Cloud Edition support, populating initial data from .csv by generating .hdbtabledata files, etc. The legacy build is still available as a fallback in case of issues - use setting `cds.features.build.legacy: true` or ENV variable `CDS_FEATURES_BUILD_LEGACY=true`.
+- `cds build` now delegates to the modular build system by default (known as `cds build/all`). The modular build system is compatible, but supports additional features, e.g. staging build, SAP HANA Cloud Edition support, populating initial data from .csv by generating .hdbtabledata files, etc. The legacy build is still available as a fallback in case of issues - use setting `cds.features.build.legacy: true` or ENV variable `CDS_FEATURES_BUILD_LEGACY=true`.
 
 ## Fixed
 

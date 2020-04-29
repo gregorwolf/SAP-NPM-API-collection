@@ -6,6 +6,94 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog.
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 1.26.2 - 2020-04-24
+
+### Added
+
+- The client tool `cdsc` has got a new option `--beta <list>` which may be used to
+  specify a comma separated list of experimental features to be enabled.
+  
+- CSN in parse-cdl mode now has a `requires` property that represents `using`s from CDL.
+
+### Fixed
+
+- OData:
+  + Change foreign key creation order for associations to respect their dependencies.
+  + Use correct path during on-condition flattening.
+  + Report error when using elements without types for **array of type of (element)** and similar definitions.
+
+- HANA/SQL:
+  + Fix references to `null` enum values in default clauses.
+  
+- Type arguments are now properly set in CSN when using parse-cdl mode.
+
+- Avoid unjust warning if the `extensions` property of an input CSN contain `extend` statements.
+
+## Version 1.26.0 - 2020-04-17
+
+### Added
+
+- The client tool `cdsc` has got a new command `parseCdl` which returns a CSN
+  that is close to the original CDL file. It does not resolve imports and does
+  not apply extensions.
+
+- Unmanaged associations as primary keys are now warned about.
+
+- `localized` in combination with `key` is now warned about.
+
+- Enum values are now checked to only be either numbers or a strings - a warning is raised.
+
+- Elements in mixin clauses that are _not_ unmanaged associations now produce an error.
+
+### Changed
+
+- HANA/SQL:
+  + Raise warnings `rewrite-not-supported` and `rewrite-undefined-key` to errors.
+
+- Compiler: Empty elements are now kept along for the propagation.
+
+- OData: Annotate all elements of `DraftAdministrativeData` with `@Common.Label: '{i18n>"Draft_<elementName>"}'`
+  and elements  'DraftUUID', 'DraftIsCreatedByMe' and 'DraftIsProcessedByMe' with `@UI.Hidden`.
+
+### Fixed
+
+- Compiler: `type of <unmanaged assocation>` is now handled correctly by raising an error.
+
+## Version 1.25.0 - 2020-04-09
+
+### Changed
+
+- Downgrade `chained array of`-error to a warning
+- SQLite: Don't render implicit casts
+
+## Version 1.24.6 - 2020-04-08
+
+### Changed
+
+- OData:
+  + Improve messages for misaligned forward/backlink associations in EDM generator
+  + For V2 add annotations `@sap.creatable: false`, `@sap.updatable: false`, `@sap.deletable: false`,
+  `@sap.pageable: false` to the Parameter EntityType and `@sap.creatable: false`, `@sap.updatable: false`,
+  `@sap.deletable: false`, `@sap.addressable: false` to the Result EntityType.
+  + Update vocabularies 'Common' and 'Graph' and 'ODM'.
+
+
+### Fixed
+
+- Various messages mention more appropriate source locations.
+
+- Improve messages for `array of`
+
+- OData:
+  + Render 'array of' for ReturnType correctly
+  + Report error for view fields with no type information early
+  + Handle associations in structures with an association as explicit key
+
+### Removed
+
+- The client tool `cdsc` does not offer the option `--std-json-parser` anymore,
+  as it had no effect.
+
 ## Version 1.24.4 - 2020-03-25
 
 ### Added

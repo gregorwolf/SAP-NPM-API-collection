@@ -8,22 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
-## [7.0.0] - 2020-04-23
-
-* Add support for NodeJS version 12
-* Removed support for NodeJS version 6  
-* Fix bug when using a view with explicit key in combination with concurrencytoken using default properties for ETag.
-  Now key properties are not considered for etag generation as written in the "SAP HANA Developer Guide":
-  _If you specify concurrencytoken only, then all properties, except the key properties, are used to calculate
-  the ETag value. If you provide specific properties, then only those properties are used for the calculation._
-
-## [6.2.1] - 2020-03-05
-
-* fixes in release process
-
 ## [6.1.0] - 2020-03-05
-
-* fixes in release process
 
 ## [6.0.0] - 2020-03-05
 

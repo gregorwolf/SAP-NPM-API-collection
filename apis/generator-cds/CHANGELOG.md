@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.14.2]
+
+### Changed
+- Use `@sap/hana-client` instead of `hdb` npm library.
+- Use `512M` as default `disk-quota`.
+
+## [2.14.1]
+
+### Changed
+- Updated `minimist` and `yaml` npm library versions.
+- Use `cds build` command instead of `cds build/all`.
+
 ## [2.14.0]
 
 ### Feature

@@ -6,6 +6,24 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.7.1] - 2020-04-21
+
+### Fixed
+- ETags are never required for transient entities from $apply queries
+
+## [1.7.0] - 2020-04-16
+
+### Added
+- support for navigation properties in complex properties
+
+### Fixed
+- context URL in some edge cases with keys
+
+## [1.6.1] - 2020-03-31
+
+### Fixed
+- support for JSON content in type-definition properties with underlying type Edm.Stream (#97)
+
 ## [1.6.0] - 2020-03-25
 
 ### Added

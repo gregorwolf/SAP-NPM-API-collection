@@ -6,6 +6,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.8.0 - 2020-04-27
+
+### Added
+
+- `cds watch` now also accepts package names as arguments, e.g. `cds w @capire/bookshop`.
+- `cds add mta` now supports cds configuration `requires.db.kind:"sql"` which allows seamless production deployments using HANA db while keepping sqlite for local development scenario.
+
+### Changed
+- Parameter `verbose` in `cds init` and `cds add` is now deprecated. Use environment variable `DEBUG=true` to obtain detailed output.
+- `cds init` uses latest `Java archetype` version `1.4.0` for creating Java projects.
+
+### Fixed
+- Fixing terminology in `cds init` and `cds add` console output.
+- `cds init` is logging `cds env` output only in debug mode.
+- Using `cds build` command in generated `mta.yaml` file.
+- Fixing Hana dependency during `cds init --add hana` for project type `java`.
+- Fixing bug in `cds init` when `cds-dk` is not installed globally.
+- Fixing bug in `cds init` when calling log methods.
+- Fixing `cds.env`object by attaching prototype chain.
+
 ## Version 1.7.0 - 2020-03-24
 
 ### Added

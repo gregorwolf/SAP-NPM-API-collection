@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.13]
+
+### Added
+
+- Logs are now collected by default when running asynchronous APIs
+    - can be disabled with environment variable `MTX_COLLECT_LOGS=true`
+    - logs can be limited by `MTX_LOG_COLLECTION_LIMIT=<limit>`
+    
+- extensibility API that accepts csn notation `cds.mtx.activate(tenantId, csn)`
+
+### Fixed
+
+- handling of errornous undeploy.json files: error message now points to the root problem
+- handling of build errors: API now returns build and compile errors properly   
+
 ## [1.0.12]
 
 ### Added
