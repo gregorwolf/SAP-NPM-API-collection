@@ -54,10 +54,10 @@
   },
   {
     "name": "@sap/xsjs",
-    "version": "6.0.1",
+    "version": "6.0.2",
     "description": "Compatibility layer to run XS Classic applications on XS Advanced",
     "keywords": [],
-    "date": "2020-04-16T11:37:07.904Z",
+    "date": "2020-04-30T14:48:03.404Z",
     "links": {
       "npm": null,
       "homepage": null,

@@ -26,7 +26,7 @@
   * works for unicode characters (e.g. if the column from the ResultSet is NSTRING)
 * `$.db.ResultSet.getClob()`
   * works for unicode characters (e.g. if the column from the ResultSet is NCLOB)
-* `$.db.ResultSet.close` does not close the result set. All results will be closed when the corresponding statement is closed.
+* `$.db.ResultSet.close` does not close the result set.
 * ParameterMetaData
   * getParameterType and getParameterTypeName may return different values from HANA XS Classic, e.g.
     * NSTRING returned instead of SHORTTEXT

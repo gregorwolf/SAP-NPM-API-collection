@@ -5,6 +5,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.0.2"></a>
+## 6.0.2 - 2020-04-29
+
+### Fixed
+- Update _@sap/xsodata_ to v7.0.0
+- Update _@sap/node-jwt_ to v1.6.8
+- Update _@sap/node-vsi_ to v1.4.17
+- Update _@sap/hdbext_ to v6.2.2
+- Update _@sap/hana-client_ to v2.4.196
+
+<a name="6.0.1"></a>
+## 6.0.1 - 2020-04-16
+
+### Fixed
+- Adjustments to avoid _IsGlobalEmpty_ crash with `$.db` and `$.hdb` have been added
+- Performance when executing queries with `$.db` and `$.hdb` has been improved
+
 <a name="6.0.0"></a>
 ## 6.0.0 - 2020-03-13
 
