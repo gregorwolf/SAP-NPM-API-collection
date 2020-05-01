@@ -29,8 +29,10 @@ echo "@sap/edmx2csn" >> packages.txt
 echo "@sap/site-entry" >> packages.txt
 echo "@sap/logging" >> packages.txt
 echo "@sap/node-jwt" >> packages.txt
+echo "@sap/node-vsi" >> packages.txt
 echo "@sap/odata-server" >> packages.txt
 echo "@sap/hana-client" >> packages.txt
+echo "@sap/hdbext" >> packages.txt
 echo "@sap/hdi-dynamic-deploy" >> packages.txt
 echo "@sap/faas" >> packages.txt
 echo "@sap/xb-msg-amqp-v091" >> packages.txt

@@ -44,8 +44,10 @@ sap/portal-cf-content-deployer
 @sap/site-entry
 @sap/logging
 @sap/node-jwt
+@sap/node-vsi
 @sap/odata-server
 @sap/hana-client
+@sap/hdbext
 @sap/hdi-dynamic-deploy
 @sap/faas
 @sap/xb-msg-amqp-v091

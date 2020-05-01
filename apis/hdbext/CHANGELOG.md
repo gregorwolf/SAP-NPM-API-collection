@@ -5,6 +5,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.2.2"></a>
+## 6.2.2 - 2020-04-29
+
+### Fixed
+- Update *@sap/hana-client* to v2.4.196
+
+<a name="6.2.1"></a>
+## 6.2.1 - 2020-04-15
+
+### Fixed
+- Do not drop statement objects in the background in order to prevent IsGlobalEmpty crash
+
+<a name="6.2.0"></a>
+## 6.2.0 - 2020-03-06
+
+### Added
+- Node.js 12.x support.
+
 <a name="6.1.1"></a>
 ## 6.1.1 - 2019-11-19
 
