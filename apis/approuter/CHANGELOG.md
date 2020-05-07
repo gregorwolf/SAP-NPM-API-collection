@@ -5,14 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.1.1 - 2020-05-05
+
+### Added
+- Cache improvements
+- Usage of x-subscriber-tenant header for SAAS_APPROUTER APIs
+- handle html5 repo and xsuaa destinations separately
+
+### Fixed
+- Fix connectivity token handling for Kubernetes
+
 ## 7.1.0 - 2020-04-16
 
 ### Added
-API for get visible HTML5 Applications in SAAS_APPROUTER setup via service2Approuter flow
-API for download a visible HTML5 Application in SAAS_APPROUTER setup via service2Approuter flow
-Enable service logout configuration in central xs-app.json in SAAS_APPROUTER setup
+- Enable service logout configuration in central xs-app.json in SAAS_APPROUTER setup
 ### Fixed
-Destination token cached in session is never refreshed.
+- Destination token cached in session is never refreshed.
 
 ## 7.0.0 - 2020-04-06
 
