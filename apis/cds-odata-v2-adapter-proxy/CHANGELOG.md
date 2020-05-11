@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.30 - 2020-05-01
+
+### Fixed
+
+- Make function call with request body more robust
+- Fallback severity for detail messages to error
+- Keep request body for action call
+- Update README on CF deployment
+
 ## Version 1.4.29 - 2020-04-28
 
 ### Fixed

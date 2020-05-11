@@ -148,6 +148,15 @@ const port = process.env.PORT || 4004;
 
 Note that `@sap/cds` and `express` are peer dependency and needs to be available as module as well.
 
+## Cloud Foundry Deployment
+
+When deploying the CDS OData v2 Adapter Proxy to CF, make sure that it has access to the whole CDS model.
+Especially, it is the case, that normally the Node.js server is only based on folder `srv` and folder `db` is then missing on CF.
+
+To come around this situation, trigger a `cds build`, that generates a `csn.json` at location `gen/srv/srv/csn.json`.
+If your CF deployment of the Node.js backend (incl. CDS OData v2 Adapter Proxy) is then based on folder `gen/srv`,
+the CDS models can be found during runtime on Cloud Foundry.
+
 ## Documentation
 
 Instantiates an CDS OData v2 Adapter Proxy Express Router for a CDS based OData v4 Server
