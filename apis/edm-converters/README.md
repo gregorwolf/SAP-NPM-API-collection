@@ -8,17 +8,20 @@ This module provides several model converters. The following converters are curr
 * OData V4 EDM model (XML Format) to OData V4 EDM (JSON Format)
 (details [Readme](./lib/edmxV40ToJsonV40/README.md))
 
-Each converter is contained in separate folder inside the lib folder. A detailed description of a converter is provided
-in the README.md of each converter sub-folder, or you may check the api documentation in the index.js and other files.
-Please note that it is also possible to compile a html version of the api documentation with:
+Each converter is contained in separate folder inside the lib folder.
+A detailed description of a converter is provided in the README.md
+of each converter sub-folder, or you may check the API documentation
+in the `index.js` and other files. Please note that it is also possible
+to compile an HTML version of the API documentation with:
 
 ```
 cd @sap/edm-converters
-npm install  # this will install the dev dependencies
+npm install  # this will install the development dependencies
 npm run doc      # this will generate the documentation
 ```
 
-(If the module is installed into the global node package folder, use `npm root -g` to find and navigate to it.)
+(If the module is installed into the global node package folder,
+use `npm root -g` to find and navigate to it.)
 
 # Usage scenario
 
@@ -57,7 +60,7 @@ converters.MetadataConverterFactory.createEdmxV40ToJsonV40(<option>);
 ```
 
 Please check the API documentation in
-```lib/<converter>/index.js``` for documentation about the converters parameters
+```lib/<converter>/index.js``` for documentation about the parameters of the converter.
 
 
 # Console usage
@@ -83,8 +86,9 @@ Common sample arguments are:
 * ```-l, --loglevel```
   Use 'e'/'i'(default)/'d' to show log information (e=error-log, i=info-log ,d=debug-log)
 * ```-t, --target```
-  Omit or set to 'cs02' to produce the Oasis CSDL 4.01-CS02 format. if the Oasis CSDL Json 4.01-CS01 format should be produced set to 'cs01'.
-  The CS01 format can be used as the edm json to bootstrap the Okra library.
+  Omit or set to 'cs02' to produce the Oasis CSDL 4.01-CS02 format;
+  if the Oasis CSDL Json 4.01-CS01 format should be produced, set to 'cs01'.
+  The CS01 format can be used as the EDM JSON to bootstrap the Okra library.
 * Converters may have additional options. Please see below on how to show documentation about this converters.
 
 # Get help

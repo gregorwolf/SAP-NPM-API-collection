@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.8.2 - 2020-05-08
+### Fixes
+- An issue in `@sap/edm-converters` with missing entity sets
+
 ## Version 1.8.0 - 2020-04-27
 
 ### Added
