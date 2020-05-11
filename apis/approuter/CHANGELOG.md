@@ -5,11 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.1.2 - 2020-05-08
+
+### Fixed
+- Fix appurl usage of x-subscriber-tenant
+
 ## 7.1.1 - 2020-05-05
 
 ### Added
 - Cache improvements
-- Usage of x-subscriber-tenant header for SAAS_APPROUTER APIs
+- Usage of x-subscriber-tenant header when provided.
 - handle html5 repo and xsuaa destinations separately
 
 ### Fixed
@@ -18,7 +23,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ## 7.1.0 - 2020-04-16
 
 ### Added
-- Enable service logout configuration in central xs-app.json in SAAS_APPROUTER setup
+- Enable service logout configuration in central xs-app.json.
 ### Fixed
 - Destination token cached in session is never refreshed.
 

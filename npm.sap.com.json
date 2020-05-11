@@ -1,10 +1,10 @@
 [
   {
     "name": "@sap/approuter",
-    "version": "7.1.1",
+    "version": "7.1.2",
     "description": "Node.js based application router",
     "keywords": [],
-    "date": "2020-05-07T09:35:42.622Z",
+    "date": "2020-05-08T09:50:20.806Z",
     "links": {
       "npm": null,
       "homepage": null,
