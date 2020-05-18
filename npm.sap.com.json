@@ -1,10 +1,10 @@
 [
   {
     "name": "@sap/approuter",
-    "version": "7.1.2",
+    "version": "7.1.3",
     "description": "Node.js based application router",
     "keywords": [],
-    "date": "2020-05-08T09:50:20.806Z",
+    "date": "2020-05-18T06:52:27.179Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -68,6 +68,23 @@
     "maintainers": []
   },
   {
+    "name": "@sap/xssec",
+    "version": "3.0.0",
+    "description": "XS Advanced Container Security API for node.js",
+    "keywords": [
+      "xs"
+    ],
+    "date": "2020-05-18T08:15:54.546Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": "ssh://git@github.wdf.sap.corp/xs2/node-xs2sec.git",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
     "name": "@sap/node-jwt",
     "version": "1.6.8",
     "description": "JWT validation library for Node.js",
@@ -88,28 +105,29 @@
     "maintainers": []
   },
   {
-    "name": "@sap/xssec",
-    "version": "2.2.5",
-    "description": "XS Advanced Container Security API for node.js",
-    "keywords": [
-      "xs"
-    ],
-    "date": "2020-02-28T12:39:44.224Z",
+    "name": "@sap/grunt-sapui5-bestpractice-build",
+    "version": "1.4.2",
+    "description": "Grunt tasks around Devx grunt build",
+    "keywords": [],
+    "date": "2019-10-03T10:40:53.084Z",
     "links": {
       "npm": null,
       "homepage": null,
-      "repository": "ssh://git@github.wdf.sap.corp/xs2/node-xs2sec.git",
+      "repository": null,
       "bugs": null
     },
     "publisher": null,
     "maintainers": []
   },
   {
-    "name": "@sap/grunt-sapui5-bestpractice-build",
-    "version": "1.4.2",
-    "description": "Grunt tasks around Devx grunt build",
-    "keywords": [],
-    "date": "2019-10-03T10:40:53.084Z",
+    "name": "@sap/xsodata",
+    "version": "7.0.2",
+    "description": "Expose data from a HANA database as OData V2 service with help of .xsodata files.",
+    "keywords": [
+      "odata",
+      "xsjs"
+    ],
+    "date": "2020-05-18T09:46:22.467Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -290,21 +308,6 @@
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud business event queue service",
     "keywords": [],
     "date": "2020-03-11T15:55:40.295Z",
-    "links": {
-      "npm": null,
-      "homepage": "https://www.sap.com/cloud-sdk",
-      "repository": "",
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/cloud-sdk-vdm-business-event-subscription-service",
-    "version": "1.18.0",
-    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud business event subscription service",
-    "keywords": [],
-    "date": "2020-03-11T15:56:48.966Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",

@@ -8,13 +8,27 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.0.2] - 2020-05-18
+
+* Add support for create, update, delete operations via user-exits on calculation views without input parameters.
+  Work for both, calculation views without input parameters exposed as normal view and exposed as calcview.
+ 
+## [7.0.1] - 2020-05-12
+
+* Add support for calculation views without input parameters. 
+  Before release 7.0.0 calcviews without input parameters have not been supported, but worked accidentally if a calcview 
+  was wrongly exposed as normal view. After the major release 7.0.0 this wrong exposure of a calcview resulted in an error. 
+  Because calcviews without input parameters are used more often, the support for this calcviews is now supported.
+  You can either expose a calcview as normal view or as proper calcview, for the latter an input parameter entityset with
+  parenthesis must be used.  
+
 ## [7.0.0] - 2020-04-23
 
 * Add support for NodeJS version 12
 * Removed support for NodeJS version 6  
-* Fix bug when using a view with explicit key in combination with concurrencytoken using default properties for ETag.
+* Fix bug when using a view with explicit key in combination with concurrency token using default properties for ETag.
   Now key properties are not considered for etag generation as written in the "SAP HANA Developer Guide":
-  _If you specify concurrencytoken only, then all properties, except the key properties, are used to calculate
+  _If you specify concurrency token only, then all properties, except the key properties, are used to calculate
   the ETag value. If you provide specific properties, then only those properties are used for the calculation._
 
 ## [6.2.1] - 2020-03-05

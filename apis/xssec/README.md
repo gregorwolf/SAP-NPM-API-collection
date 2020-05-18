@@ -244,14 +244,6 @@ Parameters:
 * `scope` ... the scope whose existence is checked against the available scopes of the current user.  Here, the prefix is required, thus the scope string is "globally unique".
 * returns `true` if the scope is contained in the user's scopes, `false` otherwise
 
-### getToken (obsolete, use getHdbToken or getAppToken)
-
-Parameters:
-
-* `namespace` ... Tokens can eventually be used in different contexts, e.g. to access the HANA database, to access another XS2-based service such as the Job Scheduler, or even to access other applications/containers. To differentiate between these use cases, the `namespace` is used. In `lib/constants.js` we define supported namespaces (e.g. `SYSTEM`).
-* `name` ... The name is used to differentiate between tokens in a given namespace, e.g. `HDB` for HANA database or `JOBSCHEDULER` for the job scheduler. These names are also defined in the file `lib/constants.js`.
-* returns a token that can be used e.g. for contacting the HANA database. If the token, that the security context has been instantiated with, is a foreign token (meaning that the OAuth client contained in the token and the OAuth client of the current application do not match), `null` is returned instead of a token.
-
 ### getAppToken
 
 * returns the token of the application that can be used e.g. for token forwarding to another app.
@@ -267,16 +259,6 @@ Requests a token based on the given type. The type can be `constants.TYPE_USER_T
 * `serviceCredentials` ... the credentials of the service as JSON object. The attributes `clientid`, `clientsecret` and `url` (UAA) are mandatory. Note that the subdomain of the `url` will be adapted to the subdomain of the application token if necessary.
 * `type` ... allowed values are `constants.TYPE_USER_TOKEN` and `constants.TYPE_CLIENT_CREDENTIALS_TOKEN`
 * `additionalAttributes` ... the attributes that should be included into the JWT token as JSON object (key-value list), e.g. `{"attr1" : "value1", "attr2" : "value2"}` 
-* `cb(error, token)` ... callback function
-
-### requestTokenForClient (obsolete, use requestToken instead)
-
-Requests a token with `grant_type=user_token` from another client. Prerequisite is that the requesting client has `grant_type=user_token` and that the current user token includes the scope `uaa.user`.
-
-Parameters:
-
-* `serviceCredentials` ... the credentials of the service as JSON object. The attributes `clientid`, `clientsecret` and `url` (UAA) are mandatory.
-* `scopes` ... comma-separated list of requested scopes for the token, e.g. `app.scope1,app.scope2`. If null, all scopes are granted. Note that $XSAPPNAME is not supported as part of the scope names.
 * `cb(error, token)` ... callback function
 
 ### hasAttributes
@@ -312,10 +294,6 @@ Parameters:
 ### getClientId
 
 * returns the client id that the access token has been issued for.
-
-### getIdentityZone (obsolete, use getSubaccountId instead)
-
-* returns the identity zone that the access token has been issued for.
 
 ### getSubaccountId
 

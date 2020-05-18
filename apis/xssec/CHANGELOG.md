@@ -1,13 +1,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.0.0 - 2020-??-??
+
+- Replace grant type user_token in method requestToken (TYPE_USER_TOKEN) in favor of urn:ietf:params:oauth:grant-type:jwt-bearer
+- Remove obsolete method getToken (use getHdbToken or getAppToken))
+- Remove obsolete method requestTokenForClient (use requestToken)
+- Remove obsolete method getIdentityZone (getSubaccountId) 
+
 ## 2.2.5 - 2020-02-28
 
- - Update to node-jwt version 1.6.6
+- Update to node-jwt version 1.6.6
 
 ## 2.2.4 - 2019-08-14
 
- - Support for API methods getUserName and getUniquePrincipalName
+- Support for API methods getUserName and getUniquePrincipalName
  
 ## 2.2.3 - 2019-08-07
 

@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.1.3 - 2020-05-17
+
+### Added
+- Enhances of the x-approuter-authorization token security check in the service2Approuter flow.
+
 ## 7.1.2 - 2020-05-08
 
 ### Fixed
