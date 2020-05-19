@@ -1,12 +1,21 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.0.0 - 2020-??-??
+## 3.0.1 - 2020-05-19
+
+- HotFix missing debugTrace in verification key
+- Fix RetryStrategy
+
+## 3.0.0 - 2020-05-15
 
 - Replace grant type user_token in method requestToken (TYPE_USER_TOKEN) in favor of urn:ietf:params:oauth:grant-type:jwt-bearer
 - Remove obsolete method getToken (use getHdbToken or getAppToken))
 - Remove obsolete method requestTokenForClient (use requestToken)
 - Remove obsolete method getIdentityZone (getSubaccountId) 
+- Support for audience validation in token
+- remove of SAP_JWT_TRUST_ACL environment variable support (functionality now comes with audience validation)
+- remove depencency to node-jwt (ALPINE support)
+- restructure internal code for better maintainability
 
 ## 2.2.5 - 2020-02-28
 

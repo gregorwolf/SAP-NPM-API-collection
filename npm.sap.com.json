@@ -54,10 +54,10 @@
   },
   {
     "name": "@sap/xsjs",
-    "version": "6.0.2",
+    "version": "6.0.3",
     "description": "Compatibility layer to run XS Classic applications on XS Advanced",
     "keywords": [],
-    "date": "2020-04-30T14:48:03.404Z",
+    "date": "2020-05-19T09:15:30.005Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -69,12 +69,12 @@
   },
   {
     "name": "@sap/xssec",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "XS Advanced Container Security API for node.js",
     "keywords": [
       "xs"
     ],
-    "date": "2020-05-18T08:15:54.546Z",
+    "date": "2020-05-19T10:02:48.519Z",
     "links": {
       "npm": null,
       "homepage": null,

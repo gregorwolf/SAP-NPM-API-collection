@@ -26,7 +26,7 @@
     "@sap/cds": "3.34.1",
     "@sap/site-entry": "latest",
     "@sap/xsjs": "latest",
-    "@sap/xssec": "3.0.0",
+    "@sap/xssec": "3.0.1",
     "@sap/node-jwt": "latest",
     "@sap/grunt-sapui5-bestpractice-build": "1.4.2",
     "@sap/xsodata": "latest",

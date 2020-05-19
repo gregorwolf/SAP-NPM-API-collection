@@ -11,12 +11,7 @@ When your business users access your application UI with their broser, the appli
 
 In order to authenticate this request, which arrives at the node.js backend, sap-xssec offers two mechanisms: Firstly, you can use the XS Advanced Container Security API directly to validate the access token. Secondly, you can make use of the passport strategy that is contained in module sap-xssec as another convenient way how to handle the access token. In the following, both options are described followed by the sap-xssec API description.
 
-sap-xssec offers an offline validation of the access token, which requires no additional call to the UAA. The trust for this offline validation is created by binding the XS UAA service instance to your application. Inside the credentials section in the environment variable VCAP_SERVICES, the key for validation of tokens is included. By default, the offline validation check will only accept tokens intended for the same OAuth2 client in the same UAA identity zone. This makes sense and will cover the vast majority of use cases. However, if an application absolutely wants to consume token that were issued for either different OAuth2 clients or different identity zones, an Access Control List (ACL) entry for this can be specified in an environment variable named SAP_JWT_TRUST_ACL. The name of the OAuth client is sb-<xsappname from xs-security.json>
-The content is a JSON String, containing an array of identity zones and OAuth2 clients. To trust any OAuth2 client and/or identity zones, an * can be used. For OP, identity zones are not used and value for the identity zone is uaa.
-
-```JSON
-SAP_JWT_TRUST_ACL: [ {"clientid":"<client-id of the OAuth2 client>","identityzone":"<identity zone>"},...]
-```
+sap-xssec offers an offline validation of the access token, which requires no additional call to the UAA. The trust for this offline validation is created by binding the XS UAA service instance to your application. Inside the credentials section in the environment variable VCAP_SERVICES, the key for validation of tokens is included. By default, the offline validation check will only accept tokens intended for the same OAuth2 client in the same UAA identity zone. This makes sense and will cover the vast majority of use cases. 
 
 If you want to enable another (foreign) application to use some of your application's scopes, you can add a ```granted-apps``` marker to your scope in the ```xs-security.json``` file (as in the following example). The value of the marker is a list of applications that is allowed to request a token with the denoted scope.
 
@@ -59,7 +54,7 @@ For the usage of the XS Advanced Container Security API it is necessary to pass 
 The typical use case for calling this API lies from within a container when an HTTP request is received. In an authorization header (with keyword `bearer`) an access token is contained already. You can remove the prefix `bearer` and pass the remaining string (just as in the following example as `access_token`) to the API.
 
 ```js
-xssec.createSecurityContext(access_token, xsenv.getServices({ uaa: 'uaa' }).uaa, function(error, securityContext) {
+xssec.createSecurityContext(access_token, xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa, function(error, securityContext) {
     if (error) {
         console.log('Security Context creation failed');
         return;
@@ -91,7 +86,7 @@ var app = express();
 
 ...
 
-passport.use(new JWTStrategy(xsenv.getServices({uaa:{tag:'xsuaa'}}).uaa));
+passport.use(new JWTStrategy(xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa));
 
 app.use(passport.initialize());
 app.use(passport.authenticate('JWT', { session: false }));
