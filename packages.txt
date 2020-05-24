@@ -46,6 +46,7 @@ sap/portal-cf-content-deployer
 @sap/node-jwt
 @sap/node-vsi
 @sap/odata-server
+@sap/textbundle
 @sap/hana-client
 @sap/hdbext
 @sap/hdi-dynamic-deploy

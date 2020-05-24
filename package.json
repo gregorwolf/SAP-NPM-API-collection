@@ -66,6 +66,7 @@
     "@sap/cloud-sdk-util": "latest",
     "@sap/xsenv": "latest",
     "@sap/odata-server": "latest",
+    "@sap/textbundle": "latest",
     "@sap/logging": "latest",
     "@sap/node-vsi": "latest",
     "@sap/hana-client": "latest",

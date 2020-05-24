@@ -30,6 +30,7 @@ fs.readFile(packages, function (err, packagesData) {
   packagesJson["@sap/xsenv"] = "latest"
   packagesJson["@sap/site-entry"] = "latest"
   packagesJson["@sap/odata-server"] = "latest"
+  packagesJson["@sap/textbundle"] = "latest"
   packagesJson["@sap/logging"] = "latest"
   packagesJson["@sap/node-jwt"] = "latest"
   packagesJson["@sap/node-vsi"] = "latest"

@@ -31,6 +31,7 @@ echo "@sap/logging" >> packages.txt
 echo "@sap/node-jwt" >> packages.txt
 echo "@sap/node-vsi" >> packages.txt
 echo "@sap/odata-server" >> packages.txt
+echo "@sap/textbundle" >> packages.txt
 echo "@sap/hana-client" >> packages.txt
 echo "@sap/hdbext" >> packages.txt
 echo "@sap/hdi-dynamic-deploy" >> packages.txt
