@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
+## 3.0.3 - 2020-05-25
+
+- Fix jwt-bearer flow to take the right token as uri parameter.
+
 ## 3.0.2 - 2020-05-20
 
 - Fix get verification key from keycache.

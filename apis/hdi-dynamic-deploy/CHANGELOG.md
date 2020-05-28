@@ -1,3 +1,8 @@
+# 1.7.0
+Features:
+- added a new route `/v1/deploy/to/instance/async` that implements an asynchronous deployment with status polling via `/v1/status/:guid`.
+- log the server version on start-up
+
 # 1.6.0
 Features:
 - node 12 support

@@ -59,6 +59,7 @@
 - [Configure server-side HTTPS](#configure-server-side-https)
 - [Audit-Log Service](#audit-log-service)
 - [Troubleshooting](#troubleshooting)
+- [Getting Support](#getting-support)
 - [Extending Application Router](#extending-application-router)
 - [Best practices](#best-practices)
   * [Security best practices](#security-best-practices)
@@ -1493,13 +1494,6 @@ SaaS business applications should grant LPS the authorization to invoke the appl
 ...  
 ```
 
-In the manifest.yaml, which is used for the multi-tenant application deployment, the environment variable *SAP_JWT_TRUST_ACL* should be added. Example:
-
-```
- env:
-  SAP_JWT_TRUST_ACL: "[{\"clientid\":\"*\",\"identityzone\":\" sap-provisioning \"}]"
-```
-
 #### Register an application (SaaS Registry Configuration)
 For a customer to be able to subscribe to an application through the SAP Cloud Platform cockpit, each SaaS business application should register itself on all CF landscapes where it is deployed.
 
@@ -1905,6 +1899,9 @@ This is useful if you would like to search entries belonging to a particular req
 Note that the application router does not change the headers received from the backend and being forwarded to the client.
 If the backend is a Node.js application which uses the _@sap/logging_ package (and also sets the 'x-request-id' header), then the value of the header
 that the client will receive will be the one coming from the backend and not the one of the application router itself.
+
+## Getting Support
+Create a BCP ticket on component `BC-XS-APR`
 
 ## Extending Application Router
 See [extending](doc/extending.md) for information how to extend the application router

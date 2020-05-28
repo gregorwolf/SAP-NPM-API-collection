@@ -27,7 +27,7 @@ Usually, `@sap/hdi-dynamic-deploy` gets installed via a `package.json`-based dep
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-dynamic-deploy": "1.6.0"
+    "@sap/hdi-dynamic-deploy": "1.7.0"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-dynamic-deploy/"
@@ -75,9 +75,11 @@ modules:
 
 The dynamic deployer is a http server started for a specific db module. When the module is pushed to XSA or CF, the dynamic deployer starts listening for requests and eventually starts the (non-dynamic) deployer to deploy the content of the db module to a given container.
 
-To trigger the deployment one has to send a HTTP POST request with basic authentication and content type `application/json` to the dynamic deployer. The api offers two urls for deployment, `http(s)://<hostname>:<port>/v1/deploy` and `http(s)://<hostname>:<port>/v1/deploy/to/instance`.
+To trigger the deployment one has to send a HTTP POST request with basic authentication and content type `application/json` to the dynamic deployer. The api offers three urls for deployment, `http(s)://<hostname>:<port>/v1/deploy`, `http(s)://<hostname>:<port>/v1/deploy/to/instance` and `http(s)://<hostname>:<port>/v1/deploy/to/instance/async`.
 
-### Deployment via `http(s)://<hostname>:<port>/v1/deploy` (VCAP_SERVICES style)
+### Synchronous deployment
+
+#### Deployment via `http(s)://<hostname>:<port>/v1/deploy` (VCAP_SERVICES style)
 
 The first way to trigger a deployment is to send a HTTP POST request to the url `http(s)://<hostname>:<port>/v1/deploy`. The body simply consists of a JSON object containing replacements for several of the HDI deployer's environment variables. Supported are replacements for:
 
@@ -122,7 +124,7 @@ Example:
 }
 ```
 
-### Deployment via `http(s)://<hostname>:<port>/v1/deploy/to/instance` (Instance Manager style)
+#### Deployment via `http(s)://<hostname>:<port>/v1/deploy/to/instance` (Instance Manager style)
 
 Since version 1.2.0 of the dynamic deployer there is a second way to trigger a deployment by sending a HTTP POST request to the url `http(s)://<hostname>:<port>/v1/deploy/to/instance`. The request body is simply a managed service instance as retrieved from the Instance Manager with a HTTP GET.
 
@@ -154,7 +156,7 @@ Example:
 }
 ```
 
-### The response from the dynamic deployer
+#### The response from the dynamic deployer
 
 If there was no problem with the basic authentication and the request reaches the dynamic deployer, it usually responds with status code 200 and a json body containing the result of the deployment. The response body has the following form:
 
@@ -166,6 +168,12 @@ If there was no problem with the basic authentication and the request reaches th
 ```
 
 **IMPORTANT:** A status code of 200 does not mean that the deployment was successful. It just means that the dynamic deployer was able to call the (non-dynamic) deployer. If the deployer finished with no errors the `exitCode` attribute of the response is `0`, otherwise it is `1`. More detailed information about the deployment can be retrieved from the `messages` attribute of the response.
+
+### Asynchronous deployment
+
+Since version 1.7.0 of the dynamic deployer there is a third way to trigger a deployment by sending a HTTP POST request to the url `http(s)://<hostname>:<port>/v1/deploy/to/instance/async`. The request body is simply a managed service instance as retrieved from the Instance Manager with a HTTP GET, i.e. the same as for `http(s)://<hostname>:<port>/v1/deploy/to/instance`. But instead of waiting until the deployment is done and then returning the results, a GUID is returned.
+
+This GUID can be used to query the status of the deployment by sending a GET request to `http(s)://<hostname>:<port>/v1/status/:guid` - if the deployment is still running, the response just contains a `status` property. If the deployment is finished, the usual response is returned - in conjunction with the `status` property.
 
 
 ## How to use it in a multi-target application

@@ -1,10 +1,10 @@
 [
   {
     "name": "@sap/approuter",
-    "version": "7.1.3",
+    "version": "8.0.0",
     "description": "Node.js based application router",
     "keywords": [],
-    "date": "2020-05-18T06:52:27.179Z",
+    "date": "2020-05-28T07:33:55.978Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -24,6 +24,23 @@
       "npm": null,
       "homepage": null,
       "repository": null,
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/xssec",
+    "version": "3.0.3",
+    "description": "XS Advanced Container Security API for node.js",
+    "keywords": [
+      "xs"
+    ],
+    "date": "2020-05-26T09:57:31.120Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": "ssh://git@github.wdf.sap.corp/xs2/node-xs2sec.git",
       "bugs": null
     },
     "publisher": null,
@@ -62,23 +79,6 @@
       "npm": null,
       "homepage": null,
       "repository": null,
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/xssec",
-    "version": "3.0.2",
-    "description": "XS Advanced Container Security API for node.js",
-    "keywords": [
-      "xs"
-    ],
-    "date": "2020-05-20T15:20:58.734Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": "ssh://git@github.wdf.sap.corp/xs2/node-xs2sec.git",
       "bugs": null
     },
     "publisher": null,

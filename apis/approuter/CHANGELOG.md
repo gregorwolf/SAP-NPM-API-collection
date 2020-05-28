@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.0.0 - 2020-05-26
+
+### Updated dependencies
+ - deps: @sap/xssec@3.0.3
+
+### Removed
+- Remove of SAP_JWT_TRUST_ACL environment variable support (functionality now comes with audience validation)
+
 ## 7.1.3 - 2020-05-17
 
 ### Added
