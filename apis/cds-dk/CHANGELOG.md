@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.8.4 - 2020-05-30
+
+### Changed
+- `cds init` uses latest `Maven Java archetype` version `1.5.2` for creating Java projects.
+
+### Fixes
+- An issue in `@sap/edm-converters` with missing entity sets
+
+
 ## Version 1.8.2 - 2020-05-08
 ### Fixes
 - An issue in `@sap/edm-converters` with missing entity sets

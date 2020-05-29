@@ -4,6 +4,22 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+# Version 3.34.2 - 2020-05-30
+
+## Changed
+
+- Use `cds.hana.deploy-format`=`hdbtable` instead of `cds.hana.syntax` to switch deployment from `hdbcds` to `hdbtable` for SAP HANA Cloud.
+- `cds run` now supports relative `dataSource` URLs in SAP UI5 manifests again, so that UI5 apps can be served w/o approuter.  This support is only active in development mode.
+- `cds deploy --to hana` changes kind to `hana` only if it is not already `sql`
+
+## Fixed
+
+- The `UI.Identification` annotation for `sap.common.CodeList` got a correct value, pointing to its `name` element.
+- Configuration `requires.<foo>.credentials.destination` is now preserved again when running with `VCAP_SERVICES`.  In version 3.34.1 it was cleared.
+- Entities annotated with `@cds.persistence.skip:if-unused` (like `sap.common.Languages`) now again are skipped when compiling to HANA output.  This got broken in previous versions when using the new compiler APIs.
+- `sql_mapping` is again written to `csn.json` as it's required by classic Java runtime.
+- `default-env.json` is now read even in production, which is in line with the behavior of other modules that honor this file.  Real prod environments like CF will still overwrite these defaults.
+
 # Version 3.34.0 - 2020-04-27
 
 ## Added

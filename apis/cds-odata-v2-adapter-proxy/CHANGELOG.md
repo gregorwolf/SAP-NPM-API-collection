@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.33 - 2020-05-29
+
+### Fixed
+
+- Service Document in XML format (default)
+- Update dependencies
+- Disable network log per default
+
+## Version 1.4.32 - 2020-05-27
+
+### Fixed
+
+- Update dependencies
+- Update README on localization
+- Toggle switch for network logging
+- Allow HANA SYSUUID as UUID
+
+## Version 1.4.31 - 2020-05-25
+
+### Fixed
+
+- Align model resolving
+- Fix data types conversion for numbers
+- Fix data types recognition in functions
+- Support response compression
+- Prevent unnecessary data serialization for tracing
+- Performance optimization for entity key/uri calculation
+- General performance optimizations
+- Update dependencies
+
 ## Version 1.4.30 - 2020-05-01
 
 ### Fixed

@@ -1,17 +1,8 @@
-# New Command-line Client for CAP/CDS
+# @sap/cds-dk
 
-The following things should move out of `@sap/cds` and be added here:
+The command line client and development toolkit for the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap).
 
-- [ ] build
-- [ ] gen
-- [ ] cds-sidecar-client (add only)
-- [ ] bin/... which are not required for cds run/serve
+See the [usage docs](https://cap.cloud.sap/docs/get-started/) for more.
 
-In addition these things should be added here:
-
-- [ ] cds import/export --> including protocol translators from/to
-  - [ ] OData
-  - [ ] OpenAPI
-  - [ ] AsyncAPI
-  - [ ] ...
-- [ ] ...
+## License
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license.txt).

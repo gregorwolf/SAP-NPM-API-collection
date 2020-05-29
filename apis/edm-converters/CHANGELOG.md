@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [1.0.30] - 2020-05-19
+
+### Fixed
+   * Added fix to link enum Types to property in entity sets for V4.
+
 ## [1.0.29] - 2020-05-08
 
 ## [1.0.27] - 2020-05-07
