@@ -31,7 +31,6 @@ Provides a protocol implementation for [AMQP 1.0](http://www.amqp.org/specificat
         * [Flow Control](#flow-control)
         * [Payload](#message-payload)
         * [Payload and AMQP values](#message-payload-and-amqp-values)
-        * [Payload and Websocket Data Masking](#message-payload-and-websocket-data-masking)
     * [Message Examples](#message-examples)
 * [Limitations](#limitations)
 * [Further Links](#further-links)
@@ -948,22 +947,6 @@ Please note, `'amqp-1.0'` is only a local API convention, not standardized.
 However, it has already been introduced by [RabbitMQ AMQP 1.0 plugin](https://github.com/rabbitmq/rabbitmq-amqp1.0).
 
 For an outgoing message payload with special type `'amqp-1.0'` the encoder will either write `payload.chunks` (if provided) directly without any validation or it will encode the given `payload.data` as AMQP value or AMQP sequence.
-
-#### Message Payload and WebSocket Data Masking
-
-Using a plain TCP connection the payload data will be sent unchanged. It may only be split into multiple transfers.
-But running a WebSocket connection the encoder will have to mask (means to modify) all data before sending.
-
-Hence, __if (and only if)__ an application
-
-* uses WebSocket connections __and__
-* uses payload `Buffer` objects larger than `options.tune.ostreamPayloadCopyLimit` __and__
-* re-uses the same buffer instance(s) for multiple messages __then__
-
-it must take a copy of those buffers by itself before writing to an outgoing stream.
-
-Typically, the payload is created per message and released by application already after calling the client to publish.
-In this case do not copy anything.
 
 ## Limitations
 Similar to other libraries not the full scope of AMQP 1.0 could be implemented so far:
