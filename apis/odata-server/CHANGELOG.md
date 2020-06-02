@@ -6,6 +6,20 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.8.0] - 2020-05-29
+
+### Added
+- support for server-driven paging and next links in expanded navigation properties
+- support for $count option in $expand
+- allow doublequotes around * in If-Match and If-None-Match headers
+
+### Changed
+- log stacktrace for server errors with level error (#107)
+
+### Fixed
+- status code 200 OK instead of 304 Not Modified for GET requests without If-None-Match header (#106)
+- $expand with complex-property path
+
 ## [1.7.1] - 2020-04-21
 
 ### Fixed
