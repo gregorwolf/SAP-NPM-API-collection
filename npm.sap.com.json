@@ -41,23 +41,6 @@
     ]
   },
   {
-    "name": "@sap/xssec",
-    "version": "3.0.3",
-    "description": "XS Advanced Container Security API for node.js",
-    "keywords": [
-      "xs"
-    ],
-    "date": "2020-05-26T09:57:31.120Z",
-    "links": {
-      "npm": null,
-      "homepage": null,
-      "repository": "ssh://git@github.wdf.sap.corp/xs2/node-xs2sec.git",
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
     "name": "@sap/site-entry",
     "version": "1.30.0",
     "description": "SAP Portal Approuter for Fiori Launchpad",
@@ -82,10 +65,10 @@
   },
   {
     "name": "@sap/xsjs",
-    "version": "6.0.3",
+    "version": "6.0.4",
     "description": "Compatibility layer to run XS Classic applications on XS Advanced",
     "keywords": [],
-    "date": "2020-05-19T09:15:30.005Z",
+    "date": "2020-06-03T06:59:16.719Z",
     "links": {
       "npm": null,
       "homepage": null,
@@ -96,8 +79,25 @@
     "maintainers": []
   },
   {
+    "name": "@sap/xssec",
+    "version": "3.0.3",
+    "description": "XS Advanced Container Security API for node.js",
+    "keywords": [
+      "xs"
+    ],
+    "date": "2020-05-26T09:57:31.120Z",
+    "links": {
+      "npm": null,
+      "homepage": null,
+      "repository": "ssh://git@github.wdf.sap.corp/xs2/node-xs2sec.git",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
     "name": "@sap/node-jwt",
-    "version": "1.6.8",
+    "version": "1.6.9",
     "description": "JWT validation library for Node.js",
     "keywords": [
       "jwt",
@@ -105,7 +105,7 @@
       "sap",
       "xs"
     ],
-    "date": "2020-03-20T09:15:32.384Z",
+    "date": "2020-06-03T06:25:24.703Z",
     "links": {
       "npm": null,
       "homepage": null,

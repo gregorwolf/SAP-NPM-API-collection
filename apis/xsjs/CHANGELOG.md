@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.0.4"></a>
+## 6.0.4 - 2020-06-01
+
+### Fixed
+- Crash when executing a `CALL` procedure statement with `$.hdb.Connection.executeQuery` or `$.hdb.Connection.executeUpdate` when there are no output tables
+- Document some known incompatibilities in regard to jobs
+- Add missing entry in CHANGELOG.md in regard to dropping support for PowerPC big endian in v6.0.0
+- Update _@sap/node-jwt_ to v1.6.9 (contains binaries for PowerPC little endian)
+- Update _@sap/node-vsi_ to v1.4.18 (contains binaries for PowerPC little endian)
+
 <a name="6.0.3"></a>
 ## 6.0.3 - 2020-05-18
 
@@ -36,6 +46,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Removed
 - Support for Node.js versions 6.x and 8.x
+- Support (pre-built binaries) for PowerPC big endian.
 
 ### Fixed
 - Update _@sap/xssec_ to v2.2.5

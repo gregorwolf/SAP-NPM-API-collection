@@ -24,9 +24,9 @@
   "dependencies": {
     "@sap/approuter": "8.0.0",
     "@sap/cds": "3.34.2",
-    "@sap/xssec": "3.0.3",
     "@sap/site-entry": "latest",
     "@sap/xsjs": "latest",
+    "@sap/xssec": "3.0.3",
     "@sap/node-jwt": "latest",
     "@sap/grunt-sapui5-bestpractice-build": "1.4.2",
     "@sap/cloud-sdk-vdm-accounting-document-service": "1.19.1",

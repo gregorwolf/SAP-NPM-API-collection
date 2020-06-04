@@ -4,12 +4,12 @@
 @sap/cloud-sdk-vdm-attachment-service
 @sap/cloud-sdk-vdm-bank-detail-service
 @sap/cloud-sdk-vdm-batch-service
-@sap/cloud-sdk-vdm-billing-document-request-service
-@sap/cloud-sdk-vdm-billing-document-service
 @sap/cloud-sdk-vdm-bill-of-material-comparison-service
 @sap/cloud-sdk-vdm-bill-of-material-service
 @sap/cloud-sdk-vdm-bill-of-material-v2-service
 @sap/cloud-sdk-vdm-bill-of-material-where-used-service
+@sap/cloud-sdk-vdm-billing-document-request-service
+@sap/cloud-sdk-vdm-billing-document-service
 @sap/cloud-sdk-vdm-business-area-service
 @sap/cloud-sdk-vdm-business-event-queue-service
 @sap/cloud-sdk-vdm-business-event-subscription-service
