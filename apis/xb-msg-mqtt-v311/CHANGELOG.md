@@ -6,7 +6,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Unreleased
+## [0.9.12] - 2020-06-02
+
+- fixed: always copy payload if websocket writer masks data (client to server)
 
 ## [0.9.9] - 2019-11-15
 

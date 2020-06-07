@@ -221,6 +221,36 @@
     "maintainers": []
   },
   {
+    "name": "@sap/cloud-sdk-vdm-bill-of-material-v2-service",
+    "version": "1.19.2",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material v2 service",
+    "keywords": [],
+    "date": "2020-06-05T06:51:41.528Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
+    "name": "@sap/cloud-sdk-vdm-bill-of-material-where-used-service",
+    "version": "1.19.2",
+    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud bill of material where used service",
+    "keywords": [],
+    "date": "2020-06-05T06:54:17.754Z",
+    "links": {
+      "npm": null,
+      "homepage": "https://www.sap.com/cloud-sdk",
+      "repository": "",
+      "bugs": null
+    },
+    "publisher": null,
+    "maintainers": []
+  },
+  {
     "name": "@sap/cloud-sdk-vdm-billing-document-request-service",
     "version": "1.19.2",
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud billing document request service",
@@ -286,36 +316,6 @@
     "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud business event subscription service",
     "keywords": [],
     "date": "2020-06-04T14:18:07.535Z",
-    "links": {
-      "npm": null,
-      "homepage": "https://www.sap.com/cloud-sdk",
-      "repository": "",
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/cloud-sdk-vdm-business-partner-service",
-    "version": "1.19.2",
-    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud business partner service",
-    "keywords": [],
-    "date": "2020-06-04T14:19:22.040Z",
-    "links": {
-      "npm": null,
-      "homepage": "https://www.sap.com/cloud-sdk",
-      "repository": "",
-      "bugs": null
-    },
-    "publisher": null,
-    "maintainers": []
-  },
-  {
-    "name": "@sap/cloud-sdk-vdm-business-situation-service",
-    "version": "1.19.2",
-    "description": "SAP Cloud SDK for JavaScript: Virtual Data Model (VDM) for the SAP S/4HANA Cloud business situation service",
-    "keywords": [],
-    "date": "2020-06-04T14:20:32.828Z",
     "links": {
       "npm": null,
       "homepage": "https://www.sap.com/cloud-sdk",
