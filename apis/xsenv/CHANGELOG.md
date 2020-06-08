@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.0.0 - 2020-06-05
+
+### Removed
+- Node.js 6 support
+
+### Changed
+- K8S case: nested objects in credentials are now automatically parsed (does not apply to arrays)
+
 ## 2.2.0 - 2019-11-28
 
 ### Added

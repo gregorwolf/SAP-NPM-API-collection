@@ -188,6 +188,36 @@ The following *deployment.yml* file would generate the file structure above, ass
 
 Of course, you can also create Kubernetes secrets directly with `kubectl` and  mount them to the pod. As long as the mount path follows the `<root-path>/<service-name>/<instance-name>` pattern, @sap/xsenv will be able to read and filter the bound services configurations.
 
+**Note**: The library attempts to parse property values which represent valid JSON objects.
+Property values representing arrays are not being parsed.
+
+The following service credentials:
+
+```
+/etc/
+    /secrets/
+            /sapcp/
+                 /some-service/
+                       /some-instance/
+                                  /url   - containing https://some-service
+                                  /uaa   - containing { "url": "https://uaa", "clientid": "client", "clientsecret": "secret" }
+                                  /other - containing [1, "two"]
+```
+
+Will be available to the application as:
+
+```js
+{
+  url: 'https://some-service',
+  uaa: {
+    url: 'https://uaa',
+    clientid: 'client',
+    clientsecret: 'secret'
+  },
+  other: '[1, "two"]'
+}
+```
+
 ### Service Lookup
 
 Service look up in the Kubernetes environment looks the same way as it does in the Cloud Foundry one.
