@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.1.0 - 2020-06-14
+
+### Added
+- Added fallback mechanism for html5 repo client_credentials token refresh
+- Security improvement for signature verifying during login
+
+### Fixed
+- Bug fix when calling connectivity in a non-authenticated flow (no login in approuter)
+
 ## 8.0.0 - 2020-05-26
 
 ### Updated dependencies

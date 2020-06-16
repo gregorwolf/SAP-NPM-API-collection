@@ -1,3 +1,8 @@
+# 1.7.1
+Features:
+- use hdi-deploy version 3.11.11
+- prefix log lines relating to the same deployment with an identifier  
+
 # 1.7.0
 Features:
 - added a new route `/v1/deploy/to/instance/async` that implements an asynchronous deployment with status polling via `/v1/status/:guid`.
