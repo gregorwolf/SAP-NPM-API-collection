@@ -5,6 +5,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 2.1.0 - 2019-12-06
+
+### Added
+- Support for Node.js 12.x
+
+## 2.0.0 - 2019-04-25
+
+### Removed
+- Support for Node.js v0.12 and v4
+
+<a name="1.4.1"></a>
+## 1.4.1 - 2019-01-15
+
+### Fixed
+- Update shrinkwrap
+
+<a name="1.4.0"></a>
+## 1.4.0 - 2019-01-15
+
+### Added
+- Node.js version 10 support
+
 ## 1.3.0 - 2018-01-19
 
 ### Added

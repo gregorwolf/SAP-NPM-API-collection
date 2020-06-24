@@ -5,9 +5,38 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [3.29.0]
+## [4.2.0]
+### Changed
+- Changed jszip to version 3.4.0
+- Changed rimraf to version 3.0.2
+- Node.js engine supports only ^12.0.0
+
+### Fixed
+- eslint ci support
+
+## [4.1.0]
 ### Added
-- Added Support of federating shell plugins in cFlp 
+- Added PROVIDER_INFORMATION for future feature
+
+## [3.32.0]
+### Changed
+- For external content provider take xsappname from binded uaa or from env variable SAP_CONTENT_PROVIDER_XSAPPNAME
+
+## [3.30.0]
+### Changed
+- Add portal service data in external provider scenario
+
+## [3.29.0]
+### Changed
+- Changed @sap/xsenv to version 2.2.0
+- Changed glob to version 7.1.6
+- Changed jszip to version 3.2.2
+- Changed rimraf to version 3.0.0
+
+## [3.28.0]
+### Added
+- Added Support of federating shell plugins in cFlp
+- Added Support of SAP Content Provider 
 
 ## [3.27.0]
 ### Changed
