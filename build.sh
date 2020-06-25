@@ -6,7 +6,7 @@ npm install
 
 while read package; do
   packageNoPrefix=`echo $package | sed 's/@sap//g'`
-  mkdir "docs$packageNoPrefix"
-  cp node_modules/$package/*.md docs$packageNoPrefix
-  cp -r node_modules/$package/doc docs$packageNoPrefix/doc
+  mkdir "apis$packageNoPrefix"
+  cp node_modules/$package/*.md apis$packageNoPrefix
+  cp -r node_modules/$package/doc apis$packageNoPrefix/doc
 done <packages.txt
