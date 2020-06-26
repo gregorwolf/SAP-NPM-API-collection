@@ -5,10 +5,6 @@ site_author: Gregor Wolf
 docs_dir: source
 site_dir: docs
 
-# Repository
-repo_name: SAP-NPM-API-collection
-repo_url: https://github.com/gregorwolf/SAP-NPM-API-collection
-
 # Configuration
 theme:
   name: material
