@@ -1,0 +1,49 @@
+# Project information
+site_name: SAP NPM Explorer
+repo_url: https://gregorwolf.github.io/SAP-NPM-API-collection/
+site_author: Gregor Wolf
+docs_dir: source
+site_dir: docs
+
+# Repository
+repo_name: SAP-NPM-API-collection
+repo_url: https://github.com/gregorwolf/SAP-NPM-API-collection
+
+# Configuration
+theme:
+  name: material
+  logo: assets/icons/udina-logo-signet.svg
+  favicon: assets/icons/favicon.ico
+  palette:
+    primary: black
+    accent: blue
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+# Customization
+extra:
+  manifest: manifest.webmanifest
+  social:
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/c/GregorWolf
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/wolf_gregor
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/gregorwolf/
+    - icon: fontawesome/brands/xing
+      link: https://www.xing.com/profile/Gregor_Wolf5/cv  
+
+# Extensions
+markdown_extensions:
+  - attr_list
+  - codehilite
+  - toc:
+      permalink: true
+
+# Plugins
+plugins:
+  - search # necessary for search to work
+  - awesome-pages # dynamically add md to nav
+  - minify: # compress output
+      minify_html: true

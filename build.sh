@@ -13,3 +13,4 @@ while read package; do
   cp node_modules/$package/*.md apis$packageNoPrefix
   cp -r node_modules/$package/doc apis$packageNoPrefix/doc
 done <packages.txt
+mkdocs build -f mkdocs.yml
