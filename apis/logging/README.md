@@ -24,7 +24,6 @@ A package that provides logging and tracing functionalities for Node.js applicat
   * [Middleware](#middleware)
   * [Loggers](#loggers)
   * [Tracers](#tracers)
-  * [Custom fields (in CF)](#custom-fields)
   * [Convenient tracing methods](#convenient-tracing-methods)
   * [Other](#other)
 - [Migration guide](#migration-guide)
@@ -267,12 +266,6 @@ appContext.unsetLevel('/Application/*'); // for a logger
 appContext.unsetLevel(pathToFile); // for a tracer
 ```
 
-To set custom fields, you could do:
-```js
-appContext.setCustomFields(["abc"]);
-```
-
-
 #### Log context
 
 ```js
@@ -290,12 +283,6 @@ Here is a list of the options that can be provided to the log context (all are o
 | id            | *String* Included in all logs and traces, should be unique. Used to distinguish entries from different log contexts. Defaults to an auto-generated value. If `req` is provided, the value is taken from the request headers `x-request-id` and `x-vcap-request-id` if present. It is recommended to explicitly pass an empty string for log contexts used during application startup. If `req` is present, then this id can be thought of as a request id, because all log/trace entries for that request will have the same id. See [this section](#log-context-id) for more information. |
 | correlationId | *String* Used to correlate entries for a logical transaction which involves processing within different applications. If the value is not set explicitly, then it is taken from the `x-correlationid` header (if `req` is provided and the header is present) or from the `id` of the log context. |
 | req           | *Object* Represents an HTTP request. |
-
-The log context exposes the following functions:
-| Function        | Description |
-| --------------- | ----------- |
-| getAppContext   | AppConext object associated with this log context |
-
 
 The log context exposes the following read-only properties:
 
@@ -423,27 +410,6 @@ var level = tracer.getLevel();
 var willItBeTraced = tracer.isEnabled('path');
 // etc.
 ```
-
-#### Custom Fields
-
-##### Note: This feature is available in Cloud Foundry and not in XS Advanced.
-
-If you want to use custom fields, you need to set them to the application context. The expected format is a string based array:
-
-```js
-      appContext.setCustomFields(["custom1", "custom2"]);
-```
-
-When logging, if the last argument is an object with a custom field, the custom field will be included in the log output as a custom field and not as part of the message:
-
-```js
-app.get('/', function (req, res) {
-  logger.info('Let me say hi ...' ,{
-    "abc": "data"
-  });
-  // ... "custom_fields": {"abc": "data"} ...
-```
-
 
 #### Convenient tracing methods
 

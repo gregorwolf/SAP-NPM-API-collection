@@ -11,8 +11,18 @@ const fs = require('fs');
   do {
     packagesSearchResult = await search('@sap', { from: from, limit: limit });
     // console.log(packagesSearchResult.length);
-    for (let package in packagesSearchResult) {
-      packages[packagesSearchResult[package].name] = packagesSearchResult[package].version;
+    for (let i in packagesSearchResult) {
+      var package = packagesSearchResult[i]
+      if(
+        // No matching version found for mta-lib@0.0.1
+        package.name !== '@sap/wing-service-binding'
+        // Verification failed while extracting @sap/textbundle@2.0.6
+        && package.name !== '@sap/textbundle'
+        // Verification failed while extracting @sap/logging@3.0.0:
+        && package.name !== '@sap/logging'
+        ) {
+      }
+      packages[package.name] = package.version;
     }
     from = from + limit;
   } while (packagesSearchResult.length > 0);

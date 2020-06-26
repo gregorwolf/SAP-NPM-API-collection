@@ -5,11 +5,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 5.3.0 - 2020-04-14
-
-### Added
-- Support for custom fields on Cloud Foundry platform
-
 ## 5.2.0 - 2020-01-08
 
 ### Added
