@@ -59,6 +59,7 @@
 @sap/cloud-sdk-vdm-company-code-service
 @sap/cloud-sdk-vdm-condition-contract-type-service
 @sap/cloud-sdk-vdm-contract-accounting-sepa-mandate-service
+@sap/cloud-sdk-vdm-controlling-area-service
 @sap/cloud-sdk-vdm-controlling-debit-credit-code-service
 @sap/cloud-sdk-vdm-cost-center-activity-type-service
 @sap/cloud-sdk-vdm-cost-center-service
@@ -111,9 +112,8 @@
 @sap/cloud-sdk-vdm-legal-transaction-service
 @sap/cloud-sdk-vdm-master-inspection-characteristic-service
 @sap/cloud-sdk-vdm-master-recipe-service
+@sap/cloud-sdk-vdm-material-document-service
 @sap/cloud-sdk-vdm-material-planning-data-service
-@sap/cloud-sdk-vdm-material-stock-service
-@sap/cloud-sdk-vdm-material-valuation-service
 @sap/cloud-sdk-vdm-order-bill-of-material-service
 @sap/cloud-sdk-vdm-outbound-delivery-service
 @sap/cloud-sdk-vdm-outbound-delivery-v2-service
@@ -139,6 +139,7 @@
 @sap/cloud-sdk-vdm-production-order-confirmation-v2-service
 @sap/cloud-sdk-vdm-production-order-v2-service
 @sap/cloud-sdk-vdm-production-orders-service
+@sap/cloud-sdk-vdm-production-routing-service
 @sap/cloud-sdk-vdm-production-supply-area-service
 @sap/cloud-sdk-vdm-profit-center-service
 @sap/cloud-sdk-vdm-purchase-contract-service
@@ -159,9 +160,7 @@
 @sap/cloud-sdk-vdm-request-for-quotation-service
 @sap/cloud-sdk-vdm-reservation-document-service
 @sap/cloud-sdk-vdm-sales-contract-service
-@sap/cloud-sdk-vdm-sales-district-service
 @sap/cloud-sdk-vdm-sales-doc-with-credit-block-service
-@sap/cloud-sdk-vdm-sales-inquiry-service
 @sap/cloud-sdk-vdm-sales-order-service
 @sap/cloud-sdk-vdm-sales-order-simulation-service
 @sap/cloud-sdk-vdm-sales-order-without-charge-service
