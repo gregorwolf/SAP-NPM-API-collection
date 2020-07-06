@@ -2,15 +2,14 @@
 =============
 
 This project contains the VSI binding for node.js. It also includes the native libraries to run on Windows/Linux.
-If you need another platforms, please create a SAP support ticket to BC-SEC.
+If you need another platforms, please create a SAP support ticket to BC-CP-CF-SEC-IAM.
 
 ## Installation
-The module has moved to sap-internal npm registry. Ultimately all SAP modules will be there soon. Requests for opensource modules will be proxied to the official npmjs.org registry.
+The module has moved to npmjs.org npm registry. Ultimately all SAP modules will be there soon. 
 
 In order to configure the sap-internal registry you need to issue the following command:
 
 ```
-npm config set @sap:registry=https://npm.sap.com
 npm install @sap/node-vsi
 ```
 

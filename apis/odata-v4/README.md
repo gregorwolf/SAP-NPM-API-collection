@@ -1,6 +1,9 @@
 OData V4.0 Server Library
 =========================
 
+# Deprecated
+## This library will not receive feature and bugfix releases in the future. Please use the successor `@sap/odata-server`
+
 ## Table of Contents
 
 - [Overview](#overview)

@@ -1,3 +1,32 @@
+## 3.11.11
+Fixes:
+- close all connections before calling process.exit() to work around sporadic segmentation fault
+
+## 3.11.10
+Fixes:
+- fixed a memory leak with `--live-messages`
+
+## 3.11.9
+Features:
+- node 12 support
+
+Fixes:
+- updated dependencies
+- gracefully handle a missing grantor service when using library.js
+
+## 3.11.8
+Fixes:
+- specify segfault-handler as an optional dependency
+
+## 3.11.7
+Fixes:
+- better debugging capabilities for segmentation faults
+
+## 3.11.6
+Fixes:
+- remove duplicate messages when using the deployer as a library
+- update dependencies
+
 ## 3.11.5
 Fixes:
 - when used as a library, do not exit until all messages have been sent to the parent process

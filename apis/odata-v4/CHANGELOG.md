@@ -8,6 +8,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [1.9.0] - 2019-01-16
+
+### Please note: This library will not receive feature and bugfix releases in the future. Please use the successor `@sap/odata-server`
+
+### Added
+- Support for geo types and geo functions
+
+### Changed
+- Errors with status codes 4xx are logged with log level WARNING instead of ERROR
+- Remove $Kind from EntitySets,Singletons, FunctionImports, ActionImports and add $Collection to EntitySets (Compatible change)
+    - See OASIS Issue: https://issues.oasis-open.org/browse/ODATA-1231
+
+## [1.8.0] - 2018-10-26
+### Added
+- Support for Upsert requests (PUT/PATCH on entity set with key and navigation to many with key)
+
+### Fixed
+- base64 encoding uses "URL and Filename Safe Alphabet" as required by the specification (#480)
+
 ## [1.7.0] - 2018-09-19
 ### Added
 - Support for EDM type Edm.Stream

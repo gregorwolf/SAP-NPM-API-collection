@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.2.0 - 2020-07-02
+
+### Fixed
+Passport handling fix in service 2 approuter flow – increment counter
+
+### Updated dependencies
+- deps: sap/xssec@3.0.6
+
+## 8.1.1 - 2020-06-24
+
+### Announcement
+- The Preserve URL fragment (PRESERVE_FRAGMENT) will not be deprecated as previously announced.
+
+### Fixed
+- Bug correction in forwardAuthToken in business service flow
+
 ## 8.1.0 - 2020-06-14
 
 ### Added

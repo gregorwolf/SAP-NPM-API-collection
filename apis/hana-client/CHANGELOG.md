@@ -1,4 +1,20 @@
+# Hana Client 2.5.x Drivers
+
+## Version 2.5.86
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.5 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.5/en-US
+
 # Hana Client 2.4.x Drivers
+
+## Version 2.4.202
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 247255: Some rows of a query could have been incorrectly missing if the server returned a fetch warning.
+ - Issue Number 246397: SQLDBC/ODBC tracing output could have been incorrect in several cases.
+ - Issue Number 242465: When fallback routing happened in executing hint routed FDA select, the application server could have received an un-initialized ITAB result and produced an ABAP dump.
 
 ## Version 2.4.196
 

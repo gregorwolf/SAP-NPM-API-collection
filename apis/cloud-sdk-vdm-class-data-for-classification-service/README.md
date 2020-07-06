@@ -2,10 +2,11 @@
 
 This package contains the OData VDM for the [Class Data For Classification Service](https://api.sap.com/api/API_CLFN_CLASS_SRV) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: Classification Systems OData Integration (SAP_COM_0163).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/b4/14e320706a4071adec31121ef1f3c1/frameset.htm).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/b4/14e320706a4071adec31121ef1f3c1/frameset.htm).
 
 ### Helpful Links
 
+- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk)
 - [Tutorials on developers.sap.com](https://developers.sap.com/tutorial-navigator.html?tag=products:technology-platform/sap-cloud-sdk/sap-cloud-sdk&tag=topic:javascript)
 - [SAP Cloud SDK on StackOverflow](https://stackoverflow.com/questions/tagged/sap-cloud-sdk?tab=Newest)
 - [SAP Cloud SDK on answers.sap.com](https://answers.sap.com/tags/73555000100800000895)

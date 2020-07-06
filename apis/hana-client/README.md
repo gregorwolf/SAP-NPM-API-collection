@@ -14,11 +14,11 @@ This driver communicates with the native HANA libraries, and thus requires
 platform-specific native binaries. The official hosted version includes
 precompiled libraries for Linux, Windows and Mac OS X.
 
-The @sap/hana-client driver supports node.js 4.x, 6.x, 8.x, 10.x and 12.x.
+The @sap/hana-client driver supports node.js 8.x, 10.x and 12.x.
 
 ## Help Guide
 
-The SAP HANA Node.js Driver help guide and API reference can be found on [help.sap.com](https://help.sap.com/viewer/0eec0d68141541d1b07893a39944924e/latest/en-US/a5c332936d9f47d8b820a4ecc427352c.html).
+The SAP HANA Node.js Driver help guide and API reference can be found on [help.sap.com](https://help.sap.com/viewer/f1b440ded6144a54ada97ff95dac7adf/latest/en-US/a5c332936d9f47d8b820a4ecc427352c.html).
 
 ## Getting Started
 
@@ -216,4 +216,4 @@ conn.rollback(function(err) {
 
 ## Resources
 
-+ [SAP HANA Documentation](https://help.sap.com/viewer/0eec0d68141541d1b07893a39944924e/latest/en-US/a5c332936d9f47d8b820a4ecc427352c.html)
++ [SAP HANA Documentation](https://help.sap.com/viewer/f1b440ded6144a54ada97ff95dac7adf/latest/en-US/a5c332936d9f47d8b820a4ecc427352c.html)

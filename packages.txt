@@ -114,6 +114,8 @@
 @sap/cloud-sdk-vdm-master-recipe-service
 @sap/cloud-sdk-vdm-material-document-service
 @sap/cloud-sdk-vdm-material-planning-data-service
+@sap/cloud-sdk-vdm-material-stock-service
+@sap/cloud-sdk-vdm-material-valuation-service
 @sap/cloud-sdk-vdm-order-bill-of-material-service
 @sap/cloud-sdk-vdm-outbound-delivery-service
 @sap/cloud-sdk-vdm-outbound-delivery-v2-service
@@ -160,7 +162,9 @@
 @sap/cloud-sdk-vdm-request-for-quotation-service
 @sap/cloud-sdk-vdm-reservation-document-service
 @sap/cloud-sdk-vdm-sales-contract-service
+@sap/cloud-sdk-vdm-sales-district-service
 @sap/cloud-sdk-vdm-sales-doc-with-credit-block-service
+@sap/cloud-sdk-vdm-sales-inquiry-service
 @sap/cloud-sdk-vdm-sales-order-service
 @sap/cloud-sdk-vdm-sales-order-simulation-service
 @sap/cloud-sdk-vdm-sales-order-without-charge-service

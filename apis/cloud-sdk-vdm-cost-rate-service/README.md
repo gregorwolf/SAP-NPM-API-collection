@@ -2,10 +2,11 @@
 
 This package contains the OData VDM for the [Cost Rate Service](https://api.sap.com/api/API_FCO_COST_RATE_SRV) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: Finance - Activity Type Integration (SAP_COM_0129).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/59/9a4093d9614191bbd357e97fa558eb/frameset.htm).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/59/9a4093d9614191bbd357e97fa558eb/frameset.htm).
 
 ### Helpful Links
 
+- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk)
 - [Tutorials on developers.sap.com](https://developers.sap.com/tutorial-navigator.html?tag=products:technology-platform/sap-cloud-sdk/sap-cloud-sdk&tag=topic:javascript)
 - [SAP Cloud SDK on StackOverflow](https://stackoverflow.com/questions/tagged/sap-cloud-sdk?tab=Newest)
 - [SAP Cloud SDK on answers.sap.com](https://answers.sap.com/tags/73555000100800000895)

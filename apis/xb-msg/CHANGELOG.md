@@ -8,6 +8,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [0.9.9] - 2019-03-28
+
+## [0.9.7] - 2019-03-27
+
+## [0.9.6] - 2019-03-27
+
+## [0.9.5] - 2019-02-11
+
+## [0.9.4] - 2019-02-11
+
+## [0.9.3] - 2019-02-11
+
+## [0.9.2] - 2019-02-06
+
+## [0.9.1] - 2019-02-06
+
 ### Added
 - support of the amqp v100 protocol with QoS at least once
 

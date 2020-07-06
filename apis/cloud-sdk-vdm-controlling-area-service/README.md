@@ -2,10 +2,11 @@
 
 This package contains the OData VDM for the [Controlling Area Service](https://api.sap.com/api/API_CONTROLLINGAREA_SRV) of SAP S/4HANA Cloud.
 This service is part of the following communication scenarios: SAP Analytics Cloud for Planning Integration (SAP_COM_0087).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2002.500/EN/36/1a2707d8834d4e8bd865642bf115a5/frameset.htm).
+You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/36/1a2707d8834d4e8bd865642bf115a5/frameset.htm).
 
 ### Helpful Links
 
+- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk)
 - [Tutorials on developers.sap.com](https://developers.sap.com/tutorial-navigator.html?tag=products:technology-platform/sap-cloud-sdk/sap-cloud-sdk&tag=topic:javascript)
 - [SAP Cloud SDK on StackOverflow](https://stackoverflow.com/questions/tagged/sap-cloud-sdk?tab=Newest)
 - [SAP Cloud SDK on answers.sap.com](https://answers.sap.com/tags/73555000100800000895)

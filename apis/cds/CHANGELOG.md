@@ -4,13 +4,6 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
-# Version 3.34.3 - 2020-06-19
-
-## Changed
-
-- Faster generation of `hdbtabledata` files from csv data.  It no longer tries to check the existence of element or column names.  Such checks are anyways done during SAP HANA deployment.  This behavior is now symmetrical to SQLite deployment.
-
-
 # Version 3.34.2 - 2020-05-30
 
 ## Changed

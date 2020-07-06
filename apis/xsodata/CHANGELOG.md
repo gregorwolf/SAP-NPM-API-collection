@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.0.3] - 2020-06-30
+
+### Added
+- license file: developer-license-3.1.txt
+
 ## [7.0.2] - 2020-05-18
 
 * Add support for create, update, delete operations via user-exits on calculation views without input parameters.

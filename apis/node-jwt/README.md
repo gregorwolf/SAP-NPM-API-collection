@@ -44,7 +44,6 @@ $ var jwt = require('@sap/node-jwt');
 
 Released versions
 ```
-npm config set @sap:registry=https://npm.sap.com
 npm install @sap/node-jwt
 ```
 
@@ -80,6 +79,5 @@ In cf landscapes you can then cf logs <your-app> and you will see trace from JWT
 In order to configure the sap NPM registry you need to issue the following command:
 
 ```
-npm config set @sap:registry=https://npm.sap.com
 npm install @sap/node-jwt
 ```

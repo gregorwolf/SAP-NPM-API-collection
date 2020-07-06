@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.8.2] - 2020-06-17
+
+### Fixed
+- added license file to "files" in package.json
+
+## [1.8.1] - 2020-06-17
+
+### Added
+- license file: developer-license-3.1.txt
+
 ## [1.8.0] - 2020-05-29
 
 ### Added

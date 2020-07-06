@@ -2,10 +2,13 @@
 cd node_modules
 package="$1"
 version=$(npm show ${package} version)
-archive="${package}-${version}.tgz"
+packageNoPrefix=`echo $package | sed 's/@sap//g'`
+archive="${packageNoPrefix}-${version}.tgz"
+url="https://registry.npmjs.org/${package}/-/${archive}"
+echo "Download URL: ${url}"
 curl --silent --remote-name \
-  "https://registry.npmjs.org/${package}/-/${archive}"
+  "${url}"
 mkdir "${package}"
-tar xzf "${archive}" --strip-components 1 -C "${package}"
-rm "${archive}"
+tar xzf ".${archive}" --strip-components 1 -C "${package}"
+rm ".${archive}"
 cd ..

@@ -5,6 +5,54 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.1.0 - 2019-12-06
+
+### Added
+- Node.js 12.x support
+- Retry logic when accessing the auditlog
+
+### Fixed
+- Update dependencies
+
+## 3.0.2 - 2019-07-16
+
+### Fixed
+- Update dev dependencies
+
+## 3.0.1 - 2019-05-17
+
+### Fixed
+- Transactional messages: uuid and time fields are now updated for each log operation
+
+## 3.0.0 - 2019-04-23
+
+### Removed
+- Node.js v0.12 support
+- Node.js v4 support
+
+## 2.3.0 - 2018-12-18
+
+### Added
+- Node.js version 10 support
+
+### Fixed
+- Update `lodash` to 4.17.11
+
+## 2.2.4 - 2018-08-14
+
+### Fixed
+- Update dependencies.
+
+## 2.2.3 - 2018-07-17
+
+### Fixed
+- Update request to v2.87.0.
+
+## 2.2.2 - 2018-05-18
+
+### Fixed
+- Update request to v2.86.0.
+
 ## 2.2.1 - 2018-04-05
 
 ### Fixed

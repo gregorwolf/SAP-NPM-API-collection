@@ -14,6 +14,7 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-business-area-service
 * @sap/cloud-sdk-vdm-business-partner-service
 * @sap/cloud-sdk-vdm-business-situation-service
+* @sap/cloud-sdk-vdm-business-situation-type-service
 * @sap/cloud-sdk-vdm-central-purchase-contract-service
 * @sap/cloud-sdk-vdm-change-master-service
 * @sap/cloud-sdk-vdm-change-master-v2-service
@@ -23,6 +24,7 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-characteristic-data-for-classification-service
 * @sap/cloud-sdk-vdm-class-data-for-classification-service
 * @sap/cloud-sdk-vdm-product-master-data-including-classification-service
+* @sap/cloud-sdk-vdm-cloud-print-pull-service
 * @sap/cloud-sdk-vdm-incoming-vat-invoice-china-service
 * @sap/cloud-sdk-vdm-company-code-service
 * @sap/cloud-sdk-vdm-condition-contract-type-service
@@ -30,6 +32,7 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-controlling-debit-credit-code-service
 * @sap/cloud-sdk-vdm-cost-center-activity-type-service
 * @sap/cloud-sdk-vdm-cost-center-service
+* @sap/cloud-sdk-vdm-activity-type-service
 * @sap/cloud-sdk-vdm-country-service
 * @sap/cloud-sdk-vdm-credit-memo-request-service
 * @sap/cloud-sdk-vdm-customer-group-service
@@ -57,6 +60,7 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-forecast-demand-service
 * @sap/cloud-sdk-vdm-functional-area-service
 * @sap/cloud-sdk-vdm-glaccount-in-chart-of-accounts-service
+* @sap/cloud-sdk-vdm-glaccount-line-item-service
 * @sap/cloud-sdk-vdm-group-reporting-master-data-service
 * @sap/cloud-sdk-vdm-group-reporting-transaction-data-service
 * @sap/cloud-sdk-vdm-handling-unit-service
@@ -75,6 +79,7 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-legal-document-service
 * @sap/cloud-sdk-vdm-legal-transaction-service
 * @sap/cloud-sdk-vdm-brazil-business-place-service
+* @sap/cloud-sdk-vdm-brazil-nota-fiscal-service
 * @sap/cloud-sdk-vdm-workforce-skill-tags-service
 * @sap/cloud-sdk-vdm-workforce-availability-service
 * @sap/cloud-sdk-vdm-workforce-timesheet-service
@@ -87,6 +92,7 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-phase-relationship-type-service
 * @sap/cloud-sdk-vdm-contract-accounting-sepa-mandate-service
 * @sap/cloud-sdk-vdm-accounting-document-service
+* @sap/cloud-sdk-vdm-order-bill-of-material-service
 * @sap/cloud-sdk-vdm-outbound-delivery-service
 * @sap/cloud-sdk-vdm-outbound-delivery-v2-service
 * @sap/cloud-sdk-vdm-partner-company-service
@@ -108,6 +114,7 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-product-allocation-sequence-service
 * @sap/cloud-sdk-vdm-product-availability-info-basic-service
 * @sap/cloud-sdk-vdm-product-service
+* @sap/cloud-sdk-vdm-product-structure-service
 * @sap/cloud-sdk-vdm-production-order-confirmation-service
 * @sap/cloud-sdk-vdm-production-order-confirmation-v2-service
 * @sap/cloud-sdk-vdm-profit-center-service
@@ -149,6 +156,7 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-sales-pricing-procedure-service
 * @sap/cloud-sdk-vdm-sales-doc-with-credit-block-service
 * @sap/cloud-sdk-vdm-statistical-key-figure-service
+* @sap/cloud-sdk-vdm-subsequent-billing-document-service
 * @sap/cloud-sdk-vdm-supplier-evaluation-response-service
 * @sap/cloud-sdk-vdm-supplier-evaluation-scorecard-service
 * @sap/cloud-sdk-vdm-supplier-invoice-process-service
@@ -156,9 +164,11 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-supplier-activity-task-service
 * @sap/cloud-sdk-vdm-treasury-position-flow-service
 * @sap/cloud-sdk-vdm-treasury-posting-journal-entry-line-item-service
+* @sap/cloud-sdk-vdm-warehouse-service
 * @sap/cloud-sdk-vdm-warehouse-task-service
 * @sap/cloud-sdk-vdm-warehouse-resource-service
 * @sap/cloud-sdk-vdm-warehouse-storage-bin-service
+* @sap/cloud-sdk-vdm-warehouse-inbound-delivery-service
 * @sap/cloud-sdk-vdm-warehouse-outbound-delivery-order-service
 * @sap/cloud-sdk-vdm-warehouse-physical-inventory-service
 * @sap/cloud-sdk-vdm-work-centers-service
@@ -174,6 +184,7 @@ This package is an aggregation of the following packages:
 
 ### Helpful Links
 
+- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk)
 - [Tutorials on developers.sap.com](https://developers.sap.com/tutorial-navigator.html?tag=products:technology-platform/sap-cloud-sdk/sap-cloud-sdk&tag=topic:javascript)
 - [SAP Cloud SDK on StackOverflow](https://stackoverflow.com/questions/tagged/sap-cloud-sdk?tab=Newest)
 - [SAP Cloud SDK on answers.sap.com](https://answers.sap.com/tags/73555000100800000895)

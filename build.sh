@@ -1,3 +1,4 @@
+npm config rm @sap:registry
 rm -rf node_modules 
 mkdir node_modules
 npm install libnpmsearch
@@ -7,7 +8,7 @@ rm new-package.json
 # npm install
 
 while read package; do
-  npm_download.sh $package
+  ./npm_download.sh $package
   packageNoPrefix=`echo $package | sed 's/@sap//g'`
   mkdir "apis$packageNoPrefix"
   cp node_modules/$package/*.md apis$packageNoPrefix
