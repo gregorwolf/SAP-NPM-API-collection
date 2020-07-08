@@ -54,12 +54,13 @@ For the usage of the XS Advanced Container Security API it is necessary to pass 
 The typical use case for calling this API lies from within a container when an HTTP request is received. In an authorization header (with keyword `bearer`) an access token is contained already. You can remove the prefix `bearer` and pass the remaining string (just as in the following example as `access_token`) to the API.
 
 ```js
-xssec.createSecurityContext(access_token, xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa, function(error, securityContext) {
+xssec.createSecurityContext(access_token, xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa, function(error, securityContext, tokenInfo) {
     if (error) {
         console.log('Security Context creation failed');
         return;
     }
     console.log('Security Context created successfully');
+    console.log(tokenInfo.getPublicClaims());
 });
 ```
 
@@ -68,7 +69,6 @@ Note that the example above uses module `xsenv` to retrieve the configuration of
 The creation function `xssec.createSecurityContext` is to be used for an end-user token (e.g. for grant_type `password` or grant_type `authorization_code`) where user information is expected to be available within the token and thus within the security context.
 
 `createSecurityContext` also accepts a token of grant_type `client_credentials`. This leads to the creation of a limited SecurityContext where certain functions are not available. For more details please consult the API description below or your documentation.
-
 
 ### Usage with Passport Strategy
 
@@ -100,16 +100,71 @@ If JWT token is present in the request and it is successfully verified, followin
     * familyName
   * emails `[ { value: <email> } ]`
 * request.authInfo - the [Security Context](#api-description)
+* request.tokenInfo - the [TokenInfo](doc/TokenInfo.md) object
 
 If the `client_credentials` JWT token is present in the request and it is successfully verified, following objects are created:
 * request.user - empty object
 * request.authInfo - the [Security Context](#api-description)
+* request.tokenInfo - the [TokenInfo](doc/TokenInfo.md) object
+
 
 #### Session
 
 It is recommended to _disable the session_ as in the example above.
 In XSA each request comes with a JWT token so it is authenticated explicitly and identifies the user.
 If you still need the session, you can enable it but then you should also implement [user serialization/deserialization](http://passportjs.org/guide/configure/) and some sort of [session persistency](https://github.com/expressjs/session).
+
+
+### Configure the cache of Verificationkeys
+For token verification the library needs a so called `public key`. This key can be requested from the XSUAA server.
+The library caches these keys to reduce the load to the XSUAA. (And for better performance!)
+There are two values that are used to control the cache. The number of cache entries and an expiration time of each item. The latter is important to easily support key rotation scenarios and should not be too high.
+:exclamation: **Normally you don't need to overwrite the default values!**
+
+But in rare situations there is a need to change them.
+
+**Conditions:**
+The cacheSize value has to be >=1000
+The expirationTime is measured in minutes and has to be a number >= 10 
+
+**Currently the default values are:**
+```json
+{
+  "cacheSize": 1000,
+  "expirationTime": 10
+}
+```
+
+**Here are some codesnippets how to do this:**
+
+```js
+//just add the keyCache object into the config object and pass it to the constructor functions
+
+var config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
+config.keyCache = {
+  cacheSize: 5000,
+  expirationTime: 10
+};
+
+//if you only want to overwrite one value you can also:
+var config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
+config.keyCache = {
+  cacheSize: 10000
+};
+
+//then pass the config object to createSecurityConfig
+xssec.createSecurityContext(access_token, config, function(error, securityContext, tokenInfo) {
+   ...
+});
+
+//if you use passport:
+var config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
+config.keyCache = {
+  cacheSize: 10000
+};
+passport.use(new JWTStrategy(config));
+...
+```
 
 ### Test Usage without having an Access Token
 
@@ -137,18 +192,21 @@ request.get(
             console.log('Token request failed');
             return;
         }
+
         var json = null;
         try {
             json = JSON.parse(body);
         } catch (e) {
         	return callback(e);
         }
-        xssec.createSecurityContext(json.access_token, uaaService, function(error, securityContext) {
+
+        xssec.createSecurityContext(json.access_token, uaaService, function(error, securityContext, tokenInfo) {
             if (error) {
                 console.log('Security Context creation failed');
                 return;
             }
             console.log('Security Context created successfully');
+            console.log(tokenInfo.getPublicClaims());
         });
     }
 ).auth(uaaService.clientid, uaaService.clientsecret, false);
@@ -190,8 +248,8 @@ However, there are some use cases, when a "foreign" token could be accepted alth
 Parameters:
 
 * `access token` ... the access token as received from UAA in the "authorization Bearer" HTTP header
-* `config` ... a structure with mandatory elements url, clientid and clientsecret
-* `callback(error, securityContext)`
+* `config` ... a structure with mandatory elements url, clientid and clientsecret or cache configuration
+* `callback(error, securityContext, tokenInfo)`
 
 ### getLogonName
 
@@ -247,9 +305,12 @@ Parameters:
 
 * returns a token that can be used for contacting the HANA database. If the token, that the security context has been instantiated with, is a foreign token (meaning that the OAuth client contained in the token and the OAuth client of the current application do not match), `null` is returned instead of a token.
 
+### getTokenInfo
+* returns the [TokenInfo](doc/TokenInfo.md) object, containing all information received from token.
+
 ### requestToken
 
-Requests a token based on the given type. The type can be `constants.TYPE_USER_TOKEN` or `constants.TYPE_CLIENT_CREDENTIALS_TOKEN`. Prerequisite for the former is that the requesting client has `grant_type=user_token` and that the current user token includes the scope `uaa.user`.
+Requests a token based on the given type. The type can be `constants.TYPE_USER_TOKEN` or `constants.TYPE_CLIENT_CREDENTIALS_TOKEN`.
 
 * `serviceCredentials` ... the credentials of the service as JSON object. The attributes `clientid`, `clientsecret` and `url` (UAA) are mandatory. Note that the subdomain of the `url` will be adapted to the subdomain of the application token if necessary.
 * `type` ... allowed values are `constants.TYPE_USER_TOKEN` and `constants.TYPE_CLIENT_CREDENTIALS_TOKEN`

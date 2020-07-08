@@ -163,7 +163,6 @@
 @sap/cloud-sdk-vdm-reservation-document-service
 @sap/cloud-sdk-vdm-sales-contract-service
 @sap/cloud-sdk-vdm-sales-district-service
-@sap/cloud-sdk-vdm-sales-doc-with-credit-block-service
 @sap/cloud-sdk-vdm-sales-inquiry-service
 @sap/cloud-sdk-vdm-sales-order-service
 @sap/cloud-sdk-vdm-sales-order-simulation-service

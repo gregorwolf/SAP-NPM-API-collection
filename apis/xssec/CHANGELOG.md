@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.0.6 - 2020-07-01
+- Audience Validation validates to true when the derived client_id of broker-clone token matches the trusted client. This is relevant to support tokens of grant type user_token that contains no scopes.
+
+## 3.0.5 - 2020-06-26
+- Audience Validation accepts tokens of grant type user_token that does not provide aud claim. In that case the audience is derived from the audiences from the scopes.
+- Audience Validation is skipped when cid of token matches the trusted client.
+- Use getSubaccountId() method only to fetch the subaccount id, e.g. for calling the metering API for user-based pricing.
+- In case you are interested in the customers tenant GUID make use of getZoneId method instead!
+- A new [TokenInfo](/doc/TokenInfo.md) class is introduced for better logging capabilities.
 
 ## 3.0.3 - 2020-05-25
 
