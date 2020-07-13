@@ -1,7 +1,7 @@
 # sap-ui-annotations
 UI Annotations
 
-The purpose of this module is to provide UI Annotation Definitions required for CDS to OData exposure on XSA Plateform. 
+The purpose of this module is to provide UI Annotation Definitions required for CDS to OData V4 exposure on XSA Plateform. 
 
 How to Use this module:
 
@@ -13,7 +13,7 @@ _______________________________________________________________________________
   "name": "deploy",
   "dependencies": {
   	"@sap/hdi-deploy": "2.3.0",
-  	"@sap/ui-annotations": "2.0.3"
+  	"@sap/ui-annotations": "2.0.4"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/deploy.js"

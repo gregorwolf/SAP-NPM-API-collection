@@ -208,7 +208,7 @@ External reverse proxy flag | `EXTERNAL_REVERSE_PROXY` | Boolean value that indi
 [Cross-Origin Resource Sharing](#cross-origin) | `CORS` | Configuration regarding CORS enablement.
 Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fragment part of the URL provided during first request of not logged-in user to protected route will be preserved, and after login flow user is redirected to original URL including fragment part. However, this may break programmatic access to Approuter (e.g. e2e tests), since it introduces change in login flow, which is incompatible with Approuter version 4.0.1 and earlier. Setting value to `false` makes login flow backward compatible, however will not take fragment part of the URL into account.
 Backend Cookies Secret | `BACKEND_COOKIES_SECRET` | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
-Service to Application Router | `SERVICE_2_APPROUTER` | If `true` once the SAP Passport received by application router, Connection Counter will increase by one, and Connection ID will set to random GUID.
+Service to Application Router | `SERVICE_2_APPROUTER` | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
 
 **Note:** all those environment variables are optional.
 

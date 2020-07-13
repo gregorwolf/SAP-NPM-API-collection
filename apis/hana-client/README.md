@@ -1,6 +1,6 @@
 # @sap/hana-client
 
-This is the official Node.js driver for [SAP HANA](http://go.sap.com/product/technology-platform/hana.html). It is used to connect, issue SQL queries, and obtain result sets.
+Fully-featured Node.js driver for [SAP HANA](https://www.sap.com/products/hana.html). It is used to connect, issue SQL queries, and obtain result sets.
 
 ## Install
 
@@ -15,6 +15,13 @@ platform-specific native binaries. The official hosted version includes
 precompiled libraries for Linux, Windows and Mac OS X.
 
 The @sap/hana-client driver supports node.js 8.x, 10.x and 12.x.
+
+## Community
+
+SAP Community provides a forum where you can ask and answer questions, and
+comment and vote on the questions of others and their answers.
+
+See [SAP HANA Community Questions](https://answers.sap.com/tags/73554900100700000996) for details.
 
 ## Help Guide
 

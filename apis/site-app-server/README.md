@@ -7,3 +7,4 @@ This component is coupled with the @sap/site-entry node module, which in turn ac
 This component uses the portal-service that exists in the XSA environment.
 
 This component can be used only on HANA XSA SP1 environment.
+

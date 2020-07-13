@@ -1,5 +1,11 @@
 # Hana Client 2.5.x Drivers
 
+## Version 2.5.101
+
+Please see SAP Note 2937532 - SAP HANA Client 2.5 Release Notes
+
+https://launchpad.support.sap.com/#/notes/2937532
+
 ## Version 2.5.86
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.5 documentation:

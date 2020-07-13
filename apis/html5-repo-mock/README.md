@@ -192,6 +192,34 @@ Then run HTML5 Repo Mock as
 node node_modules/@sap/html5-repo-mock/index.js --login com.sap.cloud.abap
 ```
 
+### With Inject
+
+If it is required to inject content in `.html` files, it is possible to provide `--inject` command
+line argument followed by JSON array of objects or single object. Each object should contain `place`
+property with one of the following values: `head-start`, `head-end`, `body-start` or  `body-end`.
+In addition, object should have either `script` or `content` property. In case of `script`, the
+`<script>` tag with corresponing URL will be injected to the place specified in `place` property.
+In case of `content`, arbitrary content will be injected to the place specified in `place` property.
+
+```shell script
+node node_modules/@sap/html5-repo-mock/index.js --inject '{"place":"head-start", "script":"http://test.com/script.js"}'
+```
+
+```shell script
+node node_modules/@sap/html5-repo-mock/index.js --inject '{"place":"body-end", "content":"<p>Footer</p>"}'
+```
+
+### With MIME Types
+
+In case HTML5 application contains resource(s) with file extension that is required to be served
+with custom value of `Content-Type` header, it is possible to pass `--mime-types` command line
+argument followed with JSON that has file extension (without a dot) as key and corresponding
+MIME Type (`Content-Type` header value) as value.
+
+```shell script
+node node_modules/@sap/html5-repo-mock/index.js --mime-types '{"my-ext":"application/x-my-ext"}'
+```
+
 ## Configuration
 
 HTML5 Repo Mock supports various configuration options via environment variables
@@ -206,16 +234,19 @@ HTML5 Repo Mock supports various configuration options via environment variables
 | SAP_UI_BOOTSTRAP_URL | https://sapui5.hana.ondemand.com    | Base URL form which SAP UI5 resources of FLP sandbox will be loaded         |
 | VCAP_SERVICES        | [See below](#default-vcap_services) | Service binding information that will be overridden and passed to Approuter |
 
-Command line arguments may be used to configure HTML5 Repo Mock
+Use command line arguments to configure HTML5 Repo Mock
 
-| Command line argument         | Default value                       | Description                                                                |
-|-------------------------------|-------------------------------------|----------------------------------------------------------------------------|
-| `--flp`                       | &lt;not set&gt; | If present, Approuter serves Fiori Sandbox at `/cp.portal/site`                                |
-| `--standalone <url>`          | &lt;not set&gt; | If present, changes welcome page of Approuter to `<url>`                                       |
-| `--relative`                  | &lt;not set&gt; | If present, remove leading slash in data source URIs of manifest.json files                    |
-| `--destination`               | &lt;not set&gt; | If present, HTML5 Repo Mock will mock destination service                                      |
-| `--ui5`                       | &lt;not set&gt; | If present, HTML5 Repo Mock will rewrite UI5 configuration                                     |
-| `--login <sap.cloud.service>` | &lt;not set&gt; | If present, Approuter will use service with specified `sap.cloud.service` as XSUAA (for login) |  
+| Command line argument            | Default value   | Description                                                                                                                                                                                      |
+|----------------------------------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `--flp`                          | &lt;not set&gt; | If present, Approuter serves Fiori Sandbox at `/cp.portal/site`                                                                                                                                  |
+| `--standalone <url>`             | &lt;not set&gt; | If present, changes welcome page of Approuter to `<url>`                                                                                                                                         | 
+| `--relative`                     | &lt;not set&gt; | If present, remove leading slash in data source URIs of manifest.json files                                                                                                                      |
+| `--destination`                  | &lt;not set&gt; | If present, HTML5 Repo Mock will mock destination service                                                                                                                                        |
+| `--ui5 <json>`                   | &lt;not set&gt; | If present, HTML5 Repo Mock will rewrite UI5 configuration                                                                                                                                       |
+| `--login <sap.cloud.service>`    | &lt;not set&gt; | If present, Approuter will use service with specified `sap.cloud.service` as XSUAA (for login)                                                                                                   |
+| `--APIKey <key>`                 | &lt;not set&gt; | If present, HTML5 Repo Mock will override manifest.json OData models to send `APIKey` header                                                                                                     |
+| `--inject <json>`                | &lt;not set&gt; | If present, HTML5 Repo Mock will inject arbitrary HTML content or script with URL to specified place (supported places are `head-start`, `head-end`, `body-start`, `body-end`) in HTML files     |
+| `--mime-types <json>`            | &lt;not set&gt; | If present, HTML5 Repo Mock will send `Content-Type` header for files with extension matching key (from provided JSON) equal to corresponding value                                              |
 
 ### Default VCAP_SERVICES
 
@@ -261,20 +292,5 @@ Command line arguments may be used to configure HTML5 Repo Mock
   ]
 }
 ```
-
-## Release and Publish 'html5-repo-mock' Module
-
-In order to use any new version of the 'html5-repo-mock' module - we must first release the module to the nexus milestones, 
-and then publish the module to sap.npm.com.
-
-Release:
-Merging a pull request into the master branch will trigger the moduel's release proccess.
-This procees releases the 'html5-repo-mock' module to milestones via an 'xMake-nova' build.
-Once the release is complete, this module needs to be published to npm 
-
-Publish:
-After ensuring the module has reached nexus - https://nexus3.wdf.sap.corp:8443/nexus/#browse/search=keyword%3Dhtml5-repo-mock
-Open a publish request ticket:
-As seen in this example: https://sapjira.wdf.sap.corp/browse/DTSOF-8728
 
 [1]: https://github.wdf.sap.corp/xs2/approuter.js

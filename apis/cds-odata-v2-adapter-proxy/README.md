@@ -2,10 +2,6 @@
 
 OData v2 Adapter Proxy for CDS OData v4 Services
 
-## Build Status
-
-[![Build Status](https://gkecdxodata.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=cds-community%2Fcds-odata-v2-adapter-proxy%2Fmaster)](https://gkecdxodata.jaas-gcp.cloud.sap.corp/job/cds-community/job/cds-odata-v2-adapter-proxy/job/master/)
-
 ## Getting Started
 
 - Install: `npm install @sap/cds-odata-v2-adapter-proxy`
@@ -138,7 +134,7 @@ const port = process.env.PORT || 4004;
   - OData v2 service will be available at http://localhost:4004/v2/<odata-v4-service-path>
   - OData v4 service shall be available at http://localhost:8080/<odata-v4-service-path>
 - A deployed version of OData v2 proxy shall have option `target` set to the deployed OData v4 backend URL.
-  This can be retrieved from the CF environment using [node-xsenv](https://github.wdf.sap.corp/xs2/node-xsenv) module, e.g.
+  This can be retrieved from the CF environment using **node-xsenv** module, e.g.
   from the `destinations` environment variable.
 
 Note that `@sap/cds` and `express` are peer dependency and needs to be available as module as well.
@@ -152,25 +148,33 @@ To come around this situation, trigger a `cds build`, that generates a `csn.json
 If your CF deployment of the Node.js backend (incl. CDS OData v2 Adapter Proxy) is then based on folder `gen/srv`,
 the CDS models can be found during runtime on Cloud Foundry.
 
+## SAP Fiori Elements v2
+
+The OData v2 service provided by the CDS OData v2 Adapter Proxy can be used to serve a SAP Fiori Elements v2 UI.
+An running example can be tested as follows:
+
+- Start server: `npm run cds:run`
+- Open Fiori Launchpad: http://localhost:4004/webapp/test/flpSandbox.html
+
 ## Documentation
 
 Instantiates an CDS OData v2 Adapter Proxy Express Router for a CDS based OData v4 Server
 
 - **options:** CDS OData v2 Adapter Proxy options
-  - **[options.base]:** Base path, under which the service is reachable. Default is ''.
-  - **[options.path]:** Path, under which the proxy is reachable. Default is 'v2'.
+  - **[options.base]:** Base path under which the service is reachable. Default is ''.
+  - **[options.path]:** Path under which the proxy is reachable. Default is 'v2'.
   - **[options.model]:** CDS service model (path(s) or CSN). Default is 'all'.
-  - **[options.port]:** Target port, which points to OData v4 backend port. Default is '4004'.
-  - **[options.target]:** Target, which points to OData v4 backend host/port. Default is 'http://localhost:4004'.
-  - **[options.services]:** Service mapping, from url path name to service name. If omitted local CDS defaults apply.
-  - **[options.standalone]:** Indication, that OData v2 Adapter proxy is a standalone process. Default is 'false'.
+  - **[options.port]:** Target port which points to OData v4 backend port. Default is '4004'.
+  - **[options.target]:** Target which points to OData v4 backend host/port. Default is 'http://localhost:4004'.
+  - **[options.targetPath]:** Target path to which is redirected. Default is ''.
+  - **[options.services]:** Service mapping from url path name to service name. If omitted local CDS defaults apply.
+  - **[options.standalone]:** Indication that OData v2 Adapter proxy is a standalone process. Default is 'false'.
   - **[options.mtxEndpoint]:** Endpoint to retrieve MTX metadata for standalone proxy. Default is '/mtx/v1'
   - **[options.ieee754Compatible]:** Edm.Decimal and Edm.Int64 are serialized IEEE754 compatible. Default is 'true'.
-  - **[options.pathRewrite]:** Custom path rewrite rules. Default uses 'path' option as rule: { "^/v2": "" }
   - **[options.disableNetworkLog]:** Disable networking logging. Default is 'true'.
 
 Logging is controlled with XSA environment variable `XS_APP_LOG_LEVEL`.
-Details can be found at [xs2/node-logging](https://github.wdf.sap.corp/xs2).
+Details can be found at **xs2/node-logging**.
 
 ## Features
 
@@ -207,3 +211,7 @@ http://docs.oasis-open.org/odata/new-in-odata/v4.0/cn01/new-in-odata-v4.0-cn01.h
 - KEY(...) -> \$root
 - years, months, days, minutes, seconds
 - Function Parameters as Query Options
+
+## License
+
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license.txt).

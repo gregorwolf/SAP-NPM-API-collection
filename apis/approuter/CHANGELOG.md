@@ -5,10 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.2.1 - 2020-07-09
+
+### Fixed
+- SAP Passport header handling fixed in service 2 approuter flow
+
 ## 8.2.0 - 2020-07-02
 
 ### Fixed
-Passport handling fix in service 2 approuter flow – increment counter
+- Passport handling fix in service 2 approuter flow – increment counter
 
 ### Updated dependencies
 - deps: sap/xssec@3.0.6

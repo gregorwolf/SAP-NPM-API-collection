@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.37 - 2020-06-26
+
+### Fixed
+
+- Replace 'pathRewrite' option by 'targetPath 'option'
+- Fix 'base' proxy option
+- Respect odata annotation '@odata.Type'
+- Alternative annotation @Common.ContentDisposition.Filename
+
+## Version 1.4.36 - 2020-06-24
+
+### Fixed
+
+- Fix escaping of quote for function parameters
+- SAP Fiori Elements v2 sample app
+
+## Version 1.4.35 - 2020-06-23
+
+### Fixed
+
+- Fix reserved uri characters (follow-up)
+
+## Version 1.4.34 - 2020-06-17
+
+### Fixed
+
+- Fix entity key with (encoded) reserved uri characters
+
 ## Version 1.4.33 - 2020-05-29
 
 ### Fixed
