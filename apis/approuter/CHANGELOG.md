@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.3.0 - 2020-07-23
+
+### Fixed
+- Fix missing subdomain in exchange token
+
+## 8.2.2 - 2020-07-15
+
+### Fixed
+- Adapt to changes in @sap/xssec-3.0.6 - replace secContext private subdomain property by getSubdomain method
+- Fix websocket pong behavior when status is not open
+
 ## 8.2.1 - 2020-07-09
 
 ### Fixed

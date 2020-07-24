@@ -1,11 +1,6 @@
 # Running Unit and Integration Tests
 This module is used to support running unit and integration tests via a Grunt task.
 
-## Preconditions
-The .npmrc file should contain the following line:
-
-    @sap:registry=https://npm.sap.com/
-
 ## Usage
 1. Copy this command and run it. 
 

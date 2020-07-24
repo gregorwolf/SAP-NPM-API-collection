@@ -5,14 +5,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [4.5.0]
-### Added
-- Add developer license file
-
-## [4.5.0]
-### Changed
-- Updated scenarios names
-
 ## [4.2.0]
 ### Changed
 - Changed jszip to version 3.4.0

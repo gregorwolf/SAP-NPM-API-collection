@@ -72,7 +72,8 @@ To add this package as a dependency in your **package.json** file, do the follow
     Make sure to follow this versioning concept:
     - When providing new features (as when releasing at end of sprint / when a new feature is ready) - bump major version (e.g: from 1.1.0 to 1.2.0)
     - When providing a bug fix to an existing version ("hot fix") - bump minor version (e.g: from 1.1.0 to 1.1.1)
-2. Use [XMAKE Release Job](https://prod-build10100.wdf.sap.corp/job/devx-wing/job/devx-wing-wing-service-binding-SP-REL-common_indirectshipment/) (Stage and promote) to upload a new version to nexus (based on master)   
+2. Use [XMAKE Release Job](https://prod-build10100.wdf.sap.corp/job/devx-wing/job/devx-wing-wing-service-binding-SP-REL-common_indirectshipment/) (Stage and promote) to upload a new version to nexus (based on master)  
+The XMAKE Release Job currently runs automaticly on merge.
 3. The newly released version location in [nexus]
 (http://nexus.wdf.sap.corp:8081/nexus/content/repositories/build.releases/com/sap/npm/wing-service-binding/)
 

@@ -108,6 +108,7 @@ Returns a list of destinations which contain an additional property named **XFSy
     Make sure to follow this versioning concept:
     - When providing new features (as when releasing at end of the sprint or when a new feature is ready), bump a major version (e.g: from 1.1.0 to 1.2.0).
     - When providing a bug fix to an existing version ("hot fix"), bump a minor version (e.g: from 1.1.0 to 1.1.1).
-2. Use [XMAKE Release Job](https://prod-build10100.wdf.sap.corp/job/devx-wing/job/devx-wing-wing-service-explorer-SP-REL-common_indirectshipment/) (Stage and promote) to upload a new version to Nexus (based on master).   
+2. Use [XMAKE Release Job](https://prod-build10100.wdf.sap.corp/job/devx-wing/job/devx-wing-wing-service-explorer-SP-REL-common_indirectshipment/) (Stage and promote) to upload a new version to Nexus (based on master). 
+The XMAKE Release Job currently runs automatically on merge.
 3 The newly released version location in [nexus]
 (http://nexus.wdf.sap.corp:8081/nexus/content/repositories/build.releases/com/sap/npm/wing-service-explorer/)

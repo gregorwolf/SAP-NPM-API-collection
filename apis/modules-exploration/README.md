@@ -57,3 +57,4 @@ More infromation can be found in [Consume-Service Cookbook](https://github.wdf.s
 Use [XMAKE Release Job]
 (https://prod-build10100.wdf.sap.corp/job/devx-wing/job/devx-wing-modules-exploration-service-SP-REL-common_indirectshipment/) (Stage and promote) to upload a new version to nexus (based on master)  
 The newly released version location in [nexus](http://nexus.wdf.sap.corp:8081/nexus/content/repositories/deploy.releases/com/sap/npm/modules-exploration/)
+The XMAKE Release Job currently runs automatically on merge.

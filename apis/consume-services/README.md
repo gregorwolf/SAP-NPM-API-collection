@@ -24,6 +24,7 @@ if the **package.json** file was changed, you **must** update the "**rel-package
 
 Use [XMAKE Release Job](https://prod-build10100.wdf.sap.corp/job/devx-wing/job/devx-wing-consume-services-SP-REL-common_indirectshipment/) (Stage and promote) to upload a new version to nexus (based on master)  
 The newly released version location in [nexus](https://repositories.sap.ondemand.com/nexus/content/repositories/deploy.releases/com/sap/npm/consume-services/) 
+The XMAKE Release Job currently runs automatically on merge.
 
 ## Manual step, after release (for public release)
 In order to release to public NPM you should create a JIRA ticket and updated the '@sap/my-module' with the module name:
