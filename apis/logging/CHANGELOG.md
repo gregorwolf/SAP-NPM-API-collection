@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.3.1 - 2020-07-28
+
+### Fixed
+- Update *lodash* dependency to v4.17.19.
+
 ## 5.3.0 - 2020-04-14
 
 ### Added

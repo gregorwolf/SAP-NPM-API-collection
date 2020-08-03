@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.8] - 2020-07-21
+### Fixed
+- Generated application now contains the correct versions of the `@sap/ux-specification` and `@sap/ux-ui5-tooling` libraries that conform to semantic versioning.
+
+### Known issues
+- VSCode version 1.47.2 and above introduces a breaking change on Windows environments where the launch configuration entries added for your generated projects will not work.  As a workaround:
+
+  - Go to `preferences` > `settings`
+  - Search for `debug preview` and uncheck the `Use the new in-preview JavaScript debugger for Node.js and Chrome` option in both user and workspace
 
 ## [1.0.7] - 2020-07-07
 ### Fixed

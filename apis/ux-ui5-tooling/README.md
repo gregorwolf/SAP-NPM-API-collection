@@ -1,6 +1,6 @@
 # @sap/ux-ui5-tooling
 
-The SAP Fiori tools - UI5 Tooling contains a selection of custom [middlewares](https://sap.github.io/ui5-tooling/pages/extensibility/CustomServerMiddleware/) that can be used with the command `ui5 serve` as well as custom [tasks](https://sap.github.io/ui5-tooling/pages/extensibility/CustomTasks/) that can be used with the command `ui5 build`.
+The SAP Fiori tools - UI5 Tooling contains a selection of custom [middlewares](https://sap.github.io/ui5-tooling/pages/extensibility/CustomServerMiddleware/) that can be used with the command `fiori run` as well as custom [tasks](https://sap.github.io/ui5-tooling/pages/extensibility/CustomTasks/) that can be used with the command `ui5 build`. The [`fiori run`](#run) command is a wrapper of the `ui5 serve` commands and provides some additional parameters.
 
 ## **Middlewares**
 
@@ -12,7 +12,7 @@ The application reload middleware allows developers to preview Fiori elements ap
 
 #### Example Configuration
 
-Executing `ui5 serve` in your project with the configuration below in a `ui5.yaml` would start the application reload middleware with its default settings.
+Executing `npx fiori run` in your project with the configuration below in a `ui5.yaml` would start the application reload middleware with its default settings.
 
 ```
 server:
@@ -53,7 +53,7 @@ The proxy middleware provides you with the capabilities to connect to diffent ba
 
 #### Connecting to a back-end system
 
-Executing `ui5 serve` in your project with the configuration below in the `ui5.yaml` file would forward any request starting with the `path` parameter to the provided back-end `url`.
+Executing `npx fiori run` in your project with the configuration below in the `ui5.yaml` file would forward any request starting with the `path` parameter to the provided back-end `url`.
 
 ```
 - name: fiori-tools-proxy
@@ -117,7 +117,7 @@ By using the proxy configuration one can also change the UI5 version, which is u
       version: 1.78.0
 ```
 
-By using the `version` parameter one can choose the UI5 version which will used when `ui5 serve` is executed.
+By using the `version` parameter one can choose the UI5 version which will used when `npx fiori run` is executed.
 
 ### **3. Serve Static**
 
@@ -128,7 +128,7 @@ SAPUI5 SDK version is downloaded and extracted locally on the machine. One can d
 
 #### Example Configuration
 
-Executing `ui5 serve` in your project with the configuration below in a `ui5.yaml` file would serve the UI5 sources from your machine.
+Executing `npx fiori run` in your project with the configuration below in a `ui5.yaml` file would serve the UI5 sources from your machine.
 
 ```
 server:
@@ -294,6 +294,22 @@ The app object describes the backend object that is created/updated as result of
 
 - `true|false` (default: `false`)
 - If set to `true`, the task will run through all steps including sending the archive to the SAP backend. The backend will not deploy the app but run the pre-deployment checklist and return the result.
+
+## Commands
+### **npx fiori run** - starts a local web server for running a FE application
+#### Options
+
+* `--config, c` - Path to config file (default: `ui5.yaml` in root folder of the project).
+* `--verbose` - Enable verbose logging (default: `false`).
+* `--port, -p` - Port to start the server on (default for HTTP: 8080, HTTPS: 8443).
+* `--open, -o` - Open web server root directory in default browser. Optionally, supplied relative path will be appended to the root URL.
+* `--https` - Enables HTTPS over the HTTP/2 protocol for the web server (default: `false`).
+* `--key` - Path to the private key for https (default: `"$HOME/.ui5/server/server.key"`).
+* `--cert` - Path to the certificate for https (default: `"$HOME/.ui5/server/server.crt"`).
+* `--ui5` - UI5 version to use when running the application (default: version from `ui5.yaml`).
+* `--ui5Uri` - UI5 uri to load the UI5 resources from (default: uri from `ui5.yaml`).
+* `--proxy` - specify proxy configuration, e.g. `https://myproxy:8443` (default: uses host machine proxy configuration, if any).
+
 
 ## FAQ
 

@@ -5,6 +5,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.4.1 - 2020-08-02
+
+### Fixed
+- Fix token exchange for Business Service access
+
+## 8.4.0 - 2020-08-02
+
+### Added
+- Support merge of approuter and backend content-security-policy headers
+- Support cookie merge in service2Approuter flow
+
+### Fixed
+- Handle undefined user in refresh token flow
+
+## 8.3.1 - 2020-07-26
+
+### Fixed
+- Upgrade xssec version to 3.0.7 - fix big tokens exchange error
+
 ## 8.3.0 - 2020-07-23
 
 ### Fixed

@@ -292,6 +292,7 @@ Here is a list of the options that can be provided to the log context (all are o
 | req           | *Object* Represents an HTTP request. |
 
 The log context exposes the following functions:
+
 | Function        | Description |
 | --------------- | ----------- |
 | getAppContext   | AppConext object associated with this log context |

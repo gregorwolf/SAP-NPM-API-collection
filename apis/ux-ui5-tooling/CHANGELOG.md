@@ -3,6 +3,22 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.9] - 2020-07-16
+
+### Fixed
+
+* Fix loading of custom libs
+
+### Added
+
+* Add run command to Fiori CLI
+* Read fiori run cli params in the proxy middleware
+* Readme file updated
+
+## [1.0.8] - 2020-07-01
+### Fixed
+- Readme file updated
+
 ## [1.0.7] - 2020-06-17
 ### Fixed
 - Minor stability fixes

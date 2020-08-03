@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.8.6 - 2020-07-10
+### Changed
+- Service binding names have been adapted in mta.yaml created by `cds add mta` command.
+
+### Fixes
+- Simplified `cds env` calculation during `cds init` and `cds add`.
+
 ## Version 1.8.5 - 2020-06-05
 
 ### Changed

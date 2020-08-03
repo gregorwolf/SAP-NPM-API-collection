@@ -1763,6 +1763,9 @@ This can also be configured via the `JWT_REFRESH` environment variable (the valu
 
 The application router can receive a consumer service xsuaa JWT token and use it to access the UI and the data. The JWT token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
 
+Cookie Handling:
+In this flow client cookies are merged to backend cookies in case a backend cookie with the same key does not exist.
+
 **Note**: The xsuaa JWT token is generated with the same xsuaa service instance that is bound to the application router. 
 
 **Caution**: You should not use SAP Cloud Platform beta features in subaccounts that belong to productive enterprise accounts. Any use of beta functionality is at the customer's own risk, and SAP shall not be liable for errors or damages caused by the use of beta features. For more information, see [Using Beta Features in Subaccounts](<https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/8ed4a705efa0431b910056c0acdbf377.html#43dfee6e1c174d978195197a8fb0a24a.html>).
@@ -1917,6 +1920,9 @@ Setting the `Content-Security-Policy` header - this is a response header which i
 from which an application expects to load resources. This mechanism allows the client to detect and block malicious scripts injected into an application.
 A value can be set via the `httpHeaders` environment variable in the [additional headers configuration](#additional-headers-configuration).
 The value represents a security policy which contains directive-value pairs. The value of a directive is a whitelist of trusted sources.
+In case content-security-policy headers are returned from backend, they will override `httpHeaders` configuration. 
+To enable returning both (backend and local content-security-policy headers), configure environment variable `MERGE_CSP_HEADERS`.
+
 Refer to the `Content-Security-Policy` specification for more information on the header's value.
 
 **Note:** Usage of the `Content-Security-Policy` header is considered second line of defense. An application should always provide proper input validation and output encoding.
