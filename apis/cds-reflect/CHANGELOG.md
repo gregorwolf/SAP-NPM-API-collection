@@ -4,9 +4,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and
 this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.12.2 - 2020-07-31
+
+## Added
+
+- getters `.associations` and `.compositions` on linked entities
+
+
 ## Version 2.11.0 - 2020-04-27
 
 ## Added
+
 - QL parser
 
 ## Version 2.10.2 - 2020-03-19

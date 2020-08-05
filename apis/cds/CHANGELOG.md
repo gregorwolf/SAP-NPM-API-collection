@@ -4,12 +4,94 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+# Version 4.1.5 - 2020-07-31
+
+## Removed
+
+The following changes affect undocumented internal implementations, and hence should not affect CAP-based projects.
+Nevertheless, they are listed here for your reference.
+
+- `db.disconnect()` &rarr; no replacement; no need to disconnect before shutdown.
+- `db.run(()=>{})` &rarr; use `cds.run([...multiple queries])` instead.
+
+
+## Changed
+
+- **Most CLI commands have moved** to `@sap/cds-dk`.  Make sure to install the latest version with `npm i -g @sap/cds-dk`.
+
+- **Default OData version** in `cds configuration` is now `v4`. For `Node.js` projects and `Java` projects using new stack the cds configuration of `odata.version = 'v4'` is no longer required. For `Java` projects using old Java stack, OData v2 will still be used.
+
+- **Always do `await cds.connect.to()`** &mdash; in former versions `cds.connect.to()` returned some magic thenables, meant to ease the [_Promise Hell_](https://medium.com/@pyrolistical/how-to-get-out-of-promise-hell-8c20e0ab0513); now it always returns plain-standard Promises. Likely you never used this undocumented former behaviour, but in case: Just ensure to always call `cds.connect` with `await`.
+
+- **Deprecated `cds.connect()`** &mdash; please prefer `cds.connect.to('db')` instead, which has the very same effect but is more in line with the notion of potentially working with multiple database services.
+
+- **Deprecated `cds.hana.syntax` configuration**.  Use `cds.hana.deploy-format`=`hdbtable` instead to switch deployment from `hdbcds` to `hdbtable` for SAP HANA Cloud.
+
+- **Faster generation of `hdbtabledata` files** from csv data.  It no longer tries to check the existence of element or column names.  Such checks are anyways done during SAP HANA deployment.  This behavior is now symmetrical to SQLite deployment.
+
+- **Removed legacy cds build system** &mdash; the fallback using `cds.features.build.legacy` is no longer supported.
+
+- **`cds deploy --to hana` changes kind** to `hana` only if it is not already `sql`.
+
+- **`cds build`** &mdash; does no longer create service metadata for the UI service binding by default. For SAP Web IDE Full-Stack compatibility a corresponding metadata.xml is still generated.  A `fiori` build task has to be defined otherwise.
+
+- **Consistent default naming scheme for applications and services deployed to CF** across the following `cds` commands `build`, `deploy`, `init` and `add`. For an application named `myapp` the SAP HANA deployer app name is `myapp-db-deployer`, the SAP HANA DB service name is `myapp-db`. `cds build` now generates the application manifest file with a different name `manifest.yml`. 
+
+- **`cds build` creates `hana` build results only** if either a corresponding build task has been configured or if kind `hana` or kind `sql` has been defined. A `production` build is required for the latter. A fallback is used for Web IDE Fullstack and legacy build configs.  
+
+## Added
+
+- **Common `cds.service.factory`** &mdash; `cds.serve` and `cds.connect` now use a common `cds.service.factory` to construct instances of `cds.Service`, as well as adding custom-provided handlers and implementations. This applies the same consistent ways to register new implementations via `cds.env.requires` options, model annotations `@impl` and `@kind`, or the well known `.cds`/`.js` sibling files mechanism.
+
+- **Common `cds.Service` base class** &mdash; `cds.Service` is the newly introduced common base class for all connected or provided services &mdash; i.e. all service instances contructed thru `cds.service.factory`. It provides uniform consumption APIs, as well as event handling APIs and capabilities for all services.
+
+- **Custom `cds.Service` subclasses** &mdash; besides providing `cds.service.impl` functions as of before, custom service implementations can now return subclasses of `cds.Service`, thereby plugging into the framework even more.
+
+- **New `srv.after('each', row => ...)`** &mdash; the former technique to register per-row handlers `srv.after('READ', each => ...)` broke when code was minified. The new method using pseudo event `'each'` is minifier-safe.
+
+- **New `srv.prepend(srv => ...)`** &mdash; use `srv.prepend(...)` to register event handlers to be executed _before_ the already reistered handlers. For example, extensions of reused implementations sometimes need to use this.
+
+- **Reflect `srv.events`** &mdash; base class `cds.Service` provides a new getter `srv.events` to reflect on declared events in the service definition, similar to the already existing `srv.entities`, `srv.types` and `srv.operations`.
+
+- **Experimental `cds.ql(req)`** &mdash; event handlers can now use the like of `const {SELECT} = cds.ql(req)` to ensure transaction-managed and tenant-isolated execution of queries, instead of `srv.tx(req)`. **Note** though, that this is an **experimental** feature, which might change or be removed in future versions.
+
+- **Using `await` in `cds repl`** &mdash; we now support using `await` directly on `cds repl` prompt inputs. This feature is provided through [Node's _--experimental-repl-await_ option](https://nodejs.org/api/repl.html#repl_await_keyword).
+
+- **CLI shortcut `--odata <v2|v4|x4>`** &mdash; the newly introduced general CLI option _**--odata** <v2/v4>_ acts as a shortcut to _--odata-version <v2/v4>_. In addition, _--odata **x4**_ acts as shortcut to _--odata-version v4 --odata-format structured  --odata-containement true_.
+
+- **`cds build --production`** &mdash; builds the project using the `production` profile - same when `NODE_ENV` or `CDS_ENV` environment variable is set to `production`. This will create HANA deployment artefacts if `kind: "sql"` has been defined.
+
+- **`cds build --for <hana|java-cf|node-cf|mtx> --opts <...>`** &mdash; now supports execution of auto-created or configured build tasks. Individual properties can be overwritten by passing corresponding CLI options, defaults are used otherwise. E.g. `cds build --for hana --dest target --opts model=[data,srv,app]`. **Note:** The parameter `options-model` has been deprecated use `--opts model=[...]`instead.
+
+- The set of languages that is honored for the `i18n.json` language pack can now be configured through `i18n.languages`.  Default is still `all`, which means the sum of language files found next to models.
+
+## Fixed
+- Fiori preview is now working again with the latest version of SAP UI5.
+
+- **Use latest SAP CommonCryptoLib help** &mdash; when SAP CommonCryptoLib is missing during `cds deploy --to hana`.
+
+- `sql_mapping` is only written to `csn.json` if the classic Java runtime and no default naming is used.
+
+- Fiori dev support in `cds run` now also honors `/v2` URLs.  These are installed by default by the `@sap/cds-odata-v2-adapter-proxy`.
+
+- npm scripts that wrap around cds-dk commands like `cds watch` now also work on Windows.  Previously they couldn't find the cds command.
+
+- When extracting the base model of a multi-tenant application `cds build` now ensures that only files having project scope are copied, a warning is logged otherwise.
+
+- `cds build` now no longer crashes if exactly one custom language is given in `options.lang` of the `java-cf` build task.
+
+- `cds compile` now fails with a non-zero exit code in case of compilation errors.
+
+# Version 3.35.0 - 2020-05-08
+
+## Changed
+- The new compiler implementation, a.k.a SNAPI, is now the default.  Can be disabled with `cds.features.snapi=false`.
+
 # Version 3.34.3 - 2020-06-19
 
 ## Changed
 
 - Faster generation of `hdbtabledata` files from csv data.  It no longer tries to check the existence of element or column names.  Such checks are anyways done during SAP HANA deployment.  This behavior is now symmetrical to SQLite deployment.
-
 
 # Version 3.34.2 - 2020-05-30
 
@@ -26,6 +108,7 @@
 - Entities annotated with `@cds.persistence.skip:if-unused` (like `sap.common.Languages`) now again are skipped when compiling to HANA output.  This got broken in previous versions when using the new compiler APIs.
 - `sql_mapping` is again written to `csn.json` as it's required by classic Java runtime.
 - `default-env.json` is now read even in production, which is in line with the behavior of other modules that honor this file.  Real prod environments like CF will still overwrite these defaults.
+- `cds build` caused error `invalid option` &mdash; when passing command line options like `log-level`, `src` or `for`.
 
 # Version 3.34.0 - 2020-04-27
 
@@ -52,6 +135,8 @@
 - Precision for `validTo` and `validFrom` defined in the `temporal` aspect in `@sap/cds/common` changed from `DateTime` to `Timestamp`.
 - Some administrative fields of SAP Fiori draft documents are now hidden on the UI.  The rest got labels.
 - Renamed cds configuration setting `features.messageLevel` to `log-level` to be consistent with command line option, e.g. `cds build --log-level`.
+
+- `cds extend` and `cds activate` commands have been moved to `@sap/cds-dk`. `cds disconnect` has been moved there under a different name.
 
 ## Fixed
 - `cds build` - improvements in the area of error handling and error reporting.
@@ -127,7 +212,7 @@ Generation of `hdbtabledata` files now reports if CSV file names don't match ent
 ## Fixed
 
 - `cds compile --to hdbtabledata` no longer crashes with `_texts.csv` files referring to a non-`localized` entity
-- `cds build/all` adds `app` folder to the list of model folders for hana database builds. Draft tables are missing if the corresponding annotation model is missing.
+- `cds build/all` adds `app` folder to the list of model folders for HANA database builds. Draft tables are missing if the corresponding annotation model is missing.
 
 
 # Version 3.30.0 - 2020-02-10
