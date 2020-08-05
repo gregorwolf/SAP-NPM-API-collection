@@ -20,7 +20,6 @@
 @sap/cloud-sdk-analytics
 @sap/cloud-sdk-core
 @sap/cloud-sdk-generator
-@sap/cloud-sdk-generator-rest
 @sap/cloud-sdk-test-util
 @sap/cloud-sdk-util
 @sap/cloud-sdk-vdm
@@ -174,7 +173,6 @@
 @sap/cloud-sdk-vdm-sales-pricing-procedure-service
 @sap/cloud-sdk-vdm-sales-quotation-service
 @sap/cloud-sdk-vdm-sales-scheduling-agreement-service
-@sap/cloud-sdk-vdm-sap-graph
 @sap/cloud-sdk-vdm-scheduling-agreement-service
 @sap/cloud-sdk-vdm-segment-service
 @sap/cloud-sdk-vdm-service-confirmation-service
@@ -229,6 +227,7 @@
 @sap/fibers
 @sap/fibrous
 @sap/fiori-json-services
+@sap/generator-base-mta-module
 @sap/generator-cap-project
 @sap/generator-cds
 @sap/generator-fiori-elements
@@ -247,6 +246,7 @@
 @sap/jobs-client
 @sap/logging
 @sap/modules-exploration
+@sap/mta-lib
 @sap/node-jwt
 @sap/node-vsi
 @sap/odata-commons

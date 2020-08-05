@@ -366,7 +366,7 @@ context C {
 
 There are two reasons to do so:
 
-* When using associations, (mutually) recursive usage is quote common, and forward references are cumbersome.
+* When using associations, (mutually) recursive usage is quite common, and forward references are cumbersome.
   (We can always access shadowed artifacts.)
 * Real-world models will very likely reside in multiple files/resources – there is no natural order in which the definitions are to be processed.
 
@@ -408,7 +408,7 @@ and how they are build.
 
 ### Navigation environment
 
-The navigation environment might depend on on the argument position.
+The navigation environment might depend on the argument position.
 
 If an object is typed with an array,
 the environment supplied by that object is usually considered to be empty.
@@ -448,7 +448,7 @@ When we have an argument position where we expect a main artifact,
 * the list of lexical search environments depends on the blocks containing the current statement, and
 * the last, non-lexical search environment is independent from the block structure or a current object of interest.
 
-A reference to a main artifact can be a reference to a
+A reference to a main artifact can be a reference to a:
 
 * **projection or view source** (table reference after `SELECT … FROM` in SQL),
 * **association target**,
@@ -485,7 +485,7 @@ We conclude this section with a little weird example –
 nobody would write models like that, but it demonstrates the exact semantics.
 
 ```
-nameprefix test;
+namespace test;
 using cds.Boolean as Integer;
 type Time {
     @Date                  // @Date: true, not @cds.Date: true
@@ -547,7 +547,7 @@ context C {
 When we have an argument position where we expect a value or a reference to an element,
 
 * We usually have just one lexical search environment
-  which is sometimes only inpected if the path consists of at least two identifiers.
+  which is – dependening on the call context – only inspected if the path consists of at least two identifiers.
   This basically introduces an **escape mechanism**.
 * The last, non-lexical environments is usually the environment either
   supplied from an artifact referred by the current statement or
@@ -556,7 +556,7 @@ When we have an argument position where we expect a value or a reference to an e
 It is often allowed to switch to the ["main artifact name resolution"](#references-to-main-artifacts)
 by prefixing the path with a `:`, used usually to refer to constants.
 
-The semantics is best explained separately for the _diffent groups_ of argument positions.
+The semantics is best explained separately for the _different groups_ of argument positions.
 
 
 ### References in queries
@@ -581,13 +581,10 @@ The list of search environments is created as follows:
 * For compatibility with ABAP CDS, we have another environment with one entry:
   we bind `$parameters` to the parameters of the current view –
   the SQL way is to use `:param1` instead of `$parameters.param1`, see below.
-* The last, non-lexical environment is the environent containing the elements from all source entities of the current SELECT;
+* The last, non-lexical environment is the environment containing the elements from all source entities of the current SELECT;
   if an element with the same name is contained in more than one source,
   this search environment binds the name to an "ambiguity" entry (i.e. a reference to it leads to an error)
 * There are no additional non-lexical search environments for the elements of outer SELECTs.
-
-The lexical search environments are only inspected
-if the path consists of at least two identifiers.
 
 The above mentioned `:`-escape mechanism leads to the following name resolution:
 
@@ -601,7 +598,7 @@ The above mentioned `:`-escape mechanism leads to the following name resolution:
 The next group is for references in member definitions to other elements of the same main artifact.
 Such a reference can be a reference to a:
 
-* **calculated field**,
+* **calculated field**
 * references in the **`default` value** (HANA SQL does not allow this)
 * references in the `ON` condition of an **unmanaged association***
 * reference after **`type of`** – can also be a references to an element of another main artifact
@@ -611,7 +608,7 @@ The list of search environments is created as follows:
 * There is one lexical search environment, it has one entry:
   we bind `$self` to the main artifact, or to be exact:
   to the current instance of that artifact, e.g. the current line of an entity.
-  This environment is also inspecteded if the path consists of just `$self` –
+  This environment is also inspected if the path consists of just `$self` –
   useful for `on` conditions of unmanaged associations.
 * The second and last, the non-lexical search environment is the environment supplied by
   the object (main artifact or element) where the current member is defined in.
@@ -670,17 +667,17 @@ The same is true if the annotation type
 does not allow path values (then there might be a warning for this)
 or just a `cds.UnspecifiedRef`.
 
-If there is a annotation definition which allows to use paths
+If there is an annotation definition which allows to use paths
 by specifying the type _`cds.ArtifactRef`_ (or a variant of it),
 then the path resolution works as described in
 [Section "References to Main Artifacts"](#references-to-main-artifacts).
 
-If there is a annotation definition which allows to use paths
+If there is an annotation definition which allows to use paths
 by specifying the type _`cds.ElementRef`_
 then the path resolution works as described in
 [Section "References sibling elements"](#references-to-sibling-elements).
 If that annotation is assigned to a main artifact
-then _same main artifact_ mean the main artifact itself.
+then _same main artifact_ means the main artifact itself.
 
 
 
@@ -705,7 +702,7 @@ This is nice!  Why do we specify a different name resolution semantics for CDx/L
 
 The reason is:
 we do not want to have the "extended" lexical scoping semantics of HANA CDS concerning elements,
-which heavily relies on the package hierchy.
+which heavily relies on the package hierarchy.
 To avoid silent semantic changes with extensions,
 the HANA-CDS compiler enforces the following properties:
 
@@ -786,7 +783,7 @@ which might have been introduced by context extensions, or
 by using a path in the definition, e.g. `type MyContext.A: …`.
 
 If the search is not successful so far,
-we finally inpect an environment containing artifacts
+we finally inspect an environment containing artifacts
 which are normally not defined in our own source:
 
 * For the `@A` of an _annotation assignment_,

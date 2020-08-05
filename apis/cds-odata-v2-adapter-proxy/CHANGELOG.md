@@ -7,13 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.41 - 2020-08-03
+
+### Fixed
+
+- CDS 4 compatibility
+- Improve logging layers
+- Update README documentation
+- Improve JWT tenant processing
+
+## Version 1.4.40 - 2020-07-20
+
+### Fixed
+
+- Fix aggregation grouping on filtered elements
+- Support 'sap:' analytical annotations
+
+## Version 1.4.39 - 2020-07-10
+
+### Fixed
+
+- Move annotation ContentDisposition.Filename to data element
+- Improve stability of content disposition
+
+## Version 1.4.38 - 2020-07-06
+
+### Fixed
+
+- Fix 'base' proxy option (follow-up)
+
 ## Version 1.4.37 - 2020-06-26
 
 ### Fixed
 
-- Replace 'pathRewrite' option by 'targetPath 'option'
+- Replace 'pathRewrite' option by 'targetPath' option
 - Fix 'base' proxy option
-- Respect odata annotation '@odata.Type'
+- Respect OData annotation '@odata.Type'
 - Alternative annotation @Common.ContentDisposition.Filename
 
 ## Version 1.4.36 - 2020-06-24
