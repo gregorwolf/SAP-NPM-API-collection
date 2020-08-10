@@ -4,6 +4,26 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.78.5] - 2020-08-07
+
+### Removed
+
+- `postPublish` script to avoid issues with `npm pack`
+
+## [1.78.4] - 2020-08-06
+
+### Added
+
+- `getApiVersion()` added
+
+### Changed
+
+- Renaming API method from `importProjectNoConfig()` to `importProjectSchema()`.
+
+### Fixed
+
+- Fix for custom section export
+
 ## [1.78.3] - 2020-07-29
 
 ### Added
@@ -35,7 +55,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Export of V4 app.json may lead to empty structures like config: {} in the manifest
 - Exception occured in case of free-style pages as part of the manifest
 - Exception occured during the import of invalid UI flexibility changes
-- Wrong ID's had been written to UI flexibility changes in case of (complex) annotation paths like columns of type DataFieldForAnnotation; 
+- Wrong ID's had been written to UI flexibility changes in case of (complex) annotation paths like columns of type DataFieldForAnnotation;
 the changes then either disappeared after reload or had still been visible but without any implication on the app
 
 ### Security

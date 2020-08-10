@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.0.9 - 2020-08-06
+- Set request library to version 2.88.2 because of security vulnerability
+
+## 3.0.8 - 2020-08-06
+- Increase timeout for jwt-bearer token flow to reduce of timeouts with very big tokens.
+
+## 3.0.7 - 2020-07-24
+- Move the token to the request body for jwt-bearer token flow, because of problems with very big tokens
+
 ## 3.0.6 - 2020-07-01
 - Audience Validation validates to true when the derived client_id of broker-clone token matches the trusted client. This is relevant to support tokens of grant type user_token that contains no scopes.
 

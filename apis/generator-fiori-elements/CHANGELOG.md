@@ -37,7 +37,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 ## [1.0.0] - 2020-06-16
 Release status: GA 
-We are pleased to announce the official GA of the SAP Fiori tools - Application Generator Yeoman templates
+We are pleased to announce the official GA of the SAP Fiori elements application Yeoman templates
 
 ## [0.2.9] - 2020-05-06
 ### Fixed

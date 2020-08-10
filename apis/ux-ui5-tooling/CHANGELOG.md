@@ -3,6 +3,21 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.11] - 2020-07-29
+
+### Fixed
+* Fixed path re-write issue in App Studio
+* Fixed Windows bundling issue
+* Fixed issue with fiori run command on Windows
+* Other minor fixes
+
+### Added
+* Deploy to Cloud Foundry
+* Confirmation added when starting the deployment process
+* Confirmation added for app name during deploy config generation
+* Confirmation added for target name during deploy config generation
+* Confirmation added for sap client during deploy config generation
+
 ## [1.0.9] - 2020-07-16
 
 ### Fixed

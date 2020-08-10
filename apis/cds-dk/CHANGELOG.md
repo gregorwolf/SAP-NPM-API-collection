@@ -6,6 +6,39 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.0.7 - 2020-08-04
+
+### Added
+- `cds init` supports adding `samples` via `--add samples`. See `cds help init` for more details.
+- **Most CLI commands have moved to `@sap/cds-dk`** from `@sap/cds`.  Make sure to install the latest version with `npm i -g @sap/cds-dk`.
+- `cds` commands now log a hint to update to the latest `@sap/cds` if this one is still of version 3.
+- New command `cds login` added to simplify usage of `cds extend` and `cds activate` by providing them with automatic authentication and saving project settings.
+  Refreshes expired authentication tokens automatically. Optionally uses CF command-line client to determine login URLs and subdomains.
+  Saves authentication data in plain-text file or desktop keyring on Linux, macOS or Windows.
+  The latter requires an optional Node.js module `keytar` to be installed.
+- New command `cds logout` removes authentication data and optionally project settings.
+
+### Changed
+- `@sap/cdk` no longer warns about `@sap/cds` being globally installed next to it.  This was a temporary hint for the transition period to `@sap/cds-dk`.
+- `cds init` generates dependency to `@sap/cds` version `4` for Nodejs projects.
+- Use square brackets to pass array values for options to `cds init --java:mvn`.
+- `cds init --add pipeline` and `cds add pipeline` now create file `config.yml` in `.pipeline` folder.
+- Improved `launch.json` file which is created during `cds init`.
+- `cds add mta` now creates a mta.yaml file that sets the production flag for cds build and npm install.
+  This ensures that the HANA artefacts are created if `"kind": "sql"` or some `production` profile has been configured in package.json or .cdsrc.json.
+  Requires `@sap/cds` version >=4.x.
+- `cds init` uses latest `Maven Java archetype` version `1.7.0` for creating Java projects.
+- `cds init` no longer adds `package-lock.json` to `.gitignore` file when creating a new project.
+- `cds init --add hana` and `cds add hana` now use `Maven Java archetype` to create HANA related pom.xml entries.
+- Consistent default naming scheme for applications and services deployed to CF across the following `cds` commands `build`, `deploy`, `init` and `add`. For an application named `myapp` the SAP HANA deployer app name is `myapp-db-deployer`, the SAP HANA DB service name is `myapp-db`.
+
+### Fixed
+
+- Fixed `cds import` to support imports from symlinked sources
+- Fixing bug in `cds init` and `cds add` when using multiple features seperated by comma.
+- Fixing missing log output bug in `cds init` and `cds add` when using feature `samples`.
+- `cds add mta` does no longer crash if no package.json file exists.
+
 ## Version 1.8.6 - 2020-07-10
 ### Changed
 - Service binding names have been adapted in mta.yaml created by `cds add mta` command.
@@ -31,6 +64,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixes
 - An issue in `@sap/edm-converters` with missing entity sets
 
+
+## Version 1.8.1 - 2020-05-08
+### Fixed
+- An issue in `@sap/edm-converters` with missing entity sets
+
 ## Version 1.8.0 - 2020-04-27
 
 ### Added
@@ -41,6 +79,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Changed
 - Parameter `verbose` in `cds init` and `cds add` is now deprecated. Use environment variable `DEBUG=true` to obtain detailed output.
 - `cds init` uses latest `Java archetype` version `1.4.0` for creating Java projects.
+- Consume new `@sap/cds-sidecar-client` due to API change.
 
 ### Fixed
 - Fixing terminology in `cds init` and `cds add` console output.
@@ -48,8 +87,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Using `cds build` command in generated `mta.yaml` file.
 - Fixing Hana dependency during `cds init --add hana` for project type `java`.
 - Fixing bug in `cds init` when `cds-dk` is not installed globally.
-- Fixing bug in `cds init` when calling log methods.
-- Fixing `cds.env`object by attaching prototype chain.
 
 ## Version 1.7.0 - 2020-03-24
 

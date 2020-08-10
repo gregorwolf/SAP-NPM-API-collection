@@ -6,15 +6,62 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [3.3.2] - 2020-04-26
+## 3.4.3 - 2020-08-05
+
+### Changed
+- consume cds-compiler 1.35.0
+
+## 3.4.2 - 2020-07-28
+
+### Added
+
+- new user setting `cds.completion.workspaceSymbols` (default `off`) to add workspace symbols to code completion proposals
+- query for workspace symbols allows new option `/f` to consider fully qualified name
+
+### Changed
+- consume cds-compiler 1.34.0
+
+### Fixed
+- bug fixes
+
+## 3.4.0 - 2020-07-10
+
+### Added
+
+- support for docComments (/** ... */)
+  + hover over artifact will consider docComment
+  + snippet to create
+  + formatting will beautify docComments, incl. new option maxDocCommentLine
+  + quickFix to convert @cds.doc annotation to docComment incl. beautify
+  + distinct syntax highlighting for docComments
+- quickFix to generate using statement for not yet imported artifacts
+  + sorted by module and artifact name, beautified
+- semantic code completion for elements, enums, actions and parameters in annotate and extend (via cds-compiler 1.32.0)
+- syntax highlighting identifiers, including variants delimited with \![...]
+- identifier completion proposals are prioritized by message severity
+- messages may now contain related information
+- added INSTALLATION.md for 3rd party IDE integrations
+
+### Changed
+- consume cds-compiler 1.32.0
+- updated README.md with feature list
+
+### Fixed
+- enum keyword was wrongly syntax highlighted
+- when an ignored source file is closed, potential messages are wiped
+- annotations of extensions were not indexed
+- bug fixes
+
+## 3.3.2 - 2020-04-26
+
 ### Changed
 * remove optional odata annotation handler due to build issues
 
-## [3.3.1] - 2020-04-24
+## 3.3.1 - 2020-04-24
 ### Changed
 * consume cds-compiler 1.26.2
 
-## [3.3.0] - 2020-04-24
+## 3.3.0 - 2020-04-24
 ### Added
 * use global @sap/cds/common if locally not available
 
@@ -25,11 +72,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 * Minor fixes and improvements
 
-## [3.2.1] - 2020-03-30
+## 3.2.1 - 2020-03-30
 ### Changed
 * consume cds-compiler 1.24.4
 
-## [3.2.0] - 2020-03-16
+## 3.2.0 - 2020-03-16
 ### Changed
 * remove option for compiler location - LSP will always search Project->Global(via DK&CDS)->BuiltIn now
 * remove irrelevent formatting option (trimTrailingWhitespace)
@@ -39,7 +86,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 * formatting failed (seen in Eclipse, VSCode works) due to off-by-one error
 * global npm root for Business App Studio was not found with compiler.location option ProjectThenGlobalThenBuiltIn
 
-## [3.1.4] - 2020-03-04
+## 3.1.4 - 2020-03-04
 ### Added
 * _extend_ definitions are now shown in outline and workspace symbols
 * api (alpha) for external annotation providers
@@ -47,14 +94,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Changed
 * consume cds-compiler 1.24.0
 
-## [3.1.3] - 2020-02-24
+## 3.1.3 - 2020-02-24
 ### Added
 * pick up compiler and env via global cds-dk if cds not (yet) in project
 
 ### Changed
 * consume cds-compiler 1.23.2
 
-## [3.1.2] - 2020-02-11
+## 3.1.2 - 2020-02-11
 
 ### Added
 * code formatting
@@ -68,7 +115,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 * in some cases csn files with .json extension where not detected and thus workspace symbols were incomplete
 
-## [3.1.1] - 2020-01-30
+## 3.1.1 - 2020-01-30
 
 ### Added
 * code formatting
@@ -78,7 +125,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 * formatting options were taken from homedir instead of preferring from project
 
-## [3.1.0]- 2020-01-24
+## 3.1.0- 2020-01-24
 
 ### Added
 * translation support
@@ -109,7 +156,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
   package.json, .cdsrc.json, all supported translation file formats, ignore files
   to keep track of changed environment
 
-## [3.0.0] - 2019-12-16
+## 3.0.0 - 2019-12-16
 Official support for code formatting
 
 ### Changed

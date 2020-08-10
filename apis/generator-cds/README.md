@@ -1,11 +1,7 @@
-# generator-cds
+# @sap/generator-cds
 
-## Mission Goals
- * simple, fast, reliable
- * works in different environments: win, linux, mac, command line, web ide, vs code, eclipse, ...
- * creates a minimal project which compiles and can be deployed
- * supports iterative project creation, e.g. create simple project first and add ui in a second run on the same project
- * uses standard technology, is extendable
+## Deprecated!
+This module has been deprecated. See section [Getting Started](https://cap.cloud.sap/docs/get-started/) in the CAP documentation for information about project creation and project structure.
 
-## Installation
-This module is intended to be used within @sap/cds project and not as standalone library or cli.
+## License
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_1.txt).

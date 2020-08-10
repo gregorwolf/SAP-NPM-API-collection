@@ -6,47 +6,82 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.0.13]
+## Version 1.0.16 - 2020-08-03
+
+### Added
+
+- Support for instances managed by Service Manager
+- Support for JWT Refresh Tokens to simplify token renewal in cds-sidecar-client
+
+### Fixed
+
+- Idempotent asynchronous offboarding
+- CDS 4 compatibility
+
+
+## 1.0.15 - 2020-07-01
+
+
+### Fixed
+- cds 4 compatibility
+- updated readme.md
+
+## 1.0.14 - 2020-05-27
+
+
+### Added
+
+- diagnose endpoint at /mtx/v1/model/diagnose/
+    - requires to be authenticated for the paas tenant
+    - requires scope "MtxDiagnose"
+- added memory status to debug logs. Activation with env MTX_LOG_MEMORY=true
+
+### Fixed
+
+- stablelized parallel extension activation
+- handling of asynchronous job status across multiple mtx application instances
+
+## 1.0.13 - 2020-04-27
 
 ### Added
 
 - Logs are now collected by default when running asynchronous APIs
     - can be disabled with environment variable `MTX_COLLECT_LOGS=true`
     - logs can be limited by `MTX_LOG_COLLECTION_LIMIT=<limit>`
-    
+
 - extensibility API that accepts csn notation `cds.mtx.activate(tenantId, csn)`
 
 ### Fixed
 
 - handling of errornous undeploy.json files: error message now points to the root problem
-- handling of build errors: API now returns build and compile errors properly   
+- handling of build errors: API now returns build and compile errors properly
 
-## [1.0.12]
+## 1.0.12
 
 ### Added
 - reenabled the support of different domains (BETA)
 
 - Support for asynchronous extension activation to handle long-running jobs
 
-## [1.0.11]
+## 1.0.11
 
 ### Added
 
 - Support of asynchronous onboarding as specified by the [saas-registry](https://wiki.wdf.sap.corp/wiki/display/CPC15N/SaaS+Application+Registration+in+CF#SaaSApplicationRegistrationinCF-Asynchronouscallbacksimplementation)
 
-## [1.0.10]
+## 1.0.10
 
 ### Fixed
 - Compatibility with snapi compiler mode (env variable CDS_FEATURES_SNAPI=y)
     - WARNING: in this mode, it is currently not checked if annotations of the basemodel are overwritten in the extension
-- Tenant upgrade with undeploy=true is now working properly    
+- Tenant upgrade with undeploy=true is now working properly
 
-## [1.0.9]
+## 1.0.9
 
 ### Fixed
 - Compatibility with older versions of @sap/cds
 
-## [1.0.8]
+## 1.0.8
 
 ### Added
 - possibility to store build / deployment logs in job log for asynchronous tenant update
@@ -65,7 +100,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Enable compatibility with SAP HANA cloud edition (no hdbcds support)
 - Deployment error with very old tenants (conflict with custom_tenant_objects.hdbtable)
 
-## [1.0.7]
+## 1.0.7
 
 ### Added
 - allows to enable auto-undeploy in base model update request
@@ -73,14 +108,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 - datatype error in synchronous base model update api
 
-## [1.0.6]
+## 1.0.6
 
-## [1.0.5]
+## 1.0.5
 
 ### Added
 - accept database_id in onboarding request
 
-## [1.0.4]
+## 1.0.4
 
 ### Added
 - enhanced namespace check for extensions
@@ -93,15 +128,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Removed
 
-## [1.0.3]
+## 1.0.3
 - Bug fixes
 
-## [1.0.2]
+## 1.0.2
 - Bug fixes
 
-## [1.0.1]
+## 1.0.1
 - Ignore namespace rules for customer extension entities
 - Enable hdbtabledata generation
 
-## [1.0.0] - 26.07.2019
+## 1.0.0 - 26.07.2019
 Initial release version.

@@ -2,37 +2,23 @@
 
 ## Features
 
-The **SAP Fiori elements application generator** provides a Yeoman template to generate an SAP Fiori elements application based on a number of different templates.  The user can choose the type of template required, along with the relevant data source, and an application will be generated into the specified folder. 
+The **SAP Fiori freestyle SAPUI5 application** provides a Yeoman template to generate an SAP Fiori freestyle SAPUI5 generator application based on a number of different templates.  The user can choose the type of template required, along with the relevant oData service endpoint, and an application will be generated into the specified folder. 
 
 The generated application conforms to the [Fiori Design guidelines](https://experience.sap.com/fiori-design-web/floorplans/floorplan-overview/) and SAP best practices.
 
 ## Installation
 
 1. Get [Node.js](https://nodejs.org/en/download/)
-1. Install Yeoman(https://https://yeoman.io/) by executing `npm install -g yo`.
-
-The SAP Fiori elements generator can be installed using either of the following methods:
-
-- **Install the generator from NPM**
-
-  - Execute
-
+2. Install the generator
     ```sh
-    npm install -g @sap/generator-fiori-elements
+    npm install -g yo @sap/generator-fiori-elements
     ```
-    
-- **Install the generator from the SAP Fiori tools extension pack.**
-
-  - Installing the SAP Fiori tools extension pack will automatically check if the SAP Fiori elements generator is installed and install it if necessary.
-
-After installation, verify your installation to see if Yeoman has been installed correctly with the Fiori elements generator.
-
-```
-yo
-```   
-   
+3. Verify your installation to see if Yeoman has been installed correctly
+    ```sh
+    yo
+    ```
   Make sure you see the `@sap/fiori Elements` generator listed.
-  
+
 ## Usage
 
 ### Using Yeoman
@@ -41,13 +27,11 @@ yo
 
 OR
 
-### Using the Yeoman Application Wizard
+### Using Yeoman UI Wizard
 
-- Additionally you can use the Yeoman Application Wizard for a more feature rich user experience.
-- Download the latest release of the Yeoman Application Wizard from the VSCode marketplace.  Search for 'Application Wizard' in the marketplace.
+- Download the latest release of the Yeoman UI Wizard from https://github.com/SAP/yeoman-ui/releases
+- Install the associated VSIX file in VSCode
 - Invoke the Yeoman UI Wizard in VSCode by calling `CMD + Shift + P -> Yeoman UI Generators`
-- This will show all Yeoman templates that have been installed on the user's machine, and should include an option for the `SAP Fiori elements application`
-- Alternatively, if you have the SAP Fiori tools pack installed, you can call `CMD + Shift + P -> SAP Fiori Tools - App Generator: Launch`.  This will launch the Yeoman UI Wizard but restrict it to just work with with the SAP Fiori Tools Application Generator.
 
 ### Generator Wizard Steps
 
@@ -57,6 +41,7 @@ Select the required template type to use when generating your application. The g
 
 **SAP Fiori elements**
 - List Report Object Page with OData V2
+- List Report Object Page with OData V4
 - Worklist
 - Analytical List Page
 - Overview Page
@@ -65,20 +50,13 @@ Select the required template type to use when generating your application. The g
 
 Currently the generator supports the following methods to provide the Data Source:
 
-- **Connect to an SAP System**
-
-  You can connect to an SAP System in VSCode by selecting one of the following methods:
-  
-  1. You can choose to connect to an existing ABAP on premise system by providing the URL and optional SAP Client identifier.  If the URL requires authentication, you will need to provide those details during generation.
-  1. You can connect to an ABAP environment on the SAP Cloud Platform.  In this case, you must provide a local file that defines the service connection details for the desired ABAP Enviroment.  Once you provide these details, a browser tab will launch for you to provide authentication details.  
-  
-  In both cases, if you choose to save the SAP system for future reference, the system details will be stored in the secure storage location of your operating system.
-  
-- **Connect to an OData service**
+- **Connect to a data service**
 
   Enter the OData endpoint URL you wish to use in your generated application.  Currently the generator supports an OData endpoint that is either unauthenticated or authenticated with Basic authentication. For an authenticated OData endpoint, you will be asked to provide a username and password.
 
-- **Upload a data service metadata file**
+  **Note:** The OData endpoint you provide must be the correct version for the template that you have selected. I.e. a V2 endpoint must be provided for a V2 template, and a V4 endpoint must be provided for a V4 template.  The wizard will inform you if there is an mismatch between the OData version and the template version.
+
+- **Upload a data service metadata file (V2 only)**
 
   Upload a service metadata file that represents the back end service from the file system. This allows the user to generate the application without relying on a back end service being available.
 
@@ -86,7 +64,7 @@ Currently the generator supports the following methods to provide the Data Sourc
 
 #### 3. Select relevant entities
 
-Once the data source has been supplied, the **SAP Fiori elements application generator** will present a list of entities from the OData service to choose.
+Once the data source has been supplied, the **SAP Fiori freestyle SAPUI5 application generator** will present a list of entities from the OData service to choose.
 
 - **For List Report Object Page And Worklist Template:**
 
@@ -140,3 +118,7 @@ The generated application requires the following software to be installed:
 
 - [NodeJS](https://nodejs.org/en/download/) Node version must be >10.15.3 - 10.x or 12.13 LTS.
 - Windows OS requires [windows-build-tools](https://www.npmjs.com/package/windows-build-tools) NPM module installed globally.
+
+## Known Issues
+
+- SAP Fiori freestyle SAPUI5 application generator does not support SSO authentication for the associated OData endpoint URL.

@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.5.0 - 2020-08-10
+
+### Updated dependencies
+
+- deps: @sap/audit-logging@3.1.1
+- deps: request@2.88.2
+- deps: @sap/xssec@3.0.9
+- deps: lodash@4.17.19
+- deps: ws@7.3.1
+
+### Fixed
+- Pass tenant id in service to approuter audit log message
+
 ## 8.4.1 - 2020-08-02
 
 ### Fixed

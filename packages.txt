@@ -231,6 +231,7 @@
 @sap/generator-cap-project
 @sap/generator-cds
 @sap/generator-fiori-elements
+@sap/generator-fiori-freestyle
 @sap/grunt-sapui5-bestpractice-build
 @sap/grunt-sapui5-bestpractice-test
 @sap/grunt-sapui5module-bestpractice-build

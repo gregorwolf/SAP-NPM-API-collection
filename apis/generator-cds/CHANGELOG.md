@@ -6,6 +6,49 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.15.6] - 2020-08-04
+
+### Fix
+- Add `@sap/cds-dk` as dev dependency, so that `cds` commands can be executed in absence of global installation of `cds-dk`.
+
+## [2.15.5] - 2020-07-16
+
+### Feature
+- Use Maven Java `Archetype` version `1.40.6`.
+
+### Changed
+- Removed `package-lock.json` from generated `.gitignore` file.
+
+## [2.15.4] - 2020-07-02
+
+### Changed
+- Small improvements and refactorings.
+
+## [2.15.3] - 2020-06-16
+
+### Changed
+- Refactored internal code.
+
+## [2.15.2] - 2020-06-15
+
+### Fixed
+- Fixed some minor bugs.
+
+## [2.15.1] - 2020-06-15
+
+### Feature
+- Use Maven Java `Archetype` version `1.40.2`.
+
+## [2.15.0] - 2020-05-25
+
+### Feature
+- Use Maven Java `Archetype` version `1.40.0`.
+
+## [2.14.3]
+
+### Feature
+- Use Maven Java `Archetype` version `1.39.3`.
+
 ## [2.14.2]
 
 ### Changed
