@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-process-orders-service
 
-This package contains the OData VDM for the [Process Orders Service](https://api.sap.com/api/API_PROCESS_ORDERS) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Planning Integration (SAP_COM_0104), Manufacturing Execution - Order and Confirmation Integration (SAP_COM_0522).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/10/e72f5883fa9244e10000000a4450e5/frameset.htm).
+This package contains the OData VDM for the Process Orders Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-purchasing-pricing-procedure-service
 
-This package contains the OData VDM for the [Purchasing Pricing Procedure Service](https://api.sap.com/api/API_PURGPRICINGPROCEDURE_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Pricing Data Integration (SAP_COM_0294).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/4a/f5218b16884ca6b4095e3d72f00bfd/frameset.htm).
+This package contains the OData VDM for the Purchasing Pricing Procedure Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

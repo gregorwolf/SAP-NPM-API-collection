@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-phase-relationship-type-service
 
-This package contains the OData VDM for the [Phase Relationship Type Service](https://api.sap.com/api/API_MSTRRCPPHSE_RELSHPTYPE) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Planning Master Data Integration (SAP_COM_0519).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/3e/f14e1f076343a4ae9af4692d2633fa/frameset.htm).
+This package contains the OData VDM for the Phase Relationship Type Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

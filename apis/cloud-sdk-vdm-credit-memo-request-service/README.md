@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-credit-memo-request-service
 
-This package contains the OData VDM for the [Credit Memo Request Service](https://api.sap.com/api/API_CREDIT_MEMO_REQUEST_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Credit Memo Request Integration (SAP_COM_0158).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/19/1531b7e2e048d9bddffab772f1788b/frameset.htm).
+This package contains the OData VDM for the Credit Memo Request Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

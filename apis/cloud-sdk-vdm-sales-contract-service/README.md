@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-sales-contract-service
 
-This package contains the OData VDM for the [Sales Contract Service](https://api.sap.com/api/API_SALES_CONTRACT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Sales Contract Integration (SAP_COM_0119).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/bc/2d6c95d98e4b96ae70e7db2de4cca1/frameset.htm).
+This package contains the OData VDM for the Sales Contract Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

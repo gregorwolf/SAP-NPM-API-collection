@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-customer-return-service
 
-This package contains the OData VDM for the [Customer Return Service](https://api.sap.com/api/API_CUSTOMER_RETURN_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Customer Return Integration (SAP_COM_0157).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/69/bd2e81cb394eb0b3d8eae85d6b4517/frameset.htm).
+This package contains the OData VDM for the Customer Return Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

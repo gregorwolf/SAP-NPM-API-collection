@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-request-for-quotation-service
 
-This package contains the OData VDM for the [Request For Quotation Service](https://api.sap.com/api/API_RFQ_PROCESS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Distributed Manufacturing Integration (SAP_COM_0077), Purchase Request for Quotation Integration (SAP_COM_0113).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/07/47b64b221046a08c552f55a4b9d292/frameset.htm).
+This package contains the OData VDM for the Request For Quotation Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

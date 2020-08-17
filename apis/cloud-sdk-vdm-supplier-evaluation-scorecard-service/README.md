@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-supplier-evaluation-scorecard-service
 
-This package contains the OData VDM for the [Supplier Evaluation Scorecard Service](https://api.sap.com/api/API_SUPLR_EVAL_SCORECARD_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Supplier Evaluation Scorecard Integration (SAP_COM_0122).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/91/16dbdb342f4d5d8ff36e9ca410e018/frameset.htm).
+This package contains the OData VDM for the Supplier Evaluation Scorecard Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-production-routing-service
 
-This package contains the OData VDM for the [Production Routing Service](https://api.sap.com/api/API_PRODUCTION_ROUTING) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Planning Master Data Integration (SAP_COM_0519).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/2d/d233df3bc947d6b402d246ed887b5a/frameset.htm).
+This package contains the OData VDM for the Production Routing Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-condition-contract-type-service
 
-This package contains the OData VDM for the [Condition Contract Type Service](https://api.sap.com/api/API_CONDITION_CONTRACT_TYPE) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Logistics - Condition Contract Integration (SAP_COM_0335).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/9f/a139d692dd43e7af01343a1e5ff9ec/frameset.htm).
+This package contains the OData VDM for the Condition Contract Type Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-purchasing-inforecord-service
 
-This package contains the OData VDM for the [Purchasing Inforecord Service](https://api.sap.com/api/API_INFORECORD_PROCESS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Purchasing Info Record Integration (SAP_COM_0145).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/d0/9550c21c0249f39c4b79754077b8d4/frameset.htm).
+This package contains the OData VDM for the Purchasing Inforecord Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

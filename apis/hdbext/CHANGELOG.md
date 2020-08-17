@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.0.0"></a>
+## 7.0.0 - 2020-07-13
+
+### Fixed
+- Update *@sap/hana-client* to v2.5.104, async to 3.2.0 and lodash to 4.17.19
+
+### Removed
+- Node.js 6 support
+
 <a name="6.2.2"></a>
 ## 6.2.2 - 2020-04-29
 

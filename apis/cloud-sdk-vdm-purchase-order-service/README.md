@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-purchase-order-service
 
-This package contains the OData VDM for the [Purchase Order Service](https://api.sap.com/api/API_PURCHASEORDER_PROCESS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Distributed Manufacturing Integration (SAP_COM_0077), Purchase Order Integration (SAP_COM_0053).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/ac/d2da57df6cc525e10000000a4450e5/frameset.htm).
+This package contains the OData VDM for the Purchase Order Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

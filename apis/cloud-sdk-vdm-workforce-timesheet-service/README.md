@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-workforce-timesheet-service
 
-This package contains the OData VDM for the [Workforce Timesheet Service](https://api.sap.com/api/API_MANAGE_WORKFORCE_TIMESHEET) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Workforce Timesheet Integration (SAP_COM_0027).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/fa/198e62c6d24788bd1f82082feb3096/frameset.htm).
+This package contains the OData VDM for the Workforce Timesheet Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

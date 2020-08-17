@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-master-recipe-service
 
-This package contains the OData VDM for the [Master Recipe Service](https://api.sap.com/api/API_MASTER_RECIPE) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Planning Master Data Integration (SAP_COM_0519).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/4d/9ed891a8c547c493e70dbfdcbea7bb/frameset.htm).
+This package contains the OData VDM for the Master Recipe Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

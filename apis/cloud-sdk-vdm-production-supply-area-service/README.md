@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-production-supply-area-service
 
-This package contains the OData VDM for the [Production Supply Area Service](https://api.sap.com/api/API_PRODUCTIONSUPPLYAREA_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Supply Area Integration (SAP_COM_0328).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/df/5c6b2792ec49a7b10c75fd5989f7ab/frameset.htm).
+This package contains the OData VDM for the Production Supply Area Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

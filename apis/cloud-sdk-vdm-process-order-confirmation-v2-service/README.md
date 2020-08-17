@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-process-order-confirmation-v2-service
 
-This package contains the OData VDM for the [Process Order Confirmation V2 Service](https://api.sap.com/api/API_PROC_ORDER_CONFIRMATION_2_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Planning Integration (SAP_COM_0104), Manufacturing Execution - Order and Confirmation Integration (SAP_COM_0522).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/fc/8dbf5e46004f1c9069b6ac4301c384/frameset.htm).
+This package contains the OData VDM for the Process Order Confirmation V2 Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

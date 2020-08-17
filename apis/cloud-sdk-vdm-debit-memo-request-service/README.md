@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-debit-memo-request-service
 
-This package contains the OData VDM for the [Debit Memo Request Service](https://api.sap.com/api/API_DEBIT_MEMO_REQUEST_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Debit Memo Request Integration (SAP_COM_0159).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/e7/f50d9ea49d49c7a428da494fce2c44/frameset.htm).
+This package contains the OData VDM for the Debit Memo Request Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

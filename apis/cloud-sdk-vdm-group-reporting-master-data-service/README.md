@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-group-reporting-master-data-service
 
-This package contains the OData VDM for the [Group Reporting Master Data Service](https://api.sap.com/api/API_GRMASTERDATA_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Finance - Cloud Consolidation Master Data for Group Reporting Integration (SAP_COM_0336), Finance - Cloud Consolidation Data Collection Integration (SAP_COM_0241), Finance - Group Reporting Planning Integration (SAP_COM_0370).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/d2/9b957f940a4c9fa496722bbdc5d1bd/frameset.htm).
+This package contains the OData VDM for the Group Reporting Master Data Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

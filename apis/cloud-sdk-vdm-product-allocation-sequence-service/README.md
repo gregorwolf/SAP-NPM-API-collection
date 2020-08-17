@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-product-allocation-sequence-service
 
-This package contains the OData VDM for the [Product Allocation Sequence Service](https://api.sap.com/api/API_PRODUCT_ALLOC_SEQUENCE_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Product Allocation Sequence Integration (SAP_COM_0161).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com/viewer/46723284fb544082a5b9ede023fd1820/latest/en-US/889b662a6a7f489a88e0113d1a86bb96.html).
+This package contains the OData VDM for the Product Allocation Sequence Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

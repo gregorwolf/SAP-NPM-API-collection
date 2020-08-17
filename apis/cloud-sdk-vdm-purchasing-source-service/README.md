@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-purchasing-source-service
 
-This package contains the OData VDM for the [Purchasing Source Service](https://api.sap.com/api/API_PURCHASING_SOURCE_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Purchasing Source Integration (SAP_COM_0162).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/56/92d23783a94d8282659356113c384f/frameset.htm).
+This package contains the OData VDM for the Purchasing Source Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

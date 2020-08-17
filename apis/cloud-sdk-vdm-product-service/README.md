@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-product-service
 
-This package contains the OData VDM for the [Product Service](https://api.sap.com/api/API_PRODUCT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Distributed Manufacturing Integration (SAP_COM_0077), SAP Analytics Cloud for Planning Integration (SAP_COM_0087), Product Integration (SAP_COM_0009), Excise Tax Integration (SAP_COM_0568).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/74/aa2b58a333a107e10000000a441470/frameset.htm).
+This package contains the OData VDM for the Product Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

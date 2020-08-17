@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-buffer-profile-service
 
-This package contains the OData VDM for the [Buffer Profile Service](https://api.sap.com/api/API_BUFFER_PROFILE_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Buffer Profile Integration (SAP_COM_0349).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/8a/10dda19ed746158b6b2b2c5a020316/frameset.htm).
+This package contains the OData VDM for the Buffer Profile Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

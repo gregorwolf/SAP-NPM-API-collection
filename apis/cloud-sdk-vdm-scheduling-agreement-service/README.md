@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-scheduling-agreement-service
 
-This package contains the OData VDM for the [Scheduling Agreement Service](https://api.sap.com/api/API_SCHED_AGRMT_PROCESS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Purchase Scheduling Agreement Integration (SAP_COM_0103).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/c7/584658aac4a007e10000000a441470/frameset.htm).
+This package contains the OData VDM for the Scheduling Agreement Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

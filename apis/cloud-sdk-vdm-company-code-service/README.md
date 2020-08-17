@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-company-code-service
 
-This package contains the OData VDM for the [Company Code Service](https://api.sap.com/api/API_COMPANYCODE_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: SAP Analytics Cloud for Planning Integration (SAP_COM_0087), SAP Analytics Cloud for Liquidity Planning Integration (SAP_COM_0443), Employee Central Financial Master Data Integration (SAP_COM_0441), Finance - Cloud Consolidation Data Collection Integration (SAP_COM_0241).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/b5/2aac521dc0441aba00d65c859ad9c6/frameset.htm).
+This package contains the OData VDM for the Company Code Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

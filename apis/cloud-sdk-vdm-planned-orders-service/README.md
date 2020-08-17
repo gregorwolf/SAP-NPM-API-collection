@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-planned-orders-service
 
-This package contains the OData VDM for the [Planned Orders Service](https://api.sap.com/api/API_PLANNED_ORDERS) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Planning Integration (SAP_COM_0104).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/DE/43/ae2e5876b4a107e10000000a441470/frameset.htm).
+This package contains the OData VDM for the Planned Orders Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

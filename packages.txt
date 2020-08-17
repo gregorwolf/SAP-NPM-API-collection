@@ -1,3 +1,4 @@
+@sap/abap-deploy
 @sap/approuter
 @sap/audit-logging
 @sap/cds
@@ -17,6 +18,7 @@
 @sap/cds-sidecar-client
 @sap/cds-sql
 @sap/cds-sqlite
+@sap/cf-tools
 @sap/cloud-sdk-analytics
 @sap/cloud-sdk-core
 @sap/cloud-sdk-generator
@@ -25,8 +27,10 @@
 @sap/cloud-sdk-vdm
 @sap/cloud-sdk-vdm-accounting-document-service
 @sap/cloud-sdk-vdm-activity-type-service
+@sap/cloud-sdk-vdm-api-legal-document-status-service
 @sap/cloud-sdk-vdm-attachment-service
 @sap/cloud-sdk-vdm-bank-detail-service
+@sap/cloud-sdk-vdm-bank-reconciliation-china-service
 @sap/cloud-sdk-vdm-batch-service
 @sap/cloud-sdk-vdm-bill-of-material-comparison-service
 @sap/cloud-sdk-vdm-bill-of-material-service
@@ -44,6 +48,7 @@
 @sap/cloud-sdk-vdm-business-partner-service
 @sap/cloud-sdk-vdm-business-situation-service
 @sap/cloud-sdk-vdm-business-situation-type-service
+@sap/cloud-sdk-vdm-business-solution-order-service
 @sap/cloud-sdk-vdm-central-purchase-contract-service
 @sap/cloud-sdk-vdm-change-master-service
 @sap/cloud-sdk-vdm-change-master-v2-service
@@ -82,12 +87,14 @@
 @sap/cloud-sdk-vdm-division-service
 @sap/cloud-sdk-vdm-document-management-service
 @sap/cloud-sdk-vdm-enterprise-project-service
+@sap/cloud-sdk-vdm-equipment-service
 @sap/cloud-sdk-vdm-event-based-revenue-recognition-integration-service
 @sap/cloud-sdk-vdm-external-job-scheduler-service
 @sap/cloud-sdk-vdm-financial-planning-data-service
 @sap/cloud-sdk-vdm-financial-planning-entry-item-service
 @sap/cloud-sdk-vdm-forecast-demand-service
 @sap/cloud-sdk-vdm-functional-area-service
+@sap/cloud-sdk-vdm-functional-location-service
 @sap/cloud-sdk-vdm-glaccount-in-chart-of-accounts-service
 @sap/cloud-sdk-vdm-glaccount-line-item-service
 @sap/cloud-sdk-vdm-group-reporting-master-data-service
@@ -99,6 +106,7 @@
 @sap/cloud-sdk-vdm-inspection-lot-service
 @sap/cloud-sdk-vdm-inspection-method-service
 @sap/cloud-sdk-vdm-inspection-plan-service
+@sap/cloud-sdk-vdm-joint-venture-billing-service
 @sap/cloud-sdk-vdm-journal-entry-item-basic-service
 @sap/cloud-sdk-vdm-just-in-time-call-process-service
 @sap/cloud-sdk-vdm-kanban-control-cycle-service
@@ -118,8 +126,11 @@
 @sap/cloud-sdk-vdm-order-bill-of-material-service
 @sap/cloud-sdk-vdm-outbound-delivery-service
 @sap/cloud-sdk-vdm-outbound-delivery-v2-service
+@sap/cloud-sdk-vdm-packing-instruction-service
 @sap/cloud-sdk-vdm-partner-company-service
 @sap/cloud-sdk-vdm-payment-advice-service
+@sap/cloud-sdk-vdm-payment-method-validation-service
+@sap/cloud-sdk-vdm-payment-release-list-approval-china-service
 @sap/cloud-sdk-vdm-personnel-settlement-document-service
 @sap/cloud-sdk-vdm-phase-relationship-type-service
 @sap/cloud-sdk-vdm-physical-inventory-doc-service
@@ -128,6 +139,7 @@
 @sap/cloud-sdk-vdm-planning-category-service
 @sap/cloud-sdk-vdm-process-order-confirmation-service
 @sap/cloud-sdk-vdm-process-order-confirmation-v2-service
+@sap/cloud-sdk-vdm-process-order-v2-service
 @sap/cloud-sdk-vdm-process-orders-service
 @sap/cloud-sdk-vdm-product-allocation-object-service
 @sap/cloud-sdk-vdm-product-allocation-sequence-service
@@ -142,6 +154,7 @@
 @sap/cloud-sdk-vdm-production-orders-service
 @sap/cloud-sdk-vdm-production-routing-service
 @sap/cloud-sdk-vdm-production-supply-area-service
+@sap/cloud-sdk-vdm-production-volume-capture-service
 @sap/cloud-sdk-vdm-profit-center-service
 @sap/cloud-sdk-vdm-purchase-contract-service
 @sap/cloud-sdk-vdm-purchase-order-service
@@ -262,6 +275,7 @@
 @sap/site-app-server
 @sap/site-content-deployer
 @sap/site-entry
+@sap/swa-for-sapbas-vsx
 @sap/textanalysis
 @sap/textbundle
 @sap/textmining

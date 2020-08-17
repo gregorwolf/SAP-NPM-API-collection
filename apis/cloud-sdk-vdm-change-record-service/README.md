@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-change-record-service
 
-This package contains the OData VDM for the [Change Record Service](https://api.sap.com/api/API_CHANGE_RECORD) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Product Lifecycle Management - Change Record Integration (SAP_COM_0339).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/55/c67e37571043f6824dd3f8aaa48b1b/frameset.htm).
+This package contains the OData VDM for the Change Record Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

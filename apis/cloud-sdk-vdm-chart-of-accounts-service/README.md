@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-chart-of-accounts-service
 
-This package contains the OData VDM for the [Chart Of Accounts Service](https://api.sap.com/api/API_CHARTOFACCOUNTS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: SAP Analytics Cloud for Planning Integration (SAP_COM_0087), Finance - Cloud Consolidation Data Collection Integration (SAP_COM_0241).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/50/e66ad51f064c23aceb9513891663ef/frameset.htm).
+This package contains the OData VDM for the Chart Of Accounts Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

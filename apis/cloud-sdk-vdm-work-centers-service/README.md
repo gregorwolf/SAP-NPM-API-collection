@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-work-centers-service
 
-This package contains the OData VDM for the [Work Centers Service](https://api.sap.com/api/API_WORK_CENTERS) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Planning Integration (SAP_COM_0104).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/62/ec4758c3f90a02e10000000a44147b/frameset.htm).
+This package contains the OData VDM for the Work Centers Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

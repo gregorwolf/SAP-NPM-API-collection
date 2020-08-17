@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-purchase-requisition-service
 
-This package contains the OData VDM for the [Purchase Requisition Service](https://api.sap.com/api/API_PURCHASEREQ_PROCESS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Purchase Requisition Integration (SAP_COM_0102), SAP S/4HANA Procurement Hub - Ariba GB - Hub to Ariba GB Integration (SAP_COM_0292).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/43/c43f584eff2160e10000000a44147b/frameset.htm).
+This package contains the OData VDM for the Purchase Requisition Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

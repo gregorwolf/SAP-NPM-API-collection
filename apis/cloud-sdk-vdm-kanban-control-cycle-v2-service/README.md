@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-kanban-control-cycle-v2-service
 
-This package contains the OData VDM for the [Kanban Control Cycle V2 Service](https://api.sap.com/api/API_KANBAN_CONTROL_CYCLE_SRV;v=0002) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Kanban Control Cycle Integration (SAP_COM_0330).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/a2/71dc21bc514d2b80701e88409533f9/frameset.htm).
+This package contains the OData VDM for the Kanban Control Cycle V2 Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

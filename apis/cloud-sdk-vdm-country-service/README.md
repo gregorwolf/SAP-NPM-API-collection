@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-country-service
 
-This package contains the OData VDM for the [Country Service](https://api.sap.com/api/API_COUNTRY_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: SAP Analytics Cloud for Planning Integration (SAP_COM_0087).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/78/fb82519e564b14a659f8e029713b74/frameset.htm).
+This package contains the OData VDM for the Country Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

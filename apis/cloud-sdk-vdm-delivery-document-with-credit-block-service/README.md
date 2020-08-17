@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-delivery-document-with-credit-block-service
 
-This package contains the OData VDM for the [Delivery Document With Credit Block Service](https://api.sap.com/api/API_DEL_DOC_WITH_CREDIT_BLOCK) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Sales Credit Management Integration (SAP_COM_0325).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/a5/8d43a7756649dbb7bb970be3bda38d/frameset.htm).
+This package contains the OData VDM for the Delivery Document With Credit Block Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

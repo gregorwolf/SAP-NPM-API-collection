@@ -1,9 +1,10 @@
 # @sap/cds-odata-v2-adapter-proxy
 
-[CDS OData V2 Adapter Proxy](https://www.npmjs.com/package/@sap/cds-odata-v2-adapter-proxy) for [CDS OData V4 Services](<(https://www.npmjs.com/package/@sap/cds)>)
+[CDS OData V2 Adapter Proxy](https://www.npmjs.com/package/@sap/cds-odata-v2-adapter-proxy) for [CDS OData V4 Services](https://cap.cloud.sap/docs/)
 
 Based on the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap/docs/)
-using Node.js module [@sap/cds](https://www.npmjs.com/package/@sap/cds).
+using CDS Node.js module [@sap/cds](https://www.npmjs.com/package/@sap/cds) or CDS Java modules
+[com.sap.cds](https://mvnrepository.com/artifact/com.sap.cds).
 
 ## Getting Started
 
@@ -155,6 +156,8 @@ Point your Cloud Foundry deployment of the CDS OData V2 Adapter Proxy to the fol
 the CDS models can be found via file `srv/csn.json`, during runtime execution on Cloud Foundry.
 
 ## SAP Fiori Elements V2
+
+> Test code is only available SAP internally!
 
 The OData V2 service provided by the CDS OData V2 Adapter Proxy can be used to serve an SAP Fiori Elements V2 UI.
 A running example can be tested as follows:

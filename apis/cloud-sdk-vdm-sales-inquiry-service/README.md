@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-sales-inquiry-service
 
-This package contains the OData VDM for the [Sales Inquiry Service](https://api.sap.com/api/API_SALES_INQUIRY_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Sales Inquiry Integration (SAP_COM_0117).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/39/13cc82abf14e5ca269ff691c7a2958/frameset.htm).
+This package contains the OData VDM for the Sales Inquiry Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

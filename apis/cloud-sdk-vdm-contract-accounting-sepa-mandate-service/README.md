@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-contract-accounting-sepa-mandate-service
 
-This package contains the OData VDM for the [Contract Accounting Sepa Mandate Service](https://api.sap.com/api/API_O2C_FICA_SEPA_MANDATE_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Finance - Contract Accounting SEPA Mandate Integration (SAP_COM_0458).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/c1/1dbbdc5b454ad5814c981f2ac9aeab/frameset.htm).
+This package contains the OData VDM for the Contract Accounting Sepa Mandate Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

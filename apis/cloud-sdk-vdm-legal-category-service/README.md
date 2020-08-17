@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-legal-category-service
 
-This package contains the OData VDM for the [Legal Category Service](https://api.sap.com/api/API_LEGAL_CATEGORY_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Enterprise Contract Management and Assembly Integration (SAP_COM_0437).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/11/df771f86d34a54b3eb2fb1ce146752/frameset.htm).
+This package contains the OData VDM for the Legal Category Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

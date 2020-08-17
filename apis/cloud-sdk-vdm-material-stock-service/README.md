@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-material-stock-service
 
-This package contains the OData VDM for the [Material Stock Service](https://api.sap.com/api/API_MATERIAL_STOCK_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Material Stock Integration (SAP_COM_0164).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/f6/8f51a4dc2e46779877a10a301d9138/frameset.htm).
+This package contains the OData VDM for the Material Stock Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

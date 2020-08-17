@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-report-ehs-incident-service
 
-This package contains the OData VDM for the [Report Ehs Incident Service](https://api.sap.com/api/API_EHS_REPORT_INCIDENT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Environment, Health and Safety - Incident Reporting Integration (SAP_COM_0369).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/40/c541a704b747ae83b0ce8f0ed322a9/frameset.htm).
+This package contains the OData VDM for the Report Ehs Incident Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

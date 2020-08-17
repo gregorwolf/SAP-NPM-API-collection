@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-central-purchase-contract-service
 
-This package contains the OData VDM for the [Central Purchase Contract Service](https://api.sap.com/api/API_CENTRAL_PURCHASECONTRACT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: SAP S/4HANA Procurement Hub - Central Contract Management Integration (SAP_COM_0243).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/49/95aa55d3b4428f882d512356aa5307/frameset.htm).
+This package contains the OData VDM for the Central Purchase Contract Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-statistical-key-figure-service
 
-This package contains the OData VDM for the [Statistical Key Figure Service](https://api.sap.com/api/API_STATISTICALKEYFIGURE_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Finance - Statistical Key Figure Integration (SAP_COM_0130).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/78/c9f90d79654fdc85e2f34f404a278c/frameset.htm).
+This package contains the OData VDM for the Statistical Key Figure Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

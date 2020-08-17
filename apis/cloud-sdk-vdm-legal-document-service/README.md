@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-legal-document-service
 
-This package contains the OData VDM for the [Legal Document Service](https://api.sap.com/api/API_LEGAL_DOCUMENT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Legal Document Integration (SAP_COM_0178).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/76/617b87de1c40cb876e874ea78981a2/frameset.htm).
+This package contains the OData VDM for the Legal Document Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

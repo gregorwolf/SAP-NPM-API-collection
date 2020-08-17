@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-service-order-service
 
-This package contains the OData VDM for the [Service Order Service](https://api.sap.com/api/API_SERVICE_ORDER_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Service Order Integration (SAP_COM_0350).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/dd/fe570e96c84075b2ff3e5b1be9714b/frameset.htm).
+This package contains the OData VDM for the Service Order Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

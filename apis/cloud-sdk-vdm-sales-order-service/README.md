@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-sales-order-service
 
-This package contains the OData VDM for the [Sales Order Service](https://api.sap.com/api/API_SALES_ORDER_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Sales Order Integration (SAP_COM_0109), Delivery Insights Replication App Integration (SAP_COM_0571).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/00/d244581efca007e10000000a441470/frameset.htm).
+This package contains the OData VDM for the Sales Order Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

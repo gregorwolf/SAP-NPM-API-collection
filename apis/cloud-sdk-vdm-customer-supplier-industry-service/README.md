@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-customer-supplier-industry-service
 
-This package contains the OData VDM for the [Customer Supplier Industry Service](https://api.sap.com/api/API_CUSTOMERSUPPLIERINDUSTRY_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: SAP Analytics Cloud for Planning Integration (SAP_COM_0087).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/98/d64eac767f45ff95e6a19626d79701/frameset.htm).
+This package contains the OData VDM for the Customer Supplier Industry Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

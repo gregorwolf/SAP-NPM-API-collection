@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-sales-pricing-condition-record-service
 
-This package contains the OData VDM for the [Sales Pricing Condition Record Service](https://api.sap.com/api/API_SLSPRICINGCONDITIONRECORD_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Pricing Data Integration (SAP_COM_0294).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/79/16962329ee49b293156fffddfb7dd8/frameset.htm).
+This package contains the OData VDM for the Sales Pricing Condition Record Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

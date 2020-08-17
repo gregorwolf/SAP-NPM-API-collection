@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-business-situation-service
 
-This package contains the OData VDM for the [Business Situation Service](https://api.sap.com/api/API_BUSINESS_SITUATION_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Business Situation Integration (SAP_COM_0345).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/e3/1831d5c0934e34a982039cfd389211/frameset.htm).
+This package contains the OData VDM for the Business Situation Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-recipe-service
 
-This package contains the OData VDM for the [Recipe Service](https://api.sap.com/api/API_RECIPE) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Product Lifecycle Management - Recipe Development Integration (SAP_COM_0136).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/69/01bbc0b71d4e5b8c9eb3ad20800eb2/frameset.htm).
+This package contains the OData VDM for the Recipe Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-purchase-contract-service
 
-This package contains the OData VDM for the [Purchase Contract Service](https://api.sap.com/api/API_PURCHASECONTRACT_PROCESS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Distributed Manufacturing Integration (SAP_COM_0077), Purchase Contract Integration (SAP_COM_0101).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/34/3b465833a40846e10000000a441470/frameset.htm).
+This package contains the OData VDM for the Purchase Contract Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,12 @@
 # Migration Guide
 
+## Version 6 ==> Version 7
+
+Support for Node.js 6 has been dropped, *@sap/hdbext* APIs have not been changed.
+
 ## Version 5 ==> Version 6
 
-Support for Node.js 4 has been droppped, *@sap/hdbext* APIs have not been changed.
+Support for Node.js 4 has been dropped, *@sap/hdbext* APIs have not been changed.
 
 ## Version 4 ==> Version 5
 
@@ -94,7 +98,7 @@ hdbext.loadProcedure(client, schema, name, function(err, sp) {
 });
 ```
 
-should be transofmed to:
+should be transformed to:
 
 ```js
 hdbext.loadProcedure(client, schema, name, function(err, sp) {

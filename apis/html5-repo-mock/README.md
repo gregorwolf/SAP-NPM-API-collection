@@ -224,15 +224,16 @@ node node_modules/@sap/html5-repo-mock/index.js --mime-types '{"my-ext":"applica
 
 HTML5 Repo Mock supports various configuration options via environment variables
 
-| Environment variable | Default value                       | Description                                                                 |
-|----------------------|-------------------------------------|-----------------------------------------------------------------------------|
-| PORT                 | 5000                                | TCP port of Approuter. Used for printing application URLs                   |
-| MOCK_PORT            | 5001                                | TCP port of HTML5 Repo Mock                                                 |
-| MOCK_DIR             | $PWD/..                             | Root directory in which HTML5 Repo Mock search for HTML5 applications       |
-| MOCK_LOOKUP_DIRS     | ["", "dist", "webapp"]              | Folders relative to `xs-app.json` from where to serve HTML5 assets          |
-| AR_BASE              | http://localhost:$PORT              | Approuter base URL. used for printing application URLs                      |
-| SAP_UI_BOOTSTRAP_URL | https://sapui5.hana.ondemand.com    | Base URL form which SAP UI5 resources of FLP sandbox will be loaded         |
-| VCAP_SERVICES        | [See below](#default-vcap_services) | Service binding information that will be overridden and passed to Approuter |
+| Environment variable | Default value                       | Description                                                                  |
+|----------------------|-------------------------------------|------------------------------------------------------------------------------|
+| PORT                 | 5000                                | TCP port of Approuter. Used for printing application URLs                    |
+| MOCK_PORT            | 5001                                | TCP port of HTML5 Repo Mock                                                  |
+| MOCK_DIR             | $PWD/..                             | Root directory in which HTML5 Repo Mock search for HTML5 applications        |
+| MOCK_LOOKUP_DIRS     | ["", "dist", "webapp"]              | Folders relative to `xs-app.json` from where to serve HTML5 assets           |
+| AR_BASE              | http://localhost:$PORT              | Approuter base URL. used for printing application URLs                       |
+| SAP_UI_BOOTSTRAP_URL | https://sapui5.hana.ondemand.com    | Base URL form which SAP UI5 resources of FLP sandbox will be loaded          |
+| VCAP_SERVICES        | [See below](#default-vcap_services) | Service binding information that will be overridden and passed to Approuter  |
+| API_KEY              | &lt;not set&gt;                     | Override manifest.json OData models to send `APIKey` header with given value |
 
 Use command line arguments to configure HTML5 Repo Mock
 
@@ -244,7 +245,7 @@ Use command line arguments to configure HTML5 Repo Mock
 | `--destination`                  | &lt;not set&gt; | If present, HTML5 Repo Mock will mock destination service                                                                                                                                        |
 | `--ui5 <json>`                   | &lt;not set&gt; | If present, HTML5 Repo Mock will rewrite UI5 configuration                                                                                                                                       |
 | `--login <sap.cloud.service>`    | &lt;not set&gt; | If present, Approuter will use service with specified `sap.cloud.service` as XSUAA (for login)                                                                                                   |
-| `--APIKey <key>`                 | &lt;not set&gt; | If present, HTML5 Repo Mock will override manifest.json OData models to send `APIKey` header                                                                                                     |
+| `--APIKey <key>`                 | &lt;not set&gt; | If present, HTML5 Repo Mock will override manifest.json OData models to send `APIKey` header. Have higher priority than `API_KEY` environment variable                                           |
 | `--inject <json>`                | &lt;not set&gt; | If present, HTML5 Repo Mock will inject arbitrary HTML content or script with URL to specified place (supported places are `head-start`, `head-end`, `body-start`, `body-end`) in HTML files     |
 | `--mime-types <json>`            | &lt;not set&gt; | If present, HTML5 Repo Mock will send `Content-Type` header for files with extension matching key (from provided JSON) equal to corresponding value                                              |
 
@@ -293,4 +294,4 @@ Use command line arguments to configure HTML5 Repo Mock
 }
 ```
 
-[1]: https://github.wdf.sap.corp/xs2/approuter.js
+[1]: https://www.npmjs.com/package/@sap/approuter

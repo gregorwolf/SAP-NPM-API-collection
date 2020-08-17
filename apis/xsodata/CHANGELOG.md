@@ -8,6 +8,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.1.0] - 2020-08-11
+
+* OData type Edm.Time is mapped to hana types 'TIME' (due to backward compatiblity) which stores only hour, minutes 
+  and seconds, so only the uri format **time'PT0H0M0S'** was supported. With this fix also the full representation 
+  like time'P2010Y12M30DT01H02M03S' can be used (some UIs generated it) if the parts of year, mounth and day are zero. 
+  
+* Fix for missing annotations (e.g. "sap:label") if an calcview without input parameters is exposed as normal view 
+  (this is without the "parameter via" keyword in the xsodata file)
+
+* Fixes for create, update, delete operations via user-exits on calculation views without input parameters.
+  Please note: if the input parameters are omitted and "via keys" is used, then the input parameter must be set in 
+  the exit functions since they are rendered in the output.  
+
+* Explicitly drop prepared statements immediately instead at request end  
+
 ## [7.0.3] - 2020-06-30
 
 ### Added

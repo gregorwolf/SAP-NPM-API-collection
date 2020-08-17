@@ -43,4 +43,4 @@ The generator accepts several options which can be passed by user (are written a
  
  
  ## Release 
- 1.1.3
+ 1.1.5

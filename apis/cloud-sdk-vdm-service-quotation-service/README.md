@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-service-quotation-service
 
-This package contains the OData VDM for the [Service Quotation Service](https://api.sap.com/api/API_SERVICE_QUOTATION_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Service Quotation Integration (SAP_COM_0355).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/44/0e29eeccde42d9ab7296cfa17fbd62/frameset.htm).
+This package contains the OData VDM for the Service Quotation Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

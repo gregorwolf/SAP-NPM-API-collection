@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-customer-material-service
 
-This package contains the OData VDM for the [Customer Material Service](https://api.sap.com/api/API_CUSTOMER_MATERIAL_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Customer Material Info Record Integration (SAP_COM_0134).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/52/9318c3a0014f1bb1911541546569a2/frameset.htm).
+This package contains the OData VDM for the Customer Material Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

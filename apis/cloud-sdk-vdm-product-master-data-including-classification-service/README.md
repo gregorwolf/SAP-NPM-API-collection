@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-product-master-data-including-classification-service
 
-This package contains the OData VDM for the [Product Master Data Including Classification Service](https://api.sap.com/api/API_CLFN_PRODUCT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Product Classification Integration (SAP_COM_0309).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/34/f342df989544e3913eda5bf42c4bc3/frameset.htm).
+This package contains the OData VDM for the Product Master Data Including Classification Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

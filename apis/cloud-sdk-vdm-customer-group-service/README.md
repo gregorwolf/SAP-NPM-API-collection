@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-customer-group-service
 
-This package contains the OData VDM for the [Customer Group Service](https://api.sap.com/api/API_CUSTOMERGROUP_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: SAP Analytics Cloud for Planning Integration (SAP_COM_0087).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/6c/2f52ce937d4c9294d8781b240b868d/frameset.htm).
+This package contains the OData VDM for the Customer Group Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

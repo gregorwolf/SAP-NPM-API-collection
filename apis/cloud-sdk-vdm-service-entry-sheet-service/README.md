@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-service-entry-sheet-service
 
-This package contains the OData VDM for the [Service Entry Sheet Service](https://api.sap.com/api/API_SERVICE_ENTRY_SHEET_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Service Entry Sheet Integration (SAP_COM_0146).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/0f/17c815dc784fa39b4fc7c0fe9f72b5/frameset.htm).
+This package contains the OData VDM for the Service Entry Sheet Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

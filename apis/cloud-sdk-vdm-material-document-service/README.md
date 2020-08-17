@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-material-document-service
 
-This package contains the OData VDM for the [Material Document Service](https://api.sap.com/api/API_MATERIAL_DOCUMENT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Material Document Integration (SAP_COM_0108).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/d4/c919581bc30a02e10000000a44147b/frameset.htm).
+This package contains the OData VDM for the Material Document Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-product-allocation-object-service
 
-This package contains the OData VDM for the [Product Allocation Object Service](https://api.sap.com/api/API_PRODUCT_ALLOCATION_OBJECT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Product Allocation Object Integration (SAP_COM_0152).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com/viewer/46723284fb544082a5b9ede023fd1820/latest/en-US/ac8316e52e5347b0b5259757b7faf2e4.html).
+This package contains the OData VDM for the Product Allocation Object Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

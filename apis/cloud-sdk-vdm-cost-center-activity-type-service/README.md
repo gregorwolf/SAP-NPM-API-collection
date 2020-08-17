@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-cost-center-activity-type-service
 
-This package contains the OData VDM for the [Cost Center Activity Type Service](https://api.sap.com/api/API_COSTCENTERACTIVITYTYPE_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: SAP Analytics Cloud for Planning Integration (SAP_COM_0087).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/07/0e6944acef42388576bf11240e4699/frameset.htm).
+This package contains the OData VDM for the Cost Center Activity Type Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-document-management-service
 
-This package contains the OData VDM for the [Document Management Service](https://api.sap.com/api/API_DMS_PROCESS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Product Lifecycle Management - Master Data Integration (SAP_COM_0105).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/e5/e3aa41c5924883a543c7d751693ab0/frameset.htm).
+This package contains the OData VDM for the Document Management Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

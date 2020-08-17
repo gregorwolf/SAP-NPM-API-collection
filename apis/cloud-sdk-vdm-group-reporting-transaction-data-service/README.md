@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-group-reporting-transaction-data-service
 
-This package contains the OData VDM for the [Group Reporting Transaction Data Service](https://api.sap.com/api/API_GRTRANSACTIONDATA_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Finance - Cloud Consolidation Data Collection Integration (SAP_COM_0241), Finance - Cloud Consolidation Transaction Data for Group Reporting Integration (SAP_COM_0348), Finance - Group Reporting Planning Integration (SAP_COM_0370).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/87/fde46ffd0742639ef0a9d7c5631a5a/frameset.htm).
+This package contains the OData VDM for the Group Reporting Transaction Data Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

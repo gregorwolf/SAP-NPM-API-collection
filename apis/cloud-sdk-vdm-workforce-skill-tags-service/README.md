@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-workforce-skill-tags-service
 
-This package contains the OData VDM for the [Workforce Skill Tags Service](https://api.sap.com/api/API_MANAGE_SKILLTAGS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: External HR Workforce Integration (SAP_COM_0301).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/02/0fc037c7c24657912e88a055187f5a/frameset.htm).
+This package contains the OData VDM for the Workforce Skill Tags Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

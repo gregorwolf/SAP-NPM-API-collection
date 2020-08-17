@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-legal-transaction-service
 
-This package contains the OData VDM for the [Legal Transaction Service](https://api.sap.com/api/API_LEGAL_TRANSACTION_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Legal Transaction Integration (SAP_COM_0140).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/1f/6862d0c8734cc9aacfc2a7746ed6b7/frameset.htm).
+This package contains the OData VDM for the Legal Transaction Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

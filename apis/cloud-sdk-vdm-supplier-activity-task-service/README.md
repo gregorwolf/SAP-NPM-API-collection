@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-supplier-activity-task-service
 
-This package contains the OData VDM for the [Supplier Activity Task Service](https://api.sap.com/api/API_SUPPLIER_ACTIVITY_TASK_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Supplier Activity Task Integration (SAP_COM_0138).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/95/e05385472d444e8ae8a830459d6986/frameset.htm).
+This package contains the OData VDM for the Supplier Activity Task Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

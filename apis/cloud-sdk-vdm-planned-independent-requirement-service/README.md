@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-planned-independent-requirement-service
 
-This package contains the OData VDM for the [Planned Independent Requirement Service](https://api.sap.com/api/API_PLND_INDEP_RQMT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Planning Integration (SAP_COM_0104).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/c8/1d1718b16147b5811acce3f1888054/frameset.htm).
+This package contains the OData VDM for the Planned Independent Requirement Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

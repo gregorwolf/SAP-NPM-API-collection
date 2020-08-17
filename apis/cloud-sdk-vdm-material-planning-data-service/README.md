@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-material-planning-data-service
 
-This package contains the OData VDM for the [Material Planning Data Service](https://api.sap.com/api/API_MRP_MATERIALS_SRV_01) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Production Planning Integration (SAP_COM_0104).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/ca/111d6ed0004ac088b68f1360cf24fc/frameset.htm).
+This package contains the OData VDM for the Material Planning Data Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

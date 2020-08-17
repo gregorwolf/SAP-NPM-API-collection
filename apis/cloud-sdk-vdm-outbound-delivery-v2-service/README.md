@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-outbound-delivery-v2-service
 
-This package contains the OData VDM for the [Outbound Delivery V2 Service](https://api.sap.com/api/API_OUTBOUND_DELIVERY_SRV;v=0002) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Delivery Processing Integration (SAP_COM_0106), Delivery Insights Replication App Integration (SAP_COM_0571).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/4b/ec9116ac56435ca1332e4a75998d51/frameset.htm).
+This package contains the OData VDM for the Outbound Delivery V2 Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

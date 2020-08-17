@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-glaccount-in-chart-of-accounts-service
 
-This package contains the OData VDM for the [Glaccount In Chart Of Accounts Service](https://api.sap.com/api/API_GLACCOUNTINCHARTOFACCOUNTS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: SAP Analytics Cloud for Planning Integration (SAP_COM_0087), Finance - Cloud Consolidation Data Collection Integration (SAP_COM_0241).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/5f/4d16d6a031437fbfd1f61937c6b3fd/frameset.htm).
+This package contains the OData VDM for the Glaccount In Chart Of Accounts Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 
