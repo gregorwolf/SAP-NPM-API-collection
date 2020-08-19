@@ -6,13 +6,63 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 2.1.5 - TBD
+## Version 2.1.7 - 2020-08-17
+
+### Added
+
+- Support for Message Queuing
+- Support for `@sap/xssec^3`
+- `@Common.numericSeverity` in error response
+- Support expand with '*' in QL API
+- Headers can be set with tx.emit on remote HTTP services
+- Propagate @cds.localized:false during deep reads
+- HANA: support for service manager credentials
+
+### Changed
+
+- Messaging: The configuration is moved to top level (before it was in credentials)
+- Messaging: The payload type is now 'application/json'
+
+### Fixed
+
+- Messaging: Messages are only acknowledged if successful
+- Race conditions with messaging management
+- `orderBy` as an empty array
+- Join transaction during local API call
+- Support duplicate names of bound and unbound actions and functions in local API
+- Test read for UPSERT was not tenant aware
+- Prefer `cds.env.requires.uaa.credentials`
+- Error while activate with missing mandatory fields
+- Restore `req._.req.authInfo` for compatibility
+- OData V4 single property access in combination with mode `odata=structured`
+- empty string in functions like tolower, toupper
+
+## Version 2.1.6 - 2020-08-06
+
+### Fixed
+
+- Removal of key properties of contained entity
+- Flattening of to-one association if key is also a to-one association
+- No localization with `SELECT.forUpdate()`
+- Multi-level expand with composition backlink as key
+- Ignore association keys in select for deletion integrity check
+- POST via multiple navigations
+- `req.user.id = <clientId>` with JWT strategy and `client_credentials` flow
+- Transaction handling with integrity check and changesets in json batch
+
+## Version 2.1.5 - 2020-08-03
+
+### Added
+
+- Support for `@Capabilities.NavigationRestrictions`
+- Support queries to a model with nested projections to an external service
 
 ### Fixed
 
 - `req._.req` in `SAVE` handler
 - Insert duplicate data during deep update
 - HANA: prefer `this.options.credentials`
+- `$orderBy` in case of `DRAFT` with `Union`
 
 ## Version 2.1.4 - 2020-07-31
 
@@ -130,7 +180,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Reading single properties of draft enabled entities via navigations e. g. `/E0(ID=<uuid>,IsActiveEntity=false)/e1(ID=<uuid>,IsActiveEntity=false)/property`
 - not supported transformation in groupby throws cryptic error
 - etag check only if odata request
-- Reading single properties of draft enabled entities via navigations e.g. `/E0(ID=<uuid>,IsActiveEntity=false)/e1(ID=<uuid>,IsActiveEntity=false)/property`
 - Statements if path expression contains keys of type `cds.Timestamp`, `cds.DateTime` or `cds.Time`
 - `$filter` lambda `any` operator if no argument is provided
 - User attributes in `req.user.attr` merge `info.userInfo` and `info.userAttributes` (authentication strategy `JWT`)

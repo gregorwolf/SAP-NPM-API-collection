@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.6.3 - 2020-08-12
+
+### Fixed
+- README and LICENSE
+
 ## Version 1.6.2 - 2020-03-19
 
 ### Changed

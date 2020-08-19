@@ -1,21 +1,6 @@
-# CDX SQL
+# @sap/cds-sql
 
-This package offers a factory method to build a SQL string from a CQN object and a BaseClient which performs default post processing to be used by the inheriting clients.
+The `@sap/cds-runtime` module is the successor of `@sap/cds-sql`. Please note that future development and bug fixes will be provided in the `@sap/cds-runtime` module only.
 
-## Overview ## 
-TBD
-
-## Prerequisites ## 
-Dependencies: N/A
-
-## Installation ## 
-~~~~
-npm install
-~~~~
-
-## Usage/Configuration ## 
-### Examples ###
-TBD
-
-## Reference ##
-TBD
+## License
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3.1.txt).

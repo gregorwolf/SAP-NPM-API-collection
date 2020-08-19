@@ -4,6 +4,34 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+# Version 4.1.7 - 2020-08-17
+
+## Added 
+
+- Shortcut to class `cds.ApplicationService` in cds facade
+- Shortcut to class `cds.DatabaseService` in cds facade
+- Shortcut to class `cds.RemoteService` in cds facade
+- Shortcut to class `cds.MessagingService` in cds facade
+- Shortcut to class `cds.Event` as new base class of `cds.Request`
+
+## Fixed
+
+- Race condition on two parallel `cds.connect` to same service
+- **`cds deploy --no-save`** extends the list of files it does not modify to `package.json`, `default-env.json` and `connection.properties`
+- **Add meaningful error message if hdi-deploy cannot be loaded** &mdash; during `cds deploy --to hana`.
+
+# Version 4.1.6 - 2020-08-07
+
+## Added
+
+- `req.notify()` as a new varient besides `req.info()`, which should display as toaster notifications on Fiori elements or other UIs.
+
+## Fixed
+
+- `req.target` for unbound actions/functions is now `undefined` again, as documented
+- Handlers registered with `srv.on(<CRUD>, 'Some/path', ...)` were never invoked
+- Queries to remote services via `srv.on(..., ()=> other.read('Something'))` weren't sent to remote
+
 # Version 4.1.5 - 2020-07-31
 
 ## Removed
@@ -33,9 +61,9 @@ Nevertheless, they are listed here for your reference.
 
 - **`cds deploy --to hana` changes kind** to `hana` only if it is not already `sql`.
 
-- **`cds build`** &mdash; does no longer create service metadata for the UI service binding by default. For SAP Web IDE Full-Stack compatibility a corresponding metadata.xml is still generated.  A `fiori` build task has to be defined otherwise.
+- **Consistent default naming scheme for applications and services deployed to CF** across the following `cds` commands `build`, `deploy`, `init` and `add`. For an application named `myapp` the SAP HANA deployer app name is `myapp-db-deployer`, the SAP HANA DB service name is `myapp-db`. `cds build` now generates the application manifest file with a different name `manifest.yml`.
 
-- **Consistent default naming scheme for applications and services deployed to CF** across the following `cds` commands `build`, `deploy`, `init` and `add`. For an application named `myapp` the SAP HANA deployer app name is `myapp-db-deployer`, the SAP HANA DB service name is `myapp-db`. `cds build` now generates the application manifest file with a different name `manifest.yml`. 
+- **`cds build`** no longer creates service metadata for the UI service binding by default. For SAP Web IDE Full-Stack compatibility a corresponding metadata.xml is still generated.  A `fiori` build task has to be defined otherwise.
 
 - **`cds build` creates `hana` build results only** if either a corresponding build task has been configured or if kind `hana` or kind `sql` has been defined. A `production` build is required for the latter. A fallback is used for Web IDE Fullstack and legacy build configs.  
 

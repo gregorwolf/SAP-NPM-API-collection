@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.21.2 - 2020-08-12
+
+### Fixed
+- README and LICENSE
+
+## Version 1.21.1 - 2019-11-29
+
+### Added
+
+- `SELECT.forUpdate` to lock columns on a table
+
 ## Version 1.21.0 - 2019-11-19
 
 ### Added

@@ -16,7 +16,7 @@ There are only two functions to call for usage
 
 #### Import
 ```js
-import { SWATracker } from 'swa-for-sapbas-vsx';
+import { SWATracker } from '@sap/swa-for-sapbas-vsx';
 ```
 
 #### Constructor
@@ -46,7 +46,7 @@ swa.track("myEvent", ["custom event 1", "custom event 2", "This array is optiona
 #### Example
 ```js
 import * as vscode from 'vscode';
-import {SWATracker} from "swa-for-sapbas-vsx";
+import {SWATracker} from "@sap/swa-for-sapbas-vsx";
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
