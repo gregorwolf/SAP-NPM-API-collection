@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.0.17 - 2020-08-18
+
+### Fixed
+- Asynchronous basemodel upgrade and job status requests that failed when using @sap/cds@^4 are now fixed
+- Extensions that got lost when running onboarding multiple times are now preserved
+- The cds env configuration is now also available for service-manager 
+
 ## Version 1.0.16 - 2020-08-03
 
 ### Added

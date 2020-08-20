@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.0.8 - 2020-08-07
+
+### Changed
+- `cds init` uses latest `Maven Java archetype` version `1.8.1` for creating Java projects.
+
+### Fixed
+
+- Fixed `cds add mta` for java projects. The Spring Cloud Profile is set by default for Java apps in order to enable the SAP HANA service binding, otherwise the sqlite db would still be used at runtime.
+  The environment variable JBP_CONFIG_RESOURCE_CONFIGURATION required by the classic Java runtime has been removed.
+
 ## Version 2.0.7 - 2020-08-04
 
 ### Added

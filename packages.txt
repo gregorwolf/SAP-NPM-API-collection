@@ -139,7 +139,6 @@
 @sap/cloud-sdk-vdm-planning-category-service
 @sap/cloud-sdk-vdm-process-order-confirmation-service
 @sap/cloud-sdk-vdm-process-order-confirmation-v2-service
-@sap/cloud-sdk-vdm-process-order-v2-service
 @sap/cloud-sdk-vdm-process-orders-service
 @sap/cloud-sdk-vdm-product-allocation-object-service
 @sap/cloud-sdk-vdm-product-allocation-sequence-service
@@ -173,6 +172,7 @@
 @sap/cloud-sdk-vdm-report-ehs-incident-service
 @sap/cloud-sdk-vdm-request-for-quotation-service
 @sap/cloud-sdk-vdm-reservation-document-service
+@sap/cloud-sdk-vdm-sales-and-distribution-document-reason-service
 @sap/cloud-sdk-vdm-sales-contract-service
 @sap/cloud-sdk-vdm-sales-district-service
 @sap/cloud-sdk-vdm-sales-doc-with-credit-block-service

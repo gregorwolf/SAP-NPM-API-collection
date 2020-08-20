@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.1.7 - 2020-08-17
+
+### Fixed
+- The optional `keytar` package is now resolved if it's installed globally.  See the [documentation](https://cap.cloud.sap/docs/guides/extensibility#save-authentication-token-for-simplified-workflow) for more.
+
 ## Version 1.1.6 - 2020-08-03
 
 ### Added
