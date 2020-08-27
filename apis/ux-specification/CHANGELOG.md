@@ -4,6 +4,26 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.78.7] - 2020-08-25
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- Fixed issue related to page map and app.json while exporting
+
+## [1.78.6] - 2020-08-21
+
+### Added
+
+- Support UI Flex binding change for header action
+
 ## [1.78.5] - 2020-08-07
 
 ### Removed

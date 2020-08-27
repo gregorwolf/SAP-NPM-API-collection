@@ -1,4 +1,4 @@
-# @sap/generator-fiori-elements
+# @sap/generator-fiori-freestyle
 
 ## Features
 
@@ -11,13 +11,13 @@ The generated application conforms to the [Fiori Design guidelines](https://expe
 1. Get [Node.js](https://nodejs.org/en/download/)
 2. Install the generator
     ```sh
-    npm install -g yo @sap/generator-fiori-elements
+    npm install -g yo @sap/generator-fiori-freestyle
     ```
 3. Verify your installation to see if Yeoman has been installed correctly
     ```sh
     yo
     ```
-  Make sure you see the `@sap/fiori Elements` generator listed.
+  Make sure you see the `@sap/generator-fiori-freestyle` generator listed.
 
 ## Usage
 
@@ -40,46 +40,37 @@ OR
 Select the required template type to use when generating your application. The generator currently supports the following templates:
 
 **SAP Fiori elements**
-- List Report Object Page with OData V2
-- List Report Object Page with OData V4
-- Worklist
-- Analytical List Page
-- Overview Page
+- SAP Fiori Worklist Application 
+- SAP Fiori Master-Detail Application 
+- SAP Fiori Worklist Application OData V4
 
 #### 2. Select Data Source
 
 Currently the generator supports the following methods to provide the Data Source:
 
-- **Connect to a data service**
+- **Connect to an SAP System**
 
-  Enter the OData endpoint URL you wish to use in your generated application.  Currently the generator supports an OData endpoint that is either unauthenticated or authenticated with Basic authentication. For an authenticated OData endpoint, you will be asked to provide a username and password.
+You can connect to an SAP System in VSCode by selecting one of the following methods:
 
-  **Note:** The OData endpoint you provide must be the correct version for the template that you have selected. I.e. a V2 endpoint must be provided for a V2 template, and a V4 endpoint must be provided for a V4 template.  The wizard will inform you if there is an mismatch between the OData version and the template version.
+You can choose to connect to an existing ABAP on premise system by providing the URL and optional SAP Client identifier. If the URL requires authentication, you will need to provide those details during generation.
+You can connect to an ABAP environment on the SAP Cloud Platform. In this case, you must provide a local file that defines the service connection details for the desired ABAP Enviroment. Once you provide these details, a browser tab will launch for you to provide authentication details.
+In both cases, if you choose to save the SAP system for future reference, the system details will be stored in the secure storage location of your operating system.
 
-- **Upload a data service metadata file (V2 only)**
+- **Connect to an OData service**
 
-  Upload a service metadata file that represents the back end service from the file system. This allows the user to generate the application without relying on a back end service being available.
+Enter the OData endpoint URL you wish to use in your generated application. Currently the generator supports an OData endpoint that is either unauthenticated or authenticated with Basic authentication. For an authenticated OData endpoint, you will be asked to provide a username and password.
 
-  **Note:** Uploading a data service metadata file will restrict the generated application to only be available using mock data.
+- **Upload a data service metadata file**
+
+Upload a service metadata file that represents the back end service from the file system. This allows the user to generate the application without relying on a back end service being available.
+
+Note: Uploading a data service metadata file will restrict the generated application to only be available using mock data.
+
 
 #### 3. Select relevant entities
 
 Once the data source has been supplied, the **SAP Fiori freestyle SAPUI5 application generator** will present a list of entities from the OData service to choose.
 
-- **For List Report Object Page And Worklist Template:**
-
-  Select an entity as the main entity.  The selection will default to the entity that has been marked as `draftRoot`, if present in the OData service.
-
-  After choosing a main entity, a filtered list of navigation entities will be presented. The Navigation entity is optional.
-
-
-- **For Analytical List Page Template:**
-
-  Select a main entity and optional navigation entity, similar to the List Report Object page above.  You can also optionally choose the default qualifier, table type, whether to allow multi select, is the table auto-hidden, and if smart variant management support is enabled.
-
-- **For Overview Page Template:**
-
-  Select the entity to be used as the filter type from the list of entities drop down.  This is a mandatory field.
 
 #### 4. Add project descriptor data
 

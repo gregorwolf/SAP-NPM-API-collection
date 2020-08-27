@@ -3,6 +3,21 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## [1.0.14] - 2020-08-20
+### Fixed
+- The Launch configuration entries for generated projects in VSCode should now work on Windows.  Please ensure you have updated to version 1.48.0 of Microsft Visual Studio Code.
+
+### Added
+- Generated application now includes a `.gitignore` file.
+- Support for V4.01 OData services.
+- Support for discovering connected Cloud Foundry systems.
+- Updated to latest version of `@ui5/cli`.
+
+## [1.0.13] - 2020-08-13
+### Added
+- When generating an application for an existing OData V4 CAP project you can now choose whether to add an associated `annotations.cds` file in the advanced options.
+
 ## [1.0.8] - 2020-07-21
 ### Fixed
 - Generated application now contains the correct versions of the `@sap/ux-specification` and `@sap/ux-ui5-tooling` libraries that conform to semantic versioning.

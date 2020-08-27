@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.2.2] - 2020-08-20
+
+## [7.2.1] - 2020-08-19
+
+## [7.2.0] - 2020-08-19
+
+* Improve logging infrastructure
+
 ## [7.1.0] - 2020-08-11
 
 * OData type Edm.Time is mapped to hana types 'TIME' (due to backward compatiblity) which stores only hour, minutes 

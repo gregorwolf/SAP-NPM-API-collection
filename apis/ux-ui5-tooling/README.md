@@ -1,6 +1,7 @@
 # @sap/ux-ui5-tooling
 
-The SAP Fiori tools - UI5 Tooling contains a selection of custom [middlewares](https://sap.github.io/ui5-tooling/pages/extensibility/CustomServerMiddleware/) that can be used with the command `fiori run` as well as custom [tasks](https://sap.github.io/ui5-tooling/pages/extensibility/CustomTasks/) that can be used with the command `ui5 build`. The [`fiori run`](#run) command is a wrapper of the `ui5 serve` commands and provides some additional parameters.
+The SAP Fiori tools - UI5 Tooling contains a selection of custom [middlewares](https://sap.github.io/ui5-tooling/pages/extensibility/CustomServerMiddleware/) that can be used with the command `ui5 serve` as well as custom [tasks](https://sap.github.io/ui5-tooling/pages/extensibility/CustomTasks/) that can be used with the command `ui5 build`. 
+Furthermore, the module expose the cli `fiori` offering e.g. the [`fiori run`](#run) command is a wrapper of the `ui5 serve` commands and provides some additional parameters as well as `fiori add deploy-config` and `fiori add flp-config` to extend an existing project.
 
 ## **Middlewares**
 
@@ -89,7 +90,7 @@ You can also connect to multiple back-end systems like this.
       url: https://my.backend.com:1234
 ```
 
-If you want to connect to a `Steampunk` back-end then you will need to provide the following configuration.
+If you want to connect to an ABAP Environment on SAP Cloud Platform then you will need to set the optional property `scp` to `true`. For any other target, remove this property or set it to `false`.
 
 ```
 - name: fiori-tools-proxy
@@ -206,7 +207,7 @@ XYZ_PASSWORD=[MY_PASSWORD]
 
 ## Command to deploy
 
-After completing the changes in the configuration files, execute ```npm run deploy``` at command line
+After completing the changes in the configuration files, execute the command `npm run deploy`. The deployment task is by default interactive and requires that the user confirms the deploy configuration. If such a confirmation is not required or desired then it can be disable by adding `-- -y` to the `deploy` script e.g. `ui5 build preload --config ui5-deploy.yaml -- -y`
 
 ### Accessing the deployed app
 
@@ -296,7 +297,7 @@ The app object describes the backend object that is created/updated as result of
 - If set to `true`, the task will run through all steps including sending the archive to the SAP backend. The backend will not deploy the app but run the pre-deployment checklist and return the result.
 
 ## Commands
-### **npx fiori run** - starts a local web server for running a FE application
+### fiori run - starts a local web server for running a FE application
 #### Options
 
 * `--config, c` - Path to config file (default: `ui5.yaml` in root folder of the project).
@@ -309,6 +310,59 @@ The app object describes the backend object that is created/updated as result of
 * `--ui5` - UI5 version to use when running the application (default: version from `ui5.yaml`).
 * `--ui5Uri` - UI5 uri to load the UI5 resources from (default: uri from `ui5.yaml`).
 * `--proxy` - specify proxy configuration, e.g. `https://myproxy:8443` (default: uses host machine proxy configuration, if any).
+
+### fiori add deploy-config - adds a deployment configuration to the project
+
+The command allows adding a deployment configuration to the project. The command supports the generation of a configuration for deployment to an ABAP system or to a Cloud Foundry space.
+
+#### Deployment to ABAP 
+If `ABAP` is chosen as target then the CLI will prompt the required information to generate a `ui5-deploy.yaml` required for the `deploy-to-abap` task.
+
+#### Deployment to Cloud Foundry (CF)
+For the deployment to CF, an MTA configuration will be created. The command allows to create a new configuration i.e. a new `mta.yaml` file or updates an existing `mta.yaml` with the information required for deployment. After successfully creating the configuration, running `npm run build` in the MTA directory that contains the application will try to build a deployable mtar file that can then be deployed to CF with `npm run deploy`.
+
+**Pre-requisites:**
+
+* Availablity of the [`mta`](https://github.com/SAP/cloud-mta) executable in the path.
+Use `npm i -g mta` to install globally
+* Availability of Cloud Foundry CLI tools. Installation instructions: https://docs.cloudfoundry.org/cf-cli/install-go-cli.html
+* Availability of CF multiapps plugin. Installation instructions: https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/27f3af39c2584d4ea8c15ba8c282fd75.html
+* A correctly configured destination to the backend system
+* User authorization on CF to deploy
+
+#### Artifacts & configuration created
+
+Running the command/task, results in a directory structure that looks like this:
+```
+mta_directory
+|_ application_directory
+   |_ ...
+   |_ webapp
+      |_ ...
+      |_ manifest.json
+   |_ ui5.yaml
+|_ cf
+   |_ deployer
+   |_ router
+   |_ flp (optional)
+...
+|_ package.json
+|_ mta.yaml
+```
+#### Information required to generate the configuration
+##### Location of MTA Directory
+The tool finds the nearest parent directory that contains a `mta.yaml` and offers that as the MTA directory. Failing that, it defaults to the parent directory of the application.
+
+##### Destination
+Destination configured to connect to the backend on Cloud Foundry. If there's a setting in `ui5.yaml`, that value is offered as the default.
+
+##### Prefix
+Prefix used for the ID of the MTA and the service names. It defaults to the namespace of the app. If a namespace is not found, it defaults to `test`. Please choose a prefix so that the service names are unique to your MTA. Otherwise deployment by multiple people will overwrite the same service.
+
+At the end of the generation, it's possible to optionally generate Fiori Launch Pad configuration (default: no).
+
+### fiori add flp-config - Fiori Launchpad configuration generation
+It's possible to create configuration and artifacts required to run the application in an SAP Fiori Launchpad. Depending on the target, the command will update either only the application `manifest.json` with the required inbound navigation property, or will also enhance the MTA configuration to contain a standalone FLP on CF.
 
 
 ## FAQ

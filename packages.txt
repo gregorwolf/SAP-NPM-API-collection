@@ -139,6 +139,7 @@
 @sap/cloud-sdk-vdm-planning-category-service
 @sap/cloud-sdk-vdm-process-order-confirmation-service
 @sap/cloud-sdk-vdm-process-order-confirmation-v2-service
+@sap/cloud-sdk-vdm-process-order-v2-service
 @sap/cloud-sdk-vdm-process-orders-service
 @sap/cloud-sdk-vdm-product-allocation-object-service
 @sap/cloud-sdk-vdm-product-allocation-sequence-service
@@ -153,7 +154,6 @@
 @sap/cloud-sdk-vdm-production-orders-service
 @sap/cloud-sdk-vdm-production-routing-service
 @sap/cloud-sdk-vdm-production-supply-area-service
-@sap/cloud-sdk-vdm-production-volume-capture-service
 @sap/cloud-sdk-vdm-profit-center-service
 @sap/cloud-sdk-vdm-purchase-contract-service
 @sap/cloud-sdk-vdm-purchase-order-service
