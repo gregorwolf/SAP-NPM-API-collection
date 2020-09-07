@@ -4,6 +4,15 @@ All notable changes to this project are documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## [1.0.15] - 2020-08-31
+### Fixed
+- Data source discovery for Cloud URLs in SAP Business Application Studio no longer requires the ping service to be exposed.
+
+### Added
+- A default saved system name will now be suggested when adding a new SAP system.
+- The List Report Object Page V2 and V4 template options have been merged.  The generator now detects the version of the service provided and generates the required application type.
+- The minimum version of UI5 supported for V4 applications has been updated to 1.81.0
+
 ## [1.0.14] - 2020-08-20
 ### Fixed
 - The Launch configuration entries for generated projects in VSCode should now work on Windows.  Please ensure you have updated to version 1.48.0 of Microsft Visual Studio Code.

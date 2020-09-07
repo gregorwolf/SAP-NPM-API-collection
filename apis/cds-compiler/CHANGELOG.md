@@ -3,8 +3,99 @@
 <!-- markdownlint-disable MD024 -->
 <!-- (no-duplicate-heading)-->
 
-Note: `beta` fixes, changes and features are usually not listed in this ChangeLog.
+Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
+
+## Version 1.39.0 - 2020-08-26
+
+### Added
+
+- If the first CDS source (CDL or CSN) provided to the compiler
+  has a `namespace` declaration/property, then
+  that namespace name is put into the property `namespace` of the returned CSN.
+- An event payload type can now be defined with a type/entity reference or
+  or projection (instead of providing the elements directly).
+- Aspects can now be included when specifying the elements of an event payload type,
+  as it is known for type, entity and aspect definitions.
+
+### Fixed
+
+- Fix a bug in explicit JOIN cardinality CDL parsing
+- to.hdbcds/hdi/sql: Identifiers are checked and warnings are raised if the identifier exceeds a length limitation which would result in a deployment error.
+- OData: Service, entity and element identifiers are checked and warnings are raised if an identifier is not compliant with the OData specification.
+
+## Version 1.38.0 - 2020-08-25
+
+### Changed
+
+- CSN: The property `payload` of an `event` has been renamed to `elements`.
+
+### Fixed
+
+- to.hdbcds/hdi/sql: Correctly handle local-scope refs in on-conditions when flattening structures.
+- Run checks for associations inside of `many` or `array of` only on entities and views.
+
+
+## Version 1.37.0 - 2020-08-21
+
+### Added
+
+- Projections columns can now use expressions like select items,
+  both for `entity … as projection on` and `extend projection … with`.
+- OData: `array of <structure>` or `many <structure>` is now allowed in OData V4, flat format.
+
+### Changed
+
+- to.hdbcds/hdi/sql:
+  + Messages of id "query-no-undefined" are now raised as errors.
+  + Aspects/types/abstract entities containing anonymous aspect compositions
+    must not be used as types and are removed during transformation.
+
+### Fixed
+
+- to.cdl: Events are rendered.
+- to.cds: Anonymous aspect composition are now rendered correctly.
+- to.hdbcds/hdi/sql:
+  + Events are ignored.
+  + local-scope references in on-conditions are now handled correctly during flattening.
+  + Removed duplicate messages.
+- A model with multilevel `composition of <aspect>` (spread across several aspect declarations,
+  composing one another) is now processed successfully with the OData backend.
+- The CSN parser supports explicit join cardinalities.
+- Prefix a `@assert.unique` table constraint with the table name to avoid name clashes.
+
+
+## Version 1.36.0 - 2020-08-07
+
+### Added
+
+- Query select items can now be declared to be virtual.
+
+- CQL now allows to specify a join cardinality. Allowed are any combinations of  
+  `{ [ EXACT ] ONE | MANY } TO { [ EXACT ] ONE | MANY }` for  
+  `{ INNER | { LEFT | RIGHT | FULL } [ OUTER ] }` joins.  
+  The cardinality is added in the for HANA generated `CREATE VIEW` statements.
+
+- Support the creation of unique constraints by assigning `@assert.unique.<constraintName>` to
+  non-query entities or query entities annotated with `@cds.persistence.table`. The value of the
+  annotation is an array of paths referring to elements in the entity. The path leaf may
+  be an element of a scalar, structured or managed association type. Individual foreign keys or
+  unmanaged associations can not be accessed. In case the path points to a structured element,
+  the unique constraint will contain all columns stemming from the structured type. In case
+  the path points to a managed association, the unique constraint will contain all foreign key
+  columns stemming from this managed association.
+  For HANA a `UNIQUE INVERTED INDEX` and for SQLite a `named unique table constraint` is generated.
+
+### Changed
+
+- OData: Update vocabularies 'Common', 'UI'
+- The association to join transformation treats foreign key accesses with priority. If a foreign key
+  of a managed association can be accessed without joins, no joins are generated.
+  The priority handling can be turned of with option `joinfk`.
+
+### Fixed
+
+- Semantic location in messages is now more precise.
 
 ## Version 1.35.0 - 2020-07-31
 

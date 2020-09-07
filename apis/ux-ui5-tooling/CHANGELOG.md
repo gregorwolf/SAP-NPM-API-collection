@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.16] - 2020-09-02
+
+### Fixed
+* Fix for UI5 parameters provided as string instead of array
+* Fix for caching of ui5 sources
+* Correct documentation for command to add deployment config
+* Improvement for command prompt when creating deployment config for mta project
+
+### Added
+* Updated documentation with info relevant to Cloud Foundry
+
 ## [1.0.15] - 2020-08-12
 
 ### Fixed

@@ -6,10 +6,47 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.3.0 - 2020-08-31
+
+### Added
+
+- Support for Continuation Local Storage (CLS)
+- Support for access of structured property values in odata
+- Support for expand for external OData service in REST
+
+### Fixed
+
+- HTTP Status Code for `GET` requests on `navigation-to-many` in combination with `$filter`
+
+## Version 2.2.0 - 2020-08-26
+
+### Added
+
+- Path navigations with keys for managed to-one association in orderby work on sqlite e.g. `$orderby=author/id`
+- Support for `cds.PrivilegedUser`
+- Implicit sorting for OData singletons 
+
+### Fixed
+
+- Deep update could potentially insert wrong data
+- Deep insert was also done on empty composition-to-many
+- POST via multiple navigations with odata containment activated
+- localized view with parameters
+- implicit sorting order
+- Custom SELECT CQN with join/union in draft enabled service failed for non draft entities
+- `req.user.attr` access during @restrict processing with @sap/xssec^3
+
+## Version 2.1.9 - 2020-08-26
+
+### Fixed
+
+- hdb reconnect on idle timeout
+
 ## Version 2.1.7 - 2020-08-17
 
 ### Added
 
+- Composite-Messaging
 - Support for Message Queuing
 - Support for `@sap/xssec^3`
 - `@Common.numericSeverity` in error response

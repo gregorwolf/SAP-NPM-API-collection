@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and
 this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.13.0 - 2020-09-02
+
+## Added
+- `aspect` to core type system
+- `Association` class now knows `isAssociation`, `isComposition`, and `isManagedComposition`
+- `any` has now a `path` getter
+
+
 ## Version 2.12.2 - 2020-07-31
 
 ## Added

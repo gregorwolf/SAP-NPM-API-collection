@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.44 - 2020-09-03
+
+### Fixed
+
+- Rename proxy option 'standalone' to 'mtxRemote'
+- Allow proxy option 'mtxEndpoint' to be absolute http url
+- Support for 'cds.env' for proxy options under section 'cds.cov2ap'
+- Update README and JSDoc documentation
+
+## Version 1.4.43 - 2020-09-01
+
+### Fixed
+
+- Fix \$filter function conversion
+- Fix remote CSN fetch for standalone proxy
+- Fix '@sap.aggregation.role' annotation detection
+- Annotation '@cov2ap.analytics' to suppress analytical conversion
+- Update README documentation
+
 ## Version 1.4.42 - 2020-08-05
 
 ### Fixed

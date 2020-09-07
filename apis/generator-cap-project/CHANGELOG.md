@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.0] - 2020-09-01
+
+### Changed
+- Update `yeoman-generator` dependency.
+- Project names must not contain an underscore to ensure compatibility with Maven.
+- Added human readable display name.
+
 ## [1.1.3] - 2020-07-16
 
 ### Fixed

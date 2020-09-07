@@ -6,6 +6,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+
+## Version 3.0.0 - 2020-08-31
+
+### Changed
+- `cds watch` now uses version 5 of `sqlite3`
+- `cds watch` does not use `nodemon` anymore.
+  > You can continue using `cds watch` with `nodemon` by installing `nodemon` globally and setting env variable `CDS_USE_NODEMON` to true.
+- `cds add mta` for Java applications now determines app details like name, version etc. based on `pom.xml` and no longer from `package.json`.
+
+### Fixed
+- `cds add mta` now configures the Service Manager for SaaS applications. The Instance Manager is no longer used.
+- `cds import` no longer writes an empty file if the source and the target edmx files are the same
+- `cds import` yields better error messages if the input file does not exists or is invalid
+- `cds import` no longer writes a Windows-specific path to `package.json`
+- `cds init --add java` shows better error message if Maven is not installed.
+
 ## Version 2.0.8 - 2020-08-07
 
 ### Changed

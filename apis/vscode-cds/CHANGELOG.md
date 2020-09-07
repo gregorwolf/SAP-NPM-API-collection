@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 2.6.0 - 2020-09-01
+
+### Added
+- various commands for generating preview files from a cds file
+- Code completion proposes identifiers not yet imported in current file and generates corresponding `using` statement
+  - user setting: minimum number of characters required to propose those identifiers (`cds.completion.workspaceSymbols.minPrefixLength`). Default is -1 (=off)
+  - user setting: limit number of global identifiers (`cds.completion.workspaceSymbols.maxProposals`). Default is -1 (=unlimited)
+- Code formatting: options `whitespaceBeforeColon` and `whitespaceAfterColon` are now supported inside `Composition` structs
+- Code formatting: support configuration of alignment of `Composition` structs (option `alignCompositionStructToRight`)
+
+### Changed
+- updated npm modules
+    + `cds-lsp 3.5.0`
+    + `cds-compiler 1.39.0`
+
 ## Version 2.5.0 - 2020-08-05
 
 ### Changed

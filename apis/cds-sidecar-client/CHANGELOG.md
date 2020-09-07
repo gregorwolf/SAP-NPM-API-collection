@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 1.1.8 - 2020-08-26
+
+### Added
+
+- Login/logout: Enable entering the passcode interactively if not given
+
+### Fixed
+
+- Activate: Output additional information in case of error on job-result retrieval
+- Login/logout: Determine running CF apps according to actual number of instances
+- Login/logout: Clarify error messages
+
 ## Version 1.1.7 - 2020-08-17
 
 ### Fixed

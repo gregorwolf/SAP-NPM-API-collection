@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.5.0 - 2020-09-01
+
+### Added
+- Code completion proposes identifiers not yet imported in current file and generates corresponding `using` statement
+  - user setting: minimum number of characters required to propose those identifiers (`cds.completion.workspaceSymbols.minPrefixLength`). Default is -1 (=off)
+  - user setting: limit number of global identifiers (`cds.completion.workspaceSymbols.maxProposals`). Default is -1 (=unlimited)
+- Code formatting: options `whitespaceBeforeColon` and `whitespaceAfterColon` are now supported inside anonymous structure types
+- Code formatting: support configuration of alignment of COMPOSITION structs (option `alignCompositionStructToRight`)
+
+### Changed
+- consume cds-compiler 1.39.0
+
 ## 3.4.3 - 2020-08-05
 
 ### Changed

@@ -5,10 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.5.1 - 2020-08-25
+
+### Updated dependencies
+- deps: lodash@4.17.20
+- deps: sap/logging@5.3.1
+- deps: cf-nodejs-logging-support@6.4.3
+
+### Fixed
+- Avoid crash if user provided service without credentials
+- Don't forward auth token to connectivity in service2approuter flow if destination.forwardToken = false
+
 ## 8.5.0 - 2020-08-10
 
 ### Updated dependencies
-
 - deps: @sap/audit-logging@3.1.1
 - deps: request@2.88.2
 - deps: @sap/xssec@3.0.9

@@ -6,7 +6,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 1.0.17 - 2020-08-18
+## Version 1.0.19 - 2020-09-03
+
+## Version 1.0.18 - 2020-08-28
+
+### Added
+- The asynchronous model update API now accepts a callback URL (header field `MTX_STATUS_CALLBACK`) that
+  is called when the update is finished
+- A new REST API for activating extensions from csn sources was added. Use `POST /mtx/v1/model/activateCsn/` 
+with a csn JSON as payload. Example:
+
+```
+{
+        "extensionCsn": "{\"extensions\":[{\"extend\":\"sap.capire.bookshop.Books\",\"elements\":{\"Z_ISBN_101\":{\"type\":\"cds.String\"}}}]}",
+        "tenant": "213a722e-ed91-43e2-adb4-3885b5e9d63e"
+}
+```
+
+
+### Fixed
+- The sequence of extensions added through `cds.mtx.activate()` is now stable, even after 
+a base model update.
+
+## Version 1.0.17 - 2020-08-19
 
 ### Fixed
 - Asynchronous basemodel upgrade and job status requests that failed when using @sap/cds@^4 are now fixed

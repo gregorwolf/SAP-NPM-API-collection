@@ -154,6 +154,7 @@
 @sap/cloud-sdk-vdm-production-orders-service
 @sap/cloud-sdk-vdm-production-routing-service
 @sap/cloud-sdk-vdm-production-supply-area-service
+@sap/cloud-sdk-vdm-production-volume-capture-service
 @sap/cloud-sdk-vdm-profit-center-service
 @sap/cloud-sdk-vdm-purchase-contract-service
 @sap/cloud-sdk-vdm-purchase-order-service
@@ -172,7 +173,6 @@
 @sap/cloud-sdk-vdm-report-ehs-incident-service
 @sap/cloud-sdk-vdm-request-for-quotation-service
 @sap/cloud-sdk-vdm-reservation-document-service
-@sap/cloud-sdk-vdm-sales-and-distribution-document-reason-service
 @sap/cloud-sdk-vdm-sales-contract-service
 @sap/cloud-sdk-vdm-sales-district-service
 @sap/cloud-sdk-vdm-sales-doc-with-credit-block-service
@@ -283,6 +283,7 @@
 @sap/ui5-builder-webide-extension
 @sap/ui5-jsdocs
 @sap/ux-specification
+@sap/ux-ui5-fe-mockserver-middleware
 @sap/ux-ui5-tooling
 @sap/vscode-cds
 @sap/wing-service-binding

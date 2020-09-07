@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.15.7] - 2020-09-01
+
+### Changed
+- Updated dependencies.
+
 ## [2.15.6] - 2020-08-04
 
 ### Fix

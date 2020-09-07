@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.1.2 - 2020-07-30
+
+### Fixed
+- Update `lodash` to 4.17.19
+
 ## 4.1.1 - 2019-07-11
 
 ### Fixed

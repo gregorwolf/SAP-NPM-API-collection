@@ -68,12 +68,19 @@ export function activate(context: vscode.ExtensionContext) {
 
 ## SWA Reports and Parameter Mapping
 The following fields can be used for creating SWA reports:  
-**eventType**: The event we are reporting happened ex. Generator Success  
-**user**: Hashed user ID unless privacy is activated then "NA"   
-**Custom event parameters**:  
-1. IAAS (aws,ali,azure)  
-2. Datacenter (stg10.int, cry10.int, ap21, prd40)  
-3. Version  
-4. Is SAP User  
-5. The unique caller ID that extensions put in param  
-6 - 9. Extension's custom events provided via 'track' API
+
+| SWA Field  | Origin |
+| ------------- | ------------- |
+| **eventType**  | The "myEvent" parameter sent via track API    |
+| **user**  | Hashed user ID unless privacy is activated, then "na"    |
+| **Custom event parameter 1**  | Event additional data 1, "custom event 1" sent via track API    |
+| **Custom event parameter 2**  | Event additional data 2, "custom event 2" sent via track API    |
+| **Custom event parameter 3**  | Event additional data 3, "custom event 3" sent via track API    |
+| **Custom event parameter 4**  | Event additional data 4, "custom event 4" sent via track API    |
+| **Custom event parameter 5**  | Event additional data 5, "custom event 5" sent via track API    |
+| **Custom event parameter 6**  | IAAS (aws,ali,azure), set by the lib automatically   |
+| **Custom event parameter 7**  | Datacenter (stg10.int, cry10.int, ap21, prd40), set by the lib automatically    |
+| **Custom event parameter 8**  | Version (currently not supported), set by the lib automatically    |
+| **Custom event parameter 9**  | Is SAP User where allowed, empty overwise, set by the lib automatically    |
+| **Custom event parameter 10**  | The unique caller ID "vsxPublisher.vsxPackageName", set by lib automatically  |
+

@@ -4,9 +4,33 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+# Version 4.1.9 - 2020-09-02
+
+## Added
+
+- `cds.PrivilegedUser`, e.g., for transactions with super user
+
+# Version 4.1.8 - 2020-09-02
+
+## Changed
+
+- The `node-cf` build task of `cds build` now removes file dependencies in `package.json` in the build output.  These are anyways not resolvable on CF, but are handy at build time to [refer to other CDS modules](https://github.com/SAP-samples/cloud-cap-samples/blob/6fdd91b8c810d4367aa6dfc0a91e06dc467686ed/bookshop/package.json#L6).
+- `cds deploy --to sqlite` can now cope with leading `#` comments in csv files
+- `cds version --all` now includes `@sap/cds-sidecar-client`
+
+## Fixed
+
+- `cds.entities` w/o namespace parameter now works properly when running out of a compiled model (aka `csn.json` aka 'on Cloud Foundry').
+- `cds deploy --to hana` now also handles SAP HANA Cloud services on trial, which are created by the `hana` broker (in contrast to the `hanatrial` broker which still provisions older SAP HANA instances).
+- `cds deploy --to hana` no longer uses `cf marketplace`, which has changed its parameters in CF CLI v7.
+- Fiori preview's html no longer provokes Javascript errors in the Fiori client.
+- For DB services of kind `sql` the service implementation is now set correctly in the cds configuration.  Previously, `sql` services got a `sqlite` implementation even if they were set to `hana` in production.
+- Custom event handlers that do not register with a path (only with event and function) no longer crash the runtime
+- In Typescript typings, the API declaration for `cds.load` and the `bootstrap` event is now fixed.
+
 # Version 4.1.7 - 2020-08-17
 
-## Added 
+## Added
 
 - Shortcut to class `cds.ApplicationService` in cds facade
 - Shortcut to class `cds.DatabaseService` in cds facade
@@ -65,7 +89,7 @@ Nevertheless, they are listed here for your reference.
 
 - **`cds build`** no longer creates service metadata for the UI service binding by default. For SAP Web IDE Full-Stack compatibility a corresponding metadata.xml is still generated.  A `fiori` build task has to be defined otherwise.
 
-- **`cds build` creates `hana` build results only** if either a corresponding build task has been configured or if kind `hana` or kind `sql` has been defined. A `production` build is required for the latter. A fallback is used for Web IDE Fullstack and legacy build configs.  
+- **`cds build` creates `hana` build results only** if either a corresponding build task has been configured or if kind `hana` or kind `sql` has been defined. A `production` build is required for the latter. A fallback is used for Web IDE Fullstack and legacy build configs.
 
 ## Added
 

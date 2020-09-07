@@ -4,15 +4,31 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.78.7] - 2020-08-25
+## [1.78.8] - 2020-08-28
 
 ### Added
 
+- importProject API: support of OVP and ALP templates
+
 ### Changed
+
+- Use @ui5/flexibility-utils for stringify/parse flex changes
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+- Synchronization of changes in manifest.json
+- Properties objectPageHeaderType and showDraftToggle are not shown anymore as part of app.json (JSON schema validation error)
+- Wrong ID at generated flex changes for object page table columns
+- Shows warning in case of invalid card name for overview page
+- Enhanced test coverage: objectPageHeaderAction
+- Sections not shown correctly in the page map for V4 applications
+- Manifest did not get updated in case of deletion of some of the properties from config file
+
+## [1.78.7] - 2020-08-25
 
 ### Fixed
 
