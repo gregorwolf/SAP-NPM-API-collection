@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.2.0 - 2020-08-10
+
+### Added
+- Add support for multiple data subjects in Data access messages, v2 API
+
 ## 3.1.1 - 2020-07-27
 
 ### Fixed

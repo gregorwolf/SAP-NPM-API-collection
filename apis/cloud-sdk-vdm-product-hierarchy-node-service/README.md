@@ -1,6 +1,6 @@
-# @sap/cloud-sdk-vdm-business-event-subscription-service
+# @sap/cloud-sdk-vdm-product-hierarchy-node-service
 
-This package contains the OData VDM for the Business Event Subscription Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Product Hierarchy Node Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

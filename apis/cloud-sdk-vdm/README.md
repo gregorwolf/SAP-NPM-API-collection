@@ -75,6 +75,8 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-inspection-method-service
 * @sap/cloud-sdk-vdm-inspection-plan-service
 * @sap/cloud-sdk-vdm-just-in-time-call-process-service
+* @sap/cloud-sdk-vdm-joint-operating-agreement-service
+* @sap/cloud-sdk-vdm-joint-venture-service
 * @sap/cloud-sdk-vdm-journal-entry-item-basic-service
 * @sap/cloud-sdk-vdm-joint-venture-billing-service
 * @sap/cloud-sdk-vdm-kanban-control-cycle-v2-service
@@ -140,7 +142,10 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-raw-substance-service
 * @sap/cloud-sdk-vdm-real-substance-service
 * @sap/cloud-sdk-vdm-recipe-service
+* @sap/cloud-sdk-vdm-real-estate-contract-service
 * @sap/cloud-sdk-vdm-reservation-document-service
+* @sap/cloud-sdk-vdm-responsibility-management-team-configuration-service
+* @sap/cloud-sdk-vdm-responsibility-management-team-service
 * @sap/cloud-sdk-vdm-request-for-quotation-service
 * @sap/cloud-sdk-vdm-sales-district-service
 * @sap/cloud-sdk-vdm-sales-organization-service
@@ -184,10 +189,22 @@ This package is an aggregation of the following packages:
 * @sap/cloud-sdk-vdm-legal-document-access-level-service
 * @sap/cloud-sdk-vdm-supplier-evaluation-score-service
 * @sap/cloud-sdk-vdm-external-job-scheduler-service
+* @sap/cloud-sdk-vdm-cash-security-deposit-service
 * @sap/cloud-sdk-vdm-business-event-subscription-service
 * @sap/cloud-sdk-vdm-business-event-queue-service
 * @sap/cloud-sdk-vdm-trial-balance-service
+* @sap/cloud-sdk-vdm-electronic-document-file-service
 * @sap/cloud-sdk-vdm-cost-center-test-service
+* @sap/cloud-sdk-vdm-fixed-asset-service
+* @sap/cloud-sdk-vdm-measurement-document-service
+* @sap/cloud-sdk-vdm-measuring-point-service
+* @sap/cloud-sdk-vdm-product-hierarchy-node-service
+* @sap/cloud-sdk-vdm-product-to-product-hierarchy-service
+* @sap/cloud-sdk-vdm-product-exclusion-service
+* @sap/cloud-sdk-vdm-production-substitution-service
+* @sap/cloud-sdk-vdm-settlement-document-type-service
+* @sap/cloud-sdk-vdm-settlement-document-service
+* @sap/cloud-sdk-vdm-settlement-document-process-type-service
 * @sap/cloud-sdk-vdm-commercial-project-detail-service
 * @sap/cloud-sdk-vdm-commercial-project-service
 

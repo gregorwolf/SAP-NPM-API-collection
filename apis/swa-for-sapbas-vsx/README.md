@@ -6,7 +6,7 @@ Wrapper for SWA meant to be used in Visual code and SAP Application Studio.
 ## Usage
 
 ### Installation
-TBD
+npm install @sap/swa-for-sapbas-vsx
 
 ### ENV
 Everything in the environment should be set up, if using in AppStudio please make sure [swa-chart](https://github.wdf.sap.corp/app-studio/swa-chart) is installed as a ws-ext

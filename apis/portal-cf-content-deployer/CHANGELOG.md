@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [4.12.0]
+### Fixed
+- ESLINT fixes
+
 ## [4.5.0]
 ### Added
 - Add developer license file

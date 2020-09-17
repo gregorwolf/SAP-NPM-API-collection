@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 2.1.1 - 2020-09-06
+
+### Updated dependencies
+- deps: archiver@5.0.0
+- deps: cf-nodejs-logging-support@6.4.3
+- deps: request@2.88.2
+
 ## 2.1.0 - 2020-04-21
 
 ### Added

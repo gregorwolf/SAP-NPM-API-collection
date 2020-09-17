@@ -8,6 +8,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.3.0] - 2020-09-15
+
+* Aggregation for "count":
+  * For explicit application the aggregation type "count" was not supported in the xsodata file. When
+    "aggregates always (COUNT of "Amount");" was used, a syntax error was thrown.
+  * For implicit aggregation, where the aggregation information is loaded from the calcviews measures (e.g. 
+    using "aggregates always;" without a property list in the *.xsodata file), wrongly "avg" was used as measure
+    type instead of "count".
+  * With this fix aggregation type "count" is now properly supported
+    * For explicit application: "aggregates always (COUNT of "Amount");" 
+    * For implicit aggregation: calcview measures "count" and "avg" are now supported property 
+      
+* Fix: If a temporary table is not properly dropped by the DB, a second drop step is performed to avoid errors 
+    when recreating the table.
+         
+
 ## [7.2.2] - 2020-08-20
 
 ## [7.2.1] - 2020-08-19

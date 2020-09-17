@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.3.1 - 2020-09-17
+
+### Fixed
+
+- Expand on entity with a backlink as a key
+
 ## Version 2.3.0 - 2020-08-31
 
 ### Added

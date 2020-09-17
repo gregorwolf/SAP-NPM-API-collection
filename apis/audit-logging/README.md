@@ -283,6 +283,9 @@ auditLog.read({ type: 'accessed-object-type', id: { key: 'value' } })
   .attachment({ id: '123' })
   .attachment({ id: '456', name: 'file.doc' })
   .dataSubject({ type: 'data-subject-type', id: { key: 'value' }, role: 'role' })
+  // multiple data subjects can also be provided in array format as following:
+  //  .dataSubjects([{ type: 'data-subject-type', id: { key: 'value0' }, role: 'role' },
+  //                 { type: 'data-subject-type', id: { key: 'value1' }, role: 'role' }])
   .accessChannel('UI')
   .tenant('tenantId')
   .by('John Doe')
@@ -294,7 +297,8 @@ auditLog.read({ type: 'accessed-object-type', id: { key: 'value' } })
 * `read` - takes a JavaScript object which identifies the object which contains the data being accessed. Should have `type` and `id` properties.
 * `attribute(attribute)` - takes an object which describes an attribute. Should have a `name` property and optionally a `successful` property. It is **mandatory** to provide at least one attribute.
 * `attachment(attachment)` - takes an object which describes an attachment (used if attachments or files are downloaded or displayed). Should have an `id` property and optionally a `name` property.
-* `dataSubject` - takes an object describing the owner of the personal data. Should have `type` and `id` properties. The `role` property is optional. `dataSubject` is **mandatory**.
+* `dataSubject` - takes an object describing the owner of the personal data. Should have `type` and `id` properties. The `role` property is optional. `dataSubject` or `dataSubjects` is **mandatory**.
+* `dataSubjects` - takes an array of data subject objects.
 * `accessChannel` - takes a string which specifies *channel* of access.
 * `tenant` - takes a string which specifies the tenant id.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.

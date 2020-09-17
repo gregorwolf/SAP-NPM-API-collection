@@ -6,9 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 1.0.19 - 2020-09-03
+## Version 1.0.20 - 2020-09-10
 
-## Version 1.0.18 - 2020-08-28
+### Fixed
+- Custom content upload using `/mtx/v1/model/updateCustomTenantContent` now also works 
+with cds 4
+
+## Version 1.0.19 - 2020-09-03
 
 ### Added
 - The asynchronous model update API now accepts a callback URL (header field `MTX_STATUS_CALLBACK`) that
@@ -23,10 +27,11 @@ with a csn JSON as payload. Example:
 }
 ```
 
-
 ### Fixed
 - The sequence of extensions added through `cds.mtx.activate()` is now stable, even after 
 a base model update.
+
+## Version 1.0.18 - 2020-08-28
 
 ## Version 1.0.17 - 2020-08-19
 

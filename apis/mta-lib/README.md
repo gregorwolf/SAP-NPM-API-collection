@@ -8,7 +8,7 @@ Javascript wrapper library for creating, reading and modifying multi-target appl
 
 ## Requirements
 
-[Cloud MTA](https://github.com/SAP/cloud-mta) minimal version should be [0.1.2](https://github.com/SAP/cloud-mta/releases/tag/v0.1.2).
+The [Cloud MTA](https://github.com/SAP/cloud-mta) minimal version should be [0.1.5](https://github.com/SAP/cloud-mta/releases/tag/v0.1.5).
 
 ## Sample usage
 
@@ -47,8 +47,3 @@ try {
     console.log(e);
 }
 ```
-
-
-## Release 
-
- 1.4.1
