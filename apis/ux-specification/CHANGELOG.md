@@ -4,6 +4,29 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.78.9] - 2020-09-11
+
+### Added
+
+- ODataV2: Support for manifest property `defaultLayoutTypeIfExternalNavigation` in Object Page
+- ODataV2: Support for manifest property `inlineDelete` for Resposive Tables in List Report and Object Page
+- Validity information for various properties
+
+### Changed
+
+- Pipeline settings now support intermediate staging
+- New version of Annotation Vocabularies Tools
+- Description for createWithFilters
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- Added different page type for V4 application
+- Import properties correctly for ALP
+
 ## [1.78.8] - 2020-08-28
 
 ### Added

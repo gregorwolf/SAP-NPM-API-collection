@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.17] - 2020-09-10
+### Fixed
+- The navigation property for a Worklist template now correctly supported.
+- Fixed issue in SAP Business Application Studio where generating an application without a workspace open would display an error.
+
+### Added
+- The Analytical List Page floorplan now provides a dropdown list of suitable qualifiers, rather than a free text input.
+- Connection error messaging improved in SAP Business Application Studio.
+
+## [1.0.16] - 2020-09-08
+### Fixed
+- Data source connections for Cloud URLs in SAP Business Application Studio support basic authentication.
 
 ## [1.0.15] - 2020-08-31
 ### Fixed

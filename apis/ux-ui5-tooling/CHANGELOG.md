@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.18] - 2020-09-09
+
+### Fixed
+* Fixed issue with re-deployment to ABAP
+* Updated version of the livereload package
+* Fixed configuration for Fiori Launchpad when deploying to Cloud Foundry
+
+### Added
+* Support deployment to S/4HANA Cloud
+
 ## [1.0.16] - 2020-09-02
 
 ### Fixed

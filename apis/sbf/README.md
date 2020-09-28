@@ -25,14 +25,14 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
 - [Usage](#usage)
   * [Create a simple service broker](#create-a-simple-service-broker)
     + [Prerequisites](#prerequisites)
+    + [Configure npm registry](#configure-npm-registry)
     + [Create a Node.js application](#create-a-nodejs-application)
     + [Add the Service Broker Framework](#add-the-service-broker-framework)
-    + [Add @sap/hdbext package](#add-saphdbext-package)
     + [Add a start command](#add-a-start-command)
-    + [Specify required Node.js version](#specify-required-nodejs-version)
     + [Create the service catalog](#create-the-service-catalog)
-    + [Create SBSS service instance](#create-sbss-service-instance)
+    + [Create XSUAA service instance](#create-xsuaa-service-instance)
     + [Create Audit log service instance](#create-audit-log-service-instance)
+    + [Generate secure broker password](#generate-secure-broker-password)
     + [Create application manifest](#create-application-manifest)
     + [Push the broker application](#push-the-broker-application)
     + [Register the service broker](#register-the-service-broker)
@@ -114,9 +114,15 @@ The following sections describe the steps to create a simple service broker appl
 
 #### Prerequisites
 You will need the following:
-- [Node.js](https://nodejs.org) v6 or later
+- [Node.js](https://nodejs.org) v10 or later
 - Cloud Foundry [CLI](https://github.com/cloudfoundry/cli#downloads)
 - Access to a Cloud Foundry installation where you can login via CLI and push applications
+
+#### Configure npm registry
+```sh
+npm config set @sap:registry https://npm.sap.com
+```
+You need to do this only once.
 
 #### Create a Node.js application
 Create a new directory and run this command inside it:
@@ -128,16 +134,7 @@ You will have to answer several questions. Upon completion, this command will cr
 #### Add the Service Broker Framework
 Download the _@sap/sbf_ package and add it to your service broker by executing the following command:
 ```sh
-npm install --save @sap/sbf
-```
-
-#### Add @sap/hdbext package
-Since version 4 of _@sap/sbf_, broker applications that use SBSS on HANA need to explicitly specify
-a dependency to the _@sap/hdbext_ package.
-
-Download the _@sap/hdbext_ package and add it to your service broker by executing the following command:
-```sh
-npm install --save @sap/hdbext
+npm install @sap/sbf
 ```
 
 #### Add a start command
@@ -180,23 +177,17 @@ Here is an example:
 
 Execute the following command to generate unique IDs for the services and their plans in the _catalog.json_ file:
 ```sh
-node_modules/.bin/gen-catalog-ids
+npx gen-catalog-ids
 ```
 
-#### Create SBSS service instance
-The service broker can use different services to generate and store credentials used later on by applications to access your reusable service. In this example we will use the SBSS credentials provider service.
+#### Create XSUAA service instance
+The service broker can use different services to generate and store credentials used later on by applications to access your reusable service. In this example we will use the XSUAA service as credentials provider.
 
-Create an SBSS service instance with the following command:
+Create an XSUAA service instance of plan _broker_:
 ```sh
-cf create-service hana sbss my-sbss
+cf create-service xsuaa broker xsuaa-broker
 ```
-Here `my-sbss` is the service instance name. You can use an arbitrary name here. Just use the same name in the following commands.
-
-Here SBSS is used on HANA. You can also use SBSS on PostgreSQL in a similar way.
-Check the SBSS documentation how to deploy it on PostgreSQL.
-
-**Note:** If you use SBSS on PostgreSQL, you must add `sbss` tag to its service instance.
-You can do this via `cf create-service` or `cf update-service` commands.
+Here `xsuaa-broker` is the service instance name. You can use an arbitrary name here. Just use the same name in the following commands.
 
 #### Create Audit log service instance
 The service broker is configured by default to audit log every operation. It needs information to connect to the Audit log service.
@@ -205,6 +196,12 @@ Create Audit log service with the following command:
 ```sh
 cf create-service auditlog standard broker-audit
 ```
+
+#### Generate secure broker password
+```sh
+npx hash-broker-password -b
+```
+This command will generate a random password and hash it.
 
 #### Create application manifest
 The service broker can be deployed on Cloud Foundry as a regular application.
@@ -216,14 +213,14 @@ applications:
   - name: my-broker
     memory: 128M
     services:
-      - my-sbss
+      - xsuaa-broker
       - broker-audit
     health-check-type: http
     health-check-http-endpoint: /health
     env:
-      SBF_BROKER_CREDENTIALS: >
+      SBF_BROKER_CREDENTIALS_HASH: >
         {
-          "broker-user": "broker-password"
+          "broker-user": "<broker-password-hash>"
         }
       SBF_SERVICE_CONFIG: >
         {
@@ -241,7 +238,11 @@ Here `my-broker` is the broker application name. You can use an arbitrary name h
 
 Some configurations are not known in advance and they should be set at deployment time via environment variables.
 
-One such configuration is the credentials used to call the service broker. These are provided via the environment variable *SBF_BROKER_CREDENTIALS*. Here you can use arbitrary credentials. Just make sure to use the same credentials when you register the broker and don't commit these in source control.
+One such configuration is the credentials used to call the service broker.
+These are provided via the environment variable *SBF_BROKER_CREDENTIALS_HASH*.
+Here you can use arbitrary credentials.
+Replace `<broker-password-hash>` with the hashed credentials from the previous step.
+Just make sure to use matching credentials when you register the broker and don't commit these in source control.
 
 Another deploy-time configuration is the service URL. It can be provided via the environment variable *SBF_SERVICE_CONFIG*. See [Additional Service Configuration](#additional-service-configuration) for details.
 
@@ -258,29 +259,25 @@ cf push --random-route
 #### Register the service broker
 For productive use a service broker is [registered globally](https://docs.cloudfoundry.org/services/managing-service-brokers.html#register-broker) so it can be used throughout Cloud Foundry, but this requires administrative permissions. During development and testing you can register the service broker only in your space. You do this with the following command:
 ```sh
-cf create-service-broker my-broker-name broker-user broker-password <broker-url> --space-scoped
+cf create-service-broker my-broker-name broker-user <plain-broker-password> <broker-url> --space-scoped
 ```
-You can get the broker URL via command `cf apps`.
+Replace here `<plain-broker-password>` with the plaintext password generated by _hash-broker-password_ script.
+
+You can get the broker URL via the command `cf apps`.
+
 Here `my-broker-name` is an arbitrary name used to distinguish this service broker from the rest.
 It is independent from the broker application name.
-
-If you get an error like the following, another service broker uses the same service id or plan id.
-```
-Service broker catalog is invalid: Service ids must be unique
-```
-In this case you can either change the service name and the IDs in the catalog or add a suffix to make them unique:
-```sh
-cf create-service-broker my-broker-name broker-user broker-password <broker-url>/<unique-suffix> --space-scoped
-```
-Replace here `<unique-suffix>` with some unique string like your user name or space name.
 
 #### Use the service broker
 Now you can use your service broker within the same space.
 For example you should see its services and plans via `cf marketplace` command.
 You can use the new services as regular [services](https://docs.cloudfoundry.org/devguide/services/) in Cloud Foundry.
+
 For example you can create a service instance via `cf create-service`.
-Then bind it to your application via `cf bind-service`. After that the application will get the URL and the credentials for your service in the environment variable [VCAP_SERVICES](https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html).
+Then you can bind it to your application via `cf bind-service`. After that the application will get the URL and the credentials for your service in the environment variable [VCAP_SERVICES](https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html).
 You can see them via the `cf env` command.
+
+You can also create a service key (`cf create-service-key`) and print its content (`cf service-key`) to see the credentials to access the service instance.
 
 You can also register the service broker in another space and use it there.
 To do that append a unique suffix to the broker URL:
@@ -649,18 +646,7 @@ When enabled, SBF uses X.509 certificates authentication with precedence over `c
 
 ### Unique service broker
 
-Normally for productive use a service broker is deployed once.
-Then a Cloud Foundry administrator registers it globally and makes it visible to certain organizations.
-
-Sometimes it is necessary to deploy the same broker with the same catalog multiple times,
-e.g. during development or testing. Then you can hit some Cloud Foundry constraints.
-
-These properties should be unique across Cloud Foundry:
-- Service broker name (not used in the broker itself)
-- Service broker URL
-- Service name
-- Service ID
-- Plan ID
+Sometimes for testing it is useful to register the same broker multiple times as if it were multiple different brokers.
 
 The service broker framework can append a suffix to each service name, ID and plan ID to make them unique.
 There are 3 options to provide this suffix (taken in the following order):
@@ -668,8 +654,8 @@ There are 3 options to provide this suffix (taken in the following order):
 ```sh
 cf create-service-broker broker-name user password https://broker.domain/suffix --space-scoped
 ```
-2. broker's constructor option `catalogSuffix`
-3. environment variable `SBF_CATALOG_SUFFIX`.
+2. broker's constructor option `catalogSuffix` (requires separate broker deployment)
+3. environment variable `SBF_CATALOG_SUFFIX` (requires separate broker deployment)
 
 If this suffix is specified, it is used only in the communication with service broker clients like Cloud Controller.
 Internally this suffix is removed, so all hook functions will get IDs without the suffix, just like in the service catalog.
@@ -677,21 +663,18 @@ Still in the marketplace the services will be visible with the suffix. So you wi
 
 The URL suffix should not contain URL special characters (`/`, `?`, etc.).
 
-Notice that the URL suffix allows you to register and use the same broker in multiple spaces, so you don't have to push it in each space.
 Assume you have pushed a service broker application and its URL is https://my-broker.domain.com/.
-Then you can register this broker in one space:
+Then you can register this broker using suffix `abc` in the URL:
 ```sh
 cf create-service-broker my-broker-abc user password https://my-broker.domain.com/abc --space-scoped
 ```
 This will append the suffix "abc" to each service name, ID and plan ID in the catalog in this space.
 
-You can also register the same broker in another space:
+You can also register the same broker with another suffix:
 ```sh
 cf create-service-broker my-broker-xyz user password https://my-broker.domain.com/xyz --space-scoped
 ```
 This will append the suffix "xyz" to each service name, ID and plan ID in the catalog in that space.
-
-In this case the same service will be visible with different names in different spaces.
 
 ### Secure outgoing connections
 
@@ -1457,7 +1440,7 @@ Each service object and each service plan object has a mandatory _id_ field. Its
 The _@sap/sbf_ package provides the `gen-catalog-ids` script which generates such GUIDs for you.
 
 ```sh
-node_modules/.bin/gen-catalog-ids [<path-to-catalog.json>]
+npx gen-catalog-ids [<path-to-catalog.json>]
 ```
 Here the file path argument is optional. If not provided, the command will use _catalog.json_ in the current directory.
 This command will insert a new GUID as _id_ property for each service and each plan in the catalog.
@@ -1473,7 +1456,7 @@ If you use service broker credentials in [hashed format](#service-broker-hashed-
 If you want to use some password of your own, run:
 
 ```sh
-node_modules/.bin/hash-broker-password
+npx hash-broker-password
 ```
 
 You will be prompted to enter the plaintext password and will be given its hash in format `sha256:<salt>:<hash-digest-of-salt+password>`.
@@ -1482,7 +1465,7 @@ Here `<salt>` is also generated by the script.
 Otherwise you can use the command in _batch_ mode:
 
 ```sh
-node_modules/.bin/hash-broker-password -b
+npx hash-broker-password -b
 ```
 
 That will generate a random 32-character plaintext password, random 32-byte salt and print them along with the hash.

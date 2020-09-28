@@ -1,6 +1,9 @@
 OData V4.0 Server Library
 =========================
 
+**Library is deprecated and will not be further developed and maintained.
+We recommend to use the [SAP Cloud application programming model](https://cap.cloud.sap/docs/) to build OData Services instead of the library.**
+
 ## Table of Contents
 
 - [Overview](#overview)

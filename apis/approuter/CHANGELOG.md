@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.5.2 - 2020-09-21
+
+### Fixed
+- Handle SameSite:None value in client side cookies (signature, locationAfterLogin and fragmentAfterLogin)
+
 ## 8.5.1 - 2020-08-25
 
 ### Updated dependencies

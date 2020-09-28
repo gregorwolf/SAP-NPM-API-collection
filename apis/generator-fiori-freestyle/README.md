@@ -39,7 +39,7 @@ OR
 
 Select the required template type to use when generating your application. The generator currently supports the following templates:
 
-**SAP Fiori elements**
+**SAP Fiori freestyle**
 - SAP Fiori Worklist Application 
 - SAP Fiori Master-Detail Application 
 - SAP Fiori Worklist Application OData V4

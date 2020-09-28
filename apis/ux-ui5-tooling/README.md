@@ -364,6 +364,22 @@ At the end of the generation, it's possible to optionally generate Fiori Launch 
 ### fiori add flp-config - Fiori Launchpad configuration generation
 It's possible to create configuration and artifacts required to run the application in an SAP Fiori Launchpad. Depending on the target, the command will update either only the application `manifest.json` with the required inbound navigation property, or will also enhance the MTA configuration to contain a standalone FLP on CF.
 
+### fiori deploy - performs the deployment of the application into an ABAP system
+Deploys an application to an ABAP frontend server.
+
+#### Options
+
+* `--config, c` - Path to config file (default: `ui5-deploy.yaml` in root folder of the project).
+* `--destination, -d` - The destination used in SAP Business Application Studio (default: destination from `ui5-deploy.yaml`).
+* `--url, -u` - The url of the service endpoint at the ABAP system (default: url from `ui5-deploy.yaml`).
+* `--client, -l` - The ABAP client (default: client from `ui5-deploy.yaml`).
+* `--transport, -t` - The id of the transport request (default: transport from `ui5-deploy.yaml`).
+* `--name, -n` - The application name (default: name from `ui5-deploy.yaml`).
+* `--package, -p` - The ABAP package (default: package from `ui5-deploy.yaml`).
+* `--description, -e` - The application description (default: description from `ui5-deploy.yaml`).
+* `--yes, -y` - Deploy without asking for confirmation.
+* `--failfast, -f` - Throw an error if something goes wrong and exit with a return code != 0.
+
 
 ## FAQ
 

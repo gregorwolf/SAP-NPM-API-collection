@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.8.3] - 2020-09-23
+
 ## [1.8.2] - 2020-06-17
 
 ### Fixed

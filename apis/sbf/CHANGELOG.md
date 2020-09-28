@@ -8,6 +8,18 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.2.2"></a>
+## 6.2.2 - 2020-09-24
+
+### Fixed
+- Updates to dependency versions
+
+<a name="6.2.1"></a>
+## 6.2.1 - 2020-07-30
+
+### Fixed
+- Updates to dependency versions
+
 <a name="6.2.0"></a>
 ## 6.2.0 - 2020-04-30
 
