@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.0.10 - 2020-10-01
+- The requests to the XSUAA are now available using the requests module also if you do not have a securityContext
+
 ## 3.0.9 - 2020-08-06
 - Set request library to version 2.88.2 because of security vulnerability
 
@@ -40,7 +43,7 @@ All notable changes to this project will be documented in this file.
 - Remove obsolete method requestTokenForClient (use requestToken)
 - Remove obsolete method getIdentityZone (getSubaccountId) 
 - Support for audience validation in token
-- remove of SAP_JWT_TRUST_ACL environment variable support (functionality now comes with audience validation)
+- remove of SAP_JWT_TRUST_ACL environment variable support (functionality now comes with audience validation); see also [here](https://jam4.sapjam.com/blogs/show/oEdyQO183plBoQdrvcPw2w).
 - remove depencency to node-jwt (ALPINE support)
 - restructure internal code for better maintainability
 

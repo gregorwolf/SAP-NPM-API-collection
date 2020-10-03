@@ -1,3 +1,11 @@
+## 2.2.7
+Fixes:
+- Renamed developer-license-3.1.txt to LICENSE
+
+## 2.2.6
+Features:
+- Use hana-client 2.4.202
+
 ## 2.2.5
 Features:
 - Use hana-client 2.4.182

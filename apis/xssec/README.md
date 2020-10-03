@@ -7,7 +7,7 @@ Authentication for node applications in XS Advanced relies on a special usage of
 
 Normally, your node application will consist of several parts, that appear as separate applications in your manifest file, e.g. one application part that is responsible for the HANA database content, one application part for your application logic written e.g. in node.js (this is the one that can make use of this XS Advanced Container Security API for node.js), and finally one application part that is responsible for the UI layer (this is the one that may make use of the application router functionality). The latter two applications (the application logic in node.js and the application router) should be bound to one and the same UAA service instance. This has the effect, that these two parts can use the same OAuth client credentials.
 
-When your business users access your application UI with their broser, the application router redirects the browser to the UAA where your business users need to authenticate. After successful authentication, the UAA sends - again via the business user's browser - an OAuth authorization code back to the application router. Now the application router sends this authorization code directly (not via the browser) to the UAA to exchange it into an OAuth access token. If the access token is obtained successfully, the business user has logged on to the UI part of your application already. In order to enable your UI to pass this authentication on to the node.js application part, you need to ensure that the destination to your node.js application part is configured such that the access token is actually sent to the node.js part ("forwardAuthToken": true).
+When your business users access your application UI with their browser, the application router redirects the browser to the UAA where your business users need to authenticate. After successful authentication, the UAA sends - again via the business user's browser - an OAuth authorization code back to the application router. Now the application router sends this authorization code directly (not via the browser) to the UAA to exchange it into an OAuth access token. If the access token is obtained successfully, the business user has logged on to the UI part of your application already. In order to enable your UI to pass this authentication on to the node.js application part, you need to ensure that the destination to your node.js application part is configured such that the access token is actually sent to the node.js part ("forwardAuthToken": true).
 
 In order to authenticate this request, which arrives at the node.js backend, sap-xssec offers two mechanisms: Firstly, you can use the XS Advanced Container Security API directly to validate the access token. Secondly, you can make use of the passport strategy that is contained in module sap-xssec as another convenient way how to handle the access token. In the following, both options are described followed by the sap-xssec API description.
 
@@ -43,7 +43,7 @@ If you want to enable another (foreign) application to use some of your applicat
 
 ## Usage of the XS Advanced Container Security API in your node.js Application
 
-In order to use the capabilities of the XS Advanced container security API,  add the module "sap-xssec" to the dependencies section of your application's package.json.
+In order to use the capabilities of the XS Advanced container security API, add the module "sap-xssec" to the dependencies section of your application's package.json.
 
 To enable tracing, you can set the environment variable DEBUG as follows: `DEBUG=xssec:*`.
 
@@ -233,7 +233,8 @@ Note that this example assumes additional test configuration in the file `defaul
 
 ### Usage in Docker
 
-If you intend to use XS Advanced Container Security inside a Docker image make sure to use a base image other than **alpine**. The alpine base system is lacking needed symbols for system calls.
+In versions <= 3.0.0 there was **no** support for alpine base images.
+But since verion >= 3.0.0 the xssec library has no dependency to a native library anymore. So it is now **fully compatible** with alpine images.
 
 ## API Description
 
@@ -354,6 +355,10 @@ Parameters:
 ### getSubaccountId
 
 * returns the subaccount id that the access token has been issued for.
+
+### getZoneId
+
+* returns the identity zone that the access token has been issued for.
 
 ### getExpirationDate
 

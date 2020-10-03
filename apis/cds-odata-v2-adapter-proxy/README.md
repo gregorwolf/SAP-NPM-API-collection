@@ -177,11 +177,24 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
 All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
 under section `cds.cov2ap` and accessed via `cds.env`.
 
+Option `cds.env.odata.v2proxy.urlpath` is available to specify an OData V2 proxy url path
+different from default `/v2` for CDS core.
+
 ### CDS Annotations
 
 The following CDS OData V2 Adapter Proxy specific annotations are supported:
 
-- `@cov2ap.analytics`: Suppress analytics conversion for the annotated entity, if set to `false`.
+- `@cov2ap.analytics: false`: Suppress analytics conversion for the annotated entity, if set to `false`.
+- `@cov2ap.deltaResponse: 'timestamp'`: Delta response '\_\_delta' is added to response data of annotated entity with timestamp information.
+
+### CDS Modelling
+
+CDS supports modelling features that are not compatible with OData V2 standard:
+
+- **Structured Types:** Usage of `cds.odata.format: 'structured'` is not supported in combination with OData V2
+- **Arrayed Types:** Usages of `array of` or `many` in entity element definitions lead to CDS compilation error: `Element must not be an "array of" for OData V2`
+
+To provide an OData V2 service based on the CDS OData V2 Adapter Proxy, those CDS modelling features must not be used.
 
 ## Logging
 
@@ -215,6 +228,7 @@ Details can be found at [@sap/logging](https://www.npmjs.com/package/@sap/loggin
 - Tracing Support
 - Logging Correlation
 - ETag Support (Concurrency Control)
+- Delta Responses
 
 ## OData V2/V4 Delta
 

@@ -58,9 +58,17 @@ in XS Classic returns `undefined` while in XS Advanced it returns the column val
   * columns with numeric names which are within the range of possible column indices
   are non-enumerable in XS Advanced.
 * Values of INOUT/OUT procedure parameters are retrieved using upper case parameter names.
+* It is possible to execute a `CALL` procedure statement with `$.hdb.Connection.executeQuery` or `$.hdb.Connection.executeUpdate`.
+Output parameters cannot be retrieved from the result of such a call,
+only the first output table is returned (if there are any output tables).
+**Note** that this is not supported in XS Classic and is not recommended to be used in _@sap/xsjs_.
+`$.hdb.Connection.loadProcedure` or `$.db.Connection.prepareCall` should be used instead.
 
 ## Jobs API ($.jobs)
-* `$.jobs.Job` - `sqlcc` property in the constructor parameter is not supported
+* All jobs (defined in `.xsjob` files) are active by default
+* `$.jobs.Job`
+  * `sqlcc` property in the constructor parameter is not supported
+  * `getConfiguration` method is not supported
 * In XS Classic the ID of a job schedule is a number, while in XSJS it is a uuid (a string with 36 characters)
 * In XSJS only a Date object is accepted for a date/time property, while XS Classic accepts also an object with `value` and `format` properties allowing custom date formats
 * The `JobLogObject` does not support the following properties:

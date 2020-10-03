@@ -8,6 +8,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.3.3] - 2020-10-01
+
+### Fixed
+
+Commit on drop of temporary tables added.
+
+
+## [7.3.2] - 2020-09-30
+
+## [7.3.1] - 2020-09-29
+
+### Changed 
+
+* Improved error messages.
+
 ## [7.3.0] - 2020-09-15
 
 * Aggregation for "count":
@@ -23,11 +38,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 * Fix: If a temporary table is not properly dropped by the DB, a second drop step is performed to avoid errors 
     when recreating the table.
          
-
-## [7.2.2] - 2020-08-20
-
-## [7.2.1] - 2020-08-19
-
 ## [7.2.0] - 2020-08-19
 
 * Improve logging infrastructure

@@ -285,6 +285,7 @@
 @sap/odata-commons
 @sap/odata-server
 @sap/odata-v4
+@sap/open.fe
 @sap/pdms-sdk
 @sap/portal-cf-content-deployer
 @sap/sbf
