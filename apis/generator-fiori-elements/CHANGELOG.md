@@ -3,6 +3,20 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.18] - 2020-09-25
+### Fixed
+- V4 CAP projects can now retrieve the relevant CAP services to use during project generation.
+- Removed erroneous error messages in the console during application generation for CAP projects.
+- Performance improvements to the generation time.
+
+### Added
+- OData V4 support in the List Report Object Page floorplan and Analytical List Page floorplan.
+- 'Select Qualifier' dropdown not displayed for the Analytical List Page floorplan unless the chosen main entity supports it.
+- Mandatory fields in the generator are now represented with a red asterisk.
+- For V2 services, when no optional namespace is provided, the generated annotations file will use the default namespace of 'local'.
+- List report pages now have the 'useDateRange' manifest property set to 'true' by default.  See https://sapui5.hana.ondemand.com/#/topic/fef65d03d01a4b2baca28983a5449cf7.html for further details.
+- Object pages now have the 'defaultLayoutTypeIfExternalNavigation' set to 'MidColumnFullScreen' by default.  See https://sapui5.hana.ondemand.com/#/topic/1d4a0f94bfee48d1b50ca8084a76beec.html for further details.
+
 ## [1.0.17] - 2020-09-10
 ### Fixed
 - The navigation property for a Worklist template now correctly supported.

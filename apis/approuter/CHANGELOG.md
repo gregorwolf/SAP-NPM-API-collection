@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.5.3 - 2020-10-06
+
+### Fixed
+- Do not forward SAP-Connectivity-Authentication header in onPremise flows if destination authentication type is NoAuthentication
+
 ## 8.5.2 - 2020-09-21
 
 ### Fixed

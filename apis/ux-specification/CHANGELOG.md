@@ -4,12 +4,45 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.78.10] - 2020-09-28
+
+### Added
+
+- Table columns now have a description that appears on hover, showing the column header title as visible in the application at run-time.
+This description is also visible at the input help (LSP) when chosing a column at any configuration file.
+- OData V4: Schemas for Analytical List Page
+
+### Changed
+
+- V4 table settings:
+    a)  There had been two possible representations for 'creationMode': a simple string, or an object with multiple properties.
+        As this led to confusion in the UI (having the same property twice in the outline), we streamlined this to only have the object representation; any existing string representation that gets detected in the manifest will be implicitly converted to an object for the configuration file.
+    b) The same approach was also applied to 'personalization': here, any boolean value of the manifest will be converted to an object.
+    c) The 'personalization' property has an additional property 'filter'.
+    d) The enum type for selectionMode has a new option 'Auto' (for further information refer to the inline description at the configuration file).
+- Analytical List Page OData V2: showGoButtonOnFilterBar property moved to **filterbar** section in config
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- Property displayShape of Analytical List Page was not imported correctly.
+- Generate correct app specific schema for ALP in V4
+- Generation of app specific schemas generally ran into exceptions for apps without LineItem or Facet annotation.
+To fix this, the schema generation got changed so that it runs over the existing pages as registered in manifest.json, instead of being based on the LineItem and Facet annotations.  
+
+### Quality
+
+- Test coverage increased
+
 ## [1.78.9] - 2020-09-11
 
 ### Added
 
-- ODataV2: Support for manifest property `defaultLayoutTypeIfExternalNavigation` in Object Page
-- ODataV2: Support for manifest property `inlineDelete` for Resposive Tables in List Report and Object Page
+- OData V2: Support for manifest property `defaultLayoutTypeIfExternalNavigation` in Object Page
+- OData V2: Support for manifest property `inlineDelete` for Resposive Tables in List Report and Object Page
 - Validity information for various properties
 
 ### Changed

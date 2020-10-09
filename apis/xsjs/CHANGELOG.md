@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.0.6"></a>
+## 6.0.6 - 2020-10-02
+
+### Fixed
+- Update _@sap/hana-client_ to v2.5.109
+- Update _@sap/xsodata_ to v7.3.3
+- Update _lodash_ to v4.17.20
+
 <a name="6.0.5"></a>
 ## 6.0.5 - 2020-08-14
 

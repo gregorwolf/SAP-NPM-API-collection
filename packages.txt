@@ -20,11 +20,6 @@
 @sap/cds-sql
 @sap/cds-sqlite
 @sap/cf-tools
-@sap/cloud-sdk-analytics
-@sap/cloud-sdk-core
-@sap/cloud-sdk-generator
-@sap/cloud-sdk-test-util
-@sap/cloud-sdk-util
 @sap/cloud-sdk-vdm
 @sap/cloud-sdk-vdm-accounting-document-service
 @sap/cloud-sdk-vdm-activity-type-service
@@ -302,6 +297,7 @@
 @sap/ui-annotations
 @sap/ui5-builder-webide-extension
 @sap/ui5-jsdocs
+@sap/ux-cds-odata-language-server-extension
 @sap/ux-specification
 @sap/ux-ui5-fe-mockserver-middleware
 @sap/ux-ui5-tooling

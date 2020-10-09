@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.19] - 2020-09-23
+### Fixed
+* Connectivity service information was missing from the generated mta.yaml for destinations that require it for deployment 
+
+### Added
+* Support for specifying username/password provided in an environment variable and passing these as CLI arguments, instead of entering these in ui5.yaml file for deployment
+* Provide API to write flex changes into the user's workspace
+
 ## [1.0.18] - 2020-09-09
 
 ### Fixed

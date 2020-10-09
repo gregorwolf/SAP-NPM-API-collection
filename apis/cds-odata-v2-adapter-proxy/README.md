@@ -1,14 +1,14 @@
 # @sap/cds-odata-v2-adapter-proxy (cov2ap)
 
-[CDS OData V2 Adapter Proxy](https://www.npmjs.com/package/@sap/cds-odata-v2-adapter-proxy) for [CDS OData V4 Services](https://cap.cloud.sap/docs/)
+[CDS OData V2 Adapter Proxy](https://www.npmjs.com/package/@sap/cds-odata-v2-adapter-proxy) for [CDS OData V4 Services](https://cap.cloud.sap/docs/).
 
-Based on the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap/docs/)
+Exposes a full-fledged OData V2 service, converting OData V2 requests to CDS OData V4 service calls and responses back to OData V2.
+
+Runs in context of the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap/docs/)
 using CDS Node.js module [@sap/cds](https://www.npmjs.com/package/@sap/cds) or CDS Java modules
 [com.sap.cds](https://mvnrepository.com/artifact/com.sap.cds).
 
 ## Getting Started
-
-> Only available SAP internally!
 
 - Clone repository
 - Unit Tests: `npm test`
@@ -16,6 +16,8 @@ using CDS Node.js module [@sap/cds](https://www.npmjs.com/package/@sap/cds) or C
   - Service: `http://localhost:4004/v2/main`
   - Metadata: `http://localhost:4004/v2/main/$metadata`
   - Data: `http://localhost:4004/v2/main/Header?$expand=Items`
+
+> Code repository is only available SAP internal.
 
 ## Usage
 
@@ -37,7 +39,7 @@ module.exports = cds.server;
   - OData V2 service will be available at http://localhost:4004/v2/<service-path>
   - OData V4 service will be available at http://localhost:4004/<service-path>
 
-Note that `@sap/cds` and `express` are peer dependency and needs to be available as module as well.
+Note that `@sap/cds` is a peer dependency and needs to be available as module as well.
 
 ### CDS Combined Backend (CAP Node.js) - Custom
 
@@ -72,9 +74,11 @@ const port = process.env.PORT || 4004;
   - OData V2 service will be available at http://localhost:4004/v2/<service-path>
   - OData V4 service will be available at http://localhost:4004/<service-path>
 
-Note that `@sap/cds` and `express` are peer dependency and needs to be available as module as well.
+Note that `@sap/cds` is a peer dependency and needs to be available as module as well.
 
-### CDS Standalone Backend (CAP Java or CAP Node.js)
+### CDS Standalone Backend (CAP Node.js or CAP Java)
+
+> For CAP Java projects prefer the Native OData V2 Adapter (com.sap.cds/cds-adapter-odata-v2).
 
 In a new Node.js express project:
 
@@ -131,7 +135,7 @@ const port = process.env.PORT || 4004;
   - OData V2 service will be available at http://localhost:4004/v2/<odata-v4-service-path>
   - OData V4 service shall be available at http://localhost:8080/<odata-v4-service-path>
 
-Note that `@sap/cds` and `express` are peer dependency and needs to be available as module as well.
+Note that `@sap/cds` is a peer dependency and needs to be available as module as well.
 
 ## Cloud Foundry Deployment
 
@@ -150,12 +154,12 @@ The OData V2 service provided by the CDS OData V2 Adapter Proxy can be used to s
 
 A running example can be tested as follows:
 
-> Only available SAP internally!
-
 - Clone repository
 - Start server: `npm run cds:run`
 - Open Fiori Launchpad:
   http://localhost:4004/webapp/test/flpSandbox.html
+
+> Code repository is only available SAP internal.
 
 ## Documentation
 

@@ -198,7 +198,7 @@ A newly created project does not contain a deployment configuration (`ui5-deploy
 
 If you prefer to keep the environment variables in a file, an option can be to create ```.env``` file at the root of your project which contains the environment variables that can be referenced in the ui5.yaml file.
 
-It is recommended that you do not have your actual username and password in the ```ui5.yaml```.
+IMPORTANT: The username and password property will **only** accept environment variable references in the ```ui5-deploy.yaml```.
 
 ```
 XYZ_USER=[MY_USER_NAME]
@@ -243,9 +243,9 @@ The target object contains properties identifying your target SAP system.
 
 ### credentials (optional)
 
-The credentials object is mainly required for CI/CD based deployments and it needs to contain the required parameters to authenticate at your target system. We strongly encourage to not add the credentials directly but use references to environment variables e.g. `env:MY_VARIABLE` here.
+The credentials object is mainly required for CI/CD based deployments and it needs to contain the required parameters to authenticate at your target system. It is only possible to use references to environment variables e.g. `env:MY_VARIABLE` here, plain username and password are not supported.
 
-For local usage, we recommand to not use the credentials object at all. As result, the deployment task will utilize the operating systems secure storage maintain credentials.
+For local usage, we recommend to not use the credentials object at all. As result, the deployment task will utilize the operating systems secure storage maintain credentials.
 
 #### username
 
@@ -370,8 +370,11 @@ Deploys an application to an ABAP frontend server.
 #### Options
 
 * `--config, c` - Path to config file (default: `ui5-deploy.yaml` in root folder of the project).
+* `--noConfig` - Only CLI arguments will be used, no config file is read.
 * `--destination, -d` - The destination used in SAP Business Application Studio (default: destination from `ui5-deploy.yaml`).
 * `--url, -u` - The url of the service endpoint at the ABAP system (default: url from `ui5-deploy.yaml`).
+* `--username` - Name of environment variable containing a username to authenticate (default: username from `ui5-deploy.yaml`).
+* `--password` - Name of environment variable containing a password to authenticate (default: password from `ui5-deploy.yaml`).
 * `--client, -l` - The ABAP client (default: client from `ui5-deploy.yaml`).
 * `--transport, -t` - The id of the transport request (default: transport from `ui5-deploy.yaml`).
 * `--name, -n` - The application name (default: name from `ui5-deploy.yaml`).
