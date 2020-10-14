@@ -4,6 +4,53 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+# Version 4.2.3 - 2020-10-12
+
+### Fixed
+
+- Leading `#` comments in csv files sporadically caused `cds build` to fail on Windows with error `EPERM: operation not permitted`.
+- Method `req.user.is()` returns boolean
+
+
+# Version 4.2.2 - 2020-10-02
+
+## Added
+
+- `cds.env.odata.containment` to use OData v4 Containment NavigationProperties feature
+- `cds.env.odata.structs` to preserve struct elements as ComplexTypes in OData EDMX instead of flattening
+- `cds.env.odata.refs` which uses NavigationProperties in OData EDMX instead of adding foreign keys
+- `cds.env.odata.proxies` to add proxy EntityTypes for external Association targets
+- `cds.env.odata.flavors` which contain presets for the afore-mentioned flags
+- `cds.env.odata.flavor` to choose from the afore-mentioned presets
+- `cds.load` option `plain` replacing former option `clean` (which still is silently supported for compatibility).
+- `cds.get` now supports option `flavor` with values: `files` | `sources` | `parsed` | `resolved` | `compiled`.
+- `sap.common.Currencies`, `Countries`, and `Languages` now have their `code` element annotated with `@Common.Text` pointing to the `name`.  In Fiori's value list with fixed values, this will show the `name` rather than the code itself.  As before, this only has an effect if `@Common.TextArrangement` is set to `#TextOnly` on the entity the code list is used as `ValueList` for.
+
+## Changed
+
+- Replaced `cds.PrivilegedUser` with `cds.User.Privileged`
+- `cuid` in `@sap/cds/common` is now defined as an `aspect` to align it with the other definitions.  The previous definition as `abstract entity` is equivalent and was only needed for historic reasons.
+- `cds deploy --to sqlite` now skips columns from csv files if the header value is empty.  This allows for ad-hoc 'disabling' of columns.  For SAP HANA, the generated `hdbtabledata` files now also skip empty columns, restoring the behavior from cds 3.
+- `cds deploy --to sqlite` has aligned its escaping rules for parsing csv data with SAP HANA's `hdbtabledata`.  A `"` character can be escaped by another `"` as before, but only if contained in a quoted string, i.e. `"A""B"` leads to `A"B`, while `A""B` stays `A""B`, and `""` results in an empty string.
+
+## Fixed
+
+- A `manifest.yml` file is now also generated for nodejs applications if a sqlite database is used.
+- `cds build` did not correctly validate custom service handler implementations, warnings have been logged by mistake.
+- The default memory size for nodejs applications has been increased in `manifest.yml` to avoid out-of-memory issues for cloud native deployments.
+- `cds build` is now correctly creating external CSN output for Java multi-tenant applications.
+
+# Version 4.1.10 - 2020-09-11
+
+## Added
+
+- Much like SQLite deployment, `cds deploy --to hana` and `cds build` can now cope with leading `#` comments in csv files, i.e. the comments get removed before deployment.
+- `cds deploy` now can handle empty strings in CSV values (use `""`)
+
+## Fixed
+- `cds v` and `cds --version` now work again when called from `npm run` or `npx`.
+
+
 # Version 4.1.9 - 2020-09-02
 
 ## Added

@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and
 this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.13.1 - 2020-09-24
+
+## Fixed
+- Support for `hana.*` types
+
+
+
 ## Version 2.13.0 - 2020-09-02
 
 ## Added

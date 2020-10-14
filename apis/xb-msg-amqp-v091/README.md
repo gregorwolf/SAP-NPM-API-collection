@@ -9,42 +9,83 @@ Provides a client implementation for AMQP v0.9.1
 * [API](#api)
 
 ## Prerequisites
+
 Make sure to have a message broker available, e.g. [RabbitMQ](https://www.rabbitmq.com/download.html).
  
 ## Install
-Add the SAP NPM Registry to your npm configuration for all `@sap` scoped modules.
 
+See also:
+[https://www.npmjs.com/package/@sap/xb-msg-amqp-v091](https://www.npmjs.com/package/@sap/xb-msg-amqp-v091)
+
+To add it to your project run:
 ```bash
-npm config set "@sap:registry=https://npm.sap.com"
-```
-
-Add the dependency in applications `package.json` and run npm for it:
-
-```bash
-npm install
+npm i @sap/xb-msg-amqp-v091
 ```
 
 To generate complete API documentation run inside the library package folder
-
 ```bash
 npm run doc
 ```
 
 ## Overview
-This library provides a messaging client for [AMQP v0.9.1](http://www.amqp.org/specification/0-9-1/amqp-org-download). A single client instance represents one connection to the broker. Either TLS or NET socket is used depending on defined client options.
 
-The API works completely asynchronous based on callbacks, often providing also done (resolve) and failed (reject) callbacks. This means it would be simple to use Promise objects in the application even if the client library so far does not use it.
+This library provides a messaging client for [AMQP v0.9.1](http://www.amqp.org/specification/0-9-1/amqp-org-download).
+A single client instance represents one connection to the broker.
+Either TLS or NET socket is used depending on defined client options.
+
+The API works completely asynchronous based on callbacks, often providing also done (resolve) and failed (reject) callbacks.
+This means it would be simple to use Promise objects in the application even if the client library so far does not use it.
 
 AMQP v0.9.1 defines [classes and methods](http://www.rabbitmq.com/amqp-0-9-1-reference.html) (like remote procedure calls). Unfortunately, some of them do not allow a key-based mapping of responses to requests. Hence, for those methods the client has to wait for the response before a second request can be sent. The client encapsulates this and behaves always asynchronous for the caller.
 
 ## Getting started
+
 There are examples:
 * How to use plain API directly [publisher.js](examples/publisher.js) and [subscriber.js](examples/subscriber.js)
 * How to use unified streams [producer.js](examples/producer.js) and [consumer.js](examples/consumer.js)
 
 It shall run with defaults immediately if a RabbitMQ is installed at localhost:5672 with user guest/guest.
  
-All examples support also individual settings, e.g. to use a remote host or to try different stream settings. It can be provided with a js-file given as command line parameter. The file shall export a client option object. Defaults will still be used for undefined fields.
+All examples accept individual settings, e.g. to use a remote host or to try different settings.
+It can be provided with a js-file given as command line parameter. The file shall just export the options.
+Run it like this if the file is stored in folder ```config```, same level as ```examples```.
+
+```bash
+node .\examples\producer.js ..\config\my-options.js
+```
+
+Feel free to start testing with the following file content:
+
+```bash
+'use strict';
+
+module.exports = {
+    net: {
+        host          : '127.0.0.1',
+        port          : 5672
+    },
+    sasl: {
+        mechanism     : 'PLAIN',
+        user          : 'guest',
+        password      : 'guest'
+    },
+    amqp: {
+        vhost         : '/'
+    }
+    data: {
+        exchange      : 'amq.topic',
+        routingKey    : 'a.b.c',
+        confirms      : true,  // producer
+        noAck         : false, // consumer
+        prefetchCount : 1000,  // consumer
+        payload       : Buffer.allocUnsafe(50).fill('X'),
+        maxCount      : 10000,
+        logCount      : 1000
+    }
+};
+```
+
+The `data` section is ignored by the client, it is just used by the example programs.
 
 ## API
 Create a client instance:

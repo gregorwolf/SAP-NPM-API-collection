@@ -1,6 +1,6 @@
 # Name Resolution in CDS
 
-> Status Oct 2019: TODOs must be filled, say more about name resolution in CSN.
+> Status Sep 2020: TODOs must be filled, say more about name resolution in CSN.
 
 Name resolution refers to the resolution of names (identifiers) within expressions of the source to the intended artifact or member in the model.
 
@@ -47,7 +47,7 @@ you might wonder why there is a lengthy document about the name resolution.
 So, let us start with such an example:
 
 ```
-nameprefix sap.core;
+namespace sap.core;
 
 context types {
     type Price {
@@ -55,18 +55,18 @@ context types {
         currency: CurrencySymbol;
     }
     type Amount: Decimal(5,3);
-}
+};
 type CurrencySymbol: String(3);
 
-entity ProductsInternal {
-    productId: Integer;
-    retailPrice: types.Price;
-    salesPrice = retailPrice;  // we give no reduction
-}
 view Products as select from ProductsInternal {
     productId,
     salesPrice
-}
+};
+entity ProductsInternal {
+    productId: Integer;
+    retailPrice: types.Price;
+    salesPrice = retailPrice;  // calculated fields are not supported yet
+};
 ```
 
 Let us first go a step backwards:
@@ -88,6 +88,11 @@ In which area of the code do we assume which common name prefix?
 In the example above, we refer to these 3 types by `types.Price`, just `Amount`, and `CurrencySymbol`.
 The first observation is:
 **name resolution** (and the new name introduced by an artifact definition) **depends on the block structure**.
+
+That being said, name resolution does **not depend on the order of definitions**.
+In the example above, the element `amount` has a type `Amount`
+which is defined _after_ the element definition.
+Similar for the view `Products` whose source entity `ProductsInternal` is defined after the view.
 
 In the view, we also refer to **elements** of (another) artifact.
 There is no special language construct for such references –
@@ -129,7 +134,7 @@ there is nothing we can do about it.
 
 But we make sure that something real bad cannot happen:
 an **extension cannot silently change the semantics of a model** –
-the name resolution is defined in such a way that a valid reference
+the name resolution is defined in such a way that a valid and potentially unrelated reference
 does not silently (without errors or warnings) point to another artifact
 when the extension is applied to the model.
 
@@ -182,7 +187,7 @@ entity B {
     a: Integer;
 }
 entity E : B {
-    e = a;
+    e = a;       // calculated fields are not supported yet
 }
 ```
 
@@ -192,7 +197,7 @@ the name resolution strategy for the referred column/element should be the same
 
 In SQL, we have silent semantic changes, but only with subqueries –
 see the first example in Section ["Design Principles"](#design-principles).
-To avoid this situation in CDx/Language, we are a bit incompatible in this case.
+To avoid this situation in CDL, we are a bit incompatible in this case.
 
 
 ### Background: modern programming languages
@@ -343,10 +348,6 @@ In CDL, we just do *not* transform non-quoted identifiers to all-upper names.
 
 Also, CSN-processors are cumbersome to write if they have to deal with (partial/feigned) case-insensitivity.
 
-In a future version of this project,
-we or others might provide a "use at your own risk" backend
-which produce SQL DDL statements without quoted identifiers
-
 ---
 
 In CDL, an identifier may be used before its definitions,
@@ -392,7 +393,7 @@ Even the algorithm for finding the path base follows the same pattern:
 
 * All but the last environment are constructed from definitions in the current source
   following the lexical block structure of the source,
-  or a small, fixed number of predefined names (e.g. `$projection`.)
+  or a small, fixed number of predefined names (e.g. `$self`.)
   We will call such an environment a **lexical search environment**.
 
 * Only the last environment contains bindings **defined externally**, at least potentially.
@@ -418,10 +419,17 @@ it is the environment supplied by the array item type:
 ```
 @A.e: 1     // warning: cannot find `e` for annotation assignments
 annotation A : array of { e: Integer; };
-annotate A with {
-    annotate e with @lineElement;
+
+entity E {
+    items: many { i: Integer; };
 }
-annotation B: type of :A.e;   // valid = Integer
+type T: type of E:items.i;      // valid = Integer
+annotate E with {
+    items { i @lineElement; };  // valid annotation
+}
+view V as select from E {
+    items.i                     // not valid (yet)
+}
 ```
 
 For the to-be-extended element referenced in an inner extend,
@@ -431,12 +439,12 @@ we consider the environment supplied by an association to be empty:
 type A: association to E;
 entity E { i: Integer; }
 annotate A with {
-    @targetElem i;     // error: do not follow associations
+    @targetElem i;     // err(info): do not follow associations
 }
 type S { e: Integer; }
 type T : S;
 annotate T with {
-    @derivedElem e;    // ok: follow derived type
+    @derivedElem e;    // ok: follow derived type (not yet without beta)
 }
 ```
 
@@ -473,8 +481,7 @@ and then continues to the next outer block:
 The last, non-lexical search environment is the environment for built-in artifacts.
 Currently, it contains `String` for `cds.String`, similarly `LargeString`,
 `Integer`, `Integer64`, `Binary`, `LargeBinary`, `Decimal`, `DecimalFloat`, `Double`,
-`Date`, `Time`, `Timestamp`, `DateTime`, and `Boolean`.
-More artifacts are defined with the options `--hana-flavor`.
+`Date`, `Time`, `Timestamp`, `DateTime`, and `Boolean` and `hana`, also the namespace `cds`.
 
 When searching for an annotation (after the initial `@`), the last search environment
 are the model definitions.
@@ -616,7 +623,8 @@ The list of search environments is created as follows:
 The above mentioned `:`-escape mechanism leads to the "main artifact name resolution";
 it can be used to access constants, or –for references after `type of`– elements of other artifacts.
 
-The reason for the `$self` references is visible in an example with subelements:
+The reason for the `$self` references is visible in an example with subelements
+(calculated fields are not supported yet):
 
 ```
 type T {
@@ -683,7 +691,7 @@ then _same main artifact_ means the main artifact itself.
 
 ## Differences to HANA-CDS
 
-The most visible differences in the name resolution semantics of CDx/Language compared to HANA CDS are:
+The most visible differences in the name resolution semantics of CDL compared to HANA CDS are:
 
 * Using constant values requires to prefix the path (referring to the constant) with a `:`.
 * There is a new semantic for paths (without initial `:`) used in annotation assignments.
@@ -698,7 +706,7 @@ The most visible differences in the name resolution semantics of CDx/Language co
 In HANA-CDS, the name resolution works quite uniformly for all argument positions,
 with most clauses of `SELECT` being the main exception.
 It is also compatible to the "pre-extension" name resolution semantics of HANA-CDS.
-This is nice!  Why do we specify a different name resolution semantics for CDx/Language?
+This is nice!  Why do we specify a different name resolution semantics for CDL?
 
 The reason is:
 we do not want to have the "extended" lexical scoping semantics of HANA CDS concerning elements,
@@ -713,7 +721,7 @@ the HANA-CDS compiler enforces the following properties:
 * Artifacts can only be extended by top-level extend statements,
   elements can only be extended by inner extends (the second is true for CDx/Language, too).
 
-These are properties which do not hold for consumers of the CDx Compiler.
+These are properties which do not hold for consumers of the CAP CDS Compiler.
 
 Additionally, while direct changes in base packages can always lead to semantic changes,
 the following example shows that this unwanted effect is more likely in HANA-CDS:
@@ -730,7 +738,7 @@ entity E {
 // MyExtension.cds ---
 extend E with {
   extend b with {
-    z = a;           // in CDx/Language: $self.a
+    z = a;           // in CDL: $self.a, calculated fields are not supported yet
   }
 }
 ```

@@ -6,10 +6,83 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 2.3.1 - 2020-09-17
+## Version 2.5.2 - 2020-10-09
 
 ### Fixed
 
+- Do not fail in `cds deploy --dry` if `sqlite3` is not installed
+
+## Version 2.5.1 - 2020-10-07
+
+### Fixed
+
+- Set temporal session contexts on HANA
+- Multiple invokations of `req.on('failed', () => { ... })`
+
+## Version 2.5.0 - 2020-10-02
+
+### Added
+
+- Messaging: Transaction-coupled events will only be sent for successful requests 
+  (can be disabled by setting outbox=false)
+- Support for @assert.notNull: false
+- Messaging: Support for non-normalized input in handler registration
+- Messaging: automatically generate headers.id
+- Support for navigating to association to-one in structured
+- Initial support for `cds.odata.flavors = { v2, v4, w4, x4 }`
+- Support custom timezone offset
+- Support for assertions in structured data
+- Support for annotation `@Capabilities.Readable`
+- Input validation for actions and functions
+- Support language-dependent sorting order for HANA
+
+### Changed
+
+- Input processing: Performance improvements through templating mechanism used in single handler per layer
+- Input processing: Key propagation only on DB layer
+- Format of file-based messaging
+
+### Fixed
+
+- Outbound REST/OData errors in CQN translation
+- View resolution for views with static values
+- Skip transition by view annotated with @cds.persistence.table:true
+- Reading structured types via navigation
+- Filter on elements having the same name as in DraftAdministrativeData
+- Draft union scenario with filter on elements from DraftAdministrativeData
+- Resolving views for deep deletes
+- Key generation in some UPDATE queries
+- HANA: cds.DateTime convert to UTC in draft case
+- Combining `$filter` query option and `$apply` using only filter transformation
+- Join with draft tables
+- Determine name of primary key of draft enabled entity in subselect
+- Improved error message for direct use of auto exposed entity
+- Empty structured types are now null
+- Structured properties with the same name as CQN properties failed to execute
+- Association as key caused wrongly generated SQL statement
+- Deep update with structured type caused wrongly generated SQL statement
+
+## Version 2.4.0 - 2020-09-11
+
+### Added
+
+- Structured types in $orderby, $filter, $select
+- Limited support for Association to-one in structured types
+
+### Changed
+
+- Messaging: The `queue` and `queueConfig` options are now a single object: `{ name, ...queueConfig }`
+- Messaging: The `file` option is now moved to top level
+- Messaging: The `prefix` option is removed
+
+### Fixed
+
+- Diff calculates the difference on database level
+- `sap-messages` header now uses unicode characters for special characters
+- `req.target` for bound operations
+- `INSERT.into(...).as(SELECT.from(...)` inside custom handlers
+- Integrity check for DELETE requests
+- `Serialization Error` for entities with composition of aspects in `containment` mode
 - Expand on entity with a backlink as a key
 
 ## Version 2.3.0 - 2020-08-31
@@ -17,7 +90,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 - Support for Continuation Local Storage (CLS)
-- Support for access of structured property values in odata
+- Support for access of structured property values in Odata
 - Support for expand for external OData service in REST
 
 ### Fixed
@@ -28,7 +101,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
-- Path navigations with keys for managed to-one association in orderby work on sqlite e.g. `$orderby=author/id`
+- Path navigations with keys for managed to-one association in orderby work on SQLite e.g. `$orderby=author/id`
 - Support for `cds.PrivilegedUser`
 - Implicit sorting for OData singletons 
 
@@ -36,10 +109,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Deep update could potentially insert wrong data
 - Deep insert was also done on empty composition-to-many
-- POST via multiple navigations with odata containment activated
+- POST via multiple navigations with OData containment activated
 - localized view with parameters
 - implicit sorting order
-- Custom SELECT CQN with join/union in draft enabled service failed for non draft entities
+- Custom SELECT CQN with join/union in draft enabled service failed for non-draft entities
 - `req.user.attr` access during @restrict processing with @sap/xssec^3
 
 ## Version 2.1.9 - 2020-08-26
@@ -63,7 +136,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- Messaging: The configuration is moved to top level (before it was in credentials)
+- Messaging: The configuration is moved to top-level (before it was in credentials)
 - Messaging: The payload type is now 'application/json'
 
 ### Fixed
@@ -91,7 +164,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Ignore association keys in select for deletion integrity check
 - POST via multiple navigations
 - `req.user.id = <clientId>` with JWT strategy and `client_credentials` flow
-- Transaction handling with integrity check and changesets in json batch
+- Transaction handling with integrity check and changesets in JSON batch
 
 ## Version 2.1.5 - 2020-08-03
 
@@ -156,7 +229,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 - `req.warn(code, msg, target, args)`
-- `req.data` returns array in case of bulk operations
+- `req.data` returns an array in case of bulk operations
 - All services as subclasses of new `cds.Service`
 - Differentiation between "Application Service" (e.g., providing OData) and "Persistence Service" (e.g., database, remote)
 
@@ -164,7 +237,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Retrieve performance information via `sap-statistics` header in case of batch requests
 - Direct user authentication challenges in case of /$batch
-- HTTP error codes from custom handler are not filtered anymore if in 300...500 range
+- HTTP error codes from custom handlers are not filtered anymore if in 300...500 range
 - following projection with undefined name in target entity
 - Lists and null values in where with fluent expressions
 
@@ -181,8 +254,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Messaging: Only one queue per app is created, as opposed to one queue per app and external service.
 - Messaging: You can now directly connect to the (technical) messaging service through `await cds.connect.to('messaging')`, no topic names will be generated here.
 - Messaging: If you want to link your own or external services to messaging you need to model your events in CDS.
-- Messaging: If you want to provide custom topics for modeled events, you need add the `@topic` annotation to the event.
-- Messaging: The `prefix` option in the service's credentials is prepended to events which have a `@topic` annotation.
+- Messaging: If you want to provide custom topics for modeled events, you need to add the `@topic` annotation to the event.
+- Messaging: The `prefix` option in the service's credentials is prepended to events that have a `@topic` annotation.
 - Messaging: The syntax to emit events with headers changed:
   ```js
   srv.emit({ event: 'yourEvent',
@@ -240,7 +313,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Default to combination `[...];IEEE754Compatible=true;ExponentialDecimals=true` if IEEE754Compatible or ExponentialDecimals is omitted
 - Use custom authenticate middleware via `cds.env.requires.auth.impl`
 - Authentication strategy `dummy` (`cds.env.requires.auth.strategy = 'dummy'`) that creates super users (i.e., pass all authorization checks)
-- Support relative destination path in rest client
+- Support relative destination path in rest-client
 
 ### Changed
 
@@ -254,7 +327,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
       "books"
       ] } } }
 ```
-- Authorizations as whitelist: if any restrictions exists for the target, all not explicitely allowed operations are forbidden (e.g., `@restrict: [{ grant: 'READ', ... }]` -> everything but `READ` is forbidden for all, including bound actions and functions)
+- Authorizations as whitelist: if any restrictions exist for the target, all not explicitly allowed operations are forbidden (e.g., `@restrict: [{ grant: 'READ', ... }]` -> everything but `READ` is forbidden for all, including bound actions and functions)
 - Applicable `@requires` and `@restrict` definitions concatinated by AND
 - Reference to undefined XSUAA user attribute in `@restrict.where` results in forbidden
 - `req.event` for unbound actions and functions is provided without service prefix
@@ -301,29 +374,27 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 - The timeout of the exclusive lock of drafts can now be configured using `cds.drafts.cancellationTimeout`
-- `req.params`: iterable with key value pairs for the key predicates of the addressed resource
+- `req.params`: iterable with key-value pairs for the key predicates of the addressed resource
 
 ### Changed
 
 - Slightly improved performance for `$expand`
 - Return key values (single key only) of created entries instead of number of affected rows
 - Annotations `@cds.onInsert` and `@cds.onUpdate` ignore values from the request (see [Managed Data](https://github.wdf.sap.corp/pages/cap/guides/providing-services#managed-data))
-- Processing of read only values moved to initial before handler
-- Aligned handling of virtual, computed, readonly, immutable with java runtime
+- Processing of read-only values moved to initial before handler
+- Aligned handling of virtual, computed, read-only, immutable with java runtime
 - Allow deep insert on to one association with non-key property, the non-key property is silently ignored 
 
 ### Fixed
 
 - Resolved some performance issues with `@sap/hana-client`
 - `$filter=false or ...` is now possible
-- Custom handler registration in multi tenant scenario
-- Alias in associations was not processed correctly in post processing
+- Custom handler registration in multi-tenant scenario
+- Alias in associations was not processed correctly in post-processing
 - `$search` is now applied on the query result of `$apply` as specified in OData V4 spec
 - `evictionRunIntervalMillisForPools` is now treated properly
 - Searching for `_` or `%` in `$filter` queries with `contains`/`startswith`/`endswith`
 - Insert of to-one associations with structured elements
-
-### Removed
 
 ## Version 1.1.1 - 2020-04-28
 
@@ -345,8 +416,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - `$filter=false or ...` is now possible
 - CREATE now returns `context.data` if not all non-UUID keys are provided
   and no error is thrown in the database client
-- CANCEL and PATCH drafts now supports multiple fields in where clauses
-- Handler registration for draft events in multi tenancy scenario
+- CANCEL and PATCH drafts now support multiple fields in where clauses
+- Handler registration for draft events in multi-tenancy scenario
 - Localize expanded entities
 - Composition and Association to one with expand in draft case
 - Disable local default pagination via `@cds.query.limit.default: 0`
@@ -358,8 +429,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Support for CREATE operations with delegated key generation
 - `@cds.persistence.skip` annotated entities return HTTP code 501 in generic handlers
-- Introduced `@cds.localized:false` on entity level for switching off automatic redirection to localized views
-- Server-side pagination on global, service, and entity level via `@cds.query.limit`
+- Introduced `@cds.localized:false` on entity-level for switching off automatic redirection to localized views
+- Server-side pagination on global, service, and entity-level via `@cds.query.limit`
 - Omitted key predicates of nested composition items are augmented, if possible
 - The exclusive lock of a draft automatically times out after 15 minutes
 - Static where annotations for RUD
@@ -370,7 +441,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Object notation in `.where` of statements does not allow functions anymore
 - `context.diff()` ignores `@cds.persistence.skip` annotated entities
-- Always try to read from localized view (also by draft enabled entities)
+- Always try to read from localized views (also by draft enabled entities)
 - In multitenant scenario, the CSN model is now always loaded from `@sap/cds-mtx`. Previously, it was only loaded if it was extended.
 - Use open source version of `@sap-cloud-sdk/core`
 - If a column or column alias is used multiple times in a SELECT query, the query is from now on rejected. Example: `SELECT.from(Foo).columns(['c1', 'c1'])`

@@ -6,6 +6,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.48] - 2020-10-09
+
+- fixed: README after move to npmjs
+
+## [0.9.47] - 2020-09-22
+
+- fixed, no endpoint error emitted at client if endpoint closed event is handled
+
+## [0.9.45] - 2020-08-19
+
+- fixed: null values for unused Flow frame fields
+
+## [0.9.44] - 2020-07-31
+
+- fixed: relax max listener for connection state, each session will listen
+
+## [0.9.43] - 2020-06-25
+
+- added: license file for new delivery channel
+- fixed: newer Node.js version for unit tests and coverage
+
+## [0.9.42] - 2020-06-18
+
+## [0.9.41] - 2020-06-16
+
+- fixed: serial number handling (as sequence number, delivery number, transfer number)
+
 ## [0.9.40] - 2020-05-29
 
 - fixed: always copy payload if websocket writer masks data (client to server)

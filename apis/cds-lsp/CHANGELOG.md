@@ -6,6 +6,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.0.0 - 2020-09-30
+
+### Added
+- Plugin support for domain specific annotation handlers, featuring
+  - diagnostics
+  - code completion
+  - hover information
+  - goto definition
+  - quickfix to maintain translation
+  - auto-installation/update with user setting for npm registry
+
+- code completion inside string literals and `![...]` identifiers is automatically triggered by `/` character (additionally to `.` and `@`)
+  
+- snippets applied via code completion are now formatted
+
+- `action`s and their parameters are now indexed and support code navigation, hover etc.
+
+### Changed
+- consume cds-compiler 1.42.0
+
+### Fixed
+- bug fixes
+
+### Note
+From version 4.0.0 on, @sap/cds-lsp requires NodeJS 12.8+ (was 10.16+)
+
+
 ## 3.5.0 - 2020-09-01
 
 ### Added

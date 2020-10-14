@@ -1,10 +1,12 @@
 @sap/abap-deploy
+@sap/apihub-service-provider
 @sap/approuter
 @sap/asp-middleware
 @sap/audit-logging
 @sap/cds
 @sap/cds-compiler
 @sap/cds-dk
+@sap/cds-dk-foss
 @sap/cds-foss
 @sap/cds-hana
 @sap/cds-lsp
@@ -302,6 +304,7 @@
 @sap/ux-ui5-fe-mockserver-middleware
 @sap/ux-ui5-tooling
 @sap/vscode-cds
+@sap/wing-run-config-types
 @sap/wing-service-binding
 @sap/wing-service-explorer
 @sap/xb-msg

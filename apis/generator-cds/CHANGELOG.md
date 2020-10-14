@@ -6,15 +6,29 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.17.0] - 2020-10-06
+
+### Fixed
+- Move `@sap/cds-dk` to project root dependencies to enable MTA build in SAP Web IDE.
+
+## [2.16.0] - 2020-09-09
+
+### Changed
+- Updated `fs-extra` library version.
+- Requiring `Node.js` version 10 or higher.
+
+
 ## [2.15.7] - 2020-09-01
 
 ### Changed
 - Updated dependencies.
 
+
 ## [2.15.6] - 2020-08-04
 
-### Fix
+### Fixed
 - Add `@sap/cds-dk` as dev dependency, so that `cds` commands can be executed in absence of global installation of `cds-dk`.
+
 
 ## [2.15.5] - 2020-07-16
 

@@ -6,6 +6,143 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 1.43.0 - 2020-10-02
+
+### Added
+
+- The magic variable `$session` is now supported. All element accesses are unchecked.
+- Reference paths as annotation values can now contain identifiers starting with `@`.
+
+### Changed
+
+- OData:
+  + Raise message level for illegal OData identifiers from warning to error.
+  + Update vocabularies 'Aggregation' and 'Common'.
+  
+### Fixed
+
+- to.hdi/hdbcds/sql: Correctly process the elements of subqueries in localized view variants
+
+### Removed
+
+### Fixed
+
+- OData: put default value validation under `beta:odataDefaultValues`
+
+## Version 1.42.2 - 2020-09-29
+
+### Fixed
+
+- CDL: Action blocks can now be empty, e.g. `entity E {…} actions { }`.
+- An info message is emitted if builtin types are annotated.  Use a custom type instead.
+  Annotating builtins in CDL is possible but when transformed into CSN the annotation was silently lost.
+  It is now put into the "extensions" property of the CSN.
+- Fixed `cast()` for simple values like numbers and strings.
+
+- to.sql:
+  + Remove simple default value checks and allow the database to reject default values upon activation.
+  + Render empty actual parameter list when selecting from a view with parameters which are fully covered with
+  default values and no actual parameters are provided in the query itself.
+
+- OData:  
+  + Correctly render unary operator of default values in EDM.
+
+## Version 1.42.0 - 2020-09-25
+
+### Added
+
+- The compiler now supports the `cast(element as Type)` function in queries.
+  Using this function will also result in a `CAST` SQL function call.
+- A top-level property `i18n` is now supported. The property can contain translated texts.
+  The compiler expects its entries to be objects where each text value is a string.
+- CDL: Empty selection lists in views/projections are now allowed and make it possible to extend
+  empty projections. Note that views/projections without any elements are not deployable.
+- For CSNs as input, the compiler returns properties as they are (without checks)
+  if their name does not match the regexp `/[_$]?[a-zA-Z]+[0-9]*/` and does not start with `@`.
+  With more than one CSN input,
+  the compiler only returns the top-level CSN properties of the first source.
+
+### Changed
+
+- to.cdl: Smart type references are now explicitly rendered via ":"-syntax
+
+### Removed
+
+### Fixed
+
+- Annotating an _unknown_ element _twice_ now results in a duplicate annotation error instead
+  of silently loosing the annotation.
+- Service/context extensions that reference a non-service/non-context now result in a compiler error
+  instead of silently loosing the context/service extension.
+- to.hdbcds/sql/hdi:
+  + fix a bug, which resulted in a malformed on-condition, if an association key
+  was another association pointing to an entitiy with a structured key.
+  + in conjunction with assoc-to-joins, the internal CSN reference broke
+  causing missing locations and even internal errors when logging messages
+  + managed associations in UNION are now correctly processed
+- The parseCdl mode now correctly resolves type arguments of "many" types.
+- OData: The annotation `@Capabilities.Readable` is now correctly
+  translated to `@Capabilities.ReadRestrictions.Readable`.
+
+## Version 1.41.4 - 2020-09-18
+
+### Removed
+
+- The length of HANA identifiers are not checked anymore: no more warnings are issued for long identifiers.
+
+### Fixed
+
+- The check for ignored "localized" keywords in sub-elements has been extended to also
+  include references to structured types.  
+- A warning was added if views/projections are used as element types.
+- An info message is emitted if a namespace is annotated.  
+  Annotating namespaces is not possible. Previously the annotation was silently lost.
+  It is now put into the "extensions" property of the CSN.
+
+## Version 1.41.2 - 2020-09-15
+
+### Fixed
+
+- OData: correctly render primary key associations targeting a composition parent but are not
+  the composition enabling association.
+- to.hdbcds/sql/hdi: Do not dump if artifact doesn't exist anymore after association to join translation
+- Only check for unmanaged associations inside of "many"/"array of" in the elements of views and entities,
+  not inside of actions and other members.
+
+## Version 1.41.0 - 2020-09-11
+
+### Added
+
+- OData: Allow the relational comparison of structures or managed associations in an ON condition as described in
+  version 1.32.0 - 2020-07-10 (forHana).
+- Allow `Struct:elem` with and without preceeding `type of` as type reference.
+
+### Fixed
+
+- to.cdl: Only render enums if they were directly defined there
+- The parseCdl mode now checks for redefinitions to avoid generating invalid CSN.
+- OData: An error is thrown if a redirected target has fewer keys than the original one.
+- OData: Empty structured elements are now handled correctly in `flat` format.
+
+## Version 1.40.0 - 2020-09-04
+
+### Added
+
+- to.hdi/sql: Support default values for view parameters.
+- OData: lower message severity from Error to Warning for
+  `<entity type> has no primary key` and `<type> has no properties`.
+
+### Changed
+
+- OData: The foreign key references in associations are not flattened any more with format `structured`.
+
+### Fixed
+
+- parse.cdl: Properly handle type arguments, most likely relevant for HANA types.
+- OData: Multilevel anonymously defined `composition of <aspect>` is now processed successfully with the OData backend.
+- OData: Fix a bug in EDM generation that caused a dump.
+- Update ANTLR dependency to version 4.8.
+
 ## Version 1.39.0 - 2020-08-26
 
 ### Added

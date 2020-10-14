@@ -6,6 +6,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.7.11] - 2020-10-12
+
+- update: README after move to npmjs
+- added: optional parameter info at event.setUnauthorized(info) and event.setBadRequest(info)
+
+## [0.7.10] - 2020-09-23
+
+- fixed; event error responses
+
+## [0.7.9] - 2020-07-01
+
+## [0.7.8] - 2020-07-01
+
+- fixed: express route for local test run with special function names, e.g. "fun" and "fun2"
+- startup log lines removed, more simple log consumption
+
 ## [0.7.7] - 2020-03-12
 
 ## [0.7.6] - 2020-03-12

@@ -5,13 +5,51 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.0.0 - 2020-09-30
+
+### Added
+- Plugin support for domain specific annotation handlers, featuring
+  - diagnostics
+  - code completion
+  - hover information
+  - goto definition
+  - quickfix to maintain translation
+  - auto-installation/update with user setting for npm registry
+
+- code completion inside string literals and `![...]` identifiers is automatically triggered by `/` character (additionally to `.` and `@`)
+
+- snippets applied via code completion are now formatted
+
+- `action`s and their parameters are now indexed and support code navigation, hover etc.
+
+### Changed
+- updated npm modules
+  + `cds-lsp 4.0.0`
+  + `cds-compiler 1.42.2`
+
+## Fixed
+- bug fixes
+
+
+## Version 2.6.1 - 2020-09-24
+
+### Changed
+- using `axios` for https access to CAP release notes
+- `CAP release notes` are now displayed when new version is available on `Capire`
+
+### Fixed
+- the `preview as...` commands are more robust and generate preview files without cds extension
+
+### Added
+- command `install cds-dk` now available to install `CDS Development Kit (@sap/cds-dk)` globally
+
 ## Version 2.6.0 - 2020-09-01
 
 ### Added
 - various commands for generating preview files from a cds file
 - Code completion proposes identifiers not yet imported in current file and generates corresponding `using` statement
-  - user setting: minimum number of characters required to propose those identifiers (`cds.completion.workspaceSymbols.minPrefixLength`). Default is -1 (=off)
-  - user setting: limit number of global identifiers (`cds.completion.workspaceSymbols.maxProposals`). Default is -1 (=unlimited)
+  + user setting: minimum number of characters required to propose those identifiers (`cds.completion.workspaceSymbols.minPrefixLength`). Default is -1 (=off)
+  + user setting: limit number of global identifiers (`cds.completion.workspaceSymbols.maxProposals`). Default is -1 (=unlimited)
 - Code formatting: options `whitespaceBeforeColon` and `whitespaceAfterColon` are now supported inside `Composition` structs
 - Code formatting: support configuration of alignment of `Composition` structs (option `alignCompositionStructToRight`)
 
@@ -21,6 +59,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
     + `cds-compiler 1.39.0`
 
 ## Version 2.5.0 - 2020-08-05
+
+### Added
+- various commands for generating preview files from a cds file
 
 ### Changed
 - now requires Visual Studio Code `>=1.46`

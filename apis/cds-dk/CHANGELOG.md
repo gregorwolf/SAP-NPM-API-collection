@@ -6,6 +6,40 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.1.1 - 2020-10-07
+
+## Added
+- `cds compile --locations` preserves `$location` properties in CSN outputs.
+
+## Changed
+- `cds compile` prints a better legible JSON output to terminals
+- `cds compile -p` is no longer a shortcut for `--parse`, to allow `--parse ...more-args` to work.
+- `cds compile -f` is no longer a shortcut for `--from` (which is not implemented), but for `--flavor`.
+
+### Fixed
+- `cds deploy --to sqlite` now writes `requires.db.model` in `package.json` such that `cds.connect.to.('db')` works w/o further `model` options.
+- `cds deploy --to sqlite` with `@sap/cds` 4.2 no longer crashes due to a wrong import
+
+## Version 3.1.0 - 2020-09-30
+
+## Added
+- `cds compile` now supports option `flavor` with values: `files` | `sources` | `parsed` | `xtended` | `inferred`.
+  + `cds compile --files` maps to `--flavor files`.
+  + `cds compile --sources` maps to `--flavor sources`.
+  + `cds compile --parse` maps to `--flavor parsed`.
+  + `cds compile` maps to `--flavor inferred`.
+- `cds add cf-manifest` creates manifest.yml and services-manifest.yml allowing for Cloud Foundry native deployment.
+- `cds init` now supports type `nodejs` to create a Node.js based project. This is the default and can be omitted.
+- `cds watch`: enter `debug` or `debug-brk` to restart process in debug mode.  Other commands are `ps` and `rs`.
+
+### Changed
+- `@sap/cds-dk` is no longer shrinkwrapped, so that new versions from underlying `@sap` packages (like `@sap/cds`) are available w/o a new cds-dk version
+- `cds init` uses latest `Maven Java archetype` version `1.9.0` for creating Java projects.
+
+### Fixed
+- `cds watch` now passes all environment variables to the spawned sub processes, enabling for example, `cds watch --production`
+- `cds init` modifies artifact id and Java package name for Java projects to be standard conform.
+- `cds` fails with a better error message for misspelled commands
 
 
 ## Version 3.0.0 - 2020-08-31

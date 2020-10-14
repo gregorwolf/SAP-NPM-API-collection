@@ -6,7 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.0.21 - 2020-09-29
+
+### Fixed
+
+- Connections to application after off- and onboarding now work properly
+
 ## Version 1.0.20 - 2020-09-10
+
 
 ### Fixed
 - Custom content upload using `/mtx/v1/model/updateCustomTenantContent` now also works 

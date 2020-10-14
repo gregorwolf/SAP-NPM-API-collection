@@ -28,7 +28,7 @@ Provides the SAP Cloud Platform Functions runtime for Node.js and basic SDK feat
 
 ## Overview
 
-SAP Cloud Platform Functions are provided as a service (__FaaS__).
+SAP Cloud Platform Serverless Runtime provides together with other components also Functions as a service (__FaaS__).
 Developers can focus on pure application logic while writing the code,
 whereas FaaS takes responsibility to run the code in a secure, reliable and cost-efficient way.
 
@@ -81,23 +81,20 @@ There are two FaaS client tools, waiting to support local development:
 * __faas-cli__: used to manage artifact deployment into __K8s__, uses FaaS instances in the Cloud Foundry as entry point
 
 Let's start:
-* Install __Node.js__ (version 8.11.3 or higher):
-  * Download from [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
-  * Install Node.js runtime
-  * Test installation with `node -v` and `npm -v`
-* Add __SAP NPM Registry__ to your npm configuration for all `@sap` scoped modules.
-  * Run `npm config set "@sap:registry=https://npm.sap.com"`
-  * Test installation with `npm show @sap/faas version`
-* Install __faas-sdk__:
-  * Run ```npm install @sap/faas -g```
-  * Test installation with `faas-sdk version`
-* Install __faas-cli__:
-  * Go to [https://tools.hana.ondemand.com/#cloud](https://tools.hana.ondemand.com/#cloud)
-  * Search for "SAP Cloud Platform Functions Tools"
-  * Install one binary, test via `faas-cli version`
 * Install __Cloud Foundry CLI__:
   * Download latest release: [https://github.com/cloudfoundry/cli/releases](https://github.com/cloudfoundry/cli/releases)
   * Install binaries, test via `cf version`
+* Install __xfsrt-cli__:
+  * Go to [https://tools.hana.ondemand.com/#cloud](https://tools.hana.ondemand.com/#cloud)
+  * Search for "SAP Cloud Platform Serverless Runtime CLI"
+  * Install one binary, test via `xfsrt-cli version`
+* Install __Node.js__ (version 8.12.0 or higher):
+  * Download from [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+  * Install Node.js runtime
+  * Test installation with `node -v` and `npm -v`
+* To define devDependency to `@sap/faas` in your function projects
+  * Run inside a project folder `npm i @sap/faas`
+  * `xfsrt-cli faas project run` will also guide you here
 
 Update the local IDE of your choice and install plugins for Node.js.
 Finally, enable language support for Node.js and JavaScript (ECMAScript 6):
@@ -105,7 +102,6 @@ You may also find these links helpful: [Javascript Reference](https://developer.
 
 The natural home of a FaaS project is a git repository.
 Based on that you can later easily switch between local IDE and SAP Web IDE.
-In the long term FaaS runtime may also support knative builds, fetching project files directly from git.
 Hence, we recommend to set up a git repository for your project from the beginning.
 
 ## Naming Rules

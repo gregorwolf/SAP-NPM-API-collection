@@ -41,20 +41,15 @@ Make sure to have a message broker available for testing, e.g. [RabbitMQ](https:
 
 ## Install
 
-Add the SAP NPM Registry to your npm configuration for all `@sap` scoped modules.
+See also:
+[https://www.npmjs.com/package/@sap/xb-msg-amqp-v100](https://www.npmjs.com/package/@sap/xb-msg-amqp-v100)
 
+To add it to your project run:
 ```bash
-npm config set "@sap:registry=https://npm.sap.com"
-```
-
-Add the dependency in applications `package.json` and run npm for it:
-
-```bash
-npm install
+npm i @sap/xb-msg-amqp-v100
 ```
 
 To generate complete API documentation run inside the library package folder
-
 ```bash
 npm run doc
 ```
@@ -82,7 +77,7 @@ Hence, it will be simple to use Promise objects in the application even if this 
 
 There are test programs in the package folder `./examples` to demonstrate:
 * How to use a client as [producer](examples/producer.js), [consumer](examples/consumer.js) or [counter](examples/counter.js)
-* How to realize a server, here first basics for a protocol [gateway](examples/gateway.js)
+* How to realize a server (or a mock server for tests), see example [gateway](examples/gateway.js)
 
 All client examples shall run with provided defaults immediately if e.g. RabbitMQ is installed at localhost:5672 with user guest/guest, having the AMQP 1.0 plugin enabled.
 Alternatively, the producer may run in combination with the gateway example.
@@ -529,9 +524,11 @@ Overview on common methods for `Session`, `Sender` and `Receiver` (check JSDoc f
 
 Overview on common events for `Session`, `Sender` and `Receiver` (check JSDoc for details):
 
-* `opened`: raised if the local and the remote endpoint are both opened,
-* `closed`: raised if the local and the remote endpoint are both not opened,
-* `destroy`: raised before the local endpoint is destroyed, application shall release any reference.
+* `opened`: raised if local and remote endpoint are both opened,
+* `closed(ox, ix)`: raised if local and remote endpoint are both closed, with outgoing and incoming error, both optional
+* `destroy`: raised before local endpoint is destroyed, application shall release any reference.
+
+The `closed` event may report protocol errors. If the event is not handled by the application, but parameter `ix` is valuated then this (peer) error will be reported by the client.
 
 Further methods and events depend on the specific endpoint type and applicable performatives.
 

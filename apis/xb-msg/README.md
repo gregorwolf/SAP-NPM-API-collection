@@ -17,14 +17,17 @@ Make sure to have a message broker available, e.g. [RabbitMQ](https://www.rabbit
 
 ## Install
 
-Add the SAP NPM Registry to your npm configuration for all `@sap` scoped modules.
+See also:
+[https://www.npmjs.com/package/@sap/xb-msg](https://www.npmjs.com/package/@sap/xb-msg)
+
+To add it to your project run:
 ```bash
-npm config set "@sap:registry=https://npm.sap.com"
+npm i @sap/xb-msg
 ```
 
-Add the dependency to `@sap/xb-msg` in your applications `package.json` and run npm for it:
+To generate complete API documentation run inside the library package folder
 ```bash
-npm install
+npm run doc
 ```
 
 ## Overview
@@ -49,6 +52,7 @@ However, many messaging applications will have less specific requirements. It ma
 * Use messages with a binary payload
 * Receive message at least once and acknowledge messages after successful processing
 * Stay flexible with regards to the used messaging protocol
+* But still accept the need to maintain settings on the broker side, e.g. to create queues or assign topic bindings to it
 
 With these requirements `@sap/xb-msg` in combination with package `@sap/xb-msg-env` can be a good choice.
 For example to consume messages:
@@ -172,23 +176,6 @@ Common properties of a `Payload` object (specific protocol clients add more data
 After the payload was given to a sender it must not be modified by the application anymore.
 
 Incoming messages will always provide a `Payload` object, just for application convenience.
-
-#### Message Payload and WebSocket Data Masking
-
-Using a plain TCP connection the payload data will be sent unchanged.
-Depending on the used protocol it may be split into multiple frames, not relevant for the client and not a real memory copy.
-But running a WebSocket connection the encoder will have to mask (means to modify) all data before sending.
-
-Hence, __if (and only if)__ an application
-
-* uses WebSocket connections __and__
-* uses payload `Buffer` objects larger than a configured payload copy limit __and__
-* re-uses the same buffer instance(s) for multiple messages __then__
-
-it must take a copy of those buffers by itself before writing to an outgoing stream.
-
-Typically, the payload is created per message and released by application already after calling the client to publish.
-In this case do not copy anything.
 
 ## Examples
 

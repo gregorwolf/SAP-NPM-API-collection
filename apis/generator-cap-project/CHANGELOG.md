@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.3.0] - 2020-10-06
+
+### Changed
+- All file operations (write, copy, ...) commit directly after execution.
+
+
+## [1.2.1] - 2020-09-22
+
+### Fixed
+- For `Java` projects also copy dot files, e.g. `.cdsrc.json`.
+
+### Changed
+- Internal refactorings, now requiring `@sap/cds-dk` version `>=1.7.0`.
+
+
 ## [1.2.0] - 2020-09-01
 
 ### Changed
@@ -13,21 +28,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Project names must not contain an underscore to ensure compatibility with Maven.
 - Added human readable display name.
 
+
 ## [1.1.3] - 2020-07-16
 
 ### Fixed
 - Internal refactorings.
 - Internal bug fixes.
 
+
 ## [1.1.2] - 2020-07-02
 
 ### Fixed
 - Internal bug fixes.
 
+
 ## [1.1.1] - 2020-06-08
 
 ### Fixed
 - Internal refactorings.
+
 
 ## [1.1.0]
 
