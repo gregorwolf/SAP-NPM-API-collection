@@ -6,6 +6,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.5.5 - 2020-10-19
+
+### Fixed
+
+- `$user.id` in `restrict.where` always treated as string
+
+## Version 2.5.4 - 2020-10-19
+
+### Fixed
+
+- Certificate issue when consuming remote services
+
+## Version 2.5.3 - 2020-10-16
+
+### Fixed
+
+- Do not fail in `cds deploy --to sqlite` if `sqlite3` is not installed
+
 ## Version 2.5.2 - 2020-10-09
 
 ### Fixed

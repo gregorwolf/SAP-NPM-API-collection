@@ -20,16 +20,18 @@ The following environment variables are used:
 * [Limitations](#limitations)
 
 ## Install
-Add the SAP NPM Registry to your npm configuration for all `@sap` scoped modules.
 
+See also:
+[https://www.npmjs.com/package/@sap/xb-msg-env](https://www.npmjs.com/package/@sap/xb-msg-env)
+
+To add it to your project run:
 ```bash
-npm config set "@sap:registry=https://npm.sap.com"
+npm i @sap/xb-msg-env
 ```
 
-Add the dependency to your applications `package.json` and run npm for it:
-
+To generate complete API documentation run inside the library package folder
 ```bash
-npm install
+npm run doc
 ```
 
 ## API
@@ -52,11 +54,11 @@ A single input or output can have the following properties:
 | Parameter | Type | Input | Output | Description |
 | --- | --- | --- | --- | --- |
 | service | string | yes | yes | Name of the messaging service to which this item is assigned |
-| address | string | yes | yes | Queue name (e.g. ‘queue:q001’) or topic in unified syntax (e.g. ‘topic:BO/Sales/Order/Released’) |
-| reliable | boolean | yes | yes | Indicates whether acknowledgements shall be used for reliable message transfers |
+| address | string | yes | yes | Queue name (e.g. `queue:q001`) or topic in unified syntax (e.g. `topic:BO/Sales/Order/Released`) |
+| reliable | boolean | yes | yes | Indicates whether acknowledgements are used for reliable message transfers |
 | exclusive | boolean | yes | no | Indicates whether only one single consumer is allowed at a time |
-| persistent | boolean | no | yes | Indicates whether the message broker shall persist messages |
-| maxMsgInFlight | number | yes | no | The maximum number of unacknowledged messages the broker shall send to the consumer |
+| persistent | boolean | no | yes | Indicates whether the message broker persists messages |
+| maxMsgInFlight | number | yes | no | The maximum number of unacknowledged messages the broker sends to the consumer |
 
 ### Create xb-msg Client Options
 Create a messaging client and start consuming messages.
@@ -253,10 +255,4 @@ will provide the client options for `@sap/xb-msg`:
   ]
 }
 ```
-
-## Limitations
-* Minimum version required for @sap/xb-msg is 0.2.3
-* Minimum version required for @sap/xb-msg-mqtt-v311 is 0.2.9
-* Minimum version required for @sap/xb-msg-amqp-v091 is 0.2.9
-* Minimum version required for @sap/xb-msg-amqp-v100 is 0.2.4
 

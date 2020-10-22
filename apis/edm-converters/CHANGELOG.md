@@ -6,7 +6,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Unreleased
+## [1.0.38] - 2020-10-13
+Bugfix for cap issue 6098
+## [1.0.38] - 2020-10-13
+
+### Changed
+- Changelog fixes
+
+## [1.0.37] - 2020-10-12
+
+### Added
+- license file: LICENSE
+
+## [1.0.30] - 2020-05-19
+
+### Fixed
+   * Added fix to link enum Types to property in entity sets for V4.
 
 ## [1.0.29] - 2020-05-08
 
@@ -15,7 +30,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ## [1.0.26] - 2020-05-05
 
 ### Fixed
-   * Added fix for several missing entity sets which 
+   * Added fix for several missing entity sets which
      are stemming from the same entity For Mock Server Use Case V4.
 
 ### Added
@@ -66,11 +81,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 - Remove Temporal vocabulary from autoloading
-- Improve error message if XML elements can't be resolved
-- Change generated $Collection = 'true' to true boolean for functions generated from function imports
+- Improve error message if XML elements cannott be resolved
+- Change generated $Collection = "true" to true boolean for functions generated from function imports
 - $Nullable is not set on NavigationProperty collections anymore.
-- Improve error message if XML elements can't be resolved
-- Change generated $Collection = 'true' to true boolean for functions generated from function imports
+- Improve error message if XML elements cannot be resolved
+- Change generated $Collection = "true" to true boolean for functions generated from function imports
 
 ## [0.0.15] - 2018-12-12
 

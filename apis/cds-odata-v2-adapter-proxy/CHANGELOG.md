@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.49 - 2020-10-19
+
+### Fixed
+
+- Fix entity uris with "x-forwarded-path" headers for OData batch calls
+- Support of 'odata-entityid' header rewrite
+
+## Version 1.4.48 - 2020-10-16
+
+### Fixed
+
+- Fix entity uris with "x-forwarded-path" headers
+- Forward x-request-id, x-correlationid for metadata request
+
 ## Version 1.4.47 - 2020-10-08
 
 ### Fixed

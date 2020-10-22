@@ -108,3 +108,6 @@ convert_edm edmxV40ToJsonV40 --help
 # Releases and Milestones
 
 [Changelog](./CHANGELOG.md)
+
+## License
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3.1.txt).

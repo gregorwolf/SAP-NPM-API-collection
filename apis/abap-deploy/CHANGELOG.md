@@ -1,3 +1,16 @@
+<a name="0.10.11"></a>
+
+## [0.10.11](https://github.wdf.sap.corp/devx-wing/abap-deploy/compare/v0.9.5...v0.10.11) (2020-10-15)
+
+### Bug Fixes
+
+- devxbugs 7659 use dest for onpremise ([#46](https://github.wdf.sap.corp/devx-wing/abap-deploy/issues/46)) ([c19eecb](https://github.wdf.sap.corp/devx-wing/abap-deploy/commit/c19eecb))
+- devxbugs-7475 deploy fail in case app id is changed ([#47](https://github.wdf.sap.corp/devx-wing/abap-deploy/issues/47))
+
+### Features
+
+- support local NoAuth by default ([#42](https://github.wdf.sap.corp/devx-wing/abap-deploy/issues/42)) ([bd70b5c](https://github.wdf.sap.corp/devx-wing/abap-deploy/commit/bd70b5c))
+
 <a name="0.10.7"></a>
 
 ## [0.10.7](https://github.wdf.sap.corp/devx-wing/abap-deploy/compare/v0.9.6...v0.10.7) (2020-08-05)

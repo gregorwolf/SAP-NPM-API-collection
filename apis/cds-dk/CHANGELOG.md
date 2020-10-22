@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.1.2 - 2020-10-16
+
+### Changed
+- `cds init` uses latest `Maven Java archetype` version `1.10.0` for creating Java projects.
+
+### Fixed
+- `cds deploy --to sqlite` finds the `sqlite3` module again if `cds` is used from a globally installed `@sap/cds-dk`.
+
+
 ## Version 3.1.1 - 2020-10-07
 
 ## Added

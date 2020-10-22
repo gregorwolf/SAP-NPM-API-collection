@@ -6,7 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Unreleased
+## [0.9.6] - 2020-10-16
+
+- added: support for message-queuing
+
+## [0.9.5] - 2020-06-26
+
+- added: license file for new delivery channel
+- fixed: newer Node.js version for unit tests and coverage
 
 ## [0.9.4] - 2019-02-11
 

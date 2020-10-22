@@ -4,6 +4,17 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+# Version 4.2.4 - 2020-10-16
+
+### Fixed
+
+- `cds compile --to edmx-v2/4` no longer crashes
+- `cds watch` no longer shows an error in absence of model files
+- `cds build` no longer fails with an error about module './old/compile'
+- Stack trace of some errors have been improved
+- The `.hdiconfig` file created by `cds build` now includes HANA artefact types from undeploy.json 
+
+
 # Version 4.2.3 - 2020-10-12
 
 ### Fixed

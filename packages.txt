@@ -22,7 +22,6 @@
 @sap/cds-sql
 @sap/cds-sqlite
 @sap/cf-tools
-@sap/cloud-sdk-vdm
 @sap/cloud-sdk-vdm-accounting-document-service
 @sap/cloud-sdk-vdm-activity-type-service
 @sap/cloud-sdk-vdm-api-legal-document-status-service

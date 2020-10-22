@@ -6,7 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## Version 1.0.22 - 2020-10-21
+
+### Fixed
+
+- The application url returned to the saas registry when using asynchronous onboarding
+can now also be set in the header field 'application_url'
+- The build task used when onboarding do now use the right defaults. When being used
+as sidecar application, build task do no longer have to have the model option.
+- New entities with namespaces in extensions are now correctly 
+checked by the extensibility linter on extension activation
+- Call of onboarding and offboarding via javacript API is now fixed ('Cannot read property 'headers' of undefined')
+
 ## Version 1.0.21 - 2020-09-29
+
 
 ### Fixed
 

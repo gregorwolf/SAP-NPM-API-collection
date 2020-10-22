@@ -1,22 +1,22 @@
 # @sap/ux-cds-odata-language-server-extension
 
-The SAP Fiori tools - CDS OData Language Server extension module enhances the functionality of [SAP Cloud Platform core data services plug-in for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=SAPSE.vscode-cds) with the features assisting you to define [OData annotations](https://cap.cloud.sap/docs/advanced/odata#annotations) in .cds files serving Fiori UIs.
+The SAP Fiori tools - CDS OData Language Server enhances the functionality of [SAP Cloud Platform core data services plug-in for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=SAPSE.vscode-cds) with the features assisting you to define [OData annotations](https://cap.cloud.sap/docs/advanced/odata#annotations) in .cds files serving Fiori UIs.
 
 ## **1. Code Completion**
 
-The SAP Fiori tools - CDS OData Language Server extension module provides a list of suggestions based on the service metadata and OData vocabularies. An application developer can open such a list of suggestions for annotation aliases, terms, records, properties and their values and accept one of them to speed up applying OData annotations to service entities and elements. The suggestion lists are context sensitive, and include only the values that are allowed by OData vocabulary specification. This eliminates the need to look up the valid elements and values or type complete values. 
+The SAP Fiori tools - CDS OData Language Server provides a list of suggestions based on the service metadata and OData vocabularies. An application developer can open such a list of suggestions for annotation aliases, terms, records, properties and their values and accept one of them to speed up applying OData annotations to service entities and elements. The suggestion lists are context sensitive, and include only the values that are allowed by OData vocabulary specification. This eliminates the need to look up the valid elements and values or type complete values. 
 
 ## **2. Micro-Snippets**
 
-The SAP Fiori tools - CDS OData Language Server extension module provides a number of generic micro-snippets in the suggestion lists. These are small blocks of code based on OData vocabulary definitions that can be inserted to avoid triggering the code completion for each annotation element separately. An application developer can insert repeating code patterns such as annotation aliases, terms, and records more efficiently.
+The SAP Fiori tools - CDS OData Language Server  provides a number of generic micro-snippets in the suggestion lists. These are small blocks of code based on OData vocabulary definitions that can be inserted to avoid triggering the code completion for each annotation element separately. An application developer can insert repeating code patterns such as annotation aliases, terms, and records more efficiently.
 
 ## **3. Diagnostics (error-checking)**
 
-The SAP Fiori tools - CDS OData Language Server extension module validates the OData annotations against the project metadata, annotation vocabularies, and OData specification. An application developer can view the diagnostic messages and navigate to the related place in the annotation file to fix the issues.
+The SAP Fiori tools - CDS OData Language Server validates the OData annotations against the project metadata, annotation vocabularies, and OData specification. An application developer can view the diagnostic messages and navigate to the related place in the annotation file to fix the issues.
 
 ## **4. Documentation (Vocabulary Information)**
 
-The SAP Fiori tools - CDS OData Language Server extension module provides vocabulary information for annotation terms and their elements, such as property values, record types, etc. This information may include a description, applicability, type, etc. It also indicates if a term/element is experimental or deprecated and informs the developer if the element is mandatory. An application developer can use this information to make a better decision on how to use the annotation. The documentation scope depends on the information provided in the respective vocabulary.
+The SAP Fiori tools - CDS OData Language Server provides vocabulary information for annotation terms and their elements, such as property values, record types, etc. This information may include a description, applicability, type, etc. It also indicates if a term/element is experimental or deprecated and informs the developer if the element is mandatory. An application developer can use this information to make a better decision on how to use the annotation. The documentation scope depends on the information provided in the respective vocabulary.
 
 ## **5. Go to Definition/Peek Definition**
 
@@ -26,7 +26,7 @@ The Peek Definition feature lets you preview the definition of a annotation with
 
 ## **6. i18n Support**
 
-The SAP Fiori tools - CDS OData Language Server extension module provides diagnostic warning for hard-coded translatable text values which do not match the expected i18n reference format. Together with the standard functions of SAP Cloud Platform core data services plug-in it simplifies maintaining translateable values.
+The SAP Fiori tools - CDS OData Language Server provides diagnostic warning for hard-coded translatable text values which do not match the expected i18n reference format. Together with the standard functions of SAP Cloud Platform core data services plug-in it simplifies maintaining translateable values.
 
 
 ## **Out of Scope**
@@ -34,8 +34,6 @@ The SAP Fiori tools - CDS OData Language Server extension module provides diagno
 Completion items for path values are only provided based on files referenced via the `using` directive and annotations applied to the entities exposed from the same service.
 Additionally, this version of annotation language server doesn’t support:
 - [Core Data Services Common](https://cap.cloud.sap/docs/cds/annotations) annotations
-- Flattened annotations
-- Annotations applied to actions/functions
 - Annotations applied to complex elements
     ```
     annotate IncidentService.Priority with {

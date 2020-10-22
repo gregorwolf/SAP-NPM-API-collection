@@ -4,6 +4,28 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.78.11] - 2020-10-09
+
+### Added
+
+- OData V2: properties `variantManagementHidden` and `subTitleIfVariantMgmtHidden`
+- OData V2: support for new property `useDateRange` in smart filter bar
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- Passed manifest should not be modified by the specification API
+- The outline view of the page map did not show all sections or facets
+
+### Quality
+
+- Cover V4 AnalyticalListPage.ts with unit tests
+
 ## [1.78.10] - 2020-09-28
 
 ### Added

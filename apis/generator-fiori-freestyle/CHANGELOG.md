@@ -2,6 +2,13 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [0.9.12] - 2020-10-13
+### Added
+- Added support for plain UI5 freestyle template.
+
+### Fixed
+- Sorted SAP system connections alphabetically.
+- The Fiori freestyle generator should now be discoverable from the `Install and Explore Generators` tab in the Application Wizard by filtering on `SAP Fiori` shortcuts.
 
 ## [0.9.7] - 2020-08-31
 ### Added

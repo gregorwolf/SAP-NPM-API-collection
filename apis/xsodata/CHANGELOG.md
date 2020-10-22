@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.3.4] - 2020-10-14
+
+### Fixed
+
+add "return" before asynDone to avoid "Callback was already called" errors when "dataCollector* classes" are called
+
 ## [7.3.3] - 2020-10-01
 
 ### Fixed
