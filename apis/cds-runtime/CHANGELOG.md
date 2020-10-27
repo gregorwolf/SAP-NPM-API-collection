@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.5.6 - 2020-10-22
+
+### Fixed
+
+- Messaging: add data listener only once queue was put
+
 ## Version 2.5.5 - 2020-10-19
 
 ### Fixed

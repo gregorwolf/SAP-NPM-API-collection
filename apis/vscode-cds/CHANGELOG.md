@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.0.1 - tbd
+
+### Changed
+- release notes page uses longer timeout (30sec) when waiting for content
+
+### Fixed
+- `preview as...` commands now overwrite preview file content instead of appending
+- `preview as...` commands only fail when `cds compile` returned with exit code != 0 (severe error)
+
 ## Version 3.0.0 - 2020-09-30
 
 ### Added
@@ -27,7 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
   + `cds-lsp 4.0.0`
   + `cds-compiler 1.42.2`
 
-## Fixed
+### Fixed
 - bug fixes
 
 
@@ -290,7 +299,7 @@ Official support for code formatting
 - support LSP configuration via settings file in workspace incl. logs in workspace
 
 ### Fixed
-- Fix indentation after element definitions using Association or Composition 
+- Fix indentation after element definitions using Association or Composition
 - fix: extraction of root models did no longer work since @sap/cds#3.19
 - code formatting
     - Fix indentation of keywords `union`, `except`, and `minus`

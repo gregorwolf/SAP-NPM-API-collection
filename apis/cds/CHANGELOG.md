@@ -4,6 +4,27 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+# Version 4.2.7 - 2020-10-26
+
+### Fixed
+
+- Fiori preview finds the `express` package again in the case where no `express` is installed in the application's `node_modules`.
+
+
+# Version 4.2.6 - 2020-10-26
+
+### Fixed
+
+- `cds run` finds the `express` package again in the case where no `express` is installed in the application's `node_modules`.
+
+
+# Version 4.2.5 - 2020-10-23
+
+### Fixed
+
+- `cds compile --to edmx-v2` and `edmx-v4` now again write to the folder given with `--dest`.
+
+
 # Version 4.2.4 - 2020-10-16
 
 ### Fixed
@@ -12,7 +33,7 @@
 - `cds watch` no longer shows an error in absence of model files
 - `cds build` no longer fails with an error about module './old/compile'
 - Stack trace of some errors have been improved
-- The `.hdiconfig` file created by `cds build` now includes HANA artefact types from undeploy.json 
+- The `.hdiconfig` file created by `cds build` now includes HANA artefact types from undeploy.json
 
 
 # Version 4.2.3 - 2020-10-12

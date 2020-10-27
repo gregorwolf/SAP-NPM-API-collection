@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.1.3 - 2020-10-26
+
+### Fixed
+
+- `cds run` finds the `express` package again in the case where no `express` is installed in the application's `node_modules`.
+
+
 ## Version 3.1.2 - 2020-10-16
 
 ### Changed
