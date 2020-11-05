@@ -4,9 +4,24 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and
 this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.13.3 - 2020-10-27
+
+## Fixed
+
+- Improved typings no longer cause errors in typescript checks
+
+
+## Version 2.13.2 - 2020-10-27
+
+## Fixed
+
+- Improved typescript typings
+
+
 ## Version 2.13.1 - 2020-09-24
 
 ## Fixed
+
 - Support for `hana.*` types
 
 

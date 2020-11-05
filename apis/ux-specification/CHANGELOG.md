@@ -4,6 +4,37 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.78.12] - 2020-10-22
+
+### Added
+
+- Added test project with free-style view
+- Full support for binding changes as an option for the property values of
+    List report +  ALP: hAlign of table columns, popinLayout
+    Object page: popinLayout, displayShape, header actions, hAlign of table columns
+
+### Changed
+
+- Dependencies updated:
+"@sap-ux/annotation-converter": "0.2.37",
+"@sap-ux/edmx-parser": "0.2.33,
+"@sap-ux/vocabularies-types": "0.2.33"
+- OData V2: `showDraftToggle` property is now only part of List Report schema
+- OData V2: `dateSettings` now appear direclty inside `filterBar` in List Report schema
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- OData V4: Added descriptions to properties
+- Fixed exception for freestyle views as part of an app
+- Deletion of object page header transferred correctly
+- Export import for header properties are consistent
+
+### Quality
+
 ## [1.78.11] - 2020-10-09
 
 ### Added

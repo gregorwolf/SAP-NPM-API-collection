@@ -6,6 +6,31 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.1.0 - 2020-10-30
+
+### Added
+- support mono repo file system layouts
+- user option to format snippets after completion 
+- user option to disable odata plugin
+- detection of slow running odata plugin (when validating) incl. user options to disable and fine tune
+- user option for omitRedundantTypesInSnippets for annotations
+
+### Changed
+- install/update contributions completely async
+- completion no longer suggests types when values are meant
+- project cds-lsp settings overrule all
+- consume cds-compiler 1.45.0
+
+### Fixed
+- validation of annotation plugins led to 100% cpu load
+- globally installed cds was not reliably found
+- code completion for annotation plugins did not work inside annotations at @ characters
+- bug fixes
+
+### Note
+From version 4.1.0 on, @sap/cds-lsp requires NodeJS 12.14+
+
+
 ## 4.0.0 - 2020-09-30
 
 ### Added

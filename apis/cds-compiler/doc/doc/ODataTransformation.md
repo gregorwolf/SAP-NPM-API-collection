@@ -261,6 +261,10 @@ their more elaborate "long form".
 | `@Capabilities.Updatable`  | `@Capabilities.UpdateRestrictions.Updatable`  |
 | `@readonly`                | `@Core.Immutable`                             |
 | `@important`               | `@UI.Importance`                              |
+| `@assert.format`           | `@Validation.pattern: value`                  |
+| `@assert.range`            | `@Validation.Minimum/Maximum: value`          |
+|                            | or `@Validation.AllowedValues: {`             |
+|                            |      `@Core.SymbolicName: enum-name }`        |
 
 
 For the annotation `@important` (which is renamed to `@UI.Importance`), the

@@ -1,3 +1,13 @@
+# 1.7.3
+Features:
+- use @sap/hdi-deploy@3.11.13
+- use @sap/audit-logging@3.2.0
+
+# 1.7.2
+Features:
+- use hdi-deploy version 3.11.12
+- use @sap/audit-logging 3.1.1
+
 # 1.7.1
 Features:
 - use hdi-deploy version 3.11.11

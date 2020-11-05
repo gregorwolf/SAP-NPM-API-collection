@@ -1,3 +1,20 @@
+## 3.11.13
+Features:
+- better logging of WRITE/DELETE calls
+
+Fixes:
+- update dependencies
+- only handle "CDS METADATA" on non-HANA Cloud systems
+- always log errors to the parent process when using library.js
+- gracefully handle "trace":false via HDI_DEPLOY_OPTIONS
+
+## 3.11.12
+Changes:
+- segfault-handler is no longer installed as a optional dependency - needs to be provided via parallel installation if required
+
+Fixes:
+- check the return code of HDI API calls to correctly detect errors
+
 ## 3.11.11
 Fixes:
 - close all connections before calling process.exit() to work around sporadic segmentation fault

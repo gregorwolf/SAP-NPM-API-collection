@@ -4,6 +4,34 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.3.0 - 2020-11-03
+
+### Added
+
+- Support `SELECT[...].limit(0, ...)`
+- `hdbtabledata` generation can be disabled using `cds build` task option `skipHdbtabledataGeneration`.
+
+### Changed
+
+- Optimized `cds build` performance when creating OData EDMX output.
+
+### Fixed
+
+- `cds build` now classifies the severity of compile messages the same way as the low-level compiler. As a consequence, messages with severity _warning_ might now be classified as _error_.
+- Now, cds CLI logs errors based on _log-level_ setting.
+- `cds compile --to sql` no longer creates SQLite-specific views if in `hana` SQL dialect
+- The `node-cf` build task of `cds build` now also filters `./` file dependencies from package.json in the build output.
+
+### Removed
+
+
+# Version 4.2.8 - 2020-10-27
+
+### Fixed
+
+- `cds compile --to edmx --dest` creates files with `.xml` ending again.
+
+
 # Version 4.2.7 - 2020-10-26
 
 ### Fixed
@@ -35,16 +63,14 @@
 - Stack trace of some errors have been improved
 - The `.hdiconfig` file created by `cds build` now includes HANA artefact types from undeploy.json
 
-
 # Version 4.2.3 - 2020-10-12
 
 ### Fixed
 
-- Leading `#` comments in csv files sporadically caused `cds build` to fail on Windows with error `EPERM: operation not permitted`.
+- Leading `#` comments in CSV files sporadically caused `cds build` to fail on Windows with error `EPERM: operation not permitted`.
 - Method `req.user.is()` returns boolean
 
-
-# Version 4.2.2 - 2020-10-02
+# Version 4.2.2 - 2020-10-07
 
 ## Added
 

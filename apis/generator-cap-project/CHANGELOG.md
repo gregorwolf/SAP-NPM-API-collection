@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.4.0] - 2020-10-15
+
+### Changed
+- Better support for SAP Business Application Studio (BAS) via UI enhancements and logging.
+
+
 ## [1.3.0] - 2020-10-06
 
 ### Changed

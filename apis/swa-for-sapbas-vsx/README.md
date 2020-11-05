@@ -84,3 +84,8 @@ The following fields can be used for creating SWA reports:
 | **Custom event parameter 9**  | Is SAP User where allowed, empty overwise, set by the lib automatically    |
 | **Custom event parameter 10**  | The unique caller ID "vsxPublisher.vsxPackageName", set by lib automatically  |
 
+## Contribution
+1. Add a PR with changes to package version (and package-lock)
+2. Add a PR in https://github.wdf.sap.corp/NPMJS/NODE_SWA_FOR_VSC_EXT-1.0 see [example PR](https://github.wdf.sap.corp/NPMJS/NODE_SWA_FOR_VSC_EXT-1.0)
+3. ask project npm project admins (ido goren, asaf dulberg) to approve the PRs
+4. new version should be released soon to npmjs on https://www.npmjs.com/package/@sap/swa-for-sapbas-vsx

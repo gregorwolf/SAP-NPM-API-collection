@@ -6,6 +6,54 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 1.45.0 - 2020-10-30
+
+### Added
+
+- OData: Warn about non-applicable annotations.
+
+### Changed
+
+- A warning is emitted for annotation definitions inside services/contexts as this won't be
+  allowed in the next major cds-compiler release.
+- OData: Update vocabularies 'Analytics' and 'Common'.
+
+### Fixed
+
+- Association to Join translation: Fill empty select blocks with aliased columns.
+- to.edm(x):
+  + Some EDM(x) warnings were not properly passed to the user.
+  + Don't render references and annotations for unexposed associations.
+- to.hdbcds: Warnings during rendering of the hdbcds were not raised to the user.
+- Issue which led to wrong on-conditions for `hdbcds` naming mode.
+
+## Version 1.44.4 - 2020-10-16
+
+### Fixed
+
+- to.hdbcds/hdi/sql: The processing of managed associations as foreign keys now works regardless of the order in which the possible chains are resolved.
+- OData: Namespaces are brought back into the exposed types. Dots are replaced with underscores in the name.
+
+## Version 1.44.2 - 2020-10-09
+
+### Added
+
+- OData: The annotations `@assert.format` and `@assert.range` now result in adding the
+  `@Validation.Pattern` and `@Validation.AllowedValues` in the resulting EDMX.
+- A new compiler option `newResolve` is added (`--new-resolve` for `cdsc`).  When set to `true` a new
+  module resolver is used which needs fewer file lookups. It will become the default in the future.
+- Event definitions can be typed with a reference to an event.
+- When the new option `withLocation` is set,
+  the property `$location` in the CSN is enumerable instead of non-enumerable;
+  the value of `$location` is an object with sub properties `file`, `line` and `col`
+  which describes the source position of all definitions, elements and other members.
+
+### Changed
+
+- OData:
+  + The `namespace` is now not part of the exposed type's name.
+  + Update vocabularies 'Aggregation', 'UI' and 'Validation'.
+
 ## Version 1.43.0 - 2020-10-02
 
 ### Added

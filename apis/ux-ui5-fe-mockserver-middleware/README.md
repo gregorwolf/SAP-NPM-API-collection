@@ -9,7 +9,7 @@ The **SAP Fiori - UI5 middleware for the Fiori elements mock server** is a middl
 1. Get [Node.js](https://nodejs.org/en/download/)
 2. Install the mockserver middleware
     ```sh
-    npm install -g yo @sap/ux-ui5-fe-mockserver-middleware
+    npm install @sap/ux-ui5-fe-mockserver-middleware
     ```
 
 ## Usage
@@ -57,3 +57,7 @@ server:
               mockdataRootPath: './webapp/localService/data'   
 
 ```
+
+**Sample application** 
+
+See the usage in demo apps [SAP Fiori sample apps](https://github.com/SAP-samples/fiori-tools-samples)

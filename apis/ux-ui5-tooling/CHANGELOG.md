@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.22] - 2020-10-21
+### Fixed
+* Reduced bundle size
+
 ## [1.0.21] - 2020-10-07
 ### Fixed
 * Build sources are no longer minified to improve debugging.

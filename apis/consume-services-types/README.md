@@ -5,7 +5,9 @@
 [![Code Smells](https://sonar.wdf.sap.corp/api/project_badges/measure?project=devxwing-consume-sevices-types&metric=code_smells)](https://sonar.wdf.sap.corp/dashboard?id=devxwing-consume-sevices-types)
 
 # consume-services-types
-Common types definition for different service providers
+
+Common types definition for different service providers.
 
 ## Release process
+
 Every merge into the 'master' branch triggers for release and publish process by xmake-nova job - don't forget to update package version information.

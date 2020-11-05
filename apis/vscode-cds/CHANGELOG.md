@@ -5,7 +5,31 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 3.0.1 - tbd
+## Version 3.1.0 - 20201102
+
+### Added
+- release notes page shows loading text while loading content
+- user setting `cds.releaseNotes.showAutomatically` to enable or disable automatic display of `CAP Release Notes` when a new version is available
+- support mono repo file system layouts
+- user setting to disable odata plugin
+- detection of slow running odata plugin (when validating) incl. user settings to disable and fine tune
+- user setting for omitRedundantTypesInSnippets for annotations
+- user setting to enable file system watching to track installation of @sap/cds in project
+
+### Changed
+- install/update contributions completely async
+- completion no longer suggests types when values are meant
+- project cds-lsp settings overrule all
+- consume cds-compiler 1.45.0
+
+### Fixed
+- validation of annotation plugins led to 100% cpu load
+- globally installed cds was not reliably found
+- code completion for annotation plugins did not work inside annotations at @ characters
+- bug fixes
+
+
+## Version 3.0.1 - 2020-10-23
 
 ### Changed
 - release notes page uses longer timeout (30sec) when waiting for content
@@ -14,16 +38,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `preview as...` commands now overwrite preview file content instead of appending
 - `preview as...` commands only fail when `cds compile` returned with exit code != 0 (severe error)
 
+
 ## Version 3.0.0 - 2020-09-30
 
 ### Added
 - Plugin support for domain specific annotation handlers, featuring
-  - diagnostics
-  - code completion
-  - hover information
-  - goto definition
-  - quickfix to maintain translation
-  - auto-installation/update with user setting for npm registry
+  + diagnostics
+  + code completion
+  + hover information
+  + goto definition
+  + quickfix to maintain translation
+  + auto-installation/update with user setting for npm registry
 
 - code completion inside string literals and `![...]` identifiers is automatically triggered by `/` character (additionally to `.` and `@`)
 
@@ -52,6 +77,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 - command `install cds-dk` now available to install `CDS Development Kit (@sap/cds-dk)` globally
 
+
 ## Version 2.6.0 - 2020-09-01
 
 ### Added
@@ -67,6 +93,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
     + `cds-lsp 3.5.0`
     + `cds-compiler 1.39.0`
 
+
 ## Version 2.5.0 - 2020-08-05
 
 ### Added
@@ -77,6 +104,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - updated npm modules
     + `cds-lsp 3.4.3`
     + `cds-compiler 1.35.0`
+
 
 ## Version 2.4.2 - 2020-07-29
 
@@ -299,7 +327,7 @@ Official support for code formatting
 - support LSP configuration via settings file in workspace incl. logs in workspace
 
 ### Fixed
-- Fix indentation after element definitions using Association or Composition
+- Fix indentation after element definitions using Association or Composition 
 - fix: extraction of root models did no longer work since @sap/cds#3.19
 - code formatting
     - Fix indentation of keywords `union`, `except`, and `minus`

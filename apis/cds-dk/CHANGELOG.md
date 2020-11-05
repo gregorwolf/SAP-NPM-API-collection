@@ -6,6 +6,35 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.2.0 - 2020-11-03
+
+### Added
+
+- `cds watch` now allows to set the `--in-memory` flag that is passed to `serve`.
+
+### Changed
+
+- `@sap/cds-dk` is again shrinkwrapped, so that builds get reproducible again
+- All `cds` commands now prefer a local installation of `@sap/cds`.  This enables applications better control over the version of `@sap/cds`.
+- `cds add cf-manifest` generates the service application with the `random-route: true` flag, which avoids route clashes on CF during development.
+
+### Fixed
+
+- `cds run` finds its `express` module again in the case where no `express` is installed in the application.
+- `cds env` now also displays properties that have a value `false` or `''`.
+- Leading flags in `cds` CLI work again, like `cds --to sql my.cds`
+- `cds compile --to` w/o an argument now fails with a better message
+
+### Removed
+
+
+## Version 3.1.4 - 2020-10-27
+
+### Fixed
+
+- `cds run` finds the `sqlite3` module again if `cds` is used from a globally installed `@sap/cds-dk`.
+
+
 ## Version 3.1.3 - 2020-10-26
 
 ### Fixed

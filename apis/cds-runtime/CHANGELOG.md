@@ -6,6 +6,55 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.6.0 - 2020-11-03
+
+### Added
+
+- Support for $expand on managed Composition and Association to-one in structured types
+- Support for CQN partials in `SELECT.orderBy()`
+- `messages_<locale>.properties` files looked for in all i18n folders (not just the first)
+- Structured types as key
+- Support for localization in custom handlers
+- `InsertResult` (beta):
+  - iterator that returns the keys of the created entries, e.g.:
+    - example: `[...result]` -> `[{ ID: 1 }, { ID: 2 }, ...]`
+    - in case of `INSERT...as(SELECT...)`, the iterator returns `{}` for each row
+  - `affectedRows`: the number inserted (root) entries or the number of affectedRows in case of INSERT into SELECT
+  - `valueOf()`: returns `affectedRows` such that comparisons like `result > 0` can be used
+    - note: `===` cannot be used as it also compares the type
+- Authentication strategy `xsuaa` (only with `@sap/xssec^3`) that additionally provides access to saml attributes via `req.user.attr` (e.g., `req.user.attr.familyName`)
+
+### Changed
+
+- SQL queries do not use placeholders for rows of LIMIT clause
+- Replaced `@sap/odata-server` dependency by own copy
+- On `PATCH` and `PUT`, an `UPDATE` event is followed by a `CREATE` event if there was no matching entity
+- On `PUT`, not provided properties are defaulted/ nulled
+- On HTTP requests, `req.data` is a copy to preserve the original payload
+- Additional properties in payload are preserved for entities with `@cds.persistence.skip` when served to `rest`
+- RemoteService: Ignore where clause of view definition during INSERT|UPDATE|DELETE instead of throwing error
+- Do not use SQL placeholders for numbers
+- Service-level `@requires` are checked in protocol adapter instead of ApplicationService (excluding metadata requests)
+- Additional translatable messages
+
+### Fixed
+
+- Streamlined debugging output for SQL statements
+- Integrity check for Associations in structured types
+- DateTime conversion for HANA
+- Ensure `req.method` and `req.headers`
+- DatabaseService: Ignore where clause of view definition during INSERT|UPDATE|DELETE
+- Activate draft with UPDATE restriction
+- Add the correct backlink to composition tree in case of additional association from child to parent
+- `falsy` default values were not inserted to the database
+- Always prepare for temporal data
+- Internal server error on views with parameters and join
+- Secure annotation in draft union scenario
+- Augment read after write data with returned values of virtual properties
+- `@restrict` with association paths and `$user.<attr>` in where
+- Result of deep insert
+- `UPDATE` statements in custom handlers on Application Service setting only falsy values or using only expressions like `{stock: {'-=': 1}}`
+
 ## Version 2.5.6 - 2020-10-22
 
 ### Fixed
@@ -107,6 +156,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - `INSERT.into(...).as(SELECT.from(...)` inside custom handlers
 - Integrity check for DELETE requests
 - `Serialization Error` for entities with composition of aspects in `containment` mode
+- Expand on entity with a backlink as a key
+
+## Version 2.3.1 - 2020-09-17
+
+### Fixed
+
 - Expand on entity with a backlink as a key
 
 ## Version 2.3.0 - 2020-08-31

@@ -7,6 +7,15 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behaviour concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 1.44.0
+
+### Added `addTextsLanguageAssoc`
+
+When the beta option `addTextsLanguageAssoc` is set to true and
+the model contains an entity `sap.common.Languages` with an element `code`,
+all generated texts entities additionally contain an element `language`
+which is an association to `sap.common.Languages` using element `local`.
+
 ## Version 1.43.0
 
 ### Changed `subElemRedirections`
