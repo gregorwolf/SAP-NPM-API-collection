@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.54 - 2020-11-05
+
+### Fixed
+
+- Support mapping of \_\_next annotation
+- Forward file upload headers to media entity POST call
+- Explain annotation '@Core.ContentDisposition.Filename' in README
+- Update README on OData API flavors
+- Fix links for navigation collections and query options
+
 ## Version 1.4.53 - 2020-10-30
 
 ### Fixed

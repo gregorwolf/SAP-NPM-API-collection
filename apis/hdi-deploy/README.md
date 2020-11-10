@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.11.13"
+    "@sap/hdi-deploy": "3.11.15"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -515,7 +515,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.11.13",
+    "@sap/hdi-deploy": "3.11.15",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1001,6 +1001,8 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--[no-]treat-warnings-as-errors`: [don't] treat warnings as errors
 - `--[no-]simulate-make`: [don't] simulate the make and skip post-make activities; pre-make activities still take effect, e.g. grants
 - `--connection-timeout <ms>`: number of milliseconds to wait for the database connection(s)
+- `--delete-timeout <ms>`: number of milliseconds to wait for the DELETE call
+- `--write-timeout <ms>`: number of milliseconds to wait for the WRITE call
 - `--lock-container-timeout <ms>`: number of milliseconds to wait for the container lock
 - `--exclude-filter [<path> ..]`: exclude the given paths during: file walk, delta detection and when explicitly scheduled via --(un)deploy
 - `--[no-]treat-wrong-ownership-as-errors`: [don't] treat wrong ownership of objects as errors, not enabled by default
@@ -1039,7 +1041,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "3.11.13",
+        "version": "3.11.15",
         "features": {
             "info": 2,
             "verbose": 1,

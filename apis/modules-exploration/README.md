@@ -1,17 +1,18 @@
-[![Build Status](https://gkeplatform2.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=modules-exploration-ci%2Fmaster)](https://gkeplatform2.jaas-gcp.cloud.sap.corp/job/modules-exploration-ci/job/master/)
-[![Quality Gate Status](https://sonar.wdf.sap.corp/api/project_badges/measure?project=modules-exploration-service&metric=alert_status)](https://sonar.wdf.sap.corp/dashboard?id=modules-exploration)
-[![Coverage](https://sonar.wdf.sap.corp/api/project_badges/measure?project=modules-exploration-service&metric=coverage)](https://sonar.wdf.sap.corp/dashboard?id=modules-exploration)
-[![Lines of Code](https://sonar.wdf.sap.corp/api/project_badges/measure?project=modules-exploration-service&metric=ncloc)](https://sonar.wdf.sap.corp/dashboard?id=modules-exploration)
-
+[![Build Status](https://gkexmlvalidator.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=modules-exploration-service-ci%2Fmaster)](https://gkexmlvalidator.jaas-gcp.cloud.sap.corp/job/modules-exploration-service-ci/job/master/)
+[![Quality Gate Status](https://sonar.wdf.sap.corp/api/project_badges/measure?project=modules-exploration-service&metric=alert_status)](https://sonar.wdf.sap.corp/dashboard?id=modules-exploration-service)
+[![Coverage](https://sonar.wdf.sap.corp/api/project_badges/measure?project=modules-exploration-service&metric=coverage)](https://sonar.wdf.sap.corp/dashboard?id=modules-exploration-service)
+[![Lines of Code](https://sonar.wdf.sap.corp/api/project_badges/measure?project=modules-exploration-service&metric=ncloc)](https://sonar.wdf.sap.corp/dashboard?id=modules-exploration-service)
 
 # @sap/modules-exploration
-This is an npm package which provides the ability to explore the available modules/generators installed in a specific predefined folder at runtime. 
-It provides two main APIs. One to get a list of explored modules and API to display the explored modules to the user in a yeoman-base prompt. <br> 
 
-Explored Modules should follow the following guidelines:  <br>
-1. Installed in /extbin/[MODULES-TYPE] specific folder  (e.g generators will be installed in /extbin/generators)
-2. Include metadata file:  modules.json
-The modules.json for generators should include the following parameters: 
+This is an npm package which provides the ability to explore the available modules/generators installed in a specific predefined folder at runtime.
+It provides two main APIs. One to get a list of explored modules and API to display the explored modules to the user in a yeoman-base prompt. <br>
+
+Explored Modules should follow the following guidelines: <br>
+
+1. Installed in /extbin/[MODULES-TYPE] specific folder (e.g generators will be installed in /extbin/generators)
+2. Include metadata file: modules.json
+   The modules.json for generators should include the following parameters:
 
 ```javascript
 {
@@ -24,7 +25,8 @@ The modules.json for generators should include the following parameters:
 }
 ```
 
-The modules.json for service-provider should include the following parameters: 
+The modules.json for service-provider should include the following parameters:
+
 ```javascript
 {
   "serviceProviders":[
@@ -40,17 +42,17 @@ The modules.json for service-provider should include the following parameters:
   ]
 }
 ```
+
 More infromation can be found in [Consume-Service Cookbook](https://github.wdf.sap.corp/pages/devx-wing/CookBook/cross-scenario-tools/Consume-SAP-Services/)
 
 # API
+
 **getExploredModules** <br>
-  Returns an array of explored modules metadata <br> <br>
-  the return metatadata is of type ''IModuleInfo[]
+Returns an array of explored modules metadata <br> <br>
+the return metatadata is of type ''IModuleInfo[]
 **promptExploredModules** <br>
-  Explores installed modules and prompt their metadata (name) to the user using the given generator. The prompt question can be passed as an input.
-  If not passed, a generic question will be displayed <br>
-
-
+Explores installed modules and prompt their metadata (name) to the user using the given generator. The prompt question can be passed as an input.
+If not passed, a generic question will be displayed <br>
 
 ## Release processs
 

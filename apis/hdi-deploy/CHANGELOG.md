@@ -1,3 +1,11 @@
+## 3.11.15
+Fixes:
+- set default for --delete-timeout and --write-timeout to 15 minutes instead of 15 seconds
+
+## 3.11.14
+Features:
+- introduce options --delete-timeout and --write-timeout, that can be used to set a timeout for the DELETE and WRITE HDI calls.
+
 ## 3.11.13
 Features:
 - better logging of WRITE/DELETE calls

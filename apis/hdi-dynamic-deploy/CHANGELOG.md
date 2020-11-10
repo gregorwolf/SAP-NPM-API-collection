@@ -1,3 +1,11 @@
+# 1.7.5
+Features:
+- use @sap/hdi-deploy@3.11.15
+
+# 1.7.4
+Features:
+- use @sap/hdi-deploy@3.11.14
+
 # 1.7.3
 Features:
 - use @sap/hdi-deploy@3.11.13

@@ -6,23 +6,41 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.6.3 - 2020-11-05
+
+### Fixed
+
+- Url and headers handling in service consumption
+
+## Version 2.6.2 - 2020-11-04
+
+### Fixed
+
+- Augment read after write data with returned values of virtual properties on draft activate
+
+## Version 2.6.1 - 2020-11-04
+
+### Fixed
+
+- Skip forbidden view check if association to view with foreign key in target
+
 ## Version 2.6.0 - 2020-11-03
 
 ### Added
 
-- Support for $expand on managed Composition and Association to-one in structured types
+- Support for `$expand` on managed Composition and Association to-one in structured types
 - Support for CQN partials in `SELECT.orderBy()`
 - `messages_<locale>.properties` files looked for in all i18n folders (not just the first)
 - Structured types as key
 - Support for localization in custom handlers
 - `InsertResult` (beta):
-  - iterator that returns the keys of the created entries, e.g.:
-    - example: `[...result]` -> `[{ ID: 1 }, { ID: 2 }, ...]`
+  + iterator that returns the keys of the created entries, for example:
+    - Example: `[...result]` -> `[{ ID: 1 }, { ID: 2 }, ...]`
     - in case of `INSERT...as(SELECT...)`, the iterator returns `{}` for each row
-  - `affectedRows`: the number inserted (root) entries or the number of affectedRows in case of INSERT into SELECT
-  - `valueOf()`: returns `affectedRows` such that comparisons like `result > 0` can be used
-    - note: `===` cannot be used as it also compares the type
-- Authentication strategy `xsuaa` (only with `@sap/xssec^3`) that additionally provides access to saml attributes via `req.user.attr` (e.g., `req.user.attr.familyName`)
+  + `affectedRows`: the number inserted (root) entries or the number of affectedRows in case of INSERT into SELECT
+  + `valueOf()`: returns `affectedRows` such that comparisons like `result > 0` can be used
+    - Note: `===` cannot be used as it also compares the type
+- Authentication strategy `xsuaa` (only with `@sap/xssec^3`) that additionally provides access to saml attributes via `req.user.attr` (for example, `req.user.attr.familyName`)
 
 ### Changed
 
@@ -41,7 +59,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Streamlined debugging output for SQL statements
 - Integrity check for Associations in structured types
-- DateTime conversion for HANA
+- DateTime conversion for SAP HANA
 - Ensure `req.method` and `req.headers`
 - DatabaseService: Ignore where clause of view definition during INSERT|UPDATE|DELETE
 - Activate draft with UPDATE restriction
