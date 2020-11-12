@@ -6,6 +6,31 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.6.7 - 2020-11-11
+
+### Fixed
+
+- Previous fix broke service consumption of other systems
+
+## Version 2.6.6 - 2020-11-10
+
+### Fixed
+
+- Headers handling in service consumption for S4 On-Premise systems
+- Check `req.path` during DoS prevention
+
+## Version 2.6.5 - 2020-11-09
+
+### Fixed
+
+- Default sorting in combination with `$apply`
+
+## Version 2.6.4 - 2020-11-06
+
+### Fixed
+
+- i18n tests executed in cds-test
+
 ## Version 2.6.3 - 2020-11-05
 
 ### Fixed

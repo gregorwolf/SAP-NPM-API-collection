@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 1.6.1 - 2020-10-29
+
+### Added
+- Dependency upgrade: "request": "2.88.2" 
+
+## 1.6.0 - 2020-10-22
+
+### Added
+- Support for Node 14
+- Dependency update
+
 ## 1.5.3 - 2020-06-17
 
 ### Added

@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.1.1 - 2020-11-06
+
+### Fixed
+- support for mono repo file system layouts did not work in certain cases
+- completion proposals for annotations were not shown at top of the list if inside an annotation
+
 ## 4.1.0 - 2020-10-30
 
 ### Added

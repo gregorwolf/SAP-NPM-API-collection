@@ -130,6 +130,7 @@
 @sap/cloud-sdk-vdm-order-bill-of-material-service
 @sap/cloud-sdk-vdm-outbound-delivery-service
 @sap/cloud-sdk-vdm-outbound-delivery-v2-service
+@sap/cloud-sdk-vdm-packing-instruction-service
 @sap/cloud-sdk-vdm-partner-company-service
 @sap/cloud-sdk-vdm-payment-advice-service
 @sap/cloud-sdk-vdm-payment-method-validation-service

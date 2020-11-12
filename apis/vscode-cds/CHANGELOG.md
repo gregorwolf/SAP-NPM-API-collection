@@ -5,7 +5,23 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 3.1.0 - 20201102
+## Version 3.1.3 - tbd
+
+### Fixed
+- internal refactoring and bug fixes
+
+## Version 3.1.2 - 2020-11-09
+
+### Fixed
+- support for mono repo file system layouts did not work in certain cases
+- completion proposals for annotations were not shown at top of the list if inside an annotation
+- only update workspace settings file if needed due to changed fileSystemWatch setting
+
+### Changed
+- updated npm modules
+  + `cds-lsp 4.1.1`
+
+## Version 3.1.0 - 2020-11-02
 
 ### Added
 - release notes page shows loading text while loading content
