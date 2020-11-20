@@ -228,3 +228,8 @@ Options from different sources have different precedence levels.
 | CLI Alias       | `--ll`                                                                                                                                                                                    |
 | Config File Key | `cli.logLevel`                                                                                                                                                                            |
 | Default         | "off"                                                                                                                                                                                     |
+
+### Support channel
+
+For reporting an issue, open a BCP ticket with component CA-BAS-DPL-ABAP
+For reporting a feature request, please open an influence request (https://influence.sap.com/sap/ino/#campaign/2538)

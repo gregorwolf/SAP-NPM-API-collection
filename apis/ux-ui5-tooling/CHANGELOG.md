@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.24] - 2020-11-05
+### Fixed
+* Fixed dependency installation in the application folder
+* Unable to change folder for a project while generating the deployment configuration on windows
+* Fixed the generated xs-app.json for non-SAP systems
+
+### Added
+* Added support for multiple paths configuration for the fiori-tools-servestatic middleware
+
+
 ## [1.0.22] - 2020-10-21
 ### Fixed
 * Reduced bundle size

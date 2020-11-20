@@ -1,5 +1,13 @@
 <a name="0.10.11"></a>
 
+## [0.10.17](https://github.wdf.sap.corp/devx-wing/abap-deploy/compare/v0.10.11...v0.10.17) (2020-11-10)
+
+### Bug Fixes
+
+- devxbugs 7825 abap-deploy does not specify condense parameter when updating
+
+<a name="0.10.11"></a>
+
 ## [0.10.11](https://github.wdf.sap.corp/devx-wing/abap-deploy/compare/v0.9.5...v0.10.11) (2020-10-15)
 
 ### Bug Fixes

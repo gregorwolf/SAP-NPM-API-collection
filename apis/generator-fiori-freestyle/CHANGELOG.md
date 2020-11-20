@@ -2,6 +2,22 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [0.9.15] - 2020-11-13
+### Added
+- Snapshot versions of UI5 now supported on Business Application Studio for internal users.
+
+### Fixed
+- Standard SAP UI5 floorplan no longer generates an invalid mock data launch target
+
+## [0.9.13] - 2020-10-27
+### Added
+- Dropdown selections for services and entities are now sorted alphabetically.
+- Module name now allows dash and underscore characters.
+
+### Fixed
+- The suggested project folder to use for generating the application in VSCode now defaults to the open workspace folder.
+
 ## [0.9.12] - 2020-10-13
 ### Added
 - Added support for plain UI5 freestyle template.

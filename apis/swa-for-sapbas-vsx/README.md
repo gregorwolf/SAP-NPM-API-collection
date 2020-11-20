@@ -66,6 +66,27 @@ export function activate(context: vscode.ExtensionContext) {
 1. If running in Appstudio and SWA chart is not enabled code will throw error into console log that it is unable to track.  
 2. Please take note that if environment is not configured correctly with privacy settings code will not send any tracking.  
 
+## Enable usage analytics reporting from VS Code
+If you have a VS Code extension that is released to VS Code marketplace and you would like to collect its usage when it runs in VS Code, do the following:
+
+1. **In “configuration” section of your VS code extension** add the settings for user to enable/disable sending the reports. Replace the placeholders with the relevant strings.
+
+```json
+...
+"<Your package name>.enableSapWebAnalytics": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable collecting usage analytics data for <Your Tool Name>.  If enabled, non-personally identifiable information is used to help understand the product usage and improve the tool.",
+					"scope": "resource"
+				}
+...
+```
+2. **In README file of your extension**, add the following paragraph:
+
+The tool collects non-personally identifiable information about your usage of the tool to improve its services.
+If you do not want the tool to collect your usage data, you can set the "Enable Sap Web Analytics" setting to "false".
+Go to File > Preferences > Settings (macOS: Code > Preferences > Settings) > Extensions > \<Tool Name\>, and deselect the "Enable Sap Web Analytics" checkbox.
+
 ## SWA Reports and Parameter Mapping
 The following fields can be used for creating SWA reports:  
 

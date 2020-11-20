@@ -122,23 +122,41 @@ By using the `version` parameter one can choose the UI5 version which will used 
 
 ### **3. Serve Static**
 
-The serve static middleware provides the capability to serve static UI5 resources. Hence you can serve UI5 resources locally from your machine.
+The serve static middleware provides the capability to serve any static resources locally from your machine. E.g. you can serve UI5 locally or any other resources.
+
+
+#### Example Configuration for serving locally UI5
 
 **Pre-requisites:**
 SAPUI5 SDK version is downloaded and extracted locally on the machine. One can download UI5 resources from <https://tools.hana.ondemand.com/#sapui5>
 
-#### Example Configuration
-
-Executing `npx fiori run` in your project with the configuration below in a `ui5.yaml` file would serve the UI5 sources from your machine.
+Executing `npx fiori run` in your project with the configuration below in a `ui5.yaml` file would serve the UI5 sources from your machine. Any request starting with the `path` parameter will be forwarded to the local path provided in the `src` parameter.
 
 ```
 server:
   customMiddleware:
   - name: fiori-tools-servestatic
     afterMiddleware: compression
-    mountPath: /resources|/test-resources
     configuration:
-      path: "/Path/To/SAPUI5-SDK/"
+      paths:
+        - path: /resources|/test-resources
+          src: "Path/To/SAPUI5-SDK"
+```
+
+#### Example Configuration for serving any resources locally
+Executing `npx fiori run` in your project with the configuration below in a `ui5.yaml` file would serve resources from your machine. Any request starting with the `path` parameter will be forwarded to the local path provided in the `src` parameter.
+
+```
+server:
+  customMiddleware:
+  - name: fiori-tools-servestatic
+    afterMiddleware: compression
+    configuration:
+      paths:
+        - path: /images
+          src: "Path/To/images"
+        - path: /libs
+          src: "Path/To/libs"
 ```
 
 ## **Tasks**

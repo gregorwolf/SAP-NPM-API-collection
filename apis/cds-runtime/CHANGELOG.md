@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.6.8 - 2020-11-16
+
+### Added
+
+- Support for tracing database statements with Dynatrace when using `hdb` driver
+
+### Changed
+
+- No separate logging of error message and stack in OData server
+- Not extended tenants reuse default OData service instance
+
+### Fixed
+
+- Fix for metadata document exceeding cache limit
+
 ## Version 2.6.7 - 2020-11-11
 
 ### Fixed

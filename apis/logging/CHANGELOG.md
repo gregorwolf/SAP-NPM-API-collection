@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.0.0 - 2020-11-11
+
+### Added
+- Node.js 14.x support.
+
+### Removed
+- Node.js 6.x support
+
+### Fixed
+- Update _lodash_ to v4.17.20
+- Update _moment_ to 2.29.0
+
 ## 5.3.1 - 2020-07-28
 
 ### Fixed

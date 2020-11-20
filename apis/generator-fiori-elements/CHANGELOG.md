@@ -3,6 +3,23 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.23] - 2020-11-13
+### Added
+- Snapshot versions of UI5 now supported on Business Application Studio for internal users.
+- Supports generating deployment configuration for Cloud Foundry where the parent folder contains an MTA file.
+- Support for launching from CAP project explorer in Business Application Studio.
+
+### Fixed
+- Changing the SAP System to use before generation now correctly resets the proceeding fields.
+
+## [1.0.21] - 2020-10-27
+### Added
+- Dropdown selections for services and entities are now sorted alphabetically.
+- Module name now allows dash and underscore characters.
+
+### Fixed
+- The suggested project folder to use for generating the application in VSCode now defaults to the open workspace folder.
+
 
 ## [1.0.20] - 2020-10-13
 ### Added
