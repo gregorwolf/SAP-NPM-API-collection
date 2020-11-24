@@ -6,10 +6,23 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.17.2] - 2020-11-24
+
+### Fixed
+- Legacy support for `Node.js` version 8 or higher.
+
+
+## [2.17.1] - 2020-11-03
+
+### Fixed
+- Use Maven Java `Archetype` version `1.40.11`.
+
+
 ## [2.17.0] - 2020-10-06
 
 ### Fixed
 - Move `@sap/cds-dk` to project root dependencies to enable MTA build in SAP Web IDE.
+
 
 ## [2.16.0] - 2020-09-09
 

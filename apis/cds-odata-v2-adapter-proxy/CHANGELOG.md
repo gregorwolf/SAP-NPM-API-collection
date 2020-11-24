@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.57 - 2020-11-24
+
+### Fixed
+
+- Match headers case insensitive for custom body in media entity
+- Parse header string values for non-string types in media entity
+
+## Version 1.4.56 - 2020-11-12
+
+### Fixed
+
+- Enable OData V4 'continue-on-error' per default
+- Add proxy option to deactivate 'continue-on-error'
+
 ## Version 1.4.55 - 2020-11-10
 
 ### Fixed

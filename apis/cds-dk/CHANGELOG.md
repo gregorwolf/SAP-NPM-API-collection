@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.2.1 - 2020-11-20
+
+### Fixed
+
+- `cds import` no longer creates `.csn` files with invalid `kind:ComplexType` fields
+
 ## Version 3.2.0 - 2020-11-03
 
 ### Added

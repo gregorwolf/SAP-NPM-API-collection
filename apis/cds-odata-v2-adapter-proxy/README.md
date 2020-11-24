@@ -178,6 +178,7 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
   - **options.ieee754Compatible:** `Edm.Decimal` and `Edm.Int64` are serialized IEEE754 compatible. Default is `true`.
   - **options.disableNetworkLog:** Disable networking logging. Default is `true`.
   - **options.fileUploadSizeLimit:** File upload file size limit (in bytes). Default is `10485760` (10 MB).
+  - **options.continueOnError:** Indicates to OData V4 backend to continue on error. Default is `true`.
 
 All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
 under section `cds.cov2ap` and accessed via `cds.env.cov2ap`.
@@ -268,6 +269,7 @@ Logging layers of CDS OData V2 Adapter Proxy start with `cov2ap`.
 - ETag Support (Concurrency Control)
 - Next Links (skiptoken)
 - Delta Responses (deltatoken)
+- Continue-On-Error
 
 ## OData V2/V4 Delta
 

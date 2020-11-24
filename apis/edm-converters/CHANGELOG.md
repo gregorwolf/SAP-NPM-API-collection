@@ -6,9 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.39] - 2020-11-19
+Bugfixes mentioned in GWTCDA-3192
+
+### Fixed 
+- Reverted back ComplexType/EnumType Kind to Type for V4.
 ## [1.0.38] - 2020-10-13
+
 Bugfix for cap issue 6098
-## [1.0.38] - 2020-10-13
 
 ### Changed
 - Changelog fixes

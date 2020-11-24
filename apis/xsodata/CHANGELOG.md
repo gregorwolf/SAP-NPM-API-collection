@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.3.5] - 2020-11-23
+
+### Fixed
+
+Authoization header parsing conform to RFC6750
+
 ## [7.3.4] - 2020-10-14
 
 ### Fixed

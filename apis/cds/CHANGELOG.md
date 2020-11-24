@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.3.1 - 2020-11-20
+
+### Fixed
+
+- `cds build` now creates correct custom handler path for nodejs projects in WebIDE fullstack.
+
 ## Version 4.3.0 - 2020-11-03
 
 ### Added
