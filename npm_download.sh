@@ -8,7 +8,7 @@ url="https://registry.npmjs.org/${package}/-/${archive}"
 echo "Download URL: ${url}"
 curl --silent --remote-name \
   "${url}"
-mkdir "${package}"
+mkdir -p "${package}"
 tar xzf ".${archive}" --strip-components 1 -C "${package}"
 rm ".${archive}"
 cd ..

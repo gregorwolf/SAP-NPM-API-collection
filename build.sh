@@ -6,6 +6,8 @@ node update-package-json.js
 jq '.' new-package.json > package.json
 rm new-package.json
 # npm install
+# Reduce list of packages to update by using diff on package.json
+git diff package.json | grep + | grep "@sap" | sed 's/[^"]*"\([^"]*\).*/\1/' > packages.txt
 
 while read package; do
   ./npm_download.sh $package
@@ -14,4 +16,4 @@ while read package; do
   cp node_modules/$package/*.md apis$packageNoPrefix
   cp -r node_modules/$package/doc apis$packageNoPrefix/doc
 done <packages.txt
-mkdocs build -f mkdocs.yml
+#mkdocs build -f mkdocs.yml
