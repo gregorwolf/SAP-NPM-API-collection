@@ -95,7 +95,12 @@ The following OData vocabularies are supported by CDS Compiler and Annotation Se
 | com.sap.vocabularies.Session.v1       | X                  | X            |
 | com.sap.vocabularies.UI.v1            | X                  | X            |
 
+## **Support**
+Join the [SAP Fiori tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.
+Please assign tag: *SAP Fiori tools*
+
+To log an issue with SAP Fiori tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).
 
 ## **Documentation**
 
-For more information see https://cap.cloud.sap/docs/guides/fiori#fiori-annotations
+For more information see https://cap.cloud.sap/docs/advanced/fiori#fiori-annotations

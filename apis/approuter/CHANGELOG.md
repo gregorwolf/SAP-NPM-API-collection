@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.6.1 - 2020-11-25
+
+### Fixed
+- Wrong application URL protocol returned by onSubscription callback additional fix
+
 ## 8.6.0 - 2020-11-19
 
 ### Fixed

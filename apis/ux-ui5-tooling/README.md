@@ -139,7 +139,9 @@ server:
     afterMiddleware: compression
     configuration:
       paths:
-        - path: /resources|/test-resources
+        - path: /resources
+          src: "Path/To/SAPUI5-SDK"
+        - path: /test-resources
           src: "Path/To/SAPUI5-SDK"
 ```
 

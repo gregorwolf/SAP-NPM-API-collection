@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.24] - 2020-11-25
+### Added
+- Support for OData V4 data sources for the List Report Object Page and Analytical List Page floorplans.
+- The generator now supports the API Business Hub for data source selection in the SAP Business Application Studio.
+
+### Fixed
+- Adding a new SAP system in VSCode now only gets saved when the application is being generated.  Previously this was happening when proceeding from the data source step.
+
 ## [1.0.23] - 2020-11-13
 ### Added
 - Snapshot versions of UI5 now supported on Business Application Studio for internal users.

@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.25] - 2020-11-18
+### Fixed
+* Use ATO Catalog to fetch ATO settings
+* Other minor fixes
+
+### Added
+* Proxy support for SAP API Business Hub in SAP Business Application Studio
+
 ## [1.0.24] - 2020-11-05
 ### Fixed
 * Fixed dependency installation in the application folder

@@ -4,7 +4,33 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.78.12] - 2020-11-05
+## [1.78.14] - 2020-11-19
+
+### Added
+
+- Support of custom columns for List Report and Analytical List Page of Fiori Elements V2: this includes read and write
+capabilities for both the manifest extension section and the fragment files; the API is enhanced by optional parameters so that the extension fragments can be passed.
+- Support keyPerformanceIndicators(KPI) cards in Analytical list page
+- Support of data labels in charts in Analytical list page
+
+### Changed
+
+- README enhanced by support section
+
+### Deprecated
+
+### Removed
+
+- Redundant occurence of property `smartVariantManagement` in table config
+
+### Fixed
+
+- Deletion of an object page from the app.json configuration did not work
+- Fixed export import of an object page header property
+- When creating an app based on an OData V3 service like the Northwind service of odata.org, the app modeler failed with an exception.
+- OData V2: Corrected sync issues with property `createWithFilters` in case of `GridTable`
+
+## [1.78.13] - 2020-11-05
 
 ### Added
 

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.58 - 2020-11-26
+
+### Fixed
+
+- Support boolean header value in media entity
+- Prevent escaping of quotes in url for batch requests
+- Add 'media_src' and 'content-type' in \_\_metadata for media entities
+
 ## Version 1.4.57 - 2020-11-24
 
 ### Fixed
