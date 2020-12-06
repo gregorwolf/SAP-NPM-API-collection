@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.59 - 2020-12-02
+
+### Fixed
+
+- Change accept header to 'application/json', if accept 'xml' is requested
+- Fix single service support bound to root url
+- Data format of type Edm.DateTimeOffset is switchable with proxy option 'isoDateTimeOffset' or annotation '@cov2ap.isoDateTimeOffset'
+
 ## Version 1.4.58 - 2020-11-26
 
 ### Fixed
@@ -132,7 +140,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix \$filter function conversion
 - Fix remote CSN fetch for standalone proxy
 - Fix '@sap.aggregation.role' annotation detection
-- Annotation '@cov2ap.analytics' to suppress analytical conversion
+- Annotation '@cov2ap.analytics: false' to suppress analytical conversion
 - Update README documentation
 
 ## Version 1.4.42 - 2020-08-05

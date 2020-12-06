@@ -166,19 +166,20 @@ A running example can be tested as follows:
 Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V4 Server:
 
 - **options:** CDS OData V2 Adapter Proxy options object
-  - **options.base:** Base path under which the service is reachable. Default is `''`.
-  - **options.path:** Path under which the proxy is reachable. Default is `'v2'`.
-  - **options.model:** CDS service model (path(s) or CSN). Default is `'all'`.
-  - **options.port:** Target port, which points to OData V4 backend port. Default is process.env.PORT or `4004`.
-  - **options.target:** Target, which points to OData V4 backend host/port. Default is e.g. `'http://localhost:4004'`.
-  - **options.targetPath:** Target path to which is redirected. Default is `''`.
-  - **options.services:** Service mapping object from url path name to service name. Default is `{}`.
-  - **options.mtxRemote:** CDS model is retrieved remotely via MTX endpoint for multitenant scenario. Default is `false`.
-  - **options.mtxEndpoint:** Endpoint to retrieve MTX metadata when option 'mtxRemote' is active. Default is `'/mtx/v1'`.
-  - **options.ieee754Compatible:** `Edm.Decimal` and `Edm.Int64` are serialized IEEE754 compatible. Default is `true`.
-  - **options.disableNetworkLog:** Disable networking logging. Default is `true`.
-  - **options.fileUploadSizeLimit:** File upload file size limit (in bytes). Default is `10485760` (10 MB).
-  - **options.continueOnError:** Indicates to OData V4 backend to continue on error. Default is `true`.
+  - **base:** Base path under which the service is reachable. Default is `''`.
+  - **path:** Path under which the proxy is reachable. Default is `'v2'`.
+  - **model:** CDS service model (path(s) or CSN). Default is `'all'`.
+  - **port:** Target port, which points to OData V4 backend port. Default is process.env.PORT or `4004`.
+  - **target:** Target, which points to OData V4 backend host/port. Default is e.g. `'http://localhost:4004'`.
+  - **targetPath:** Target path to which is redirected. Default is `''`.
+  - **services:** Service mapping object from url path name to service name. Default is `{}`.
+  - **mtxRemote:** CDS model is retrieved remotely via MTX endpoint for multitenant scenario. Default is `false`.
+  - **mtxEndpoint:** Endpoint to retrieve MTX metadata when option 'mtxRemote' is active. Default is `'/mtx/v1'`.
+  - **ieee754Compatible:** `Edm.Decimal` and `Edm.Int64` are serialized IEEE754 compatible. Default is `true`.
+  - **disableNetworkLog:** Disable networking logging. Default is `true`.
+  - **fileUploadSizeLimit:** File upload file size limit (in bytes). Default is `10485760` (10 MB).
+  - **continueOnError:** Indicates to OData V4 backend to continue on error. Default is `true`.
+  - **isoDateTimeOffset:** Use ISO format for type Edm.DateTimeOffset. Default is `false`.
 
 All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
 under section `cds.cov2ap` and accessed via `cds.env.cov2ap`.
@@ -190,8 +191,14 @@ different from default `/v2` for CDS core.
 
 The following CDS OData V2 Adapter Proxy specific annotations are supported:
 
+**Entity Level**:
+
 - `@cov2ap.analytics: false`: Suppress analytics conversion for the annotated entity, if set to `false`.
-- `@cov2ap.deltaResponse: 'timestamp'`: Delta response '\_\_delta' is added to response data of annotated entity with timestamp information.
+- `@cov2ap.deltaResponse: 'timestamp'`: Delta response '\_\_delta' is added to response data of annotated entity with current timestamp information.
+- `@cov2ap.isoDateTimeOffset`: Values of type Edm.DateTimeOffset are represented in ISO 8601 format for annotated entity.
+
+**Entity Element Level**:
+
 - `@Core.ContentDisposition.Filename: <element>`: Specifies entity element, representing the filename during file upload/download.
 
 ### CDS Modelling

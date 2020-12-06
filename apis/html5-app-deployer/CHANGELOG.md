@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 2.2.0 - 2020-12-1
+
+### Added
+- Support node version 14
+- Use xsenv library to enable accessing credentials in Kyma
 
 ## 2.1.1 - 2020-09-06
 
@@ -29,6 +34,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 - Vulnerability issues
+
 
 ## 2.0.1 - 2018-06-07
 
