@@ -5,6 +5,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.0.8"></a>
+## 6.0.8 - 2020-11-25
+
+### Fixed
+- Update _@sap/xsodata_ to v7.3.5
+- Update _@sap/logging_ to v6.0.0
+- Update _@sap/jobs-client_ to v1.6.1
+- Update _@sap/xss-secure_ to v4.0.0
+- Update _@sap/xsenv_ to v3.1.0
+- Update _@sap/xssec_ to v3.0.10
+- Update _@sap/node-jwt_ to v1.6.13
+- Update _@sap/node-vsi_ to v1.4.20
+- Update _@sap/hdbext_ to v7.0.1
+- Update _@sap/hana-client_ to v2.6.58
+- Update _nodemailer_ to v6.4.16
+- Reduced installation size significantly.
+
 <a name="6.0.7"></a>
 ## 6.0.7 - 2020-10-15
 

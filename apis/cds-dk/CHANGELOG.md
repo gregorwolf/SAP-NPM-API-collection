@@ -6,6 +6,38 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.3.1 - 2020-12-04
+
+### Changed
+
+- Bump version of `@sap/cds` to 4.4.4 and `@sap/cds-runtime` to `2.7.5`
+
+## Version 3.3.0 - 2020-12-02
+
+### Added
+
+- `cds init` and `cds add` now support the feature `notebook` to create a Jupyter Notebook in a project.
+- `cds compile --to openapi` adds support for OpenAPI 3 to `cds compile`.
+- If the server port is in use, `cds watch` offers to restart the server with a new port.
+- `cds init` uses latest `Maven Java archetype` version `1.11.0` for creating Java projects.
+- `cds init --add pipeline` and `cds add pipeline` will now use the general purpose pipeline of project "Piper".
+- `cds login`, `cds extend` and `cds activate` now also support clientid/clientsecret as parameters. This is needed when extending multitenant
+applications provided as as reusable services
+(see [CP documentation](https://controlcenter.ondemand.com/index.html#/knowledge_center/articles/2316430f7d804820934910db736cefbf)).
+- `cds init --add mta` and `cds add mta` now always set the `cloud` Spring profile for Java apps. Before, it was only set if a binding to an SAP HANA service was present.
+
+### Changed
+
+- `cds add cf-manifest` now adds a dependency to the `java_buildpack`.
+- `sqlite3` is now an optional dependency to `cds-dk`.  This means that an installation failure of `sqlite3`, e.g. in environments w/o Internet connectivity, no longer leads to an overall installation error.  This behavior suits Java applications, as these usually don't need an SQLite database.  Node.js applications still require a proper installation of `sqlite3` if they use this database.
+
+### Fixed
+
+- `cds add cf-manifest` now only adds db-deployer module if HANA service binding exists.
+- `cds init --add hana` now adds `requires.db.kind: "sql"` to cds configuration for Node.js and Java
+- `cds watch` no longer fails in SAP Business Application Studio when trying to find `sqlite3`.  `cds deploy --to sqlite` still has that issue, which is to be solved in a future version.
+- `cds deploy --to hana` now prefers to use an app-local install of `@sap/cds`, much like other `cds` commands
+
 ## Version 3.2.1 - 2020-11-20
 
 ### Fixed
@@ -59,10 +91,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Version 3.1.1 - 2020-10-07
 
-## Added
+### Added
 - `cds compile --locations` preserves `$location` properties in CSN outputs.
 
-## Changed
+### Changed
 - `cds compile` prints a better legible JSON output to terminals
 - `cds compile -p` is no longer a shortcut for `--parse`, to allow `--parse ...more-args` to work.
 - `cds compile -f` is no longer a shortcut for `--from` (which is not implemented), but for `--flavor`.
@@ -73,7 +105,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Version 3.1.0 - 2020-09-30
 
-## Added
+### Added
 - `cds compile` now supports option `flavor` with values: `files` | `sources` | `parsed` | `xtended` | `inferred`.
   + `cds compile --files` maps to `--flavor files`.
   + `cds compile --sources` maps to `--flavor sources`.

@@ -4,6 +4,65 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.4.4 - 2020-12-04
+
+### Added
+
+- `cds.User.default` allows to override the default user, e.g. to be `cds.User.Privileged` in tests. By default this is `cds.User.Anonymous`.
+
+### Changed
+
+- `cds compile` and `build` now do a faster localization of edmx files.  If there are no text keys inside these files, the content is no longer duplicated in memory.
+- `cds serve --at /` now can overwrite the default `/index.html` route
+
+
+## Version 4.4.3 - 2020-12-03
+
+### Fixed
+
+- `srv.on` can now be used for async events w/o having to call `next` in each handler
+- `srv.emit` constructs instances of `cds.Event` from given arguments, as intended
+- `srv.send` constructs instances of `cds.Request` from given arguments
+- Revert of: `cds build` filters `i18n` files for nodejs staging builds
+
+## Version 4.4.2 - 2020-12-01
+
+### Added
+
+- `cds.context` always allows access to the current request context when running in Node v12.18 and higher. It uses Node.js' `async_hooks` API for so-called continuation-local storage, and supercedes the need for `srv.tx(req)` in custom handlers.
+- Custom functions/actions can now be implemented with plain JavaScript methods in subclasses of `cds.Service`
+
+### Changed
+
+- `cds.unfold` was long-term deprecated, and removed now &rarr; use `cds.compile`
+- `cds.config` was long-term deprecated, and removed now &rarr; use `cds.env`
+- `cds.session` was long-term deprecated, and removed now &rarr; use `cds.db`
+
+## Version 4.4.1 - 2020-11-27
+
+### Fixed
+
+- When two services `Foo` and `FooBar` were defined, with one services's name being a substring of the other service's name,
+  it may have happened that the same EDMX, i.e. that of `FooBar`, was erroneously returned for both.
+- On Windows, the index page now shows normalized links to embedded html pages, i.e. `foo/bar.html` instead of `foo\bar.html`.
+- `cds build` now consistently uses build target folder `'.'` as default for Java projects - also if custom build tasks have been defined.
+- Requests that contain `*` as `Accept-Language` header value do no longer fail.
+
+## Version 4.4.0 - 2020-11-18
+
+### Changed
+
+- Propagate correlation id header to subrequests
+
+### Fixed
+
+- `cds.debug` now reacts on the `DEBUG` environment variable set in a `.env` file
+- `cds build` filters `i18n` files for nodejs staging builds
+- Language headers with values `en-US-x-[saptrc, sappsd]` are now mapped to user locale `en-US-[saptrc, sappsd]`.
+- Messages are kept in their respective request (i.e., not propagated to the request's context, if exists)
+- Log requests in atomicity groups
+- `cds build` now creates correct custom handler path for nodejs projects in WebIDE fullstack.
+
 ## Version 4.3.1 - 2020-11-20
 
 ### Fixed
@@ -14,6 +73,7 @@
 
 ### Added
 
+- Helper function `cds.utils.uuid` to generate a UUID
 - Support `SELECT[...].limit(0, ...)`
 - `hdbtabledata` generation can be disabled using `cds build` task option `skipHdbtabledataGeneration`.
 
@@ -27,8 +87,6 @@
 - Now, cds CLI logs errors based on _log-level_ setting.
 - `cds compile --to sql` no longer creates SQLite-specific views if in `hana` SQL dialect
 - The `node-cf` build task of `cds build` now also filters `./` file dependencies from package.json in the build output.
-
-### Removed
 
 
 # Version 4.2.8 - 2020-10-27

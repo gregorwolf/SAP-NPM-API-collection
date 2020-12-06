@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.1.11 - 2020-11-27
+
+### Added
+
+- `login`, `extend` and `activate` now also support clientid/clientsecret as parameters. This is
+needed when extending multitenant applications provided as as reusable services (see [CP documentation](https://controlcenter.ondemand.com/index.html#/knowledge_center/articles/2316430f7d804820934910db736cefbf)).
+
 ## Version 1.1.8 - 2020-08-26
 
 ### Added

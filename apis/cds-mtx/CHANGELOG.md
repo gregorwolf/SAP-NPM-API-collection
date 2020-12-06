@@ -7,7 +7,39 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 1.0.25 - 2020-11-27
+
+### Added
+
+- Added enhanced authentication API needed for the @sap/cds-sidecar-client 
+to support authentication with clientid/clientsecret from subscriber account.
+This is needed to extend multitentant applications that are provided as services.
+
+### Fixed
+
+- Activation via cds-sidecar-client shows linter errors again
+- Offboarding of tenants does no longer cause a reconnect of cds 
+(also requires update of @sap/cds dependency to minimum @sap/cds@4.3)
+
+## Version 1.0.24 - 2020-11-07
+
+
+### Fixed
+
+- Broken compatibility with hdb driver is now fixed
+
+## Version 1.0.23 - 2020-11-05
+
+
+### Fixed
+
+- MTX is now compatible with latest versions of @sap/hana-client
+- Linters can now handle extension projects with subfolders again
+- The connection pool used by mtx is now correctly updated on offboarding 
+even with scaled applications
+
 ## Version 1.0.22 - 2020-10-21
+
 
 ### Fixed
 

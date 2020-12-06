@@ -6,6 +6,47 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 1.46.6 - 2020-12-01
+
+### Fixed
+
+- OData identifiers can now include all unicode characters which are described in the OData specification.
+
+## Version 1.46.4 - 2020-11-26
+
+### Fixed
+
+- Association to Join translation: Fix using forward association target as table alias in ON condition.
+
+## Version 1.46.2 - 2020-11-20
+
+### Fixed
+
+- to.edm(x) Fix a bug in the alias calculation for key references in structured OData.
+
+## Version 1.46.0 - 2020-11-20
+
+### Changed
+
+- to.edm(x):
+  + V4 structured key ref path aliases are now the basenames, colliding aliases are numbered.
+  + Lower level to `info` for "‹Term› is not applied" message if an annotation cannot be applied.
+- OData:
+  + Update vocabulary 'UI'
+  + Correctly handle `not null` during flattening. Only if the parent and all subelements in the chain
+  are `not null`, make the corresponding flat leaf element `not null`.
+
+### Fixed
+
+- Do not consider events to be potential targets for implicit redirections:
+  strange warnings for multiple projections or other strange errors disappear.
+- to.hdbcds/hdi/sql:
+  + Reject structured view parameters for HANA.
+  + Correctly handle `not null` during flattening.
+  Only if the parent and all subelements in the chain are `not null`, make the corresponding flat leaf element `not null`.
+- to.edm(x): Render @assert.range enum annotations correctly (enum symbol as value and don't omit zero value).
+- Fixed CDS module resolution with option `newResolve` on Windows where a superfluous `\` was prepended to absolute paths.
+
 ## Version 1.45.0 - 2020-10-30
 
 ### Added

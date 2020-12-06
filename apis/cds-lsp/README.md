@@ -8,21 +8,14 @@ It provides many useful features for working with and enjoying CDS sources.
 
 ## Features
 
-- Source code validation providing diagnostics (error messages, warnings, ...)
+- Syntax highlighting via Textmate grammar
 
-- Quick fixes to
-    - create using statement for unknown artifacts
-    - maintain missing translation
-    - convert `@cds.doc` and `@description` annotations to doc comments
+- Source code validation providing diagnostics (error messages, warnings, ...)
 
 - Where-used navigation to
     - definition
     - references
     - highlight occurrences
-
-- Inventory (symbols) for
-    - current file
-    - workspace incl. query capabilities to select, for example, artifact types, names, also include reuse models
 
 - Code completion for
     - keywords
@@ -40,6 +33,15 @@ It provides many useful features for working with and enjoying CDS sources.
     - element, associations, and compositions
     - extend and annotate
     - annotations for documentation
+
+- Quick fixes to
+    - create using statement for unknown artifacts
+    - maintain missing translation
+    - convert `@cds.doc` and `@description` annotations to doc comments
+
+- Inventory (symbols) for
+    - current file
+    - workspace incl. query capabilities to select, for example, artifact types, names, also include reuse models
 
 - Hover information based on
     - doc comments
@@ -64,8 +66,6 @@ It provides many useful features for working with and enjoying CDS sources.
     - navigate to translation definitions from translation IDs like ```'{i18n>customerName}'```
     - show translations on hover
     - quickfix to maintain missing translations
-
-- Textmate grammar for syntax highlighting
 
 - Plugin framework for external handlers of annotation domains
 

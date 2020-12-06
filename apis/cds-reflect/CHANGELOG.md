@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and
 this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.13.4 - 2020-11-27
+
+## Fixed
+
+- More improved typings
+
 ## Version 2.13.3 - 2020-10-27
 
 ## Fixed

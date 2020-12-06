@@ -6,6 +6,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+### 4.2.0 - 2020-11-27
+
+### Added
+- quickfix for deprecated identifiers
+- support for quickfixes in annotation handler
+- internal support for incremental text updates 
+- improved supportability with extended statistic logs
+
+### Changed
+- consume cds-compiler 1.46.4
+
+### Fixes
+- for annotation handler and others
+
+## 4.1.2 - 2020-11-12
+
+### Changed
+- cds-lsp itself no longer dynamically registers file system watching for VSCode, BAS and Eclipse, as those configure it client-side
+
+### Fixes
+- bug fixes
+
 ## 4.1.1 - 2020-11-06
 
 ### Fixed

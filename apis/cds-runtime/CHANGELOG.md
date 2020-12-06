@@ -6,6 +6,112 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.7.5 - 2020-12-04
+
+### Fixed
+
+- Messaging incompatibility in combination with `@sap/cds@4.4.3`
+
+## Version 2.7.4 - 2020-12-02
+
+### Fixed
+
+- `filter-node-package` has to be a dev dependency
+
+## Version 2.7.3 - 2020-12-01
+
+### Added
+
+- Deprecation warning for private function `req.run`, which will be removed
+- Custom aggregates in `$apply` (beta)
+- Support for string keys with dots in value (e. g. `a.b.c`) when using keys as segments
+- `$filter`, `$groupby` and `$orderby` works with path navigation to key for managed association to-one on sqlite
+
+### Changed
+
+- Logging is now done using `cds.log`
+- CREATE and UPDATE requests that are not allowed due to `@restrict.where` are rejected with `403` instead of `404`
+- No usage of private `req._model` in generic handlers
+- Service consumption: Print Cloud SDK logs only in debug mode
+- Generated API for actions and functions on `ApplicationService` as now done on `Service`
+
+### Fixed
+
+- No integrity check for events
+- Race condition in data listener of messaging
+- External entities are now always automatically resolved
+- Skip integrity checks for virtual entities
+- Usage of foreignKeyPropagations w/o on condition
+- `tx.model` in REST requests
+- Expand to association with projection `as select from where`
+
+### Removed
+
+- `req.statements` is not available anymore
+
+## Version 2.7.2 - 2020-11-20
+
+### Added
+
+- Support for tracing database statements with Dynatrace when using `@sap/hana-client` driver
+
+### Fixed
+
+- Problem with navigations that have `null` as value in payload
+
+## Version 2.7.1 - 2020-11-18
+
+### Changed
+
+- Transaction state handling moved to core
+
+### Fixed
+
+- Response in case of failed changesets in `$batch` requests
+- UPDATE/INSERT via navigation with foreign key in child
+
+### Removed
+
+- Private function `_ensureOpen` of `cds.DatabaseService`
+
+## Version 2.7.0 - 2020-11-18
+
+### Added
+
+- `@assert.range enum { ... }` for decimals
+- Draft: Lock active entity on edit action to prevent duplicate drafts
+- Set batch response header Content-Transfer-Encoding
+
+### Changed
+
+- Correlation ID at `req.headers['x-correlation-id']` in subrequests
+
+### Fixed
+
+- Resolving custom DELETE CQNs
+- Non-nullable values cannot be set to `null` in UPDATE requests
+- Delete active entity with DELETE restriction	
+- Calculation of HasDraftEntity does not involve secure annotations
+- POST/PATCH on composition of aspect did not insert keys correctly
+- Check for different navigation properties with $expand
+- Streaming from non-draft entity in draft context
+- REST Adapter: `PUT` requests on collections are forbidden
+- affected rows in CREATE caused error with hdb
+- Navigating to composition of aspect with association as key caused error
+- Wrongly returned value for key calculation in expand caused for loop to break
+- TypeError by not connected database
+- Multiple messages in batch change set
+
+### Removed
+
+- Support for defaultLocale on service level
+
+## Version 2.6.9 - 2020-11-26
+
+### Added
+
+- Internal (for mtx) parameter `poolOnly` to `HanaDatabase.disconnect()` for clearing generic pool entry in case of credentials update
+
 ## Version 2.6.8 - 2020-11-16
 
 ### Added
@@ -31,8 +137,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- Headers handling in service consumption for S4 On-Premise systems
 - Check `req.path` during DoS prevention
+- Headers handling in service consumption for S4 On-Premise systems
 
 ## Version 2.6.5 - 2020-11-09
 

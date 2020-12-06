@@ -5,7 +5,33 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 3.1.3 - tbd
+## Version 3.2.0 - 2020-11-27
+
+### Added
+- quickfix for deprecated identifiers
+- support for quickfixes in annotation handler
+
+### Changed
+- using native submenu for `CDS Preview` commands
+- now requires Visual Studio Code `>=1.50`
+- updated npm modules
+  + `cds-lsp 4.2.0`
+  + `cds-compiler 1.46.4`
+
+### Fixed
+- improvements to the `cds section` scheme used in `.cdsrc.json` and `package.json`
+- bug fixes for annotation handler and others
+
+## Version 3.1.4 - 2020-11-12
+
+### Fixed
+- file system watching no longer worked with latest VSCode
+
+### Changed
+- updated npm modules
+  + `cds-lsp 4.1.2`
+
+## Version 3.1.3 - 2020-11-10
 
 ### Fixed
 - internal refactoring and bug fixes
