@@ -1,13 +1,4 @@
 @sap/cds
-@sap/cds-compiler
 @sap/cds-dk
-@sap/cds-lsp
-@sap/cds-mtx
-@sap/cds-reflect
-@sap/cds-runtime
-@sap/cds-sidecar-client
-@sap/cloud-sdk-op-vdm-class-data-for-classification-service
-@sap/cloud-sdk-op-vdm-scheduling-agreement-service
-@sap/odm
-@sap/vscode-cds
-@sap/xsjs
+@sap/cds-odata-v2-adapter-proxy
+@sap/html5-repo-mock

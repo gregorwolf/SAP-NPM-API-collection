@@ -59,11 +59,11 @@ const port = process.env.PORT || 4004;
 (async () => {
   const app = express();
 
-  // OData V4
-  await cds.connect("db").serve("all").in(app);
-
   // OData V2
   app.use(proxy());
+
+  // OData V4
+  await cds.connect("db").serve("all").in(app);
 
   const server = app.listen(port, host, () => console.info(`app is listing at ${host}:${port}`));
   server.on("error", error => console.error(error.stack));
@@ -179,7 +179,11 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
   - **disableNetworkLog:** Disable networking logging. Default is `true`.
   - **fileUploadSizeLimit:** File upload file size limit (in bytes). Default is `10485760` (10 MB).
   - **continueOnError:** Indicates to OData V4 backend to continue on error. Default is `true`.
-  - **isoDateTimeOffset:** Use ISO format for type Edm.DateTimeOffset. Default is `false`.
+  - **isoTime:** Use ISO 8601 format for type cds.Time (Edm.Time). Default is `false`.
+  - **isoDate:** Use ISO 8601 format for type cds.Date (Edm.DateTime). Default is `false`.
+  - **isoDateTime:** Use ISO 8601 format for type cds.DateTime (Edm.DateTimeOffset). Default is `false`.
+  - **isoTimestamp:** Use ISO 8601 format for type cds.Timestamp (Edm.DateTimeOffset). Default is `false`.
+  - **isoDateTimeOffset:** Use ISO 8601 format for type Edm.DateTimeOffset (cds.DateTime, cds.Timestamp). Default is `false`.
 
 All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
 under section `cds.cov2ap` and accessed via `cds.env.cov2ap`.
@@ -195,7 +199,11 @@ The following CDS OData V2 Adapter Proxy specific annotations are supported:
 
 - `@cov2ap.analytics: false`: Suppress analytics conversion for the annotated entity, if set to `false`.
 - `@cov2ap.deltaResponse: 'timestamp'`: Delta response '\_\_delta' is added to response data of annotated entity with current timestamp information.
-- `@cov2ap.isoDateTimeOffset`: Values of type Edm.DateTimeOffset are represented in ISO 8601 format for annotated entity.
+- `@cov2ap.isoTime`: Values of type cds.Time (Edm.Time) are represented in ISO 8601 format for annotated entity.
+- `@cov2ap.isoDate`: Values of type cds.Date (Edm.DateTime) are represented in ISO 8601 format for annotated entity.
+- `@cov2ap.isoDateTime`: Values of type cds.DateTime (Edm.DateTimeOffset) are represented in ISO 8601 format for annotated entity.
+- `@cov2ap.isoTimestamp`: Values of type cds.Timestamp (Edm.DateTimeOffset) are represented in ISO 8601 format for annotated entity.
+- `@cov2ap.isoDateTimeOffset`: Values of type Edm.DateTimeOffset (cds.DateTime, cds.Timestamp) are represented in ISO 8601 format for annotated entity.
 
 **Entity Element Level**:
 

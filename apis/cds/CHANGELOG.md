@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.4.5 - 2020-12-07
+
+### Fixed
+
+- Revert of _cds serve --at / now can overwrite the default /index.html route_, which caused problems in some applications
+
 ## Version 4.4.4 - 2020-12-04
 
 ### Added
