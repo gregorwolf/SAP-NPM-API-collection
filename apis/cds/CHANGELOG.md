@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.4.6 - 2020-12-08
+
+### Fixed
+
+- Compat `.emit()` for synchronous events with object as first parameter
+
 ## Version 4.4.5 - 2020-12-07
 
 ### Fixed

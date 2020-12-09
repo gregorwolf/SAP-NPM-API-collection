@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.7.7 - 2020-12-08
+
+### Fixed
+
+- In `hdb` driver, stored procedures without OUT parameters can now return values
+- Service consumption when using `.get('/')`
+
+## Version 2.7.6 - 2020-12-07
+
+### Fixed
+
+- Validate pool clients before use
+- Improved default pool configuration
+- Remove `req.run` deprecation warning
+
 ## Version 2.7.5 - 2020-12-04
 
 ### Fixed

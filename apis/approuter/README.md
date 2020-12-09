@@ -227,7 +227,7 @@ name | String | | A unique alphanumeric identifier of the destination.
 url | String | | URL of the app (microservice).
 proxyHost | String | x | The host of the proxy server used in case the request should go through a proxy to reach the destination.
 proxyPort | String | x | The port of the proxy server used in case the request should go through a proxy to reach the destination.
-forwardAuthToken | Boolean | x | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.
+forwardAuthToken | Boolean | x | If `true`, the OAuth token is sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA or IAS service, so it can be used for user authentication and authorization with backend services.
 strictSSL | Boolean | x | Configures whether the application router should reject untrusted certificates. The default value is `true`.<br />**Note:** Do not use this in production as it compromises security!
 timeout | Number | x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.
 setXForwardedHeaders | Boolean | x | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
@@ -368,9 +368,9 @@ name | String | | The name of this plugin
 source | String/Object | | Describes a regular expression that matches the incoming [request URL](https://nodejs.org/api/http.html#http_message_url).</br> **Note:** A request matches a particular route if its path __contains__  the given pattern. To ensure the RegExp matches the complete path, use the following form: ^<path>$`. </br> **Note:** Be aware that the RegExp is applied to on the full URL including query parameters.
 target | String | x | Defines how the incoming request path will be rewritten for the corresponding destination.
 destination | String | | An alphanumeric name of the destination to which the incoming request should be forwarded.
-authenticationType | String | x | The value can be `xsuaa`, `basic` or `none`. The default one is `xsuaa`. When `xsuaa` is used the specified UAA server will handle the authentication (the user is redirected to the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used then no authentication is needed for this route.
+authenticationType | String | x | The value can be `ias`, `xsuaa`, `basic` or `none`. The default authenticationType depends on the authentication service binding: if the application router is bound to `ias (identity service)`, the default authenticationType is `ias`, else it is `xsuaa`. If `xsuaa` or `ias` are used the specified authentication server (IAS/UAA) handles the authentication (the user is redirected to the IAS's or the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used, then no authentication is needed for this route.</br> **Note:** Be aware that the IAS support is still a beta feature.
 csrfProtection | Boolean | x | Enable [CSRF protection](#csrf-protection) for this route. The default value is `true`.
-scope | Array/String/Object | x | Scopes are related to the permissions a user needs to access a resource. This property holds the required scopes to access the target path. Access is granted if the user has at least one of the listed scopes.
+scope | Array/String/Object | x | Scopes are related to the permissions a user needs to access a resource. This property holds the required scopes to access the target path. Access is granted if the user has at least one of the listed scopes. **Note:** Scopes are defined as part of the xsuaa service instance configuration. You can use `ias` as authenticationType and xsuaa scopes for authorization if the application router is bound to both (`ias` and `xsuaa`)."
 
 Sample content of the `plugins` environment variable:
 ```json
@@ -1470,13 +1470,17 @@ When a tenant is subscribed/unsubscribed to/from an application, the tenant will
 * In the reuse services (e.g.: destination ), if the application is dependent on the reuse service. 
 Also, onboarding and offboarding callbacks will be triggered for the subscribed/unsubscribed application and for the reuse services.
 
+If you use IAS by binding a multi-tenant application router to an identity service instance, the subscription manager service (SMS) should be used to enable the subscription to a subscriber zone and an IAS tenant.
+Currently the SMS subscription is only possible via SMS APIs. In the future, the SMS subscription will be supported via the SAP4me portal.
+
+
 ### How To Expose Approuter for SaaS Subscription
 
 #### Multi-tenancy
 The application router should be configured to handle multi-tenant access by maintaining the TENANT_HOST_PATTERN environment configuration.
 
-#### Entitle org for SaaS Registry consumption
-The SaaS Registry service should be available in your space marketplace.
+#### Entitle org for SaaS Application consumption
+The SaaS Registry service and / or the Subscription Manager service should be available in your space marketplace.
 
 #### Authorize LPS for invoking callbacks
 SaaS business applications should grant LPS the authorization to invoke the application's callbacks. Callback scope should be granted to LPS in the application router’s xs-security.json file:
@@ -1495,7 +1499,13 @@ SaaS business applications should grant LPS the authorization to invoke the appl
 ...  
 ```
 
-#### Register an application (SaaS Registry Configuration)
+#### Authentication in Subscription Manager Flow
+When using the Subscription Manager, the IAS authentication flow should be performed using x.509 certificates (instead of clientsecret). The IAS tenant certificate can be obtained from the IAS application in the IAS administration tool.
+After obtaining a certificate, a private key should be obtained using the password provided while creating the certificate. The private key should then be added to application router environment via environment variable IAS_PRIVATE_KEY.
+For example:
+IAS_PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----\n<privateKey>\n-----END PRIVATE KEY-----"
+
+#### Register an application in SaaS Registry (SaaS Registry Configuration)
 For a customer to be able to subscribe to an application through the SAP Cloud Platform cockpit, each SaaS business application should register itself on all CF landscapes where it is deployed.
 
 To register a SaaS application in LPS, a service instance of saas-registry should be created and the SaaS business application should be bound to it.
@@ -1515,6 +1525,29 @@ Note that the path segment of these urls are configurable however the tenantId u
 }   
 
 ```
+
+#### Register an application in Subscription Manager  (Subscription Manager Configuration)
+To register a SaaS application in SMS, a service instance of subscription-manager should be created and the SaaS business application should be bound to it.
+The instance of subscription-manager is created with a configuration json file - *sms-config.json:*.
+In the configuration.json file a url for the getDependencies and onSubscription callbacks must be provided. 
+Note that the path segments of these urls are configurable. However the zoneId url variable in onSubscription callback must still be provided.
+
+```
+{
+  "iasServiceInstanceName" : ["ias-provider-ias"], #Name of the related IAS instance
+  "applicationType": "application",
+  "xsuaaSaasApplicationServiceInstanceId": "88afb2a5-5ab3-409a-9c0c-b70e2b86b1cf", #In case also an xsuaa instance is bound
+  "appCallbacks" : {
+    "dependenciesCallbacks" : {
+      "url" : "https://<providerZoneId>--<providerIASTenantId>.<approuterHost>.cert.<landscapeDomain>/v1.0/callback/zones/{zoneId}/dependencies"
+    },
+    "subscriptionCallbacks" : {
+      "url" : "https://<providerZoneId>--<providerIASTenantId>.<approuterHost>.cert.<landscapeDomain>/v1.0/callback/zones/{zoneId}"
+    }
+  }
+}
+```
+Note that in order to provide certificates the url domain should contain a "cert" segment.
 ## Integration with HTML5 Application Repository
 
 The application router supports seamless integration with the HTML5 Application Repository service. 
@@ -1603,6 +1636,7 @@ While binding a Business Service instance to application router the following in
   getDependencies callback - Optional
 * grant_type: the grant type that should be used to trigger requests to the Business Service. Allowed values: user_token or client_credentials. 
   Default value, in case this attribute is not provided, user_token - Optional
+* forwardiastoken: flag that indicates if, in addition to the exchanged xsuaa token, the IAS token should be forwarded as well. IAS token is forwarded in request header: `x-ias-token`
 
 
 The value of `endpoints` should be an object with the following properties:

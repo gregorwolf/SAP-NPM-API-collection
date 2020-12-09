@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.0.0 - 2020-12-06
+
+### Added
+- IAS authentication support
+- Forward IAS token to destination
+- IAS authentication with  XSUAA authorization
+- Subscription manager (SMS) support
+
+### Updated dependencies
+- deps: base64-url@2.3.3
+
 ## 8.6.1 - 2020-11-25
 
 ### Fixed
@@ -24,6 +35,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 - Fix invalid backend response handling
+
 
 ## 8.5.3 - 2020-10-06
 
