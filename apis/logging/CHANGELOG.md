@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.0.1 - 2020-12-08
+
+### Fixed
+- Update *@sap/e2e-trace* dependency to v3.0.0
+- Added null/undefined check to `_containsCustomField` in `lib/contexts/AppContext.js`
+
 ## 6.0.0 - 2020-11-11
 
 ### Added

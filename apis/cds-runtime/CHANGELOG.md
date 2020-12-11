@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.7.8 - 2020-12-10
+
+### Fixed
+
+- Null pointer exception when using `$expand`, `$filter`, and `contains` in the same HTTP request
+
 ## Version 2.7.7 - 2020-12-08
 
 ### Fixed

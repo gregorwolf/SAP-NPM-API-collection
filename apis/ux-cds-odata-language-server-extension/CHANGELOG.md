@@ -2,6 +2,14 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.0.7] - 2020-12-10
+
+### Added
+- Code completion and diagnostics for referencing actions in DataFieldForAction
+- Code completion and diagnostics for properties of open complex types (e.g. Data property in UI.ConnectedFields)
+- Code completion, diagnostics and hover information for a subset of cds [common annotations](https://cap.cloud.sap/docs/cds/annotations) recommended in SAP Cloud Application Programming documentation for [serving Fiori UIs](https://cap.cloud.sap/docs/advanced/fiori#prefer-title-and-description)
+- String attribute included by default in code snippets for annotation properties of type `Edm.String`
+
 
 ## [1.0.6] - 2020-11-25
 

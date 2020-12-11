@@ -6,7 +6,7 @@ It is used by SAP Fiori Tools (see documentation link below) but can also be use
 The major and minor version of this specification package matches the major and minor version of SAP UI5, which contains Fiori elements.
 
 _Example_:  
-`@sap/ux-specification@1.76.x` specifies the Fiori elements that are delivered with UI5 version 1.76.x
+`@sap/ux-specification@1.84.x` specifies the Fiori elements that are delivered with UI5 version 1.84.x
 
 The module supports both the OData V2 and the OData V4 version of the templates (aka FioriElementsVersion), you thus can find two different access points for the typescript definitions:
 

@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## [1.0.25] - 2020-12-10
+### Added
+- The generator now supports the SAP API Business Hub for data source selection when using VSCode.
+
+### Fixed
+- Ensure correct manifest version is generated for corresponding UI5 version
+
 ## [1.0.24] - 2020-11-25
 ### Added
 - Support for OData V4 data sources for the List Report Object Page and Analytical List Page floorplans.

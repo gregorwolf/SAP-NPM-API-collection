@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.17] - 2020-12-10
+### Added
+- The SAP Fiori Worklist V2 and SAP Fiori Worklist V4 floorplan types have been merged into one floorplan.  The version of the OData service provided will determine which application type is generated.
+- The generator now supports the SAP API Business Hub for data source selection when using VSCode.
+
 ## [0.9.16] - 2020-11-25
 ### Added
 - The generator now supports the API Business Hub for data source selection in the SAP Business Application Studio.

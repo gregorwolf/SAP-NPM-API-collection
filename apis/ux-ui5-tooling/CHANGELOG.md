@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.26] - 2020-12-03
+### Added
+* Preview support of applications based on SAP API Business Hub services
+* Additional instructions provided to the user when generating `flp-config` to allow integration with the Launchpad module using SAP Business Application Studio
+
+### Fixed
+* Fixed issue when reading the NO_PROXY configuration
+
 ## [1.0.25] - 2020-11-18
 ### Fixed
 * Use ATO Catalog to fetch ATO settings
