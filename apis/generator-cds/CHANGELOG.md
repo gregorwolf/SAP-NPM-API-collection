@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.17.3] - 2020-12-11
+
+### Fixed
+- Use `engines` entry in `package.json` and `db/package.json` with version `>=10`.
+
+
 ## [2.17.2] - 2020-11-24
 
 ### Fixed

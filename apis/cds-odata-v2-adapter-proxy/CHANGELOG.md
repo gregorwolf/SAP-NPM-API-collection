@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.5.0 - 2020-12-16
+
+### Fixed
+
+- Update minor version
+
+## Version 1.4.63 - 2020-12-15
+
+### Fixed
+
+- Fix that file upload error message does not return with 500 status code
+
+## Version 1.4.61 - 2020-12-11
+
+### Fixed
+
+- Fix accept header for binary data retrieval to include 'application/json'
+
 ## Version 1.4.60 - 2020-12-07
 
 ### Fixed

@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.0.2 - 2020-12-15
+
+### Fixed
+- Fixed the custom field logging format on the Cloud Foundry platform
+
 ## 6.0.1 - 2020-12-08
 
 ### Fixed
