@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 2.3.0 - 2020-12-20
+
+### Added
+- Support the automatic creation of destinations that are pointing to xsuaa, app-host, ias service instances or backend applications
+
 ## 2.2.0 - 2020-12-1
 
 ### Added

@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.3.3 - 2020-12-18
+
+### Changed
+
+- Bump versions of `@sap/cds`, `@sap/cds-runtime`, and `@sap/cds-sidecar-client`
+
 ## Version 3.3.2 - 2020-12-07
 
 ### Changed

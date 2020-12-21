@@ -1,4 +1,12 @@
-[![Build Status](https://gkedevxlondon.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=swa_ci/master)](https://gkedevxlondon.jaas-gcp.cloud.sap.corp/job/swa_ci/job/master/) 
+[![Build Status](https://gkedevxlondon.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=swa_ci/master)](https://gkedevxlondon.jaas-gcp.cloud.sap.corp/job/swa_ci/job/master/)
+[![Quality Gate Status](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=alert_status)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
+[![Coverage](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=coverage)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
+[![Rating](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=sqale_rating)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
+[![Bugs](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=bugs)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
+[![Code Smells](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=code_smells)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
+[![Duplicated Lines Density](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=duplicated_lines_density)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
+[![Security Vulnerabilities](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=vulnerabilities)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
+
 
 # SAP Web Analytics npm package for Visual Code Extensions
 Wrapper for SWA meant to be used in Visual code and SAP Application Studio.
@@ -31,6 +39,12 @@ Has 3 params that are detailed in the constructor call:
 var myErrorListener = (err) => { myErrorHandling(err); }
 swa = new SWATracker("My Vscode Ext Publisher","My Package name", myErrorListener)
 ```
+---
+**NOTE**
+
+The vsxPublisher and vsxPackageName values passed to SWA Tracker constructor must be exact strings as they appear in the extension package.json. Otherwise, the usage data is not reported when extension is running in VS Code.
+
+---
 
 #### Track
 After creating a new swa class as detailed above usage is pretty simple  
@@ -69,7 +83,30 @@ export function activate(context: vscode.ExtensionContext) {
 ## Enable usage analytics reporting from VS Code
 If you have a VS Code extension that is released to VS Code marketplace and you would like to collect its usage when it runs in VS Code, do the following:
 
-1. **In “configuration” section of your VS code extension** add the settings for user to enable/disable sending the reports. Replace the placeholders with the relevant strings.
+1. **Make sure that the vsxPublisher and vsxPackageName parameters initializing SWATracker object are correct.** 
+The vsxPublisher and vsxPackageName values passed to SWA Tracker constructor must be exact strings as they appear in the extension package.json.
+
+```js
+/**
+ * constructor
+ * @param vsxPublisher should be publisher in package.json
+ * @param vsxPackageName should be extension package.json name
+ * @param errorListener callback for error, one such callback for all the errors we receive via all the track methods err can be string (err.message) or number (response.statusCode)
+ */
+var myErrorListener = (err) => { myErrorHandling(err); }
+swa = new SWATracker("My Vscode Ext Publisher","My Package name", myErrorListener)
+
+```
+
+---
+**NOTE**
+
+If you need to change vsxPublisher and vsxPackageName values after you already have SWA reports presenting the usage data, do not forget to adjust these reports considering the changed publisher info.
+For example, if you use “Custom event parameter 10” in report filter definition, you should specify both old and new values to see the data from the extension.
+
+---
+
+2. **In “configuration” section of your VS code extension** add the settings for user to enable/disable sending the reports. Replace the placeholders with the relevant strings.
 
 ```json
 ...
@@ -81,7 +118,7 @@ If you have a VS Code extension that is released to VS Code marketplace and you 
 				}
 ...
 ```
-2. **In README file of your extension**, add the following paragraph:
+3. **In README file of your extension**, add the following paragraph (do not forget replace the \<Tool Name\> placeholder with your tool name!) :
 
 The tool collects non-personally identifiable information about your usage of the tool to improve its services.
 If you do not want the tool to collect your usage data, you can set the "Enable Sap Web Analytics" setting to "false".

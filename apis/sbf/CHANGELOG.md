@@ -8,6 +8,12 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.2.3"></a>
+## 6.2.3 - 2020-12-16
+
+### Added
+- Support IAS authentication in node-sbf
+
 <a name="6.2.2"></a>
 ## 6.2.2 - 2020-09-24
 

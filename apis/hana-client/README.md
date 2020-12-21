@@ -14,7 +14,7 @@ This driver communicates with the native HANA libraries, and thus requires
 platform-specific native binaries. The official hosted version includes
 precompiled libraries for Linux, Windows and Mac OS X.
 
-The @sap/hana-client driver supports node.js 8.x, 10.x and 12.x.
+The @sap/hana-client driver supports versions of Node.js 8.11.2 and higher.
 
 ## Community
 

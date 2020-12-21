@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.4.7 - 2012-12-18
+
+### Fixed
+
+- `cds build` for Java now also creates a default edmx file (the one w/o language suffix) if the `cds.i18n.languages` array is configured with a set of languages.  Runtime systems expect this file.
+- `cds build` now skips empty lines in CSV files when preparing SAP HANA deployment.  This does not happens if the build target folder is `.`, because there CSV files are sources that are not touched.
+- `cds build` for SAP HANA now writes CSV files more reliably, avoiding sporadic `ENOENT` errors.
+
 ## Version 4.4.6 - 2020-12-08
 
 ### Fixed

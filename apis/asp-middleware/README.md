@@ -62,7 +62,7 @@ The getTenant call results in a Promise of a Tenant object, which has the follow
 
 ### Configuration
 
-Furthermore a service instance of service `abap-solution` in plan `standard` must be bound to the approuter application.
+A service instance of service `abap-solution` in plan `standard` must be bound to the approuter application.
 
 As a last step the `xs-app.json` must be configured to route to the `abap-solution` service. As a minimum this results in the following `xs-app.json` file:
 ```json
@@ -92,6 +92,15 @@ As a last step the `xs-app.json` must be configured to route to the `abap-soluti
 }
 ```
 
+#### Custom User Onboarding Path
+
+By configuring an environment variable called ASP_USER_ONBOARDING_PATHS, the application can decide, which paths should be intercepted for the onboarding of the initial user in the ABAP tenant. By default this is only /ui as this is the path to the ABAP Fiori Launchpad.
+
+The variable should be configured as a JSON array. E.g. 
+
+```json
+["/path/to/entry_point_1","/path/to/entry_point_2"]
+```
 
 ## Supported Approuter versions
 

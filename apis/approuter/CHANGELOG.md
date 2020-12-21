@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.0.1 - 2020-12-20
+
+### Fixed
+- subprotocol handling in websockets flows
+
+### Updated dependencies
+- deps: validator@13.5.2
+- deps: @sap/logging@6.0.2
+
 ## 9.0.0 - 2020-12-06
 
 ### Added
