@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.5.1 - 2020-12-21
+
+### Fixed
+
+- Normalize service root path in service root xml to include trailing slash
+
 ## Version 1.5.0 - 2020-12-16
 
 ### Fixed
