@@ -273,6 +273,9 @@ Starts the application router with the given options.
       * `routerConfig` - Custom routing configuration to use for given request.
       This object should be created via `createRouterConfig`.
       If `null` or `undefined`, default configuration will be used.
+      
+    **Note:** When approuter is bound to html5 repository, you cannot provide getRouterConfig function.
+    
 * `callback` - optional function with signature `callback(err)`.
 It is invoked when the application router has started or an error has occurred.
 If not provided and an error occurs (e.g. the port is busy), the application will abort.

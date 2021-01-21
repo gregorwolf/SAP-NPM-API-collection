@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.1.0 - 2021-01-13
+
+### Fixed
+- Update `@sap/hdbext` to 7.1.0 to support Node.js 14
+- Update `lodash` to 4.17.20
+- Update `debug` to 4.2.0
+
+### Added
+- Node.js 14 support
+
 ## 5.0.0 - 2020-08-25
 
 ### Fixed

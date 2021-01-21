@@ -21,9 +21,8 @@ to access HTML5 applications without specifying the version.
 
 1. Download or clone current repository
 2. Install dependencies `npm install`
-3. (Optional) For testing purposes, install approuter `npm install @sap/approuter`
-4. Run `MOCK_DIR=$PWD node index.js`
-5. Open `http://localhost:5000/app/index.html`
+3. Run `MOCK_DIR=test/applications node lib/index.js`
+4. Open `http://localhost:5000/app/index.html`
 
 ## Usage
 

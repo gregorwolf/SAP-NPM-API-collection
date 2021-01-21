@@ -8,7 +8,7 @@ Javascript wrapper library for creating, reading and modifying multi-target appl
 
 ## Requirements
 
-This library uses [Cloud MTA](https://github.com/SAP/cloud-mta) version [0.1.7](https://github.com/SAP/cloud-mta/releases/tag/v0.1.7).
+This library uses [Cloud MTA](https://github.com/SAP/cloud-mta) version [0.1.10](https://github.com/SAP/cloud-mta/releases/tag/v0.1.10).
 It is not required to install it to use the library, but if it is found in the path in the correct version, it will be used.
 Otherwise, this library will download it.
 

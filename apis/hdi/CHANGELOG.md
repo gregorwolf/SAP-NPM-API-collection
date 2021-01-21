@@ -1,3 +1,15 @@
+## 3.0.1
+Fixes:
+- Correctly remove devDependencies and integrity hashes from npm-shrinkwrap.json
+
+## 3.0.0
+Features:
+- Use hana-client 2.7.16
+- Node 14.x support
+
+Removed:
+- Node 6.x support
+
 ## 2.2.7
 Fixes:
 - Renamed developer-license-3.1.txt to LICENSE

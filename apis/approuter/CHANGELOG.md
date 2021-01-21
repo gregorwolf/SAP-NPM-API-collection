@@ -5,10 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.0.2 - 2021-01-14
+
+### Fixed
+- Options handling for extensibility case when html5 repo is bound
+- Logout request handling when approuter session times out
+- Use "http_header" section of authTokens from the Destination Service response
+
+### Updated dependencies
+- deps: urijs@1.19.5
+
 ## 9.0.1 - 2020-12-20
 
 ### Fixed
-- subprotocol handling in websockets flows
+- Subprotocol handling in websockets flows
 
 ### Updated dependencies
 - deps: validator@13.5.2

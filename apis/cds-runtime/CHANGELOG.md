@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.7.10 - 2021-01-20
+
+### Fixed
+
+- Downport of fix "CSN modification during resolve view"
+
+## Version 2.7.9 - 2021-01-19
+
+### Fixed
+
+- Do not crash if release called without client
+
 ## Version 2.7.8 - 2020-12-10
 
 ### Fixed
@@ -126,6 +138,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Removed
 
 - Support for defaultLocale on service level
+
+## Version 2.6.10 - 2021-01-20
+
+### Fixed
+
+- Downport of fix "CSN modification during resolve view"
 
 ## Version 2.6.9 - 2020-11-26
 

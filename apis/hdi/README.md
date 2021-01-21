@@ -15,9 +15,9 @@
 
 Assuming that your **npm registry** is correctly configured and has access to SAP packages, simply running `npm install --save @sap/hdi` will install the package and add it as a dependency to your **package.json**.
 
-We recommend using version 2.0.0 or higher. V2 of the API brings access to the Container Group API, major refactoring of the HDI and Container API into separate components and lots of pre-defined classes to make working with the API easier.
+We recommend using version 2.0.0 or higher. >=2.0.0 of the API brings access to the Container Group API, major refactoring of the HDI and Container API into separate components and lots of pre-defined classes to make working with the API easier.
 
-Note that V2 is not backwards compatible to V1, code written with the old API will ***NOT*** run with new API. This documentation is for the V2 API.
+Note that >=2.0.0 is not backwards compatible to 1.x, code written with the old API will ***NOT*** run with new API. This documentation is for the 3.x API.
 
 All APIs require that the connected user has EXECUTE privileges for the corresponding SQL procedures and SELECT for all table types in SYS_DI (TT*).
 

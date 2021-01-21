@@ -5,7 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [4.12.0]
+## [4.10.0]
+### Changed
+- Setting Header to lowercase - EUXTEAMNADAV-690
+
+## [4.9.0]
 ### Fixed
 - ESLINT fixes
 

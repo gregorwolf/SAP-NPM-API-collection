@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.1.0"></a>
+## 7.1.0 - 2021-01-05
+
+### Fixed
+- Update *@sap/hana-client* to v2.7.16, debug to 4.2.0 and *@sap/e2e-trace* to 3.0.0
+
+### Added
+- Node.js 14.x support.
+
 <a name="7.0.1"></a>
 ## 7.0.1 - 2020-10-21
 
