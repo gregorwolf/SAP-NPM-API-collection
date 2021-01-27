@@ -1,3 +1,11 @@
+# 2.0.0
+Features.
+- use @sap/hdi-deploy@4.0.1
+- use @sap/xsenv@3.1.0
+
+Removed:
+- node 6 support
+
 # 1.7.5
 Features:
 - use @sap/hdi-deploy@3.11.15

@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.27] - 2021-01-22
+### Added
+- Added ability to generate an application without user interaction by passing a json payload of the relevant answers to the Yeoman command line.
+- Added support for destinations in SAP Business Application Studio that have been defined on the instance level rather than account level.
+- In VSCode, moved non-confidential information for saved SAP systems out of the operating system secure storage.
+- Added SAP Systems panel in VSCode to allow users delete previously saved systems.
+- Generated Fiori applications for a CAP project can now add deployment configuration.
+
+### Fixed
+- Improved UX and description when needing to add missing service keys for a generated application at run time.
 
 ## [1.0.25] - 2020-12-10
 ### Added

@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.11.15"
+    "@sap/hdi-deploy": "4.0.1"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -352,7 +352,7 @@ In this case, the HDI Deployer will ignore the undeploy whitelist `undeploy.json
 
 ## The default_access_role Role
 
-When an HDI container service instance is created by the HANA Service Broker, e.g. service instance `foo` with schema name `FOO`, the broker creates an HDI container `FOO` (consisting of the runtime schema `FOO`, the HDI metadata and API schema `FOO#DI`, and the object owner `FOO#OO`) and a global access role `FOO::access_role` for the runtime schema. This access role is equipped with a default permission set for the runtime schema which consists of `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`, `CREATE TEMPORARY TABLE`, and `SELECT CDS METADATA` on the runtime schema `FOO`.
+When an HDI container service instance is created by the HANA Service Broker, e.g. service instance `foo` with schema name `FOO`, the broker creates an HDI container `FOO` (consisting of the runtime schema `FOO`, the HDI metadata and API schema `FOO#DI`, and the object owner `FOO#OO`) and a global access role `FOO::access_role` for the runtime schema. This access role is equipped with a default permission set for the runtime schema which consists of `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`, `CREATE TEMPORARY TABLE`, and `SELECT CDS METADATA` (not on HANA Cloud) on the runtime schema `FOO`.
 
 Every time the service instance is bound to an application, the broker creates 2 new users which are specific to this binding. The first user is the application user who is named `user` in the instance's credentials. This user is used by the application to access the HDI container's runtime schema `FOO`. This user is equipped with the service instance's global access role `FOO::access_role`. The second user is the HDI API user who is named `hdi_user` in the credentials. This user is equipped with privileges for the container's APIs in the `FOO#DI` schema.
 
@@ -406,7 +406,7 @@ Exemplary service binding:
 
 In order to assign roles from the HDI content to the application binding users (the `user` users), the HDI Deployer implements an automatic assignment of the `default_access_role` role if it is present in the deployed content:
 
-If a role definition file exists at the path `src/defaults/default_access_role.hdbrole`, and this file defines a role named `default_access_role`, and this file is included in the deployment (e.g. not excluded via `include-filter`), then the HDI Deployer grants the deployed `default_access_role` role to the service instance's global access role (e.g. `FOO::access_role`). In addition, the HDI Deployer revokes all default permissions (e.g. `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`, `CREATE TEMPORARY TABLE`, and `SELECT CDS METADATA` on the runtime schema `FOO`) from the global access role. If the `default_access_role` is undeployed, the default permission set for the runtime schema will be restored.
+If a role definition file exists at the path `src/defaults/default_access_role.hdbrole`, and this file defines a role named `default_access_role`, and this file is included in the deployment (e.g. not excluded via `include-filter`), then the HDI Deployer grants the deployed `default_access_role` role to the service instance's global access role (e.g. `FOO::access_role`). In addition, the HDI Deployer revokes all default permissions (e.g. `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`, `CREATE TEMPORARY TABLE`, and `SELECT CDS METADATA` (not on HANA Cloud) on the runtime schema `FOO`) from the global access role. If the `default_access_role` is undeployed, the default permission set for the runtime schema will be restored.
 
 Note:  If you use a `.hdinamespace` file in `src/` which defines a real namespace prefix for subfolders, then you need to put a `.hdinamespace` file with the empty namespace `"name" : ""` at `src/defaults/` to ensure that the role can be named `default_access_role`.
 
@@ -460,6 +460,8 @@ A role with the default permission set which is granted by the HANA Service Brok
    }
 }
 ```
+
+On HANA Cloud, "SELECT CDS METADATA" is not granted.
 
 ## The development_debug_role Role
 
@@ -515,7 +517,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "3.11.15",
+    "@sap/hdi-deploy": "4.0.1",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1041,7 +1043,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "3.11.15",
+        "version": "4.0.1",
         "features": {
             "info": 2,
             "verbose": 1,

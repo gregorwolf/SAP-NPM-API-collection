@@ -30,6 +30,8 @@ Besides the specification, src/api.ts provides functions that can be used with S
 - importProjectSchema: imports information from the app and generates all schemas but no JSON configuration files.
 - getApiVersion: returns the given API version. The API version starts with 1 and will only be increased in case of incompatible changes where the consumption layer must react on.
 
+When calling any API function you may pass a logger instance for collecting any messages. The interface of your logger must fit to the ExtensionLogger definition. If no logger is passed, the output channel for messages is the console.
+
 ## Constraints
 
 The definitions and functions do not handle the OData annotations of the SAP Fiori Element templates.

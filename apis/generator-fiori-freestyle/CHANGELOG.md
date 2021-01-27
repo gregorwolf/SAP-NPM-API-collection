@@ -3,6 +3,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.19] - 2021-01-22
+### Added
+- Added support for destinations in SAP Business Application Studio that have been defined on the instance level rather than account level.
+- In VSCode, moved non-confidential information for saved SAP systems out of the operating system secure storage.
+- Added SAP Systems panel in VSCode to allow users delete previously saved systems.
+
 ## [0.9.17] - 2020-12-10
 ### Added
 - The SAP Fiori Worklist V2 and SAP Fiori Worklist V4 floorplan types have been merged into one floorplan.  The version of the OData service provided will determine which application type is generated.

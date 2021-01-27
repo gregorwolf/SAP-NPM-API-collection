@@ -53,7 +53,7 @@ Currently the generator supports the following methods to provide the Data Sourc
 You can connect to an SAP System in VSCode by selecting one of the following methods:
 
 You can choose to connect to an existing ABAP on premise system by providing the URL and optional SAP Client identifier. If the URL requires authentication, you will need to provide those details during generation.
-You can connect to an ABAP environment on the SAP Cloud Platform. In this case, you must provide a local file that defines the service connection details for the desired ABAP Enviroment. Once you provide these details, a browser tab will launch for you to provide authentication details.
+You can connect to an ABAP environment on the SAP Cloud Platform. In this case, you must provide a local file that defines the service connection details for the desired ABAP Environment. Once you provide these details, a browser tab will launch for you to provide authentication details.
 In both cases, if you choose to save the SAP system for future reference, the system details will be stored in the secure storage location of your operating system.
 
 - **Connect to an OData service**
@@ -76,13 +76,13 @@ Once the data source has been supplied, the **SAP Fiori freestyle SAPUI5 applica
 
 In the final step, provide the following information:
 
-- **Module name** Required.  Must be alpha-numberic and cannot contain spaces.  The generated NodeJS application will use the module name as its package name.  Will also be used as the folder name of the generated application.
+- **Module name** Required.  Must be alpha-numeric and cannot contain spaces.  The generated NodeJS application will use the module name as its package name.  Will also be used as the folder name of the generated application.
 - **App Title** Required.  This will be the title in the header of the generated application
 - **Namespace** Required.  The UI5 project namespace to be used.  Must start with a letter and contain letters, digits and periods only.
 - **Description** Required. The text description of the application.
 - **Parent Folder** Required.  The parent folder into which the new application will be generated.  The new application will be generated in a new folder with the `Module Name` as detailed above.  If there already exists a folder with the same name, the user must choose a new Module name.
 
-- **Advanced Configuration** Optional.  The user can choose to customise the generated application with the following options:
+- **Advanced Configuration** Optional.  The user can choose to customize the generated application with the following options:
 
   - **UI5 CSS Theme**
   - **UI5 Javascript Library Version**

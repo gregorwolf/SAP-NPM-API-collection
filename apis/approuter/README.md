@@ -50,7 +50,8 @@
   * [Session Contents](#session-contents)
 - [Service to Application Router (Beta version)](#service-to-application-router-beta-version)
 - [Central Logout](#central-logout)
-- [Whitelist Service](#whitelist-service)
+- [User API Service](#user-api-service)
+- [Allowlist Service](#whitelist-service)
   * [Enable the service](#enable-the-service)
   * [Configuring allowed hostnames / domains](#configuring-allowed-hostnames--domains)
   * [Return value](#return-value)
@@ -194,8 +195,8 @@ Configuration | Environment variable | Description
 [Plugins](#plugins-configuration) | `plugins` | A plugin is just like a [*route*](#routes) except that you can't configure some inner properties.
 [Session timeout](#session-timeout) | `SESSION_TIMEOUT` | Positive integer representing the session timeout in minutes. The default timeout is 15 minutes.
 [X-Frame-Options](#x-frame-options-configuration) | `SEND_XFRAMEOPTIONS`, `httpHeaders` | Configuration for the X-Frame-Options header value.
-[Clickjack whitelist service](#whitelist-service) | `CJ_PROTECT_WHITELIST` | Configuration for the whitelist service preventing clickjack attacks.
-[Web Sockets origins whitelist](#web-sockets) | `WS_ALLOWED_ORIGINS` | Whitelist configuration used for verifying the `Origin` header of the initial upgrade request when establishing a web socket connection.
+[Allowlist service](#whitelist-service) | `CJ_PROTECT_WHITELIST` | Configuration for the allowlist that is preventing clickjack attacks.
+[Web Sockets origins allowlist](#web-sockets) | `WS_ALLOWED_ORIGINS` | An allowlist configuration that is used for verifying the `Origin` header of the initial upgrade request when establishing a web socket connection.
 JWT Token refresh | `JWT_REFRESH` | The time in minutes before a JWT token expires and the application router should trigger a token refresh routine.
 Incoming connection timeout | `INCOMING_CONNECTION_TIMEOUT` | Maximum time in milliseconds for a client connection. After that time the connection is closed. If set to 0, the timeout is disabled. Default: 120000 (2 min)
 Tenant host pattern | `TENANT_HOST_PATTERN` | String containing a regular expression with a capturing group. The request host is matched against this regular expression. The value of the first capturing group is used as tenant id.
@@ -724,7 +725,7 @@ In the setup above, GET requests will be routed to *dest-1*, and all the rest to
 
 Why using `httpMethods`? It is often useful to split the implementation of microservices across multiple, highly specialized applications. For example, a Java application written to serve high amounts of GET requests that return large payloads is implemented, sized, scaled and load-tested differently than applications that offer APIs to upload limited amounts of data. `httpMethods` allows you to split your REST APIs, e.g., */Things* to different applications depending on the HTTP methods of the requests, without having to make the difference visible in the URL of the endpoints.
 
-Another usecase for `httpMethods` is to "disable" parts of the REST API. For example, it may be necessary to disable some endpoints that accept DELETE for external usage. By whitelisting in the relative route only the allow methods, you can hide functionalities of your microservice that should not be consumable without having to modify the code or configurations of your service.
+Another usecase for `httpMethods` is to "disable" parts of the REST API. For example, it may be necessary to disable some endpoints that accept DELETE for external usage. By allowing only certain methods in the route, you can hide functionalities of your microservice that should not be consumable without having to modify the code or configurations of your service.
 
 **Note:** `localDir` and `httpMethods` are incompatible. The following route is invalid:
 
@@ -836,7 +837,7 @@ This object configures the placeholder replacement in static text resources.
 Property | Type | Description
 -------- | ---- | -----------
 pathSuffixes | Array | An array containing the path suffixes that are relative to `localDir`. Only files with a path ending with any of these suffixes will be processed.
-vars | Array | A whitelist with the environment variables that will be replaced in the files matching the suffix.
+vars | Array | A list with the environment variables that will be replaced in the files matching the suffix.
 services | Object | An object describing bound services that will provide replacement values. Each property of this object is used to lookup a separate service. The property names are arbitrary. Service lookup format is described in _Service Query_ section in _@sap/xsenv_ documentation.
 
 The supported tags for replacing environment variables are: `{{ENV_VAR}}` and `{{{ENV_VAR}}}`.
@@ -959,7 +960,7 @@ sessionTimeout | Number | x | Used to set session timeout. The default is 15 min
 [services](#services-property) | Object | x | Additional options for your business services.
 [compression](#compression-property) | Object | x | Configuration regarding compressing resources before responding to the client. If the [COMPRESSION](#compression-property) environment variable is set it will overwrite existing values.
 [pluginMetadataEndpoint](#pluginmetadataendpoint-property) | String | x | Adds an endpoint that will serve a JSON representing all configured plugins.
-[whitelistService](#whitelistservice-property) | Object | x | Options for the whitelist service preventing clickjack attacks.
+[whitelistService](#whitelistservice-property) | Object | x | Options for the allowlist service preventing clickjack attacks.
 [websockets](#websockets-property) | Object | x | Options for the [web socket communication](#web-sockets).
 [errorPage](#errorpage-property) | Array | x | Optional configuration to set-up a custom error pages whenever the approuter encouters an error.
 
@@ -1242,9 +1243,9 @@ Example:
 
 ### *whitelistService* property
 
-Enabling the whitelist service is used for prevention of clickjack attacks.
+The *whitelistService* property is used for enabling the allowlist service that prevents clickjack attacks.
 An endpoint accepting GET requests will be opened at the relative path configured in the `endpoint` property.
-For more details see [Whitelist service](#whitelist-service) section.
+For more details see [Allowlist service](#whitelist-service) section.
 
 Example:
 ```json
@@ -1820,17 +1821,17 @@ Central Logout can be client initiated or can be triggered due to session timeou
 
 The session timeout can be configured with the [SESSION_TIMEOUT](#session-timeout) variable through the environment.
 
-## Whitelist Service
+## Allowlist Service
 
-What is it for? A protection concept is designed in SAP that uses UI libraries and whitelist service for proper clickjack protection of applications. The general idea is that when an html page needs to be rendered in a frame, a check is done by calling the whitelist service to validate if the parent frame is allowed to render the content in a frame. The actual check is provided by the whitelist service.
+A protection concept is designed in SAP that uses UI libraries and an allowlist service for proper clickjack protection of applications. The general idea is that when an html page needs to be rendered in a frame, a check is done by calling the allowlist service to validate if the parent frame is allowed to render the content in a frame. The actual check is provided by the allowlist service.
 
 ### Enable the service
 
-To enable the service and open the service endpoint you need to configure the [whitelistService](#whitelistservice-property) property in *xs-app.json*.
+To enable the allowlist service and to open the service endpoint you need to configure the [whitelistService](#whitelistservice-property) property in *xs-app.json*.
 
 ### Configuring allowed hostnames / domains
 
-The whitelist service reads allowed hostnames and domains from the environment variable `CJ_PROTECT_WHITELIST`.
+The allowlist service reads allowed hostnames and domains from the environment variable `CJ_PROTECT_WHITELIST`.
 The content is a JSON array of object with the following properties:
 
 Property | Type | Optional | Description
@@ -1858,7 +1859,7 @@ Matching is done against provided properties. For example if only host is provid
 ### Return value
 
 The service accepts only `GET` requests and the response is a JSON object.
-The whitelist service call uses the parent origin as URI parameter (URL encoded) as follows:
+The allowlist service call uses the parent origin as URI parameter (URL encoded) as follows:
 
 ```
 GET url/to/whitelist/service?parentOrigin=https://parent.domain.com
@@ -1877,8 +1878,52 @@ The response is a JSON object with following properties:
 
 The property `active` will have value `false` only in case `CJ_PROTECT_WHITELIST` is not provided.
 
-**Note**: Keep in mind that the application router sends by default the X-Frame-Options header with value `SAMEORIGIN`, in the case whitelist service is enabled, this header value probably needs to be changed, see the [X-Frame-Options](#x-frame-options-configuration) header section for details how to change it.
+**Note**: Keep in mind that the application router sends by default the X-Frame-Options header with value `SAMEORIGIN`, in the case the allowlist service is enabled, this header value probably needs to be changed, see the [X-Frame-Options](#x-frame-options-configuration) header section for details how to change it.
 
+## User API Service
+The application router exposes a user API that returns the details of the user who is logged in. This API supports two endpoints: `/currentUser` and `/attributes`.
+The /currentUser endpoint returns all details of logged in users, while the /attributes endpoint returns the main user properties.
+The user API can be implemented by modelling an xs-app.json route using service sap-approuter-userapi.
+
+Examples:
+
+Handle both endpoints
+```
+{
+    "source": "^/user-api(.*)",
+    "target": "$1",
+    "service": "sap-approuter-userapi"
+},
+```
+
+Handle `/currentUser` endpoint only
+```
+{
+    "source": "^/user-api/currentUser$",
+    "target": "/currentUser",
+    "service": "sap-approuter-userapi"
+},
+```
+The /currentUser endpoint response has the following format:
+```
+{
+   "firstname": "John",
+   "lastname": "Doe",
+   "email": "john.doe@sap.com",
+   "name": "john.doe@sap.com",
+   "displayName": "John Doe (john.doe@sap.com)"
+}
+```
+The /attributes endpoint response has the following format:
+```
+{
+   "firstname": "John",
+   "lastname": "Doe",
+   "email": "john.doe@sap.com",
+   "name": "john.doe@sap.com"
+}
+```
+Note that the "name" property is the user ID in the identity provider, which in many cases is also the email address.
 ## Scaling
 
 The application router keeps all established sessions in local memory and does not sync them across multiple instances.
@@ -1953,7 +1998,7 @@ with custom logic.
 Setting the `Content-Security-Policy` header - this is a response header which informs browsers (capable of interpreting it) about the trusted sources
 from which an application expects to load resources. This mechanism allows the client to detect and block malicious scripts injected into an application.
 A value can be set via the `httpHeaders` environment variable in the [additional headers configuration](#additional-headers-configuration).
-The value represents a security policy which contains directive-value pairs. The value of a directive is a whitelist of trusted sources.
+The value represents a security policy which contains directive-value pairs. The value of a directive is an allowlist of trusted sources.
 In case content-security-policy headers are returned from backend, they will override `httpHeaders` configuration. 
 To enable returning both (backend and local content-security-policy headers), configure environment variable `MERGE_CSP_HEADERS`.
 

@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.28] - 2021-01-14
+### Added
+* Support preview of applications based on datasource url of a destination configuration inside a destination instance
+
+### Fixed
+* Fixed several issues in conjunction with preview start in SAP Business Application Studio
+* Improved UI of the web page for providing the service key to a service
+
 ## [1.0.26] - 2020-12-03
 ### Added
 * Preview support of applications based on SAP API Business Hub services

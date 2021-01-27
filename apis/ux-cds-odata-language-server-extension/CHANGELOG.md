@@ -2,6 +2,21 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.0.9] - 2021-01-21
+
+### Added
+- Code completion and diagnostics for cds-specific alternatives to OData annotations 
+- Code completion and diagnostics for annotating services (entity containers)
+- Code completion and diagnostics for properties `IsActiveEntity` and `HasActiveEntity` auto-generated on applying `@odata.draft.enabled`
+- Peek Definition for entity type properties and actions used in annotations. You can now see where the entity type property or action is defined.
+- Go To Definition for entity type properties and actions used in annotations. You can now navigate to the place in the service where the entity type property or action is defined.
+- Dedicated validation and quick fix for wrong case in annotation terms, properties, record types, `$Type`, `$value`, paths and enum values. You can now fix the typos related to wrong case with one click. 
+- Dedicated validation for type mismatch in paths
+
+### Changed
+- Omitted qualifier tab stops in code completion snippets for annotation not applied to entity type 
+- Omitted `:` in code completion snippets for boolean type annotations with default value `true`.
+
 ## [1.0.7] - 2020-12-10
 
 ### Added

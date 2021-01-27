@@ -8,6 +8,33 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
+## [1.84.1] - 2021-01-14
+
+### Added
+
+- The specification API now allows passing a logger, i.e. an instance of the new interface ExtensionLogger.
+If supplied, all messages resulting from the API processing will be passed to the logger instance instead of console.log.
+- Property showDataLabel on global OVP level
+- OData V2: New `extensionType` property is added to Custom Column definition.
+- OData V2: Support for Custom Columns in Object Page tables.
+
+### Changed
+
+- OData V4: List Report `variantManagement` property is now moved to page level
+- The specification API now returns a _complete_ list of flex changes, not only the updated ones; if a flex property was not maintained or deleted, you can find it in the list with content.newValue = null. This allows the consuming application to distinguish flex changes that are supported by the JSON schema of the specification from other flex changes that may have been created by other means; only changes that are part of the result list of the API but have content.newValue = null should get deleted from the app.
+
+### Fixed
+- OData V2: Export fails to resolve page in `manifest.json` when page key does not contain entitySet.
+- OData V4: Switching from FCL to Standard Layout - `manifest.json` -> `sap.ui5/routing/routes/[]/target` was not reseting back
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Quality
+
 ## [1.84.0] - 2020-12-03
 
 ### Added
@@ -20,13 +47,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 - OData V2: Use enum instead of string for property `createWithFilters -> strategy`
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - OData V2: Improved sync logic to avoid deletion of entries from page config
 - OData V4: Not all properties had been imported into config files
-
-### Quality

@@ -1,3 +1,16 @@
+## 4.0.1
+Fixes:
+- use @sap/xsenv@3.1.0 for full node 14 support
+
+## 4.0.0
+Features:
+- use @sap/hdi@3.0.1
+- use @sap/hana-client@2.7.16
+- Node 14.x support
+
+Removed:
+- Node 6.x support
+
 ## 3.11.15
 Fixes:
 - set default for --delete-timeout and --write-timeout to 15 minutes instead of 15 seconds

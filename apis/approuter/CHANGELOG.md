@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.1.0- 2021-01-21
+
+### Added
+- User API
+
+### Fixed
+- Connectivity authentication issue in IAS flow
+- Initialize server keepAliveTimeout to zero
+
+### Updated dependencies
+-  deps: @sap/audit-logging@3.2.0
+
 ## 9.0.2 - 2021-01-14
 
 ### Fixed
