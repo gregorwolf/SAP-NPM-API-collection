@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.1.1"></a>
+## 7.1.1 - 2021-01-28
+
+### Fixed
+- Update *@sap/hana-client* to v2.7.21
+- In StoredProcedure.js createTempTables, use async.eachLimit to avoid races
+
 <a name="7.1.0"></a>
 ## 7.1.0 - 2021-01-05
 

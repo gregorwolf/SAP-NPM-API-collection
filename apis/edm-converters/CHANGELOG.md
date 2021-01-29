@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.40] - 2021-01-27
+
+### Fixed 
+- Fixed Cardinality Issues for V2.
+
 ## [1.0.39] - 2020-11-19
 Bugfixes mentioned in GWTCDA-3192
 
