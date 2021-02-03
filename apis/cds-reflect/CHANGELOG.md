@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and
 this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.13.5 - 2021-02-01
+
+### Changed
+
+- Sunset.  Code is now in `@sap/cds` package.
+
 ## Version 2.13.4 - 2020-11-27
 
 ## Fixed

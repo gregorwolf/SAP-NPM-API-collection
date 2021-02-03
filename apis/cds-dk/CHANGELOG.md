@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.4.0 - 2021-02-02
+### Changed
+- `cds init` uses latest `Maven Java archetype` version `1.12.1` for creating Java projects.
+- `cds init` allows `_` in project name and leaves conversion to `Maven Java archetype`.
+- `cds init --add notebook` and `cds add notebook` now use a Python venv and offer a default Jupyter Notebook viewer.
+- [beta] Multi-target Node.js applications can now be initialized with multitenancy support by running `cds init --add mta,mtx`.
+
 ## Version 3.3.5 - 2021-01-20
 
 ### Changed
@@ -203,7 +210,7 @@ applications provided as as reusable services
 ### Fixed
 
 - Fixed `cds import` to support imports from symlinked sources
-- Fixing bug in `cds init` and `cds add` when using multiple features seperated by comma.
+- Fixing bug in `cds init` and `cds add` when using multiple features separated by comma.
 - Fixing missing log output bug in `cds init` and `cds add` when using feature `samples`.
 - `cds add mta` does no longer crash if no package.json file exists.
 
@@ -242,7 +249,7 @@ applications provided as as reusable services
 ### Added
 
 - `cds watch` now also accepts package names as arguments, e.g. `cds w @capire/bookshop`.
-- `cds add mta` now supports cds configuration `requires.db.kind:"sql"` which allows seamless production deployments using HANA db while keepping sqlite for local development scenario.
+- `cds add mta` now supports cds configuration `requires.db.kind:"sql"` which allows seamless production deployments using HANA db while keeping sqlite for local development scenario.
 
 ### Changed
 - Parameter `verbose` in `cds init` and `cds add` is now deprecated. Use environment variable `DEBUG=true` to obtain detailed output.

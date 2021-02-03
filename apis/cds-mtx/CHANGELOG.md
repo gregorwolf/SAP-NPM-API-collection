@@ -7,7 +7,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 1.0.27 - 2021-02-01
+
+### Fixed
+
+- Extensions via `extend projection ` are now checked correctly by the linter.
+- Cross hdi container access is now supported properly (see also https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.05/en-US/a4bbc2dd8a20442387dc7b706e8d3070.html)
+
+## Version 1.0.26 - 2021-01-04
+
+
+### Fixed
+
+- When using`hdb` as driver for the database, the tenant updates are now logged properly
+
 ## Version 1.0.25 - 2020-11-27
+
 
 ### Added
 

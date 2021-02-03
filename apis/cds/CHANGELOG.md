@@ -4,6 +4,35 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.5.1 - 2021-02-01
+
+### Fixed
+
+- Update `@sap/cds-runtime` dependency
+
+## Version 4.5.0 - 2021-02-01
+
+### Added
+
+- `cds.server` provides an option to switch off automatically generated `index.html` served at `/`:
+  Do that in a custom `server.js`:
+  ```js
+  const cds = require('@sap/cds')
+  // ...
+  module.exports = (o) => cds.server({ ...o, index:false })
+  ```
+- The default `index.html` now honors the system's setting for dark mode.
+- Former package `@sap/cds-reflect` is now embedded in `@sap/cds`
+
+### Changed
+
+- Fiori preview is now disabled if `NODE_ENV` is `production`, to avoid any runtime overhead there.  You can enable it with configuration `cds.features.fiori_preview: true`.
+
+### Fixed
+
+- `cds build` now correctly supports multitenant applications defining multiple database modules, e.g. one database for tenant related data and one for shared data.
+- `cds deploy --to hana` does no longer fail with an invalid service name error if '.' is used in the MTA ID.
+
 ## Version 4.4.10 - 2021-01-18
 
 ### Changed
@@ -14,6 +43,7 @@
 
 ### Fixed
 - `cds build` for SAP HANA no longer fails sporadically with `ENOENT` when writing CSV files.
+
 
 ## Version 4.4.8 - 2021-01-07
 
@@ -99,6 +129,12 @@
 - Messages are kept in their respective request (i.e., not propagated to the request's context, if exists)
 - Log requests in atomicity groups
 - `cds build` now creates correct custom handler path for nodejs projects in WebIDE fullstack.
+
+## Version 4.3.2 - 2020-12-18
+
+### Fixed
+
+- use `@sap/cds-runtime~2.6`
 
 ## Version 4.3.1 - 2020-11-20
 

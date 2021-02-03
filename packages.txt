@@ -1,2 +1,7 @@
-@sap/cds-compiler
-@sap/open.fe
+@sap/cds
+@sap/cds-dk
+@sap/cds-mtx
+@sap/cds-reflect
+@sap/cds-runtime
+@sap/generator-cds
+@sap/sbf
