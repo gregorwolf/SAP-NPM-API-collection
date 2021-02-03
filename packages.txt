@@ -1,5 +1,2 @@
-@sap/edm-converters
-@sap/generator-cap-project
-@sap/hana-client
-@sap/hdbext
-@sap/swa-for-sapbas-vsx
+@sap/cds-compiler
+@sap/open.fe

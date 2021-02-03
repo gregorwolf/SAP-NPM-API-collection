@@ -6,6 +6,64 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 1.49.0 - 2021-01-29
+
+### Added
+
+- to.hdi/sql:
+  + Updated the list of reserved keywords for HANA and SQLite
+  + Use "smart quoting" for naming mode "plain" - automatically quote reserved keywords
+- to.hdi.migration:
+  + Supports various kinds of entity changes: entity addition/deletion/change (the latter including element additions/deletions/type changes).
+  + Provides option to render any element type change as `ALTER TABLE DROP` to prevent deployment issues due to incompatible data
+    (default for length reductions or association/composition changes).
+- to.cdl: Smart artifact references are now rendered explicitly via `:` notation
+
+## Changed
+
+- OData/EDMX:
+  Change the `EntityType` precedence of the OData term definition `AppliesTo=` attribute. If `AppliesTo` contains
+  both `EntityType` and `EntitySet`, the annotation was assigned to the entity type. Extending an
+  `AppliesTo=[EntitySet]` with `EntityType` would be OData compliant but incompatible for clients
+  which still expect the annotation at the set and do not perform the full lookup.
+  With this change, `EntitySet` and `EntityType` are treated individually, effectively annotating the type and
+  (if available) the set. This fixes both extendability and client behavior.
+
+## Fixed
+
+- Structured foreign key and forward association reference paths used in ON condition definitions
+  are now translatable into the correct short form ON condition paths in Association to Join translation.
+- to.hdbcds: Aliased mixin-associations are now handled correctly
+
+## Version 1.48.0 - 2021-01-15
+
+### Changed
+
+- to.hdbcds/hdi/sql: Reject using associations or compositions in query elements starting with `$self` or `$projection`.
+- OData: Update vocabularies 'Common', 'PersonalData', 'UI'.
+
+### Fixed
+
+- Using a hex literal like `x'D028'` (in a CSN input) could lead to an error.
+- for.odata:
+  + Fix a bug in constraint calculation if principal has no primary keys.
+  + Don't overwrite user defined `@Core.Computed` annotation.
+- to.hdi/sql/hdbcds: Fixed a bug during processing of skipped/otherwise not db-relevant artifacts.
+
+## Version 1.47.0 - 2020-12-11
+
+### Changed
+
+- Update vocabularies 'Aggregation', 'Common'
+
+### Fixed
+
+- to.hdbcds/hdi/sql:
+  + Types are not rendered anymore for SAP HANA in quoted mode.
+  + Aliases are now respected when resolving $self
+  + Association clones are now pre-pended with three underscores (`_`) instead of two
+    to prevent shadowing of context names or usings
+
 ## Version 1.46.6 - 2020-12-01
 
 ### Fixed

@@ -7,4 +7,4 @@ Open.fe is [SAP Fiori elements](https://sapui5.hana.ondemand.com/#/topic/03265b0
 You need to maintain the dependency to @sap/open.fe package in the package.json as it is not part of OpenUI5 framework. It is recommended to use the [UI5 Tooling]( https://sap.github.io/ui5-tooling) to install the libraries which are part of OpenUI5 framework. For details please refer to consuming [OpenUI5 Framework using UI5 Tooling]( https://sap.github.io/ui5-tooling/pages/Configuration/#framework-configuration) 
 
 ## License
-This package is provided under the terms of the [SAP FREEWARE LICENSE AGREEMENT](LICENSE.txt) 
+This package is provided under the terms of the [SAP FREEWARE LICENSE AGREEMENT](https://tools.hana.ondemand.com/sap-freeware-license.txt) 

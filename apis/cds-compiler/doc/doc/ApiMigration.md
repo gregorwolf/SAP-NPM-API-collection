@@ -200,7 +200,7 @@ function toSwagger(model, options) {
 //                           with dots as in CDL)
 //     toSql.associations  : either 'assocs' (default, keep associations as they are if possible)
 //                           or 'joins' (replace associations by joins)
-//     toSql.src           : if true, generate SQL DDL source files (default)
+//     toSql.src           : if 'sql', generate SQL DDL source files (default)
 //     toSql.csn           : if true, generate the transformed CSN model
 //   }
 // Options provided here are merged with (and take precedence over) options from 'model'.
