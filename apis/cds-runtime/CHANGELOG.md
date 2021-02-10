@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.8.3 - 2021-02-05
+
+### Fixed
+
+- No pagination while reading single entity
+- `SELECT.limit.offset.val` should be a number
+
 ## Version 2.8.2 - 2021-02-03
 
 ### Fixed

@@ -1,7 +1,3 @@
-[![Build Status](https://gkexmlvalidator.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=modules-exploration-service-ci%2Fmaster)](https://gkexmlvalidator.jaas-gcp.cloud.sap.corp/job/modules-exploration-service-ci/job/master/)
-[![Quality Gate Status](https://sonar.wdf.sap.corp/api/project_badges/measure?project=modules-exploration-service&metric=alert_status)](https://sonar.wdf.sap.corp/dashboard?id=modules-exploration-service)
-[![Coverage](https://sonar.wdf.sap.corp/api/project_badges/measure?project=modules-exploration-service&metric=coverage)](https://sonar.wdf.sap.corp/dashboard?id=modules-exploration-service)
-[![Lines of Code](https://sonar.wdf.sap.corp/api/project_badges/measure?project=modules-exploration-service&metric=ncloc)](https://sonar.wdf.sap.corp/dashboard?id=modules-exploration-service)
 
 # @sap/modules-exploration
 
@@ -43,7 +39,6 @@ The modules.json for service-provider should include the following parameters:
 }
 ```
 
-More infromation can be found in [Consume-Service Cookbook](https://github.wdf.sap.corp/pages/devx-wing/CookBook/cross-scenario-tools/Consume-SAP-Services/)
 
 # API
 
@@ -53,10 +48,3 @@ the return metatadata is of type ''IModuleInfo[]
 **promptExploredModules** <br>
 Explores installed modules and prompt their metadata (name) to the user using the given generator. The prompt question can be passed as an input.
 If not passed, a generic question will be displayed <br>
-
-## Release processs
-
-Use [XMAKE Release Job]
-(https://prod-build10100.wdf.sap.corp/job/devx-wing/job/devx-wing-modules-exploration-service-SP-REL-common_indirectshipment/) (Stage and promote) to upload a new version to nexus (based on master)  
-The newly released version location in [nexus](http://nexus.wdf.sap.corp:8081/nexus/content/repositories/deploy.releases/com/sap/npm/modules-exploration/)
-The XMAKE Release Job currently runs automatically on merge.

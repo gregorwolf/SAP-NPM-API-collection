@@ -8,6 +8,25 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
+## [1.84.2] - 2021-01-28
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- The 'views' definition for OData V4 was not read nor written to the right position at manifest.
+- Flex changes for ALP table columns had been written with the wrong selector id and thus had no effect in the run-time.
+
+### Quality
+
+- Dependencies to other npm modules have been actualized
+
 ## [1.84.1] - 2021-01-14
 
 ### Added
@@ -24,16 +43,9 @@ If supplied, all messages resulting from the API processing will be passed to th
 - The specification API now returns a _complete_ list of flex changes, not only the updated ones; if a flex property was not maintained or deleted, you can find it in the list with content.newValue = null. This allows the consuming application to distinguish flex changes that are supported by the JSON schema of the specification from other flex changes that may have been created by other means; only changes that are part of the result list of the API but have content.newValue = null should get deleted from the app.
 
 ### Fixed
+
 - OData V2: Export fails to resolve page in `manifest.json` when page key does not contain entitySet.
 - OData V4: Switching from FCL to Standard Layout - `manifest.json` -> `sap.ui5/routing/routes/[]/target` was not reseting back
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Quality
 
 ## [1.84.0] - 2020-12-03
 

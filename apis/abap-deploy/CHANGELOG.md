@@ -1,3 +1,12 @@
+<a name="0.10.19"></a>
+
+## [0.10.19](https://github.wdf.sap.corp/devx-wing/abap-deploy/compare/v0.10.15...v0.10.19) (2020-12-23)
+
+### Bug Fixes
+
+- add CondenseMessagesInHttpResponseHeader parameter in update url ([#61](https://github.wdf.sap.corp/devx-wing/abap-deploy/issues/61)) ([de0f2cf](https://github.wdf.sap.corp/devx-wing/abap-deploy/commit/de0f2cf))
+- dummy version for github testing ([#59](https://github.wdf.sap.corp/devx-wing/abap-deploy/issues/59)) ([291e3e0](https://github.wdf.sap.corp/devx-wing/abap-deploy/commit/291e3e0))
+
 <a name="0.10.11"></a>
 
 ## [0.10.17](https://github.wdf.sap.corp/devx-wing/abap-deploy/compare/v0.10.11...v0.10.17) (2020-11-10)

@@ -70,7 +70,7 @@ Currently the generator supports the following methods to provide the Data Sourc
   You can connect to an SAP System in VSCode by selecting one of the following methods:
   
   1. You can choose to connect to an existing ABAP on premise system by providing the URL and optional SAP Client identifier.  If the URL requires authentication, you will need to provide those details during generation.
-  1. You can connect to an ABAP environment on the SAP Cloud Platform.  In this case, you must provide a local file that defines the service connection details for the desired ABAP Enviroment.  Once you provide these details, a browser tab will launch for you to provide authentication details.  
+  1. You can connect to an ABAP environment on the SAP Business Technology Platform.  In this case, you must provide a local file that defines the service connection details for the desired ABAP Enviroment.  Once you provide these details, a browser tab will launch for you to provide authentication details.  
   
   In both cases, if you choose to save the SAP system for future reference, the system details will be stored in the secure storage location of your operating system.
   

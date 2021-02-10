@@ -1,4 +1,3 @@
-[![Coverage](https://sonar.wdf.sap.corp/api/project_badges/measure?project=apihub-service-provider&metric=coverage)](https://sonar.wdf.sap.corp/dashboard?id=apihub-service-provider) [![Quality Gate Status](https://sonar.wdf.sap.corp/api/project_badges/measure?project=apihub-service-provider&metric=alert_status)](https://sonar.wdf.sap.corp/dashboard?id=apihub-service-provider)
 
 # The apihub-service-provider Repository
 
@@ -40,45 +39,6 @@ ConnectivityDetails {
 }
 ```
 
-# Use Service Provider Locally
-In order to use this service provider locally, follow the next procedure:
-1. Clone this repository to your local computer
-2. Clone a generator that uses the 'Consure-Services' dependency (for instance: [Fiori Project Generator](https://github.wdf.sap.corp/devx-wing/generator-s4-ext)
-3. Ensure you have a template installed on your local computer (for instance: [UI5 Simple Fiori Template](https://github.wdf.sap.corp/devx-wing/generator-ui-5-simple)
-4. Ensure Consume-Services knows to search for your service-provider
-    - Update the index.js file to point at your service provider see: [consume-services index.ts file](https://github.wdf.sap.corp/devx-wing/consume-services/blob/ba9c8c05780e634b6f3dac73d10ed6f19ac41838/src/index.ts#L15)
-5. Run the generator locally
-    - Use a run configureation for example:
-```  
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "cwd": <PATH TO FOLDER IN WHICH TO GENERATE PROJECT>,
-            "program": "/usr/local/lib/node_modules/yo/lib/cli.js",
-            "args": ["fiori-project", "${workspaceFolder}"],
-            "console": "integratedTerminal",
-            "outFiles": [
-                "${workspaceFolder}/generators/**/*.js"
-            ],
-            "env": {
-                "UI5_TEMPLATE_FOLDER": <FULL PATH TO TEMPLATE REPOSITORY>
-            }
-        }
-    ]
-}  
-```  
-
-**Running the generator in debug mode:**
-<img src="https://github.wdf.sap.corp/devx-wing/apihub-service-provider/blob/master/walkthrough.gif?raw=true" width="700" height="300" />
-  
-
 # Public APIs
 
 ### getListODataServices
@@ -106,8 +66,3 @@ In order to use this service provider locally, follow the next procedure:
 **Signiture:** ```function getListOfServiceNames(jsonServices: any): string[]```  
 **Input:** Json object including array of OData services  
 **Output:** String array of service names  
-
-
-## More Information
-
-For more information, see the [Consume-Service Cookbook](https://github.wdf.sap.corp/pages/devx-wing/CookBook/cross-scenario-tools/Consume-SAP-Services/) or the [service-provider-example](https://github.wdf.sap.corp/devx-wing/service-provider-example/).

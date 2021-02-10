@@ -6,7 +6,36 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-### 4.2.0 - 2020-11-27
+## 4.3.0 - 2021-02-01
+### Added
+- asynchronous initialization for annotation plugins (#923)
+- find references for annotation plugins (#929)
+- revalidate workspace after an initial annotation plugin installation (#930)
+
+### Changed
+- new user options for where-used request (#877)<br/>
+until now this functionality was enabled by default and now needs to be enabled via user options
+  + generic annotations - where a certain annotation 'class' or 'namespace' is used
+  + strings literals - where same string literals are used
+
+- consume cds-compiler 1.49.0
+- compatibility with early versions of cds-compiler 2.x
+- simplified consumption of CDS textmate grammar for Jetbrain IDEs
+
+### Fixed
+- dependency analysis for compilation:
+if a changed file has dependencies to the roots, but the
+root models do not cover it, no longer it will compile multiple
+times
+
+- translation code action was not shown in the context of annotations
+- code completion for annotations had a trailing @ (#883)
+- annotation assignment spanned beyond semantical end (#838)
+- code formatting of brackets enclosing multiple elements in annotations had wrong indentation
+- indexing of `on` condition for elements was broken
+- update regex to highlight `one` and `many` keyword properly
+
+## 4.2.0 - 2020-11-27
 
 ### Added
 - quickfix for deprecated identifiers

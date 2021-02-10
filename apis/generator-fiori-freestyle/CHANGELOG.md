@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.20] - 2021-02-05
+#### Added
+- The Fiori freestyle generator has been deprecated. Please use the `@sap/generator-fiori` generator which combines the Fiori elements and Fiori freestyle generators.
+
 ## [0.9.19] - 2021-01-22
 ### Added
 - Added support for destinations in SAP Business Application Studio that have been defined on the instance level rather than account level.

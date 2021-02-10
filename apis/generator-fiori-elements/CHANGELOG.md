@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.28] - 2021-02-05
+#### Added
+- The Fiori elements generator has been deprecated. Please use the `@sap/generator-fiori` generator which combines the Fiori elements and Fiori freestyle generators.
+
 ## [1.0.27] - 2021-01-22
 ### Added
 - Added ability to generate an application without user interaction by passing a json payload of the relevant answers to the Yeoman command line.

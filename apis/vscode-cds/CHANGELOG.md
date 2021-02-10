@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.3.0 - 2021-02-01
+### Added
+- find references for annotations
+
+### Changed
+- extension is now called `SAP CDS language support`
+- uses `axios@0.21.1`
+- uses `@sap/cds-lsp@4.3.0` (see corresponding changelog for details)
+- uses `@sap/cds-compiler@1.49.0`
+- new user options for where-used requests<br/>
+until now this functionality was enabled by default and now needs to be enabled via user options
+  + generic annotations - where a certain annotation 'class' or 'namespace' is used
+  + strings literals - where same string literals are used
+
+### Fixed
+- temporary folder for `CDS Preview` commands is no longer part of project to avoid files being checked in
+- revalidates workspace after an initial annotation plugin installation to show annotation errors w/o the need of manual code edit
+
 ## Version 3.2.0 - 2020-11-27
 
 ### Added

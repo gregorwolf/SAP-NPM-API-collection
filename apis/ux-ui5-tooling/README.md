@@ -90,7 +90,7 @@ You can also connect to multiple back-end systems like this.
       url: https://my.backend.com:1234
 ```
 
-If you want to connect to an ABAP Environment on SAP Cloud Platform then you will need to set the optional property `scp` to `true`. For any other target, remove this property or set it to `false`.
+If you want to connect to an ABAP Environment on SAP Business Technology Platform then you will need to set the optional property `scp` to `true`. For any other target, remove this property or set it to `false`.
 
 ```
 - name: fiori-tools-proxy
@@ -178,7 +178,7 @@ The deployment to ABAP task allows deploying Fiori applications to SAP systems u
 **Limitations:**
 
 * the task does not create ABAP transports, therefore, it requires an existing transport if the target ABAP package requires a transport
-* only Basic Authentication (user/password based authentication) as well as OAuth2 with the SAP Cloud Platform
+* only Basic Authentication (user/password based authentication) as well as OAuth2 with the SAP Business Technology Platform
 
 ## Example Configuration
 
@@ -254,7 +254,7 @@ The target object contains properties identifying your target SAP system.
 #### scp
 
 - `<boolean>` (default: `false`)
-- By default the deployment task will use basic authentication when connecting to the backend. If the target system is ABAP Environment on SAP Cloud Platform, this parameter needs to be set to `true`.
+- By default the deployment task will use basic authentication when connecting to the backend. If the target system is ABAP Environment on SAP Business Technology Platform, this parameter needs to be set to `true`.
 
 #### service
 
@@ -324,7 +324,9 @@ The app object describes the backend object that is created/updated as result of
 * `--verbose` - Enable verbose logging (default: `false`).
 * `--port, -p` - Port to start the server on (default for HTTP: 8080, HTTPS: 8443).
 * `--open, -o` - Open web server root directory in default browser. Optionally, supplied relative path will be appended to the root URL.
-* `--https` - Enables HTTPS over the HTTP/2 protocol for the web server (default: `false`).
+* `--https` - Enables HTTPS over the HTTP/2 protocol for the web server (default: `false`). If you provide the `--https` parameter, but you do not provide the `--key` and `--cert` parameters, then a private key and certificate will be created automatically. **Note: For the automatic key and certificate generation, you need to have OpenSSL installed on your OS**.
+
+  **Limitation: Using HTTPS over HTTP/2 is currently not supported in SAP Business Application Studio.**
 * `--key` - Path to the private key for https (default: `"$HOME/.ui5/server/server.key"`).
 * `--cert` - Path to the certificate for https (default: `"$HOME/.ui5/server/server.crt"`).
 * `--ui5` - UI5 version to use when running the application (default: version from `ui5.yaml`).
@@ -379,7 +381,7 @@ Destination configured to connect to the backend on Cloud Foundry. If there's a 
 ##### Prefix
 Prefix used for the ID of the MTA and the service names. It defaults to the namespace of the app. If a namespace is not found, it defaults to `test`. Please choose a prefix so that the service names are unique to your MTA. Otherwise deployment by multiple people will overwrite the same service.
 
-At the end of the generation, it's possible to optionally generate Fiori Launch Pad configuration (default: no).
+At the end of the generation, it's possible to optionally generate Fiori Launchpad configuration (default: no).
 
 ### fiori add flp-config - Fiori Launchpad configuration generation
 It's possible to create configuration and artifacts required to run the application in an SAP Fiori Launchpad. Depending on the target, the command will update either only the application `manifest.json` with the required inbound navigation property, or will also enhance the MTA configuration to contain a standalone FLP on CF.
@@ -413,6 +415,10 @@ Deploys an application to an ABAP frontend server.
 **The SAPUI5 repository service is active and reachable but whenever I deploy an application I see the following error "Request failed with status code 400".**
 
 This could have multiple reasons, please check the console for more information or open transaction `/IWFND/ERROR_LOG` and check the server logs. A common issue is that during the setup, configuring a virus scan profile has been forgotten. This can be corrected in transaction `/IWFND/VIRUS_SCAN`.
+
+**SSL certificate creation and installation fails with: `Unable to find openssl - please make sure it is installed and available in your PATH`.**
+
+Most probably the `OpenSSL` package is not installed on your OS. Please install it and make sure that it is available in your `PATH` environment variable.
 
 ## Support
 

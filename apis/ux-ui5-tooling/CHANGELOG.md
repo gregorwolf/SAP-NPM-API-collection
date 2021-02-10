@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.0] - 2021-01-27
+### Fixed
+* Fixed HTTPS support for the Livereload of the application
+* Fixed automatic SSL certificate creation
+* Fixed handling of boolean parameters in the Fiori cli
+* Fixed caching issues
+
 ## [1.0.28] - 2021-01-14
 ### Added
 * Support preview of applications based on datasource url of a destination configuration inside a destination instance
