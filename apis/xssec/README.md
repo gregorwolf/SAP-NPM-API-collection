@@ -70,6 +70,8 @@ The creation function `xssec.createSecurityContext` is to be used for an end-use
 
 `createSecurityContext` also accepts a token of grant_type `client_credentials`. This leads to the creation of a limited SecurityContext where certain functions are not available. For more details please consult the API description below or your documentation.
 
+With version 3.1.0 there is a support for multiple configuration objects for one SecurityContext. For more details have a look [here](doc/MultiConfiguration.md).
+
 ### Usage with Passport Strategy
 
 If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.
@@ -249,7 +251,7 @@ However, there are some use cases, when a "foreign" token could be accepted alth
 Parameters:
 
 * `access token` ... the access token as received from UAA in the "authorization Bearer" HTTP header
-* `config` ... a structure with mandatory elements url, clientid and clientsecret or cache configuration
+* `config` ... a structure with mandatory elements url, clientid and clientsecret or cache configuration. Since version 3.1.0 it may also be an array of these structures (have a look [here](doc/MultiConfiguration.md))
 * `callback(error, securityContext, tokenInfo)`
 
 ### getLogonName

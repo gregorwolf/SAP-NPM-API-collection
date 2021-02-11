@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.0.0 - 2021-02-09
+
+### Fixed
+- Update devdeps
+- Update debug to 4.2.0
+- Update requestretry to 4.1.1
+- Allow empty strings in objectWithTypeAndId (utils.js) check
+
+### Removed
+- Node.js 6.x support
+
 ## 3.2.0 - 2020-08-10
 
 ### Added

@@ -120,7 +120,7 @@ auditLog.read('user123')
 Here is how to create an entry for a data modification operation:
 
 ```js
-auditLog.update('userdata')
+auditLog.update('user123')
   .attribute('first name', 'john', 'John')
   .by('John Doe')
   .tenant('tenantId')
@@ -130,7 +130,7 @@ auditLog.update('userdata')
 **Note**: Specifying an old and a new value for an attribute is only supported in newer versions of the Audit log service. Providing these values while working with an older version of the service results in an error in the callback. In such cases one may use the `attribute` method with an alternative signature:
 
 ```js
-auditLog.update('userdata')
+auditLog.update('user123')
   .attribute('password', false)
   .by('John Doe')
   .tenant('tenantId')
@@ -277,15 +277,15 @@ The callback will be called with an error if the Audit log server does not suppo
 ### Data access messages
 
 ```js
-auditLog.read({ type: 'accessed-object-type', id: { key: 'value' } })
-  .attribute({ name: 'attr-0' })
-  .attribute({ name: 'attr-1', successful: true })
-  .attachment({ id: '123' })
-  .attachment({ id: '456', name: 'file.doc' })
-  .dataSubject({ type: 'data-subject-type', id: { key: 'value' }, role: 'role' })
+auditLog.read({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
+  .attribute({ name: 'status' })
+  .attribute({ name: 'date-of-birth', successful: true })
+  .attachment({ id: 'exam-results-9537' })
+  .attachment({ id: 'recommendations-4381', name: 'file.doc' })
+  .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
   // multiple data subjects can also be provided in array format as following:
-  //  .dataSubjects([{ type: 'data-subject-type', id: { key: 'value0' }, role: 'role' },
-  //                 { type: 'data-subject-type', id: { key: 'value1' }, role: 'role' }])
+  //  .dataSubjects([{ type: 'student', id: { student_id: 'st_913' }, role: 'foreign student' },
+  //                 { type: 'student', id: { student_id: 'st_619' }, role: 'foreign student' }])
   .accessChannel('UI')
   .tenant('tenantId')
   .by('John Doe')
@@ -307,11 +307,10 @@ auditLog.read({ type: 'accessed-object-type', id: { key: 'value' } })
 ### Data modification messages
 
 ```js
-var message = auditLog.update({ type: 'accessed-object-type', id: { key: 'value' } })
-  .attribute({ name: 'attr-0' })
-  .attribute({ name: 'attr-1' })
-  .attribute({ name: 'attr-2', old: 'old value', new: 'new value' })
-  .dataSubject({ type: 'data-subject-type', id: { key: 'value' }, role: 'role' })
+var message = auditLog.update({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
+  .attribute({ name: 'status' })
+  .attribute({ name: 'town', old: 'Birmingham', new: 'London' })
+  .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
   .tenant('tenantId')
   .by('John Doe');
 
@@ -334,7 +333,7 @@ message.logPrepare(function (err) {
 ### Configuration change messages
 
 ```js
-var message = auditLog.configurationChange({ type: 'accessed-object-type', id: { key: 'value' } })
+var message = auditLog.configurationChange({ type: 'online system', id: { name: 'Students info system', configuration: 'global-config' } })
   .attribute({ name: 'session timeout', old: '5', new: '25' })
   .tenant('tenantId')
   .by('Application Admin');

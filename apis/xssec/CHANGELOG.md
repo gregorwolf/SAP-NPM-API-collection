@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.1.0 - 2020-01-10
+- Support for multiple configurations for one security context ([more details here](doc/MultiConfiguration.md))
+- Bugfix: support for additional attributes in token exchange
+- Bugfix: authorization now in payload for better XSUAA support
+- correct support for azp (clientid) in token payload
+- method to identify an XSUAA token
 ## 3.0.10 - 2020-10-01
 - The requests to the XSUAA are now available using the requests module also if you do not have a securityContext
 
@@ -41,7 +47,7 @@ All notable changes to this project will be documented in this file.
 - Replace grant type user_token in method requestToken (TYPE_USER_TOKEN) in favor of urn:ietf:params:oauth:grant-type:jwt-bearer
 - Remove obsolete method getToken (use getHdbToken or getAppToken))
 - Remove obsolete method requestTokenForClient (use requestToken)
-- Remove obsolete method getIdentityZone (getSubaccountId) 
+- Remove obsolete method getIdentityZone (use getZoneId() instead, or getSubaccountId() for metering purposes) 
 - Support for audience validation in token
 - remove of SAP_JWT_TRUST_ACL environment variable support (functionality now comes with audience validation); see also [here](https://jam4.sapjam.com/blogs/show/oEdyQO183plBoQdrvcPw2w).
 - remove depencency to node-jwt (ALPINE support)
