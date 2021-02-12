@@ -1,5 +1,6 @@
-@sap/audit-logging
-@sap/cloud-sdk-op-vdm-vehicle-location-service
-@sap/cloud-sdk-op-vdm-vehicle-service
-@sap/di.code-validation.core
+@sap/cloud-sdk-op-vdm-work-centers-service
+@sap/generator-fiori
+@sap/hdi
+@sap/hdi-deploy
+@sap/hdi-dynamic-deploy
 @sap/xssec

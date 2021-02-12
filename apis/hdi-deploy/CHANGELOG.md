@@ -1,3 +1,9 @@
+## 4.0.2
+Features:
+- use @sap/hdi@3.0.2
+- use @sap/hana-client@2.7.21
+- log start and end time of deployments
+
 ## 4.0.1
 Fixes:
 - use @sap/xsenv@3.1.0 for full node 14 support

@@ -1,3 +1,7 @@
+## 3.0.2
+Features:
+- Use hana-client 2.7.21
+
 ## 3.0.1
 Fixes:
 - Correctly remove devDependencies and integrity hashes from npm-shrinkwrap.json

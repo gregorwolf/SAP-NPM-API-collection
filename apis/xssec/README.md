@@ -76,6 +76,8 @@ With version 3.1.0 there is a support for multiple configuration objects for one
 
 If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.
 
+Since version 3.1.1 the JWTStratgy also supports the scope validation specified in [passport](http://www.passportjs.org/docs/oauth/#scope).
+
 ```js
 var express = require('express');
 var passport = require('passport');

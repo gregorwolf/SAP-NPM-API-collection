@@ -1,12 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.1.0 - 2020-01-10
+## 3.1.1 - 2020-02-11
+- Bugfix: Tokenexchange with additional attributes may result in a wrong formatted url
+- Feature: The passport middleware allows to provide scopes to be validated at authentication time. Details [here](http://www.passportjs.org/docs/oauth/#scope)
+
+## 3.1.0 - 2020-02-10
 - Support for multiple configurations for one security context ([more details here](doc/MultiConfiguration.md))
 - Bugfix: support for additional attributes in token exchange
 - Bugfix: authorization now in payload for better XSUAA support
 - correct support for azp (clientid) in token payload
 - method to identify an XSUAA token
+
 ## 3.0.10 - 2020-10-01
 - The requests to the XSUAA are now available using the requests module also if you do not have a securityContext
 
