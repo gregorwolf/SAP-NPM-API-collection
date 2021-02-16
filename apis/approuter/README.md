@@ -28,6 +28,7 @@
   * [*logout* property](#logout-property)
   * [*destinations* property](#destinations-property)
   * [*services* property](#services-property)
+  * [*responseHeaders* property](#responseHeaders-property)
   * [*compression* property](#compression-property)
   * [*pluginMetadataEndpoint* property](#pluginmetadataendpoint-property)
   * [*whitelistService* property](#whitelistservice-property)
@@ -338,8 +339,9 @@ Sample configuration for additional headers:
   }
 ]
 ```
-In this case the application router will send two additional headers in the responses to the client.
-
+In this case, the application router sends two additional headers in the responses to the client.<br>
+Custom response headers, configured in the application router configuration file (xs-app.json) are added to the list of additional http headers.
+If the response header name already exists in the additional http headers list, the value of the response header name overrides the value of the http header.  
 
 **Caution:** For security reasons, the following headers must not be configured: authorization', 'cookie', and 'set-cookie'.
 
@@ -958,6 +960,7 @@ sessionTimeout | Number | x | Used to set session timeout. The default is 15 min
 [logout](#logout-property) | Object | x | Provides options for a [Central Logout](#central-logout) endpoint and a page to which the client to be redirected by the UAA after logout.
 [destinations](#destinations-property) | Object | x | Additional options for your destinations (besides the ones in the `destinations` environment variable).
 [services](#services-property) | Object | x | Additional options for your business services.
+[responseHeaders](#responseHeaders-property) | Object | x | Contains the response header configuration.
 [compression](#compression-property) | Object | x | Configuration regarding compressing resources before responding to the client. If the [COMPRESSION](#compression-property) environment variable is set it will overwrite existing values.
 [pluginMetadataEndpoint](#pluginmetadataendpoint-property) | String | x | Adds an endpoint that will serve a JSON representing all configured plugins.
 [whitelistService](#whitelistservice-property) | Object | x | Options for the allowlist service preventing clickjack attacks.
@@ -1192,6 +1195,26 @@ The `logoutMethod` property specifies the HTTP method with which the `logoutPath
       "logoutMethod": "GET"
     }
   }
+}
+```
+
+### *responseHeaders* property
+
+With the custom response header property, you can add headers, which the application router returns to the client in its responses.<br> 
+The property is an array of objects, each object having the following properties:
+
+Property | Type         | Optional | Description
+-------- | ------------ |:--------:| -----------
+name     | String       |          | response header name
+value    | String       |          | response header value
+
+
+Example:
+```json
+{ "responseHeaders" : [
+    {"name": "header1", "value": "value1"},
+    {"name": "header2", "value": "value2"}
+  ]
 }
 ```
 

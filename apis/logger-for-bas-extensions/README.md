@@ -1,5 +1,3 @@
-[![Build Status-xMake](https://prod-build10100.wdf.sap.corp/job/devx-wing/job/devx-wing-bas-node-loggers-SP-REL-linuxx86_64_indirectshipment/badge/icon)](https://prod-build10100.wdf.sap.corp/job/devx-wing/job/devx-wing-bas-node-loggers-SP-REL-linuxx86_64_indirectshipment/)
-[![Build Status-JAAS](https://gketheia.jaas-gcp.cloud.sap.corp/view/bas-node-loggers/job/bas-node-loggers_CI/job/master/badge/icon)](https://gketheia.jaas-gcp.cloud.sap.corp/view/bas-node-loggers/job/bas-node-loggers_CI/job/master/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
@@ -25,9 +23,9 @@ import { getLogger, logLevelsKeys } from "@sap/logger-for-bas-extensions";
 
 logger = await getLogger({
   level: logLevelsKeys.error,
-  // Recommendation: supply your package's name here.
-  label: "myLabel",
-  // Recommendation: supply your package's version
+  // Supply your package's name here.
+  label: "<ExtensionName>",
+  // Supply your package's version
   version: "1.2.3",
 });
 

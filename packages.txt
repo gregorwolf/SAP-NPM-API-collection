@@ -1,6 +1,9 @@
-@sap/cloud-sdk-op-vdm-work-centers-service
-@sap/generator-fiori
-@sap/hdi
-@sap/hdi-deploy
-@sap/hdi-dynamic-deploy
-@sap/xssec
+@sap/approuter
+@sap/audit-logging
+@sap/cds-runtime
+@sap/di.code-validation.js
+@sap/di.code-validation.json
+@sap/di.code-validation.xml
+@sap/grunt-sapui5-bestpractice-test
+@sap/grunt-sapui5module-bestpractice-build
+@sap/logger-for-bas-extensions

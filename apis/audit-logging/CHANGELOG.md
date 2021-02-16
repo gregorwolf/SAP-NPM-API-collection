@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.1.0 - 2021-02-12
+
+### Added
+- Added support for passing HTTP(s) request agent options to the Service transport.
+  This feature is experimental and is therefore not documented. It may be changed or removed anytime.
+
 ## 4.0.0 - 2021-02-09
 
 ### Fixed

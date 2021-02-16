@@ -5,7 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 9.1.0- 2021-01-21
+## 9.2.0 - 2021-02-14
+
+### Added
+- Support of custom response headers via the application router configuration file (xs-app.json)
+
+### Fixed
+- Verify application key without query parameters
+
+### Updated dependencies
+- deps: e2e-trace@3.0.0
+- deps: xsenv@3.1.0
+
+## 9.1.0 - 2021-01-21
 
 ### Added
 - User API
@@ -66,7 +78,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 - Fix invalid backend response handling
-
 
 ## 8.5.3 - 2020-10-06
 

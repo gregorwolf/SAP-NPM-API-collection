@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.8.4 - 2021-02-15
+
+### Added
+
+- Database pool teardown in case credentials become invalid
+- Idle timeout added to default database pool configuration
+
+### Fixed
+
+- Crash on bad remote service credentials
+- Wrong case order during query generation in service consumption
+
 ## Version 2.8.3 - 2021-02-05
 
 ### Fixed
