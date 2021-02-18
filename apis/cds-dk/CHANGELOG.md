@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.4.1 - 2021-02-17
+
+### Changed
+
+- Bump version of `@sap/cds` to 4.5.2
+- Bump version of `@sap/cds-runtime` to 2.8.6
+- Bump version of `@sap/cds-compiler` to 1.49.2
+
+### Fixed
+
+- `cds watch` now shuts down its child process properly, so that `EADDRINUSE` errors in Business Application Studio are gone
+
 ## Version 3.4.0 - 2021-02-02
 ### Changed
 - `cds init` uses latest `Maven Java archetype` version `1.12.1` for creating Java projects.

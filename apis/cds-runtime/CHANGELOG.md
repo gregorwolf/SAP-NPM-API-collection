@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.8.6 - 2021-02-17
+
+### Fixed
+
+- Handling of OData query option `$skiptoken` when URL encoded (i.e., `%24skiptoken`)
+
+## Version 2.8.5 - 2021-02-16
+
+### Fixed
+
+- Handling of OData query option `$skiptoken`
+
 ## Version 2.8.4 - 2021-02-15
 
 ### Added

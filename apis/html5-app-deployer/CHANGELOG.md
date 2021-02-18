@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 2.3.1 - 2021-02-16
+
+### Fixed
+- Failure when trying to obtain xsuaa token in Kyma flows
+
 ## 2.3.0 - 2020-12-20
 
 ### Added

@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.5.2 - 2021-02-17
+
+### Fixed
+
+- `cds serve --with-mocks` now also works in `production` environment if `cds.features.mocked_bindings` is true.  Previously, mocks were always disabled in `production`.
+- `cds serve` now only fires the `listening` event once
+- `cds build` redacts cds configuration data in log messages  
+
 ## Version 4.5.1 - 2021-02-01
 
 ### Fixed

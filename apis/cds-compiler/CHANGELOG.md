@@ -6,6 +6,17 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 1.49.2 - 2021-02-16
+
+### Fixed
+
+- to.edm(x): Illegal OData identifiers which are not exposed in the generated edmx schema are not causing errors anymore.
+- to.cdl: Annotations are now rendered with the new delimited Identifier syntax
+- to.sql/hdi:
+  + Fixed a bug which led to an exception if elements were referenced as types.
+  + For the SQLite dialect, date, time and timestamp are rendered as simple string literals instead of function calls.
+  + For naming mode "plain", date, time and timestamps are rendered as SQL-compliant literals.
+
 ## Version 1.49.0 - 2021-01-29
 
 ### Added
@@ -19,7 +30,7 @@ The compiler behaviour concerning `beta` features can change at any time without
     (default for length reductions or association/composition changes).
 - to.cdl: Smart artifact references are now rendered explicitly via `:` notation
 
-## Changed
+### Changed
 
 - OData/EDMX:
   Change the `EntityType` precedence of the OData term definition `AppliesTo=` attribute. If `AppliesTo` contains
@@ -29,7 +40,7 @@ The compiler behaviour concerning `beta` features can change at any time without
   With this change, `EntitySet` and `EntityType` are treated individually, effectively annotating the type and
   (if available) the set. This fixes both extendability and client behavior.
 
-## Fixed
+### Fixed
 
 - Structured foreign key and forward association reference paths used in ON condition definitions
   are now translatable into the correct short form ON condition paths in Association to Join translation.
