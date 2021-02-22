@@ -1,12 +1,10 @@
 # @sap/cloud-sdk-vdm-warehouse-physical-inventory-service
 
-This package contains the OData VDM for the [Warehouse Physical Inventory Service](https://api.sap.com/api/API_WHSE_PHYSINVENTORYITEM) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Warehousing - Physical Inventory Integration (SAP_COM_0378).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/aa/453eaa3c3142d49877ee969a5dacf7/frameset.htm).
+This package contains the OData VDM for the Warehouse Physical Inventory Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 
-- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk)
+- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk-js)
 - [Tutorials on developers.sap.com](https://developers.sap.com/tutorial-navigator.html?tag=products:technology-platform/sap-cloud-sdk/sap-cloud-sdk&tag=topic:javascript)
 - [SAP Cloud SDK on StackOverflow](https://stackoverflow.com/questions/tagged/sap-cloud-sdk?tab=Newest)
 - [SAP Cloud SDK on answers.sap.com](https://answers.sap.com/tags/73555000100800000895)

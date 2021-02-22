@@ -1,12 +1,10 @@
 # @sap/cloud-sdk-vdm-defect-class-service
 
-This package contains the OData VDM for the [Defect Class Service](https://api.sap.com/api/API_DEFECTCLASS_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Defect Processing Integration (SAP_COM_0153).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/21/72622cd3054bd7adb6161b40e6c8bf/frameset.htm).
+This package contains the OData VDM for the Defect Class Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 
-- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk)
+- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk-js)
 - [Tutorials on developers.sap.com](https://developers.sap.com/tutorial-navigator.html?tag=products:technology-platform/sap-cloud-sdk/sap-cloud-sdk&tag=topic:javascript)
 - [SAP Cloud SDK on StackOverflow](https://stackoverflow.com/questions/tagged/sap-cloud-sdk?tab=Newest)
 - [SAP Cloud SDK on answers.sap.com](https://answers.sap.com/tags/73555000100800000895)

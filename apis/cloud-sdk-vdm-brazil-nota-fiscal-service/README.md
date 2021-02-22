@@ -1,12 +1,10 @@
 # @sap/cloud-sdk-vdm-brazil-nota-fiscal-service
 
-This package contains the OData VDM for the [Brazil Nota Fiscal Service](https://api.sap.com/api/API_LOGBR_NOTAFISCAL_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Logistics - Brazil Nota Fiscal Integration (SAP_COM_0387).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/6a/7e35da2f4e45ee9a0be69b61bf7765/frameset.htm).
+This package contains the OData VDM for the Brazil Nota Fiscal Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 
-- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk)
+- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk-js)
 - [Tutorials on developers.sap.com](https://developers.sap.com/tutorial-navigator.html?tag=products:technology-platform/sap-cloud-sdk/sap-cloud-sdk&tag=topic:javascript)
 - [SAP Cloud SDK on StackOverflow](https://stackoverflow.com/questions/tagged/sap-cloud-sdk?tab=Newest)
 - [SAP Cloud SDK on answers.sap.com](https://answers.sap.com/tags/73555000100800000895)

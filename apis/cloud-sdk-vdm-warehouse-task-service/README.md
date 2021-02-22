@@ -1,12 +1,10 @@
 # @sap/cloud-sdk-vdm-warehouse-task-service
 
-This package contains the OData VDM for the [Warehouse Task Service](https://api.sap.com/api/API_WAREHOUSE_ORDER_TASK) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Warehousing - Process Warehouse Task Integration (SAP_COM_0353).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/90/419cedc18a471889c4388de49ad9dc/frameset.htm).
+This package contains the OData VDM for the Warehouse Task Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 
-- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk)
+- [SAP Cloud SDK](https://github.com/SAP/cloud-sdk-js)
 - [Tutorials on developers.sap.com](https://developers.sap.com/tutorial-navigator.html?tag=products:technology-platform/sap-cloud-sdk/sap-cloud-sdk&tag=topic:javascript)
 - [SAP Cloud SDK on StackOverflow](https://stackoverflow.com/questions/tagged/sap-cloud-sdk?tab=Newest)
 - [SAP Cloud SDK on answers.sap.com](https://answers.sap.com/tags/73555000100800000895)
