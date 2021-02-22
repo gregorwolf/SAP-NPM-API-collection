@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.4.2 - 2021-02-19
+
+### Fixes
+
+- `cds init` now refers to the latest HDI deployer which supports Node.js 14
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.13.1` for creating Java projects.
+- Bump version of `@sap/cds` to 4.5.3
+
 ## Version 3.4.1 - 2021-02-17
 
 ### Changed

@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.2] - 2021-02-19
+#### Added
+- Support for adding project deployment configuration to an existing managed app router.
+- Project paths in generated launch configuration are now relative.
+- Migrating an existing application now prompts for system client.
+- In SAP Business Application Studio, the destination name for MTA deployment configuration is now a dropdown of available destinations rather than a free text field.
+- For ABAP deployment configuration, the user can now optionally provide a deployment description.
+
+#### Fixed
+- Standalone deployment to Cloud Foundry no longer returns an error.
+
 ## [1.1.0] - 2021-02-05
 #### Added
 - Initial Version

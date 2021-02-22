@@ -2,6 +2,20 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.0.11] - 2021-02-25
+
+### Changed
+- Error message "Invalid property" for `@Common.ValueList.entity` substituted with warning of deprecated non-standard property.
+
+
+## [1.0.10] - 2021-02-04
+
+### Added
+- Peek Definition for the dynamically created aggregared properties. You can now see how and where the property used as an annotation value is defined also if it is  dynamically created using the Analytics.AggregatedProperties  annotation.
+- Go To Definition for the dynamically created aggregared properties. You can now navigate to the place where the aggregated property is defined with the Analytics.AggregatedProperties annotation.
+- Code completion and diagnostics for annotating types with terms applicable to properties and parameters. 
+
 ## [1.0.9] - 2021-01-21
 
 ### Added

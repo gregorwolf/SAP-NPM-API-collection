@@ -8,9 +8,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
-## [1.84.2] - 2021-01-28
+## [1.84.3] - 2021-02-11
 
 ### Added
+
+- Manifest settings for (standard) table columns of OData V4 are now supported.
+- OData V4: Support of V4 card types in OVP template (table, list and analytical card).
+- OData V2: Support of createWithParameterDialog settings for create from the V2 filterbar.
 
 ### Changed
 
@@ -18,6 +22,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 ### Removed
 
+### Fixed
+
+- Overview Page: mandatory fields are clarified and reworked
+- Overview Page: obsolete field timeAxis eliminated
+- Object Page V4: `layout/sectionLayout` is imported from `manifest.json`
+- Object Page V2: `XML` type is only valid type for selection for Custom Section Fragment definition
+
+### Quality
+
+- Upgrade of node modules used
+
+## [1.84.2] - 2021-01-28
 ### Fixed
 
 - The 'views' definition for OData V4 was not read nor written to the right position at manifest.

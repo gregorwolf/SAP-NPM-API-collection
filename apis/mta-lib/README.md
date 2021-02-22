@@ -1,7 +1,3 @@
-[![Build Status](https://gkecicd.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=mta-lib_CI/master)](https://gkecicd.jaas-gcp.cloud.sap.corp/job/mta-lib_CI/job/master/)
-[![Quality Gate Status](https://sonar.wdf.sap.corp/api/project_badges/measure?project=mta-lib&metric=alert_status)](https://sonar.wdf.sap.corp/dashboard?id=mta-lib)
-[![Coverage](https://sonar.wdf.sap.corp/api/project_badges/measure?project=mta-lib&metric=coverage)](https://sonar.wdf.sap.corp/dashboard?id=mta-lib)
-
 # @sap/mta-lib
 
 Javascript wrapper library for creating, reading and modifying multi-target application development descriptor files.
