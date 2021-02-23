@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.0.3 - 2021-02-22
+
+### Fixed
+- Update _lodash_ to v4.17.21
+- Update _moment_ to v2.29.1
+
 ## 6.0.2 - 2020-12-15
 
 ### Fixed

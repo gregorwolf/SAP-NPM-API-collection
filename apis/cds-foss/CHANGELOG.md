@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.2.1 - 2021-02-19
+
+### Fixed
+
+- Proper license link in package.json
+
 ## Version 2.2.0 - 2020-10-26
 
 ### Added

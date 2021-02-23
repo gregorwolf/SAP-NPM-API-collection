@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.1.3"></a>
+## 7.1.3 - 2021-02-22
+
+### Fixed
+- Update *lodash* to v4.17.21
+
+<a name="7.1.2"></a>
+## 7.1.2 - 2021-02-19
+
+### Fixed
+- Update *@sap/hana-client* to v2.7.23
+
 <a name="7.1.1"></a>
 ## 7.1.1 - 2021-01-28
 

@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.1.1 - 2021-01-22
+
+### Fixed
+- Update `@sap/hdbext` to 7.1.3
+- Update `lodash` to 4.17.21
+
 ## 5.1.0 - 2021-01-13
 
 ### Fixed
