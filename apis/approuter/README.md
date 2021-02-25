@@ -39,7 +39,7 @@
   * [Forwarding Headers](#forwarding-headers)
   * [Hop-by-hop Headers](#hop-by-hop-headers)
   * [Custom Headers](#custom-headers)
-  * [Authorization Header (Beta version)](#authorization-header-beta-version)
+  * [Authorization Header](#authorization-header-beta-version)
 - [CSRF Protection](#csrf-protection)
 - [Connectivity](#connectivity)
 - [SaaS Application Registration in CF](#saas-application-registration-in-cloud-foundry)
@@ -49,7 +49,7 @@
 - [Web Sockets](#web-sockets)
 - [Session Handling](#session-handling)
   * [Session Contents](#session-contents)
-- [Service to Application Router (Beta version)](#service-to-application-router-beta-version)
+- [Service to Application Router](#service-to-application-router-beta-version)
 - [Central Logout](#central-logout)
 - [User API Service](#user-api-service)
 - [Allowlist Service](#whitelist-service)
@@ -1462,10 +1462,8 @@ In a multi-tenancy landscape, the application router will calculate the tenant i
  - x-custom-host header or host if EXTERNAL_REVERSE_PROXY is true
  - x-forwarded-host header or host if EXTERNAL_REVERSE_PROXY is false or not specified
 
-### Authorization Header (Beta version)
+### Authorization Header
 * x-approuter-authorization: Contains the JWT token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
-
-**Caution**: You should not use SAP Cloud Platform beta features in subaccounts that belong to productive enterprise accounts. Any use of beta functionality is at the customer's own risk, and SAP shall not be liable for errors or damages caused by the use of beta features. For more information, see [Using Beta Features in Subaccounts](<https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/8ed4a705efa0431b910056c0acdbf377.html#43dfee6e1c174d978195197a8fb0a24a.html>).
 
 ## CSRF Protection
 
@@ -1817,7 +1815,7 @@ This can also be configured via the `JWT_REFRESH` environment variable (the valu
 **Note:** If the JWT is close to expiration and the session is still active a JWT refresh will be triggered in `JWT_REFRESH` minutes before expiration.
 `JWT_REFRESH` is an environment variable stating the number of minutes before the JWT expiration the refresh will be triggered. The default value is 5 minutes.
 
-## Service to Application Router (Beta version)
+## Service to Application Router
 
 The application router can receive a consumer service xsuaa JWT token and use it to access the UI and the data. The JWT token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
 
@@ -1826,7 +1824,6 @@ In this flow client cookies are merged to backend cookies in case a backend cook
 
 **Note**: The xsuaa JWT token is generated with the same xsuaa service instance that is bound to the application router. 
 
-**Caution**: You should not use SAP Cloud Platform beta features in subaccounts that belong to productive enterprise accounts. Any use of beta functionality is at the customer's own risk, and SAP shall not be liable for errors or damages caused by the use of beta features. For more information, see [Using Beta Features in Subaccounts](<https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/8ed4a705efa0431b910056c0acdbf377.html#43dfee6e1c174d978195197a8fb0a24a.html>).
 
 ## Central Logout
 

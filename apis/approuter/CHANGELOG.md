@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.3.0 - 2021-02-24
+
+### Fixed
+- user-api consumption from local approuter
+
+### Added
+- Service to approuter is not beta anymore, README file changed
+
+### Updated dependencies
+- deps: urijs@1.19.6
+
 ## 9.2.0 - 2021-02-14
 
 ### Added

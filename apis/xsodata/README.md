@@ -14,6 +14,9 @@ Note: XSOData was developed to provide XS Classic users using XSOData the possib
       For node.js we also provide an OData V4 solution. The development of the OData V4 node.js Library already started in 2016.
       It is also planned that a generic CDS-Odata provider will be deliverd.
 
+      If you are developing an OData service for SAP Business Technology Platform, it is recommended to move to the SAP Cloud Application Programming Model (CP).
+      The XSODATA solution supports HANA as a service, but does **NOT** support SAP HANA Cloud Services (see also SAP note 3013788).
+
 ## Usage
 
   * This module is used in the XSJS shim for SAP HANA XSC Engine applications to

@@ -8,6 +8,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
+## [1.84.4] - 2021-02-23
+
+### Fixed
+
+- Duplicate property "entitySet" for link list cards got removed
+
 ## [1.84.3] - 2021-02-11
 
 ### Added

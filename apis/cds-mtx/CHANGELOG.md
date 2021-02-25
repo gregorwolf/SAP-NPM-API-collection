@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.0.28 - 2021-02-22
+
+### Added
+
+- It is now possible to pass hdi deployment parameters `undeploy` and `path-parameter` with the model upgrade 
+(`mtx/v1/model/upgrade` and `mtx/v1/model/asyncUpgrade`)
+- Build logs can now be configured with the log level again
+- Extension activation of arbitrary tenants now works properly when running it with the paas user credentials
 
 ## Version 1.0.27 - 2021-02-01
 
