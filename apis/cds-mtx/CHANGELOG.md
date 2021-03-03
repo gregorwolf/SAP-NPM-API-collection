@@ -6,14 +6,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## Version 1.1.2 - 2021-03-01
+
+### Added 
+- Multitenant applications **without tenant specific extensions** now support schema evolution based on `.hdbmigrationtable` files.
+- Provisioning parameters for the container creation can now also be set
+via cds environment `mtx.provisioning.container` or environment variable `CDS_MTX_PROVISIONING_CONTAINER`.\
+Provisioning parameters that are set in the subscription request to `mtx/v1/provisioning/tenant` 
+override the values from the environment.
+- Dedicated hdi deployment options can now be set via environment variable
+`HDI_DEPLOY_OPTIONS`, e. g. `HDI_DEPLOY_OPTIONS="{\"trace\": true }"`. \
+See also 
+[HDI deploy options](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.05/en-US/a4bbc2dd8a20442387dc7b706e8d3070.html).
+
+### Fixed
+- Fix job-status handling.
+- Persist job errors, so they can be revealed even after MTX restart.
+
 ## Version 1.0.28 - 2021-02-22
 
-### Added
+### Added 
 
 - It is now possible to pass hdi deployment parameters `undeploy` and `path-parameter` with the model upgrade 
 (`mtx/v1/model/upgrade` and `mtx/v1/model/asyncUpgrade`)
-- Build logs can now be configured with the log level again
-- Extension activation of arbitrary tenants now works properly when running it with the paas user credentials
 
 ## Version 1.0.27 - 2021-02-01
 

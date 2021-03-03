@@ -6,6 +6,70 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.9.2 - 2021-03-02
+
+### Fixed
+
+- Result payload by expand of grandchild entity, when the child data that is null
+- Delete composition of one via navigation
+- Use extended model in structured processing
+
+## Version 2.9.1 - 2021-02-26
+
+### Fixed
+
+- Namespace lookup in EDM for OData configuration
+- Find previous entity for inherited authorization restrictions
+- Use extended model in generic CRUD post processing
+- Clone headers before sanatizing for logs
+
+## Version 2.9.0 - 2021-02-24
+
+### Added
+
+- Support for `cds.LargeString` in queries for remote services
+- Support for tenant-aware emit in AMQP messaging
+- Metadata (for example, `__count` or `@odata.count` for OData V2 and OData V4, correspondingly) of an external service result are uniformly normalized (for example, to `$count`) and propagated with the result by the rest-client
+- Improved support for managed composition of one
+- Support for cascade DELETE for composition of one
+- Smart quoting in SQL statements
+- Improved memory consumption of integrity checks
+- Result payload includes ETag values of composition targets
+- Custom metadata in OData result (alpha)
+- Support for canonical URL to `$metadata` in `@odata.context` of a response: use `cds.env.odata.contextAbsoluteUrl = true` to get a service URL (default) or `cds.env.odata.contextAbsoluteUrl = 'http://example.com/yourService/'` to set your own URL
+
+### Changed
+
+- The default implementation of `enterprise-messaging` is now multitenant aware. Currently only emit is implemented. The old, shared variant is available through `enterprise-messaging-shared`.
+- Skip localization on pure count queries
+- Managed properties of base entity are updated if any composition target is updated
+  - Deactivate during two month grace period via compat feature flag `cds.env.features.update_header_item = false`
+- Default text templates for element assertions do not contain an element name as a parameter anymore.
+- Custom authorization header can now be set in service consumption
+- Managed associations-to-one are not expanded in the result of a POST request in case of `cds.odata.flavor = v4`
+  - Deactivate during two month grace period via compat feature flag `cds.env.features.skip_expand_assoc = false`
+- Implicit autoexposed entities inherit authorization restrictions from parent
+- Modifying an entity without authorization results in HTTP code 403 instead of 404
+- Instance-based `@restrict.where` clauses are ignored during `CREATE` (instead of rejecting the request)
+  - Deactivate during two month grace period via compat feature flag `cds.env.features.skip_restrict_where = false`
+
+### Fixed
+
+- `req.diff` for deep hierarchies
+- DateTime conversion for `INSERT` statements using `.columns` and `.values/.rows` on `SAP HANA`
+- OData V4 error response target for bound actions
+- Requests using `$search` query option on draft enabled active entities
+- Path navigations in `$filter` are not considered as aggregated away when used in combination with `$apply`
+- Draft: Entities with expired draft can now be deleted
+- `Edm.Time`, `Edm.DateTime` and `Edm.DateTimeOffset` serialization issues when using external OData V2 service
+- Primitive property access of Singletons via URL like `/Singleton/name`
+- Path navigation in `$orderby` expressions for draft-enabled services on `SAP HANA`
+- Result of a `SELECT.one` query is an object (instead of an array)
+
+### Removed
+
+- Redundant key generation
+
 ## Version 2.8.6 - 2021-02-17
 
 ### Fixed
@@ -49,7 +113,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Skip input validation for arrayed types as parameter of actions/functions
 - Log error stack when serving to REST
-- `@assert.range` does not imply `@mandatory`
+- `@assert.range` doesn't imply `@mandatory`
 
 ### Removed
 
@@ -63,15 +127,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Support for OData cross-service references (beta)
 - Support upsert for to-one containment with foreign key in parent
 - Support for case-insensitive `bearer` prefix when forwarding token in service consumption
-- Support for filter on `null` values in in service consumption
+- Support for filter on `null` values in service consumption
 - Server-side pagination for REST services
 - Input validation for typed parameters of actions/functions
-- Format assertion exception for UUIDs in MTX's `ProvisioningService.tenant` (old SCP subaccount IDs are not UUIDs)
+- Format assertion exception for UUIDs in MTX's `ProvisioningService.tenant` (old SAP Cloud Platform subaccount IDs aren't UUIDs)
 - Draft scenario all active is extended
 - Skip integrity checks via:
-  - `@assert.integrity: false` on entity and service level (was only on association level)
-  - `cds.env.features.assert_integrity = false` as global config (private `cds.runtime.skipIntegrity` will be removed)
-- Skip HANA's localization feature (`WITH PARAMETERS ('LOCALE' = '<locale>')`) via `cds.env.features.with_parameters = false`
+  + `@assert.integrity: false` on entity and service level (was only on association level)
+  + `cds.env.features.assert_integrity = false` as global config (private `cds.runtime.skipIntegrity` will be removed)
+- Skip SAP HANA's localization feature (`WITH PARAMETERS ('LOCALE' = '<locale>')`) via `cds.env.features.with_parameters = false`
 - Deprecation warning for `req.run`
 
 ### Changed
@@ -79,23 +143,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - ETag added for expanded entities
 - Use `cds.log()` throughout (incl. odata-server)
 - Replace text keys with default text (i.e., w/o locale) before logging error
-- Read after write on draft activate does not read deep
-- On http error (status >= 400) during remote service consumption: log details and throw gateway error
+- Read after write on draft activate doesn't read deep
+- On HTTP error (status >= 400) during remote service consumption: log details and throw gateway error
 - `accept=application/json,text/plain` is used as default `accept` header for remote service calls
 - Improved custom error message in case acquiring a client from the pool timed out
-- Metadata endpoints are protected by default if respective service is protected. Deactivate metadata endpoint protection via `cds.env.odata.protectMetadata = false`.
+- Metadata endpoints are protected by default if the respective service is protected. Deactivate metadata endpoint protection via `cds.env.odata.protectMetadata = false`.
 - Streamlined module names used in logging
 
 ### Fixed
 
-- Aggregated-away properties in $select, $expand and $filter now behave correctly
+- Aggregated-away properties in `$select`, `$expand`, and `$filter` now behave correctly
 - Exception when accessing texts for a renamed localized draft entity
-- Deep Update wrongly tried to create entries in case of nested `to-one` compositions
+- Deep Update wrongly tried to create entries if there are nested `to-one` compositions
 - Navigation on singleton
 - Localized error messages if no authentication used
-- Fix draft with expand when ordering by draft specific columns
+- Fix draft with expand when ordering by draft-specific columns
 - Incorrect content type in batch response if no `Accept` header is provided
-- Input validation for enums using falsy values
+- Input validation for enums using `falsy` values
 - Insert via navigation throws an error if the root of navigation doesn't exist
 - Filter virtual fields from columns and expand by READ
 - `auto-expand` of generated foreign keys when functions/actions return entities
@@ -105,7 +169,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - To be checked data for DELETE integrity checks in actions was wrong
 - Fixed missing != comparator for query generation of remote services
 - CSN modification during resolve view
-- Clash of language-code-like namespaces (e.g. `de.` or `fr.`) with localized entities
+- Clash of language-code-like namespaces (for example, `de.` or `fr.`) with localized entities
 - `hdb`'s error event invalidates client
 
 ### Removed
@@ -124,7 +188,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- Do not crash if release called without client
+- Don't crash if release called without client
 
 ## Version 2.7.8 - 2020-12-10
 
@@ -166,12 +230,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Deprecation warning for private function `req.run`, which will be removed
 - Custom aggregates in `$apply` (beta)
 - Support for string keys with dots in value (e. g. `a.b.c`) when using keys as segments
-- `$filter`, `$groupby` and `$orderby` works with path navigation to key for managed association to-one on SQLite
+- `$filter`, `$groupby`, and `$orderby` works with path navigation to key for managed association to-one on SQLite
 
 ### Changed
 
 - Logging is now done using `cds.log`
-- CREATE and UPDATE requests that are not allowed due to `@restrict.where` are rejected with `403` instead of `404`
+- CREATE and UPDATE requests that aren't allowed due to `@restrict.where` are rejected with `403` instead of `404`
 - No usage of private `req._model` in generic handlers
 - Service consumption: Print Cloud SDK logs only in debug mode
 - Generated API for actions and functions on `ApplicationService` as now done on `Service`
@@ -188,7 +252,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Removed
 
-- `req.statements` is not available anymore
+- `req.statements` isn't available anymore
 
 ## Version 2.7.2 - 2020-11-20
 
@@ -230,12 +294,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - Resolving custom DELETE CQNs
-- Non-nullable values cannot be set to `null` in UPDATE requests
+- Non-nullable values can't be set to `null` in UPDATE requests
 - Delete active entity with DELETE restriction
-- Calculation of HasDraftEntity does not involve secure annotations
-- POST/PATCH on composition of aspect did not insert keys correctly
+- Calculation of HasDraftEntity doesn't involve secure annotations
+- POST/PATCH on composition of aspect didn't insert keys correctly
 - Check for different navigation properties with `$expand`
-- Streaming from non-draft entity in draft context
+- Streaming from nondraft entity in draft context
 - REST Adapter: `PUT` requests on collections are forbidden
 - affected rows in CREATE caused error with hdb
 - Navigating to composition of aspect with association as key caused error
@@ -285,7 +349,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - Check `req.path` during DoS prevention
-- Headers handling in service consumption for S4 On-Premise systems
+- Headers handling in service consumption for SAP S/4HANA On-Premise systems
 
 ## Version 2.6.5 - 2020-11-09
 
@@ -332,19 +396,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
     - in case of `INSERT...as(SELECT...)`, the iterator returns `{}` for each row
   - `affectedRows`: the number inserted (root) entries or the number of affectedRows in case of INSERT into SELECT
   - `valueOf()`: returns `affectedRows` such that comparisons like `result > 0` can be used
-    - Note: `===` cannot be used as it also compares the type
+    - Note: `===` can't be used as it also compares the type
 - Authentication strategy `xsuaa` (only with `@sap/xssec^3`) that additionally provides access to saml attributes via `req.user.attr` (for example, `req.user.attr.familyName`)
 
 ### Changed
 
-- SQL queries do not use placeholders for rows of LIMIT clause
+- SQL queries don't use placeholders for rows of LIMIT clause
 - Replaced `@sap/odata-server` dependency by own copy
 - On `PATCH` and `PUT`, an `UPDATE` event is followed by a `CREATE` event if there was no matching entity
 - On `PUT`, not provided properties are defaulted/ nulled
 - On HTTP requests, `req.data` is a copy to preserve the original payload
 - Additional properties in payload are preserved for entities with `@cds.persistence.skip` when served to `rest`
 - RemoteService: Ignore where clause of view definition during INSERT|UPDATE|DELETE instead of throwing error
-- Do not use SQL placeholders for numbers
+- Don't use SQL placeholders for numbers
 - Service-level `@requires` are checked in protocol adapter instead of ApplicationService (excluding metadata requests)
 - Additional translatable messages
 
@@ -357,7 +421,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - DatabaseService: Ignore where clause of view definition during INSERT|UPDATE|DELETE
 - Activate draft with UPDATE restriction
 - Add the correct backlink to composition tree in case of additional association from child to parent
-- `falsy` default values were not inserted into the database
+- `falsy` default values weren't inserted into the database
 - Always prepare for temporal data
 - Internal server error on views with parameters and join
 - Secure annotation in draft union scenario
@@ -388,20 +452,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- Do not fail in `cds deploy --to sqlite` if `sqlite3` is not installed
+- Don't fail in `cds deploy --to sqlite` if `sqlite3` isn't installed
 
 ## Version 2.5.2 - 2020-10-09
 
 ### Fixed
 
-- Do not fail in `cds deploy --dry` if `sqlite3` is not installed
+- Don't fail in `cds deploy --dry` if `sqlite3` isn't installed
 
 ## Version 2.5.1 - 2020-10-07
 
 ### Fixed
 
-- Set temporal session contexts on HANA
-- Multiple invokations of `req.on('failed', () => { ... })`
+- Set temporal session contexts on SAP HANA
+- Multiple invocations of `req.on('failed', () => { ... })`
 
 ## Version 2.5.0 - 2020-10-02
 
@@ -418,7 +482,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Support for assertions in structured data
 - Support for annotation `@Capabilities.Readable`
 - Input validation for actions and functions
-- Support language-dependent sorting order for HANA
+- Support language-dependent sorting order for SAP HANA
 
 ### Changed
 
@@ -436,7 +500,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Draft union scenario with filter on elements from DraftAdministrativeData
 - Resolving views for deep deletes
 - Key generation in some UPDATE queries
-- HANA: cds.DateTime convert to UTC in draft case
+- SAP HANA: cds.DateTime convert to UTC in draft case
 - Combining `$filter` query option and `$apply` using only filter transformation
 - Join with draft tables
 - Determine name of primary key of draft enabled entity in subselect
@@ -502,7 +566,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - POST via multiple navigations with OData containment activated
 - localized view with parameters
 - implicit sorting order
-- Custom SELECT CQN with join/union in draft enabled service failed for non-draft entities
+- Custom SELECT CQN with join/union in draft enabled service failed for nondraft entities
 - `req.user.attr` access during @restrict processing with @sap/xssec^3
 
 ## Version 2.1.9 - 2020-08-26
@@ -522,11 +586,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Support expand with `*` in QL API
 - Headers can be set with tx.emit on remote HTTP services
 - Propagate @cds.localized:false during deep reads
-- HANA: support for service manager credentials
+- SAP HANA: support for service manager credentials
 
 ### Changed
 
-- Messaging: The configuration is moved to top-level (before it was in credentials)
+- Messaging: The configuration is moved to top level (before it was in credentials)
 - Messaging: The payload type is now 'application/json'
 
 ### Fixed
@@ -536,7 +600,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - `orderBy` as an empty array
 - Join transaction during local API call
 - Support duplicate names of bound and unbound actions and functions in local API
-- Test read for UPSERT was not tenant aware
+- Test read for UPSERT wasn't tenant aware
 - Prefer `cds.env.requires.uaa.credentials`
 - Error while activate with missing mandatory fields
 - Restore `req._.req.authInfo` for compatibility
@@ -550,7 +614,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Removal of key properties of contained entity
 - Flattening of to-one association if key is also a to-one association
 - No localization with `SELECT.forUpdate()`
-- Multi-level expand with composition backlink as key
+- Multilevel expand with composition backlink as key
 - Ignore association keys in select for deletion integrity check
 - POST via multiple navigations
 - `req.user.id = <clientId>` with JWT strategy and `client_credentials` flow
@@ -567,7 +631,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - `req._.req` in `SAVE` handler
 - Insert duplicate data during deep update
-- HANA: prefer `this.options.credentials`
+- SAP HANA: prefer `this.options.credentials`
 - `$orderBy` in case of `DRAFT` with `Union`
 
 ## Version 2.1.4 - 2020-07-31
@@ -591,28 +655,28 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 - Synchronous API for streaming
-- Support calling HANA stored procedures
+- Support calling SAP HANA stored procedures
 
 ### Fixed
 
 - Streaming of null values and not found entities
-- Temporal session contexts on HANA
+- Temporal session contexts on SAP HANA
 
 ## Version 2.1.2 - 2020-07-24
 
 ### Fixed
 
-- HANA credentials handling
+- SAP HANA credentials handling
 
 ## Version 2.1.1 - 2020-07-24
 
 ### Fixed
 
-- HANA pooling with instance manager
+- SAP HANA pooling with instance manager
 
 ### Removed
 
-- `req.isDraftChange`, `req.draft` and `req.draftMetadata` in draft-related handlers
+- `req.isDraftChange`, `req.draft`, and `req.draftMetadata` in draft-related handlers
 
 ## Version 2.1.0 - 2020-07-22
 
@@ -627,7 +691,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Retrieve performance information via `sap-statistics` header in case of batch requests
 - Direct user authentication challenges in case of `/$batch`
-- HTTP error codes from custom handlers are not filtered anymore if in 300...500 range
+- HTTP error codes from custom handlers aren't filtered anymore if in 300...500 range
 - following projection with undefined name in target entity
 - Lists and null values in `where` with fluent expressions
 
@@ -635,14 +699,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Streamlined `req.reject/error/info(code, msg, target, args)`: takes four individual params (number, string, string, array) or one object
 - Changed behavior by handler registration:
-  -- Handlers registered with entity = `*` are not called by unbound events anymore.
-  -- Handlers registered without entity are not called by bound events anymore.
+  -- Handlers registered with entity = `*` aren't called by unbound events anymore.
+  -- Handlers registered without entity aren't called by bound events anymore.
   -- Special case: Handlers registered in form .before/on/after(\'\*\', handler) are called by bound and unbound events.
 - Expanding association from draft-enabled entity to draft enabled entities always provides active version of the expanded entity.
 - If you export a function in an `init.js` file, it will be called with the primary database, and its result is awaited.
 - REST: Since the service is now based on the `cds.Service` base class, all convenience functions (`create`, `post`, etc.) are streamlined.
 - Messaging: Only one queue per app is created, as opposed to one queue per app and external service.
-- Messaging: You can now directly connect to the (technical) messaging service through `await cds.connect.to('messaging')`, no topic names will be generated here.
+- Messaging: You can now directly connect to the (technical) messaging service through `await cds.connect.to('messaging')`, no topic names are generated here.
 - Messaging: If you want to link your own or external services to messaging, you need to model your events in CDS.
 - Messaging: If you want to provide custom topics for modeled events, you need to add the `@topic` annotation to the event.
 - Messaging: The `prefix` option in the service's credentials is prepended to events with a `@topic` annotation.
@@ -678,7 +742,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- on() function for joins does not support the simple conditions like on(x, =, y) anymore. Only fluent expressions and object predicates are supported.
+- on() function for joins doesn't support the simple conditions like on(x, =, y) anymore. Only fluent expressions and object predicates are supported.
 
 ### Fixed
 
@@ -729,9 +793,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - `INSERT.into.as(SELECT.from...)` with `SELECT` containing placeholders
-- Requests on a navigation to many with key provided returns 404 if the resource does not exist
+- Requests on a navigation to many with key provided returns 404 if the resource doesn't exist
 - POST/PATCH requests on `Composition of many` with backlink association as key
-- Path expressions on HANA are now flat and not structured anymore
+- Path expressions on SAP HANA are now flat and not structured anymore
 - `$expand` on `Composition of many` with backlink association as key
 - Roles from scopes including "."
 - Ignore unknown arrayed column during input validation
@@ -747,7 +811,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- Passport strategy whitelist: `mock` and `JWT`
+- Passport strategies whitelist: `mock` and `JWT`
 - Authentication not needed for calls to a service's root or metadata endpoints
 - Support for "public" entities and actions (i.e., no restrictions) in services without `@requires` but other entities and/or actions with `@restrict`
 
@@ -775,14 +839,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Annotations `@cds.onInsert` and `@cds.onUpdate` ignore values from the request
 - Processing of read-only values moved to initial before handler
 - Aligned handling of virtual, computed, read-only, immutable with java runtime
-- Allow deep insert on to one association with non-key property, the non-key property is silently ignored
+- Allow deep insert on to one association with nonkey property, the nonkey property is silently ignored
 
 ### Fixed
 
 - Resolved some performance issues with `@sap/hana-client`
 - `$filter=false or ...` is now possible
 - Custom handler registration in multi-tenant scenario
-- Alias in associations was not processed correctly in post-processing
+- Alias in associations wasn't processed correctly in post-processing
 - `$search` is now applied on the query result of `$apply` as specified in OData V4 spec
 - `evictionRunIntervalMillisForPools` is now treated properly
 - Searching for `_` or `%` in `$filter` queries with `contains`/`startswith`/`endswith`
@@ -798,8 +862,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - `limit` in CQN is translated to placeholders in SQL
 - QL API: .where() is changed:
-  -- Where with two parameters like .where('x', 1) is not allowed and should be replaced with .where('x', '=', 1).
-  -- Combinations with partial CQNs like .where({ref: ['x']}, '=', 1) are not allowed. Use arrays of partial CQNs like .where([ {ref: ['x']}, '=', {val: 1} ]) instead.
+  -- Where with two parameters like .where('x', 1) isn't allowed and should be replaced with .where('x', '=', 1).
+  -- Combinations with partial CQNs like .where({ref: ['x']}, '=', 1) aren't allowed. Use arrays of partial CQNs like .where([ {ref: ['x']}, '=', {val: 1} ]) instead.
   -- Fluent expressions work as strictly alternating string/value lists (as documented). Partial CQN can be used here as value.
 - Per default, results are now ordered by keys of the entity
 
@@ -809,7 +873,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - CREATE now returns `context.data` if not all non-UUID keys are provided
   and no error is thrown in the database client
 - CANCEL and PATCH drafts now support multiple fields in where clauses
-- Handler registration for draft events in multi-tenancy scenario
+- Handler registration for draft events in multitenancy scenario
 - Localize expanded entities
 - Composition and Association to one with expand in draft case
 - Disable local default pagination via `@cds.query.limit.default: 0`
@@ -831,7 +895,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- Object notation in `.where` of statements does not allow functions anymore
+- Object notation in `.where` of statements doesn't allow functions anymore
 - `context.diff()` ignores `@cds.persistence.skip` annotated entities
 - Always try to read from localized views (also by draft enabled entities)
 - In multitenant scenario, the CSN model is now always loaded from `@sap/cds-mtx`. Previously, it was only loaded if it was extended.
@@ -850,13 +914,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Draft union scenario in case of DraftAdministrativeData navigation
 - Transaction handling inside `$batch` requests
 - Multiple aliases in `SELECT.columns`
-- Use `hdb` if in direct dependencies of app (and `@sap/hana-client` is not)
-- Mapping over a result will propagate `$count`
+- Use `hdb` if in direct dependencies of app (and `@sap/hana-client` isn't)
+- Mapping over a result propagates `$count`
 - Don't ignore rows with `null` column values in negated `$search` queries
 
 # Changelog History
 
-The CDS Runtime module is the successor of `@sap/cds-services`, `@sap/cds-messaging`, `@sap/cds-rest`, `@sap/cds-hana`, `@sap/cds-sqlite` and `@sap/cds-sql`. The changelogs of these components can be found here:
+The CDS Runtime module is the successor of `@sap/cds-services`, `@sap/cds-messaging`, `@sap/cds-rest`, `@sap/cds-hana`, `@sap/cds-sqlite`, and `@sap/cds-sql`. The changelogs of these components can be found here:
 
 - [CHANGELOG cds-services](changelogs/CHANGELOG_cds-services.md)
 - [CHANGELOG cds-messaging](changelogs/CHANGELOG_cds-messaging.md)

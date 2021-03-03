@@ -6,6 +6,14 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 1.50.0 - 2021-02-25
+
+### Added
+
+- Introduce annotation `@cds.redirection.target`.
+  With value `false`, the projection is not considered an implicit redirection target;
+  with value `true`, is is considered a “preferred” redirection target.
+
 ## Version 1.49.2 - 2021-02-16
 
 ### Fixed

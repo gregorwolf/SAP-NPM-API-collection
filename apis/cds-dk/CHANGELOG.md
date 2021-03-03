@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.5.0 - 2021-03-01
+
+### Changed
+
+- `cds add mta` now creates a mta.yaml file that correctly handles spring boot .jar and .war archives.
+
+### Fixed
+
+- `cds env` does not longer fail with an exception for unknown commands
+
 ## Version 3.4.2 - 2021-02-19
 
 ### Fixes

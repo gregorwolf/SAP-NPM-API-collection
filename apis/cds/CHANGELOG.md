@@ -4,6 +4,39 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.6.4 - 2021-03-01
+
+### Fixed
+
+- Fix call to `to.hdi.migration` compiler API
+- `cds build` for SAP HANA now correctly passes `sql_mapping` options to new hdimigration compiler API.
+
+## Version 4.6.3 - 2021-02-26
+
+Version bump for release.
+
+## Version 4.6.2 - 2021-02-25
+
+### Added
+- [beta] `cds build` for SAP HANA now provides schema evolution support for multitenant application extensions.
+
+### Fixed
+
+- `cds compile --to serviceinfo` returns better results for Java projects
+- `cds.connect.to('srv-missing')` called twice with `srv-missing` not configured, would have failed with an error on the first call, but got stuck in the Promise chain for all subsequent calls.
+- `.after` handlers are called with result based on request, e.g., array for collection and object for entity, instead of always array
+  - Deactivate during two month grace period via compat feature flag `cds.env.features.arrayed_after = true`
+
+## Version 4.6.1 - 2021-02-11
+
+Version bump for internal milestone.
+
+## Version 4.6.0 - 2021-02-08
+
+### Added
+
+- [beta] `cds build` for SAP HANA now supports the generation of `hdbmigrationtable` design-time artifacts for big volume tables allowing for schema evolution capabilities. Model entities annotated with `@cds.persistence.journal` will be deployed as `hdbmigrationtable` artifacts instead of `hdbtable`.
+
 ## Version 4.5.3 - 2021-02-19
 
 ### Fixed
@@ -212,7 +245,7 @@
 - `cds watch` no longer shows an error in absence of model files
 - `cds build` no longer fails with an error about module './old/compile'
 - Stack trace of some errors have been improved
-- The `.hdiconfig` file created by `cds build` now includes HANA artefact types from undeploy.json
+- The `.hdiconfig` file created by `cds build` now includes HANA artifact types from undeploy.json
 
 # Version 4.2.3 - 2020-10-12
 
@@ -367,7 +400,7 @@ Nevertheless, they are listed here for your reference.
 
 - **CLI shortcut `--odata <v2|v4|x4>`** &mdash; the newly introduced general CLI option _**--odata** <v2/v4>_ acts as a shortcut to _--odata-version <v2/v4>_. In addition, _--odata **x4**_ acts as shortcut to _--odata-version v4 --odata-format structured  --odata-containement true_.
 
-- **`cds build --production`** &mdash; builds the project using the `production` profile - same when `NODE_ENV` or `CDS_ENV` environment variable is set to `production`. This will create HANA deployment artefacts if `kind: "sql"` has been defined.
+- **`cds build --production`** &mdash; builds the project using the `production` profile - same when `NODE_ENV` or `CDS_ENV` environment variable is set to `production`. This will create HANA deployment artifacts if `kind: "sql"` has been defined.
 
 - **`cds build --for <hana|java-cf|node-cf|mtx> --opts <...>`** &mdash; now supports execution of auto-created or configured build tasks. Individual properties can be overwritten by passing corresponding CLI options, defaults are used otherwise. E.g. `cds build --for hana --dest target --opts model=[data,srv,app]`. **Note:** The parameter `options-model` has been deprecated use `--opts model=[...]`instead.
 
