@@ -1,3 +1,10 @@
+# 2.1.0
+Features:
+- use @sap/hdi-deploy@4.0.3
+- use @sap/audit-logging@4.2.0
+- Node 14 support
+
+
 # 2.0.1
 Features:
 - use @sap/hdi-deploy@4.0.2

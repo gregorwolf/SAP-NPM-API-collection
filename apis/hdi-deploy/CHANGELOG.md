@@ -1,3 +1,8 @@
+## 4.0.3
+Fixes:
+- ensure all the messages returned by library.js are structured
+- stricter tag validation
+
 ## 4.0.2
 Features:
 - use @sap/hdi@3.0.2

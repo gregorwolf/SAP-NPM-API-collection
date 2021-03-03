@@ -169,6 +169,10 @@ config.keyCache = {
 passport.use(new JWTStrategy(config));
 ...
 ```
+### Support for automatic IAS to XSUAA token conversion
+Since verison 3.1.2 it is supported to automatically exchange an incoming IAS token with an XSUAA token, so the token contains scopes like XSUAA applications expect. 
+
+For details have a look [here](doc/IAStoXSUAA.md).
 
 ### Test Usage without having an Access Token
 
@@ -322,6 +326,7 @@ Requests a token based on the given type. The type can be `constants.TYPE_USER_T
 * `additionalAttributes` ... the attributes that should be included into the JWT token as JSON object (key-value list), e.g. `{"attr1" : "value1", "attr2" : "value2"}` 
 * `cb(error, token)` ... callback function
 
+also have a look on how to initiate the [token flows](doc/TokenFlows.md) directly
 ### hasAttributes
 
 not available for tokens of grant_type `client_credentials`.
