@@ -7,7 +7,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 1.1.3 - 2021-03-03
+
+### Fixed
+- `mtx/v1/model/status` now returns the job status again
+
 ## Version 1.1.2 - 2021-03-01
+
 
 ### Added 
 - Multitenant applications **without tenant specific extensions** now support schema evolution based on `.hdbmigrationtable` files.

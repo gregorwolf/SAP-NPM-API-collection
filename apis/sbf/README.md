@@ -1,12 +1,12 @@
 # @sap/sbf
-A Node.js framework to create a service broker in SAP Cloud Platform
+A Node.js framework to create a service broker in SAP Business Technology Platform (SAP BTP)
 
 The Service Broker Framework (SBF) implements the [Open Service Broker API](https://www.openservicebrokerapi.org/).
 It can be used in the Cloud Foundry environment of SAP Cloud Platform or on-premise in SAP HANA XS advanced model.
 
 **Note**: SBF rejects requests for which the `X-Broker-API-Version` header is not set or its value is outside the supported interval [2.4, 3).
 
-SBF can generate service credentials for these authentication mechanisms:
+SBF can generate service credentials for the following authentication mechanisms:
 * Basic authentication for technical users (via SBSS)
 * OAuth2 authentication with JSON Web Tokens (JWT) (via XSUAA _broker_ plan)
   * Named user via *user_token* flow
@@ -28,12 +28,12 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
     + [Configure npm registry](#configure-npm-registry)
     + [Create a Node.js application](#create-a-nodejs-application)
     + [Add the Service Broker Framework](#add-the-service-broker-framework)
-    + [Add a start command](#add-a-start-command)
+    + [Add the start command](#add-the-start-command)
     + [Create the service catalog](#create-the-service-catalog)
     + [Create XSUAA service instance](#create-xsuaa-service-instance)
-    + [Create Audit log service instance](#create-audit-log-service-instance)
-    + [Generate secure broker password](#generate-secure-broker-password)
-    + [Create application manifest](#create-application-manifest)
+    + [Create an instance of the Audit Log service](#create-an-instance-of-the-audit-log-service)
+    + [Generate a secure broker password](#generate-a-secure-broker-password)
+    + [Create an application manifest](#create-an-application-manifest)
     + [Push the broker application](#push-the-broker-application)
     + [Register the service broker](#register-the-service-broker)
     + [Use the service broker](#use-the-service-broker)
@@ -105,18 +105,18 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
 
 ## Usage
 
-Examples demonstrating the usage and consumption of the service broker framework can be found in the [examples](examples/) directory.
+You can find the examples that demonstrate the usage and consumption of the service broker framework in the [examples](examples/) directory.
 
 ### Create a simple service broker
-For simple use cases, you don't need to write any JavaScript code. You can start this package directly providing it the necessary configuration.
+For simple use cases, you don't need to write any JavaScript code. You can start this package directly by providing it with the necessary configuration.
 
-The following sections describe the steps to create a simple service broker application using this framework.
+The following sections describe the steps to create a simple service broker application by using this framework.
 
 #### Prerequisites
-You will need the following:
+You need the following:
 - [Node.js](https://nodejs.org) v10 or later
 - Cloud Foundry [CLI](https://github.com/cloudfoundry/cli#downloads)
-- Access to a Cloud Foundry installation where you can login via CLI and push applications
+- Access to a Cloud Foundry installation where you can log in via CLI and push applications
 
 #### Configure npm registry
 ```sh
@@ -125,11 +125,11 @@ npm config set @sap:registry https://npm.sap.com
 You need to do this only once.
 
 #### Create a Node.js application
-Create a new directory and run this command inside it:
+Create a new directory and run the following command in it:
 ```sh
 npm init
 ```
-You will have to answer several questions. Upon completion, this command will create a _package.json_ file in the current directory. The presence of this file, tells Cloud Foundry that this is a Node.js application.
+You are prompted to answer several questions. Upon completion, this command creates a _package.json_ file in the current directory. The presence of this file, tells Cloud Foundry that this is a Node.js application.
 
 #### Add the Service Broker Framework
 Download the _@sap/sbf_ package and add it to your service broker by executing the following command:
@@ -137,8 +137,8 @@ Download the _@sap/sbf_ package and add it to your service broker by executing t
 npm install @sap/sbf
 ```
 
-#### Add a start command
-Edit the _package.json_ file and add a `start` command in section `scripts`:
+#### Add the start command
+Edit the _package.json_ file and add the `start` command in section `scripts`:
 ```json
 {
   "scripts": {
@@ -147,8 +147,8 @@ Edit the _package.json_ file and add a `start` command in section `scripts`:
 }
 ```
 
-#### Specify required Node.js version
-Add the following property in the _package.json_ file to tell Cloud Foundry that the service broker requires Node.js v10:
+#### Specify a required Node.js version
+Add the following property in the _package.json_ file to inform Cloud Foundry that the service broker requires Node.js v10:
 ```json
   "engines": {
     "node": "^10"
@@ -157,10 +157,10 @@ Add the following property in the _package.json_ file to tell Cloud Foundry that
 
 #### Create the service catalog
 The service catalog describes the services offered by this service broker.
-It is defined in JSON format as described in [Cloud Foundry documentation](https://docs.cloudfoundry.org/services/api.html#catalog-management).
+It is defined in a JSON format as described in [Cloud Foundry documentation](https://docs.cloudfoundry.org/services/api.html#catalog-management).
 
-Create a file called _catalog.json_ in the current directory and describe inside the service catalog.
-Here is an example:
+Create a file called _catalog.json_ in the current directory and describe in it the service catalog.
+For example:
 ```json
 {
   "services": [{
@@ -181,15 +181,15 @@ npx gen-catalog-ids
 ```
 
 #### Create XSUAA service instance
-The service broker can use different services to generate and store credentials used later on by applications to access your reusable service. In this example we will use the XSUAA service as credentials provider.
+The service broker can use different services to generate and store credentials needed later on by applications to access your reusable service. In this example we use the XSUAA service as a credentials provider.
 
 Create an XSUAA service instance of plan _broker_:
 ```sh
 cf create-service xsuaa broker xsuaa-broker
 ```
-Here `xsuaa-broker` is the service instance name. You can use an arbitrary name here. Just use the same name in the following commands.
+Here `xsuaa-broker` is the service instance name. You can use an arbitrary name here. Make sure to use the same name in the subsequent commands.
 
-#### Create Audit log service instance
+#### Create an instance of the Audit Log service
 The service broker is configured by default to audit log every operation. It needs information to connect to the Audit log service.
 
 Create Audit log service with the following command:
@@ -197,16 +197,16 @@ Create Audit log service with the following command:
 cf create-service auditlog standard broker-audit
 ```
 
-#### Generate secure broker password
+#### Generate a secure broker password
 ```sh
 npx hash-broker-password -b
 ```
-This command will generate a random password and hash it.
+This command generates a random password and hashes it.
 
-#### Create application manifest
-The service broker can be deployed on Cloud Foundry as a regular application.
+#### Create an application manifest
+You can deploy the service broker in Cloud Foundry as a regular application.
 An easy way to do that is via an [application manifest](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html).
-Create a _manifest.yml_ file in the current directory with content like this:
+Create a _manifest.yml_ file in the current directory with the following content:
 ```yaml
 ---
 applications:
@@ -234,30 +234,30 @@ applications:
         }
 ```
 
-Here `my-broker` is the broker application name. You can use an arbitrary name here.
+`my-broker` is the name of the broker application. You can use an arbitrary name.
 
-Some configurations are not known in advance and they should be set at deployment time via environment variables.
+Some configurations are not known in advance and they need to be set at the time of deployment via the environment variables.
 
-One such configuration is the credentials used to call the service broker.
-These are provided via the environment variable *SBF_BROKER_CREDENTIALS_HASH*.
+One such configuration is the credentials configuration used to call the service broker.
+This configuration is provided via the environment variable *SBF_BROKER_CREDENTIALS_HASH*.
 Here you can use arbitrary credentials.
 Replace `<broker-password-hash>` with the hashed credentials from the previous step.
 Just make sure to use matching credentials when you register the broker and don't commit these in source control.
 
-Another deploy-time configuration is the service URL. It can be provided via the environment variable *SBF_SERVICE_CONFIG*. See [Additional Service Configuration](#additional-service-configuration) for details.
+Another configuration done during the deployment is the service URL. You can provide it via the environment variable *SBF_SERVICE_CONFIG*.<br/> See [Additional Service Configuration](#additional-service-configuration) for details.
 
 #### Push the broker application
-Push the broker application to Cloud Foundry with the following command:
+Push the broker application to Cloud Foundry by running the following command:
 ```sh
 cf push
 ```
-By default Cloud Foundry uses the application name for the host name. If this name is already taken, you can specify a different host via the `host` property in the manifest. Alternatively you can use a random host with the following command:
+By default, Cloud Foundry uses the name of the application as the host name.<br/> If this name is already taken, you can specify a different host via the `host` property in the manifest. Alternatively you can use a random host with the following command:
 ```sh
 cf push --random-route
 ```
 
 #### Register the service broker
-For productive use a service broker is [registered globally](https://docs.cloudfoundry.org/services/managing-service-brokers.html#register-broker) so it can be used throughout Cloud Foundry, but this requires administrative permissions. During development and testing you can register the service broker only in your space. You do this with the following command:
+For productive use a service broker is [registered globally](https://docs.cloudfoundry.org/services/managing-service-brokers.html#register-broker) so you can use it throughout Cloud Foundry, but this requires administrative permissions.<br/> During development and testing you can register the service broker only in your space. You do this with the following command:
 ```sh
 cf create-service-broker my-broker-name broker-user <plain-broker-password> <broker-url> --space-scoped
 ```
@@ -270,11 +270,11 @@ It is independent from the broker application name.
 
 #### Use the service broker
 Now you can use your service broker within the same space.
-For example you should see its services and plans via `cf marketplace` command.
+For example, you can now see its services and plans via the `cf marketplace` command.
 You can use the new services as regular [services](https://docs.cloudfoundry.org/devguide/services/) in Cloud Foundry.
 
-For example you can create a service instance via `cf create-service`.
-Then you can bind it to your application via `cf bind-service`. After that the application will get the URL and the credentials for your service in the environment variable [VCAP_SERVICES](https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html).
+You can also create a service instance via `cf create-service`.
+Then you can bind it to your application via `cf bind-service`.<br/> After that the application gets the URL and the credentials for your service from the environment variable [VCAP_SERVICES](https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html).
 You can see them via the `cf env` command.
 
 You can also create a service key (`cf create-service-key`) and print its content (`cf service-key`) to see the credentials to access the service instance.
@@ -284,12 +284,12 @@ To do that append a unique suffix to the broker URL:
 ```sh
 cf create-service-broker my-broker-name broker-user broker-password <broker-url>/<unique-suffix> --space-scoped
 ```
-You should use a different suffix for each broker registration.
+Use a different suffix for each broker registration.
 
 ### Extend the service broker
 
 Some service brokers need to perform custom actions during standard broker operations.
-For example special actions might be necessary in order to provision a new service instance.
+For example, special actions might be necessary to provision a new service instance.
 To do that, you can create a custom Node.js application for your service broker.
 This application can use the service broker framework as a normal Node.js package.
 Then you can register [custom callbacks](#hooks) to be invoked during each broker operation.
@@ -328,17 +328,17 @@ See [examples/node.js/custom-hooks](examples/node.js/custom-hooks) for a complet
 
 ### Asynchronous broker operations
 
-By default service broker operations like provision and deprovision are synchronous,
+By default, service broker operations like provisioning and deprovisioning are synchronous,
 i.e. HTTP response is returned when the operation is complete.
-To allow for long running operations, some platforms like Cloud Foundry support also asynchronous operations.
+So that long-running operations are also supported, some platforms, like Cloud Foundry, support also asynchronous operations.
 See [Synchronous and Asynchronous Operations](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md#synchronous-and-asynchronous-operations)
-in Open Service Broker API.
+in the Open Service Broker API specifications.
 
 **Note:** currently the XS advanced runtime does not support asynchronous operations.
 
-To perform an asynchronous operation you should implement several [hooks](#hooks).
-First you should check if the platform supports asynchronous operations.
-If this is the case, you can start the operation in the background and return `async: true` in the `reply`:
+To perform an asynchronous operation you implement several [hooks](#hooks).
+First, check if your platform supports asynchronous operations.
+If it does, start the operation in the background and return `async: true` in the `reply`:
 ```js
 function onProvision(params, callback) {
   if (params.accepts_incomplete !== 'true') {
@@ -357,10 +357,10 @@ function onProvision(params, callback) {
 ```
 The same applies also to `onUpdate` and `onDeprovision` hooks.
 
-Next the platform will start polling on regular intervals for the status of the operation.
-Each time it will pass the same `operation` string to identify the operation.
+Next, the platform polls in regular intervals for the status of the operation.
+Each time it sends the same `operation` string to identify the operation.
 This is useful if multiple asynchronous operations are running in parallel, e.g. multiple service instances are created at the same time.
-To provide the current status of the operation, you should implement [`onLastOperation`](#onlastoperationparams-callback) hook:
+To provide the current status of the operation, you implement the [`onLastOperation`](#onlastoperationparams-callback) hook:
 ```js
 function onLastOperation(params, callback) {
   let operationId = params.operation; // for which operation to return status
@@ -397,19 +397,19 @@ Then to register the broker use url: `https://<app-url>/broker`.
 
 ### Health HTTP endpoint
 
-SBF provides an HTTP endpoint (on path `/health`) whose purpose is to serve as health check endpoint.
+SBF provides an HTTP endpoint (on path `/health`) whose purpose is to serve as a health check endpoint.
 It does not require authentication and can process HTTP GET requests only.
-Currently it returns a static response with status of `200` and body of `OK`.
+Currently, it returns a static response with the status `200` and body `OK`.
 
-By default, Cloud Foundry uses `port` as health check type ([documentation for health check types](https://docs.cloudfoundry.org/devguide/deploy-apps/healthchecks.html#types)). To use the health endpoint provided by SBF:
-- Configure the health check type to be `http`. In `manifest.yml`, this can be configured via the property `health-check-type`.
-- Configure the path of the health endpoint, by default it is `/`. In `manifest.yml`, this can be configured via the property `health-check-http-endpoint`.
+By default, Cloud Foundry uses `port` as a health check type ([documentation for health check types](https://docs.cloudfoundry.org/devguide/deploy-apps/healthchecks.html#types)). To use the health endpoint provided by SBF:
+- Configure the health check type to `http`. In `manifest.yml`, you do this via the property `health-check-type`.
+- Configure the path of the health endpoint, by default it's `/`. In `manifest.yml`, you do this via the property `health-check-http-endpoint`.
 
 See an example [here](#create-application-manifest).
 
 ### Custom parameters
 
-Custom parameters can be passed to the service broker at several places.
+Custom parameters can be passed to the service broker in several locations.
 The parameters are passed as a JSON object. It can have arbitrary content and is not interpreted by Cloud Foundry.
 
 #### Create service with custom parameters
@@ -438,21 +438,21 @@ The content of _parameters.json_ is passed to the service broker and can be acce
 
 ### Credentials providers
 
-By default this module will search for a bound service instance which will generate credentials for the services, which the service broker offers. The framework will try to find a suitable service with the following properties in this order:
+By default, this modul searches for a bound service instance which is responsible for generating credentials for the services offered by a service broker. The framework attempts to find a suitable service with the following properties in the following order:
 1. SAP HANA Service Instance (A service with label `hana` and plan `sbss`)
 2. PostgreSQL Service Instance (A service with label `postgresql` and tag `sbss`)
 3. XSUAA Service Instance (A service with label `xsuaa` and plan `broker`)
 
-If no such service is found in the environment of the broker, an error is thrown.
+If no such service is found in the environment of the broker, an error is returned.
 
-This behavior can be disabled by [setting the credentials provider service explicitly](#credentials-provider-service). When running on K8S you MUST ALWAYS set the credentials provider service  explicitly.
+You can disable this behavior by [setting the credentials provider service explicitly](#credentials-provider-service). When running on K8S you must always set the credentials provider service explicitly.
 
-Depending on the type of the credentials provider service - SBSS(for SAP HANA and PostgreSQL) or XSUAA, this module generates credentials and merges them in the `credentials` object of the response to *bind* operation.
-The same object will appear also in the `credentials` section for the respective service in the `VCAP_SERVICES` environment variable in bound applications. You can find some examples below.
+Depending on the type of the credentials provider service, SBSS(for SAP HANA and PostgreSQL) or XSUAA, this module generates credentials and merges them into the `credentials` object of the response to the *bind* operation.
+The same object appears also in the `credentials` section for the respective service in the `VCAP_SERVICES` environment variable in bound applications. You can find some examples below.
 
 #### SBSS
 
-SBSS (Service Broker Security Support) can generate, store and verify usernames and passwords in a secure way. It is accessed via the SQL API.
+SBSS (Service Broker Security Support) can generate, store, and verify usernames and passwords in a secure way. It is accessed via the SQL API.
 
 ##### SBSS on SAP HANA
 
