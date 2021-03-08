@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.4] - 2021-02-25
+### Fixed
+* Fixed handling of the ui5 version parameter in the Fiori CLI
+* Hide credentials from proxy url
+
+### Added
+* Notify user when new version is available to install
+
+## [1.1.2] - 2021-02-11
+### Fixed
+* Fixed fetching of user information when creating a system
+
 ## [1.1.0] - 2021-01-27
 ### Fixed
 * Fixed HTTPS support for the Livereload of the application

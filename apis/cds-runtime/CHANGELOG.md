@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.9.4 - 2021-03-08
+
+### Fixed
+
+- Determine bound action parameter name in case of changesets
+
+## Version 2.9.3 - 2021-03-04
+
+### Fixed
+
+- Check whether current request is a bound action
+
 ## Version 2.9.2 - 2021-03-02
 
 ### Fixed

@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.4] - 2021-03-04
+#### Added
+- Added support for the central Fiori Launchpad for managed app router configurations.
+- Generated projects no longer contain a `.npmrc` file and use the global settings.
+- Project generation time has been improved.
+
+#### Fixed
+- The Fiori generator no longer has a conflict with the SAP Mobile Development Kit VSCode extension.
+- Fixed invalid 401 error for OData service URL endpoints.
+- Project folder is no longer created before generation starts.
+- Deployment to Cloud Foundry now supports Org name with spaces.
+- Updating an existing MTA file with deployment configuration on Windows is now supported.
+
 ## [1.1.2] - 2021-02-19
 #### Added
 - Support for adding project deployment configuration to an existing managed app router.
@@ -23,4 +36,3 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Added a new `Cloud Foundry Application Router Generator` that allows the user to generate generic Cloud Foundry configuration which can then be used with subsequent Fiori projects.
 - Added support for custom paths for folder locations in CDS projects.
 - The authenticated username is now displayed alongside the saved system name when using VSCode.
-

@@ -5,6 +5,31 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.1.1"></a>
+## 6.1.1 - 2021-02-25
+
+### Fixed
+- Update _@sap/xsodata_ to v7.3.7
+
+<a name="6.1.0"></a>
+## 6.1.0 - 2021-02-22
+
+### Added
+- Node.js 14.x support
+
+### Fixed
+- Update _@sap/audit-logging_ to v4.2.0
+- Update _@sap/e2e-trace_ to v3.0.0
+- Update _@sap/fibers_ to v5.0.0-0
+- Update _@sap/fibrous_ to v0.5.0-6
+- Update _@sap/hana-client_ to v2.7.23
+- Update _@sap/hdbext_  to v7.1.3
+- Update _@sap/logging_ to v6.0.3
+- Update _@sap/node-jwt_ to v1.6.14
+- Update _@sap/node-vsi_ to v1.4.21
+- Update _lodash_ to v4.17.21
+- Update _multiparty_ to v4.2.2
+
 <a name="6.0.8"></a>
 ## 6.0.8 - 2020-11-25
 

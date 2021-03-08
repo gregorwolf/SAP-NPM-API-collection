@@ -2,6 +2,15 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.1.3] - 2021-0304
+
+### Added
+- Code completion, diagnostics and quick info for applying selected client-side odata functions:
+  -  `odata.concat`
+  -  `odata.fillUriTemplate`
+  -  `odata.uriEncode`
+- Peek References/ Go To References for annotations referenced in other annotations. You can now see if and where the annotation is referenced. 
+Limitation: references in propagated annotations might be not included.
 
 ## [1.0.11] - 2021-02-25
 

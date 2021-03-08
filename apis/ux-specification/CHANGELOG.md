@@ -8,6 +8,28 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
+## [1.84.5] - 2021-02-25
+
+### Added
+
+- Mark translatable properties in `schema` with `isLanguageDependent` property.
+- New Form Entry Object Page added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- Exceptions have occurred in case of incomplete or inconsistent annotations. This was solved by a new version of the Annotation Vocabulary Tools that is delivered together with the Specification module.
+- Sync now works correctly for property "quickVariantSelectionX"
+
+### Quality
+
+- Switch to Sonar EE
+
 ## [1.84.4] - 2021-02-23
 
 ### Fixed
@@ -22,12 +44,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - OData V4: Support of V4 card types in OVP template (table, list and analytical card).
 - OData V2: Support of createWithParameterDialog settings for create from the V2 filterbar.
 
-### Changed
-
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - Overview Page: mandatory fields are clarified and reworked
@@ -40,6 +56,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Upgrade of node modules used
 
 ## [1.84.2] - 2021-01-28
+
 ### Fixed
 
 - The 'views' definition for OData V4 was not read nor written to the right position at manifest.

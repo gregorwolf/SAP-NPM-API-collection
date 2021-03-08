@@ -1,2 +1,15 @@
-@sap/cds-mtx
-@sap/sbf
+@sap/cds-runtime
+@sap/cf-tools
+@sap/cloud-sdk-op-vdm-billing-document-service
+@sap/cloud-sdk-op-vdm-cost-center-service
+@sap/cloud-sdk-op-vdm-defect-class-service
+@sap/cloud-sdk-op-vdm-explicit-assortment-module-service
+@sap/cloud-sdk-op-vdm-functional-location-service
+@sap/generator-base-mta-module
+@sap/generator-fiori
+@sap/mta-lib
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-fe-mockserver-middleware
+@sap/ux-ui5-tooling
+@sap/xsjs
