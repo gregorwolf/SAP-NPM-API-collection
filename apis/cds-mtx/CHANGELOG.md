@@ -7,7 +7,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 1.1.5 - 2021-03-09
+
+## Version 1.1.4 - 2021-03-09
+
+
+### Fixed
+- The extension API `/mtx/v1/content` now returns a correct json if a collection is requested with any version of 
+@sap/cds used by the application. The `cds extend` command was returning `(intermediate result) is not iterable` because
+of an incorrect server response.
+- Connection handling has been improved. Errors of type `TimeoutError: Acquiring client from pool timed out` are reduced.
+
 ## Version 1.1.3 - 2021-03-03
+
 
 ### Fixed
 - `mtx/v1/model/status` now returns the job status again

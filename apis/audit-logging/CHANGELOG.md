@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.0.0 - 2021-03-09
+
+### Fixed
+- Replaced *request* with *node-fetch* 2.6.1
+- Replaced *requestretry* with *fetch-retry* 4.1.0
+
 ## 4.2.0 - 2021-02-22
 
 ### Added

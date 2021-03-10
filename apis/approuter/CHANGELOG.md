@@ -5,10 +5,31 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.0.0 - 2021-03-10
+
+### Added
+- Support node version 12 and node version 14 instead of node version 10 and node version 12
+
+## 9.4.0 - 2021-03-09
+
+### Added
+- Support the consumption of destinations from the provider subaccount via the preferLocal property
+- Support of cross-origin resource sharing via the application router configuration file (xs-app.json)
+
+### Fixed
+- logout flow while using system plan XSUAA instance
+- missing scope in XSUAA token after refresh
+
+### Updated dependencies
+- deps: lodash@4.17.21
+- deps: @sap/audit-logging@4.2.0
+- deps: @sap/logging@6.0.3
+
 ## 9.3.0 - 2021-02-24
 
 ### Fixed
 - user-api consumption from local approuter
+- avoid endless loop when calling approuter with /login/callback
 
 ### Added
 - Service to approuter is not beta anymore, README file changed

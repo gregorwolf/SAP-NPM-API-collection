@@ -52,9 +52,10 @@ After creating a new swa class as detailed above usage is pretty simple
 /**
  * Send event to SWA for tracking
  * @param eventType string detailing what event are you looking to track (ex. "Generator Success!") 
- * @param {string[]} [custom_events] Optional, can accept up to 5, any more will be ignored
+ * @param {string[]} [custom_events] Optional, can accept up to 4, any more will be ignored
+ * @param {int[]} [numericEvents] Optional, can accept up to 2, any more will be ignored
  */
-swa.track("myEvent", ["custom event 1", "custom event 2", "This array is optional"]);
+swa.track("myEvent", ["custom event 1", "custom event 2", "This array is optional"],[1,2]); // numeric events is also optional
 ```
 
 #### Example
@@ -141,6 +142,8 @@ The following fields can be used for creating SWA reports:
 | **Custom event parameter 8**  | Version (currently not supported), set by the lib automatically    |
 | **Custom event parameter 9**  | Is SAP User where allowed, empty overwise, set by the lib automatically    |
 | **Custom event parameter 10**  | The unique caller ID "vsxPublisher.vsxPackageName", set by lib automatically  |
+| **Numeric event parameter 1** | Event additional numeric data 1, "numeric event 1" sent via tack API |
+| **Numeric event parameter 2** | Event additional numeric data 2, "numeric event 2" sent via tack API |
 
 ## Contribution
 1. Add a PR with changes to package version (and package-lock)

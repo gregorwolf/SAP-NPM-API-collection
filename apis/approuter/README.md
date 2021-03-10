@@ -34,6 +34,7 @@
   * [*whitelistService* property](#whitelistservice-property)
   * [*websockets* property](#websockets-property)
   * [*errorPage* property](#errorpage-property)
+  * [*cors* property](#cors-property)
   * [Complete example of an *xs-app.json* configuration file](#complete-example-of-an-xs-appjson-configuration-file)
 - [Headers](#headers)
   * [Forwarding Headers](#forwarding-headers)
@@ -504,6 +505,7 @@ destination | String | x | The name of the destination to which the incoming req
 service | String | x | The name of the service to which the incoming request should be forwarded.
 endpoint | String | x | The name of the endpoint within the service to which the incoming request should be forwarded. Can only be used in a route containing a service attribute.
 localDir | String | x | Folder in the [working directory](#working-directory) from which the application router will serve static content **Note:** localDir routes support only HEAD and GET requests; requests with any other method receive a 405 Method Not Allowed.
+preferLocal | Boolean | x | Defines from which subaccount the destination is retrieved. If preferLocal is true, the destination is retrieved from the provider subaccount. If preferLocal is false or undefined, the destination is retrieved from the subscriber subaccount.
 replace | Object | x | An object that contains the configuration for replacing placeholders with values from the environment. *It is only relevant for static resources*. Its structure is described in [Replacements](#replacements).
 authenticationType | String | x | The value can be `xsuaa`, `basic` or `none`. The default one is `xsuaa`. When `xsuaa` is used the specified UAA server will handle the authentication (the user is redirected to the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used then no authentication is needed for this route.
 csrfProtection | Boolean | x | Enable [CSRF protection](#csrf-protection) for this route. The default value is `true`.
@@ -960,12 +962,13 @@ sessionTimeout | Number | x | Used to set session timeout. The default is 15 min
 [logout](#logout-property) | Object | x | Provides options for a [Central Logout](#central-logout) endpoint and a page to which the client to be redirected by the UAA after logout.
 [destinations](#destinations-property) | Object | x | Additional options for your destinations (besides the ones in the `destinations` environment variable).
 [services](#services-property) | Object | x | Additional options for your business services.
-[responseHeaders](#responseHeaders-property) | Object | x | Contains the response header configuration.
+[responseHeaders](#responseHeaders-property) | Array | x | Contains the optional response headers configuration.
 [compression](#compression-property) | Object | x | Configuration regarding compressing resources before responding to the client. If the [COMPRESSION](#compression-property) environment variable is set it will overwrite existing values.
 [pluginMetadataEndpoint](#pluginmetadataendpoint-property) | String | x | Adds an endpoint that will serve a JSON representing all configured plugins.
 [whitelistService](#whitelistservice-property) | Object | x | Options for the allowlist service preventing clickjack attacks.
 [websockets](#websockets-property) | Object | x | Options for the [web socket communication](#web-sockets).
 [errorPage](#errorpage-property) | Array | x | Optional configuration to set-up a custom error pages whenever the approuter encouters an error.
+[cors](#cors-property) | Array | x | Contains the configuration for cross-origin resource sharing.
 
 ### *welcomeFile* property
 
@@ -1318,6 +1321,53 @@ Example:
 In the example above 400, 401 and 402 errors would be shown the content of  `./custom-err-4xx.html` and for 501 errors the user would see `./http_resources/custom-err-501.html`.
 
 **Note:** The errorPage conifiguration section has no effect on errors generated outside of the application router.
+
+### *cors* property
+
+With the cors property, you can support cross-origin requests.<br> 
+When cors configuration exists in both environment variables and application router configuration file (xs-app.json),
+approuter gives precedence for searching the matching cors configuration in application router configuration.
+The property is an array of objects, each object having the following properties:
+
+Property           | Type                             | Optional | Description
+------------------ | ---------------------------------|:--------:| --------------
+uriPattern         | String                           |          | URI pattern 
+allowedOrigin      | Array (host, protocol, port)     |          | allowed origins
+allowedMethods     | Array of upper-case HTTP methods |   x      | allowed methods 
+maxAge             | Number                           |   x      | maximal age
+allowedHeaders     | Array                            |   x      | allowed headers 
+exposeHeaders      | Array                            |   x      | exposed headers 
+allowedCredentials | Boolean                          |   x      | allowed credentials
+
+Example:
+```json
+{ "cors" : [
+  {
+      "uriPattern": "^\route1$",
+      "allowedMethods": [
+        "GET"
+      ],
+      "allowedOrigin": [
+        {
+          "host": "my_example.my_domain",
+          "protocol": "https",
+          "port": 345
+        }
+      ],
+      "maxAge": 3600,
+      "allowedHeaders": [
+        "Authorization",
+        "Content-Type"
+      ],
+      "exposeHeaders": [
+        "customHeader1",
+        "customHeader2"
+      ],
+      "allowedCredentials": true
+    }  
+  ]
+}
+```
 
 ### Complete example of an *xs-app.json* configuration file 
 #### Without HTML5 Application Repository integration:
