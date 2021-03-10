@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.9.5 - 2021-03-08
+
+### Fixed
+
+- Relative error target on draft activation for Fiori Elements with OData v2
+
 ## Version 2.9.4 - 2021-03-08
 
 ### Fixed
