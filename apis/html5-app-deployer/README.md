@@ -216,6 +216,12 @@ cf undeploy myApps.deployer --delete-services
 After making changes to the static content files of HTML5 applications, the new content can be redeployed to the HTML5 application repository. 
 All content referenced by the app-host service instance id is replaced by the new content. 
 
+## Asynchronous Upload
+You can specify that upload content should be performed asynchronously by adding environment variable ASYNC_UPLOAD to manifest.yaml or mta.yaml files.
+Asynchronous upload means that the html5 applications content will be handled synchronously to HTML5 Application Repository but the internal file validation and processing will be performed asynchronously.
+In this setup, you will have to check the html5 application deployer logs to verify that the upload was completed successfully. 
+Using asynchronous upload is specially important when triggering upload of service instance with large content (more than 10 MB). In such cases synchronous upload might cause health check errors or connection timeout during upload.
+
 ## Automatic Creation of Destination Configurations
 When using HTML5 Application Deployer in SAP Managed Approuter flows you can configure the automatic creation of the required instance level destination configurations.
 

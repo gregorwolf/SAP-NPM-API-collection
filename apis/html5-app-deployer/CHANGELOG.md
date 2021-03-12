@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.0.0 - 2021-03-11
+
+### Added
+- Asynchroneus upload support
+
 ## 2.3.1 - 2021-02-16
 
 ### Fixed
