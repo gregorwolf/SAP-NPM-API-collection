@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 4.6.5 - 2021-03-12
+
+### Fixed
+
+- `cds build` now correctly parses `.hdbtablemigration` files on Windows
+- `compile --to serviceinfo` no longer crashes for Spring configuration in multi-root `yaml` files
+
 ## Version 4.6.4 - 2021-03-01
 
 ### Fixed

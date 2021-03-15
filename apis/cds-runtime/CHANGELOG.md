@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.9.6 - 2021-03-12
+
+### Added
+
+- Pass `tcpKeepAliveIdle` to `hdb` (available with `hdb^18`) via environment variable `HDB_TCP_KEEP_ALIVE_IDLE`
+- Database pool teardown in case of credentials become invalid scenario extended by unreachable database
+
 ## Version 2.9.5 - 2021-03-08
 
 ### Fixed

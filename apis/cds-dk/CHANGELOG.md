@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.5.1 - 2021-03-12
+
+### Changed
+
+- Bump version of `@sap/cds` to 4.6.5
+
 ## Version 3.5.0 - 2021-03-01
 
 ### Changed
