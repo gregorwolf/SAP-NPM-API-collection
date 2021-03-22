@@ -256,8 +256,7 @@ Parameters:
 * `session` - session object
   * `id` - session identifier, immutable
 
-## Example
-
+## Example                
 There may be many various options, how the application router extension
 decides to store sessions exposed via the session management API. The example
 below assumes a `SessionDataAccessObject` to be implemented by the extension

@@ -1,8 +1,8 @@
 # CDS Language Server Settings
 
-CDS-LS can be configured via file or IDE options (thru language server protocol aka LSP)
+CDS-LS can be configured via file or IDE options (through language server protocol aka LSP)
 
-Options are overlayed in that order:
+Options overlay in that order:
 - $CDS_LS_DIR/.cds-lsp/.settings.json
 - $WORKSPACE/.cds-lsp/.settings.json
 - IDE options

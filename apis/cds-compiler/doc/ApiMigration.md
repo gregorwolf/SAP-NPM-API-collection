@@ -1,5 +1,12 @@
 # API Migration
 
+> Status Oct 2019: this document is still valid, but the recommended API will change (again) in the near future.
+> The future version of this document (renamed to `API.md`) will basically explain the recommended API,
+> the migration will only be a minor aspect and explained in a later section.
+
+<!-- The option handling might also change: -->
+<!-- the backend-specific structure is overly complex and not always appriopriate (e.g. naming mode). -->
+
 With revision 1.0.24, the CDS compiler offers new API backend functions, i.e. new functions for the
 generation of output from (augmented) CSN models. The new functions and their options are closely
 aligned with the new command line interface `cdsc`. The old backend functions are deprecated, will
@@ -193,7 +200,7 @@ function toSwagger(model, options) {
 //                           with dots as in CDL)
 //     toSql.associations  : either 'assocs' (default, keep associations as they are if possible)
 //                           or 'joins' (replace associations by joins)
-//     toSql.src           : if true, generate SQL DDL source files (default)
+//     toSql.src           : if 'sql', generate SQL DDL source files (default)
 //     toSql.csn           : if true, generate the transformed CSN model
 //   }
 // Options provided here are merged with (and take precedence over) options from 'model'.
