@@ -1,10 +1,6 @@
-@sap/cds
-@sap/cds-dk
-@sap/cds-runtime
-@sap/cloud-sdk-vdm-accounting-document-service
-@sap/cloud-sdk-vdm-partner-company-service
-@sap/create-hana-database-artifact
-@sap/hana-sqlscript-lsp
-@sap/hrtt-core-vscode
+@sap/cloud-sdk-op-vdm-vms-vehicle-availability-service
+@sap/cloud-sdk-op-vdm-vms-vehicle-search-area-service
+@sap/cloud-sdk-vdm-supplier-activity-service
+@sap/hana-client
+@sap/hdbext
 @sap/sbf
-@sap/webide-hdi-feature-vscode
