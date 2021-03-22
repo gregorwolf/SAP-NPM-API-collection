@@ -13,6 +13,9 @@
 
 ## General things
 
+Note : @sap/hana-client must be installed by yourself. Version 2.7.x is currently supported by @sap/hdi 4.0.1.
+To install the latest @sap/hana-client simply run `npm install @sap/hana-client`.
+
 Assuming that your **npm registry** is correctly configured and has access to SAP packages, simply running `npm install --save @sap/hdi` will install the package and add it as a dependency to your **package.json**.
 
 We recommend using version 2.0.0 or higher. >=2.0.0 of the API brings access to the Container Group API, major refactoring of the HDI and Container API into separate components and lots of pre-defined classes to make working with the API easier.

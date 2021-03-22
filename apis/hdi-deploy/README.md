@@ -1,9 +1,9 @@
 @sap/hdi-deploy
 ===============
 
-`@sap/hdi-deploy` is a [Node.js](https://nodejs.org)-based deployment module for SAP HANA DI (HDI)-based persistence models, HDI Deployer for short. The HDI Deployer can be used in XS Advanced (XSA) and in SAP Cloud Platform (SAP CP)/Cloud Foundry (CF), and it is also used by the SAP Web IDE for interactive development scenarios. It can also be used in scenarios without XSA (or SAP CP), e.g. for deploying HDI persistence models into a HANA database where no XSA is installed.
+`@sap/hdi-deploy` is a [Node.js](https://nodejs.org)-based deployment module for SAP HANA DI (HDI)-based persistence models, HDI Deployer for short. The HDI Deployer can be used in XS Advanced (XSA) and in SAP Business Technology Platform (SAP BTP)/Cloud Foundry (CF), and it is also used by the SAP Web IDE for interactive development scenarios. It can also be used in scenarios without XSA (or SAP BTP), e.g. for deploying HDI persistence models into a SAP HANA database where no XSA is installed.
 
-For more information about HANA DI, please check the [SAP HANA Developer Guide](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.03/en-US/eaa4e37394ea4efba8148d595d025261.html) and the [SAP HANA Administration Guide](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.03/en-US/3ef0ee9da11440e4b01708455b8497a9.html).
+For more information about SAP HANA DI, please check the [SAP HANA Developer Guide](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.03/en-US/eaa4e37394ea4efba8148d595d025261.html) and the [SAP HANA Administration Guide](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.03/en-US/3ef0ee9da11440e4b01708455b8497a9.html).
 
 Usually, the HDI Deployer is packaged into a database module, a `db` module, as part of a Multi-Target Application (MTA) and is used to deploy HDI design-time artifacts of the `db` module to the respective HDI container. When an MTA is deployed via the Deploy Service, the `db` module is pushed first so that it can "prepare" the SAP HANA persistence; by the time defined services are started, the HDI container is ready for use.
 
@@ -29,7 +29,7 @@ For an MTA with different modules, e.g. a `db` module, a Node.js module, etc., t
   +---------------------------------------------------------------+
 ```
 
-In a HANA-Service-Broker-based HDI setup, each module of the MTA is equipped with it's own technical database user for accessing the runtime schema of the HDI container.
+In an SAP HANA-Service-Broker-based HDI setup, each module of the MTA is equipped with it's own technical database user for accessing the runtime schema of the HDI container.
 
 The following diagram illustrates the different users who are involved in this setup with regard to privileges: the application users user1 and user2 who are bound to one of the modules each, and the HDI container's object owner (the #OO user) who is the owner of the objects in the database persistence of the MTA which are managed by HDI:
 
@@ -56,7 +56,7 @@ The following diagram illustrates the different users who are involved in this s
 
 The HDI Deployer is packaged into the `db` module of the MTA. So, in order to use a new HDI Deployer, you need to reference a new version of the HDI Deployer in the `db` module's `package.json` file.
 
-The HDI Deployer supports HANA 1 SPS11/SPS12 and HANA 2. The HDI Deployer assumes that for newer versions of HANA, a corresponding version of the HANA Service Broker is used to create the CF/XSA service bindings.
+The HDI Deployer supports SAP HANA 1 SPS11/SPS12 and SAP HANA 2. The HDI Deployer assumes that for newer versions of SAP HANA, a corresponding version of the SAP HANA Service Broker is used to create the CF/XSA service bindings.
 
 Note: The HDI Deployer assumes ownership of the `src/`, `cfg/`, and `lib/` folders in the bound target HDI container. Binding more than 1 instance of the HDI Deployer to the same HDI container as the target container, e.g. the `db` modules of 2 MTAs or 2 applications are bound to the same HDI container as the target container, is not supported and results in undefined behavior.
 
@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.0.3"
+    "@sap/hdi-deploy": "4.0.4"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -119,7 +119,7 @@ For local testing, the HDI Deployer supports default configurations via the foll
 - `default-env.json`: a JSON file which contains a set of environment variables and their values
 - `default-services.json`: a JSON file which contains a set of service bindings
 
-Details of a bound service from a HANA-Service-Broker-based service binding in CF/XSA usually look as follows:
+Details of a bound service from an SAP HANA-Service-Broker-based service binding in CF/XSA usually look as follows:
 
 ``` JSON
 {
@@ -352,7 +352,7 @@ In this case, the HDI Deployer will ignore the undeploy whitelist `undeploy.json
 
 ## The default_access_role Role
 
-When an HDI container service instance is created by the HANA Service Broker, e.g. service instance `foo` with schema name `FOO`, the broker creates an HDI container `FOO` (consisting of the runtime schema `FOO`, the HDI metadata and API schema `FOO#DI`, and the object owner `FOO#OO`) and a global access role `FOO::access_role` for the runtime schema. This access role is equipped with a default permission set for the runtime schema which consists of `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`, `CREATE TEMPORARY TABLE`, and `SELECT CDS METADATA` (not on HANA Cloud) on the runtime schema `FOO`.
+When an HDI container service instance is created by the SAP HANA Service Broker, e.g. service instance `foo` with schema name `FOO`, the broker creates an HDI container `FOO` (consisting of the runtime schema `FOO`, the HDI metadata and API schema `FOO#DI`, and the object owner `FOO#OO`) and a global access role `FOO::access_role` for the runtime schema. This access role is equipped with a default permission set for the runtime schema which consists of `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`, `CREATE TEMPORARY TABLE`, and `SELECT CDS METADATA` (not on SAP HANA Cloud) on the runtime schema `FOO`.
 
 Every time the service instance is bound to an application, the broker creates 2 new users which are specific to this binding. The first user is the application user who is named `user` in the instance's credentials. This user is used by the application to access the HDI container's runtime schema `FOO`. This user is equipped with the service instance's global access role `FOO::access_role`. The second user is the HDI API user who is named `hdi_user` in the credentials. This user is equipped with privileges for the container's APIs in the `FOO#DI` schema.
 
@@ -406,7 +406,7 @@ Exemplary service binding:
 
 In order to assign roles from the HDI content to the application binding users (the `user` users), the HDI Deployer implements an automatic assignment of the `default_access_role` role if it is present in the deployed content:
 
-If a role definition file exists at the path `src/defaults/default_access_role.hdbrole`, and this file defines a role named `default_access_role`, and this file is included in the deployment (e.g. not excluded via `include-filter`), then the HDI Deployer grants the deployed `default_access_role` role to the service instance's global access role (e.g. `FOO::access_role`). In addition, the HDI Deployer revokes all default permissions (e.g. `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`, `CREATE TEMPORARY TABLE`, and `SELECT CDS METADATA` (not on HANA Cloud) on the runtime schema `FOO`) from the global access role. If the `default_access_role` is undeployed, the default permission set for the runtime schema will be restored.
+If a role definition file exists at the path `src/defaults/default_access_role.hdbrole`, and this file defines a role named `default_access_role`, and this file is included in the deployment (e.g. not excluded via `include-filter`), then the HDI Deployer grants the deployed `default_access_role` role to the service instance's global access role (e.g. `FOO::access_role`). In addition, the HDI Deployer revokes all default permissions (e.g. `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`, `CREATE TEMPORARY TABLE`, and `SELECT CDS METADATA` (not on SAP HANA Cloud) on the runtime schema `FOO`) from the global access role. If the `default_access_role` is undeployed, the default permission set for the runtime schema will be restored.
 
 Note:  If you use a `.hdinamespace` file in `src/` which defines a real namespace prefix for subfolders, then you need to put a `.hdinamespace` file with the empty namespace `"name" : ""` at `src/defaults/` to ensure that the role can be named `default_access_role`.
 
@@ -436,7 +436,7 @@ The following diagram illustrates the binding-specific application users, the ro
 
 Note: The `default_access_role` is assumed to be an "umbrella" role which aggregates other roles.
 
-A role with the default permission set which is granted by the HANA Service Broker on container creation looks as follows:
+A role with the default permission set which is granted by the SAP HANA Service Broker on container creation looks as follows:
 
 `default_permissions_role.hdbrole`:
 
@@ -461,7 +461,7 @@ A role with the default permission set which is granted by the HANA Service Brok
 }
 ```
 
-On HANA Cloud, "SELECT CDS METADATA" is not granted.
+On SAP HANA Cloud, "SELECT CDS METADATA" is not granted.
 
 ## The development_debug_role Role
 
@@ -517,7 +517,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.0.3",
+    "@sap/hdi-deploy": "4.0.4",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -607,7 +607,7 @@ The HDI Deployer also supports old-style `.hdbsynonymtemplate` template files: I
 
 ## Permissions to Container-External Objects
 
-An HDI container is by default equipped with nearly zero database privileges, e.g. the object owner (`#OO` user) is mainly equipped with the `CREATE ANY` privilege on the container's runtime schema (e.g. schema `FOO` for an HDI container `FOO`). Since HANA 2 SPS00, the object owner is equipped with an additional restricted set of privileges for system views in the database's `SYS` schema, e.g. `SYS.VIEWS` or `SYS.TABLES`. These system views apply an additional row-level filter based on the object owner's other privileges, e.g. the object owner can only see metadata in `SYS.VIEWS` for views he has privileges on. So, without additional privileges, the object owner can only see metadata for the objects in his container schema.
+An HDI container is by default equipped with nearly zero database privileges, e.g. the object owner (`#OO` user) is mainly equipped with the `CREATE ANY` privilege on the container's runtime schema (e.g. schema `FOO` for an HDI container `FOO`). Since SAP HANA 2 SPS00, the object owner is equipped with an additional restricted set of privileges for system views in the database's `SYS` schema, e.g. `SYS.VIEWS` or `SYS.TABLES`. These system views apply an additional row-level filter based on the object owner's other privileges, e.g. the object owner can only see metadata in `SYS.VIEWS` for views he has privileges on. So, without additional privileges, the object owner can only see metadata for the objects in his container schema.
 
 In order to access database objects inside other database schemata or other HDI containers, and in order to deploy synonyms into the HDI container which point to these container-external objects, at least the object owner needs additional privileges, e.g. for an object `object` in schema `X` `SELECT` privileges on `X.object`:
 
@@ -789,7 +789,7 @@ For the different types of privileges, the following fields are passed to the GR
 | SCHEMA_PRIVILEGE | privilege | NULL | schema | NULL | NULL | grantee | TRUE/FALSE |
 | SYSTEM_PRIVILEGE | privilege | NULL | NULL | NULL | NULL | grantee | TRUE/FALSE |
 
-Note: This procedure does not work for HANA1 SPS11, since `REPLACE_REGEXPR` is not supported. Please use the sample procedure provided with older releases of the deployer.
+Note: This procedure does not work for SAP HANA1 SPS11, since `REPLACE_REGEXPR` is not supported. Please use the sample procedure provided with older releases of the deployer.
 The old sample procedure does not correctly handle component names of system privileges in .hdbgrants files.
 
 Example of a GRANT procedure:
@@ -1043,7 +1043,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "4.0.3",
+        "version": "4.0.4",
         "features": {
             "info": 2,
             "verbose": 1,

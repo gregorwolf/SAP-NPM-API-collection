@@ -1,3 +1,11 @@
+## 4.0.4
+Features:
+- use @sap/hdi@4.0.1
+- use @sap/hana-client@2.7.26
+
+Fixes:
+- corrected improper representation of time in log
+
 ## 4.0.3
 Fixes:
 - ensure all the messages returned by library.js are structured

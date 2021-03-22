@@ -6,6 +6,21 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 1.50.2 - 2021-03-19
+
+### Fixed
+
+- Correct calculation of dependent autoexposed entity name
+  (fixing a potential regression with v1.50.0)
+- to.hdi.migration: Correctly handle "temporal" and other cases when rendering expressions
+- to.edm(x):
+  + Improve non-enum value handling on Oasis enum term definitions by raising a warning and rendering
+    the value with appropriate scalar EDM type.
+  + Render annotion qualifier in JSON format.
+- Update OData vocabularies
+  'Aggregation', 'Analytics', 'Capabilities', 'CodeList', 'Common', 'Communication',
+  'Core', 'Graph', 'HTML5', 'ODM', 'PersonalData', 'Session', 'UI'
+
 ## Version 1.50.0 - 2021-02-25
 
 ### Added

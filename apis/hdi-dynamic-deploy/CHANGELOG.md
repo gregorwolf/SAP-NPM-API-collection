@@ -1,3 +1,11 @@
+# 2.1.1
+Features:
+- use @sap/hdi-deploy@4.0.4
+
+Fixes :
+- overall deployment time calculation
+- accepting different alphabetical cases for enforce_auditing
+
 # 2.1.0
 Features:
 - use @sap/hdi-deploy@4.0.3

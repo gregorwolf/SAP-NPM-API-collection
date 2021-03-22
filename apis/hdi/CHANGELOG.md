@@ -1,3 +1,11 @@
+## 4.0.1
+Fixes:
+- Cleanup package.json
+
+## 4.0.0
+Changes:
+- Moved hana-client from dependencies to peerDependencies, supported are versions 2.7.x
+
 ## 3.0.2
 Features:
 - Use hana-client 2.7.21
