@@ -16,7 +16,7 @@
   * [Plugins configuration](#plugins-configuration)
   * [Session timeout](#session-timeout)
   * [X-Frame-Options configuration](#x-frame-options-configuration)
-  * [Cross-Origin](#cross-origin)
+  * [Cross-Origin Resource Sharing configuration](#cross-origin-resource-sharing-configuration)
 - [Routes](#routes)
   * [Example routes](#example-routes)
 - [Replacements](#replacements)
@@ -45,6 +45,7 @@
 - [Connectivity](#connectivity)
 - [SaaS Application Registration in CF](#saas-application-registration-in-cloud-foundry)
   * [How To Expose Approuter for SaaS Subscription](#how-to-expose-approuter-for-saas-subscription)
+- [Authentication with Identity Service (IAS)](#authentication-with-identity-service-ias)
 - [Integration with HTML5 Application Repository](#integration-with-html5-application-repository)
 - [Integration with Business Services](#integration-with-business-services)
 - [Web Sockets](#web-sockets)
@@ -208,7 +209,7 @@ _Secure_ flag of session cookie | `SECURE_SESSION_COOKIE` | Can be set to `true`
 Trusted CA certificates | `XS_CACERT_PATH` | List of files paths with trusted CA certificates used for outbound https connections (UAA, destinations, etc.). File paths are separated by [path.delimiter](https://nodejs.org/api/path.html#path_path_delimiter). If this is omitted, several well known "root" CAs (like VeriSign) will be used. This variable is set automatically by XSA On-premise runtime.
 Reject untrusted certificates | `NODE_TLS_REJECT_UNAUTHORIZED` | By default an outbound https connection is terminated if the remote end does not provide a trusted certificate. This check can be disabled by setting `NODE_TLS_REJECT_UNAUTHORIZED` to `0`. This is a built-in feature of Node.js. **Note:** Do not use this in production as it compromises security!
 External reverse proxy flag | `EXTERNAL_REVERSE_PROXY` | Boolean value that indicates the use of application router behind an external reverse proxy (outside of Cloud Foundry domain)
-[Cross-Origin Resource Sharing](#cross-origin) | `CORS` | Configuration regarding CORS enablement.
+[Cross-Origin Resource Sharing](#cross-origin-resource-sharing-configuration) | `CORS` | Configuration regarding CORS enablement.
 Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fragment part of the URL provided during first request of not logged-in user to protected route will be preserved, and after login flow user is redirected to original URL including fragment part. However, this may break programmatic access to Approuter (e.g. e2e tests), since it introduces change in login flow, which is incompatible with Approuter version 4.0.1 and earlier. Setting value to `false` makes login flow backward compatible, however will not take fragment part of the URL into account.
 Backend Cookies Secret | `BACKEND_COOKIES_SECRET` | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
 Service to Application Router | `SERVICE_2_APPROUTER` | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
@@ -372,7 +373,7 @@ name | String | | The name of this plugin
 source | String/Object | | Describes a regular expression that matches the incoming [request URL](https://nodejs.org/api/http.html#http_message_url).</br> **Note:** A request matches a particular route if its path __contains__  the given pattern. To ensure the RegExp matches the complete path, use the following form: ^<path>$`. </br> **Note:** Be aware that the RegExp is applied to on the full URL including query parameters.
 target | String | x | Defines how the incoming request path will be rewritten for the corresponding destination.
 destination | String | | An alphanumeric name of the destination to which the incoming request should be forwarded.
-authenticationType | String | x | The value can be `ias`, `xsuaa`, `basic` or `none`. The default authenticationType depends on the authentication service binding: if the application router is bound to `ias (identity service)`, the default authenticationType is `ias`, else it is `xsuaa`. If `xsuaa` or `ias` are used the specified authentication server (IAS/UAA) handles the authentication (the user is redirected to the IAS's or the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used, then no authentication is needed for this route.</br> **Note:** Be aware that the IAS support is still a beta feature.
+authenticationType | String | x | The value can be `ias`, `xsuaa`, `basic` or `none`. The default authenticationType depends on the authentication service binding: if the application router is bound to `ias (identity service)`, the default authenticationType is `ias`, else it is `xsuaa`. If `xsuaa` or `ias` are used the specified authentication server (IAS/UAA) handles the authentication (the user is redirected to the IAS's or the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used, then no authentication is needed for this route.</br>.
 csrfProtection | Boolean | x | Enable [CSRF protection](#csrf-protection) for this route. The default value is `true`.
 scope | Array/String/Object | x | Scopes are related to the permissions a user needs to access a resource. This property holds the required scopes to access the target path. Access is granted if the user has at least one of the listed scopes. **Note:** Scopes are defined as part of the xsuaa service instance configuration. You can use `ias` as authenticationType and xsuaa scopes for authorization if the application router is bound to both (`ias` and `xsuaa`)."
 
@@ -420,13 +421,14 @@ Application router sends `X-Frame-Options` header by default with value `SAMEORI
 - Disable sending the default header value by setting `SEND_XFRAMEOPTIONS` environment variable to `false`
 - Override the value to be sent via [additional headers configuration](#additional-headers-configuration)
 
-## Cross-Origin
+## Cross-Origin Resource Sharing configuration
 
 The CORS keyword enables you to provide support for cross-origin requests, for example, by allowing the modification of the request header. Cross-origin resource sharing (CORS) permits Web pages from other domains to make HTTP requests to your application domain, where normally such requests would automatically be refused by the Web browser's security policy.
 Cross-origin resource sharing(CORS) is a mechanism that allows restricted resources on a webpage to be requested from another domain (/protocol/port) outside the domain (/protocol/port) from which the first resource was served. 
 CORS configuration enables you to define details to control access to your application resource from other Web browsers. For example, you can specify where requests can originate from or what is allowed in the request and response headers. 
 
-The Cross-Origin configuration is provided in the `CORS` environment variable.
+The CORS configuration can be provided in the CORS environment variable or in the CORS property of the application router configuration file (xs-app.json).
+If a cross-origin resource sharing (CORS) configuration exists in both the environment variables and the application router configuration file (xs-app.json), the application router gives priority to the CORS configuration in the application router configuration file.
 
 The CORS configuration is an array of objects. Here are the properties that a CORS object can have:
 
@@ -1325,49 +1327,8 @@ In the example above 400, 401 and 402 errors would be shown the content of  `./c
 ### *cors* property
 
 With the cors property, you can support cross-origin requests.<br> 
-When cors configuration exists in both environment variables and application router configuration file (xs-app.json),
-approuter gives precedence for searching the matching cors configuration in application router configuration.
-The property is an array of objects, each object having the following properties:
-
-Property           | Type                             | Optional | Description
------------------- | ---------------------------------|:--------:| --------------
-uriPattern         | String                           |          | URI pattern 
-allowedOrigin      | Array (host, protocol, port)     |          | allowed origins
-allowedMethods     | Array of upper-case HTTP methods |   x      | allowed methods 
-maxAge             | Number                           |   x      | maximal age
-allowedHeaders     | Array                            |   x      | allowed headers 
-exposeHeaders      | Array                            |   x      | exposed headers 
-allowedCredentials | Boolean                          |   x      | allowed credentials
-
-Example:
-```json
-{ "cors" : [
-  {
-      "uriPattern": "^\route1$",
-      "allowedMethods": [
-        "GET"
-      ],
-      "allowedOrigin": [
-        {
-          "host": "my_example.my_domain",
-          "protocol": "https",
-          "port": 345
-        }
-      ],
-      "maxAge": 3600,
-      "allowedHeaders": [
-        "Authorization",
-        "Content-Type"
-      ],
-      "exposeHeaders": [
-        "customHeader1",
-        "customHeader2"
-      ],
-      "allowedCredentials": true
-    }  
-  ]
-}
-```
+If a cross-origin resource sharing (CORS) configuration exists in both the environment variables and the application router configuration file (xs-app.json), the application router gives priority to the CORS configuration in the application router configuration file.<br> 
+For more information about the CORS configuration see [Cross-Origin Resource Sharing configuration](#cross-origin-resource-sharing-configuration).
 
 ### Complete example of an *xs-app.json* configuration file 
 #### Without HTML5 Application Repository integration:
@@ -1543,7 +1504,7 @@ When a tenant is subscribed/unsubscribed to/from an application, the tenant will
 Also, onboarding and offboarding callbacks will be triggered for the subscribed/unsubscribed application and for the reuse services.
 
 If you use IAS by binding a multi-tenant application router to an identity service instance, the subscription manager service (SMS) should be used to enable the subscription to a subscriber zone and an IAS tenant.
-Currently the SMS subscription is only possible via SMS APIs. In the future, the SMS subscription will be supported via the SAP4me portal.
+Currently the SMS subscription is only possible via SMS APIs.
 
 
 ### How To Expose Approuter for SaaS Subscription
@@ -1571,11 +1532,24 @@ SaaS business applications should grant LPS the authorization to invoke the appl
 ...  
 ```
 
-#### Authentication in Subscription Manager Flow
-When using the Subscription Manager, the IAS authentication flow should be performed using x.509 certificates (instead of clientsecret). The IAS tenant certificate can be obtained from the IAS application in the IAS administration tool.
-After obtaining a certificate, a private key should be obtained using the password provided while creating the certificate. The private key should then be added to application router environment via environment variable IAS_PRIVATE_KEY.
-For example:
-IAS_PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----\n<privateKey>\n-----END PRIVATE KEY-----"
+## Authentication with Identity Service (IAS)
+To use IAS authentication an identity service instance of plan application should be created with the following configuration:
+```
+{
+   "oauth2-configuration": {
+     "redirect-uris": ["https://*.<landscapeDomain>/login/callback?authType=ias"],  //Enable redirect after login
+     "post-logout-redirect-uris": ["https://*.<landscapeDomain>/*/logout.html" ]    //Enable redirect after logout
+   },
+   "xsuaa-cross-consumption":true, //Enable xsuaa trust
+   "multi-tenant":true //enable multitenancy
+}
+```
+Authentication with IAS should be performed using X.509 certificates. To achieve this the identity service should be bound to approuter using the following configuration:
+```
+{
+  "credential-type": "X509_GENERATED"
+ }
+```
 
 #### Register an application in SaaS Registry (SaaS Registry Configuration)
 For a customer to be able to subscribe to an application through the SAP Cloud Platform cockpit, each SaaS business application should register itself on all CF landscapes where it is deployed.
@@ -1599,16 +1573,15 @@ Note that the path segment of these urls are configurable however the tenantId u
 ```
 
 #### Register an application in Subscription Manager  (Subscription Manager Configuration)
-To register a SaaS application in SMS, a service instance of subscription-manager should be created and the SaaS business application should be bound to it.
-The instance of subscription-manager is created with a configuration json file - *sms-config.json:*.
-In the configuration.json file a url for the getDependencies and onSubscription callbacks must be provided. 
-Note that the path segments of these urls are configurable. However the zoneId url variable in onSubscription callback must still be provided.
+To register an SaaS application in the subscription manager service, a service instance of the subscription manager has to be created and the SaaS business application has to be bound to it. 
+The instance of subscription manager is created with a configuration json file - sms-config.json:. In the configuration.json file, a url for the getDependencies callbacks and the onSubscription callbacks must be provided. 
+Note that the path segments of these urls are configurable.
 
 ```
 {
   "iasServiceInstanceName" : ["ias-provider-ias"], #Name of the related IAS instance
   "applicationType": "application",
-  "xsuaaSaasApplicationServiceInstanceId": "88afb2a5-5ab3-409a-9c0c-b70e2b86b1cf", #In case also an xsuaa instance is bound
+  "xsuaaSaasApplicationServiceInstanceId": "88afb2a5-5ab3-409a-9c0c-b70e2b86b1cf", #SaaS Registry service instance id
   "appCallbacks" : {
     "dependenciesCallbacks" : {
       "url" : "https://<providerZoneId>--<providerIASTenantId>.<approuterHost>.cert.<landscapeDomain>/v1.0/callback/zones/{zoneId}/dependencies"

@@ -8,10 +8,38 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
+## [1.84.6] - 2021-03-11
+
+### Added
+
+- Property availability for V4 table columns
+- Tag isViewNode now marks schema elements that are relevant for setting up an out line or schematic view of a page; (complex) properties are not marked like that.
+- Tag i18nClassification marks properties of the schema that are relevent for translation; it uses the key words following the SAP guidelines for translation.
+- Forms, field groups and fields of Object Pages are now represented in the V4 schemas.
+- Form Entry Object Page support
+
+### Changed
+
+- V4 tables: do not show columns in config that are empty or not maintained at all
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- Export of OVP card of the new V4 types to manifest
+- V4: Do not throw exception in case of invalid columns listed in manifest, just ignore them
+- V4 column keys adjusted: vocabulary alias shall not be part of it
+- OVP: Unknown properties are now excluded from export
+
+### Quality
+
 ## [1.84.5] - 2021-02-25
 
 ### Added
 
+- Property valueSelectionInfo of OVP cards
 - Mark translatable properties in `schema` with `isLanguageDependent` property.
 - New Form Entry Object Page added
 

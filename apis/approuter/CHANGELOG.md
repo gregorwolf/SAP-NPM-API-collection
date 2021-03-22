@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.1.0 - 2021-03-21
+
+### Added
+- If you are using Identity Authentication (IAS), you can now use subdomains in multitenant URLs
+- Identity Authentication (IAS) is fully supported (no longer a Beta feature)
+
+### Fixed
+- Destination token exchange when using destinations on instance level
+
 ## 10.0.0 - 2021-03-10
 
 ### Added

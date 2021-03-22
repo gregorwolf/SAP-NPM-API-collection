@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.5] - 2021-03-18
+#### Added
+- Freestyle SAPUI5 floor plan now supports OData V4 services.
+- The analytical list page floor plan with OData V4 service now supports navigation entities.
+- Adding deployment configuration for Cloud Foundry now supports the managed application router.
+- Using the `CF Application Router Generator` for generating a multi-targeted application now supports the managed application router.
+
+#### Fixed
+- Applications deployed to the managed application router cannot resolve the ui5 destination.
+- In some cases, validation messages for invalid OData service URLs were not being displayed.
+
 ## [1.1.4] - 2021-03-04
 #### Added
 - Added support for the central Fiori Launchpad for managed app router configurations.

@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.9.7 - 2021-03-18
+
+### Fixed
+
+- Reserved keywords for smart quoting
+- Datetime conversion for HANA in case of `INSERT...as(SELECT...)`
+
 ## Version 2.9.6 - 2021-03-12
 
 ### Added

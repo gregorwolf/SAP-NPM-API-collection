@@ -3,11 +3,11 @@
 The SAP Fiori tools - UI5 Tooling contains a selection of custom [middlewares](https://sap.github.io/ui5-tooling/pages/extensibility/CustomServerMiddleware/) that can be used with the command `ui5 serve` as well as custom [tasks](https://sap.github.io/ui5-tooling/pages/extensibility/CustomTasks/) that can be used with the command `ui5 build`. 
 Furthermore, the module expose the cli `fiori` offering e.g. the [`fiori run`](#run) command is a wrapper of the `ui5 serve` commands and provides some additional parameters as well as `fiori add deploy-config` and `fiori add flp-config` to extend an existing project.
 
-## **Middlewares**
+## [**Middlewares**](#middlewares)
 
 SAP Fiori tools use the capabilities of custom middlewares to start and preview Fiori elements applications, e.g. to enable auto refresh, to switch the version of UI5 sources or to serve static resources.
 
-### **1. Application Reload**
+### [**1. Application Reload**](#1-application-reload)
 
 The application reload middleware allows developers to preview Fiori elements applications while developing/configuring them. Whenever a file relevant for Fiori elements is changed, the application reload middleware will refresh the application preview.
 
@@ -46,13 +46,13 @@ Port to be used to communicate file system changes
 - `<boolean>` (default: `false`)
 Set this parameter to get more log information.
 
-### **2. Proxy**
+### [**2. Proxy**](#2-proxy)
 
-The proxy middleware provides you with the capabilities to connect to diffent back-end systems or to switch the UI5 version of the application.
+The proxy middleware provides you with the capabilities to connect to diffent back-end systems or to switch the UI5 version of the application. The proxy is based on the [http-proxy-middleware](https://www.npmjs.com/package/express-http-proxy).
 
 ### Configuration Examples
 
-#### Connecting to a back-end system
+#### [Connecting to a back-end system](#connecting-to-a-back-end-system)
 
 Executing `npx fiori run` in your project with the configuration below in the `ui5.yaml` file would forward any request starting with the `path` parameter to the provided back-end `url`.
 
@@ -65,6 +65,8 @@ Executing `npx fiori run` in your project with the configuration below in the `u
       url: https://my.backend.com:1234
 ```
 
+#### [Connecting to a back-end system with destination](#connecting-to-a-back-end-system-with-destination)
+
 If the back-end is hidden behind a destination then you can also provide the `destination` in the configuration.
 
 ```
@@ -76,7 +78,7 @@ If the back-end is hidden behind a destination then you can also provide the `de
       url: https://my.backend.com:1234
       destination: my_backend
 ```
-
+#### [Connecting to multiple back-end systems](#connecting-to-multiple-back-end-systems)
 You can also connect to multiple back-end systems like this.
 
 ```
@@ -89,7 +91,7 @@ You can also connect to multiple back-end systems like this.
     - path: /sap
       url: https://my.backend.com:1234
 ```
-
+#### [Connecting to the SAP Business Technology Platform](#connecting-to-the-sap-business-technology-platform)
 If you want to connect to an ABAP Environment on SAP Business Technology Platform then you will need to set the optional property `scp` to `true`. For any other target, remove this property or set it to `false`.
 
 ```
@@ -102,7 +104,46 @@ If you want to connect to an ABAP Environment on SAP Business Technology Platfor
       scp: true
 ```
 
-#### UI5
+#### [Connecting to the SAP API Business Hub](#connecting-to-the-sap-api-business-hub)
+If you want to connect to the SAP API Business Hub then you will need to set the optional property `apiHub` to `true`, and set the corresponding `path` and `url`, e.g.
+
+```
+- name: fiori-tools-proxy
+  afterMiddleware: compression
+  configuration:
+    backend:
+    - path: /s4hanacloud
+      url: https://api.sap.com
+      apiHub: true
+```
+#### [Proxying WebSockets](#proxying-websockets)
+If you want the proxy to handle also WebSockets, then you need to set the optional property `ws` to `true`, e.g.
+
+```
+- name: fiori-tools-proxy
+  afterMiddleware: compression
+  configuration:
+    backend:
+    - path: /sap
+      url: https://my.backend.com:1234
+      ws: true
+```
+
+#### [Changing the path to which a request is proxied](#changing-the-path-to-which-a-request-is-proxied)
+Let's that you want to configure the proxy to send requests from a certain path `/services/odata` to a destination with a specified entry path `/my/entry/path`. Then you need to do the following:
+
+```
+- name: fiori-tools-proxy
+  afterMiddleware: compression
+  configuration:
+    backend:
+    - path: /services/odata
+      pathPrefix: /my/entry/path
+      url: https://my.backend.com:1234
+      destination: my_backend
+```
+
+#### [UI5](#ui5)
 
 By using the proxy configuration one can also change the UI5 version, which is used to preview the application. With the application generation also the initial ui5 configuration for the proxy is created. It looks e.g. like this.
 
@@ -120,12 +161,12 @@ By using the proxy configuration one can also change the UI5 version, which is u
 
 By using the `version` parameter one can choose the UI5 version which will used when `npx fiori run` is executed.
 
-### **3. Serve Static**
+### [**3. Serve Static**](#3-serve-static)
 
 The serve static middleware provides the capability to serve any static resources locally from your machine. E.g. you can serve UI5 locally or any other resources.
 
 
-#### Example Configuration for serving locally UI5
+#### [Example Configuration for serving locally UI5](#example-configuration-for-serving-locally-ui5)
 
 **Pre-requisites:**
 SAPUI5 SDK version is downloaded and extracted locally on the machine. One can download UI5 resources from <https://tools.hana.ondemand.com/#sapui5>
@@ -145,7 +186,7 @@ server:
           src: "Path/To/SAPUI5-SDK"
 ```
 
-#### Example Configuration for serving any resources locally
+#### [Example Configuration for serving any resources locally](#example-configuration-for-serving-any-resources-locally)
 Executing `npx fiori run` in your project with the configuration below in a `ui5.yaml` file would serve resources from your machine. Any request starting with the `path` parameter will be forwarded to the local path provided in the `src` parameter.
 
 ```
@@ -161,11 +202,11 @@ server:
           src: "Path/To/libs"
 ```
 
-## **Tasks**
+## [**Tasks**](#tasks)
 
 SAP Fiori tools use the capabilities of custom tasks to deploy the Fiori elements projects to ABAP servers.
 
-### Deployment to ABAP
+### [Deployment to ABAP](#deployment-to-abap)
 
 The deployment to ABAP task allows deploying Fiori applications to SAP systems using the [SAPUI5 Repository OData service](https://sapui5.hana.ondemand.com/#/topic/a883327a82ef4cc792f3c1e7b7a48de8.html).
 
@@ -316,8 +357,8 @@ The app object describes the backend object that is created/updated as result of
 - `true|false` (default: `false`)
 - If set to `true`, the task will run through all steps including sending the archive to the SAP backend. The backend will not deploy the app but run the pre-deployment checklist and return the result.
 
-## Commands
-### fiori run - starts a local web server for running a FE application
+## [Commands](#commands)
+### [fiori run](#fiori-run---starts-a-local-web-server-for-running-a-fe-application) - starts a local web server for running a FE application
 #### Options
 
 * `--config, c` - Path to config file (default: `ui5.yaml` in root folder of the project).
@@ -333,7 +374,7 @@ The app object describes the backend object that is created/updated as result of
 * `--ui5Uri` - UI5 uri to load the UI5 resources from (default: uri from `ui5.yaml`).
 * `--proxy` - specify proxy configuration, e.g. `https://myproxy:8443` (default: uses host machine proxy configuration, if any).
 
-### fiori add deploy-config - adds a deployment configuration to the project
+### [fiori add deploy-config](#fiori-add-deploy-config---adds-a-deployment-configuration-to-the-project) - adds a deployment configuration to the project
 
 The command allows adding a deployment configuration to the project. The command supports the generation of a configuration for deployment to an ABAP system or to a Cloud Foundry space.
 
@@ -383,10 +424,10 @@ Prefix used for the ID of the MTA and the service names. It defaults to the name
 
 At the end of the generation, it's possible to optionally generate Fiori Launchpad configuration (default: no).
 
-### fiori add flp-config - Fiori Launchpad configuration generation
+### [fiori add flp-config](#fiori-add-flp-config---fiori-launchpad-configuration-generation) - Fiori Launchpad configuration generation
 It's possible to create configuration and artifacts required to run the application in an SAP Fiori Launchpad. Depending on the target, the command will update either only the application `manifest.json` with the required inbound navigation property, or will also enhance the MTA configuration to contain a standalone FLP on CF.
 
-### fiori deploy - performs the deployment of the application into an ABAP system
+### [fiori deploy](#fiori-deploy---performs-the-deployment-of-the-application-into-an-abap-system) - performs the deployment of the application into an ABAP system
 Deploys an application to an ABAP frontend server.
 
 #### Options
@@ -406,7 +447,7 @@ Deploys an application to an ABAP frontend server.
 * `--failfast, -f` - Throw an error if something goes wrong and exit with a return code != 0.
 
 
-## FAQ
+## [FAQ](#faq)
 
 **My backend system contains the SAP_UI component version 7.53 or newer, but the SAPUI5 repository service cannot be reached.**
 
@@ -420,18 +461,18 @@ This could have multiple reasons, please check the console for more information 
 
 Most probably the `OpenSSL` package is not installed on your OS. Please install it and make sure that it is available in your `PATH` environment variable.
 
-## Support
+## [Support](#support)
 
 Join the [SAP Fiori tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.  
 Please assign tag: _SAP Fiori tools_.
 
 To log an issue with SAP Fiori tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).
 
-## Documentation 
+## [Documentation](#documentation) 
 
 - Visit **SAP Help Portal** for [SAP Fiori tools](https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US) documentation. 
 
-## License
+## [License](#license)
 
 <details>
     <summary>SAP DEVELOPER LICENSE AGREEMENT</summary>
