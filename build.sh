@@ -13,7 +13,7 @@ while read package; do
   ./npm_download.sh $package
   packageNoPrefix=`echo $package | sed 's/@sap//g'`
   mkdir "apis$packageNoPrefix"
-  cp node_modules/$package/*.md apis$packageNoPrefix
+  rsync -zarv  --include "*/" --include="*.md" --exclude="*" "node_modules/$package/" "apis$packageNoPrefix"
   cp node_modules/$package/LICENS* apis$packageNoPrefix
   cp -r node_modules/$package/doc apis$packageNoPrefix/doc
 done <packages.txt
