@@ -48,4 +48,4 @@ It also extends the jest expect syntax to offer you ways to run test more easily
 `expect(domResult).toHaveControl("/control:FormElementWrapper/m:Avatar");`
 
 If you want to add your on xpath queries feel free to using [Xpath syntax](https://www.w3schools.com/xml/xpath_intro.asp).
-You just need to know that teh JestTemplatingHelper wraps your Xml Input in a `<root>` element.
+You just need to know that the JestTemplatingHelper wraps your Xml Input in a `<root>` element.

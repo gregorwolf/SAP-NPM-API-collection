@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.9.8 - 2021-03-30
+
+### Added
+
+- Database pool teardown in case of failed db connection attempt
+
 ## Version 2.9.7 - 2021-03-18
 
 ### Fixed
