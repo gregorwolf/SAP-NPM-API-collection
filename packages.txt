@@ -1,5 +1,1 @@
 @sap/cds-runtime
-@sap/generator-fiori
-@sap/open.fe
-@sap/service-provider-apis
-@sap/subaccount-destination-service-provider

@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.9.9 - 2021-04-01
+
+### Fixed
+
+- Managed properties of non-leaf nodes without additional delta shall not be updated during draft activation
+
 ## Version 2.9.8 - 2021-03-30
 
 ### Added
