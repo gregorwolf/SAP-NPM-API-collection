@@ -119,7 +119,7 @@ app.use('/path', function (req, res, next) {
 });
 ```
 
-The DSR middleware should be the first middleware in the request processing flow.
+The DSR middleware (can be used with frameworks like `connect` and `express`) should be the first middleware in the request processing flow.
 
 Example DSR record:
 

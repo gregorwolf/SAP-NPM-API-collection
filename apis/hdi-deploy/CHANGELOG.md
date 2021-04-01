@@ -1,3 +1,165 @@
+## 4.0.4
+Features:
+- use @sap/hdi@4.0.1
+- use @sap/hana-client@2.7.26
+
+Fixes:
+- corrected improper representation of time in log
+
+## 4.0.3
+Fixes:
+- ensure all the messages returned by library.js are structured
+- stricter tag validation
+
+## 4.0.2
+Features:
+- use @sap/hdi@3.0.2
+- use @sap/hana-client@2.7.21
+- log start and end time of deployments
+
+## 4.0.1
+Fixes:
+- use @sap/xsenv@3.1.0 for full node 14 support
+
+## 4.0.0
+Features:
+- use @sap/hdi@3.0.1
+- use @sap/hana-client@2.7.16
+- Node 14.x support
+
+Removed:
+- Node 6.x support
+
+## 3.11.15
+Fixes:
+- set default for --delete-timeout and --write-timeout to 15 minutes instead of 15 seconds
+
+## 3.11.14
+Features:
+- introduce options --delete-timeout and --write-timeout, that can be used to set a timeout for the DELETE and WRITE HDI calls.
+
+## 3.11.13
+Features:
+- better logging of WRITE/DELETE calls
+
+Fixes:
+- update dependencies
+- only handle "CDS METADATA" on non-HANA Cloud systems
+- always log errors to the parent process when using library.js
+- gracefully handle "trace":false via HDI_DEPLOY_OPTIONS
+
+## 3.11.12
+Changes:
+- segfault-handler is no longer installed as a optional dependency - needs to be provided via parallel installation if required
+
+Fixes:
+- check the return code of HDI API calls to correctly detect errors
+
+## 3.11.11
+Fixes:
+- close all connections before calling process.exit() to work around sporadic segmentation fault
+
+## 3.11.10
+Fixes:
+- fixed a memory leak with `--live-messages`
+
+## 3.11.9
+Features:
+- node 12 support
+
+Fixes:
+- updated dependencies
+- gracefully handle a missing grantor service when using library.js
+
+## 3.11.8
+Fixes:
+- specify segfault-handler as an optional dependency
+
+## 3.11.7
+Fixes:
+- better debugging capabilities for segmentation faults
+
+## 3.11.6
+Fixes:
+- remove duplicate messages when using the deployer as a library
+- update dependencies
+
+## 3.11.5
+Fixes:
+- when used as a library, do not exit until all messages have been sent to the parent process
+
+Features:
+- use hana-client 2.4.162
+
+## 3.11.4
+Fixes:
+- update handlebars
+
+## 3.11.3
+Features:
+- update dependencies
+
+Fixes:
+- correctly handle SQL grantors
+
+## 3.11.2
+Features:
+- update dependencies
+
+## 3.11.1
+Features:
+- node 10 support
+- updated dependencies
+
+## 3.11.0
+Features:
+- added option `--liveness-ping` to periodically send a signal that notifies the user that the deployer is still working
+- added option `--live-messages` to display the make messages while the make is still in progress
+- added function `clean-env` to `library.js` to allow cleaning a passed environment of all deployer-related variables
+
+Fixes:
+- `library.js` would sometimes return with `exitCode` null because of unexpected closing of the child process
+- update dependencies
+- add missing options to HDI_DEPLOY_OPTIONS
+
+## 3.10.0
+Features:
+- passwords can be split over multiple services
+
+## 3.9.4
+Fixes:
+- update handlebars
+
+## 3.9.3
+Fixes:
+- add full support for .hdbmigrationtable files by adding the --[no-]migrationtable-development-mode flag
+
+## 3.9.2
+Fixes:
+- the private key used for mutual authentication was logged if tracing is enabled
+- mutual auth was missing on some database connections
+- some database connections were not closed correctly
+
+## 3.9.1
+Fixes:
+- revert changes to hdi actions that could possibly cause a behavior change
+
+## 3.9.0
+Features:
+- allow passing ssl connection parameters in service binding
+- allow mutual auth via parameters in service binding
+- set session variable APPLICATION on all HANA connections
+- support path parameters for HDI
+- allow development debug role similar to the default access role
+- update @sap/hdi dependency
+- better handling of invalid undeploy.json files
+- improved timestamps in logging output
+- check ownership of objects in the container via --treat-wrong-ownership-as-errors
+- allow logging of additional application data
+
+Fixes:
+- issue with schema privileges and global roles in the same .hdbgrants file
+
 ## 3.8.2
 
 Features:

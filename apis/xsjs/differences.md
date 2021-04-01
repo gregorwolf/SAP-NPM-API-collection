@@ -26,7 +26,7 @@
   * works for unicode characters (e.g. if the column from the ResultSet is NSTRING)
 * `$.db.ResultSet.getClob()`
   * works for unicode characters (e.g. if the column from the ResultSet is NCLOB)
-* `$.db.ResultSet.close` does not close the result set. All results will be closed when the corresponding statement is closed.
+* `$.db.ResultSet.close` does not close the result set.
 * ParameterMetaData
   * getParameterType and getParameterTypeName may return different values from HANA XS Classic, e.g.
     * NSTRING returned instead of SHORTTEXT
@@ -58,9 +58,17 @@ in XS Classic returns `undefined` while in XS Advanced it returns the column val
   * columns with numeric names which are within the range of possible column indices
   are non-enumerable in XS Advanced.
 * Values of INOUT/OUT procedure parameters are retrieved using upper case parameter names.
+* It is possible to execute a `CALL` procedure statement with `$.hdb.Connection.executeQuery` or `$.hdb.Connection.executeUpdate`.
+Output parameters cannot be retrieved from the result of such a call,
+only the first output table is returned (if there are any output tables).
+**Note** that this is not supported in XS Classic and is not recommended to be used in _@sap/xsjs_.
+`$.hdb.Connection.loadProcedure` or `$.db.Connection.prepareCall` should be used instead.
 
 ## Jobs API ($.jobs)
-* `$.jobs.Job` - `sqlcc` property in the constructor parameter is not supported
+* All jobs (defined in `.xsjob` files) are active by default
+* `$.jobs.Job`
+  * `sqlcc` property in the constructor parameter is not supported
+  * `getConfiguration` method is not supported
 * In XS Classic the ID of a job schedule is a number, while in XSJS it is a uuid (a string with 36 characters)
 * In XSJS only a Date object is accepted for a date/time property, while XS Classic accepts also an object with `value` and `format` properties allowing custom date formats
 * The `JobLogObject` does not support the following properties:
@@ -72,7 +80,7 @@ in XS Classic returns `undefined` while in XS Advanced it returns the column val
 
 ## Network API ($.net)
 * Destinations
-  * only the following properties are supported - host, port, pathPrefix, useProxy, proxyPort, authType, username, password
+  * only the following properties are supported - host, port, pathPrefix, useProxy, proxyHost, proxyPort, authType, username, password
 * Mail, SMTPConnection
   * proxy support and Digest-MD5 authentication method are not supported
 
@@ -147,6 +155,8 @@ Node.js uses V8 from Google, while HANA XS uses SpiderMonkey from Mozilla.
  This issue applies for built-in types like:  **Array**, **String**, **RegExp**, **Number**, etc.<br />
  For **Array**, you should use `Array.isArray` instead of `instanceof Array`.<br />
  For **String** it is suitable to use `typeof`.
+* With newer versions of Node.js (and V8 respectively), there might be fixes in the time zone offsets which can result in different string representations of `Date` objects (which take the timezone offset into consideration) compared to XS Classic.
 
 ## Other
  * DXC (Direct Extractor Connection) and xsxmla are not supported.
+ * Constants inside `.xsjslib` (defined with `const`) are not visible outside the library.

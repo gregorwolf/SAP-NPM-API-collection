@@ -5,6 +5,75 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.0.3 - 2021-02-22
+
+### Fixed
+- Update _lodash_ to v4.17.21
+- Update _moment_ to v2.29.1
+
+## 6.0.2 - 2020-12-15
+
+### Fixed
+- Fixed the custom field logging format on the Cloud Foundry platform
+
+## 6.0.1 - 2020-12-08
+
+### Fixed
+- Update *@sap/e2e-trace* dependency to v3.0.0
+- Added null/undefined check to `_containsCustomField` in `lib/contexts/AppContext.js`
+
+## 6.0.0 - 2020-11-11
+
+### Added
+- Node.js 14.x support.
+
+### Removed
+- Node.js 6.x support
+
+### Fixed
+- Update _lodash_ to v4.17.20
+- Update _moment_ to 2.29.0
+
+## 5.3.1 - 2020-07-28
+
+### Fixed
+- Update *lodash* dependency to v4.17.19.
+
+## 5.3.0 - 2020-04-14
+
+### Added
+- Support for custom fields on Cloud Foundry platform
+
+## 5.2.0 - 2020-01-08
+
+### Added
+- Added `organization_id` and `organization_name` to the log output
+
+## 5.1.0 - 2019-12-02
+
+### Added
+- Node.js 12.x support.
+
+## 5.0.2 - 2019-07-10
+
+### Fixed
+- Update *lodash* dependency to v4.17.13.
+
+## 5.0.1 - 2019-05-13
+
+### Fixed
+- Update *@sap/e2e-trace* dependency to v2.0.0.
+
+## 5.0.0 - 2019-05-02
+
+### Removed
+- Node.js v4 support
+
+## 4.1.0 - 2019-01-16
+
+### Added
+- Support for Node.js 10
+
 ## 4.0.2 - 2018-09-16
 
 ### Fixed

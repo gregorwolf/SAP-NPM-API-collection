@@ -2,17 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.3.22 - 14/03/2019
+
+### Added
+
+- Added support for service aliases.
+
+## 1.3.21 - 28/11/2018
+
+### Fixed
+
+- The rule "no-private-apis" was fixed to show errors when service is private and uses a method.
+
 ## 1.3.20 - 25/11/2018
 
 ### Fixed
 
-- The rule "plugin-provides-valid" was fixed to reduce the number of false positive warnnings
+- The rule "plugin-provides-valid" was fixed to reduce the number of false positive warnings
 
 ## 1.3.19 - 28/10/2018
 
 ### Fixed
 
-- The rule "no-private-apis" was fixed to reduce the number of false positive warnnings
+- The rule "no-private-apis" was fixed to reduce the number of false positive warnings
 
 ## 1.3.17 - 14/08/2018
 

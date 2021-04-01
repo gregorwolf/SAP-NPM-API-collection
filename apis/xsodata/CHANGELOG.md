@@ -8,6 +8,187 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.3.7] - 2021-02-24
+
+### Fixed
+
+For Edm.String typed properties, all single quotes must be preserved.
+
+## [7.3.5] - 2020-11-23
+
+### Fixed
+
+Authoization header parsing conform to RFC6750
+
+## [7.3.4] - 2020-10-14
+
+### Fixed
+
+add "return" before asynDone to avoid "Callback was already called" errors when "dataCollector* classes" are called
+
+## [7.3.3] - 2020-10-01
+
+### Fixed
+
+Commit on drop of temporary tables added.
+
+
+## [7.3.2] - 2020-09-30
+
+## [7.3.1] - 2020-09-29
+
+### Changed 
+
+* Improved error messages.
+
+## [7.3.0] - 2020-09-15
+
+* Aggregation for "count":
+  * For explicit application the aggregation type "count" was not supported in the xsodata file. When
+    "aggregates always (COUNT of "Amount");" was used, a syntax error was thrown.
+  * For implicit aggregation, where the aggregation information is loaded from the calcviews measures (e.g. 
+    using "aggregates always;" without a property list in the *.xsodata file), wrongly "avg" was used as measure
+    type instead of "count".
+  * With this fix aggregation type "count" is now properly supported
+    * For explicit application: "aggregates always (COUNT of "Amount");" 
+    * For implicit aggregation: calcview measures "count" and "avg" are now supported property 
+      
+* Fix: If a temporary table is not properly dropped by the DB, a second drop step is performed to avoid errors 
+    when recreating the table.
+         
+## [7.2.0] - 2020-08-19
+
+* Improve logging infrastructure
+
+## [7.1.0] - 2020-08-11
+
+* OData type Edm.Time is mapped to hana types 'TIME' (due to backward compatiblity) which stores only hour, minutes 
+  and seconds, so only the uri format **time'PT0H0M0S'** was supported. With this fix also the full representation 
+  like time'P2010Y12M30DT01H02M03S' can be used (some UIs generated it) if the parts of year, mounth and day are zero. 
+  
+* Fix for missing annotations (e.g. "sap:label") if an calcview without input parameters is exposed as normal view 
+  (this is without the "parameter via" keyword in the xsodata file)
+
+* Fixes for create, update, delete operations via user-exits on calculation views without input parameters.
+  Please note: if the input parameters are omitted and "via keys" is used, then the input parameter must be set in 
+  the exit functions since they are rendered in the output.  
+
+* Explicitly drop prepared statements immediately instead at request end  
+
+## [7.0.3] - 2020-06-30
+
+### Added
+- license file: developer-license-3.1.txt
+
+## [7.0.2] - 2020-05-18
+
+* Add support for create, update, delete operations via user-exits on calculation views without input parameters.
+  Work for both, calculation views without input parameters exposed as normal view and exposed as calcview.
+ 
+## [7.0.1] - 2020-05-12
+
+* Add support for calculation views without input parameters. 
+  Before release 7.0.0 calcviews without input parameters have not been supported, but worked accidentally if a calcview 
+  was wrongly exposed as normal view. After the major release 7.0.0 this wrong exposure of a calcview resulted in an error. 
+  Because calcviews without input parameters are used more often, the support for this calcviews is now supported.
+  You can either expose a calcview as normal view or as proper calcview, for the latter an input parameter entityset with
+  parenthesis must be used.  
+
+## [7.0.0] - 2020-04-23
+
+* Add support for NodeJS version 12
+* Removed support for NodeJS version 6  
+* Fix bug when using a view with explicit key in combination with concurrency token using default properties for ETag.
+  Now key properties are not considered for etag generation as written in the "SAP HANA Developer Guide":
+  _If you specify concurrency token only, then all properties, except the key properties, are used to calculate
+  the ETag value. If you provide specific properties, then only those properties are used for the calculation._
+
+## [6.2.1] - 2020-03-05
+
+* fixes in release process
+
+## [6.1.0] - 2020-03-05
+
+* fixes in release process
+
+## [6.0.0] - 2020-03-05
+
+* Add support for LTS Node.js version 12 and 10
+* Support for create/update/delete requests on calculation views if "parameter via keys" definition is used.
+Requirements:
+    * input parameters in the calculation view of type ALPHANUM, BLOB, DECIMAL, NVARCHAR, VARBINARY, VARCHAR must have length restriction
+    * input parameters in the calculation view of type DECIMAL must have scale restriction
+    * all key semantics also apply to keys coming from input parameters
+* **IMPORTANT** By default, now a maximum body size of "10mb" per request is allowed. More payload leads to an "413 Payload Too Large" error. This value of 10mb can be changed with the odata settings in the *.xsodata file 
+[see **XSOdata Settings**](/documentation/xsodataSettings.md)
+
+## [5.0.0] - 2019-12-17
+
+### Info
+
+* Removed lock when opening a db connection
+  The new native hana-client driver used by xsjs is thread save, so the lock for retrieving a new db connection is not required anymore.
+  **IMPORTANT** If a custom open function is used, then this function must be reentrant or implement an own lock inside.
+  
+### Fixed
+
+* When using $count to determine the number of records of an entity set in junction with the limit feature, the 
+returned number was also capped by the limit, this was wrong. Now the correct full number of records is returned.  
+* Fixed typeError if a stored procedure used as custom exit does not return a proper error structure.
+ 
+## [4.7.0] - 2019-10-28
+
+### Fixed 
+
+Fixed error causing duplicate properties and property references in the metadata document. Prerequisites:
+* The error occurs if an calculation view has been used as source for an entityset
+* This calculation view contains an input parameter which is used in more than one measures
+* Example: Input parameter "Input_Currency" (a calcview variable) is used in the currency conversion for the measures "VALUE" and "TAX" 
+
+## [4.6.0] - 2019-10-11
+
+### Fixed
+
+Fixed error "Error while executing a DB query" when using an navigation property to navigate from a calculation view to an related entity.
+
+## [4.5.4] - 2019-08-26
+
+### Info
+
+- Update module dependencies
+
+## [4.5.3] - 2019-08-26
+
+### Info
+
+- Update module dependencies
+
+## [4.5.1] - 2019-08-23
+
+### Info
+
+- Updated documentation
+
+## [4.5.0] - 2019-08-23
+
+### Info
+
+- Update module dependencies
+- Adopt to new async behaviour
+- Adopt to new calcview metadata
+
+### Fixed
+
+- Fix bug in error case (duplicate call of callback)
+
+
+## [4.4.0] - 2019-01-25
+
+- Update module dependencies
+- The code field inside an OData error response (error.code) is now correctly send as string (not as number)
+- For calcviews the columns type length is determined from the COLUMN_SQL_TYPE if LENGTH is not set.  
+- Fixed error while parsing multipart/mixed batch requests  
+
 ## [4.3.0] - 2018-10-19
 
 ### Info

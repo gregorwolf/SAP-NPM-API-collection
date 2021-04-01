@@ -13,33 +13,78 @@ Provides a protocol implementation for [MQTT 3.1.1](http://docs.oasis-open.org/m
 Make sure to have an message broker available, e.g. [RabbitMQ](https://www.rabbitmq.com/download.html) with enabled MQTT plugin.
 
 ## Install
-Direct from GIT or from repository `https://npm.sap.com`.
+
+See also:
+[https://www.npmjs.com/package/@sap/xb-msg-mqtt-v311](https://www.npmjs.com/package/@sap/xb-msg-mqtt-v311)
+
+To add it to your project run:
 ```bash
-npm install @sap/xb-msg-mqtt-v311
+npm i @sap/xb-msg-mqtt-v311
 ```
-To generate API documentation run inside the package folder
+
+To generate complete API documentation run inside the library package folder
 ```bash
 npm run doc
 ```
 
 ## Overview
-This library provides a messaging client for [MQTT 3.1.1](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html). A single client instance represents one connection to the broker.
 
-Either TLS or NET socket is used, depending on defined client options. Besides plain TCP/IP also WebSocket is supported, with and without [OAuth 2.0](https://oauth.net/2/), grant flows [ClientCredentialsFlow](https://tools.ietf.org/html/rfc6749#section-4.4) and [ResourceOwnerPasswordCredentialsFlow](https://tools.ietf.org/html/rfc6749#section-4.3).
+This library provides a messaging client for [MQTT 3.1.1](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html).
+A single client instance represents one connection to the broker.
 
-The API works completely asynchronous based on callbacks, often providing also done (resolve) and failed (reject) callbacks. This means it would be simple to use Promise objects in the application even if the client library so far does not use it.
+Either TLS or NET socket is used, depending on defined client options.
+Besides plain TCP/IP also WebSocket is supported, with and without [OAuth 2.0](https://oauth.net/2/), grant flows [ClientCredentialsFlow](https://tools.ietf.org/html/rfc6749#section-4.4) and [ResourceOwnerPasswordCredentialsFlow](https://tools.ietf.org/html/rfc6749#section-4.3).
+
+The API works completely asynchronous based on callbacks, often providing also done (resolve) and failed (reject) callbacks.
+This means it would be simple to use Promise objects in the application even if the client library so far does not use it.
 
 ## Getting started
+
 There are test programs in the package folder `./examples`:
 * How to use plain API directly [publisher.js](examples/publisher.js) and [subscriber.js](examples/subscriber.js)
 * How to use unified streams [producer.js](examples/producer.js) and [consumer.js](examples/consumer.js)
 
 It shall run with defaults immediately if for example a RabbitMQ with active MQTT plugin is listening at `localhost:1883` with default settings.
 
-All examples support individual settings, e.g. to use a remote host or to try different stream settings. It can be provided with a js-file given as command line parameter. The file shall export a client option object. Defaults will still be used for undefined fields.
+All examples support individual settings, e.g. to use a remote host or to try different stream settings.
+It can be provided with a js-file given as command line parameter.
+The file shall export a client option object. Defaults will still be used for undefined fields.
+
+Run it like this if the file is stored in folder `config`, same level as `examples`.
+
+```bash
+node ./examples/producer.js ../config/my-options.js
+```
+
+Feel free to start testing with the following file content:
+
+```bash
+'use strict';
+
+module.exports = {
+    net: {
+        host      : '127.0.0.1',
+        port      : 1883
+    },
+    credentials: {
+        user      : 'guest',
+        password  : 'guest'
+    },
+    data: {
+        payload   : Buffer.allocUnsafe(50).fill('X'),
+        qos       : 1,
+        topic     : 'sap/test/hello',
+        maxCount  : 50000,
+        logCount  : 1000
+    }
+};
+```
+
+The `data` section is ignored by the client, it is just used by the example programs.
 
 ## API
-The library provides a client class.
+
+The library provides a client class, which is able to manage one connection.
 ```bash
 const MQTT = require('@sap/xb-msg-mqtt-v311');
 
@@ -49,6 +94,7 @@ const client = new MQTT.Client(options);
 ```
 
 ### Client Options
+
 Create a client instance using plain TCP:
 ```bash
 const options = {
@@ -209,6 +255,7 @@ const client = new MQTT.Client(options);
 After an connection has been established the application may start to publish and/or subscribe. Details can be found in the sample applications, in project folder `./examples`.
 
 ### Message Payload
+
 The application may provide message payload as follows:
 
 * a simple Buffer object,
@@ -218,19 +265,7 @@ The application may provide message payload as follows:
 After the payload was handed over to the client the buffer content must not be modified by the application.
 And as soon as the buffer size exceeds `options.tune.ostreamPayloadCopyLimit` (default 1024 bytes, minimum 128 bytes) the client will not copy these data, but will directly push it to the network socket.
 
-Using a plain TCP connection the data will be sent unchanged.
-Running a WebSocket connection the encoder will have to mask (means to modify) all data before sending.
-
-Hence, if (and only if) an application
-* uses WebSocket connections and
-* uses payload buffer objects larger than the defined payload copy limit and
-* re-uses the same buffer object(s) for multiple messages then
-
-it must take copy of those buffer objects itself before calling the client to publish.
-
-Typically, the payload is created per message and released by application already after calling the client to publish.
-In this case do not copy anything.
-
 ## Limitations
+
 Currently, you may only set the MQTT flag `cleanSession` to true.
 

@@ -5,6 +5,43 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.1.0 - 2020-11-20
+
+### Added
+- Support Node.js 14.x
+
+## 3.0.0 - 2020-06-05
+
+### Removed
+- Node.js 6 support
+
+### Changed
+- K8S case: nested objects in credentials are now automatically parsed (does not apply to arrays)
+
+## 2.2.0 - 2019-11-28
+
+### Added
+- Support Node.js 12.x
+
+## 2.1.0 - 2019-10-15
+
+### Added
+- Support for K8S secrets mounted as volumes.
+
+## 2.0.0 - 2019-04-22
+
+### Removed
+- Node.js 4 support
+- Remove deprecated loadCaCert function
+
+## 1.3.0 - 2018-12-18
+
+### Added
+- Node.js 10 support
+
+### Fixed
+- Update `lodash` to 4.17.11
+
 ## 1.2.9 - 2018-01-18
 ### Added
 - Release with npm-shrinkwrap.json

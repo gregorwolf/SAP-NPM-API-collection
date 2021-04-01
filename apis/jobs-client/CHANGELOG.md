@@ -5,6 +5,54 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 1.6.1 - 2020-10-29
+
+### Added
+- Dependency upgrade: "request": "2.88.2" 
+
+## 1.6.0 - 2020-10-22
+
+### Added
+- Support for Node 14
+- Dependency update
+
+## 1.5.3 - 2020-06-17
+
+### Added
+- license file: developer-license-3.1.txt
+
+## 1.5.2 - 2020-05-08
+
+### Added
+- Dependency update
+
+## 1.5.1 - 2020-02-13
+
+### Fixed
+- Missing changelog
+
+## 1.5.0 - 2020-02-10
+
+### Added
+- Support for node 10 and node 12
+
+## 1.4.1 - 2019-12-10
+
+### Fixed
+- Integrate npm-shrinkwrap.json file without integrity checksums.
+
+## 1.4.0 - 2019-11-19
+
+### Added
+- Fetch OAuth token from XSUAA or username/password from environment if not passed in constructor.
+- Retrieve baseURL from environment if not passed in constructor.
+
+## 1.3.6 - 2018-12-11
+
+### Added
+- Added optional query parameters for fetchAllJobs method.
+- Added multitenancy support
+
 ## 1.3.4 - 2018-08-14
 
 ### Fixed

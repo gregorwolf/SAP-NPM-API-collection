@@ -11,6 +11,7 @@
   * [Delete HTML5 Application Deployer App Using cf delete](#delete-html5-application-deployer-app-using-cf-delete)
   * [Undeploy HTML5 Application Deployer App Using cf undeploy](#undeploy-html5-application-deployer-app-using-cf-undeploy)
 - [Redeploy HTML5 Application Deployer App](#redeploy-html5-application-deployer-app)
+- [Automatic Creation of Destination Configurations](#automatic-creation-of-destination-configurations)
 
 ## Overview
 HTML5 application deployer handles the upload of the HTML5 applications content to the HTML5 application repository.
@@ -214,5 +215,89 @@ cf undeploy myApps.deployer --delete-services
 ## Redeploy HTML5 Application Deployer App
 After making changes to the static content files of HTML5 applications, the new content can be redeployed to the HTML5 application repository. 
 All content referenced by the app-host service instance id is replaced by the new content. 
+
+## Asynchronous Upload
+You can specify that upload content should be performed asynchronously by adding environment variable ASYNC_UPLOAD to manifest.yaml or mta.yaml files.
+Asynchronous upload means that the html5 applications content will be handled synchronously to HTML5 Application Repository but the internal file validation and processing will be performed asynchronously.
+In this setup, you will have to check the html5 application deployer logs to verify that the upload was completed successfully. 
+Using asynchronous upload is specially important when triggering upload of service instance with large content (more than 10 MB). In such cases synchronous upload might cause health check errors or connection timeout during upload.
+
+## Automatic Creation of Destination Configurations
+When using HTML5 Application Deployer in SAP Managed Approuter flows you can configure the automatic creation of the required instance level destination configurations.
+
+To enable the automatic creation of destinations, provide the environment variable SAP_CLOUD_SERVICE.
+
+To following types of destination configurations can be created:
+
+- A destination pointing to an xsuaa service instance (optional)
+- A destination pointing to an Identity Authentication service instance (optional)
+- A destination pointing to an html5-apps-repo/app-host service instance (mandatory)
+- One or more backend destinations that point to a Cloud or an on- premise backend application. These destinations are modeled using the environment variable BACKEND_DESTINATIONS
+
+If the creation of a destination pointing to an xsuaa or an Identity Authentication service instance is required, the xsuaa or the Identity Authentication instances should be bound to the HTML5 application deployer.
+In addition a destination instance should be bound to the HTML5 application deployer.
+
+This capability is typically used in Kubernetes where the HTML5 Application Deployer application is previously uploaded as a docker image to Artifactory or dockerhub
+For example (Kubernetes deployment) :
+```
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: html5appdeployer
+  namespace: default
+  labels:
+    app: html5appdeployer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: html5appdeployer
+  template:
+    metadata:
+      labels:
+        app: html5appdeployer
+    spec:
+      containers:
+        - image: html5-apps-repo.docker.repositories.sap.ondemand.com/myapp-html5-app-deployer:1.0
+          name: html5appdeployer
+          volumeMounts:
+            - name: html5-repo-app-host-volume
+              mountPath: "/etc/secrets/sapcp/html5-apps-repo/myapp-app-host-instance"
+              readOnly: true
+            - name: xsuaa-volume
+              mountPath: "/etc/secrets/sapcp/xsuaa/myapp-xsuaa-instance"
+              readOnly: true
+            - name: destination-volume
+              mountPath: "/etc/secrets/sapcp/destination/myapp-destination-instance"
+              readOnly: true
+          env:
+            - name: PORT
+              value: "5000"
+            - name: SAP_CLOUD_SERVICE
+              value: "com.sap.test.service"
+            - name: BACKEND_DESTINATIONS
+              value: "[{
+              \"Name\":\"myapp-backend\",
+              \"Description\":\"My application backend\",
+              \"Type\":\"HTTP\",
+              \"ProxyType\":\"Internet\",
+              \"URL\":\"https://<backendApplicationHost>/\",
+              \"Authentication\":\"NoAuthentication\",
+              \"HTML5.ForwardAuthToken\": true}]"
+      imagePullSecrets:
+        - name: backend-dockersecret
+      volumes:
+        - name: html5-repo-app-host-volume
+          secret:
+            secretName: myapp-app-host-binding
+        - name: xsuaa-volume
+          secret:
+            secretName: myapp-xsuaa-binding
+        - name: destination-volume
+          secret:
+            secretName: myapp-destination-binding
+
+```
 
 

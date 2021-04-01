@@ -5,6 +5,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 2.2.0 - 2020-07-24
+
+### Added
+- Integration with Service Manager
+
+### Fixed
+- Update dependencies
+- Update license
+
+## 2.1.0 - 2019-12-10
+
+### Added
+- Support for Node.js v12.x
+
+## 2.0.0 - 2019-04-24
+
+### Removed
+- Support for Node.js v0.12
+- Support for Node.js v4
+
+## 1.4.0 - 2018-12-18
+
+### Added
+- Node.js version 10 support
 
 ## 1.3.4 - 2018-08-14
 

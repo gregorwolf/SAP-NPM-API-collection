@@ -1,4 +1,319 @@
-# Hana 2 SP03 Drivers
+# Hana Client 2.7.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.7 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.7/en-US
+
+For the latest updates please see SAP Note 3000693 - SAP HANA Client 2.7 Release Notes
+
+https://launchpad.support.sap.com/#/notes/3000693
+
+# Hana Client 2.6.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.6 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.6/en-US
+
+For the latest updates please see SAP Note 2973943 - SAP HANA Client 2.6 Release Notes
+
+https://launchpad.support.sap.com/#/notes/2973943
+
+# Hana Client 2.5.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.5 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.5/en-US
+
+For the latest updates please see SAP Note 2937532 - SAP HANA Client 2.5 Release Notes
+
+https://launchpad.support.sap.com/#/notes/2937532
+
+# Hana Client 2.4.x Drivers
+
+## Version 2.4.202
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 247255: Some rows of a query could have been incorrectly missing if the server returned a fetch warning.
+ - Issue Number 246397: SQLDBC/ODBC tracing output could have been incorrect in several cases.
+ - Issue Number 242465: When fallback routing happened in executing hint routed FDA select, the application server could have received an un-initialized ITAB result and produced an ABAP dump.
+
+## Version 2.4.196
+
+### Changes:
+
+ - Issue Number 246837: node.js process crashes while executing a statement created by Stream.createProcStatement() when connection is closed.
+ - Issue Number 245618: Application crashes with 'Check failed: IsGlobalEmpty()'.
+ - Issue Number 244631: Fix Memory leaks caused by warnings.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 244599: Long-running plan execution cannot be canceled.
+
+## Version 2.4.194
+
+### Changes:
+
+ - Issue Number 239769: Using HanaLobStream produced an incorrect streaming result of NULL value.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 244509: The wrong error message was displayed when the cseKeyStorePassword property was missing
+ - Issue Number 237977: When bulk fetching rows into buffers from a ResultSet, the driver may have returned success when an error occurred while fetching data.
+ - Issue Number 236457: There were several SQLDBC tracing issues with flushing disabled and trace only on error
+ - Issue Number 241887: VARCHARMODE session variable was not visible using the ClientInfo interface when connecting with ABAPVARCHARMODE=1
+
+## Version 2.4.191
+
+### Changes:
+
+ - Issue Number 242230: Possible crash on queries with TEXT columns
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 243053: When specifying HOSTNAME environment variable and
+   using both JDBC and SQLDBC-based drivers to connect with SecureStore
+   entries, or Client Side Encryption operations, the JDBC operations could
+   have failed
+ - Issue Number 240995: Reading BLOB longer than SQLDBC packet size limit
+   resulted in silent truncation
+ - Issue Number 238492: There was no way for S/4 HANA to check if all internal
+   connections for routing were valid on a distributed system
+
+## Version 2.4.186
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 243922: WebSockets would have only reported 'HTTP Exception' from HTTP errors
+ - Issue Number 236729: HANA Client for Linux x86_64 was not backwards compatible with Red Hat Enterprise Linux 5
+
+## Version 2.4.182
+
+### Changes:
+
+ - Bug 236802: SQLDBC 2.4.132 and later may infinitely loop on reading finished NCLOB into a more than large enough UCS2 destination buffer if the payload contains non-BMP characters
+
+## Version 2.4.177
+
+### Changes:
+
+ - Bug: 233849 - [node] The ResultSet object could be prematurely freed by node.js GC
+
+## Version 2.4.171
+
+### Changes:
+
+ - Bug: 233849 - [node] fix heap-use-after-free
+
+### Underlying SQLDBC changes:
+
+ - Bug: 233843 - [SQLDBC] SNI is not set correctly when sslValidateCertificate is false
+ - Bug: 231977 - [SQLDBC] ALTER CLIENTSIDE ENCRYPTION COLUMN KEY <column key name> ADD KEYCOPY ENCRYPTED WITH KEYPAIR <keypair name> fails with error -10429: Encryption of Column Encryption Key failed: Failed to create temporary Key ID table
+ - Bug: 231823 - [SQLDBC] Corrupted debug trace
+
+## Version 2.4.167
+
+### Underlying SQLDBC changes:
+
+ - Bug: 233843 - [SQLDBC] SNI is not set correctly when sslValidateCertificate is false
+ - Bug: 228317 - [SQLDBC] Audit log APPLICATION_USER_NAME column is single character on slave node and it works fine on master node
+
+## Version 2.4.162
+
+### Underlying SQLDBC changes:
+
+ - Bug: 230135 - [SQLDBC] SQLDBC will now trace the initial connection reply packet
+ - Bug: 229397 - [SQLDBC] Fixed incorrect reporting of rows-affected for LOB datatype
+ - Bug: 228712 - [SQLDBC] DBSL could have given a Secure store error: Timeout waiting for the secure store access lock
+
+## Version 2.4.155
+
+### Underlying SQLDBC changes:
+
+ - Bug: 228735 - [SQLDBC] Unintialized scalar value in Connection
+ - Bug: 226661 - [SQLDBC] Client not work well with deferred_lob_writing ON
+
+## Version 2.4.154
+
+### Changes:
+
+ - Bug: 225625 - [node] "stderr maxBuffer length exceeded" error when deploying an mtar to CF
+
+### Underlying SQLDBC changes:
+
+ - Bug: 220794 - [SQLDBC] Enable frequent TCP keepalive probes
+
+## Version 2.4.153
+
+### Changes:
+
+ - Bug: 221808 - [node] mdx get_axisinfo return garbage data
+
+### Underlying SQLDBC changes:
+
+ - Bug: 225784 - [SQLDBC] Crash when OOM during error reporting
+ - Bug: 224703 - [SQLDBC] Send networkGroup in DBConnectInfo
+
+## Version 2.4.151
+
+### Underlying SQLDBC changes:
+
+ - Bug: 225299 - [SQLDBC] Show tracing category & level at start of restarted trace files
+ - Bug: 224855 - [SQLDBC] Windows trace file archiving stop at first copy
+ - Bug: 224764 - [SQLDBC] crash at: time::Transaction::xa_remote_rollback - Assertion failed: is_global_coordinator_
+ - Bug: 223866 - [SQLDBC] Include original value in conversion failure situations
+ - Bug: 223751 - [SQLDBC] Remove RANGE_RESTRICTION test against CE server
+ - Bug: 192870 - [SQLDBC] Support returning TIMESTAMP with 'T' seperator instead of space (like ISO 8601)
+
+## Version 2.4.144 (HANA 2.0 SPS03 Rev 37.02)
+
+### Changes:
+
+ - Bug: 217819 - [node] getColumnInfo on stored procedure result: accumulates column infos after multiple executions
+
+### Underlying SQLDBC changes:
+
+ - Bug: 223345 - [SQLDBC] Adjust/remove SQLDBC tests on master due to XSEngine removal
+ - Bug: 218913 - [SQLDBC] Support HTTP CONNECT Proxy connections
+ - Bug: 218677 - [SQLDBC] Server-side WebSocket pings disconnect client
+
+## Version 2.4.142 (HANA 2.0 SPS04 Rev 41)
+
+### Changes:
+
+ - Bug: 221035 - [node] Wrong results for Node.js client with option rowsAsArray
+
+### Underlying SQLDBC changes:
+
+ - Bug: 221067 - [SQLDBC] Detect when connected to a cloud edition server
+ - Bug: 220794 - [SQLDBC] Enable frequent TCP keepalive probes
+ - Bug: 218956 - [SQLDBC] SQLDBC pass to a null value to hana server
+ - Bug: 218917 - [SQLDBC] Error -10333 when SAPR3 prepare call with IN ITAB
+ - Bug: 196975 - [SQLDBC] UCS-2 non-BMP (U+10000) conversions to UTF-8 are incorrect
+ - Bug: 177745 - [SQLDBC] improve SQLDBC handling of exceptions and OOM
+
+## Version 2.4.139 (HANA 2.0 SPS03 Rev037.01)
+
+### Changes
+
+ - Bug: 219118 - [node] Improve performance of fetching data from date, time, timestamp columns
+ - Bug: 217395 - [node] need a way to check if output parameter is null and get its length
+
+### Underlying SQLDBC changes
+
+ - Bug: 215654 - [SQLDBC] Invalid number of row counts returned (0, expected 4)
+ - Bug: 213867 - [SQLDBC] Columns which appear after the encrypted column in the SELECT list do not have the correct length
+ - Bug: 117546 - [SQLDBC] DBACOCKPIT SQLDBC trace integration issue
+
+## Version 2.4.126 (SP04 Takt 12, Rev 40)
+
+### Changes
+
+ - Bug: 210467 - [node] Value of inout clob procedure parameter lost
+ - Bug: 210265 - [node] HanaProcStatement does not close result sets
+ - Bug: 208719 - [node] Batch inserts with null value leading to data corruption
+
+### Underlying SQLDBC changes
+
+ - Bug: 212792 - [SQLDBC] Unexpected numeric overflow
+ - Bug: 212269 - [SQLDBC] Support 0x80 Proxy Authentication for Cloud Connector
+ - Bug: 210821 - [SQLDBC] Client crashes during connect after self-assignment of SQLDBC_ConnectProperties object
+ - Bug: 210818 - [SQLDBC] Access violation while inserting empty string
+ - Bug: 210341 - [SQLDBC] The SP04 converter for INTEGRAL to ASCII conversion is almost 2 times slower than the SP03 one
+ - Bug: 210340 - [SQLDBC] The SP04 converter for REAL to ASCII conversion is 3 times slower than the SP03 one
+ - Bug: 208245 - [SQLDBC] FDA partition-aware routing ignored partition information update
+ - Bug: 201548 - [SQLDBC] secondary connections need to send SessionContext - required for workload replay
+ - Bug: 177745 - [SQLDBC] improve SQLDBC handling of exceptions and OOM
+
+
+# Hana Client 2.3.x Drivers
+
+
+## Version 2.3.152
+
+### Changes
+
+ - Bug: 214413 - [node] NVARCHAR columns truncated by Connection.exec
+ - Bug: 210467 - [node] Value of inout clob procedure parameter lost
+ - Bug: 210265 - [node] HanaProcStatement does not close result sets
+ - Bug: 200139 - [node] Segmentation fault errors in Node.js client
+ - Bug: 193735 - [node] executeBatch incorrectly inserting invalid data
+
+### Underlying SQLDBC changes
+
+ - Bug: 212269 - [SQLDBC] Support 0x80 Proxy Authentication for Cloud Connector
+ - Bug: 210818 - [SQLDBC] Access violation while inserting empty string
+ - Bug: 208370 - [SQLDBC] SP03/04 is 10 times slower than SP02 on fetching data from numeric columns when the data is bound with CHAR
+ - Bug: 208245 - [SQLDBC] FDA partition-aware routing ignored partition information update
+
+## Version 2.3.144
+
+### Changes
+
+ - Bug: 170890 - [node] Feature request: Introduce a way to configure query timeout
+ - Bug: 208719 - [node] Batch inserts with null value leading to data corruption
+ - Bug: 207730 - [node] Data corruption (decimal data type) with execBatch
+ - Bug: 202061 - [node] nodejs is killed by @sap/hana-client
+
+### Underlying SQLDBC changes:
+
+ - Bug: 212269 - [SQLDBC] Support 0x80 Proxy Authentication for Cloud Connector
+ - Bug: 209416 - [SQLDBC] Much slower to fetch a value from a bool column than from a tinyint column
+ - Bug: 207692 - [SQLDBC] [dbcapi] SQL strings are always assumed to be ASCII encoding
+ - Bug: 205486 - [SQLDBC] Implicit XA join at prepare time
+ - Bug: 204378 - [SQLDBC] Big endian client or server corruption during range partitioning
+ - Bug: 180821 - [SQLDBC] improve sqldbc tracing
+
+## Version 2.3.134
+
+Note: This version includes node 10 support.
+
+### Changes
+
+ - Bug: 207088 - [node] hana-client throws error when inserting UTF8 value into NCLOB column
+ - Bug: 203323 - [node] crash in ~executeBaton
+ - Bug: 202025 - [node] crash in hana-client master snapshot during HRTT-service component tests
+ - Bug: 201692 - [node] GetParameterValues() may return different values for queries executed using exec and execQuery
+ - Bug: 200139 - [node] Segmentation fault errors in Node.js client
+ - Bug: 197590 - [node] AddressSanitizer: heap-buffer-overflow in statement.cpp:644
+
+### Underlying SQLDBC changes
+
+ - Bug: 206695 - [SQLDBC] Always send ClientInfo APPLICATION / APPLICATIONUSER in ClientInfo
+ - Bug: 205558 - [SQLDBC] Cannot set isolation level as described in docs
+ - Bug: 205486 - [SQLDBC] Implicit XA join at prepare time
+ - Bug: 205420 - [SQLDBC] SQL code: -10923 occurred while accessing table USR01
+ - Bug: 202117 - [SQLDBC] Websocket connection to port with no listener hangs on Windows
+ - Bug: 201991 - [SQLDBC] Change limit of READLOBREQUEST requested chunk size to be at most packet size - 1KB instead of 1KB*124
+ - Bug: 201333 - [SQLDBC] Always cache cookies for all authentication methods
+ - Bug: 201180 - [SQLDBC] Coverity failure - CID 175085 - dereference after null check
+ - Bug: 199762 - [SQLDBC] result set and parameters incorrect after prepare, alter, routed execute
+ - Bug: 197565 - [SQLDBC] Support 32bit fetchsize
+ - Bug: 188197 - [SQLDBC] specifying hosts for multiple unrelated systems can cause issues for multiple connections
+
+## Version 2.3.130
+
+### Changes
+
+ - Bug: 201050 - [node] HANA client crashes if ResultSet is closed while async next is running
+ - Bug: 198780 - [node] Prepare happens twice for same statement execution (non distributed), impacts performance
+ - Bug: 198599 - [node] empty DATE & TIMESTAMP causes crash/memory leak with prepared statements
+ - Bug: 198300 - [node] executeQuery crashes if no parameters passed in
+ - Bug: 197989 - [node] Node crashes with core dumps were found
+ - Bug: 197914 - [node] nodejs application server memory increases even after drop and disconnect
+ - Bug: 196801 - [node] Node driver crashes in getParameterValue
+ - Bug: 186681 - [node] Fatal error when fetching a CLOB value of ~500MB
+
+### Underlying SQLDBC changes
+
+ - Bug: 199481 - [SQLDBC] Cursor holdability not correctly sent to the server
+ - Bug: 199218 - [SQLDBC] Certain years cause DATE values to be incorrectly returned as NULL with DFV=1
+ - Bug: 197444 - [SQLDBC] CSE test failures report misleading error messages
+ - Bug: 197279 - [SQLDBC] Unable to lock newly created table with active distributed statement routing
+ - Bug: 188197 - [SQLDBC] specifying hosts for multiple unrelated systems can cause issues for multiple connections
+ - Bug: 184551 - [SQLDBC] fix Performance regression
+ - Bug: 183778 - [SQLDBC] CESU-8 -> UTF-8 conversions don't work, CESU-8 isn't used in the SQLDBC protocol
+ - Bug: 163009 - [SQLDBC] SQLDBC client can send out-of-date StatementContext resulting in server internal errors or incorrect transaction behaviour
 
 ## Version 2.3.123
 

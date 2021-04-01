@@ -1,6 +1,97 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.1.1 - 2020-02-11
+- Bugfix: Tokenexchange with additional attributes may result in a wrong formatted url
+- Feature: The passport middleware allows to provide scopes to be validated at authentication time. Details [here](http://www.passportjs.org/docs/oauth/#scope)
+
+## 3.1.0 - 2020-02-10
+- Support for multiple configurations for one security context ([more details here](doc/MultiConfiguration.md))
+- Bugfix: support for additional attributes in token exchange
+- Bugfix: authorization now in payload for better XSUAA support
+- correct support for azp (clientid) in token payload
+- method to identify an XSUAA token
+
+## 3.0.10 - 2020-10-01
+- The requests to the XSUAA are now available using the requests module also if you do not have a securityContext
+
+## 3.0.9 - 2020-08-06
+- Set request library to version 2.88.2 because of security vulnerability
+
+## 3.0.8 - 2020-08-06
+- Increase timeout for jwt-bearer token flow to reduce of timeouts with very big tokens.
+
+## 3.0.7 - 2020-07-24
+- Move the token to the request body for jwt-bearer token flow, because of problems with very big tokens
+
+## 3.0.6 - 2020-07-01
+- Audience Validation validates to true when the derived client_id of broker-clone token matches the trusted client. This is relevant to support tokens of grant type user_token that contains no scopes.
+
+## 3.0.5 - 2020-06-26
+- Audience Validation accepts tokens of grant type user_token that does not provide aud claim. In that case the audience is derived from the audiences from the scopes.
+- Audience Validation is skipped when cid of token matches the trusted client.
+- Use getSubaccountId() method only to fetch the subaccount id, e.g. for calling the metering API for user-based pricing.
+- In case you are interested in the customers tenant GUID make use of getZoneId method instead!
+- A new [TokenInfo](/doc/TokenInfo.md) class is introduced for better logging capabilities.
+
+## 3.0.3 - 2020-05-25
+
+- Fix jwt-bearer flow to take the right token as uri parameter.
+
+## 3.0.2 - 2020-05-20
+
+- Fix get verification key from keycache.
+
+## 3.0.1 - 2020-05-19
+
+- HotFix missing debugTrace in verification key
+- Fix RetryStrategy
+
+## 3.0.0 - 2020-05-15
+
+- Replace grant type user_token in method requestToken (TYPE_USER_TOKEN) in favor of urn:ietf:params:oauth:grant-type:jwt-bearer
+- Remove obsolete method getToken (use getHdbToken or getAppToken))
+- Remove obsolete method requestTokenForClient (use requestToken)
+- Remove obsolete method getIdentityZone (use getZoneId() instead, or getSubaccountId() for metering purposes) 
+- Support for audience validation in token
+- remove of SAP_JWT_TRUST_ACL environment variable support (functionality now comes with audience validation); see also [here](https://jam4.sapjam.com/blogs/show/oEdyQO183plBoQdrvcPw2w).
+- remove depencency to node-jwt (ALPINE support)
+- restructure internal code for better maintainability
+
+## 2.2.5 - 2020-02-28
+
+- Update to node-jwt version 1.6.6
+
+## 2.2.4 - 2019-08-14
+
+- Support for API methods getUserName and getUniquePrincipalName
+ 
+## 2.2.3 - 2019-08-07
+
+- Add retry for recieving keys
+
+## 2.2.2 - 2019-06-24
+
+- Use verification key from binding as backup if online key retrieval fails
+
+## 2.2.1 - 2019-06-17
+
+- Fix uaaDomain comparison in key cache
+
+## 2.2.0 - 2019-06-17
+
+- Align key cache implementation with other container security libraries
+
+## 2.1.17 - 2019-05-17
+
+- Introduce http timeout of two seconds
+- Update version of module debug, lru-cache and @sap/xsenv
+- Fix token verification for broker master instance subscriptions
+
+## 2.1.16 - 2019-01-28
+
+- Fix token parser: switch ASCII to Utf8 decode
+
 ## 2.1.15 - 2018-08-13
 
 - Update version of module request

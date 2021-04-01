@@ -8,6 +8,24 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [1.0.9] - 2020-03-17
+
+## [1.0.8] - 2019-08-16
+
+### Fixed
+- Fixed an issue with version tag in CSN.
+
+## [1.0.7] - 2019-08-05
+
+### Fixed
+- Fixed an issue to pick the Cardinality when Association and AssociatioSet Name are different.
+- Added version tag.
+
+## [1.0.6] - 2018-12-04
+### Fixed
+- Renamed the attribute `targetMax` to `max`.
+- Replaced the CSN syntax `onCond` used in associations with `on`.
+
 ## [1.0.5] - 2018-10-03
 ### Fixed
 - Edm.DateTimeOffset is now mapped to Date for any property having the attribute `sap:display-format="Date"`.

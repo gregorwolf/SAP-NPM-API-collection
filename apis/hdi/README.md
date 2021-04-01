@@ -1,162 +1,239 @@
 @sap/hdi
 ===============
 
-This is the node.js-based client library for HANA DI (HDI).
+`@sap/hdi` is a [Node.js](https://nodejs.org) library that allows access to the SQL based API through Node.js. It provides access to the HDI-, Container-Group- and the Container-API.
 
-Currently, the module provides the following asynchronous methods to access HDI functionality:
+## Table of contents
+ **Using the library**:
+- [General things](#general-things)
+- [Using the HDI API](#using-the-hdi-api)
+- [Using the Container Group API](#using-the-container-group-api)
+- [Using the Container API](#using-the-container-api)
+- [Using the API with xsjs](#using-the-api-with-xsjs)
 
-- `connect`
-- `disconnect`
-- `configureDI`  
-- `configureDIParameters`  
-- `createContainer`
-- `dropContainer`
-- `configureContainer`
-- `configureContainerParameters`
-- `listLibraries`
-- `configureLibraries`
-- `listConfiguredLibraries`
-- `status`
-- `read`
-- `listDeployed`
-- `readDeployed`
-- `write`
-- `delete`
-- `make`
-- `makeAsync`
-- `grantContainerApiPrivileges`
-- `grantContainerApiPrivilegesWithGrantOption`
-- `revokeContainerApiPrivileges`
-- `grantContainerSchemaPrivileges`
-- `revokeContainerSchemaPrivileges`
-- `grantContainerSchemaRoles`
-- `revokeContainerSchemaRoles`
+## General things
 
-After installing the module via npm, an application needs to create an instance of the client:
+Note : @sap/hana-client must be installed by yourself. Version 2.7.x is currently supported by @sap/hdi 4.0.1.
+To install the latest @sap/hana-client simply run `npm install @sap/hana-client`.
 
-`hdi = new HDI(container, logger, credentials);`
+Assuming that your **npm registry** is correctly configured and has access to SAP packages, simply running `npm install --save @sap/hdi` will install the package and add it as a dependency to your **package.json**.
 
-where `container` is the name of an existing container, `logger` is a callback function used to write logging information, and `credentials` is an object containing the host name, port, user and password that shall be used for the DB connection:
+We recommend using version 2.0.0 or higher. >=2.0.0 of the API brings access to the Container Group API, major refactoring of the HDI and Container API into separate components and lots of pre-defined classes to make working with the API easier.
+
+Note that >=2.0.0 is not backwards compatible to 1.x, code written with the old API will ***NOT*** run with new API. This documentation is for the 3.x API.
+
+All APIs require that the connected user has EXECUTE privileges for the corresponding SQL procedures and SELECT for all table types in SYS_DI (TT*).
+
+Almost all methods are asynchronous and require a standard node-style callback, where the first parameter is any errors that occurred and the second is the result.
+If no callback is supplied, the arguments will be partially applied and a function will be returned, taking a callback as the first and only parameter. This way, the methods can be easily chained via async.
+
+If you are using the methods in the easily chainable way, the error parameter will be supplied if the return code of the HDI call is not equal 0. If you are using the "normal" way, the error-parameter is only supplied when a "technical" error occurs. To check if the action was successful, you need to check the return code (rc) of the returned result. In order to "automate" this, you can wrap your callback with the function below:
+
+```javascript
+function wrap (callback) {
+  return function (error, result) {
+    if (error) {
+      return callback(error);
+    } else {
+      if (result.rc && result.rc !== 0) {
+        const e = new Error('HDI call failed!')
+        e.result = result
+        return callback(e, result);
+      } else {
+        return callback(null, result);
+      }
+    }
+  }
+}
 ```
-{ host     : 'hostname',  
-  port     : 30015,  
-  user     : 'user',  
-  password : 'secret' }
-```  
-The connection to the database is established with the `connect` method, which takes only a callback function as parameter.
-When the application finishes, it should call  
-`hdi.disconnect();`
 
 
-**configureDI**  
-(Deprecated)
-Configures HDI with the given parameters.
-- `call_params`: an object with key/value pairs configuring HDI and controlling the HDI behaviour
--  `externCB`: a callback function used to return errors or results
+**This document only provides a really high-level and shallow overview of the API. For a more detailed, technical documentation, refer to the JSDoc. To generate the documentation, run `npm install jsdoc`,`npm install ink-docstrap` and then `npm run documentation`. The documentation can then be found in the `docs` folder.**
 
-**configureDIParameters**  
-Configures HDI with the given configuration parameters and the given parameters.
-- `di_params`: an object with key/value pairs configuring HDI
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
--  `externCB`: a callback function used to return errors or results
+## Using the HDI API
+Access to the _SYS_DI API is provided by the `HDI` class. Access to this API requires HANA server version: 1.00.120 or newer. To work with the API, simply construct a new object, as can be seen in the following (ES6-based) example:
 
-**createContainer**  
-Creates a container with the given container id.
-- `container`: the container id/name
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
--  `externCB`: a callback function used to return errors or results
+```javascript
+'use strict';
+const { HDI } = require('@sap/hdi');
 
-**dropContainer**  
-Drops the container with the given container id, incl. all corresponding technical users, schemata, tables, etc.
-- `container`: the container id/name
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
--  `externCB`: a callback function used to return errors or results
+// This credentials object will be directly passed to the @sap/hana-client client. Any options accepted by the @sap/hana-client client can be passed.
+const credentials = {
+    host : <host>,
+    port : <port>,
+    user : <user>,
+    password: <password>
+};
 
-**configureContainer**  
-(Deprecated) Configures the container with the given parameters.
-- `call_params`: an object with key/value pairs configuring the container and controlling the HDI behaviour
--  `externCB`: a callback function used to return errors or results
+const hdi = new HDI(credentials, parameterSchema);
 
-**configureContainerParameters**  
-Configures the container with the given configuration parameters and the given parameters.
-- `container_params`: an object with key/value pairs configuring the container
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
--  `externCB`: a callback function used to return errors or results
+hdi.connect((error,result) => {
+  if(error){
+    throw error;
+  }
 
-**listLibraries**  
-List all available plugin libraries that can be installed into a container.
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
--  `externCB`: a callback function used to return errors or results
+  hdi.listLibraries(null,(error,result) => {
+    if(error){
+      throw error;
+    }
 
-**configureLibraries**  
-(Re)configures the set of plugin libraries which are installed in the given container.
-- `libconfig`: an array of ``[action, library_name]`` tuples. `action` could be `ADD` or `REMOVE`
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
--  `externCB`: a callback function used to return errors or results
+    console.log(result);
+  })
+})
+```
 
-**listConfiguredLibraries**  
-List the set of plugin libraries which are installed in the given container.
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
--  `externCB`: a callback function used to return errors or results
+To construct an access object, you need the credentials for the HANA system and the `parameterSchema`. This schema will be used to create temporary tables to supply data to the underlying sql procedures.
 
-**status**  
-Shows the status of files and folders in the container. It takes the following parameters:  
-- `paths`: an array of path names (strings)
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
-- `externCB`: a callback function used to return errors or results
+## Using the Container Group API
+The Container Group API provides access to an **existing** container group. In order to use the API, you might need to first grant the correct rights by using `grantContainerGroupAPIPrivileges` of the HDI class.
 
-**read**  
-Reads files/folders from the containers `work file system`. It takes the same parameters as `status`
+To construct an access object, you need the credentials for the HANA system, the `parameterSchema` and the name of the container group.
 
-**readDeployed**  
-Like `read`, but reads files/folders from the containers `deployed file system`.
+## Using the Container API
+The Container API provides access to an **existing** container. In order to use the API, you might need to first grant the correct rights by using `grantContainerAPIPrivileges` of the ContainerGroup class.
 
-**listDeployed**  
-Like `readDeployed`, but reads only metadata for files/folders from the containers `deployed file system`.
+To construct an access object, you need the credentials for the HANA system, the `parameterSchema` and the name of the container.
 
-**write**  
-Writes files/folders to the containers `work file system`. It takes the following parameters:  
-- `paths_content`: an array of arrays, containing the path names and the corresponding file content
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
-- `externCB`: a callback function used to return errors or results
+Example: Deploying files to an existing container, assuming that the container exists and has been configured correctly.
 
-**delete**  
-Deletes files/folders from the containers `work file system`. It takes the same parameters as `read`.
+```javascript
+'use strict';
 
-**make**/**makeAsync**  
-Triggers a synchronous resp. asynchronous make with the given sets of files/folders.
-- `deploy_paths`: an array of path names, listing the files/folders to deploy
-- `undeploy_paths`: an array of path names, listing the files/folders to undeploy
-- `path_parameters`: an object with path names as keys and file specific parameters (like call_params) for each such path
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
-- `externCB`: a callback function used to return errors or results
+const fs = require('fs');
+const async = require('async');
+const path = require('path');
 
-**grantContainerApiPrivileges**/**grantContainerApiPrivilegesWithGrantOption**  
-Grants the given privileges on the containers API objects to the given users.
-- `privileges`: an array of arrays (4-tuples: privilege name, object name, principal schema name, principal name)
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
-- `externCB`: a callback function used to return errors or results
+const {Container, HDI, FileWithContent, FolderWithContent, File, Parameter} = require('@sap/hdi');
 
-**revokeContainerApiPrivileges**  
-Revokes the given privileges on the containers API objects from the given users.
-It takes the same parameters as grantContainerApiPrivileges.
+// This credentials object will be directly passed to the @sap/hana-client client. Any options accepted by the @sap/hana-client client can be passed.
+const credentials = {
+  host: 'host',
+  port: 'port',
+  user: 'user',
+  password: 'password'
+};
 
-**grantContainerSchemaPrivileges**  
-Grants the given privileges on the containers target schema to the given users.
-- `privileges`: array of arrays (3-tuples: privilege name, principal schema name, principal name)
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
-- `externCB`: a callback function used to return errors or results
+const containerName = 'container_name';
 
-**revokeContainerSchemaPrivileges**  
-Revokes the given privileges on the containers target schema from the given users.
-It takes the same parameters as grantContainerSchemaPrivileges.
 
-**grantContainerSchemaRoles**  
-Grants the given roles (which are deployed inside the container) to the given users.
-- `roles`: array of arrays (3-tuples: role name, principal schema name, principal name)
-- `call_params`: an object with key/value pairs controlling the HDI behaviour
-- `externCB`: a callback function used to return errors or results
+const container = new Container(containerName, // Name of the container. Does not have to exist yet but has to exist before calling any methods.
+  credentials, // Credentials to use for the HANA system.
+  credentials.user // Schema where the user used for the connection has privileges to create temporary tables, for example the user's own schema.
+);
 
-**revokeContainerSchemaRoles**  
-Revokes the given roles (which are deployed inside the container) from the given users.
-It takes the same parameters as grantContainerSchemaRoles.
+const fPath = 'folder/';
+
+const cPath = 'folder/.hdiconfig';
+const cContent = fs.createReadStream(`${__dirname}${path.sep}testdata${path.sep}.hdiconfig`);
+
+const tPath = 'folder/table1.hdbtable';
+const tContent = fs.createReadStream(`${__dirname}${path.sep}testdata${path.sep}table1.hdbtable`);
+
+const rContent = fs.createReadStream(`${__dirname}${path.sep}testdata${path.sep}role.hdbrole`);
+const rPath = 'folder/role.hdbrole';
+
+const filesFoldersContent = [
+  new FolderWithContent(fPath),
+  new FileWithContent(cPath, cContent),
+  new FileWithContent(tPath, tContent),
+  new FileWithContent(rPath, rContent)
+];
+
+const files = [new File(rPath), new File(cPath), new File(tPath)];
+const params = [new Parameter('ignore_work', 'TRUE'), new Parameter('ignore_deployed', 'TRUE')];
+
+
+function wrap (callback) {
+  return function (error, result) {
+    if (error) {
+      return callback(error);
+    } else {
+      if (result.rc && result.rc !== 0) {
+        const e = new Error('HDI call failed!')
+        e.result = result
+        return callback(e, result);
+      } else {
+        return callback(null, result);
+      }
+    }
+  }
+}
+
+const tasks = [
+  (cb) => containerUser.connect(wrap(cb)),
+  (cb) => containerUser.lock(0, null, wrap(cb)),
+  (cb) => containerUser.write(filesFoldersContent, null, wrap(cb)),
+  (cb) => containerUser.status(null, null, wrap(cb)),
+  (cb) => containerUser.list(null, null, wrap(cb)),
+  (cb) => containerUser.make(files, null, null, null, wrap(cb)),
+  (cb) => containerUser.unlock(wrap(cb)),
+  (cb) => {
+    containerUser.disconnect(); cb(null, 'OK: disconnected.');
+  }
+];
+
+async.series(tasks, (e, results) => {
+  if(e){
+    console.error(e);
+    process.exit(1);
+  } else {
+    console.log(results);
+
+    /**
+      Work with the results.
+    **/
+  }
+});
+```
+
+## Using the API with xsjs
+Since most of the methods of the HDI, ContainerGroup and Container class are asynchronous, you need to use the provided `sync` functionality to use them in xsjs code.
+Be aware that this requires a version of xsjs that uses at least `"@sap/fibrous": "0.5.0-0"` as a dependency. This fixes issues with `sync` in combination with class methods.
+
+If your version of xsjs is up to date in that regard, simply add `sync` before your method calls. This
+
+```javascript
+const { HDI } = require('@sap/hdi');
+
+// This credentials object will be directly passed to the @sap/hana-client client. Any options accepted by the @sap/hana-client client can be passed.
+const credentials = {
+    host : <host>,
+    port : <port>,
+    user : <user>,
+    password: <password>
+};
+
+const hdi = new HDI(credentials, parameterSchema);
+
+hdi.connect((error,result) => {
+  if(error){
+    throw error;
+  }
+
+  hdi.listLibraries(null,(error,result) => {
+    if(error){
+      throw error;
+    }
+
+    console.log(result);
+  })
+})
+```
+turns into this:
+```javascript
+var { HDI } = $.require('@sap/hdi');
+
+// This credentials object will be directly passed to the @sap/hana-client client. Any options accepted by the @sap/hana-client client can be passed.
+var credentials = {
+    host : <host>,
+    port : <port>,
+    user : <user>,
+    password: <password>
+};
+
+var hdi = new HDI(credentials, parameterSchema);
+
+hdi.sync.connect();
+var libraries = hdi.sync.listLibraries(null);
+console.log(libraries);
+```

@@ -5,6 +5,81 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.0.0 - 2021-03-09
+
+### Fixed
+- Replaced *request* with *node-fetch* 2.6.1
+- Replaced *requestretry* with *fetch-retry* 4.1.0
+
+## 4.2.0 - 2021-02-22
+
+### Added
+- Node.js 14.x support
+
+### Fixed
+- Updated *@sap/hdbext* to 7.1.3
+- Updated *lodash* to 4.17.21
+
+## 4.1.0 - 2021-02-12
+
+### Added
+- Added support for passing HTTP(s) request agent options to the Service transport.
+  This feature is experimental and is therefore not documented. It may be changed or removed anytime.
+
+## 4.0.0 - 2021-02-09
+
+### Fixed
+- Update devdeps
+- Update debug to 4.2.0
+- Update requestretry to 4.1.1
+- Allow empty strings in objectWithTypeAndId (utils.js) check
+
+### Removed
+- Node.js 6.x support
+
+## 3.2.0 - 2020-08-10
+
+### Added
+- Add support for multiple data subjects in Data access messages, v2 API
+
+## 3.1.1 - 2020-07-27
+
+### Fixed
+- Update dependencies
+
+## 3.1.0 - 2019-12-06
+
+### Added
+- Node.js 12.x support
+- Retry logic when accessing the auditlog
+
+### Fixed
+- Update dependencies
+
+## 3.0.2 - 2019-07-16
+
+### Fixed
+- Update dev dependencies
+
+## 3.0.1 - 2019-05-17
+
+### Fixed
+- Transactional messages: uuid and time fields are now updated for each log operation
+
+## 3.0.0 - 2019-04-23
+
+### Removed
+- Node.js v0.12 support
+- Node.js v4 support
+
+## 2.3.0 - 2018-12-18
+
+### Added
+- Node.js version 10 support
+
+### Fixed
+- Update `lodash` to 4.17.11
+
 ## 2.2.4 - 2018-08-14
 
 ### Fixed

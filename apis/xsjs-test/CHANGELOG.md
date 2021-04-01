@@ -5,6 +5,43 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.1.3
+- Use `lodash` in version `4.17.15`.
+
+## 3.1.2
+- Internal restructuring.
+
+## 3.1.1
+- More bug fixes.
+
+## 3.1.0
+
+### Changed
+- Using latest versions of libs `@sap/fibers`, `@sap/hdbext` and `@sap/xsjs`.
+
+## 3.0.3 - 2019-02-14
+
+### Changed
+- use latest fibers
+
+## 3.0.2 - 2019-02-13
+
+### Changed
+- use correct hdbext
+
+## 3.0.1 - 2019-02-12
+
+### Changed
+- use latest hdbext and fibers
+
+### Fixed
+- npm-shrinkwrap.json cleansed
+
+## 3.0.0 - 2018-10-12
+
+### Changed
+- use @sap/hana-client instead of node-hdb
+
 ## 2.0.15 - 2018-04-19
 
 ### Fixed
@@ -18,8 +55,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ## 2.0.13 - 2018-01-15
 
 ### Changed
-- use released version of hdbext 
-- added missing double quote for table names in createTestTable 
+- use released version of hdbext
+- added missing double quote for table names in createTestTable
 
 ## 2.0.12 - 2018-01-12
 

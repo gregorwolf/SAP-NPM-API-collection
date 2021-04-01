@@ -1,13 +1,20 @@
-npm search sap --registry https://npm.sap.com --json > npm.sap.com.json
-cat npm.sap.com.json | jq '.[] | .name' > packages.txt
-rpl -q '"' '' packages.txt
+npm config rm @sap:registry
+rm -rf node_modules 
+mkdir node_modules
+npm install libnpmsearch
+node update-package-json.js
+jq '.' new-package.json > package.json
+rm new-package.json
+# npm install
+# Reduce list of packages to update by using diff on package.json
+git diff package.json | grep + | grep "@sap" | sed 's/[^"]*"\([^"]*\).*/\1/' > packages.txt
 
 while read package; do
-  npm install $package
-done <packages.txt
-
-while read package; do
+  ./npm_download.sh $package
   packageNoPrefix=`echo $package | sed 's/@sap//g'`
   mkdir "apis$packageNoPrefix"
-  cp node_modules/$package/*.md apis$packageNoPrefix
+  rsync -zarv  --include "*/" --include="*.md" --exclude="*" "node_modules/$package/" "apis$packageNoPrefix"
+  cp node_modules/$package/LICENS* apis$packageNoPrefix
+  cp -r node_modules/$package/doc apis$packageNoPrefix/doc
 done <packages.txt
+#mkdocs build -f mkdocs.yml

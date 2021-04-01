@@ -5,6 +5,113 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.1.4"></a>
+## 7.1.4 - 2021-03-16
+
+### Fixed
+- Update *@sap/hana-client* to v2.7.26
+
+<a name="7.1.3"></a>
+## 7.1.3 - 2021-02-22
+
+### Fixed
+- Update *lodash* to v4.17.21
+
+<a name="7.1.2"></a>
+## 7.1.2 - 2021-02-19
+
+### Fixed
+- Update *@sap/hana-client* to v2.7.23
+
+<a name="7.1.1"></a>
+## 7.1.1 - 2021-01-28
+
+### Fixed
+- Update *@sap/hana-client* to v2.7.21
+- In StoredProcedure.js createTempTables, use async.eachLimit to avoid races
+
+<a name="7.1.0"></a>
+## 7.1.0 - 2021-01-05
+
+### Fixed
+- Update *@sap/hana-client* to v2.7.16, debug to 4.2.0 and *@sap/e2e-trace* to 3.0.0
+
+### Added
+- Node.js 14.x support.
+
+<a name="7.0.1"></a>
+## 7.0.1 - 2020-10-21
+
+### Fixed
+- Update *@sap/hana-client* to v2.6.58, debug to 4.1.1 and lodash to 4.17.20
+
+<a name="7.0.0"></a>
+## 7.0.0 - 2020-07-13
+
+### Fixed
+- Update *@sap/hana-client* to v2.5.104, async to 3.2.0 and lodash to 4.17.19
+
+### Removed
+- Node.js 6 support
+
+<a name="6.2.2"></a>
+## 6.2.2 - 2020-04-29
+
+### Fixed
+- Update *@sap/hana-client* to v2.4.196
+
+<a name="6.2.1"></a>
+## 6.2.1 - 2020-04-15
+
+### Fixed
+- Do not drop statement objects in the background in order to prevent IsGlobalEmpty crash
+
+<a name="6.2.0"></a>
+## 6.2.0 - 2020-03-06
+
+### Added
+- Node.js 12.x support.
+
+<a name="6.1.1"></a>
+## 6.1.1 - 2019-11-19
+
+### Fixed
+- Update *@sap/hana-client* to v2.4.167
+
+<a name="6.1.0"></a>
+## 6.1.0 - 2019-10-25
+
+### Added
+- Support for synonyms as table parameters in procedures
+
+<a name="6.0.1"></a>
+## 6.0.1 - 2019-07-10
+
+### Fixed
+- Update `lodash` package to 4.17.13
+
+<a name="6.0.0"></a>
+## 6.0.0 - 2019-05-20
+
+### Removed
+- Node 4 support
+- Stored procedures: caching of prepared CALL statements for simple procedures
+
+### Fixed
+- Statement leak due to caching of prepared CALL statements for simple procedures
+- Update *@sap/hana-client* to v2.4.139
+
+### Added
+- Node.js 10 support
+
+## 5.1.0 - 2019-01-11
+
+### Added
+- Support for `hostname_in_certificate`, `validate_certificate`, `client_authentication_certificate`, `client_authentication_private_key` properties from HANA service binding
+
+### Fixed
+- Check for non-existing procedure
+
 ## 5.0.0 - 2018-09-27
 
 ### Removed

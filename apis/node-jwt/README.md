@@ -9,7 +9,7 @@ If you need another platforms, please write to the author.
 # Platforms
 
 Supported platforms: **Windows** | **Linux** | **MacOS**
-Supported architectures: x64 on all platforms.
+Supported architectures: x64 on supported platforms.
 Please see also section dependencies for Node.js version.
 
 #### Hello world
@@ -44,14 +44,13 @@ $ var jwt = require('@sap/node-jwt');
 
 Released versions
 ```
-npm config set @sap:registry=https://npm.sap.com
 npm install @sap/node-jwt
 ```
 
 
 # Dependencies
 
-* NodeJS v0.10.x is the minimum version, NodeJS 5.x is the current maximum, however due to missing binaries, there might be errors in using this project
+* NodeJS v0.10.x is the minimum version. The maximum version is always the last LTS (long term support, https://nodejs.org/en/about/releases/) , however due to missing binaries, there might be errors in using this project
 * You dont need `node-gyp` or any compiler (e.g. Visual Studio on Windows). The source code and binding.gyp is part of this project in case of errors.
 * If you run in error with generic node exceptions, please inform the author. The root cause can be missing jwt.node modules.
 
@@ -80,6 +79,5 @@ In cf landscapes you can then cf logs <your-app> and you will see trace from JWT
 In order to configure the sap NPM registry you need to issue the following command:
 
 ```
-npm config set @sap:registry=https://npm.sap.com
 npm install @sap/node-jwt
 ```

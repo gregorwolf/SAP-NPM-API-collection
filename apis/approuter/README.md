@@ -12,10 +12,11 @@
     + [Destination-service](#destination-service)
   * [UAA configuration](#uaa-configuration)
   * [Additional headers configuration](#additional-headers-configuration)
+  * [Additional cookies configuration](#additional-cookies-configuration)
   * [Plugins configuration](#plugins-configuration)
   * [Session timeout](#session-timeout)
   * [X-Frame-Options configuration](#x-frame-options-configuration)
-  * [Cross-Origin](#cross-origin)
+  * [Cross-Origin Resource Sharing configuration](#cross-origin-resource-sharing-configuration)
 - [Routes](#routes)
   * [Example routes](#example-routes)
 - [Replacements](#replacements)
@@ -27,27 +28,33 @@
   * [*logout* property](#logout-property)
   * [*destinations* property](#destinations-property)
   * [*services* property](#services-property)
+  * [*responseHeaders* property](#responseHeaders-property)
   * [*compression* property](#compression-property)
   * [*pluginMetadataEndpoint* property](#pluginmetadataendpoint-property)
   * [*whitelistService* property](#whitelistservice-property)
   * [*websockets* property](#websockets-property)
   * [*errorPage* property](#errorpage-property)
+  * [*cors* property](#cors-property)
   * [Complete example of an *xs-app.json* configuration file](#complete-example-of-an-xs-appjson-configuration-file)
 - [Headers](#headers)
   * [Forwarding Headers](#forwarding-headers)
   * [Hop-by-hop Headers](#hop-by-hop-headers)
   * [Custom Headers](#custom-headers)
+  * [Authorization Header](#authorization-header-beta-version)
 - [CSRF Protection](#csrf-protection)
 - [Connectivity](#connectivity)
 - [SaaS Application Registration in CF](#saas-application-registration-in-cloud-foundry)
   * [How To Expose Approuter for SaaS Subscription](#how-to-expose-approuter-for-saas-subscription)
+- [Authentication with Identity Service (IAS)](#authentication-with-identity-service-ias)
 - [Integration with HTML5 Application Repository](#integration-with-html5-application-repository)
 - [Integration with Business Services](#integration-with-business-services)
 - [Web Sockets](#web-sockets)
 - [Session Handling](#session-handling)
   * [Session Contents](#session-contents)
+- [Service to Application Router](#service-to-application-router-beta-version)
 - [Central Logout](#central-logout)
-- [Whitelist Service](#whitelist-service)
+- [User API Service](#user-api-service)
+- [Allowlist Service](#whitelist-service)
   * [Enable the service](#enable-the-service)
   * [Configuring allowed hostnames / domains](#configuring-allowed-hostnames--domains)
   * [Return value](#return-value)
@@ -56,6 +63,7 @@
 - [Configure server-side HTTPS](#configure-server-side-https)
 - [Audit-Log Service](#audit-log-service)
 - [Troubleshooting](#troubleshooting)
+- [Getting Support](#getting-support)
 - [Extending Application Router](#extending-application-router)
 - [Best practices](#best-practices)
   * [Security best practices](#security-best-practices)
@@ -186,21 +194,25 @@ Configuration | Environment variable | Description
 [UAA service name](#uaa-configuration) | `UAA_SERVICE_NAME` | Contains the name of the UAA service to be used.
 [Destinations](#destinations) | `destinations` | Provides information about the available destinations.
 [Additional headers](#additional-headers-configuration) | `httpHeaders` | Provides headers that the application router will return to the client in its responses.
+[Additional cookies](#additional-cookies-configuration) | `COOKIES` | Provides cookies that the application router will return to the client in its responses. Currently only SameSite cookie is supported.
 [Plugins](#plugins-configuration) | `plugins` | A plugin is just like a [*route*](#routes) except that you can't configure some inner properties.
 [Session timeout](#session-timeout) | `SESSION_TIMEOUT` | Positive integer representing the session timeout in minutes. The default timeout is 15 minutes.
 [X-Frame-Options](#x-frame-options-configuration) | `SEND_XFRAMEOPTIONS`, `httpHeaders` | Configuration for the X-Frame-Options header value.
-[Clickjack whitelist service](#whitelist-service) | `CJ_PROTECT_WHITELIST` | Configuration for the whitelist service preventing clickjack attacks.
-[Web Sockets origins whitelist](#web-sockets) | `WS_ALLOWED_ORIGINS` | Whitelist configuration used for verifying the `Origin` header of the initial upgrade request when establishing a web socket connection.
+[Allowlist service](#whitelist-service) | `CJ_PROTECT_WHITELIST` | Configuration for the allowlist that is preventing clickjack attacks.
+[Web Sockets origins allowlist](#web-sockets) | `WS_ALLOWED_ORIGINS` | An allowlist configuration that is used for verifying the `Origin` header of the initial upgrade request when establishing a web socket connection.
 JWT Token refresh | `JWT_REFRESH` | The time in minutes before a JWT token expires and the application router should trigger a token refresh routine.
 Incoming connection timeout | `INCOMING_CONNECTION_TIMEOUT` | Maximum time in milliseconds for a client connection. After that time the connection is closed. If set to 0, the timeout is disabled. Default: 120000 (2 min)
 Tenant host pattern | `TENANT_HOST_PATTERN` | String containing a regular expression with a capturing group. The request host is matched against this regular expression. The value of the first capturing group is used as tenant id.
+Destination host pattern | `DESTINATION_HOST_PATTERN` | String containing a regular expression with a capturing group. The request host is matched against this regular expression. The value of the capturing group is used as destination name.
 [Compression](#compression-property) | `COMPRESSION` | Configuration regarding compressing resources before responding to the client.
 _Secure_ flag of session cookie | `SECURE_SESSION_COOKIE` | Can be set to `true` or `false`. By default, the _Secure_ flag of the session cookie is set depending on the environment the application router runs in. For example, when application router is behind a router (Cloud Foundry's router or SAP Web Dispatcher) that is configured to serve HTTPS traffic, then this flag will be present. During local development the flag is not set. This environment variable can be used to enforce setting or omitting the _Secure_ flag. **Note**: If the Secure flag is enforced, the application router will reject requests sent over unencrypted connection (http).
 Trusted CA certificates | `XS_CACERT_PATH` | List of files paths with trusted CA certificates used for outbound https connections (UAA, destinations, etc.). File paths are separated by [path.delimiter](https://nodejs.org/api/path.html#path_path_delimiter). If this is omitted, several well known "root" CAs (like VeriSign) will be used. This variable is set automatically by XSA On-premise runtime.
 Reject untrusted certificates | `NODE_TLS_REJECT_UNAUTHORIZED` | By default an outbound https connection is terminated if the remote end does not provide a trusted certificate. This check can be disabled by setting `NODE_TLS_REJECT_UNAUTHORIZED` to `0`. This is a built-in feature of Node.js. **Note:** Do not use this in production as it compromises security!
 External reverse proxy flag | `EXTERNAL_REVERSE_PROXY` | Boolean value that indicates the use of application router behind an external reverse proxy (outside of Cloud Foundry domain)
-[Cross-Origin Resource Sharing](#cross-origin) | `CORS` | Configuration regarding CORS enablement.
-Preserve URL fragment | `PRESERVE_FRAGMENT` | **Note:** The flag is deprecated and will be removed in near future. When set to `true` or not set, fragment part of the URL provided during first request of not logged-in user to protected route will be preserved, and after login flow user is redirected to original URL including fragment part. However, this may break programmatic access to Approuter (e.g. e2e tests), since it introduces change in login flow, which is incompatible with Approuter version 4.0.1 and earlier. Setting value to `false` makes login flow backward compatible, however will not take fragment part of the URL into account.
+[Cross-Origin Resource Sharing](#cross-origin-resource-sharing-configuration) | `CORS` | Configuration regarding CORS enablement.
+Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fragment part of the URL provided during first request of not logged-in user to protected route will be preserved, and after login flow user is redirected to original URL including fragment part. However, this may break programmatic access to Approuter (e.g. e2e tests), since it introduces change in login flow, which is incompatible with Approuter version 4.0.1 and earlier. Setting value to `false` makes login flow backward compatible, however will not take fragment part of the URL into account.
+Backend Cookies Secret | `BACKEND_COOKIES_SECRET` | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
+Service to Application Router | `SERVICE_2_APPROUTER` | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
 
 **Note:** all those environment variables are optional.
 
@@ -215,13 +227,14 @@ The destinations configuration is an array of objects. Here are the properties t
 
 Property | Type | Optional | Description
 -------- | ---- |:--------:| -----------
-name | String | | Unique identifier of the destination.
+name | String | | A unique alphanumeric identifier of the destination.
 url | String | | URL of the app (microservice).
 proxyHost | String | x | The host of the proxy server used in case the request should go through a proxy to reach the destination.
 proxyPort | String | x | The port of the proxy server used in case the request should go through a proxy to reach the destination.
-forwardAuthToken | Boolean | x | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.
+forwardAuthToken | Boolean | x | If `true`, the OAuth token is sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA or IAS service, so it can be used for user authentication and authorization with backend services.
 strictSSL | Boolean | x | Configures whether the application router should reject untrusted certificates. The default value is `true`.<br />**Note:** Do not use this in production as it compromises security!
 timeout | Number | x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.
+setXForwardedHeaders | Boolean | x | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
 proxyType | String | x | Configures whether the destination is used to access applications in on-premise networks or on public Internet. Possible value: `OnPremise`. if the property is not provided, it is assumed that it is a public Internet access. <br />**Note:** if `OnPremise` value is set,  binding to SAP Cloud Platform connectivity service is required, and `forwardAuthToken` property should not be set.
 
 
@@ -264,7 +277,7 @@ Here are the Approuter limitations to destination properties configuration from 
 Property  | Additional Property | Description
 -------- |:--------:| -----------
 Type | |only `HTTP` supported.
-Authentication |  | Supported authentication types : `none`, `basic authentication`, `principal propagation`, `OAuth2SAMLBearerAssertion`. <br>**Note:** `User` and `Password` are mandatory if the authentication type is `basic authentication`.<br>**Note:** if the authentication type set to `principal propagation` the ProxyType have to be `on-premise`.<br>**Note:** if the authentication type set to `OAuth2SAMLBearerAssertion`, `uaa.user` scope in xs-security.json is required.
+Authentication |  | All authentication types are supported. <br>**Note:** `User` and `Password` are mandatory if the authentication type is `basic authentication`.<br>**Note:** if the authentication type set to `principal propagation` the ProxyType have to be `on-premise`.<br>**Note:** if the authentication type set to `OAuth2SAMLBearerAssertion`, `uaa.user` scope in xs-security.json is required.
 ProxyType |   | Supported proxy type : `on-premise`, `internet`.<br> **Note:** if ProxyType set to `on-premise`, binding to SAP Cloud Platform connectivity service is required.
 
 
@@ -272,17 +285,18 @@ ProxyType |   | Supported proxy type : `on-premise`, `internet`.<br> **Note:** i
 
 Property  | Additional Property | Description
 -------- |:--------:| -----------
-ForwardAuthToken | x | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.<br> **Note:** if ProxyType set to `on-premise`, ForwardAuthToken property should not be set.
-Timeout |  x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or [service's logout path](#services-property) (if you have set one). 
-PreserveHostHeader | x | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
-sap-client | x | If `true`, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
+HTML5.ForwardAuthToken | x | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.<br> **Note:** if ProxyType set to `on-premise`, ForwardAuthToken property should not be set.<br> **Note:** if Authentication type is other than NoAuthentication, ForwardAuthToken property should not be set.
+HTML5.Timeout |  x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or [service's logout path](#services-property) (if you have set one). 
+HTML5.PreserveHostHeader | x | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
+HTML5.DynamicDestination | x | If `true` , the application router allows to use this destination dynamically on host or path level.
+HTML5.SetXForwardedHeaders | x | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
+sap-client | x | If provided, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
 
 
 <br />**Note:** 
 * In case destination with the same name is defined both in environment destination and destination service, the destination configuration will load from the environment.
-* When configuration of a destination is updated on runtime, the changes will not be reflected automatically to Approuter. It is required to restart  Approuter in order to apply the changes.
 * Destination service available only in Cloud Foundry.
-* Destinations on destination service instance level are not supported.
+* Destinations on destination service instance level are supported.
 
 
 ### UAA configuration
@@ -327,7 +341,27 @@ Sample configuration for additional headers:
   }
 ]
 ```
-In this case the application router will send two additional headers in the responses to the client.
+In this case, the application router sends two additional headers in the responses to the client.<br>
+Custom response headers, configured in the application router configuration file (xs-app.json) are added to the list of additional http headers.
+If the response header name already exists in the additional http headers list, the value of the response header name overrides the value of the http header.  
+
+**Caution:** For security reasons, the following headers must not be configured: authorization', 'cookie', and 'set-cookie'.
+
+### Additional cookies configuration
+
+If configured, the application router will send additional cookies in its responses to the client.
+Additional cookies can be set in the `COOKIES` environment variable.
+
+Example of configuration for cookies in the manifest.yml :
+
+```json
+  env:
+   COOKIES: >
+        { "SameSite":"None" }
+```
+In this example, the application router sets the SameSite cookie attribute to None for the JSESSIONID cookie in the responses to the client.
+
+Note: Currently, only the SameSite cookie is supported
 
 ### Plugins configuration
 
@@ -338,10 +372,10 @@ Property | Type | Optional | Description
 name | String | | The name of this plugin
 source | String/Object | | Describes a regular expression that matches the incoming [request URL](https://nodejs.org/api/http.html#http_message_url).</br> **Note:** A request matches a particular route if its path __contains__  the given pattern. To ensure the RegExp matches the complete path, use the following form: ^<path>$`. </br> **Note:** Be aware that the RegExp is applied to on the full URL including query parameters.
 target | String | x | Defines how the incoming request path will be rewritten for the corresponding destination.
-destination | String | | The name of the destination to which the incoming request should be forwarded.
-authenticationType | String | x | The value can be `xsuaa`, `basic` or `none`. The default one is `xsuaa`. When `xsuaa` is used the specified UAA server will handle the authentication (the user is redirected to the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used then no authentication is needed for this route.
+destination | String | | An alphanumeric name of the destination to which the incoming request should be forwarded.
+authenticationType | String | x | The value can be `ias`, `xsuaa`, `basic` or `none`. The default authenticationType depends on the authentication service binding: if the application router is bound to `ias (identity service)`, the default authenticationType is `ias`, else it is `xsuaa`. If `xsuaa` or `ias` are used the specified authentication server (IAS/UAA) handles the authentication (the user is redirected to the IAS's or the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used, then no authentication is needed for this route.</br>.
 csrfProtection | Boolean | x | Enable [CSRF protection](#csrf-protection) for this route. The default value is `true`.
-scope | Array/String/Object | x | Scopes are related to the permissions a user needs to access a resource. This property holds the required scopes to access the target path. Access is granted if the user has at least one of the listed scopes.
+scope | Array/String/Object | x | Scopes are related to the permissions a user needs to access a resource. This property holds the required scopes to access the target path. Access is granted if the user has at least one of the listed scopes. **Note:** Scopes are defined as part of the xsuaa service instance configuration. You can use `ias` as authenticationType and xsuaa scopes for authorization if the application router is bound to both (`ias` and `xsuaa`)."
 
 Sample content of the `plugins` environment variable:
 ```json
@@ -387,13 +421,14 @@ Application router sends `X-Frame-Options` header by default with value `SAMEORI
 - Disable sending the default header value by setting `SEND_XFRAMEOPTIONS` environment variable to `false`
 - Override the value to be sent via [additional headers configuration](#additional-headers-configuration)
 
-## Cross-Origin
+## Cross-Origin Resource Sharing configuration
 
 The CORS keyword enables you to provide support for cross-origin requests, for example, by allowing the modification of the request header. Cross-origin resource sharing (CORS) permits Web pages from other domains to make HTTP requests to your application domain, where normally such requests would automatically be refused by the Web browser's security policy.
 Cross-origin resource sharing(CORS) is a mechanism that allows restricted resources on a webpage to be requested from another domain (/protocol/port) outside the domain (/protocol/port) from which the first resource was served. 
 CORS configuration enables you to define details to control access to your application resource from other Web browsers. For example, you can specify where requests can originate from or what is allowed in the request and response headers. 
 
-The Cross-Origin configuration is provided in the `CORS` environment variable.
+The CORS configuration can be provided in the CORS environment variable or in the CORS property of the application router configuration file (xs-app.json).
+If a cross-origin resource sharing (CORS) configuration exists in both the environment variables and the application router configuration file (xs-app.json), the application router gives priority to the CORS configuration in the application router configuration file.
 
 The CORS configuration is an array of objects. Here are the properties that a CORS object can have:
 
@@ -468,20 +503,25 @@ Property | Type | Optional | Description
 source | String/Object | | Describes a regular expression that matches the incoming [request URL](https://nodejs.org/api/http.html#http_message_url).</br> **Note:** A request matches a particular route if its path __contains__  the given pattern. To ensure the RegExp matches the complete path, use the following form: ^<path>$`. </br> **Note:** Be aware that the RegExp is applied to on the full URL including query parameters.
 httpMethods | Array of upper-case HTTP methods | x | Which HTTP methods will be served by this route; the methods supported are: `DELETE`, `GET`, `HEAD`, `OPTIONS`, `POST`, `PUT`, `TRACE`, `PATCH` (no extension methods are supported). If this option is not specified, the route will serve any HTTP method.
 target | String | x | Defines how the incoming request path will be rewritten for the corresponding destination or static resource.
-destination | String | x | The name of the destination to which the incoming request should be forwarded.
+destination | String | x | The name of the destination to which the incoming request should be forwarded.  The destination name can be a static string or a regular expression that defines how to dynamically fetch the destination name from the source property or from the host.
 service | String | x | The name of the service to which the incoming request should be forwarded.
 endpoint | String | x | The name of the endpoint within the service to which the incoming request should be forwarded. Can only be used in a route containing a service attribute.
 localDir | String | x | Folder in the [working directory](#working-directory) from which the application router will serve static content **Note:** localDir routes support only HEAD and GET requests; requests with any other method receive a 405 Method Not Allowed.
+preferLocal | Boolean | x | Defines from which subaccount the destination is retrieved. If preferLocal is true, the destination is retrieved from the provider subaccount. If preferLocal is false or undefined, the destination is retrieved from the subscriber subaccount.
 replace | Object | x | An object that contains the configuration for replacing placeholders with values from the environment. *It is only relevant for static resources*. Its structure is described in [Replacements](#replacements).
 authenticationType | String | x | The value can be `xsuaa`, `basic` or `none`. The default one is `xsuaa`. When `xsuaa` is used the specified UAA server will handle the authentication (the user is redirected to the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used then no authentication is needed for this route.
 csrfProtection | Boolean | x | Enable [CSRF protection](#csrf-protection) for this route. The default value is `true`.
 scope | Array/String/Object | x | Scopes are related to the permissions a user needs to access a resource. This property holds the required scopes to access the target path.
 cacheControl | String | x | String representing the value of the `Cache-Control` header, which is set on the response when serving static resources. By default the `Cache-Control` header is not set. *It is only relevant for static resources.*
+identityProvider | String | x | The name of the identity provider to use if provided in route’s definition. If not provided, the route will be authenticated with the default identity provider. **Note:** If the authenticationType is set to Basic Authentication or None, do not define the identityProvider property.
 
 
 **Note:** The properties `destination`, `localDir` and `service` are optional, but exactly one of them must be defined. <br />
-**Note:** When using the properties `replace` or `cacheControl` it is mandatory to define the `localDir` property.
-
+**Note:** When using the property `replace` it is mandatory to define the `localDir` property. <br />
+**Note:** The cacheControl property is effective only when one of the following settings is performed:
+*	The localDir property was set
+*	A service pointing to HTML5 Application Repository ("service": "html5-apps-repo-rt") was set
+ 
 ### Example routes
 
 For example, if you have a configuration with the following destination:
@@ -553,6 +593,53 @@ The request will be forwarded to http://localhost:3001/before/a/b/after.
 **Note:** In regular expressions there is the term _capturing group_. If a part of a regular expression is surrounded with parenthesis, then what has been matched can be accessed using _$_ + the number of the group (starting from 1).
 In the last example _$1_ is mapped to the _(.*)_ part of the regular expression in the `source` property.
 
+* Route with dynamic `destination` and `target`
+
+```json
+{
+      "source": "^/destination/([^/]+)/(.*)$",
+      "target": "$2",
+      "destination": "$1",
+      "authenticationType": "xsuaa"
+    }
+```
+If you have a another destination configured:
+```json
+[
+	{
+	"name" : "myDestination",
+	"url" : "http://localhost:3002"
+	}
+]
+```
+when a request with the path /destination/myDestination/myTarget is received, the destination will be replaced with the url from "myDestination", the target will get "myTarget" and the request will be redirected to http://localhost:3002/myTarget
+
+**Note:** You can use a dynamic value (regex) or a static string for both destination and target values
+
+**Note:** The approuter first looks for the destination name in the mainfest.yaml file, and if not found, looks for it in the destination service.
+
+* Destination In Host
+
+For legacy applications that do not support relative URL paths, you need to define your URL in the following way to enable the destination to be extracted from the host
+the url should be defined in the following way:
+
+```https://<tenant>-<destination>.<customdomain>/<pathtofile>```
+
+To enable the application router to determine the destination of the URL host, a DESTINATION_HOST_PATTERN attribute must be provided as an environment variable.
+
+Example:
+When a request with the path https://myDestination.some-approuter.someDomain.com/app1/myTarget is received, the following route is used:
+```json
+ {
+      "source": "^/app1/([^/]+)/",
+      "target": "$1",
+      "destination": "*",
+      "authenticationType": "xsuaa"
+ }
+```
+ 
+ In this example, the target will be extracted from the source and the ‘$1’ value is replaced with ‘myTarget’. The destination value is extracted from the host and the ‘*’ value is replaced with ‘myDestination’.
+
 * Route with a `localDir` and no `target`
 
 ```json
@@ -585,6 +672,17 @@ under the working directory will be served.</br> **Note:** The capturing group u
   "source": "^/web-pages/",
   "localDir": "my-static-resources",
   "cacheControl": "public, max-age=1000,must-revalidate"
+}
+```
+
+* Route with `service` "html5-apps-repo-rt" and `cacheControl`
+
+```json
+{
+  "source": "^/index.html$",
+  "service": "html5-apps-repo-rt",
+  "authenticationType": "xsuaa",
+  "cacheControl":"public,max-age=1000,must-revalidate"
 }
 ```
 
@@ -633,7 +731,7 @@ In the setup above, GET requests will be routed to *dest-1*, and all the rest to
 
 Why using `httpMethods`? It is often useful to split the implementation of microservices across multiple, highly specialized applications. For example, a Java application written to serve high amounts of GET requests that return large payloads is implemented, sized, scaled and load-tested differently than applications that offer APIs to upload limited amounts of data. `httpMethods` allows you to split your REST APIs, e.g., */Things* to different applications depending on the HTTP methods of the requests, without having to make the difference visible in the URL of the endpoints.
 
-Another usecase for `httpMethods` is to "disable" parts of the REST API. For example, it may be necessary to disable some endpoints that accept DELETE for external usage. By whitelisting in the relative route only the allow methods, you can hide functionalities of your microservice that should not be consumable without having to modify the code or configurations of your service.
+Another usecase for `httpMethods` is to "disable" parts of the REST API. For example, it may be necessary to disable some endpoints that accept DELETE for external usage. By allowing only certain methods in the route, you can hide functionalities of your microservice that should not be consumable without having to modify the code or configurations of your service.
 
 **Note:** `localDir` and `httpMethods` are incompatible. The following route is invalid:
 
@@ -704,6 +802,40 @@ You can use the name of the business application directly instead of using the `
 }
 ```
 
+* Examples for Routes With `identityProvider`
+
+For example, we can define several identity providers for different types of users. In this example, there are 2 categories: hospital patients and hospital personnel: 
+1. patientsIDP – use for authenticating patients.
+2. hospitalIDP – use for authenticating all hospital personnel (doctors, nurses etc..).
+    
+We can configure 2 routes with the following identityProvider properties:
+
+```json
+[
+    { 
+	"source": "^/patients/sap/opu/odata/(.*)",
+	"target": "/sap/opu/odata$1",
+	"destination": "backend",
+	"authenticationType": "xsuaa",
+	"identityProvider": "patientsIDP"
+    },
+    {
+        "source": "^/hospital/sap/opu/odata/(.*)",
+	"target": "/sap/opu/odata$1",
+	"destination": "backend", "authenticationType": "xsuaa",
+	"identityProvider": "hospitalIDP"
+    }
+]
+```
+So, a patient who tries to log into the system will be authenticated by patientIDP, and a doctor who tries to log in will be authenticated by hospitalIDP.
+
+**Note:** After logging in using one of the identity providers, to switch to the other one it is necessary to logout and perform a new log in.
+
+**Note:** Currently, dynamic provisioning of the subscriber account identity provider is not supported.
+
+**Note:** Identity provider configuration is only supported in the client side login redirect flow.
+
+
 ## Replacements
 
 This object configures the placeholder replacement in static text resources.
@@ -711,7 +843,7 @@ This object configures the placeholder replacement in static text resources.
 Property | Type | Description
 -------- | ---- | -----------
 pathSuffixes | Array | An array containing the path suffixes that are relative to `localDir`. Only files with a path ending with any of these suffixes will be processed.
-vars | Array | A whitelist with the environment variables that will be replaced in the files matching the suffix.
+vars | Array | A list with the environment variables that will be replaced in the files matching the suffix.
 services | Object | An object describing bound services that will provide replacement values. Each property of this object is used to lookup a separate service. The property names are arbitrary. Service lookup format is described in _Service Query_ section in _@sap/xsenv_ documentation.
 
 The supported tags for replacing environment variables are: `{{ENV_VAR}}` and `{{{ENV_VAR}}}`.
@@ -832,11 +964,13 @@ sessionTimeout | Number | x | Used to set session timeout. The default is 15 min
 [logout](#logout-property) | Object | x | Provides options for a [Central Logout](#central-logout) endpoint and a page to which the client to be redirected by the UAA after logout.
 [destinations](#destinations-property) | Object | x | Additional options for your destinations (besides the ones in the `destinations` environment variable).
 [services](#services-property) | Object | x | Additional options for your business services.
+[responseHeaders](#responseHeaders-property) | Array | x | Contains the optional response headers configuration.
 [compression](#compression-property) | Object | x | Configuration regarding compressing resources before responding to the client. If the [COMPRESSION](#compression-property) environment variable is set it will overwrite existing values.
 [pluginMetadataEndpoint](#pluginmetadataendpoint-property) | String | x | Adds an endpoint that will serve a JSON representing all configured plugins.
-[whitelistService](#whitelistservice-property) | Object | x | Options for the whitelist service preventing clickjack attacks.
+[whitelistService](#whitelistservice-property) | Object | x | Options for the allowlist service preventing clickjack attacks.
 [websockets](#websockets-property) | Object | x | Options for the [web socket communication](#web-sockets).
 [errorPage](#errorpage-property) | Array | x | Optional configuration to set-up a custom error pages whenever the approuter encouters an error.
+[cors](#cors-property) | Array | x | Contains the configuration for cross-origin resource sharing.
 
 ### *welcomeFile* property
 
@@ -932,6 +1066,23 @@ It may hold:
 
 - URL path - the UAA will redirect the user back to the application router and the path will be interpreted according the configured [routes](#routes).
 
+The `logoutEndpoint` can be called with query parameters. For example:
+```javascript
+window.location.replace('/my/logout?siteId=3');
+```
+These parameters will be appended as is to the redirect url set by the `logoutPage` property.
+For example, if the logout section is the following:
+```
+"logout": {
+    "logoutEndpoint": "/logout",
+    "logoutPage": "/logoff.html"
+  },
+```
+The redirect url will end with:
+```
+/logoff.html?siteId=3
+```
+
 **Note**: The resource that matches the path should not require authentication. The property `authenticationType` should be set to `none` for that particular route.
 
 Example:
@@ -955,7 +1106,22 @@ Example:
 
 In this case *my-static-resources* (contains *logout-page.html*) is a folder with static resources in the working directory of the application router.
 
-- Absolute http(s) URL - the UAA will redirect the user to a page (or application) different from the application router.
+**Note**: Be sure that your main route in your xs-app.json resource that matches the path is not cached by browser. Therefore, the best practice here would be to model cacheControl accordingly:
+
+```json
+{
+  "routes": [
+    {
+      "source": "^/ui/index.html",
+      "target": "index.html",
+      "localDir": "web",
+      "cacheControl": "no-cache, no-store, must-revalidate"
+    }
+  ]
+}
+```
+
+- Absolute http(s) URL - the UAA will redirect the user to a page (or application) different from the application router. 
 For example:
 
 ```json
@@ -965,8 +1131,17 @@ For example:
 }
 ```
 
-**Limitation**: The `logoutPage` with absolute http(s) URL configuration can only be used in XS Advanced OnPremise Runtime.
+**Note**: UAA will execute redirect only in case redirect URL is a valid redirect-uri in xs-security.json - redirect-uris are maintained as part of the oauth2-configuration section in the UAA application security descriptor JSON file given at the creation of the service instance. For example:
 
+UAA application security descriptor:
+```
+"oauth2-configuration": {    
+    "redirect-uris":
+    [
+     "http://employees.portal"
+    ]    
+}
+```
 
 ### *destinations* property
 
@@ -1014,7 +1189,7 @@ logoutPath | String | x | The path to be used when logging out from the service.
 logoutMethod | String | x | Could be POST, PUT, GET. The default value is POST.
 
 The `logoutPath` will be called when [Central Logout](#central-logout) is triggered or a session is deleted due to timeout.
-The request to the `logoutPath` will contain additional headers, including the JWT token.
+The request to the `logoutPath` will contain additional headers, including the JWT token in header `authorization` and approuter host in header `x-approuter-host`.
 The `logoutMethod` property specifies the HTTP method with which the `logoutPath` will be requested. For example:
 ```json
 {
@@ -1025,6 +1200,26 @@ The `logoutMethod` property specifies the HTTP method with which the `logoutPath
       "logoutMethod": "GET"
     }
   }
+}
+```
+
+### *responseHeaders* property
+
+With the custom response header property, you can add headers, which the application router returns to the client in its responses.<br> 
+The property is an array of objects, each object having the following properties:
+
+Property | Type         | Optional | Description
+-------- | ------------ |:--------:| -----------
+name     | String       |          | response header name
+value    | String       |          | response header value
+
+
+Example:
+```json
+{ "responseHeaders" : [
+    {"name": "header1", "value": "value1"},
+    {"name": "header2", "value": "value2"}
+  ]
 }
 ```
 
@@ -1076,9 +1271,9 @@ Example:
 
 ### *whitelistService* property
 
-Enabling the whitelist service is used for prevention of clickjack attacks.
+The *whitelistService* property is used for enabling the allowlist service that prevents clickjack attacks.
 An endpoint accepting GET requests will be opened at the relative path configured in the `endpoint` property.
-For more details see [Whitelist service](#whitelist-service) section.
+For more details see [Allowlist service](#whitelist-service) section.
 
 Example:
 ```json
@@ -1101,6 +1296,8 @@ Example:
   }
 }
 ```
+
+To use Websockets when approuter is integrated with HTML5 Application Repository, this property should be added to the xs-app.json of the deployed HTML5 application. When an incoming request for an application in the repository goes through approuter, approuter retrieves the application's configuration from the repository. If this flag is set, approuter creates a websockets connection with the backend (the target url of the request) and acts as a proxy which delivers messages on top of ws protocol from the backend to the user and vice versa.
 
 ### *errorPage* property
 
@@ -1126,6 +1323,12 @@ Example:
 In the example above 400, 401 and 402 errors would be shown the content of  `./custom-err-4xx.html` and for 501 errors the user would see `./http_resources/custom-err-501.html`.
 
 **Note:** The errorPage conifiguration section has no effect on errors generated outside of the application router.
+
+### *cors* property
+
+With the cors property, you can support cross-origin requests.<br> 
+If a cross-origin resource sharing (CORS) configuration exists in both the environment variables and the application router configuration file (xs-app.json), the application router gives priority to the CORS configuration in the application router configuration file.<br> 
+For more information about the CORS configuration see [Cross-Origin Resource Sharing configuration](#cross-origin-resource-sharing-configuration).
 
 ### Complete example of an *xs-app.json* configuration file 
 #### Without HTML5 Application Repository integration:
@@ -1240,7 +1443,7 @@ In the example above 400, 401 and 402 errors would be shown the content of  `./c
 
 ### Forwarding Headers
 
-The application router passes the following x-forwarding-* headers to the destinations:
+The application router passes the following x-forwarding-* headers to the route targets:
 
 Header Name | Description
 ----------- | -----------
@@ -1248,6 +1451,8 @@ x-forwarded-host | Contains the *Host* header which was sent by the client to th
 x-forwarded-proto | Contains the protocol which was used by the client to connect to the application router.
 x-forwarded-for | Contains the address of the client which connects to the application router.
 x-forwarded-path | Contains the original path which was requested by the client.
+
+If a client performs a path rewriting, it sends the x-forwarded-proto, x-forwarded-host, and the x-forwarded-path headers to the application router. The values of these headers are forwarded to the route targets without modifications instead of being generated from the application router request URL. The x-forwarded-path header of a request does not impact the source pattern of routes in the xs-app.json.
 
 ### Hop-by-hop Headers
 
@@ -1267,6 +1472,9 @@ These headers are:
 In a multi-tenancy landscape, the application router will calculate the tenant id based on the value of a certain request header as follows:
  - x-custom-host header or host if EXTERNAL_REVERSE_PROXY is true
  - x-forwarded-host header or host if EXTERNAL_REVERSE_PROXY is false or not specified
+
+### Authorization Header
+* x-approuter-authorization: Contains the JWT token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
 
 ## CSRF Protection
 
@@ -1295,13 +1503,17 @@ When a tenant is subscribed/unsubscribed to/from an application, the tenant will
 * In the reuse services (e.g.: destination ), if the application is dependent on the reuse service. 
 Also, onboarding and offboarding callbacks will be triggered for the subscribed/unsubscribed application and for the reuse services.
 
+If you use IAS by binding a multi-tenant application router to an identity service instance, the subscription manager service (SMS) should be used to enable the subscription to a subscriber zone and an IAS tenant.
+Currently the SMS subscription is only possible via SMS APIs.
+
+
 ### How To Expose Approuter for SaaS Subscription
 
 #### Multi-tenancy
 The application router should be configured to handle multi-tenant access by maintaining the TENANT_HOST_PATTERN environment configuration.
 
-#### Entitle org for SaaS Registry consumption
-The SaaS Registry service should be available in your space marketplace.
+#### Entitle org for SaaS Application consumption
+The SaaS Registry service and / or the Subscription Manager service should be available in your space marketplace.
 
 #### Authorize LPS for invoking callbacks
 SaaS business applications should grant LPS the authorization to invoke the application's callbacks. Callback scope should be granted to LPS in the application router’s xs-security.json file:
@@ -1320,18 +1532,32 @@ SaaS business applications should grant LPS the authorization to invoke the appl
 ...  
 ```
 
-In the manifest.yaml, which is used for the multi-tenant application deployment, the environment variable *SAP_JWT_TRUST_ACL* should be added. Example:
-
+## Authentication with Identity Service (IAS)
+To use IAS authentication an identity service instance of plan application should be created with the following configuration:
 ```
- env:
-  SAP_JWT_TRUST_ACL: "[{\"clientid\":\"*\",\"identityzone\":\" sap-provisioning \"}]"
+{
+   "oauth2-configuration": {
+     "redirect-uris": ["https://*.<landscapeDomain>/login/callback?authType=ias"],  //Enable redirect after login
+     "post-logout-redirect-uris": ["https://*.<landscapeDomain>/*/logout.html" ]    //Enable redirect after logout
+   },
+   "xsuaa-cross-consumption":true, //Enable xsuaa trust
+   "multi-tenant":true //enable multitenancy
+}
+```
+Authentication with IAS should be performed using X.509 certificates. To achieve this the identity service should be bound to approuter using the following configuration:
+```
+{
+  "credential-type": "X509_GENERATED"
+ }
 ```
 
-#### Register an application (SaaS Registry Configuration)
+#### Register an application in SaaS Registry (SaaS Registry Configuration)
 For a customer to be able to subscribe to an application through the SAP Cloud Platform cockpit, each SaaS business application should register itself on all CF landscapes where it is deployed.
 
 To register a SaaS application in LPS, a service instance of saas-registry should be created and the SaaS business application should be bound to it.
-The instance of saas-registry is created with a configuration json - *saas-config.json:* 
+The instance of saas-registry is created with a configuration json - *saas-config.json:*.
+In the configuration.json file a url for the getDependencies and onSubscription callbacks must be provided. 
+Note that the path segment of these urls are configurable however the tenantId url variable in onSubscription callback must be provided anyway.
 
 ```
 {
@@ -1345,6 +1571,28 @@ The instance of saas-registry is created with a configuration json - *saas-confi
 }   
 
 ```
+
+#### Register an application in Subscription Manager  (Subscription Manager Configuration)
+To register an SaaS application in the subscription manager service, a service instance of the subscription manager has to be created and the SaaS business application has to be bound to it. 
+The instance of subscription manager is created with a configuration json file - sms-config.json:. In the configuration.json file, a url for the getDependencies callbacks and the onSubscription callbacks must be provided. 
+Note that the path segments of these urls are configurable.
+
+```
+{
+  "iasServiceInstanceName" : ["ias-provider-ias"], #Name of the related IAS instance
+  "applicationType": "application",
+  "xsuaaSaasApplicationServiceInstanceId": "88afb2a5-5ab3-409a-9c0c-b70e2b86b1cf", #SaaS Registry service instance id
+  "appCallbacks" : {
+    "dependenciesCallbacks" : {
+      "url" : "https://<providerZoneId>--<providerIASTenantId>.<approuterHost>.cert.<landscapeDomain>/v1.0/callback/zones/{zoneId}/dependencies"
+    },
+    "subscriptionCallbacks" : {
+      "url" : "https://<providerZoneId>--<providerIASTenantId>.<approuterHost>.cert.<landscapeDomain>/v1.0/callback/zones/{zoneId}"
+    }
+  }
+}
+```
+Note that in order to provide certificates the url domain should contain a "cert" segment.
 ## Integration with HTML5 Application Repository
 
 The application router supports seamless integration with the HTML5 Application Repository service. 
@@ -1369,9 +1617,7 @@ The following limitations apply when application router is bound to HTML5 Applic
 
 1. It is not possible to implement the "first" middleware slot to provide routes dynamically.
 2. No option apart from workingDir can be provided in application router start.
-3. Websockets are not supported.
-4. Destination property is not supported.
-5. External session management via extensibility is not supported
+3. External session management via extensibility is not supported
 
 
 **Note:** Mixed scenario of modeling part of the static content in local resources folder and also retrieving static content from HTML5 Application Repository is not supported.</br>
@@ -1420,17 +1666,31 @@ Application router supports integration with Business Services.
 Business Services are a flavour of reuse-services that expose specific information in VCAP_SERVICES credentials block that enable application router to serve Business Service UI and/or data.
 * Business Service UI must be stored in HTML5 Application Repository to be accessible from application router
 * Business Service UI must be defined as "public" to be accessible from an application router in a different space than the one from where the UI was uploaded 
-* Business Service data is served after JWT token exchange between login JWT token and Business Service token
+* Business Service data can be served using two grant types:
+  1. User Token Grant: Application router performs a token exchange between login JWT token and Business Service token and uses it to trigger a request to the Business Service endpoint
+  2. Client Credentials Grant: Application router generates a client_credentials token and uses it to trigger a request to the Business Service endpoint
 
 #### Business Service Credentials
 While binding a Business Service instance to application router the following information should be provided in VCAP_SERVICES credentials:
 
 * sap.cloud.service: Service name as referenced from xs-app.json route and business service prefix (if Business Service UI provided) - Mandatory
 * sap.cloud.service.alias: Short service name alias for user friendly URL business service prefix- Optional
-* endpoints: One or more endpoints that can be used to access Business Service data. If not provided url or uri attributes will be used - Optional
+* endpoints: One or more endpoints that can be used to access Business Service data. 
 * html5-apps-repo: html5-apps-repo.app_host_id contains one or more html5-apps-repo service instance GUIDs that can be used to retrieve Business Service UIs - Optional
 * saasregistryenabled: flag that indicates that this Business Service supports SaaS Registry subscription. If provided, application router will return this Business Service xsappname in SaaS Registry 
   getDependencies callback - Optional
+* grant_type: the grant type that should be used to trigger requests to the Business Service. Allowed values: user_token or client_credentials. 
+  Default value, in case this attribute is not provided, user_token - Optional
+* forwardiastoken: flag that indicates if, in addition to the exchanged xsuaa token, the IAS token should be forwarded as well. IAS token is forwarded in request header: `x-ias-token`
+
+
+The value of `endpoints` should be an object with the following properties:
+
+Property | Type | Optional | Default |Description
+-------- | ---- |:--------:| ---- |-----------
+url | String |   | |URL to access the Business Service data.
+timeout | Number | x | 30000ms |Positive integer representing the maximum wait time for a response (in milliseconds) from the Business Service. 
+
 
 For example:
 ```
@@ -1441,13 +1701,17 @@ For example:
      "sap.cloud.service": "com.sap.appbasic.country", 
      "sap.cloud.service.alias": "country",            
      "endpoints": {                                   
-      "countryservice": "https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/odata/v2/countryservice",
-      "countryconfig": "https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/rest/v1/countryconfig"
+      "countryservice": { "url": https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/odata/v2/countryservice"},
+      "countryconfig":  { 
+            "url": https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/rest/v1/countryconfig",
+            "timeout": 120000 
+      }
      },
      "html5-apps-repo": {                           
       "app_host_id": "1bd7c044-6cf4-4c5a-b904-2d3f44cd5569, 1cd7c044-6cf4-4c5a-b904-2d3f44cd54445"
      },
-     "saasregistryenabled": true
+     "saasregistryenabled": true,
+     "grant_type": "user_token"
    ....
 ```
 
@@ -1569,9 +1833,20 @@ The application router refreshes the JWT automatically before it expires (if the
 This can also be configured via the `JWT_REFRESH` environment variable (the value is in minutes). If `JWT_REFRESH` is set to 0 then the refresh is disabled.
 * OAuth scopes - scopes owned by the current user, used to check if the user has the scope required for each request. See `scope` in [Routes](#routes).
 * Backend session cookies - all session cookies sent by backend services.
+* Business Services OAuth tokens - JSON Web Token (JWT) exchanged and used to access re-use services bound to the application router
 
 **Note:** If the JWT is close to expiration and the session is still active a JWT refresh will be triggered in `JWT_REFRESH` minutes before expiration.
 `JWT_REFRESH` is an environment variable stating the number of minutes before the JWT expiration the refresh will be triggered. The default value is 5 minutes.
+
+## Service to Application Router
+
+The application router can receive a consumer service xsuaa JWT token and use it to access the UI and the data. The JWT token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
+
+Cookie Handling:
+In this flow client cookies are merged to backend cookies in case a backend cookie with the same key does not exist.
+
+**Note**: The xsuaa JWT token is generated with the same xsuaa service instance that is bound to the application router. 
+
 
 ## Central Logout
 
@@ -1589,17 +1864,17 @@ Central Logout can be client initiated or can be triggered due to session timeou
 
 The session timeout can be configured with the [SESSION_TIMEOUT](#session-timeout) variable through the environment.
 
-## Whitelist Service
+## Allowlist Service
 
-What is it for? A protection concept is designed in SAP that uses UI libraries and whitelist service for proper clickjack protection of applications. The general idea is that when an html page needs to be rendered in a frame, a check is done by calling the whitelist service to validate if the parent frame is allowed to render the content in a frame. The actual check is provided by the whitelist service.
+A protection concept is designed in SAP that uses UI libraries and an allowlist service for proper clickjack protection of applications. The general idea is that when an html page needs to be rendered in a frame, a check is done by calling the allowlist service to validate if the parent frame is allowed to render the content in a frame. The actual check is provided by the allowlist service.
 
 ### Enable the service
 
-To enable the service and open the service endpoint you need to configure the [whitelistService](#whitelistservice-property) property in *xs-app.json*.
+To enable the allowlist service and to open the service endpoint you need to configure the [whitelistService](#whitelistservice-property) property in *xs-app.json*.
 
 ### Configuring allowed hostnames / domains
 
-The whitelist service reads allowed hostnames and domains from the environment variable `CJ_PROTECT_WHITELIST`.
+The allowlist service reads allowed hostnames and domains from the environment variable `CJ_PROTECT_WHITELIST`.
 The content is a JSON array of object with the following properties:
 
 Property | Type | Optional | Description
@@ -1627,7 +1902,7 @@ Matching is done against provided properties. For example if only host is provid
 ### Return value
 
 The service accepts only `GET` requests and the response is a JSON object.
-The whitelist service call uses the parent origin as URI parameter (URL encoded) as follows:
+The allowlist service call uses the parent origin as URI parameter (URL encoded) as follows:
 
 ```
 GET url/to/whitelist/service?parentOrigin=https://parent.domain.com
@@ -1646,8 +1921,52 @@ The response is a JSON object with following properties:
 
 The property `active` will have value `false` only in case `CJ_PROTECT_WHITELIST` is not provided.
 
-**Note**: Keep in mind that the application router sends by default the X-Frame-Options header with value `SAMEORIGIN`, in the case whitelist service is enabled, this header value probably needs to be changed, see the [X-Frame-Options](#x-frame-options-configuration) header section for details how to change it.
+**Note**: Keep in mind that the application router sends by default the X-Frame-Options header with value `SAMEORIGIN`, in the case the allowlist service is enabled, this header value probably needs to be changed, see the [X-Frame-Options](#x-frame-options-configuration) header section for details how to change it.
 
+## User API Service
+The application router exposes a user API that returns the details of the user who is logged in. This API supports two endpoints: `/currentUser` and `/attributes`.
+The /currentUser endpoint returns all details of logged in users, while the /attributes endpoint returns the main user properties.
+The user API can be implemented by modelling an xs-app.json route using service sap-approuter-userapi.
+
+Examples:
+
+Handle both endpoints
+```
+{
+    "source": "^/user-api(.*)",
+    "target": "$1",
+    "service": "sap-approuter-userapi"
+},
+```
+
+Handle `/currentUser` endpoint only
+```
+{
+    "source": "^/user-api/currentUser$",
+    "target": "/currentUser",
+    "service": "sap-approuter-userapi"
+},
+```
+The /currentUser endpoint response has the following format:
+```
+{
+   "firstname": "John",
+   "lastname": "Doe",
+   "email": "john.doe@sap.com",
+   "name": "john.doe@sap.com",
+   "displayName": "John Doe (john.doe@sap.com)"
+}
+```
+The /attributes endpoint response has the following format:
+```
+{
+   "firstname": "John",
+   "lastname": "Doe",
+   "email": "john.doe@sap.com",
+   "name": "john.doe@sap.com"
+}
+```
+Note that the "name" property is the user ID in the identity provider, which in many cases is also the email address.
 ## Scaling
 
 The application router keeps all established sessions in local memory and does not sync them across multiple instances.
@@ -1707,6 +2026,9 @@ Note that the application router does not change the headers received from the b
 If the backend is a Node.js application which uses the _@sap/logging_ package (and also sets the 'x-request-id' header), then the value of the header
 that the client will receive will be the one coming from the backend and not the one of the application router itself.
 
+## Getting Support
+Create a BCP ticket on component `BC-XS-APR`
+
 ## Extending Application Router
 See [extending](doc/extending.md) for information how to extend the application router
 with custom logic.
@@ -1719,7 +2041,60 @@ with custom logic.
 Setting the `Content-Security-Policy` header - this is a response header which informs browsers (capable of interpreting it) about the trusted sources
 from which an application expects to load resources. This mechanism allows the client to detect and block malicious scripts injected into an application.
 A value can be set via the `httpHeaders` environment variable in the [additional headers configuration](#additional-headers-configuration).
-The value represents a security policy which contains directive-value pairs. The value of a directive is a whitelist of trusted sources.
+The value represents a security policy which contains directive-value pairs. The value of a directive is an allowlist of trusted sources.
+In case content-security-policy headers are returned from backend, they will override `httpHeaders` configuration. 
+To enable returning both (backend and local content-security-policy headers), configure environment variable `MERGE_CSP_HEADERS`.
+
 Refer to the `Content-Security-Policy` specification for more information on the header's value.
 
 **Note:** Usage of the `Content-Security-Policy` header is considered second line of defense. An application should always provide proper input validation and output encoding.
+
+### Identity Provider Configuration Best Practices
+
+#### Modelling options:
+
+1. If you to enable login in same browser window as doctor and patient you can create 2 cf routes to same approuter:
+```https://approuter-doctors.cfapps.hana.com/myapp/doctors/index.html```
+```json
+{
+  "source": "^/doctors(/.*)",
+  "target": "$1",
+  "service": "html5-apps-repo-rt",
+  "authenticationType": "xsuaa",
+  "identityProvider": "doctorsIDP"
+}
+```
+
+```https://approuter-patients.cfapps.hana.com/myapp/patients/index.html```
+```json
+{
+  "source": "^/patients(/.*)",
+  "target": "$1",
+  "service": "html5-apps-repo-rt",
+  "authenticationType": "xsuaa",
+  "identityProvider": "patrientsIDP"
+}
+```
+
+2. If you to enable single access at a time (force logout from doctors idp and re-login to patients idp), create a single cf route
+```https://approuter-hospital.cfapps.hana.com/myapp/doctors/index.html```
+```json
+{
+  "source": "^/doctors(/.*)",
+  "target": "$1",
+  "service": "html5-apps-repo-rt",
+  "authenticationType": "xsuaa",
+  "identityProvider": "doctorsIDP"
+}
+```
+ 
+```https://approuter-hospital.cfapps.hana.com/myapp/patients/index.html```
+```json
+{
+  "source": "^/patients(/.*)",
+  "target": "$1",
+  "service": "html5-apps-repo-rt",
+  "authenticationType": "xsuaa",
+  "identityProvider": "patrientsIDP"
+}
+```

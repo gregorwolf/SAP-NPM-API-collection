@@ -5,8 +5,212 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.1.1"></a>
+## 6.1.1 - 2021-02-25
 
-<a name="4.0.1"></a>
+### Fixed
+- Update _@sap/xsodata_ to v7.3.7
+
+<a name="6.1.0"></a>
+## 6.1.0 - 2021-02-22
+
+### Added
+- Node.js 14.x support
+
+### Fixed
+- Update _@sap/audit-logging_ to v4.2.0
+- Update _@sap/e2e-trace_ to v3.0.0
+- Update _@sap/fibers_ to v5.0.0-0
+- Update _@sap/fibrous_ to v0.5.0-6
+- Update _@sap/hana-client_ to v2.7.23
+- Update _@sap/hdbext_  to v7.1.3
+- Update _@sap/logging_ to v6.0.3
+- Update _@sap/node-jwt_ to v1.6.14
+- Update _@sap/node-vsi_ to v1.4.21
+- Update _lodash_ to v4.17.21
+- Update _multiparty_ to v4.2.2
+
+<a name="6.0.8"></a>
+## 6.0.8 - 2020-11-25
+
+### Fixed
+- Update _@sap/xsodata_ to v7.3.5
+- Update _@sap/logging_ to v6.0.0
+- Update _@sap/jobs-client_ to v1.6.1
+- Update _@sap/xss-secure_ to v4.0.0
+- Update _@sap/xsenv_ to v3.1.0
+- Update _@sap/xssec_ to v3.0.10
+- Update _@sap/node-jwt_ to v1.6.13
+- Update _@sap/node-vsi_ to v1.4.20
+- Update _@sap/hdbext_ to v7.0.1
+- Update _@sap/hana-client_ to v2.6.58
+- Update _nodemailer_ to v6.4.16
+- Reduced installation size significantly.
+
+<a name="6.0.7"></a>
+## 6.0.7 - 2020-10-15
+
+### Fixed
+- Update _@sap/xsodata_ to v7.3.4
+
+<a name="6.0.6"></a>
+## 6.0.6 - 2020-10-02
+
+### Fixed
+- Update _@sap/hana-client_ to v2.5.109
+- Update _@sap/xsodata_ to v7.3.3
+- Update _lodash_ to v4.17.20
+
+<a name="6.0.5"></a>
+## 6.0.5 - 2020-08-14
+
+### Fixed
+- Update _@sap/hana-client_ to v2.5.104
+- Update _@sap/xss-secure_ to v3.1.0
+- Update _@sap/hdbext_ to v7.0.0
+- Update _@sap/audit-logging_ to v3.1.1
+- Update _@sap/e2e-trace_ to v2.1.0
+- Update _@sap/instance-manager_ to v2.2.0
+- Update _@sap/logging_ to v5.3.1
+- Update _@sap/node-jwt_ to v1.6.11
+- Update _@sap/node-vsi_ to v1.4.19
+- Update _@sap/textbundle_ to v3.1.0
+- Update _@sap/xsenv_ to v3.0.0
+- Update _async_ to v3.2.0
+- Update _lodash_ to v4.17.19
+- Update _request_ to v2.88.2
+
+<a name="6.0.4"></a>
+## 6.0.4 - 2020-06-01
+
+### Fixed
+- Crash when executing a `CALL` procedure statement with `$.hdb.Connection.executeQuery` or `$.hdb.Connection.executeUpdate` when there are no output tables
+- Document some known incompatibilities in regard to jobs
+- Add missing entry in CHANGELOG.md in regard to dropping support for PowerPC big endian in v6.0.0
+- Update _@sap/node-jwt_ to v1.6.9 (contains binaries for PowerPC little endian)
+- Update _@sap/node-vsi_ to v1.4.18 (contains binaries for PowerPC little endian)
+
+<a name="6.0.3"></a>
+## 6.0.3 - 2020-05-18
+
+### Fixed
+- Update _@sap/xsodata_ to v7.0.2
+
+<a name="6.0.2"></a>
+## 6.0.2 - 2020-04-29
+
+### Fixed
+- Update _@sap/xsodata_ to v7.0.0
+- Update _@sap/node-jwt_ to v1.6.8
+- Update _@sap/node-vsi_ to v1.4.17
+- Update _@sap/hdbext_ to v6.2.2
+- Update _@sap/hana-client_ to v2.4.196
+
+<a name="6.0.1"></a>
+## 6.0.1 - 2020-04-16
+
+### Fixed
+- Adjustments to avoid _IsGlobalEmpty_ crash with `$.db` and `$.hdb` have been added
+- Performance when executing queries with `$.db` and `$.hdb` has been improved
+
+<a name="6.0.0"></a>
+## 6.0.0 - 2020-03-13
+
+### Added
+- Node.js 12.x support.
+
+### Removed
+- Support for Node.js versions 6.x and 8.x
+- Support (pre-built binaries) for PowerPC big endian.
+
+### Fixed
+- Update _@sap/xssec_ to v2.2.5
+- Update _@sap/xsodata_ to v6.0.0
+- Update _@sap/hana-client_ to v2.4.182
+- Update _@sap/hdbext_ to v6.2.0
+- Update _@sap/fibers_ to v4.0.3-0
+- Update _@sap/fibrous_ to v0.5.0-5
+- Update _@sap/node-jwt_ to v1.6.7
+- Update _@sap/node-vsi_ to v1.4.16
+
+<a name="5.3.1"></a>
+## 5.3.1 - 2019-12-17
+
+### Fixed
+- Update _@sap/xsenv_ to v2.2.0
+- Update _@sap/xsodata_ to v5.0.0
+
+<a name="5.3.0"></a>
+## 5.3.0 - 2019-11-20
+
+### Added
+- Audit logging could be disabled now (providing audit log configuration is optional).
+
+### Fixed
+- Update _@sap/hana-client_ to v2.4.167
+
+<a name="5.2.3"></a>
+## 5.2.3 - 2019-10-31
+
+### Fixed
+- Update _@sap/xsodata_ to v4.7.0
+
+<a name="5.2.2"></a>
+## 5.2.2 - 2019-10-25
+
+### Fixed
+- Update _@sap/xsodata_ to v4.6.0
+- Update _@sap/hdbext_ to v6.1.0 (adds support for synonyms as table parameters in procedures)
+
+<a name="5.2.1"></a>
+## 5.2.1 - 2019-09-19
+
+### Fixed
+- Integrate _nodemailer_ v6.2.1
+- Update dependencies
+- Locale of database connections when no locale information is present in the incoming request (the driver's default is now used)
+- `var`s and `function`s from `xsjslib`s are now enumerable
+
+<a name="5.2.0"></a>
+## 5.2.0 - 2019-06-06
+
+### Added
+- Node 10 support
+
+### Fixed
+- Updated dependencies
+
+<a name="5.1.0"></a>
+## 5.1.0 - 2019-05-20
+
+### Fixed
+- Remove `x-powered-by` response header
+- Update `nodemailer` to v4.3.1
+- Update `express` to v4.16.4
+
+### Added
+- Adopt *@sap/hana-client* v2.4.139
+
+<a name="5.0.0"></a>
+## 5.0.0 - 2019-02-05
+
+### Fixed
+- Update _@sap/xsodata_ to v4.4.0
+- Update _@sap/fibers_ to 3.1.1-1
+- Update _@sap/fibrous_ to 0.5.0-4
+
+### Removed
+- The support for Node.js v4.x
+
+<a name="4.0.2"></a>
+## 4.0.2 - 2019-01-21
+
+### Added
+- Flag to disable setting XS_APPLICATIONUSER
+
+### Fixed
+- Update _@sap/hdbext_ to v5.1.0.
+
 ## 4.0.1 - 2018-10-22
 
 ### Fixed

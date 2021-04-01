@@ -1,27 +1,11 @@
-## cds.reflect
+## @sap/cds-reflect
 
-Provides core reflection for CDS models in CSN format. 
+This package is no longer maintained.  Use the reflection API of [`@sap/cds`](https://www.npmjs.com/package/@sap/cds) instead.
 
-Find the 'official' documentation here: https://github.wdf.sap.corp/pages/cdx/API#cds-reflect
+## Documentation
 
-### Local usage in a project
+See the [API documentation](https://cap.cloud.sap/docs/cds/js-api#cds-reflect) for more details.
 
-```
-npm i https://github.wdf.sap.corp/cdx/cds-reflect.git
-```
+## License
 
-```js
-const cds = require('@sap/cds-reflect')
-
-// then use it as described in the above docs, e.g....
-let model = cds.reflect ({
-  namespace: 'foo.bar',
-  definitions: {
-    Foo: {kind:'entity', elements:{
-      bar: {type:'cds.Association', target:'foo.bar.Bar'}
-    }},
-    Bar: {kind:'entity'},
-  }
-})
-let { Foo, Bar } = m.exports
-```
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3.1.txt).

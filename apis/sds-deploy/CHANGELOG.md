@@ -1,3 +1,7 @@
+2.0.5 - 2019-01-18
+
+- Add trust self signed certificate flag
+
 2.0.4 - 2018-02-28
 
 - Add npm-shrinkwrap.json

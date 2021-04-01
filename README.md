@@ -11,6 +11,15 @@ These are the currently listed packages from SAP, found with an npm search, with
 
 You could also find 3 other packages in the node_modules, downloaded as dependencies, so I've included them.
 
+### install MKDocs and dependencies
+```
+pip install mkdocs
+pip install mkdocs-material
+pip install codehilite
+pip install mkdocs-minify-plugin
+pip install mkdocs-awesome-pages-plugin
+```
+
 <!--
 NAME                      | DESCRIPTION          | AUTHOR          | DATE       | VERSION  | KEYWORDS
 @sap/approuter            | Node.js based        | =https-support… | 2018-08-27 |          |
