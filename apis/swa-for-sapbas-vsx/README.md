@@ -81,6 +81,13 @@ export function activate(context: vscode.ExtensionContext) {
 1. If running in Appstudio and SWA chart is not enabled code will throw error into console log that it is unable to track.  
 2. Please take note that if environment is not configured correctly with privacy settings code will not send any tracking.  
 
+#### Use Different Target
+SWA can report usage to a different target.
+These reports are always anonymized.
+```js	
+swa.setTarget(<targetUrl>, <targetToken>);
+```
+
 ## Enable usage analytics reporting from VS Code
 If you have a VS Code extension that is released to VS Code marketplace and you would like to collect its usage when it runs in VS Code, do the following:
 

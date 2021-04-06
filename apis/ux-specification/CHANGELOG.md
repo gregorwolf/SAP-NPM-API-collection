@@ -8,6 +8,24 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
+## [1.84.7] - 2021-03-25
+
+### Added
+
+- Forms and the comprised fields and actions are represented in schemas for V4 object pages
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- No duplicate entries in the result lists of scripts for extracting documentation
+
+### Quality
+
 ## [1.84.6] - 2021-03-11
 
 ### Added
@@ -22,18 +40,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 - V4 tables: do not show columns in config that are empty or not maintained at all
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - Export of OVP card of the new V4 types to manifest
 - V4: Do not throw exception in case of invalid columns listed in manifest, just ignore them
 - V4 column keys adjusted: vocabulary alias shall not be part of it
 - OVP: Unknown properties are now excluded from export
-
-### Quality
 
 ## [1.84.5] - 2021-02-25
 

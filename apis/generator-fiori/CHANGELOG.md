@@ -3,6 +3,20 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.7] - 2021-04-01
+#### Added
+- Uploading a metadata document for V4 OData services is now supported.
+- Better error messaging when the destination in Business Application Studio is not available.
+
+#### Fixed
+- The freestyle floor plans now correctly generate for a CAP project.
+- Going back from deployment to the project attributes step in the wizard now retains the data between steps.
+- Adding launchpad config on the command line can now overwrite existing configuration if desired.
+
+## [1.1.6] - 2021-03-26
+#### Fixed
+- Adding Cloud Foundry deployment configuration in Business Application Studio during generation no longer results in an error.
+
 ## [1.1.5] - 2021-03-18
 #### Added
 - Freestyle SAPUI5 floor plan now supports OData V4 services.

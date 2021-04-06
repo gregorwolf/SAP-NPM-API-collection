@@ -2,6 +2,13 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.1.6] - 2021-03-31
+### Added
+- Go To References /Peek References / Show All References for the aggregared properties defined with the `@Analytics.AggregatedProperties` annotation. You can now navigate to the place where the aggregated property is referenced.
+
+### Changed
+- Vocabulary description and long description for restricted `String` values are now displayed in Quick Info window of the completion lists. 
+
 ## [1.1.3] - 2021-0304
 
 ### Added

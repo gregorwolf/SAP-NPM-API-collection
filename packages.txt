@@ -1,1 +1,13 @@
-@sap/cds-runtime
+@sap/cf-tools
+@sap/cloud-sdk-vdm-condition-contract-service
+@sap/cloud-sdk-vdm-consolidation-unit-service
+@sap/cloud-sdk-vdm-contract-accounting-business-partner-invoice-service
+@sap/cloud-sdk-vdm-contract-accounting-document-service
+@sap/cloud-sdk-vdm-enterprise-project-internal-type-service
+@sap/cloud-sdk-vdm-enterprise-project-profile-service
+@sap/generator-fiori
+@sap/swa-for-sapbas-vsx
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-fe-mockserver-middleware
+@sap/ux-ui5-tooling

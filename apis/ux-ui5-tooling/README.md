@@ -48,7 +48,7 @@ Set this parameter to get more log information.
 
 ### [**2. Proxy**](#2-proxy)
 
-The proxy middleware provides you with the capabilities to connect to diffent back-end systems or to switch the UI5 version of the application. The proxy is based on the [http-proxy-middleware](https://www.npmjs.com/package/express-http-proxy).
+The proxy middleware provides you with the capabilities to connect to diffent back-end systems or to switch the UI5 version of the application. The proxy is based on the [http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware).
 
 ### Configuration Examples
 

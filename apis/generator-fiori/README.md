@@ -93,7 +93,7 @@ Currently the generator supports the following methods to provide the Data Sourc
 
   You can use any of the services available in the SAP API Business Hub by providing your authentication details and choosing the relevant service.
   
-- **Use a Local CAP Node.js Project**
+- **Use a Local CAP Project**
 
   For Odata V4 CAP projects, you can reference an existing project and use the service in that project during generation.
   
