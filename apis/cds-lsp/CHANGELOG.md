@@ -6,13 +6,46 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 4.3.0 - 2021-02-01
+## 5.0.0 - tbd
+
+### Note
+
+This is a major release which comes with @sap/cds-compiler v2.
+It still supports cds-compiler v1 if used in your project
+or via global @sap/cds-dk.
+
 ### Added
+
+- semantic highlighting - to be enabled via user setting `cds.semanticHighlighting.enabled`
+- new API for annotation handler to support semantic highlighting
+
+### Changed
+
+- consume cds-compiler 2.1.4
+
+## 4.4.1 - 2021-03-17
+
+### Added
+
+- preliminary support for cds-compiler 2.x
+
+## 4.4.0 - 2021-03-01
+
+### Changed
+
+- optimizations for decreased memory consumption
+- consume cds-compiler 1.50.0
+
+## 4.3.0 - 2021-02-01
+
+### Added
+
 - asynchronous initialization for annotation plugins (#923)
 - find references for annotation plugins (#929)
 - revalidate workspace after an initial annotation plugin installation (#930)
 
 ### Changed
+
 - new user options for where-used request (#877)<br/>
 until now this functionality was enabled by default and now needs to be enabled via user options
   + generic annotations - where a certain annotation 'class' or 'namespace' is used
@@ -23,6 +56,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - simplified consumption of CDS textmate grammar for Jetbrain IDEs
 
 ### Fixed
+
 - dependency analysis for compilation:
 if a changed file has dependencies to the roots, but the
 root models do not cover it, no longer it will compile multiple
@@ -38,34 +72,41 @@ times
 ## 4.2.0 - 2020-11-27
 
 ### Added
+
 - quickfix for deprecated identifiers
 - support for quickfixes in annotation handler
 - internal support for incremental text updates 
 - improved supportability with extended statistic logs
 
 ### Changed
+
 - consume cds-compiler 1.46.4
 
 ### Fixes
+
 - for annotation handler and others
 
 ## 4.1.2 - 2020-11-12
 
 ### Changed
+
 - cds-lsp itself no longer dynamically registers file system watching for VSCode, BAS and Eclipse, as those configure it client-side
 
 ### Fixes
+
 - bug fixes
 
 ## 4.1.1 - 2020-11-06
 
 ### Fixed
+
 - support for mono repo file system layouts did not work in certain cases
 - completion proposals for annotations were not shown at top of the list if inside an annotation
 
 ## 4.1.0 - 2020-10-30
 
 ### Added
+
 - support mono repo file system layouts
 - user option to format snippets after completion 
 - user option to disable odata plugin
@@ -73,24 +114,27 @@ times
 - user option for omitRedundantTypesInSnippets for annotations
 
 ### Changed
+
 - install/update contributions completely async
 - completion no longer suggests types when values are meant
 - project cds-lsp settings overrule all
 - consume cds-compiler 1.45.0
 
 ### Fixed
+
 - validation of annotation plugins led to 100% cpu load
 - globally installed cds was not reliably found
 - code completion for annotation plugins did not work inside annotations at @ characters
 - bug fixes
 
 ### Note
-From version 4.1.0 on, @sap/cds-lsp requires NodeJS 12.14+
 
+From version 4.1.0 on, @sap/cds-lsp requires NodeJS 12.14+
 
 ## 4.0.0 - 2020-09-30
 
 ### Added
+
 - Plugin support for domain specific annotation handlers, featuring
   - diagnostics
   - code completion
@@ -106,18 +150,20 @@ From version 4.1.0 on, @sap/cds-lsp requires NodeJS 12.14+
 - `action`s and their parameters are now indexed and support code navigation, hover etc.
 
 ### Changed
+
 - consume cds-compiler 1.42.0
 
 ### Fixed
+
 - bug fixes
 
 ### Note
 From version 4.0.0 on, @sap/cds-lsp requires NodeJS 12.8+ (was 10.16+)
 
-
 ## 3.5.0 - 2020-09-01
 
 ### Added
+
 - Code completion proposes identifiers not yet imported in current file and generates corresponding `using` statement
   - user setting: minimum number of characters required to propose those identifiers (`cds.completion.workspaceSymbols.minPrefixLength`). Default is -1 (=off)
   - user setting: limit number of global identifiers (`cds.completion.workspaceSymbols.maxProposals`). Default is -1 (=unlimited)
@@ -125,11 +171,13 @@ From version 4.0.0 on, @sap/cds-lsp requires NodeJS 12.8+ (was 10.16+)
 - Code formatting: support configuration of alignment of COMPOSITION structs (option `alignCompositionStructToRight`)
 
 ### Changed
+
 - consume cds-compiler 1.39.0
 
 ## 3.4.3 - 2020-08-05
 
 ### Changed
+
 - consume cds-compiler 1.35.0
 
 ## 3.4.2 - 2020-07-28
@@ -140,9 +188,11 @@ From version 4.0.0 on, @sap/cds-lsp requires NodeJS 12.8+ (was 10.16+)
 - query for workspace symbols allows new option `/f` to consider fully qualified name
 
 ### Changed
+
 - consume cds-compiler 1.34.0
 
 ### Fixed
+
 - bug fixes
 
 ## 3.4.0 - 2020-07-10
@@ -164,10 +214,12 @@ From version 4.0.0 on, @sap/cds-lsp requires NodeJS 12.8+ (was 10.16+)
 - added INSTALLATION.md for 3rd party IDE integrations
 
 ### Changed
+
 - consume cds-compiler 1.32.0
 - updated README.md with feature list
 
 ### Fixed
+
 - enum keyword was wrongly syntax highlighted
 - when an ignored source file is closed, potential messages are wiped
 - annotations of extensions were not indexed
@@ -176,51 +228,69 @@ From version 4.0.0 on, @sap/cds-lsp requires NodeJS 12.8+ (was 10.16+)
 ## 3.3.2 - 2020-04-26
 
 ### Changed
-* remove optional odata annotation handler due to build issues
+
+- remove optional odata annotation handler due to build issues
 
 ## 3.3.1 - 2020-04-24
+
 ### Changed
-* consume cds-compiler 1.26.2
+
+- consume cds-compiler 1.26.2
 
 ## 3.3.0 - 2020-04-24
+
 ### Added
-* use global @sap/cds/common if locally not available
+
+- use global @sap/cds/common if locally not available
 
 ### Changed
-* consume cds-compiler 1.26.0
-* (alpha): diagnostics and hover support for external annotation providers 
+
+- consume cds-compiler 1.26.0
+- (alpha): diagnostics and hover support for external annotation providers
 
 ### Fixed
-* Minor fixes and improvements
+
+- Minor fixes and improvements
 
 ## 3.2.1 - 2020-03-30
+
 ### Changed
-* consume cds-compiler 1.24.4
+
+- consume cds-compiler 1.24.4
 
 ## 3.2.0 - 2020-03-16
+
 ### Changed
+
 * remove option for compiler location - LSP will always search Project->Global(via DK&CDS)->BuiltIn now
-* remove irrelevent formatting option (trimTrailingWhitespace)
-* consume cds-compiler 1.24.3
+- remove irrelevent formatting option (trimTrailingWhitespace)
+- consume cds-compiler 1.24.3
 
 ### Fixed
-* formatting failed (seen in Eclipse, VSCode works) due to off-by-one error
-* global npm root for Business App Studio was not found with compiler.location option ProjectThenGlobalThenBuiltIn
+
+- formatting failed (seen in Eclipse, VSCode works) due to off-by-one error
+- global npm root for Business App Studio was not found with compiler.location option ProjectThenGlobalThenBuiltIn
 
 ## 3.1.4 - 2020-03-04
+
 ### Added
-* _extend_ definitions are now shown in outline and workspace symbols
-* api (alpha) for external annotation providers
+
+- _extend_ definitions are now shown in outline and workspace symbols
+- api (alpha) for external annotation providers
 
 ### Changed
-* consume cds-compiler 1.24.0
+
+- consume cds-compiler 1.24.0
 
 ## 3.1.3 - 2020-02-24
+
 ### Added
-* pick up compiler and env via global cds-dk if cds not (yet) in project
+
+- pick up compiler and env via global cds-dk if cds not (yet) in project
 
 ### Changed
-* consume cds-compiler 1.23.2
+
+- consume cds-compiler 1.23.2
 
 ## 3.1.2 - 2020-02-11
 

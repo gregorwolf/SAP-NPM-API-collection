@@ -1,17 +1,15 @@
 # rewrite-not-supported
 
-The compiler is not able to rewrite ON conditions for some associations.
+The compiler isn’t able to rewrite ON conditions for some associations.
 They have to be explicitly defined by the user.
 
-The message's severity is `Warning` but will be raised to `Error` in the SQL,
-HANA and OData backends.  These backends require associations to have proper
-ON conditions.
+The message's severity is `Error`.
 
 ## Example
 
 Erroneous code example:
 
-```
+```cdl
 entity Base {
   key id     : Integer;
   primary    : Association to Primary on primary.id = primary_id;
@@ -31,20 +29,20 @@ entity Secondary {
 
 entity View as select from Base {
   id,
-  primary.secondary // Error: The ON condition is not rewritten here
+  primary.secondary // Error: The ON condition isn’t rewritten here
 };
 ```
 
-In the example above the ON condition in `View` of `secondary` cannot be
+In the previous example, the ON condition in `View` of `secondary` can’t be
 automatically rewritten because the associations are unmanaged and the
-compiler cannot determine how to properly rewrite them for `View`.
+compiler can’t determine how to properly rewrite them for `View`.
 
 ## Fix
 
 To fix the issue, you have to provide an explicit ON condition.  This can be
 achieved by using the `redirected to` statement:
 
-```
+```cdl
 entity View as select from Base {
   id,
   primary.secondary_id,
@@ -53,6 +51,6 @@ entity View as select from Base {
 };
 ```
 
-In the corrected view above the association `secondary` gets an explicit ON
+In the corrected view above, the association `secondary` gets an explicit ON
 condition.  For this to work it is necessary to add `secondary_id` to the
-selection list, i.e. we have to explicitly use the foreign key.
+selection list, that means, we have to explicitly use the foreign key.

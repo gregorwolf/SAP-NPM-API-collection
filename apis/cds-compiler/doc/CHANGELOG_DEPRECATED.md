@@ -1,0 +1,76 @@
+# ChangeLog of deprecated Features for cdx compiler and backends
+
+<!-- markdownlint-disable MD024 -->
+<!-- (no-duplicate-heading)-->
+
+Note: `deprecated` features are listed in this ChangeLog just for information.
+`deprecated` features will be removed after a certain grace period.
+
+**Use `deprecated` features only transitional in productive mode.**
+
+**When the `deprecated` option is set, the `beta` option is ignored,
+and several new features are not available.**
+
+## Version 2.0.16
+
+## Added `downgradableErrors`
+
+Allow to change the severity of some errors which should stay to be an error.
+
+## Added `shortAutoexposed`
+
+When this option is set (and `generatedEntityNameWithUnderscore`), the names of
+autoexposed entities are calculated according to the default compiler v1
+behavior (without v1 options `dependentAutoexposed` and `longAutoexposed`).
+
+## Version 2.0.10
+
+## Added `longAutoexposed`
+
+When this option is set (and `generatedEntityNameWithUnderscore`),
+the names of autoexposed entities are calculated according to the
+compiler v1 option `longAutoexposed`.
+
+## Added `generatedEntityNameWithUnderscore`
+
+Keep using `_` is separator for generated autoexposed entities and for entities
+created for managed compositions.  It also disables a definition `A.B.C` if `A`
+or `A.B` is a definition other than a context or service (v1 behavior).
+
+## Version 2.0.4-ms1
+
+### Added `createLocalizedViews`
+
+Add localized convenience views in `for.odata`.
+
+### Added `unmanagedUpInComponent`
+
+Render association `up_` in composition component unmanaged.
+
+## Version 2.0.2-ms1
+
+### Added `renderVirtualElements`
+
+Virtual elements are no longer rendered in views as `null as <id>` or added to potentially generated
+draft tables. This behavior can be turned off with `renderVirtualElements` for backward compatibility.
+
+### Added `parensAsStrings`
+
+Represent parentheses in expressions with `'('` and `')'` in `xpr` arrays
+instead of using nested `xpr`s or `list`.
+
+### Added `v1KeysForTemporal`
+
+Render old and broken temporal EDM API.
+
+### Added `noElementsExpansion`
+
+When setting it, association in sub elements are not automatically redirected,
+and the sub elements cannot be annotated indivually.
+
+Do not use this.  Setting it might avoid some compile errors,
+but in most cases the reported errors are rightly reported.
+
+### Added `projectionAsQuery`
+
+Render `projection` as `query` in CSN.

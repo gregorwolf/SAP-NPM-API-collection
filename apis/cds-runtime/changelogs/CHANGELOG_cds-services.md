@@ -818,7 +818,7 @@ context
 - API to support the implementation of authorization restrictions
 - Local service client
 - Support for to-one-navigation in $filter
-- Support for annotation @Search.defaultSearchElement to restrict searchable columns in $search
+- Support for annotation `@Search.defaultSearchElement` to restrict searchable columns in `$search`
 - Support for sap-language query parameter
 - Support authorization annotations
 - Hooks to add custom logic before and after rollback event

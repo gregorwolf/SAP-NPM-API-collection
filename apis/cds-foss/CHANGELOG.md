@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.3.0 - 2021-04-01
+
+### Changed
+
+- Bumped dependencies to current versions
+
+## Version 2.2.2 - 2021-03-17
+
+### Fixed
+
+- Added missing entry for `index.js` in the package's `files` list
+
 ## Version 2.2.1 - 2021-02-19
 
 ### Fixed

@@ -7,10 +7,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 1.2.0 - 2021-03-30
+
+
+### Added
+- Multitenant applications now support extensions of entities using schema evolution based on `.hdbmigrationtable` files.
+- It is now possible to specify limits for the number of extension fields per entity.
+If no limit is specified, the number of extension fields is not limited.\
+If this list exists, only entities and services contained in this list can be extended. 
+```
+"mtx" : {
+  "extension-allowlist": [
+    {
+        'for': ['my.bookshop.Authors', 'my.bookshop.Books'],
+        'new-fields': 2
+    },
+    {
+        'for': ['CatalogService']
+    }
+  ]
+}
+```
+
 ## Version 1.1.5 - 2021-03-09
-
-## Version 1.1.4 - 2021-03-09
-
 
 ### Fixed
 - The extension API `/mtx/v1/content` now returns a correct json if a collection is requested with any version of 

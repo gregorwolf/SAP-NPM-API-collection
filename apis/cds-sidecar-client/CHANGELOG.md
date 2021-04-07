@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 1.1.14 - 2021-03-29
+
+### Added
+
+- Compatibility with CDS Compiler v2.
+
+## Version 1.1.13 - 2021-02-26
+
+### Added
+
+- Include original server error message in case of HTTP errors.
+
 ## Version 1.1.11 - 2020-11-27
 
 ### Added

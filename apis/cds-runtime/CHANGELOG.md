@@ -6,6 +6,122 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.0.4 - 2021-04-07
+
+### Fixed
+
+- Empty inserts for nested composition of one
+- Preserve children if multiple compositions to same target
+
+## Version 3.0.3 - 2021-04-01
+
+### Added
+
+- Support for `application/*+json` when parsing events through webhooks
+
+### Fixed
+
+- Navigation properties in `$select` inside of `$expand` query option
+
+## Version 3.0.2 - 2021-03-30
+
+### Added
+
+- Support for `{xpr:...}` as argument of a function in SQL Builder
+- Aliased parameters of a function call using an OData inline parameter syntax are provided as a request payload in `req.data`
+- Skip conversion to UTC on SAP HANA during insert via `.rows()`, `.values()`, or `.as()` with `cds.env.features.preserve_timestamps = true`
+- Beta version of new URL to CQN parser
+  + Use during read requests when serving to REST via `cds.env.features.rest_new_parser`
+  + Known limitations:
+    + Falsy key path segments in navigations, for example, `GET /Books/0/author`
+    + `ne` operator in `$filter` does not match `NULL`
+    + Nested functions, for example, `contains(toupper(...))`
+    + `$select` not filtered for duplicates, for example, `$select=ID,*` -> `columns: ['ID', 'ID', ...]`
+  + Not supported when serving to REST:
+    + Deep navigations, for example, `GET /Books/1/author/books`
+    + `/$count`
+    + `$apply`
+
+### Changed
+
+- Minimum required Node.js version is now 12. Support for Node.js v10 is dropped.
+- Draft handlers registered via `cds.ApplicationService.registerFioriHandlers()` which gets called in `cds.ApplicationService.init()`
+- OData validation is skipped by default. It can be explicitly turned on by setting `cds.odata.skipValidation` config to `false`.
+
+### Fixed
+
+- Accept header matching during media stream
+- Time delta for Date type in temporals
+- Function calls using an OData inline parameter syntax with aliased parameters of primitive types
+- Path navigation in `$orderby` expressions when using SAP HANA functions
+
+### Removed
+
+- Blind path-level logs by odata-server
+
+## Version 3.0.1 - 2021-03-25
+
+### Added
+
+- `PUT` primitive properties via OData
+- Optimistic concurrency control for primitive properties
+- Data for virtual properties filtered out on write to draft tables
+- Annotation `@odata.draft.enclosed`
+
+### Changed
+
+- Grants of `@restrict` in draft are derived from the CRUD vocabulary
+- Unnecessary `@restrict` checks for actions on drafts are skipped ("in process by user" check remains)
+- Drafts are deleted after the active version was created/ updated
+- Skip "with parameters" clause if no order by clause or all columns in the order by clause are not strings
+  + Deactivate during two-month grace period via compatible feature flag `cds.env.features.skip_with_parameters = false`
+
+### Fixed
+
+- Reading `SiblingEntity` via navigation of a draft enabled entity
+- Inline defined return types of custom actions/functions in REST
+- Multiple integrity errors in one changeset
+- `@Capabilities.NavigationRestrictions` considers "deep" navigation paths
+- Add ETags to result based on `@odata.etag` in CSN alone
+- Reading media stream with accept header
+
+### Removed
+
+## Version 3.0.0 - 2021-03-19
+
+### Added
+
+- SAP Event Mesh: Webhook support
+- SAP Event Mesh: Webhook support in multitenancy
+- Messaging: Remove obsolete topics on queue creation
+- Additional convenience look-ups of `messages.properties` files next to models
+- Support for the `@cds.search` annotation to allow a different set of searchable elements in the `$search` OData query option and to extend the search to associated entities (currently not supported)
+- Additional credentials look-up with label `service-manager` in SAP HANA pool
+- Support for new "Locked by Another User" request of draft choreography
+
+### Changed
+
+- By default, only elements typed as `string` are searchable via the `$search` OData query option to improve performance
+- Deprecate `@Search.defaultSearchElement` annotation in favor of the `@cds.search` annotation
+- Ignore `not null` annotation on nested structured types in OData x4 flavor (`cds.env.odata.flavor = x4`) if its parent structure is optional
+- Smart quoting based on database-specific keywords exported by `@sap/cds-compiler`
+  + Deactivate during two-month grace period via compatible feature flag `cds.env.features.compiler_keywords = false`
+
+### Fixed
+
+- Using path navigations in `$filter` for SAP HANA-based services configured with `cds.odata.flavor = x4`
+- Only `messaging` will deal with domain-level events
+- Read access using nondraft enabled projections on draft children
+- Debug message when metadata size exceeds cache limit
+- Order by using functions in combination with group by
+- Streaming by navigation
+- Alignment of temporal data with compiler v2 format
+- Calculate `DraftIsCreatedByMe` and `DraftIsProcessedByMe` properties of `DraftAdministrativeData` by reading drafts
+
+### Removed
+
+- Support for version 2 of the `@sap/xssec` package, as it is deprecated. Now, only version 3 of the package is supported.
+
 ## Version 2.9.9 - 2021-04-01
 
 ### Fixed
@@ -23,7 +139,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - Reserved keywords for smart quoting
-- Datetime conversion for HANA in case of `INSERT...as(SELECT...)`
+- Datetime conversion for SAP HANA in case of `INSERT...as(SELECT...)`
 
 ## Version 2.9.6 - 2021-03-12
 
@@ -64,8 +180,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Namespace lookup in EDM for OData configuration
 - Find previous entity for inherited authorization restrictions
-- Use extended model in generic CRUD post processing
-- Clone headers before sanatizing for logs
+- Use extended model in generic CRUD post-processing
+- Clone headers before sanitizing for logs
 
 ## Version 2.9.0 - 2021-02-24
 
@@ -84,31 +200,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- The default implementation of `enterprise-messaging` is now multitenant aware. Currently only emit is implemented. The old, shared variant is available through `enterprise-messaging-shared`.
+- The default implementation of enterprise messaging (`enterprise-messaging`) is now multitenant aware.
+  Currently only emit is implemented. The old, shared variant is available through `enterprise-messaging-shared`.
 - Skip localization on pure count queries
 - Managed properties of base entity are updated if any composition target is updated
-  - Deactivate during two month grace period via compat feature flag `cds.env.features.update_header_item = false`
-- Default text templates for element assertions do not contain an element name as a parameter anymore.
+  - Deactivate during two-month grace period via compatible feature flag `cds.env.features.update_header_item = false`
+- Default text templates for element assertions don't contain an element name as a parameter anymore
 - Custom authorization header can now be set in service consumption
-- Managed associations-to-one are not expanded in the result of a POST request in case of `cds.odata.flavor = v4`
-  - Deactivate during two month grace period via compat feature flag `cds.env.features.skip_expand_assoc = false`
-- Implicit autoexposed entities inherit authorization restrictions from parent
-- Modifying an entity without authorization results in HTTP code 403 instead of 404
+- Managed associations-to-one aren't expanded in the result of a POST request in case of `cds.odata.flavor = v4`
+  - Deactivate during two-month grace period via compatible feature flag `cds.env.features.skip_expand_assoc = false`
+- Implicit auto exposed entities inherit authorization restrictions from parent
+- Modifying an entity without authorization results in HTTP code `403` instead of `404`
 - Instance-based `@restrict.where` clauses are ignored during `CREATE` (instead of rejecting the request)
-  - Deactivate during two month grace period via compat feature flag `cds.env.features.skip_restrict_where = false`
+  - Deactivate during two-month grace period via compatible feature flag `cds.env.features.skip_restrict_where = false`
 
 ### Fixed
 
 - `req.diff` for deep hierarchies
-- DateTime conversion for `INSERT` statements using `.columns` and `.values/.rows` on `SAP HANA`
+- DateTime conversion for `INSERT` statements using `.columns` and `.values/.rows` on SAP HANA
 - OData V4 error response target for bound actions
 - Requests using `$search` query option on draft enabled active entities
-- Path navigations in `$filter` are not considered as aggregated away when used in combination with `$apply`
+- Path navigations in `$filter` aren't considered as aggregated away when used in combination with `$apply`
 - Draft: Entities with expired draft can now be deleted
 - `Edm.Time`, `Edm.DateTime` and `Edm.DateTimeOffset` serialization issues when using external OData V2 service
 - Primitive property access of Singletons via URL like `/Singleton/name`
-- Path navigation in `$orderby` expressions for draft-enabled services on `SAP HANA`
-- Result of a `SELECT.one` query is an object (instead of an array)
+- Path navigation in `$orderby` expressions for draft-enabled services on SAP HANA
 
 ### Removed
 
@@ -118,7 +234,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- Handling of OData query option `$skiptoken` when URL encoded (i.e., `%24skiptoken`)
+- Handling of OData query option `$skiptoken` when URL encoded (that is, `%24skiptoken`)
 
 ## Version 2.8.5 - 2021-02-16
 
@@ -177,8 +293,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Format assertion exception for UUIDs in MTX's `ProvisioningService.tenant` (old SAP Cloud Platform subaccount IDs aren't UUIDs)
 - Draft scenario all active is extended
 - Skip integrity checks via:
-  + `@assert.integrity: false` on entity and service level (was only on association level)
-  + `cds.env.features.assert_integrity = false` as global config (private `cds.runtime.skipIntegrity` will be removed)
+  - `@assert.integrity: false` on entity and service level (was only on association level)
+  - `cds.env.features.assert_integrity = false` as global config (private `cds.runtime.skipIntegrity` will be removed)
 - Skip SAP HANA's localization feature (`WITH PARAMETERS ('LOCALE' = '<locale>')`) via `cds.env.features.with_parameters = false`
 - Deprecation warning for `req.run`
 
@@ -211,7 +327,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Post-processing of arrayed elements in Database Service
 - Duplicated key condition in DELETE CQN
 - To be checked data for DELETE integrity checks in actions was wrong
-- Fixed missing != comparator for query generation of remote services
+- Fixed missing `!=` comparator for query generation of remote services
 - CSN modification during resolve view
 - Clash of language-code-like namespaces (for example, `de.` or `fr.`) with localized entities
 - `hdb`'s error event invalidates client
@@ -756,9 +872,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Messaging: The `prefix` option in the service's credentials is prepended to events with a `@topic` annotation.
 - Messaging: The syntax to emit events with headers changed:
   ```js
-  srv.emit({ event: 'yourEvent',
-           data: { some: 'data' },
-           headers: { some: 'headers' }})
+  srv.emit({ event: 'yourEvent', data: { some: 'data' }, headers: { some: 'headers' } })
   ```
 - Messaging: The default file for `file-based-messaging` is `~/.cds-msg-box`.
 - Streamlined handler registration: `srv.before/on/after(<event>, <entity>?, <handler>)`
@@ -767,7 +881,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
   - `srv.before/on/after(*, <handler>)` matches all as shorthand
 - `INSERT` statements return an object or array of objects (in case of bulk) with the number of affected rows as result of `valueOf()`, as well as the keys of the inserted entities:
   ```js
-  const res = await srv.run(INSERT.into('Books').entries([{ ID: 1, title: 'one' }, { ID: 2, title: 'two' }]))
+  const res = await srv.run(
+    INSERT.into('Books').entries([
+      { ID: 1, title: 'one' },
+      { ID: 2, title: 'two' }
+    ])
+  )
   res > 1 // > true
   res.keys // > [{ ID: 1 }, { ID: 2 }]
   ```

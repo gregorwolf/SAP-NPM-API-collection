@@ -4,6 +4,113 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.0.4 - 2021-04-07
+
+### Fixed
+
+- `cds build` no longer fails with a `task.apply is not a function` error when used in an npm script.
+
+## Version 5.0.3 - 2021-04-06
+
+### Fixed
+
+- `cds.compile` got thoroughly cleaned up and enhanced as the single API to compile models
+- `cds.compile.to.cdl` was missing in 5.0.2
+- `cds build` no longer uses reflected CSN which caused odata and EDMX transformation to fail.
+  As a consequence language specific EDMX files were missing.
+
+### Removed
+
+The following undocumented, internal functions have been removed.
+In case you spotted and used them, please replace as given below.
+
+- `cds.compile.cdl` &rarr; use `cds.compile` instead
+- `cds.compile.to.parsed.csn` &rarr; use `cds.parse` instead
+- `cds.compile.to.xtended.csn` &rarr; use `cds.compile` instead
+- `cds.compile.to.inferred.csn` &rarr; use `cds.compile` instead
+- `cds.compile.to.hdi` &rarr; use `cds.compile.to.hdbtable` instead
+- `cds.compile.to.hana` &rarr; use `cds.compile.to.hdbcds` instead
+- `cds.compile.to.xsuaa` &rarr; still available in CLI thru `cds compile -2 xsuaa`
+- `cds.compile.to.serviceinfo` &rarr; still available in CLI thru `cds compile -2 serviceinfo`
+- `cds.compile.to['edmx-v2']` &rarr; still available in CLI thru `cds compile -2 edmx-v2`
+- `cds.compile.to['edmx-v4']` &rarr; still available in CLI thru `cds compile -2 edmx-v4`
+- `cds.compile.to['edmx-w4']` &rarr; still available in CLI thru `cds compile -2 edmx-w4`
+- `cds.compile.to['edmx-x4']` &rarr; still available in CLI thru `cds compile -2 edmx-x4`
+
+
+## Version 5.0.2 - 2021-03-30
+
+### Added
+
+- Ensure correlation id and set intermediate `cds.context` in default `server.js`
+
+### Fixed
+
+- `cds build` no longer aborts for CAP Java SDK based projects with `compiler version 2 not supported` message.
+
+## Version 5.0.1 - 2021-03-25
+
+### Added
+
+- `cds.load.properties` and `cds.parse.properties` to load and parse content in .properties format
+- `cds.load.csv` and `cds.parse.csv` to load and parse csv content
+- `CDL`, `CQL`, and `CXL` as new global methods for tagged template strings generating [CSN], [CQN], or [CXN] objects
+- Fluent API classes provided through `cds.ql` also support tagged template strings now in these methods: `SELECT`, `SELECT.from`, `SELECT.where`, `UPDATE`, `UPDATE.with`, `UPDATE.where`, `INSERT.into`, `DELETE.from`, `DELETE.where`
+
+Example:
+```js
+let Authors = SELECT `ID` .from `Authors` .where `name like ${'%Brontë%'}`
+let Books = SELECT `ID,title` .from `Books` .where `author_ID in ${Authors}`
+await UPDATE`Books`.with`x = x-${amount}`.where`ID=${ID}`
+```
+
+### Changed
+
+- Minimum required Node.js version is now 12.  Support for Node.js 10 is dropped.
+
+### Fixed
+
+- Fixed race conditions in `cds.serve` leading to broken services
+- Fixed typos in API type definitions
+- Fixed `cds.reflect.forall` for CSN extensions
+- Fixed orphaned `_texts` proxies, causing init from csv to fail with "no such table" errors
+
+## Version 5.0.0 - 2021-03-19
+
+### Added
+
+- MTX APIs are now automatically served when `cds.requires.multitenancy` exists. This renders an application-level server start script for multitenancy unnecessary.
+- Auto-connect to a live reload server started by `cds watch`
+- `cds.parse` now offers tagged template strings. E.g. const {CDL,CQL,CXL} = cds.parse; CQL`SELECT from Books where stock > 111`.
+- `cds.log` now supports config options for Loggers and log levels via `cds.env.log`
+- `cds.entity.draft` as a stable way to read from draft data
+- `cds.linked` now correctly links, events, action params and results, which were not linked before
+- `cds.env.features.skip_unused = 'all'` removes all definitions from csn which are not reachable by defined services. Especially when using comprehensive reuse models, like ODM, this significantly reduces both, memory consumption as well as excess tables and views in databases
+
+### Changed
+
+- Upgraded major version of dependency `@sap/cds-compiler`
+- `cds.requires.db.multiTenant` is deprecated. Multitenancy can now be enabled by adding a `cds.requires.multitenancy` configuration.
+- `cds deploy --to hana` no longer adds a driver for SAP HANA to `package.json`.  This can be done with `cds add hana`.
+- `cds deploy --to hana` no longer adds configuration for SAP HANA to `package.json`.  This can be done with `cds add hana`.
+- `cds deploy --to hana` drops support for the classic CAP Java runtime, i.e. longer writes credentials for SAP HANA to `connection.properties`.
+- Fiori preview now [loads and shows data initially](https://sapui5.hana.ondemand.com/1.84.0/#/topic/1cf5c7f5b81c4cb3ba98fd14314d4504) in its list page
+- I18n template strings now are replaced in EDMX documents such that they retain their surrounding string.  For example, the `"{i18n>key1} - {i18n>key2}"` template results in `"value1 - value2"`, while previously the first match replaced the entire string, leading to `"value1"`.  This is helpful for the [`Template` strings of `UI.ConnectedFields`](https://github.com/SAP/odata-vocabularies/blob/ac9fe832df9b8c8d35517c637dba7c0ac2753b0f/vocabularies/UI.xml#L168).
+- CDS drops compiler v2 support for classic CAP Java runtime projects. `cds build` returns an error if compiler version 2 is used. For further details regarding migration to CAP Java SDK runtime see https://cap.cloud.sap/docs/java/migration.
+- `req.timestamp` is a Date object now; was a UNIX epoch integer before, i.e., Date.now()
+
+### Fixed
+
+- `cds.connect.to` no longer returns `undefined` in concurrent cases where `connect` is called again while a datasource is about to be connected.
+- `cds.log` formerly wrote log and debug output to stderr, now writes that to stdout
+- `cds.server` now accepts port `0` as a number
+- Race conditions in `cds.serve` and `cds.connect` lead to wrong Service instances to lost handler registrations
+
+### Removed
+
+- Compiler non-snapi support &rarr; see `cds.env.features.snapi` option
+- In recent releases we added methods `cds.compile.to.hdbtabledata` and `cds.compile.to.hdbmigration`, intentionally undocumented, as they were meant to be private. Nobody should ever have used these methods, hence nobody should be affected by their removal.
+
 ## Version 4.6.5 - 2021-03-12
 
 ### Fixed
@@ -20,11 +127,8 @@
 
 ## Version 4.6.3 - 2021-02-26
 
-Version bump for release.
-
-## Version 4.6.2 - 2021-02-25
-
 ### Added
+
 - [beta] `cds build` for SAP HANA now provides schema evolution support for multitenant application extensions.
 
 ### Fixed
@@ -35,10 +139,6 @@ Version bump for release.
   - Deactivate during two month grace period via compat feature flag `cds.env.features.arrayed_after = true`
 
 ## Version 4.6.1 - 2021-02-11
-
-Version bump for internal milestone.
-
-## Version 4.6.0 - 2021-02-08
 
 ### Added
 
@@ -465,7 +565,7 @@ Nevertheless, they are listed here for your reference.
 - `cds version` option `-ls` prints an `npm ls` subtree.
 - `cds serve` / `run` now also accept package names as arguments, e.g. `cds serve --project @capire/bookshop`.
 - `cds compile` option `--parse` provides minimal, parsed-only CSN output.
-- New Node.js method `cds.compile.cdl()` allows compiling CDS sources in-process.
+- New Node.js method `cds.compile()` allows compiling CDS sources in-process.
 - `cds build` now supports cds configuration `requires.db.kind:"sql"` which allows seamless production deployments using HANA db and development deployments using sqlite db.
 - Default maximum query size limit of 1000 (overridable via `@cds.query.limit.max`).
 - Improved error message during `cds deploy` on Windows when `SAP CommonCryptoLib` is missing.
@@ -477,7 +577,7 @@ Nevertheless, they are listed here for your reference.
 ## Changed
 
 - Node.js method `cds.parse()` has been changed to now truely return parsed-only models, with extensions not applied yet.
-**Note:** If you'need the former (erroneous) behaviour, please use `cds.compile.cdl` for that from now on.
+**Note:** If you'need the former (erroneous) behaviour, please use `cds.compile` for that from now on.
 - Node.js method `cds.get()` now returns parsed-only models; same as `cds.parse()`.
 - `cds serve` / `run` / `watch` now reduce logging of details for the bound DB on connect, leading to less clutter.
 - Precision for `validTo` and `validFrom` defined in the `temporal` aspect in `@sap/cds/common` changed from `DateTime` to `Timestamp`.

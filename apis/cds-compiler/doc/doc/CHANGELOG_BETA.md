@@ -7,6 +7,32 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behaviour concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 2.0.8
+
+### Added `foreignKeyConstraints`
+
+to.sql/to.hdi: If the beta option `foreignKeyConstraints` is supplied, referential constraints are generated for compliant associations and compositions.
+
+## Version 2.0.2
+
+### Removed `dontRenderVirtualElements`
+
+Virtual elements are no longer rendered in views as `null as <id>` or added to potentially generated
+draft tables. This behavior can be turned off with deprecated option `renderVirtualElements` for backward compatibility.
+
+### Removed `originalKeysForTemporal`
+
+### Removed `odataDefaultValues`
+
+OData: Default values for EntityType properties are rendered always.
+
+### Removed `subElemRedirections`
+
+This option is now enabled by default.
+
+### Removed `keyRefError`
+
+
 ## Version 1.44.0
 
 ### Added `addTextsLanguageAssoc`

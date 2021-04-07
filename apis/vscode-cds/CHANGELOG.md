@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+
+## Version 4.0.0 - 2021-03-31
+
+### Note
+This is a major release which comes with @sap/cds-compiler v2.
+It still supports cds-compiler v1 if used in your project
+or via global @sap/cds-dk.
+
+### Added
+- semantic highlighting - to be enabled via user setting `cds.semanticHighlighting.enabled`
+- new API for annotation handler to support semantic highlighting
+
+### Changed
+- consume cds-compiler 2.1.4
+
+## Version 3.4.0 - 2021-03-25
+
+### Added
+- preliminary support for cds-compiler 2.x
+
+### Changed
+- now requires Visual Studio Code `>=1.53`
+- uses `@sap/cds-lsp@4.4.1`
+- uses `@sap/cds-compiler@1.50.0`
+
 ## Version 3.3.0 - 2021-02-01
 ### Added
 - find references for annotations

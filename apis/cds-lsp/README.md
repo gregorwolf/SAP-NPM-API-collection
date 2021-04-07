@@ -10,6 +10,8 @@ It provides many useful features for working with and enjoying CDS sources.
 
 - Syntax highlighting via Textmate grammar
 
+- Additional semantic highlighting
+
 - Source code validation providing diagnostics (error messages, warnings, ...)
 
 - Where-used navigation to

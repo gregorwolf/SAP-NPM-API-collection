@@ -209,6 +209,7 @@ The following CDS OData V2 Adapter Proxy specific annotations are supported:
 **Entity Element Level**:
 
 - `@Core.ContentDisposition.Filename: <element>`: Specifies entity element, representing the filename during file upload/download.
+- `@cov2ap.headerDecode`: Array of sequential decoding procedures ('uri', 'uriComponent', 'base64') used for media entity upload header.
 
 ### CDS Modelling
 
