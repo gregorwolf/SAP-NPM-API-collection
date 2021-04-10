@@ -6,6 +6,50 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.0.3 - 2021-04-07
+
+### Changed
+
+- `cds compile --to xsuaa`, `edmx-v2`, and `edmx-v4` have moved from `@sap/cds` to `@sap/cds-dk`.
+
+### Fixed
+
+- `cds init` now works if started in file paths with spaces
+
+## Version 4.0.2 - 2021-04-01
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.14.3` for creating Java projects.
+- `npm-shrinkwrap.json` format version 2 is now used, produced by `npm` 7
+- `npm-shrinkwrap.json` now contains integrity hashes
+
+### Fixed
+
+- Allow blanks in cds-dk installation path when running `cds init`.
+
+## Version 4.0.1 - 2021-03-24
+
+### Fixed
+
+- Many things in linter
+
+## Version 4.0.0 - 2021-03-19
+
+### Added
+
+- `cds watch` is now a [live reload](https://www.npmjs.com/package/livereload-js) server, allowing for automatic page refreshes in browsers whenever a file has changed.
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.14.0` for creating Java projects.
+- `cds watch` has dropped its fallback support for `nodemon` through the `CDS_USE_NODEMON` configuration.
+- `cds add hana` now sets `hdbtable` as deployment format for SAP HANA
+
+### Fixed
+
+- `cds watch` no longer runs in an endless restart loop if started in the user's home dir.
+
 ## Version 3.5.1 - 2021-03-12
 
 ### Changed
@@ -15,7 +59,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ## Version 3.5.0 - 2021-03-01
 
 ### Changed
-
+- `cds init` creates projects with latest version of `sqlite3` again.
 - `cds add mta` now creates a mta.yaml file that correctly handles spring boot .jar and .war archives.
 
 ### Fixed

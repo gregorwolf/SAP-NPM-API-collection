@@ -30,7 +30,7 @@
     "@sap/audit-logging": "5.0.0",
     "@sap/cds": "5.0.4",
     "@sap/cds-compiler": "2.1.4",
-    "@sap/cds-dk": "3.5.1",
+    "@sap/cds-dk": "4.0.3",
     "@sap/cds-dk-foss": "1.0.2",
     "@sap/cds-foss": "2.3.0",
     "@sap/cds-hana": "1.25.2",
