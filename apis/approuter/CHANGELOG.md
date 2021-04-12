@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.2.0 - 2021-04-11
+
+### Added
+- Support of routing directly to the routing configuration file (xs-app.json) of the application router using the DIRECT_ROUTING_URI_PATTERNS environment variable 
+
+### Fixed
+- Verify cookie when IAS and XSUAA bound
+- Websockest pong callback handling
+- Empty getDependencies configuration handling in SaaS Registry subscription
+- Handle SMS apiURLs in K8S
+- Encode redirect logout url parameters in case of xsuaa authentication
+
+### Added
+- Caching support for destinations from destination service
+
 ## 10.1.0 - 2021-03-21
 
 ### Added

@@ -14,9 +14,10 @@
   * [Additional headers configuration](#additional-headers-configuration)
   * [Additional cookies configuration](#additional-cookies-configuration)
   * [Plugins configuration](#plugins-configuration)
-  * [Session timeout](#session-timeout)
+  * [Session timeout configuration](#session-timeout-configuration)
   * [X-Frame-Options configuration](#x-frame-options-configuration)
   * [Cross-Origin Resource Sharing configuration](#cross-origin-resource-sharing-configuration)
+  * [Direct Routing URI Patterns configuration](#direct-routing-uri-patterns-configuration)
 - [Routes](#routes)
   * [Example routes](#example-routes)
 - [Replacements](#replacements)
@@ -196,7 +197,7 @@ Configuration | Environment variable | Description
 [Additional headers](#additional-headers-configuration) | `httpHeaders` | Provides headers that the application router will return to the client in its responses.
 [Additional cookies](#additional-cookies-configuration) | `COOKIES` | Provides cookies that the application router will return to the client in its responses. Currently only SameSite cookie is supported.
 [Plugins](#plugins-configuration) | `plugins` | A plugin is just like a [*route*](#routes) except that you can't configure some inner properties.
-[Session timeout](#session-timeout) | `SESSION_TIMEOUT` | Positive integer representing the session timeout in minutes. The default timeout is 15 minutes.
+[Session timeout](#session-timeout-configuration) | `SESSION_TIMEOUT` | Positive integer representing the session timeout in minutes. The default timeout is 15 minutes.
 [X-Frame-Options](#x-frame-options-configuration) | `SEND_XFRAMEOPTIONS`, `httpHeaders` | Configuration for the X-Frame-Options header value.
 [Allowlist service](#whitelist-service) | `CJ_PROTECT_WHITELIST` | Configuration for the allowlist that is preventing clickjack attacks.
 [Web Sockets origins allowlist](#web-sockets) | `WS_ALLOWED_ORIGINS` | An allowlist configuration that is used for verifying the `Origin` header of the initial upgrade request when establishing a web socket connection.
@@ -211,6 +212,7 @@ Reject untrusted certificates | `NODE_TLS_REJECT_UNAUTHORIZED` | By default an o
 External reverse proxy flag | `EXTERNAL_REVERSE_PROXY` | Boolean value that indicates the use of application router behind an external reverse proxy (outside of Cloud Foundry domain)
 [Cross-Origin Resource Sharing](#cross-origin-resource-sharing-configuration) | `CORS` | Configuration regarding CORS enablement.
 Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fragment part of the URL provided during first request of not logged-in user to protected route will be preserved, and after login flow user is redirected to original URL including fragment part. However, this may break programmatic access to Approuter (e.g. e2e tests), since it introduces change in login flow, which is incompatible with Approuter version 4.0.1 and earlier. Setting value to `false` makes login flow backward compatible, however will not take fragment part of the URL into account.
+[Direct Routing URI Patterns](#direct-routing-uri-patterns-configuration) | `DIRECT_ROUTING_URI_PATTERNS` | Configuration for direct routing URI patterns. 
 Backend Cookies Secret | `BACKEND_COOKIES_SECRET` | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
 Service to Application Router | `SERVICE_2_APPROUTER` | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
 
@@ -397,7 +399,7 @@ Sample content of the `plugins` environment variable:
 ]
 ```
 
-### Session timeout
+### Session timeout configuration
 
 For example, if you have the following line in your *manifest.yml* or *manifest-op.yml* file:
 
@@ -493,6 +495,21 @@ It is also possible to include the CORS in the *manifest.yml* and *manifest-op.y
       ]
 ```
 For route with source that match the REGEX ?^\route1$?, the CORS configuration is enabled.
+
+## Direct Routing URI Patterns configuration
+
+With the direct routing URI patterns configuration, you can define a list of URIs that are directed to the routing configuration file (xs-app.json file) of the application router instead of to the xs-app.json file that is stored in the HTML5 Application Repository. This configuration improves the application loading time and monitoring options because it prevents unnecessary calls to the HTML5 Application Repository. 
+
+The configuration is an array of strings or regular expressions. 
+You have to provide only the first segment in the URL, after the approuter host. For example, for URL https://<subdomain>.<approuterHost>/route1/index.html, fill "route1" in the Direct Routing URI Patterns array. 
+
+Sample content of the Direct Routing URI Patterns environment variable:
+
+```json
+  env:
+    DIRECT_ROUTING_URI_PATTERNS: >
+      ["route1", "^route2$", "route3"]
+```
 
 ## Routes
 
