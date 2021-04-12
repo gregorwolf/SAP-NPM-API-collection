@@ -1,1 +1,2 @@
-@sap/cds-dk
+@sap/cds-runtime
+@sap/hana-performance-tools
