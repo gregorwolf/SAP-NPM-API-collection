@@ -1,3 +1,5 @@
-@sap/approuter
-@sap/cds-odata-v2-adapter-proxy
-@sap/wing-run-config-types
+@sap/cds-runtime
+@sap/create-hana-database-artifact
+@sap/generator-add-hdb-module
+@sap/graph-toolkit
+@sap/hrtt-core-vscode
