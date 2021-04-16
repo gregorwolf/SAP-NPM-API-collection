@@ -7,7 +7,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 1.2.1 - 2021-04-14
+
+### Fixed
+- Undeployment for model upgrade via `advancedOptions` working again
+- Undeployment of base model artifacts via 'undeploy.json' is working again
+- Unallowed `@cds.persistence.journal` annotations in extensions are now checked 
+
+### Added
+- Size of job queue can now be configured via cds env
+```
+mtx: {
+  jobqueue: {
+    size: 10
+  }
+```
+or parameter `CDS_MTX_JOBQUEUE_SIZE=10`
+
 ## Version 1.2.0 - 2021-03-30
+
 
 
 ### Added

@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.0.7 - 2021-04-15
+
+### Added
+
+- CSRF-token handling in service consumption via `@sap-cloud-sdk/core` with `cds.env.features.fetch_csrf = true`
+
+### Fixed
+
+- Timeout issues in `enterprise-messaging-shared`
+
 ## Version 3.0.6 - 2021-04-14
 
 ### Fixed

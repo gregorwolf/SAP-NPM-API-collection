@@ -31,7 +31,7 @@ the compiler isn’t able to determine the correct type.
 The element still inherits `ViewFoo:calculatedField`'s annotations and other
 properties but won’t have a proper type, which is required by some backends.
 
-## Fix
+## How to Fix
 
 To fix the issue, assign an explicit type to `ViewFoo:calculatedField`.
 

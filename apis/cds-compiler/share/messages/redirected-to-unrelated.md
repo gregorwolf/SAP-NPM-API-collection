@@ -56,7 +56,7 @@ in `SecondRedirect`.  But because `SecondRedirect` uses `toMain` from
 `FirstRedirect`, the original target is `FirstRedirect`.  And `Main` doesn’t
 originate from `FirstRedirect` but only vice versa.
 
-## Fix
+## How to Fix
 
 To fix the issue, you must redirect the association to an entity that originates
 from the original target.  In the first example above you could redirect

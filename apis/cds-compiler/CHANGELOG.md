@@ -1,10 +1,30 @@
 # ChangeLog for cds compiler and backends
 
 <!-- markdownlint-disable MD024 -->
+<!-- markdownlint-disable MD004 -->
 <!-- (no-duplicate-heading)-->
 
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
+
+## Version 2.1.6 - 2021-04-14
+
+### Fixed
+
+- Do not unjustified complain about `$self` comparisons.
+- Auto-exposed entities are represented as projections in the CSN.
+- to.sql/to.hdi:
+  + Revert change "Default values are no longer propagated from the principal to the generated foreign key element." from version 2.1.0
+  + Fix regression where localized convenience views for temporal entities used keys in the from clause that did not exist on the texts-entity
+  + Mixin associations are properly removed and are not rendered into views anymore
+- to.hdi(.migration): Ensure filenames for `.hdbindex` files stay compatible to V1
+- for.odata: An association as a type of action's parameter or return type now signals an error
+- to.edm(x):
+  + `@Capabilities` annotations remain on the containees entity type
+  + In containment mode don't render foreign keys of the containment constituting 'up' association in the containee
+    as primary key refs.
+  + Revert change "Default values are no longer propagated from the principal to the generated foreign key element." from version 2.1.0
+  + Allow `--odata-proxies` and/or `--odata-x-service-refs` in combination with `--odata-format=flat` and `--version=v4`
 
 ## Version 2.1.4 - 2021-03-31
 
@@ -31,9 +51,9 @@ The compiler behaviour concerning `beta` features can change at any time without
 - for.odata:
   + All the artifacts that have localized fields get a `$localized: true` property.
   + Allow the user to define draft actions for annotation purposes
-    * `draftPrepare(SideEffectsQualifier: String) returns <ET>`,
-    * `draftActivate() returns <ET>`,
-    * `draftEdit(PreserveChanges: Boolean) returns <ET>`
+    + `draftPrepare(SideEffectsQualifier: String) returns <ET>`,
+    + `draftActivate() returns <ET>`,
+    + `draftEdit(PreserveChanges: Boolean) returns <ET>`
 - to.edm(x):
   + Warn about non-applicable annotations.
   + Render property default values (only OData V4).
@@ -110,8 +130,8 @@ synchronously.
   + Default values are no longer propagated from the principal to the generated foreign key element.
   + `array of array` is rejected, nested Collections `Collection(Collection(...))` are illegal.
   + Temporal rendering:
-    * `@cds.valid.from` is not `Edm.KeyRef` anymore.
-    * `@cds.valid.key` is rendered as `@Core.AlternateKeys`.
+    + `@cds.valid.from` is not `Edm.KeyRef` anymore.
+    + `@cds.valid.key` is rendered as `@Core.AlternateKeys`.
   + Downgrade message "`<Term>` is not applied" from warning to info.
   + Update Vocabularies 'Aggregation', 'Capabilities', 'Core', 'Validation'.
 - to.sql/to.hdi/to.hdbcds:
@@ -127,12 +147,12 @@ synchronously.
   + Default values are no longer propagated from the principal to the generated foreign key element.
 - to.sql:
   + Changed type mappings for `--dialect=sqlite`:
-    * `cds.Date` -> `DATE_TEXT`
-    * `cds.Time` -> `TIME_TEXT`
-    * `cds.Timestamp` -> `TIMESTAMP_TEXT`
-    * `cds.DateTime` -> `TIMESTAMP_TEXT`
-    * `cds.Binary` -> `BINARY_BLOB`
-    * `cds.hana.Binary` -> `BINARY_BLOB`
+    + `cds.Date` -> `DATE_TEXT`
+    + `cds.Time` -> `TIME_TEXT`
+    + `cds.Timestamp` -> `TIMESTAMP_TEXT`
+    + `cds.DateTime` -> `TIMESTAMP_TEXT`
+    + `cds.Binary` -> `BINARY_BLOB`
+    + `cds.hana.Binary` -> `BINARY_BLOB`
   + Don't check missing type facets.
 - to.hdbcds:
   + References to derived, primitive types are replaced by their final type.
@@ -198,7 +218,7 @@ synchronously.
   + Return all warnings to the user.
   + Don't render references and annotations for unexposed associations.
   + Rendering of `@Validation.AllowedValue` for elements of type enum annotated with `@assert.range`:
-    * Add `@Core.Description`, if the enum symbol has a `@Core.Description`, `@description` or document comments.
+    + Add `@Core.Description`, if the enum symbol has a `@Core.Description`, `@description` or document comments.
   + Primary key aliases are now the path basenames, colliding aliases are numbered.
   + Fix a bug in constraint calculation if principal has no primary keys.
   + Illegal OData identifiers which are not exposed in the generated edmx schema are not causing errors anymore.
@@ -229,6 +249,12 @@ synchronously.
 - to.cdl: Correctly render `event` typed as `projection`.
 - to.hdi.migration: Don't generate `ALTER` for type change from association to composition or vice versa (if the rest stays the same),
   as the resulting SQL is  identical.
+
+## Version 1.50.4 - 2021-04-06
+
+### Fixed
+
+- to.hdbcds: CDS and HANA CDS types inside cast expressions are mapped to their SQL-counterparts, as the CDS types can't be used in a cast.
 
 ## Version 1.50.2 - 2021-03-19
 

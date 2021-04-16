@@ -1,5 +1,6 @@
+@sap/cds-compiler
+@sap/cds-mtx
 @sap/cds-runtime
-@sap/create-hana-database-artifact
-@sap/generator-add-hdb-module
-@sap/graph-toolkit
-@sap/hrtt-core-vscode
+@sap/generator-hdb-project
+@sap/hana-database-explorer
+@sap/webide-hdi-base-feature-vscode

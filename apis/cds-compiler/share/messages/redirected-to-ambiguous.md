@@ -40,7 +40,7 @@ This can also happen through *indirect* sources.  For example if entity `Main`
 were to include `Target` then selecting from `Target` just once would be enough
 to trigger this error.
 
-## Fix
+## How to Fix
 
 To fix the issue, you must have the original target only once in your direct
 and indirect sources.  The previous example can be fixed by removing

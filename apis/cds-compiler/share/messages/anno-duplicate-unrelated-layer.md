@@ -39,7 +39,7 @@ Instead of passing (4) to the compiler, you can also pass (2) and (3) to it.
 Because there are no cyclic dependencies between the files, each file
 represents one layer.
 
-## Fix
+## How to Fix
 
 To fix the issue, remove one of the duplicate annotations.  Chances are, that
 only one was intended to begin with.  For the erroneous example above, remove

@@ -37,7 +37,7 @@ In the previous example, the ON condition in `View` of `secondary` can’t be
 automatically rewritten because the associations are unmanaged and the
 compiler can’t determine how to properly rewrite them for `View`.
 
-## Fix
+## How to Fix
 
 To fix the issue, you have to provide an explicit ON condition.  This can be
 achieved by using the `redirected to` statement:

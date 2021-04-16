@@ -36,7 +36,7 @@ Instead of passing (4) to the compiler, you can also pass (2) and (3) to it.
 Because there are no cyclic dependencies between the files, each file
 represents one layer.
 
-## Fix
+## How to Fix
 
 To fix the issue, move extensions for the same artifact into the same layer,
 that is, the same file.

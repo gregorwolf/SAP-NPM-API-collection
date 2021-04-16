@@ -25,7 +25,7 @@ Erroneous code example:
 
 `MainType` is of kind "type" but has not further type information.
 
-## Fix
+## How to Fix
 
 To fix the issue, add explicit type information to `MainType`, for example, add
 an `elements` property to make a structured type.

@@ -38,7 +38,7 @@ extend FooBar { bar: Integer; }
 Here we have a cyclic dependency between (1) and (2).  Together they form one
 layer with multiple extensions.  Again, the element order isn’t stable.
 
-## Fix
+## How to Fix
 
 To fix the issue, move extensions for the same artifact into the same extension
 block:
