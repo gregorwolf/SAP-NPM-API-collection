@@ -1,3 +1,8 @@
+## 1.1.0
+
+### Fixes
+- Update @sap/generator-add-hdb-module to version 1.1.0
+
 ## 1.0.1
 
 ### Fixes
