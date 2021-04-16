@@ -4,6 +4,24 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.0.6 - 2021-04-16
+
+### Fixed
+
+- `cds build` no longer fails with `TypeError: x.startsWith is not a function` in some situations
+
+## Version 5.0.5 - 2021-04-15
+
+### Changed
+
+- Internal errors are no longer decorated with `Please report this`.  People interpreted the text as to only include the stack trace in error reports and to omit other valuable context information.
+
+### Fixed
+
+- `cds build` now correctly creates the deployment layout for multitenant applications (sdc folder contents) that have dedicated folder paths configured for db, srv and app modules.
+- `cds deploy --to sqlite` now ignores a `_texts.csv` file again if there is a language-specific file like `_texts_en.csv` present
+- `cds env` no longer fails to parse `.env` files with JSON values containing `=` characters
+
 ## Version 5.0.4 - 2021-04-07
 
 ### Fixed
@@ -67,6 +85,7 @@ await UPDATE`Books`.with`x = x-${amount}`.where`ID=${ID}`
 ### Changed
 
 - Minimum required Node.js version is now 12.  Support for Node.js 10 is dropped.
+- `req.timestamp` is a Date object now; was a UNIX epoch integer before, i.e., Date.now()
 
 ### Fixed
 
@@ -97,7 +116,6 @@ await UPDATE`Books`.with`x = x-${amount}`.where`ID=${ID}`
 - Fiori preview now [loads and shows data initially](https://sapui5.hana.ondemand.com/1.84.0/#/topic/1cf5c7f5b81c4cb3ba98fd14314d4504) in its list page
 - I18n template strings now are replaced in EDMX documents such that they retain their surrounding string.  For example, the `"{i18n>key1} - {i18n>key2}"` template results in `"value1 - value2"`, while previously the first match replaced the entire string, leading to `"value1"`.  This is helpful for the [`Template` strings of `UI.ConnectedFields`](https://github.com/SAP/odata-vocabularies/blob/ac9fe832df9b8c8d35517c637dba7c0ac2753b0f/vocabularies/UI.xml#L168).
 - CDS drops compiler v2 support for classic CAP Java runtime projects. `cds build` returns an error if compiler version 2 is used. For further details regarding migration to CAP Java SDK runtime see https://cap.cloud.sap/docs/java/migration.
-- `req.timestamp` is a Date object now; was a UNIX epoch integer before, i.e., Date.now()
 
 ### Fixed
 

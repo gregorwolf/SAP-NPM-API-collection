@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.8] - 2021-04-12
+
+### Added
+
+- Proxy for cds object replaces fragile object clone from before
+- Added proper typings and ignore where options should remain invisible to the (cds) api
+- Added docstrings and header to each file to explain ESLint context
+- Added model rule 'sql-cast-suggestion'
+
 ## [1.0.7] - 2021-04-01
 
 ### Fixed

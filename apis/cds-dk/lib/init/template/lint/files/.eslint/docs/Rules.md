@@ -1,9 +1,9 @@
 # @sap/eslint-plugin-cds [latest]
 
 ## Rule: no-entity-moo
-<span class='label shifted'>Model validation</span>
+<span class='label shifted'>Model Validation</span>
 
-### Rule details
+### Rule Details
 Demonstrates how to implement a model validation check. This check does not allow any entities named 'Moo'.
 
              ________________________
@@ -20,7 +20,6 @@ Demonstrates how to implement a model validation check. This check does not allo
 
 ```
 namespace my.bookshop;
-
 entity Books {
   key ID : Integer;
   title  : String;
@@ -38,7 +37,7 @@ entity Moo {
 ```
 
 ### Version
-This rule was introduced in @sap/eslint-plugin-cds 1.0.0.
+This rule was introduced in `@sap/eslint-plugin-cds 1.0.0`.
 
 
 

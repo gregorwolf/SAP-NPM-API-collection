@@ -1,3 +1,12 @@
+## 1.2.0
+
+### New Features
+- Calculation view refactoring
+- Data preview of calculation views
+
+### Fixes
+- Reduced size of headers of requests sent to the backend
+
 ## 1.1.0
 
 ### New Features

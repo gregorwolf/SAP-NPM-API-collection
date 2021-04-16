@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.17.6] - 2021-04-08
+
+### Fixed
+- Use `@sap/cds-dk` entry in `package.json` with version `^3`.
+
+
 ## [2.17.4] - 2021-02-03
 
 ### Fixed

@@ -6,6 +6,37 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.0.7 - 2021-04-16
+
+### Changed
+
+- Bumped versions of `@sap/cds`, `@sap/cds-compiler`
+
+### Fixed
+
+- Lookup for `eslint` during `cds add lint`
+
+## Version 4.0.6 - 2021-04-15
+
+### Changed
+
+- Bumped versions of `@sap/cds`, `@sap/cds-runtime`, `@sap/cds-compiler`
+
+
+## Version 4.0.5 - 2021-04-12
+
+### Changed
+
+- Fixes in linter
+
+## Version 4.0.4 - 2021-04-12
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.15.0` for creating Java projects.
+- Bumped version of `@sap/eslint-plugin-cds`
+
+
 ## Version 4.0.3 - 2021-04-07
 
 ### Changed
