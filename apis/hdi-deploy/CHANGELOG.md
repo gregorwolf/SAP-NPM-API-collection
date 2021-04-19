@@ -1,3 +1,7 @@
+## 4.0.5
+Fixes:
+- updated handlebars to 4.7.7
+
 ## 4.0.4
 Features:
 - use @sap/hdi@4.0.1

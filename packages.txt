@@ -1,7 +1,2 @@
-@sap/cds
-@sap/cds-dk
-@sap/cloud-sdk-op-vdm-supplier-quotation-service
-@sap/cloud-sdk-vdm-enterprise-project-v2-service
-@sap/eslint-plugin-cds
-@sap/generator-cds
-@sap/webide-hdi-feature-vscode
+@sap/asp-middleware
+@sap/hdi-deploy
