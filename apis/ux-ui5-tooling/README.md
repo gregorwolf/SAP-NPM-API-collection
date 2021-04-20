@@ -78,6 +78,20 @@ If the back-end is hidden behind a destination then you can also provide the `de
       url: https://my.backend.com:1234
       destination: my_backend
 ```
+#### [Connecting to a back-end system with destination and principal propagation](#connecting-to-a-back-end-system-with-destination-and-principal-propagation)
+
+If the back-end destination is configured to use principal propagation, then in some cases the requests might fail. If this occurs then you will need to set the optional property `xfwd` to `true`. This will add the x-forwared headers to the proxy requests.
+
+```
+- name: fiori-tools-proxy
+  afterMiddleware: compression
+  configuration:
+    backend:
+    - path: /sap
+      url: https://my.backend.com:1234
+      destination: my_backend
+      xfwd: true
+```
 #### [Connecting to multiple back-end systems](#connecting-to-multiple-back-end-systems)
 You can also connect to multiple back-end systems like this.
 
@@ -216,7 +230,7 @@ The deployment to ABAP task allows deploying Fiori applications to SAP systems u
 * Service needs to be enabled and accessible from your development environment ([how to check this](https://help.sap.com/viewer/68bf513362174d54b58cddec28794093/7.52.5/en-US/bb2bfe50645c741ae10000000a423f68.html))
 * For operations on a SAPUI5 ABAP repository, you need the S_DEVELOP authorization.
 
-**Limitations:**
+**Notes:**
 
 * the task does not create ABAP transports, therefore, it requires an existing transport if the target ABAP package requires a transport
 * only Basic Authentication (user/password based authentication) as well as OAuth2 with the SAP Business Technology Platform
@@ -365,9 +379,7 @@ The app object describes the backend object that is created/updated as result of
 * `--verbose` - Enable verbose logging (default: `false`).
 * `--port, -p` - Port to start the server on (default for HTTP: 8080, HTTPS: 8443).
 * `--open, -o` - Open web server root directory in default browser. Optionally, supplied relative path will be appended to the root URL.
-* `--https` - Enables HTTPS over the HTTP/2 protocol for the web server (default: `false`). If you provide the `--https` parameter, but you do not provide the `--key` and `--cert` parameters, then a private key and certificate will be created automatically. **Note: For the automatic key and certificate generation, you need to have OpenSSL installed on your OS**.
-
-  **Limitation: Using HTTPS over HTTP/2 is currently not supported in SAP Business Application Studio.**
+* `--https` - Enables HTTPS over the HTTP/2 protocol for the web server (default: `false`). If you provide the `--https` parameter, but you do not provide the `--key` and `--cert` parameters, then a private key and certificate will be created automatically. **Note: For the automatic key and certificate generation, you need to have OpenSSL installed on your OS. Using HTTPS over HTTP/2 is currently not supported in SAP Business Application Studio.**
 * `--key` - Path to the private key for https (default: `"$HOME/.ui5/server/server.key"`).
 * `--cert` - Path to the certificate for https (default: `"$HOME/.ui5/server/server.crt"`).
 * `--ui5` - UI5 version to use when running the application (default: version from `ui5.yaml`).

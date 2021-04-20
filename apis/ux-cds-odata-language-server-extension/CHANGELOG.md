@@ -2,14 +2,21 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
-## [1.1.6] - 2021-03-31
+## [1.1.8] - 2021-04-15
+### Added
+- Syntax warning for `/` or `.` after annotation term name.  
+
+### Changed
+- Removed paths to the same annotation from code completion. 
+
+## [1.1.7] - 2021-03-31
 ### Added
 - Go To References /Peek References / Show All References for the aggregared properties defined with the `@Analytics.AggregatedProperties` annotation. You can now navigate to the place where the aggregated property is referenced.
 
 ### Changed
 - Vocabulary description and long description for restricted `String` values are now displayed in Quick Info window of the completion lists. 
 
-## [1.1.3] - 2021-0304
+## [1.1.5] - 2021-0304
 
 ### Added
 - Code completion, diagnostics and quick info for applying selected client-side odata functions:
@@ -19,13 +26,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Peek References/ Go To References for annotations referenced in other annotations. You can now see if and where the annotation is referenced. 
 Limitation: references in propagated annotations might be not included.
 
-## [1.0.11] - 2021-02-25
+## [1.1.4] - 2021-02-25
 
 ### Changed
 - Error message "Invalid property" for `@Common.ValueList.entity` substituted with warning of deprecated non-standard property.
 
 
-## [1.0.10] - 2021-02-04
+## [1.1.2] - 2021-02-04
 
 ### Added
 - Peek Definition for the dynamically created aggregared properties. You can now see how and where the property used as an annotation value is defined also if it is  dynamically created using the Analytics.AggregatedProperties  annotation.

@@ -8,23 +8,42 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
+## [1.84.9] - 2021-04-15
+
+### Quality
+
+- Upgrade of handlebars
+
+## [1.84.8] - 2021-04-07
+
+### Added
+
+- Actions from the UI.Identification annotation are now represented in the V4 schemas.
+- Property inlineDelete for quickVariantSelectionX (table variants)
+
+### Changed
+
+- quickVariantSelection and quickVariantSelectionX definitions are more general no, allowing any number of tabs.
+
+### Fixed
+
+- Missing or incorrect properties for semantic date range control: fields->filter->equals now supports an array of date ranges, not just a single date range value. Additionally, both 'key' and 'category' options support both "equals" and "contains".
+- OData V2: ALP - ignoredChartTypes property is now supports more values
+- Export of quickVariantSelectionX in V2 was wrong or could lead to exception.
+
+### Quality
+
+- Decrease the number of Eslint warnings
+
 ## [1.84.7] - 2021-03-25
 
 ### Added
 
 - Forms and the comprised fields and actions are represented in schemas for V4 object pages
 
-### Changed
-
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - No duplicate entries in the result lists of scripts for extracting documentation
-
-### Quality
 
 ## [1.84.6] - 2021-03-11
 

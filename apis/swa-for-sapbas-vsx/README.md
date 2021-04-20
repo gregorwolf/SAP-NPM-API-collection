@@ -153,7 +153,13 @@ The following fields can be used for creating SWA reports:
 | **Numeric event parameter 2** | Event additional numeric data 2, "numeric event 2" sent via tack API |
 
 ## Contribution
-1. Add a PR with changes to package version (and package-lock)
+### Contribute and update version
+1. Commit your contribution
+2. Execute 'npm run set-version <new version>' to set new version for the lib (example: 'npm run set-version 3.2.1')
+3. Execute 'npm install' to update package-lock.json
+4. Add a PR with your changes
+
+### Releasing new version
 2. Add a PR in https://github.wdf.sap.corp/NPMJS/NODE_SWA_FOR_VSC_EXT-1.0 see [example PR](https://github.wdf.sap.corp/NPMJS/NODE_SWA_FOR_VSC_EXT-1.0)
 3. ask project npm project admins (ido goren, asaf dulberg) to approve the PRs
 4. new version should be released soon to npmjs on https://www.npmjs.com/package/@sap/swa-for-sapbas-vsx

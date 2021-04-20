@@ -10,6 +10,7 @@ The generated application conforms to the [Fiori Design guidelines](https://expe
 
 1. Get [Node.js](https://nodejs.org/en/download/)
 1. Install Yeoman(https://https://yeoman.io/) by executing `npm install -g yo`.
+1. Install the [MTA](https://www.npmjs.com/package/mta) Node.js package (version 1.0 or higher) by executing `npm install -g mta`.
 
 The SAP Fiori generator can be installed using either of the following methods:
 
@@ -148,6 +149,7 @@ After the application has been successfully generated, open a terminal and brows
 The generated application requires the following software to be installed:
 
 - [NodeJS](https://nodejs.org/en/download/) Node version must be >10.15.3 - 10.x or 12.13.
+- [MTA](https://www.npmjs.com/package/mta) MTA Version must be >= 1.0
 - Windows OS requires [windows-build-tools](https://www.npmjs.com/package/windows-build-tools) NPM module installed globally.
 
 ## Support

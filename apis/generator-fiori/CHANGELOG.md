@@ -3,6 +3,22 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.9] - 2021-04-15
+#### Added
+- Fiori elements applications generated with the following floor plans now have simple OPA automated tests generated with the project:
+	- List Report Object Page (with either a V2 or V4 OData service)
+	- Analytical List Page (with an V4 OData service)
+- Added Ability to generate a Fiori freestyle application from the command line in a non-interactive mode.
+- Floor plan icons in the generator have been updated.
+- The deployment configuration questions have been reduced where system information can already be determined.
+- The generator now requires [MTA](https://www.npmjs.com/package/mta) Node.js package (version 1.0 or higher) to be installed globally.  Please ensure you have updated by executing `npm install -g mta`.
+
+#### Fixed
+- Navigating back and forwards within the wizard should not lose previously completed steps.
+- The generator will no longer suggest the first folder in a workspace to generate the application into.
+- Better handling of long module names for deployment
+- The generator README.MD file now correctly details the floor plan used.
+
 ## [1.1.7] - 2021-04-01
 #### Added
 - Uploading a metadata document for V4 OData services is now supported.
