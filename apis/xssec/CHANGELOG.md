@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.1.2 - 2020-03-01
+- Feature: Support for IAS to XSUAA token exchange ([more details](doc/IAStoXSUAA.md))
+- Feature: Support for ZoneID enabled token flows ([more details](doc/TokenFlows.md))
+
+
 ## 3.1.1 - 2020-02-11
 - Bugfix: Tokenexchange with additional attributes may result in a wrong formatted url
 - Feature: The passport middleware allows to provide scopes to be validated at authentication time. Details [here](http://www.passportjs.org/docs/oauth/#scope)
