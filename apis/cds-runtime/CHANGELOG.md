@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.0.8 - 2021-04-20
+
+### Fixed
+
+- Timeout issues in `enterprise-messaging-shared` when reconnecting
+- Queries with a simultaneous use of `$expand` and `$orderby`, when the latter is using functions
+- Preserve non-error messages to client during failing draft activation
+
 ## Version 3.0.7 - 2021-04-15
 
 ### Added
