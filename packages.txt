@@ -1,11 +1,2 @@
-@sap/cds-runtime
-@sap/generator-fiori
-@sap/generator-fiori-elements
-@sap/generator-fiori-freestyle
-@sap/hana-client
-@sap/swa-for-sapbas-vsx
-@sap/ux-cds-odata-language-server-extension
-@sap/ux-specification
-@sap/ux-ui5-fe-mockserver-middleware
-@sap/ux-ui5-tooling
-@sap/xssec
+@sap/hdi-dynamic-deploy
+@sap/mta-lib
