@@ -6,7 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 5.0.0 - tbd
+## 5.0.1 - 2021-04-22
+
+### Changed/Fixed
+- where-used for namespaces also for compiler v2
+- new query flag for workspace symbols: /n to include implicit namespaces
+
+## 5.0.0 - 2021-04-02
 
 ### Note
 

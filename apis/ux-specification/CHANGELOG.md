@@ -8,13 +8,32 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
+## [1.84.10] - 2021-04-22
+
+### Added
+
+- createWithParameterDialog is now also supported for the V2 Object Page
+
+### Changed
+
+- createWithParameterDialog can be found under _table_ properties  instead of _toolbarActions_ now.
+
+### Fixed
+
+- List report V2: too many properties had been presented at LSP for analytical table
+
+### Quality
+
+- Switch build to webpack
+- Upgrade of Annotation-Vocabularies-Tools
+
 ## [1.84.9] - 2021-04-15
 
 ### Quality
 
 - Upgrade of handlebars
 
-## [1.84.8] - 2021-04-07
+## [1.84.8] - 2021-04-09
 
 ### Added
 

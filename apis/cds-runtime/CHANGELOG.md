@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.0.9 - 2021-04-29
+
+### Changed
+
+- Downport of "Private `<entity>._dependents` made non-enumerable to avoid circular references"
+
+### Fixed
+
+- Downport of "Use unfolded model if transaction was initiated in messaging"
+
 ## Version 3.0.8 - 2021-04-20
 
 ### Fixed

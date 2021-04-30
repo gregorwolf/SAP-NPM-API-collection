@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.10] - 2021-04-29
+#### Added
+- Improved the destination catalog service request to ensure the list of services returned is filtered to those suitable for Fiori applications.  Note: the catalog service needs to also be updated to accommodate this change, if not, the existing list is returned.
+
+#### Fixed
+- The Fiori migration wizard on Business Application Studio no longer asks for the client field.
+
 ## [1.1.9] - 2021-04-15
 #### Added
 - Fiori elements applications generated with the following floor plans now have simple OPA automated tests generated with the project:

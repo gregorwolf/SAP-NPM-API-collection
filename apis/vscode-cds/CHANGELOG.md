@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.0.1 - 2021-04-22
+
+### Changed
+- now requires Visual Studio Code `>=1.54`
+- entry `Preview as hdbtable` replaces `Preview as hana` in `CDS Preview` menu
+- uses `@sap/cds-lsp@5.0.1` which includes fixes for namespace handling
 
 ## Version 4.0.0 - 2021-03-31
 

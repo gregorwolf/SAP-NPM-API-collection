@@ -1,2 +1,14 @@
-@sap/hdi-dynamic-deploy
-@sap/mta-lib
+@sap/cds-lsp
+@sap/cds-odata-v2-adapter-proxy
+@sap/cds-runtime
+@sap/di.code-validation.js
+@sap/di.code-validation.xml
+@sap/generator-fiori
+@sap/grunt-sapui5-bestpractice-build
+@sap/service-provider-apis
+@sap/subaccount-destination-service-provider
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-fe-mockserver-middleware
+@sap/ux-ui5-tooling
+@sap/vscode-cds
