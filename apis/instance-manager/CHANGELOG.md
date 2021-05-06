@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.0.0 - 2021-05-05
+
+### Fixed
+- Replaced dependency request with node-fetch
+- Updated debug package to v4.2.0
+
+### Removed
+- Support for Node.js 6
+
+### Added
+- Support for Node.js 14
+
 ## 2.2.0 - 2020-07-24
 
 ### Added
