@@ -524,7 +524,7 @@
     "@sap/odata-server": "1.8.3",
     "@sap/odata-v4": "1.9.0",
     "@sap/odm": "2.0.0",
-    "@sap/open.fe": "1.88.0",
+    "@sap/open.fe": "1.89.0",
     "@sap/pdms-sdk": "1.0.0",
     "@sap/portal-cf-content-deployer": "4.12.0-20210201101230",
     "@sap/sbf": "6.2.9",

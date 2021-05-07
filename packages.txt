@@ -1,4 +1,1 @@
-@sap/cloud-sdk-vdm-supply-availability-protection-plan-service
-@sap/hana-client
-@sap/instance-manager
-@sap/xsodata
+@sap/open.fe
