@@ -11,6 +11,21 @@ Note: `deprecated` features are listed in this ChangeLog just for information.
 **When the `deprecated` option is set, the `beta` option is ignored,
 and several new features are not available.**
 
+## Version 2.2.0
+
+## Added `noScopedRedirections`
+
+When this option is set, the definition scope is not taken into account when
+trying to find an implicit redirection target.  Setting the following
+deprecated options also switches off scoped redirections (additionally to their
+other effect): `noElementsExpansion`, `generatedEntityNameWithUnderscore`,
+`shortAutoexposed`, `longAutoexposed`, `noInheritedAutoexposeViaComposition`.
+
+## Added `noInheritedAutoexposeViaComposition`
+
+When this option is set, only entities directly specified after `Composition of` are
+auto-exposed, not entities used as target via explicit or implicit `redirected to`.
+
 ## Version 2.0.16
 
 ## Added `downgradableErrors`

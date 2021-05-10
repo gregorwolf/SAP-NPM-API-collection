@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 1.1.16 - 2021-05-04
+
+### Fixed
+
+- Bug where 'keytar' module path was not correctly determined
+
+## Version 1.1.15 - 2021-04-28
+
+### Fixed
+
+- Compatibility with CF-CLI v7
+
 ## Version 1.1.14 - 2021-03-29
 
 ### Added

@@ -7,6 +7,62 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 2.2.4 - 2021-05-06
+
+No changes compared to Version 2.2.2; fixes latest NPM tag
+
+## Version 2.2.2 - 2021-05-04
+
+### Fixed
+
+- Usually reserved names like `in` in references used as annotation values can now really
+  be provided without delimited identifiers (if the name is not `true`, `false` or `null`).
+- Fixed the implicit redirection of associations to scoped targets (like texts entities).
+- Fix regression: Allow virtual structured elements.
+- to.edm(x):
+  + OData V2:
+    + Remove warning about scalar return types.
+    + Render constraints only if all principal keys are used in association.
+  + OData V4: Don't remove `@Capabilities` annotations from containee.
+  + Allow `@Core.MediaType` on all types and raise a warning for those (scalar) types that can't be mapped to `Edm.String` or `Edm.Binary`.
+- to.cdl: Also handle subelement-annotations by rendering a `annotate X with Y`.
+- to.hdi/sql/hdbcds: Fixed the DB name (with naming mode `quoted`/`hdbcds`) and the `to.hdi` file name of scoped definitions (like `texts` entities)  in services.
+- Empty enums no longer result in a syntax error.
+
+## Version 2.2.0 - 2021-04-28
+
+### Added
+
+- The compiler now takes the “definition scope” of associations and compositions into account
+  when implicitly redirecting the target and auto-exposing entities.
+- odata: The warning `enum-value-ref` is no longer reclassified to an error.
+  However, references to other enum values are still not supported.
+
+### Changed
+
+- Remove special handling for implicit redirection to auto-exposed entity; consistently
+  do not overwrite user-specified target in a service anymore, also in this special case.
+- Structured/Arrayed types for enums are now an error and not just a warning.
+- to.cdl: Keywords in annotation paths are no longer escaped
+
+### Removed
+
+- Consistently reject references to auto-exposed entities except for `annotate`
+  (it might have worked before, depending on the sequence of definitions);
+  expose an entity manually if you want to refer to it.
+
+### Fixed
+
+- Do not omit indirectly annotated or redirected sub elements
+  during propagation of expanded sub elements.
+- Also auto-expose composition targets of projected compositions,
+  not just those target which were used at the original definition of the composition.
+- Improve checks for keys which are `array of` or of SAP HANA spatial type (`ST_POINT` & `ST_GEOMETRY`)
+  with checking also inside of used user-defined structured type.
+- to.edm(x):
+  + V2: `OnDelete=Cascade` was set on dependent instead on principal role.
+  + V4: ReferentialConstraints Property and ReferencedProperty for managed composition to one were swapped.
+
 ## Version 2.1.6 - 2021-04-14
 
 ### Fixed
