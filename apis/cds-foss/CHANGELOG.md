@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.3.1 - 2021-04-27
+
+### Added
+
+- Type definitions
+
 ## Version 2.3.0 - 2021-04-01
 
 ### Changed

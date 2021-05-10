@@ -6,6 +6,55 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.1.0 - 2021-05-05
+
+### Added
+
+- Support for declared events with annotations `@topic`, `@source` and `@type`
+- Support for declared events in composite messaging
+- Extended managed data (`@cds.on.insert`, `@cds.on.update`):
+  + Pseudo variable `$uuid`
+  + Pseudo variable `$user.<attr>`
+  + Static values, for example `@cds.on.insert: 'foo'`
+- READ support for associations with custom on condition with form `<association>.<backlink> = $self and <association>.<property> = '<value>'`
+- Support for default values in views with more than one parameter
+- Support of input validation for arrayed elements
+- QL fluent API `orderBy()` convenience options `orderBy('<column> <order?>')`, `orderBy('...', ...)`, `orderBy('..., ...')`, and `orderBy([...])`
+- Use new, beta URL to CQN parser during read requests when serving to OData via `cds.env.features.odata_new_parser`
+- Beta version of new CQN to URL parser
+  + Use during service consumption via `cds.env.features.remote_new_parser`
+- Draft-specific columns are considered in `$select` if OData validation is skipped
+- Support for `cardinality` in `ref`
+- Support for nested expressions in where conditions
+- Invoke custom error handler (beta) in OData and REST adapters if necessary
+
+### Changed
+
+- Model-based processing instruction cache attached to service for SaaS extensibility
+- Removed compatibility feature flag `cds.env.features.skip_expand_assoc`
+- Input-related details of assertion error added to error message, for example `Value 4 is not in specified range [1,3]`
+- `$search` query option is parsed into `.search` instead of like expressions in `.where`
+- Integrity checks are skipped if `@sap/cds-compiler`'s foreign key generation (beta!) is active
+- Private `<entity>._dependents` made non-enumerable to avoid circular references
+- `null` values for virtual properties added during post processing (previously done during serialization in odata-server)
+
+### Fixed
+
+- Ambiguous columns in having clause
+- The generic read handler for drafts now correctly returns an object if the key of the entity is provided, before it was an array
+- Improved handling of unique constraint violation error during create and update
+- Better error logs for integrity checks
+- Leading and trailing whitespaces are allowed in OData expressions
+- Release database client if begin fails
+- `auto-expand` of generated foreign keys in OData x4 flavor (`cds.env.odata.flavor = x4`) when actions return entities
+- Consider `not null` annotations on inline structured types in OData x4 flavor (`cds.env.odata.flavor = x4`)
+- Temporal data in OData batch requests
+- Deep update/delete with static on conditions by composition to many
+- Draft: Alias of entity projection is incorrectly considered as key.
+- Support of arbitrary requests in service consumption if no external service model is provided
+- Use unfolded model if transaction was initiated in messaging
+- Infinite loop in restriction processing when user attribute is `null`
+
 ## Version 3.0.9 - 2021-04-29
 
 ### Changed
@@ -20,7 +69,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- Timeout issues in `enterprise-messaging-shared` when reconnecting
+- Timeout issues in `enterprise-messaging-shared` in reconnect
 - Queries with a simultaneous use of `$expand` and `$orderby`, when the latter is using functions
 - Preserve non-error messages to client during failing draft activation
 
@@ -163,6 +212,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Support for version 2 of the `@sap/xssec` package, as it is deprecated. Now, only version 3 of the package is supported.
 
+## Version 2.9.11 - 2021-04-09
+
+### Fixed
+
+- Double quoted SQL keywords
+
+## Version 2.9.10 - 2021-04-07
+
+### Fixed
+
+- Downport of fix "Side effects on `@sap/hana-client`'s streaming extension"
+
 ## Version 2.9.9 - 2021-04-01
 
 ### Fixed
@@ -270,6 +331,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Removed
 
 - Redundant key generation
+
+## Version 2.8.7 - 2021-04-07
+
+### Fixed
+
+- Downport of fix "Side effects on `@sap/hana-client`'s streaming extension"
 
 ## Version 2.8.6 - 2021-02-17
 
@@ -1124,11 +1191,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 # Changelog History
 
-The CDS Runtime module is the successor of `@sap/cds-services`, `@sap/cds-messaging`, `@sap/cds-rest`, `@sap/cds-hana`, `@sap/cds-sqlite`, and `@sap/cds-sql`. The changelogs of these components can be found here:
+The CDS Runtime module is the successor of `@sap/cds-services`, `@sap/cds-messaging`, `@sap/cds-rest`, `@sap/cds-hana`, `@sap/cds-sqlite`, and `@sap/cds-sql`. The changelogs of these components can be found contained within each corresponding npm package:
 
-- [CHANGELOG cds-services](changelogs/CHANGELOG_cds-services.md)
-- [CHANGELOG cds-messaging](changelogs/CHANGELOG_cds-messaging.md)
-- [CHANGELOG cds-rest](changelogs/CHANGELOG_cds-rest.md)
-- [CHANGELOG cds-hana](changelogs/CHANGELOG_cds-hana.md)
-- [CHANGELOG cds-sqlite](changelogs/CHANGELOG_cds-sqlite.md)
-- [CHANGELOG cds-sql](changelogs/CHANGELOG_cds-sql.md)
+- [cds-services](https://www.npmjs.com/package/@sap/cds-services)
+- [cds-messaging](https://www.npmjs.com/package/@sap/cds-messaging)
+- [cds-rest](https://www.npmjs.com/package/@sap/cds-rest)
+- [cds-hana](https://www.npmjs.com/package/@sap/cds-hana)
+- [cds-sqlite](https://www.npmjs.com/package/@sap/cds-sqlite)
+- [cds-sql](https://www.npmjs.com/package/@sap/cds-sql)

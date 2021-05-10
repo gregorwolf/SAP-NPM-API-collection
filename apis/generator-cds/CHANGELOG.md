@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.17.7] - 2021-04-16
+
+### Fixed
+- Use `ping` command to check availability of docu server.
+
+
 ## [2.17.6] - 2021-04-08
 
 ### Fixed

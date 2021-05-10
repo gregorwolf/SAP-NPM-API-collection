@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.1.1 - 2021-05-07
+
+### Fixed
+
+- Include `@sap/cds` 5.1.1
+
+## Version 4.1.0 - 2021-05-06
+
+### Added
+
+- `cds watch --open` opens the app in the browser with a given URL (part)
+
+### Changed
+
+- If `cds watch` encounters a port that is already in use, it now just runs on an arbitrary port instead of a trying to search the next port available.
+- `cds init` uses latest `Maven Java archetype` version `1.15.3` for creating Java projects.
+
+### Fixed
+
+- `cds compile --to hdbtable, hdbcds` no longer creates duplicate file extensions.
+
 ## Version 4.0.7 - 2021-04-16
 
 ### Changed
@@ -27,14 +48,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- Fixes in linter
+- Bumped version of `@sap/eslint-plugin-cds`
 
 ## Version 4.0.4 - 2021-04-12
 
 ### Changed
 
 - `cds init` uses latest `Maven Java archetype` version `1.15.0` for creating Java projects.
-- Bumped version of `@sap/eslint-plugin-cds`
 
 
 ## Version 4.0.3 - 2021-04-07

@@ -7,7 +7,70 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 2.0.0 - 2021-05-07
+
+### Added
+- Saas provisioning operations GET, PUT and DELETE on API `/mtx/v1/provisioning/tenant/`
+now require scope `mtcallback`. Upgrade calls on API `/mtx/v1/model/upgrade/` and 
+`/mtx/v1/model/upgradeAsync/` now require scope `mtdeployment`.
+This is now aligned with the 
+[mandatory scope check required for the java runtime](../java/multitenancy#xsuaa-mt-configuration).<br>
+To adapt the scope names to the java runtime scope configuration, 
+the scope names can be changed using the following cds configuration:
+```
+mtx: {
+    security: {
+        "subscription-scope": "myApp.subscription",
+        "deployment-scope": "myApp.deployment"
+    }
+}
+```
+- Support cds build API throwing BuildError instead of CompilationError.
+- Undeployment of extensions can now be done using a simplified API:
+`/mtx/v1/model/deactivate` with payload containing the extension sources to
+be removed.
+```
+{
+  "extension_files": [
+    "db/ext3.cds"
+  ],
+  "tenant": "<tenant id>"
+}
+```
+- Support automatic roll-back for corrupted tenants when `MTX_ROLLBACK_CORRUPTED_TENANT` is set to `true`. This should _never_ be used in production, but only for integration tests.
+
+### Changed
+
+- The global data meta tenant (`GLOBAL_DATA_META_TENANT`) is now created on the first application startup, instead of the first onboarding
+- `@sap/hdi-deploy` and `@sap/instance-manager` are now directly required by `@sap/cds-mtx`. Therefore, they can be left out of your `package.json` `dependencies`
+- Job IDs are now generated using the `uuid` package
+- The default behavior of the `extension-allowlist` has changed. If `extension-allowlist`
+is not configured, it is not allowed to apply any extension.<br>
+Extensions can be easily enabled for all entities and services by adding the following 
+to the configuration.
+```
+mtx: {
+  "extension-allowlist" = [
+      {
+          "for": ["*"]
+      }
+  ]
+```
+
+### Fixed
+- No more duplicate log entries in model upgrade result.
+
+## Version 1.2.3 - 2021-05-01
+
+
+### Fixed
+- Scope check for extension undeployment (ExtendCDSDelete) is enabled again
+
+## Version 1.2.2 - 2021-04-23
+
+
 ## Version 1.2.1 - 2021-04-14
+
 
 ### Fixed
 - Undeployment for model upgrade via `advancedOptions` working again

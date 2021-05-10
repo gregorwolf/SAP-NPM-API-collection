@@ -1,7 +1,10 @@
 @sap/cds
-@sap/cds-compiler
-@sap/cds-sidecar-client
-@sap/hana-performance-tools
-@sap/hdbext
-@sap/html5-app-deployer
-@sap/xb-msg-amqp-v100
+@sap/cds-dk
+@sap/cds-foss
+@sap/cds-lsp
+@sap/cds-mtx
+@sap/cds-runtime
+@sap/eslint-plugin-cds
+@sap/generator-cds
+@sap/service-provider-apis
+@sap/vscode-cds

@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.0.2 - 2021-05-06
+
+### Changed
+- uses `@sap/cds-lsp@5.0.3`
+- uses `@sap/cds-compiler@2.2.4`
+
 ## Version 4.0.1 - 2021-04-22
 
 ### Changed

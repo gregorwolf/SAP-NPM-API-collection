@@ -6,7 +6,38 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.2] - 2021-05-05
+
+### Changed
+
+- Updated all rules to ingest args: (cds, context)
+- Use context's sourcecode to get correct range indices for fixers
+
+## [1.1.1] - 2021-05-04
+
+
+### Changed
+
+- Removed bulky headers from custom formatter
+- Removed latest-cds-version rule from recommended rules
+- Fixed min-node-version rule to always find cds.home
+- If no model files are found, do not fail but only do env checks
+- Fixed formatter to also print any other ESLint messages received
+
+## [1.1.0] - 2021-04-29
+
+
+### Added
+
+- Custom cds formatter for separate reporting of env and model checks
+
+### Changed
+
+- Fixed version of model rule 'sql-cast-suggestion'
+
+
 ## [1.0.8] - 2021-04-12
+
 
 ### Added
 
