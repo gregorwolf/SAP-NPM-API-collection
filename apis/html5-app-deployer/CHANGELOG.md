@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.0.1 - 2021-05-09
+
+### Fixed 
+- Destination type set to HTTP when creating destination configuration
+
 ## 3.0.0 - 2021-03-11
 
 ### Added

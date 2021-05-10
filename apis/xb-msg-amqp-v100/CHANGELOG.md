@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.51] - 2021-04-30
+
+- fixed: count split transfer frames correctly (when maxFrameSize is smaller than payload)
+
+## [0.9.50] - 2020-11-30
+
+- fixed: update more precisely remoteIncomingWindow and remoteOutgoingWindow
+
 ## [0.9.48] - 2020-10-09
 
 - fixed: README after move to npmjs

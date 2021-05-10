@@ -1,1 +1,7 @@
-@sap/open.fe
+@sap/cds
+@sap/cds-compiler
+@sap/cds-sidecar-client
+@sap/hana-performance-tools
+@sap/hdbext
+@sap/html5-app-deployer
+@sap/xb-msg-amqp-v100
