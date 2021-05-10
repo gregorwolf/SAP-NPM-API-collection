@@ -16,7 +16,7 @@ First of all, you might have a question why we are developing another tool in ad
 
 ## Features
 
-SQL Analyzer for Visual Studio Code is still under heavy development. You can find the full feature parity table in wiki from this repository. Here are some highlighted features:
+SQL Analyzer for Visual Studio Code is still under heavy development. You can find the full feature parity table in wiki from this repository. Here are some highlighted features. Please note that currently we only support offline analysis of PLV file, which can be exported from the existing PlanViz or SQL Analyzer in Cockpit and does not support online connection to HANA systems yet.
 
 * Live connection support (Note: connection details will be stored in [SecretStorage](https://code.visualstudio.com/updates/v1_53#_secrets-api).)
 * Load multiple PLV files and keep the history
@@ -27,11 +27,14 @@ SQL Analyzer for Visual Studio Code is still under heavy development. You can fi
 * Recommendations
 * Advanced UX
 
+![Screenshot](https://github.wdf.sap.corp/I036515/vsc-extension-sa/blob/master/doc/vsc-ext-sa-capture1.jpg)
+
 ## Known Limitations
 
 The following features are NOT impleneted yet:
 
 * SQL editor (Database Explorer is not available in VSCode yet)
+* Connection to HANA system for online analysis
 * Plan Trace view
 * Plan Comparison view
 
@@ -41,7 +44,7 @@ Until we release this software via [Visual Studio Code Marketplace](https://mark
 
 1. Install [Visual Studio Code](https://code.visualstudio.com) if not installed already (>= 1.46.0 is required because the extension is relying on the APIs from that version).
 1. Open VSCode and click Extensions tab (puzzle icon) from the left side menu bar
-1. Search for 'SQL analyzer tool for SAP HANA' and install Visual Studio Code Extension file (vsc-extension-sa-<ver>.vsix) of this new SQL Analyzer from [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=SAPSE.vsc-extension-sa).
+1. Search for 'SAP HANA SQL Analyzer' and install Visual Studio Code Extension file (vsc-extension-sa-<ver>.vsix) of this new SQL Analyzer from [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=SAPSE.vsc-extension-sa).
 1. Once the installation is completed, the new SQL Analyzer icon will be added in the left side menu.
 
 ## How To Use
@@ -49,6 +52,8 @@ Until we release this software via [Visual Studio Code Marketplace](https://mark
 1. Go to SQL Analyzer extension (by clicking the last extension icon from the left side menu)
 1. Click (+) icon from the top PLAN GRAPHS section in the left side panel.
 1. Select a PLV file from the file open dialog to show the visualized plan.
+
+For the detailed usage, refer to [wiki](https://github.wdf.sap.corp/HANA-Perf-Mgmt-Tools/vsc-extension-sa/wiki) pages in this repository.
 
 ## Documentation
 
@@ -61,3 +66,7 @@ Here is the brief history of releases.
 ### 1.0.3
 
 First official release
+
+## Feedbacks
+
+Please provide your feedbacks thru "DL Database_SEL_Tool <DL_5D1C6525F0CD7F027FD1B8B4@global.corp.sap>"
