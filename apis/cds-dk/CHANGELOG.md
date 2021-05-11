@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.1.3 - 2021-05-12
+
+### Fixed
+
+- Include `@sap/cds` 5.1.3
+
+## Version 4.1.2 - 2021-05-12
+
+### Fixed
+
+- Include `@sap/cds` 5.1.2
+
 ## Version 4.1.1 - 2021-05-07
 
 ### Fixed

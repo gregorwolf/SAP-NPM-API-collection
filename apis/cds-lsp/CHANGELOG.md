@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.0.5 - 2021-05-11
+
+### Fixed
+
+- asynchronous scanning of workspace blocked and led to high cpu usage (mostly on Linux/macOS) 
+
 ## 5.0.3 - 2021-05-06
 
 ### Changed

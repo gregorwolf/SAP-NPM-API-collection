@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.0.4 - 2021-05-11
+
+### Changed
+- uses `@sap/cds-lsp@5.0.5`
+- new user option `cds.env.fetch` to dynamically fetch _cds.env_ when using non-default i18n file/folder names 
+
+### Fixed
+- asynchronous scanning of workspace blocked and led to high cpu usage (mostly on Linux/macOS) 
+
 ## Version 4.0.2 - 2021-05-06
 
 ### Changed

@@ -1,1 +1,5 @@
-@sap/cds-mtx
+@sap/cds
+@sap/cds-dk
+@sap/cds-lsp
+@sap/sbf
+@sap/vscode-cds

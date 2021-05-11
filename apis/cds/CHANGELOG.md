@@ -4,6 +4,20 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.1.3 - 2021-05-12
+
+### Fixed
+
+- `cds` does not check for the min. Node.js on BAS, for now
+
+## Version 5.1.2 - 2021-05-12
+
+### Fixed
+
+- `cds compile --for odata` now honors the OData version again
+- `cds compile --for odata` now honors the SQL naming mode (`sql.names`) again
+- `cds serve` does not run in an infinite bootstrap loop if `cds.server()` is called in `server.js`
+
 ## Version 5.1.1 - 2021-05-07
 
 ### Fixed
