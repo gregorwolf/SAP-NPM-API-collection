@@ -8,11 +8,17 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.2.10"></a>
+## 6.2.10 - 2021-05-05
+
+### Added
+- fetch instance parameters endpoint and hook
+
 <a name="6.2.9"></a>
 ## 6.2.9 - 2021-03-16
 
 ### Added
-- update prepareRelease command 
+- update prepareRelease command
 
 <a name="6.2.8"></a>
 ## 6.2.8 - 2021-03-15

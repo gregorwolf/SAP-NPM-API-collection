@@ -86,6 +86,7 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
     + [`onUpdate(params, callback)`](#onupdateparams-callback)
     + [`onDeprovision(params, callback)`](#ondeprovisionparams-callback)
     + [`onLastOperation(params, callback)`](#onlastoperationparams-callback)
+    + [`onFetchInstanceParams(params, callback)`](#onfetchinstanceparamsparams-callback)
     + [`onBind(params, callback)`](#onbindparams-callback)
     + [`onUnbind(params, callback)`](#onunbindparams-callback)
     + [`params` details](#params-details)
@@ -505,7 +506,7 @@ cf create-service xsuaa broker <service-instance> -c xs-security.json
 
 ##### Creating reuse service instances
 
-Later on you can create instances of the reuse service like this:
+Later on, you can create instances of the reuse service:
 ```sh
 cf create-service my-service my-plan <service-instance> -c parameters.json
 ```
@@ -533,7 +534,7 @@ See [Additional Service Configuration](#additional-service-configuration).
 Other top level properties are optional (e.g. `customProperty1` and `customProperty2`) and can be used to pass arbitrary parameters.
 The whole *parameters.json* file is accessible via `params.parameters` in [`onProvision(params, callback)`](#onprovisionparams-callback) hook.
 
-**Note**: Custom parameters can be defined as root level properties. If `xs-security` is not defined, the SBF will generate a default value, where `xsappname` is set to the service instance id.
+**Note**: Custom parameters can be defined as root-level properties. If `xs-security` is not defined, the SBF generates a default value, where `xsappname` is set to the service instance id.
 
 Generated credentials example:
 ```json
@@ -1036,9 +1037,9 @@ Service catalog example:
 ```json
 {
   "services": [{
-    "name": "fake-service",
+    "name": "not-real-service",
     "id": "acb56d7c-XXXX-XXXX-XXXX-feb140a59a66",
-    "description": "fake service",
+    "description": "Just an example service",
     "tags": ["no-sql", "relational"],
     "requires": ["route_forwarding"],
     "bindable": true,
@@ -1340,6 +1341,26 @@ SBF performs no additional processing for this operation.
 **Note:** Implementing `onLastOperation` is mandatory, if any other operation hook returns `reply.async = true`. If this hook is not implemented, SBF will return status 501 (Not Implemented).
 
 See [Asynchronous broker operations](#asynchronous-broker-operations) for more information.
+
+#### `onFetchInstanceParams(params, callback)`
+Called when the broker receives an *instance parameters* request.
+
+* `params` *Object*
+  * `instance_id` *String* Service instance ID
+  * `originating_identity` *Object* Only available if the `X-Broker-API-Originating-Identity` header is provided in the request.
+  Contains the parsed data from the header (you can find more information about the structure [here](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/profile.md#originating-identity-header)).
+  * `user_id` *String* The authenticated user that called the broker.
+  * `req` *Object* See [here](#req) for more details.
+* `callback` *function(error, reply)*
+  * `error` *Object* See [Error handling](#error-handling).
+  * `reply` *Object* An object returned as a response to the *instance parameters* request.
+
+SBF performs no additional processing for this operation.
+
+**Note:** Make sure to set the `instances_retrievable` property in the broker catalog to `true`.
+
+**Note:** Implementing `onFetchInstanceParams` is not mandatory, but we recommend that you implement it together with the [onProvision hook](#onprovisionparams-callback),which is used to store parameters (SBF doesn't handle parameters' storage). If this hook isn't implemented, SBF returns status 501 (Not Implemented).
+
 
 #### `onBind(params, callback)`
 Called when the broker receives a *bind* request.
