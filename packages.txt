@@ -1,10 +1,1 @@
-@sap/cds
-@sap/cds-dk
-@sap/cds-foss
-@sap/cds-lsp
 @sap/cds-mtx
-@sap/cds-runtime
-@sap/eslint-plugin-cds
-@sap/generator-cds
-@sap/service-provider-apis
-@sap/vscode-cds

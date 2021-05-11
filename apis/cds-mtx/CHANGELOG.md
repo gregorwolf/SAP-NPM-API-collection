@@ -7,7 +7,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 2.0.1 - 2021-05-10
+
+### Added
+
+- It's now possible to provide BTP dependencies in the `mtx` settings in your `.cdsrc.json` instead of implementing a custom handler, by setting `mtx.dependencies` accordingly.
+
 ## Version 2.0.0 - 2021-05-07
+
 
 ### Added
 - Saas provisioning operations GET, PUT and DELETE on API `/mtx/v1/provisioning/tenant/`
