@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.1.4 - 2021-05-12
+
+### Fixed
+
+- Error when using complex type references, as in:
+```swift
+entity Foo { bar: Tic:tac.toe; }
+entity Tic { tac: Composition of { toe:String } }
+```
+
 ## Version 5.1.3 - 2021-05-12
 
 ### Fixed
@@ -43,6 +53,14 @@
 
 - Clean up obsolete compiler option `snapi`.
 - `cds build` is no longer validating Nodejs custom service handlers that have been registered using service `@impl` annotation.
+
+## Version 4.6.6 - 2021-05-05
+
+### Fixed
+
+- Now, the `.csv` file reader correctly closes open file descriptors to avoid memory leaks during `cds build`.
+- Fixed i18n handling causing `cds build` to fail with error message `bundle is not iterable`.
+- Nodejs custom handlers are now correctly resolved if a dedicated destination folder has been configured for the build task.
 
 ## Version 5.0.7 - 2021-04-21
 

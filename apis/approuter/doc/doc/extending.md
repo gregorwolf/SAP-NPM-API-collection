@@ -16,6 +16,8 @@ Extending Application Router
     + [Event: 'logout'](#event-logout)
     + [`first`](#first)
     + [`beforeRequestHandler`](#beforerequesthandler)
+    + [`afterRequestHandler`](#afterrequesthandler)
+      [`backendTimeout`](#backendtimeout)
     + [`beforeErrorHandler`](#beforeerrorhandler)
     + [`start(options, callback)`](#startoptions-callback)
     + [`close(callback)`](#closecallback)
@@ -243,6 +245,45 @@ A [Middleware Slot](#middleware-slot) before the first application router middle
 
 #### `beforeRequestHandler`
 A [Middleware Slot](#middleware-slot) before the standard application router request handling
+
+#### `afterRequestHandler`
+A function that can be added to the request object - for example in a "first" or "beforeRequestHandler" extension.
+If exists, this function will be called by the standard application router after the standard backend response handling is completed.
+Input: 
+* `ctx` context object containing the following properties
+  * `incomingRequest` the request sent from client to application router
+  * `incomingResponse` the response that will be sent from application router to client
+  * `outgoingRequest` the request sent from application router to backend application
+  * `outgoingResponse` the response that was received in application router from backend application
+* `done` a callback function that receives (optionally) and error and the modified incomingResponse
+    
+Note that this function is called after standard application router headers processing. Data piping is not modified. 
+If an error is passed to done callback it will be just logged, piping process will not be stopped. Note that also in case of error the incomingResponse object should be returned.
+
+Example:
+```js
+var approuter = require('@sap/approuter');
+var ar = approuter();
+ar.first.use('/backend', function (req, res, next) {
+    req.afterRequestHandler = function(ctx, done){
+        if (ctx.outgoingResponse.statusCode === 200) {
+          let incomingResponse = ctx.incomingResponse;
+          incomingResponse.setHeader('header1', 'abc');
+          done(null, incomingResponse);
+        } else {
+          done('An error occurred in backend, returned status ' + ctx.outgoingResponse.statusCode, ctx.incomingResponse);
+        }
+    };
+    next();
+});
+ar.start();
+```
+#### `backendTimeout`
+A function that can be added to the request object - for example in a "first" or "beforeRequestHandler" extension.
+If exists, this function will be called by the standard application router when a backend connection timeout occurs.
+Input:
+* `req` the request object
+* `done` a callback function that doesn't return any parameter
 
 #### `beforeErrorHandler`
 A [Middleware Slot](#middleware-slot) before the standard application router error handling

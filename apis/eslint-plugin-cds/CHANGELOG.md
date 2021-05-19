@@ -6,7 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.3] - 2021-05-12
+
+
+### Changed
+
+- Changed rule type for naming convention rules to "suggestion"
+- Do not rely on namespaces/contexts to extract entity names
+- Added extra layer to also support ruleTester "environment" checks
+
 ## [1.1.2] - 2021-05-05
+
 
 ### Changed
 

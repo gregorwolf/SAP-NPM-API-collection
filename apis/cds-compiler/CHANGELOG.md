@@ -7,6 +7,18 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 2.2.6 - 2021-05-12
+
+### Fixed
+
+- to.edmx(x):
+  + The reverted change "`array of` elements are now allowed for OData V2, too." introduced with v2.2.0 has caused
+    regressions in various scenarios that used OData V4 processed CSN for OData V2 EDMX rendering. Therefore
+    the error has been lowered to a 'odata-spec-violation-array-of' warning.
+  + The fix 'Render constraints only if all principal keys are used in association' introduced with v2.2.2 has
+    caused regressions in mocking scenarios. With option `--odata-v2-partial-constr` partial constraint generation
+    can be reactivated. A 'odata-spec-violation-constraints' warning is raised.
+
 ## Version 2.2.4 - 2021-05-06
 
 No changes compared to Version 2.2.2; fixes latest NPM tag
@@ -62,6 +74,13 @@ No changes compared to Version 2.2.2; fixes latest NPM tag
 - to.edm(x):
   + V2: `OnDelete=Cascade` was set on dependent instead on principal role.
   + V4: ReferentialConstraints Property and ReferencedProperty for managed composition to one were swapped.
+
+### 2.2.6 Addendum to Changed
+
+- to.edm(x): Revert 2.1.0 change: "`array of` elements are now allowed for OData V2, too."
+  OData V2 does not allow elements to be typed with `Collection()`. Any `many`
+  predicate in element definitions is rejected. The only two positions where the `many` predicate
+  is allowed are `association to many` and `returns many`.
 
 ## Version 2.1.6 - 2021-04-14
 

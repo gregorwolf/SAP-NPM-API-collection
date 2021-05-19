@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.1.4 - 2021-05-12
+
+### Fixed
+
+- Include `@sap/cds` 5.1.4
+- Include `@sap/cds-compiler` 2.2.6
+- Include `@sap/eslint-plugin-cds` 1.1.3
+
 ## Version 4.1.3 - 2021-05-12
 
 ### Fixed

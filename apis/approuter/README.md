@@ -43,6 +43,7 @@
   * [Custom Headers](#custom-headers)
   * [Authorization Header](#authorization-header-beta-version)
 - [CSRF Protection](#csrf-protection)
+- [Support of SAP Statistics](#support-of-sap-statistics)
 - [Connectivity](#connectivity)
 - [SaaS Application Registration in CF](#saas-application-registration-in-cloud-foundry)
   * [How To Expose Approuter for SaaS Subscription](#how-to-expose-approuter-for-saas-subscription)
@@ -215,6 +216,7 @@ Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fra
 [Direct Routing URI Patterns](#direct-routing-uri-patterns-configuration) | `DIRECT_ROUTING_URI_PATTERNS` | Configuration for direct routing URI patterns. 
 Backend Cookies Secret | `BACKEND_COOKIES_SECRET` | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
 Service to Application Router | `SERVICE_2_APPROUTER` | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
+Client certificate header name | `CLIENT_CERTIFICATE_HEADER_NAME` | When set application router will use this header name to get the client certificate from the request header in subscription callback. If not provided the default header name `x-forwarded-client-cert` is used.
 
 **Note:** all those environment variables are optional.
 
@@ -498,10 +500,13 @@ For route with source that match the REGEX ?^\route1$?, the CORS configuration i
 
 ## Direct Routing URI Patterns configuration
 
-With the direct routing URI patterns configuration, you can define a list of URIs that are directed to the routing configuration file (xs-app.json file) of the application router instead of to the xs-app.json file that is stored in the HTML5 Application Repository. This configuration improves the application loading time and monitoring options because it prevents unnecessary calls to the HTML5 Application Repository. 
+With the direct routing URI patterns configuration, you can define a list of URIs that are directed to the routing configuration file (xs-app.json file) of the application router instead of to a specific application's xs-app.json file that is stored in the HTML5 Application Repository. This configuration improves the application loading time and monitoring options because it prevents unnecessary calls to the HTML5 Application Repository.
 
 The configuration is an array of strings or regular expressions. 
-You have to provide only the first segment in the URL, after the approuter host. For example, for URL https://<subdomain>.<approuterHost>/route1/index.html, fill "route1" in the Direct Routing URI Patterns array. 
+Note that the following regular expressions are preconfigured in the configuration array: "^favico.ico$", "^login$".
+Therefore, do not name your HTML5 applications "favico.ico" or "login"!
+
+You have to provide only the first segment in the URL, after the approuter host. For example, for the URL https://approuter-host/route1/index.html, you enter "route1" in the direct routing URI patterns array.
 
 Sample content of the Direct Routing URI Patterns environment variable:
 
@@ -1506,6 +1511,21 @@ If a CSRF protected route is requested with any of the above mentioned methods,
 This request must use the same session as the fetch token request.
 If the `x-csrf-token` header is not present or invalid, the application router will return status code *403 Forbidden* and a response header `x-csrf-token: Required`.
 
+## Support of SAP Statistics
+
+The application router provides performance statistics in an HTTP response header in the following cases:
+- The HTTP request contains an HTTP query parameter (URL parameter) sap-statistics=true.
+- The HTTP request contains an HTTP header field sap-statistics:true.
+
+If an HTTP request that contains a header field or query parameter with "sap-statistics=true" reaches the application router, the application router forwards an "sap-statistics" header to the corresponding backend.
+If SAP statistics is implemented for the backend, the backend returns to the application router a response header containing the statistics information from the backend.
+
+The application router returns the following statistics information in an sap-statistics-approuter response header:
+- total: The time that has passed between the moment when the request entered into the application router and the moment when the application router started writing the response
+- ext (in case of destination forwarding): The time spent in the backend
+
+Each backend sub-component can add its own response header with the duration measurements when it receives the HTTP header sap-statistics:true.
+
 ## Connectivity
 
 The application router supports integration with SAP Cloud Platform connectivity service. The connectivity service handles proxy access to SAP Cloud Platform cloud connector, which tunnels connections to private network systems. In order to use connectivity, a connectivity service instance should be created and bound to the Approuter application. In addition, the relevant destination configurations should have `proxyType=OnPremise`. Also, a valid XSUAA login token should be obtained via the login flow.
@@ -1627,6 +1647,11 @@ xs-app.json routes that are used to retrieve static content from HTML5 Applicati
      "authenticationType": "xsuaa"                      
  }
 ```
+
+### Blocked HTML5 Application Names
+
+The following strings are used as predefined direct routing URIs, which lead the request to the routing configuration file of the application router: "favico.ico", "login".
+Therefore, do not name your HTML5 applications "favico.ico" or "login"!
 
 ### Known Gaps in Integration with HTML5 Application Repository
 

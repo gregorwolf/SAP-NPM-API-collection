@@ -5,10 +5,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.3.0 - 2021-05-11
+
+### Added
+- CLIENT_CERTIFICATE_HEADER_NAME configuration for non CF flows
+- Support of SAP statistics for reporting the request performance
+- AfterRequestHandler and backendTimeout extension support
+
+### Fixed
+- Lazy html5-repo client-credentials token creation in case it could not be created during startup
+- Added "login" as a pre-configured direct URI route to prevent unnecessary calls to the HTML5 Application Repository
+
+### Updated dependencies
+- deps: cf-nodejs-logging-support@6.7.0
+
 ## 10.2.0 - 2021-04-11
 
 ### Added
 - Support of routing directly to the routing configuration file (xs-app.json) of the application router using the DIRECT_ROUTING_URI_PATTERNS environment variable 
+- Caching support for destinations from destination service
 
 ### Fixed
 - Verify cookie when IAS and XSUAA bound
@@ -16,9 +31,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Empty getDependencies configuration handling in SaaS Registry subscription
 - Handle SMS apiURLs in K8S
 - Encode redirect logout url parameters in case of xsuaa authentication
-
-### Added
-- Caching support for destinations from destination service
 
 ## 10.1.0 - 2021-03-21
 

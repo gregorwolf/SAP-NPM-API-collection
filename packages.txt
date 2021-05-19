@@ -1,5 +1,7 @@
+@sap/approuter
 @sap/cds
+@sap/cds-compiler
 @sap/cds-dk
-@sap/cds-lsp
-@sap/sbf
-@sap/vscode-cds
+@sap/eslint-plugin-cds
+@sap/hana-performance-tools
+@sap/xsjs
