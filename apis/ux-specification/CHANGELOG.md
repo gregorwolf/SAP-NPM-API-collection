@@ -8,6 +8,27 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 *Official support of OData V4*
 
+## [1.84.11] - 2021-05-06
+
+### Added
+
+- New tag displayName in JSON schema: used to switch the name in the UI when needed, the original schema name is not changed due to compatibility reasons.
+- New tag dataType in JSON schema for V4 Form and Object Page: as a tag, this can be rendered display-only as an additional information for any data field.
+
+### Changed
+
+- Documentation updates, due to introduction of the additional version for UI5 1.89
+- Schema file names are now based on entitySet instead of entityType
+
+### Fixed
+
+- OData V2: LR/OP/ALP - Unknown properties are now excluded from export which in turn also avoids deletion of properties unknown to specificaiton from manifest
+- No invalid references anymore at the generated JSON schemas.
+
+### Quality
+
+- lodash upgrade
+
 ## [1.84.10] - 2021-04-22
 
 ### Added

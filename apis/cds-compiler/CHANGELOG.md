@@ -7,6 +7,13 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behaviour concerning `beta` features can change at any time without notice.
 
+## Version 2.2.8 - 2021-05-20
+
+### Fixed
+
+- Fix regression: also for associations _defined_ in a service, try to
+  implicitly redirect the provided model target.
+
 ## Version 2.2.6 - 2021-05-12
 
 ### Fixed

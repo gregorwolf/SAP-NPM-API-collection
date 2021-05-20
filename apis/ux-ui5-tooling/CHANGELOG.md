@@ -2,6 +2,13 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.1.11] - 2021-05-06
+### Added
+- Added new command `npx fiori undeploy` to undeploy an application from ABAP system
+
+### Fixed
+- Fixed an issue causing the application preview to fail if a custom port greater than 9010 is specified
+
 ## [1.1.9] - 2021-04-08
 ### Added
 * Added support in proxy for backend system credentials stored in secure store or in .env file

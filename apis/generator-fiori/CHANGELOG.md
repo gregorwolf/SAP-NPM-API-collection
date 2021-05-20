@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.11] - 2021-05-14
+#### Added
+- Added support to include undeployment script (check `undeploy` script in package.json) when deployment configuration is generated for ABAP systems.
+
+#### Fixed
+- To ensure consistency, all generated V2, V4 or CAP applications will now have a header bar and preview will launch the application in a browser directly without showing Fiori launchpad first
+
 ## [1.1.10] - 2021-04-29
 #### Added
 - Improved the destination catalog service request to ensure the list of services returned is filtered to those suitable for Fiori applications.  Note: the catalog service needs to also be updated to accommodate this change, if not, the existing list is returned.
