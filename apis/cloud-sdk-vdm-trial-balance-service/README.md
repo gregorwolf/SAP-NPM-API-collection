@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-trial-balance-service
 
-This package contains the OData VDM for the [Trial Balance Service](https://api.sap.com/api/C_TRIALBALANCE_CDS) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Finance - Accounting Analytics Integration (SAP_COM_0303).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/61/ab22d2f6da49a394004e459947e994/frameset.htm).
+This package contains the OData VDM for the Trial Balance Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

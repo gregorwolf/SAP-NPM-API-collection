@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-inbound-delivery-service
 
-This package contains the OData VDM for the [Inbound Delivery Service](https://api.sap.com/api/API_INBOUND_DELIVERY_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Delivery Processing Integration (SAP_COM_0106).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/a9/a6d58ffaf841cb99c67d3b0dbbd71b/frameset.htm).
+This package contains the OData VDM for the Inbound Delivery Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

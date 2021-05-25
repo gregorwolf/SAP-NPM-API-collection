@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-event-based-revenue-recognition-integration-service
 
-This package contains the OData VDM for the [Event Based Revenue Recognition Integration Service](https://api.sap.com/api/API_EVENT_BASED_REVREC_PROJECT_SRV) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Finance - Event-Based Revenue Recognition Integration (SAP_COM_0312).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/14/07737644024c36a45388ffe4f593a4/frameset.htm).
+This package contains the OData VDM for the Event Based Revenue Recognition Integration Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,6 +1,6 @@
-# @sap/cloud-sdk-vdm-outbound-delivery-service
+# @sap/cloud-sdk-vdm-catalog-type-overview-of-damage-service
 
-This package contains the OData VDM for the Outbound Delivery Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Catalog Type Overview Of Damage Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

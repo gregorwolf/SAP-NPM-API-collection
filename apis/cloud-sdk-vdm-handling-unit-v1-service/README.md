@@ -1,6 +1,6 @@
-# @sap/cloud-sdk-vdm-outbound-delivery-service
+# @sap/cloud-sdk-vdm-handling-unit-v1-service
 
-This package contains the OData VDM for the Outbound Delivery Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Handling Unit V1 Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

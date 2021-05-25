@@ -1,6 +1,6 @@
-# @sap/cloud-sdk-vdm-outbound-delivery-service
+# @sap/cloud-sdk-vdm-access-sequence-pricing-for-sales-service
 
-This package contains the OData VDM for the Outbound Delivery Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Access Sequence Pricing For Sales Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 
