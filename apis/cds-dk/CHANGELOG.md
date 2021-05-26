@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.1.5 - 2021-05-21
+
+### Fixed
+
+- An issue with opening URLs on Windows
+- `cds` CLI no longer adds `cds.compile.to.openapi` generically into all commands.  This turned out to load cds configuration from wrong folders, introducing subtle side effects.  Now, only the `cds compile` command adds `cds.compile.to.openapi`.  If you use `cds.compile.to.openapi` in other flows, like at runtime, please use `cds compile --to openapi` instead.
+- Include `@sap/cds` 5.1.5
+- Include `@sap/cds-runtime` 3.1.1
+- Include `@sap/cds-compiler` 2.2.8
+- Include `@sap/eslint-plugin-cds` 1.1.4
+
 ## Version 4.1.4 - 2021-05-12
 
 ### Fixed

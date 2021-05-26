@@ -7,7 +7,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 2.0.2 - 2021-05-21
+
+### Added
+- Internal on- and offboarding API for sidecar usecase: POST `/mtx/v1/internal/provisioning/subscribe`
+and POST `/mtx/v1/internal/provisioning/unsubscribe` 
+with payload 
+```
+{
+  "subscribedTenantId": <tenant id>,
+  "async": <true/false>
+}
+```
+
+### Changed
+
+- A failed offboarding will now throw a `TenantOffboardingError`, instead of just logging the error.
+
+### Fixed
+
+- MTX APIs are now served idempotently. This fixes custom provisioning handlers not being invoked correctly.
+
 ## Version 2.0.1 - 2021-05-10
+
 
 ### Added
 

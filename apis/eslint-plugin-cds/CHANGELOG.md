@@ -6,7 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.4] - 2021-05-20
+
+### Changed
+
+- Formatter does not show any (env/other) lint messages on model error
+- Rule lower-camelcase-elements reverted to also check type keys
+- Rule lower-camelcase-elements is not triggered by element 'ID' (see Bookshop in CAP samples)
+
+
 ## [1.1.3] - 2021-05-12
+
 
 
 ### Changed

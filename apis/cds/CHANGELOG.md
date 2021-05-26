@@ -4,6 +4,27 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.1.6 - TBD
+
+### Fixed
+- `cds build` supports validation of `extension-allowlist` which is replacing `entity-whitelist` or `service-whitelist` with cds-mtx 2.0. Warnings are no longer returned if neither entity-whitelist nor  service-whitelist is defined.
+
+## Version 5.1.5 - 2021-05-21
+
+### Added
+
+- `cds build` adds `engines.node` version to `package.json` if not present, in order to match the minimum required node version of CDS.
+- Generate an invocation context identifier (`cds.context.id`) if none can be derived
+
+### Fixed
+
+- Match locales in all upper-case (for example `ZH-CN` instead of `zh-CN`)
+- Key elements got lost in `cds.linked` when using type refs referring to other key elements
+- Tree shaking erroneously removed types `Foo` when only referred to by type refs like `bar : Foo:bar`
+- Fixed an error in transaction handling, that lead to db connections not released in rare cases
+- SQL names option gets properly propagated
+- No longer erroneously exclude entities explicitly marked with `cds.persistence:{table, skip:false}`, as in [cap/samples/suppliers](https://github.com/SAP-samples/cloud-cap-samples/blob/6b08826af51651f6b31fce8454fbadd23c634b85/suppliers/srv/mashup.cds#L46)
+
 ## Version 5.1.4 - 2021-05-12
 
 ### Fixed
