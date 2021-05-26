@@ -10,6 +10,7 @@ Extended Session Management
 - [API Reference](#api-reference)
 - [Example](#example)
 - [Performance](#performance)
+- [Custom Storage Driver](#custom-storage-driver)
 
 <!-- tocstop -->
 
@@ -422,3 +423,63 @@ consider an example, where requests for the same session come every
 persisted one time. In case of `500ms` throttling, changes will be
 persisted two times. Without any optimisation, changes will be
 persisted ten times.
+
+## Custom Storage Driver
+
+It is possible to use your own driver. In order to do that, user shall inject its own implementation of a store. 
+
+The class shall implement the following interface:
+```typescript
+
+interface UserCustomStore {
+
+  // delete all sessions
+  clear(): Promise<void>;
+
+  // remove <sessionId> session
+  destroy(sessionId : string): Promise<void>; 
+
+  // retrieve <sessionId> session
+  get(sessionId : string): Promise<object | null>;
+
+  // number of sessions
+  length(): Promise<number>;
+
+  // get <sessionId> expiration
+  ttl(sessionId : string): Promise<number>;
+
+  // set <sessionId> data to <session> with <timeout> expiration
+  set(sessionId: string, session: object, timeout: number): Promise<void>;
+
+  // check if session <sessionId> exists
+  exists(sessionId: string): boolean; 
+
+  // update existing session <sessionId> expiration to <timeout>
+  resetTimer(sessionId: string, timeout: number); 
+}  
+```
+
+In addition, the file should include a method to get an instance of the store, for example:
+```typescript
+let store;
+module.exports.getStore = () => {
+  if (!store) {
+    store = new UserCustomStore();
+  }
+  return store;
+};
+```
+
+see [Redis store](../lib/utils/redis-store.js) for example
+
+In order for app router to use it, user shall set ```externalStoreFilePath``` property in the ```EXT_SESSION_MGT``` env variable with the path to the storage.  
+The application router will use this path to require your storage 
+For example: 
+```json
+{
+    "instanceName": "approuter-redis",
+    "storageType": "redis",
+    "sessionSecret": "someuniquesessionsecret",
+    "externalStoreFilePath": "./src/storage/my-special-storage"
+}
+``` 

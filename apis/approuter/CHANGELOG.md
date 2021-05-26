@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.4.0 - 2021-05-24
+
+### Added
+- External session management support
+
 ## 10.3.0 - 2021-05-11
 
 ### Added

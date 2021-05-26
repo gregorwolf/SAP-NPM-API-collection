@@ -53,6 +53,7 @@
 - [Web Sockets](#web-sockets)
 - [Session Handling](#session-handling)
   * [Session Contents](#session-contents)
+- [External Session Management](#external-session-management)
 - [Service to Application Router](#service-to-application-router-beta-version)
 - [Central Logout](#central-logout)
 - [User API Service](#user-api-service)
@@ -1879,6 +1880,39 @@ This can also be configured via the `JWT_REFRESH` environment variable (the valu
 
 **Note:** If the JWT is close to expiration and the session is still active a JWT refresh will be triggered in `JWT_REFRESH` minutes before expiration.
 `JWT_REFRESH` is an environment variable stating the number of minutes before the JWT expiration the refresh will be triggered. The default value is 5 minutes.
+
+## External Session Management
+The application router supports a backup of user sessions in an external session store. This enables the session recovery in case the application router instance that stores a session crashes and another application router instance has to continue handling the running user session.  
+To enable this capability, you must bind a service instance of a service that supports a fast persistence store, such as *Redis*. When such a service is bound, the application router backs up the in-memory session information into the external persistency store.  
+If, in subsequent requests, the session information is not found in the in-memory session store, the application router tries to rebuild the in-memory session information from the external persistency store.   
+
+The sessions are stored encrypted and compressed. For capacity planning, you can assume 50 Kb per session storage in the fast persistence store. 
+
+### External Session Management Configuration
+In order to use this feature, you have to set the following environment variable:
+
+```EXT_SESSION_MGT```  
+
+The variable value must be defined in the JSON format and provide the following properties:
+* **instanceName (mandatory)** - the name of the service instance of the storage service.
+* **storageType (mandatory)** - the type of the storage, for example - "redis". Note that if no custom storage driver is used, only “redis” is allowed.
+* **sessionSecret (mandatory)** - Since application router stores encrypted sessions in persistence store, a shared secret shall be provided. 
+Please generate a unique string with at least 64 characters.  
+
+For example: 
+```json
+{
+    "instanceName": "approuter-redis",
+    "storageType": "redis",
+    "sessionSecret": "someuniquesessionsecret"
+}
+```
+
+> **_NOTE:_** Currently, the application router supports only a Redis store
+
+### Configuration of a Custom Storage Driver
+For information about the configuration of a custom storage driver, see [Configuring a custom storage driver](doc/sessionManagement.md#custom-storage-driver)
+
 
 ## Service to Application Router
 
