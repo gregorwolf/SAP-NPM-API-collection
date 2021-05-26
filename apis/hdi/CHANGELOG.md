@@ -1,3 +1,7 @@
+## 4.0.2
+Features:
+- hana-client 2.8.x support
+
 ## 4.0.1
 Fixes:
 - Cleanup package.json
