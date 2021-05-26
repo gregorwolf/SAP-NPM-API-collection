@@ -12,6 +12,8 @@
   * [Undeploy HTML5 Application Deployer App Using cf undeploy](#undeploy-html5-application-deployer-app-using-cf-undeploy)
 - [Redeploy HTML5 Application Deployer App](#redeploy-html5-application-deployer-app)
 - [Automatic Creation of Destination Configurations](#automatic-creation-of-destination-configurations)
+- [Enable Process Exit After Upload](#enable-process-exit-after-upload)
+
 
 ## Overview
 HTML5 application deployer handles the upload of the HTML5 applications content to the HTML5 application repository.
@@ -299,5 +301,73 @@ spec:
             secretName: myapp-destination-binding
 
 ```
+## Enable Process Exit After Upload
+In case it is required to automatically exit the html5 application deployer process, you can set the EXIT_PROCESS_AFTER_UPLOAD environment variable.
+If this environment variable is set, after a successful upload the html5 application deployer application will be stopped. 
+Note that when using deploy service this is no required because deploy service stops the html5 application deployer application automatically.
+If you use native deployment mechanisms such as Cloud Foundry cf push or Kubernetes deployment, you may need to use this capability.
 
+Example:
+```
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: html5appdeployer
+  namespace: default
+  labels:
+    app: html5appdeployer
+spec:
+  ttlSecondsAfterFinished: 0
+  template:
+    metadata:
+      labels:
+        app: html5appdeployer
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - image: html5-apps-repo.docker.repositories.sap.ondemand.com/myapp-html5-app-deployer:1.0
+          imagePullPolicy: Always
+          name: html5appdeployer
+          volumeMounts:
+            - name: html5-repo-app-host-volume
+              mountPath: "/etc/secrets/sapcp/html5-apps-repo/myapp-app-host-instance"
+              readOnly: true
+            - name: xsuaa-volume
+              mountPath: "/etc/secrets/sapcp/xsuaa/myapp-xsuaa-instance"
+              readOnly: true
+            - name: destination-volume
+              mountPath: "/etc/secrets/sapcp/destination/myapp-destination-instance"
+              readOnly: true
+          env:
+            - name: EXIT_PROCESS_AFTER_UPLOAD
+              value: "true"
+            - name: PORT
+              value: "5000"
+            - name: SAP_CLOUD_SERVICE
+              value: "com.sap.test.service"
+            - name: BACKEND_DESTINATIONS
+              value: "[{
+              \"Name\":\"myapp-backend\",
+              \"Description\":\"My application backend\",
+              \"Type\":\"HTTP\",
+              \"ProxyType\":\"Internet\",
+              \"URL\":\"https://<backendApplicationHost>/\",
+              \"Authentication\":\"NoAuthentication\",
+              \"HTML5.ForwardAuthToken\": true}]"
+      imagePullSecrets:
+        - name: backend-dockersecret
+      volumes:
+        - name: html5-repo-app-host-volume
+          secret:
+            secretName: myapp-app-host-binding
+        - name: xsuaa-volume
+          secret:
+            secretName: myapp-xsuaa-binding
+        - name: destination-volume
+          secret:
+            secretName: myapp-destination-binding
 
+```

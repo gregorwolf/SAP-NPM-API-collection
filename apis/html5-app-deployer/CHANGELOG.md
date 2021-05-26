@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.1.0 - 2021-05-25
+
+### Added
+- Enable process exit after upload
+
 ## 3.0.1 - 2021-05-09
 
 ### Fixed 
