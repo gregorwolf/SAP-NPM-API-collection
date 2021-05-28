@@ -3,6 +3,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.0] - 2021-05-28
+### Fixed
+- The Fiori generator will be automatically installed if it is invoked from the command palette in VSCode and not already installed.
+- Projects migrated from WebIDE to Business Application Studio can now be deployed.
+- Migrated projects now include an OPA test script where applicable.
+
 ## [1.1.11] - 2021-05-14
 #### Added
 - Added support to include undeployment script (check `undeploy` script in package.json) when deployment configuration is generated for ABAP systems.

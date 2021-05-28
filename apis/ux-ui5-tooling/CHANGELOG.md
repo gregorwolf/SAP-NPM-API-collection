@@ -2,6 +2,10 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.2.0] - 2021-05-20
+### Fixed
+- Fixed previewing an application with MTA configuration
+
 ## [1.1.11] - 2021-05-06
 ### Added
 - Added new command `npx fiori undeploy` to undeploy an application from ABAP system

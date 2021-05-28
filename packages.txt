@@ -1,10 +1,6 @@
-@sap/approuter
-@sap/cds
-@sap/cds-dk
-@sap/cds-mtx
 @sap/cds-odata-v2-adapter-proxy
-@sap/cf-tools
-@sap/cloud-sdk-workflow-service-cf
-@sap/eslint-plugin-cds
-@sap/hdi
-@sap/html5-app-deployer
+@sap/generator-fiori
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-fe-mockserver-middleware
+@sap/ux-ui5-tooling

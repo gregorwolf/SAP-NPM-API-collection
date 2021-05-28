@@ -2,6 +2,16 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.2.0] - 2021-05-27
+### Changed
+- Updated comprised OData vocabularies.
+### Fixed
+- Unjustified error message for expected type
+
+## [1.1.11] - 2021-05-13
+### Changed
+- Updated comprised OData vocabularies.
+
 ## [1.1.8] - 2021-04-15
 ### Added
 - Syntax warning for `/` or `.` after annotation term name.  
