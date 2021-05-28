@@ -185,6 +185,8 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
   - **isoTimestamp:** Use ISO 8601 format for type cds.Timestamp (Edm.DateTimeOffset). Default is `false`.
   - **isoDateTimeOffset:** Use ISO 8601 format for type Edm.DateTimeOffset (cds.DateTime, cds.Timestamp). Default is `false`.
   - **bodyParserLimit:** Request and response body parser size limit. Default is '100mb'.
+  - **returnComplexNested**: Function import return structure of complex type (non collection) is nested using function import name. Default is `true`.
+  - **returnPrimitivePlain**: Function import return value of primitive type is rendered as plain JSON value. Default is `true`.
 
 All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
 under section `cds.cov2ap` and accessed via `cds.env.cov2ap`.

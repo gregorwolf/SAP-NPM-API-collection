@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.0 - 2021-05-27
+
+### Fixed
+
+- Change action/function return type value representation for complex and primitive types
+- Introduce proxy options 'returnComplexNested' and 'returnPrimitivePlain' to keep previous action/function return value representation
+
 ## Version 1.6.3 - 2021-05-26
 
 ### Fixed
@@ -84,7 +91,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Support action/function array parameter types
-- Introduce proxy option for body parser size limit
+- Introduce proxy option 'bodyParserLimit' for body parser size limit
 
 ## Version 1.5.3 - 2021-01-12
 
