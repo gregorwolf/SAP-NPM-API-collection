@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.1 - 2021-05-28
+
+### Fixed
+
+- Fix return type determination for external services definitions
+
 ## Version 1.7.0 - 2021-05-27
 
 ### Fixed

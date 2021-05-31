@@ -1,6 +1,4 @@
 @sap/cds-odata-v2-adapter-proxy
-@sap/generator-fiori
-@sap/ux-cds-odata-language-server-extension
-@sap/ux-specification
-@sap/ux-ui5-fe-mockserver-middleware
-@sap/ux-ui5-tooling
+@sap/cds-runtime
+@sap/grunt-sapui5-bestpractice-test
+@sap/subaccount-destination-service-provider

@@ -6,13 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.1.2 - 2021-05-28
+
+### Fixed
+
+- Downport of "Escape CDL keywords when used in URL path"
+
 ## Version 3.1.1 - 2021-05-20
 
 ### Added
 
 - Downport of "Support for reading single draft-enabled entities via service API (`srv.read(<entity>, { ..., IsActiveEntity: true/false })`)"
 - Computed values are preserved during draft activate with `cds.env.features.preserve_computed = true`
-  + Preserving computed values will be the default behavior in ^3.2
+  + Preserving computed values will be the default behavior in ^3.3
 
 ### Fixed
 
