@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.2.1 - 2020-06-01
+- Add some more error and tracing information
+
+## 3.2.0 - 2020-04-20
+- Support for IAS token validation. ([more details](doc/IAS.md))
+
 ## 3.1.2 - 2020-03-01
 - Feature: Support for IAS to XSUAA token exchange ([more details](doc/IAStoXSUAA.md))
 - Feature: Support for ZoneID enabled token flows ([more details](doc/TokenFlows.md))
