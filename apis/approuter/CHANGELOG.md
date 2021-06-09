@@ -5,10 +5,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.4.1 - 2021-06-09
+
+### Fixed
+- Changing "favico.ico" to "favicon.ico" as a predefined direct routing URI
+- Parsing client certificate for non-CF SMS subscription
+- Improving logs in path-rewriter, request-handler, service-to-approuter-middleware, oauth2-strategy
+- Adding cache-Control header ('no-cache, no-store') to the User API response
+- Correcting a bug when Websocket Proxy is crashing if excluding a route by DIRECT_ROUTING_URI_PATTERN
+
+### Updated dependencies
+- deps: ws@7.4.6
+
 ## 10.4.0 - 2021-05-24
 
 ### Added
 - External session management support
+
+### Fixed
+- Client certificate handling for non-CF SMS subscription
+- Expose License
 
 ## 10.3.0 - 2021-05-11
 

@@ -504,8 +504,8 @@ For route with source that match the REGEX ?^\route1$?, the CORS configuration i
 With the direct routing URI patterns configuration, you can define a list of URIs that are directed to the routing configuration file (xs-app.json file) of the application router instead of to a specific application's xs-app.json file that is stored in the HTML5 Application Repository. This configuration improves the application loading time and monitoring options because it prevents unnecessary calls to the HTML5 Application Repository.
 
 The configuration is an array of strings or regular expressions. 
-Note that the following regular expressions are preconfigured in the configuration array: "^favico.ico$", "^login$".
-Therefore, do not name your HTML5 applications "favico.ico" or "login"!
+Note that the following regular expressions are preconfigured in the configuration array: "^favicon.ico$", "^login$".
+Therefore, do not name your HTML5 applications "favicon.ico" or "login"!
 
 You have to provide only the first segment in the URL, after the approuter host. For example, for the URL https://approuter-host/route1/index.html, you enter "route1" in the direct routing URI patterns array.
 
@@ -1651,8 +1651,8 @@ xs-app.json routes that are used to retrieve static content from HTML5 Applicati
 
 ### Blocked HTML5 Application Names
 
-The following strings are used as predefined direct routing URIs, which lead the request to the routing configuration file of the application router: "favico.ico", "login".
-Therefore, do not name your HTML5 applications "favico.ico" or "login"!
+The following strings are used as predefined direct routing URIs, which lead the request to the routing configuration file of the application router: "favicon.ico", "login".
+Therefore, do not name your HTML5 applications "favicon.ico" or "login"!
 
 ### Known Gaps in Integration with HTML5 Application Repository
 
