@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.3 - 2021-06-11
+
+### Fixed
+
+- Change OData V4 'continue-on-error' default to 'false'
+- Proxy option 'continueOnError: true' available to activate 'continue-on-error'
+
+## Version 1.7.2 - 2021-06-10
+
+### Fixed
+
+- Fix content type normalization to preserve charset
+
 ## Version 1.7.1 - 2021-05-28
 
 ### Fixed

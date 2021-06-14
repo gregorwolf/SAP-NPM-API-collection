@@ -1,3 +1,13 @@
+## 1.3.0
+
+### New Features
+- The last-used path is now stored as a workspace setting
+
+### Fixes
+- Fix sample content for Document Store Collection (hdbcollection)
+- The artifact name is now generated correctly if an empty namespace is defined
+- Update dependencies
+
 ## 1.2.0
 
 ### Fixes

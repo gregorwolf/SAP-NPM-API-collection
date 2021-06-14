@@ -2,6 +2,13 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.2.1] - 2021-06-03
+### Fixed
+- Updated dependencies versions because of security fixes
+
+### Added
+- Support for previewing application with destinations that have as URL the full path to the OData service
+
 ## [1.2.0] - 2021-05-20
 ### Fixed
 - Fixed previewing an application with MTA configuration

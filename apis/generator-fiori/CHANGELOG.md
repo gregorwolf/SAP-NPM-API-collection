@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.1] - 2021-06-10
+#### Added
+- Added support for the Service Center in Business Application Studio.  Services selected in the Service Center can now be used with the Fiori generator and the user will not be asked to provide a data source during generation, the selected service from the Service Center will be used instead.
+- Added support for Destinations in Business Application Studio that have been configured with a service endpoint URL rather than a catalog service.
+
+### Fixed
+- Requesting authentication for a saved system in VSCode no longer launches multiple browsers to authenticate. Only one browser should now open.
+- Browser title for deployed applications now correctly displays the application title.
+- Upgraded UI5 libraries to resolve security vulnerabilities.
+
 ## [1.2.0] - 2021-05-28
 ### Fixed
 - The Fiori generator will be automatically installed if it is invoked from the command palette in VSCode and not already installed.

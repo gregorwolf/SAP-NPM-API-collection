@@ -178,7 +178,7 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
   - **ieee754Compatible:** `Edm.Decimal` and `Edm.Int64` are serialized IEEE754 compatible. Default is `true`.
   - **disableNetworkLog:** Disable networking logging. Default is `true`.
   - **fileUploadSizeLimit:** File upload file size limit (in bytes). Default is `10485760` (10 MB).
-  - **continueOnError:** Indicates to OData V4 backend to continue on error. Default is `true`.
+  - **continueOnError:** Indicates to OData V4 backend to continue on error. Default is `false`.
   - **isoTime:** Use ISO 8601 format for type cds.Time (Edm.Time). Default is `false`.
   - **isoDate:** Use ISO 8601 format for type cds.Date (Edm.DateTime). Default is `false`.
   - **isoDateTime:** Use ISO 8601 format for type cds.DateTime (Edm.DateTimeOffset). Default is `false`.

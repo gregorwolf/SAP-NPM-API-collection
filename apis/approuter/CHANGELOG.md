@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.4.2 - 2021-06-13
+
+### Fixed
+- Correcting additional bug when Websocket Proxy is crashing if excluding a route by DIRECT_ROUTING_URI_PATTERN
+
 ## 10.4.1 - 2021-06-09
 
 ### Fixed
