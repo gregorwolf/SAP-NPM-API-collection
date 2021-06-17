@@ -169,7 +169,7 @@ config.keyCache = {
 passport.use(new JWTStrategy(config));
 ...
 ```
-### Support for automatic IAS to XSUAA token conversion
+### Support for automatic IAS to XSUAA token exchange
 Since verison 3.1.2 it is supported to automatically exchange an incoming IAS token with an XSUAA token, so the token contains scopes like XSUAA applications expect. 
 
 For details have a look [here](doc/IAStoXSUAA.md).
@@ -239,6 +239,45 @@ Note that this example assumes additional test configuration in the file `defaul
 }
 ```
 
+
+
+### Support for X.509 authentication for token exchange
+XSUAA offers the possibility to use X.509 authentication.
+Since version 3.2.2 the node-xssec library supports to use this.
+
+As a developer you normally do not need to do something differently. You create a SecurityContext with the configuration object you get from the environment.
+If the XSUAA is configured to use X.509 the config object does not contain a `clientsecret`. Instead of this, there are a `certificate` and a `key` attributes.
+The library will use these attributes during token exchanges to fetch the tokens from xsuaa using mtls.
+
+#### X.509 with XSUAA managed certificates
+If your XSUAA instance is configured to manage certificates and keys on its own, you can take the configuration object from VCAP services and pass it to the `createSecurityContext` method.
+The needed `certificate` and `key` attributes are already filled.
+
+There is no difference to client-credential based token exchange.
+
+#### X.509 with external certificates
+If you configured your XSUAA instance to use an external managed certificate/key you need to provide the `key` attribute to the configuration object.
+
+For this you take the JSON from VCAP-Services and add the PEM encoded key as a string to the configuration.
+```js
+//read xsuaa config from VCAP
+const config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
+
+const myExternalManagedKey = "-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----\n";
+config.key = myExternalManagedKey;
+
+//if using passport
+passport.use(new JWTStrategy(config));
+
+//or create a security context directly
+xssec.createSecurityContext(access_token, config, function(error, securityContext, tokenInfo) {
+    //now you can run a tokenExchange with the provided key    
+    xssec.requestToken(config, constants.TYPE_USER_TOKEN, null, function(err, data) {
+
+    })    
+});
+```
+
 ### Usage in Docker
 
 In versions <= 3.0.0 there was **no** support for alpine base images.
@@ -251,8 +290,6 @@ But since verion >= 3.0.0 the xssec library has no dependency to a native librar
 This function creates the Security Context by validating the received access token against credentials put into the application's environment via the UAA service binding.
 
 Usually, the received token must be intended for the current application. More clearly, the OAuth client id in the access token needs to be equal to the OAuth client id of the application (from the application's environment).
-
-However, there are some use cases, when a "foreign" token could be accepted although it was not intended for the current application. If you want to enable other applications calling your application backend directly, you can specify in your xs-security.json file an access control list (ACL) entry and declare which OAuth client from which Identity Zone may call your backend.
 
 Parameters:
 

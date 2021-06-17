@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.2.2 - 2020-06-16
+- Support for tokenexchanges with X.509 certificates managed by XSUAA
+- Support for tokenexchanges with manually managed X.509 certificates
+- support for configuration objects that does not provide a clientsecret (but a certificate)
+
 ## 3.2.1 - 2020-06-01
 - Add some more error and tracing information
 
