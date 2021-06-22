@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.4 - 2021-06-18
+
+### Fixed
+
+- Support annotation '@odata.Type' for non-UUID CDS types
+- Set header 'x-cds-odata-version: v2' to indicate target OData version to CDS runtime
+- Explain usage of response compression in README
+
 ## Version 1.7.3 - 2021-06-11
 
 ### Fixed

@@ -161,6 +161,34 @@ A running example can be tested as follows:
 
 > Code repository is only available SAP internal.
 
+## Compression
+
+Response compressions can be enabled, by registering the `compression` Node.js
+module in Express app at bootstrap time, e.g. in `srv/server.js`:
+
+```
+const cds = require("@sap/cds");
+const proxy = require("@sap/cds-odata-v2-adapter-proxy");
+const compression = require("compression");
+
+cds.on("bootstrap", (app) => {
+  app.use(compression({ filter: shouldCompress }));
+  app.use(proxy());
+});
+
+function shouldCompress(req, res) {
+  const type = res.getHeader("Content-Type");
+  if (type && typeof type === "string" && type.startsWith("multipart/mixed")) {
+    return true;
+  }
+  // fallback to standard filter function
+  return compression.filter(req, res);
+}
+```
+
+The shown compression filter function enables compression including
+OData Batch (`$batch`) calls with content type `multipart/mixed`.
+
 ## Documentation
 
 Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V4 Server:

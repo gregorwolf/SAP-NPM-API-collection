@@ -1,3 +1,4 @@
-@sap/service-provider-apis
-@sap/subaccount-destination-service-provider
-@sap/xssec
+@sap/bas-sdk-cf-utils
+@sap/cds-odata-v2-adapter-proxy
+@sap/generator-base-mta-module
+@sap/mta-lib
