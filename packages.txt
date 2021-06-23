@@ -1,4 +1,2 @@
-@sap/bas-sdk-cf-utils
-@sap/cds-odata-v2-adapter-proxy
-@sap/generator-base-mta-module
-@sap/mta-lib
+@sap/cf-tools
+@sap/sbf

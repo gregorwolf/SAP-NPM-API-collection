@@ -8,6 +8,12 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.2.11"></a>
+## 6.2.11 - 2021-06-22
+
+### Added
+- fix to instance parameters endpoint
+
 <a name="6.2.10"></a>
 ## 6.2.10 - 2021-05-05
 
