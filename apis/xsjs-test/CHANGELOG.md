@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.2.2
+- Internal refactorings.
+
+## 3.2.1
+- Bugfixes
+- Using latest versions of libs `lodash`, `@sap/fibers`, `@sap/hdbext` and `@sap/xsjs`.
+
+## 3.2.0
+- Support for Node.js 14.
+
 ## 3.1.3
 - Use `lodash` in version `4.17.15`.
 

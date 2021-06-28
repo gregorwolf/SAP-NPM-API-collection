@@ -75,11 +75,11 @@ Select the required template type to use when generating your application. The g
 
 #### 2. Select Data Source
 
-Currently the generator supports the following methods to provide the Data Source:
+Currently, the generator supports the following methods to provide the Data Source:
 
-- **Connect to an SAP System**
+- **Connect to a System**
 
-  You can connect to an SAP System in VSCode by selecting one of the following methods:
+  You can connect to a System in VSCode by selecting one of the following methods:
   
   1. You can choose to connect to an existing ABAP on premise system by providing the URL and optional SAP Client identifier.  If the URL requires authentication, you will need to provide those details during generation.
   1. You can connect to an ABAP environment on the SAP Business Technology Platform.  In this case, you must provide a local file that defines the service connection details for the desired ABAP Enviroment.  Once you provide these details, a browser tab will launch for you to provide authentication details.  
@@ -88,7 +88,7 @@ Currently the generator supports the following methods to provide the Data Sourc
   
 - **Connect to an OData service**
 
-  Enter the OData endpoint URL you wish to use in your generated application.  Currently the generator supports an OData endpoint that is either unauthenticated or authenticated with Basic authentication. For an authenticated OData endpoint, you will be asked to provide a username and password.
+  Enter the OData endpoint URL you wish to use in your generated application. Currently, the generator supports an OData endpoint that is either unauthenticated or authenticated with Basic authentication. For an authenticated OData endpoint, you will be asked to provide a username and password.
 
 - **Connect to SAP API Business Hub**
 

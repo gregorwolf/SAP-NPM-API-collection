@@ -75,3 +75,5 @@ npm run xstest
 * tableUtils.fillFromCsvFile() is not supported. Use HDI *.tableimport files instead to fill your HDI container with test data.
 * mockstar is discouraged/deprecated. Use HDI containers instead. If you need to reference larger test data, use HDI synonyms.
 
+## License
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license.txt).

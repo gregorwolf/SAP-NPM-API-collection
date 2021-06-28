@@ -4,6 +4,37 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.90.2] - 2021-06-17
+
+### Added
+
+- annotationPath added as metadata to the columns in JSON schema.
+
+### Changed
+
+- The enum for fragment names of column extension is more restrictive now, it does not comprise cells anymore.
+- webpack uglify function names.
+
+### Deprecated
+
+### Fixed
+
+- During the export of V4 configs, manifest sections were created from scratch; this led to a deletion of properties that are not considered (yet) by the specification module.
+- Fix for launch config Import project which can be used to debug the import of a project.
+- During the export, fragments are not deleted anymore, as they may comprise customer coding.
+- If a fragment is not present yet, it gets created now, i.e. added with a <root> prefix to the list of fragments.
+- yarn watch allows debugging of custom extensions now, as the templates are available again in the dist folder.
+- Correct sync logic to make sure that config changes are written only to desired places in manifest.json
+- An exception had occured in case of invalid target annotation paths, this is caught now.
+- OData V4 - Correct sync logic so that custom sections entry in manifest.json gets deleted if entry is deleted from page config
+- OData V4 - Correct sync logic, page add was not added if 'navigation' property missing in 'manifest.json'.
+- OData V4 - Correct sync logic, page deletion, 'navigation' property was not cleared if there was no an navigation left.
+- OData V2 - Flex changes not supported by specification module remain unaffected by the sync logic
+- OData V2 - Fix sync logic to avoid creation of duplicate flex changes in case of Object Page tables
+- OData V2 - ALP: Improved sync logic as some of the supported flex chagnes were not imported to config files
+
+### Quality
+
 ## [1.90.1] - 2021-06-03
 
 ### Added

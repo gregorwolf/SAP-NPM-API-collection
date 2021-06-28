@@ -5,14 +5,45 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 4.1.0 - 2021-06-22
+
+### Note
+
+This is a quality release focusing on performance for large models.
+There are new user settings and some have changed their defaults.
+Best performance is achieved with default settings, 
+except `cds.contributions.enablement.odata` which should be switched `off` to speed up compilation, unless feature is needed.
+
+Additonal hints to increase performance:
+- Within _SAP Business Application Studio_: close `CAP Data Models and Services` view. Otherwise it will ask for all workspace symbols at every change.
+- Settings: `Cds � Contributions � Enablement: Odata`: switch off as already mentioned above
+- Settings: `Editor � Goto Location: Alternative Definition Command`: do not select `goToReferences`. Otherwise being already on a definition will trigger find references which requires all dirty models to be recompiled.
+- Settings: `Workbench � Editor � Limit: Enabled`: switch on
+- Settings: `Workbench � Editor � Limit: Value`: lower the number. If open editors have `using` dependencies, a change in one editor will lead to a recompile of releated editors.
+- Commands `Go to References` / `Find All References` will recompile all models that might have changed due to a change in a depending model. If there are index models it often means the complete workspace is being recompiled. 
+Until a further change, reference calculation is resonably fast.
+- Command `Go to Symbol in Workspace` will recompile the complete workspace once, then it is reasonable fast
+- Changing settings in `CDS` section will currently perform a complete workspace invalidation i.e. required indexes will lead to recompilations on-demand as described above
+- Changing certain `cds.env` settings e.g. folder configurations will invalidate the workspace as well
+
+### Changed
+
+- consume cds-lsp 5.1.0
+- consume cds-compiler 2.3.2
+- user settings
+    + cds.workspaceValidationMode new default: OpenEditorsOnly
+    + cds.workspace.scanCsn new settings with default switch off (before implicitly on)
+    + cds.quickfix.importArtifact new setting with default off (before implicitly on)
+- command `Install CDS Development Kit (@sap/cds-dk) globally` will now show a progress dialog as long as it is running
+
 ## Version 4.0.4 - 2021-05-11
 
 ### Changed
 - uses `@sap/cds-lsp@5.0.5`
-- new user option `cds.env.fetch` to dynamically fetch _cds.env_ when using non-default i18n file/folder names 
+- new user option `cds.env.fetch` to dynamically fetch _cds.env_ when using non-default i18n file/folder names
 
 ### Fixed
-- asynchronous scanning of workspace blocked and led to high cpu usage (mostly on Linux/macOS) 
+- asynchronous scanning of workspace blocked and led to high cpu usage (mostly on Linux/macOS)
 
 ## Version 4.0.2 - 2021-05-06
 

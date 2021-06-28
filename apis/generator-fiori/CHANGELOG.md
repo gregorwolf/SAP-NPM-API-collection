@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.3] - 2021-06-24
+#### Added
+- Deploying to a system that requires authentication will now prompt for a username and password if a local `.env` file with the credentials is not present.
+- Installing the generator in a custom location is now supported.
+
+### Fixed
+- Freestyle applications generated for a CAP project will no longer contain invalid test artefacts.
+- The `start-local` npm target now works with the SAP Belize theme.
+- Deleting a saved SAP system from VSCode now also deletes the authentication token from the secure storage.
+- Deployed Fiori elements applications now correctly display the application title.
+
 ## [1.2.1] - 2021-06-10
 #### Added
 - Added support for the Service Center in Business Application Studio.  Services selected in the Service Center can now be used with the Fiori generator and the user will not be asked to provide a data source during generation, the selected service from the Service Center will be used instead.

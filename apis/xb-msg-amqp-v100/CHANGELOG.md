@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.52] - 2021-06-25
+
+- fixed: return response payload as part of error text on failed websocket upgrade
+
 ## [0.9.51] - 2021-04-30
 
 - fixed: count split transfer frames correctly (when maxFrameSize is smaller than payload)

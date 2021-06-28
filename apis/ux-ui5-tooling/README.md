@@ -216,6 +216,22 @@ server:
           src: "Path/To/libs"
 ```
 
+### Configuration options
+
+- **`fallthrough`** (default: true) - client errors fall-through as just unhandled requests, otherwise forward a client error. E.g. If set to true, then the `fiori-tools-servestatic` middleware will not return 404 error, when it can't find a file on the local system, but it will simply pass the request to the next available middleware. Otherwise 404 error will be returned.
+
+```
+server:
+  customMiddleware:
+  - name: fiori-tools-servestatic
+    afterMiddleware: compression
+    configuration:
+      paths:
+        - path: /libs
+          src: "Path/To/libs"
+          fallthrough: false
+```
+
 ## [**Tasks**](#tasks)
 
 SAP Fiori tools use the capabilities of custom tasks to deploy the Fiori elements projects to ABAP servers.

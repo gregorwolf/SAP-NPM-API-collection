@@ -2,6 +2,15 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.2.3] - 2021-06-24
+### Added
+- Code completion, diagnostic and go to definition for string properties `CollectionPath` and `ValueListProperty` in `@Common.ValueList` annotation defined on the service level.
+- Semantic highlighting in OData annotations.
+### Changed
+- Updated comprised OData vocabularies to include HTML5 vocabulary https://sap.github.io/odata-vocabularies/vocabularies/HTML5.html.
+
+
 ## [1.2.0] - 2021-05-27
 ### Changed
 - Updated comprised OData vocabularies.
