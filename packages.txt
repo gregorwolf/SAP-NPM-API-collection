@@ -1,9 +1,2 @@
-@sap/generator-fiori
-@sap/ui5-builder-webide-extension
-@sap/ux-cds-odata-language-server-extension
 @sap/ux-specification
-@sap/ux-ui5-fe-mockserver-middleware
-@sap/ux-ui5-tooling
-@sap/vscode-cds
-@sap/xb-msg-amqp-v100
-@sap/xsjs-test
+@sap/xsjs
