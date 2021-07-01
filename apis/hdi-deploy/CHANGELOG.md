@@ -1,3 +1,18 @@
+## 4.1.0
+Features:
+- provide `--validate-external-dependencies` option to always start a make, even if no files are in the deploy/undeploy sets
+- change wording for `"whitelist"` to `"allowlist"`
+- use @sap/hdi@4.0.2
+- use @sap/hana-client@2.8.20
+- added support for reading a `.env` file in the absence of `default-env.json` file
+
+Fixes:
+- with `--trace`, ensure that the complete VCAP_SERVICES are logged
+
+## 4.0.6
+Features:
+- with `--trace`, log target credentials before checking server version
+
 ## 4.0.5
 Fixes:
 - updated handlebars to 4.7.7

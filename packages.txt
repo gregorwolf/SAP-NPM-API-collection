@@ -1,2 +1,6 @@
-@sap/ux-specification
-@sap/xsjs
+@sap/cds-odata-v2-adapter-proxy
+@sap/cf-tools
+@sap/hdi-deploy
+@sap/hdi-dynamic-deploy
+@sap/open.fe
+@sap/service-provider-apis

@@ -70,7 +70,7 @@ Note: The HDI Deployer assumes ownership of the `src/`, `cfg/`, and `lib/` folde
 
 **The Database Module**:
 - [A Database Module's File System Structure](#a-database-modules-file-system-structure)
-- [Delta Deployment and Undeploy Whitelist](#delta-deployment-and-undeploy-whitelist)
+- [Delta Deployment and Undeploy Allowlist](#delta-deployment-and-undeploy-allowlist)
 - [The default_access_role Role](#the-default_access_role-role)
 - [The development_debug_role Role](#the-development_debug_role-role)
 - [Reusable Database Modules](#reusable-database-modules)
@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.0.5"
+    "@sap/hdi-deploy": "4.1.0"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -117,6 +117,7 @@ In order to use mutual authentication, `client_authentication_private_key` and `
 For local testing, the HDI Deployer supports default configurations via the following configuration files:
 
 - `default-env.json`: a JSON file which contains a set of environment variables and their values
+- `.env`: a dot env file which contains a set of environment variables and their values. This file is used in the absence of `default-env.json`.   
 - `default-services.json`: a JSON file which contains a set of service bindings
 
 Details of a bound service from an SAP HANA-Service-Broker-based service binding in CF/XSA usually look as follows:
@@ -287,7 +288,18 @@ A `default-env.json` file can contain a set of environment variables and their v
   }
 }
 ```
+### .env
 
+A `.env` file can contain a set of environment variables and their values. The HDI Deployer will pick up these settings on startup:
+
+
+`.env` example file:
+
+```
+
+  VCAP_SERVICES={"hana" : [ { "name" : "target-service", "label" : "hana", "tags" : [ "hana", "database", "relational" ], "plan" : "hdi-shared", "credentials" : { "schema" : "SCHEMA", "hdi_user" : "USER_DT", "hdi_password" : "PASSWORD_DT", "certificate" : "-----BEGIN CERTIFICATE-----\nABCD...1234\n-----END CERTIFICATE-----\n", "host" : "host", "port" : "30015" } } ] }
+  
+```
 ## Deployment via Push and Tasks
 
 There are two ways of using the HDI Deployer as an application:
@@ -325,7 +337,7 @@ In combination with reusable database modules, the HDI Deployer will also consid
 
 Note: The design-time files should be protected against unauthorized modifications to guard against unwanted undeployments or deployment of foreign objects. For applications running on XSA or Cloud Foundry, this is taken care of by the platform.
 
-## Delta Deployment and Undeploy Whitelist
+## Delta Deployment and Undeploy Allowlist
 
 The HDI Deployer implements a delta-based deployment strategy:
 
@@ -333,7 +345,7 @@ On startup, the HDI Deployer recursively scans the local `src/` and `cfg/` folde
 
 In normal operation, the HDI Deployer will schedule only the set of added and modified files for deployment. The set of deleted files is not scheduled for undeployment.
 
-In order to undeploy deleted files, an application needs to include an undeploy whitelist via an `undeploy.json` file in the root directory of the `db` module (right beside the `src/` and `cfg/` folders). The undeploy whitelist `undeploy.json` file is a JSON document with a top-level array of file names:
+In order to undeploy deleted files, an application needs to include an undeploy allowlist via an `undeploy.json` file in the root directory of the `db` module (right beside the `src/` and `cfg/` folders). The undeploy allowlist `undeploy.json` file is a JSON document with a top-level array of file names:
 
 `undeploy.json`:
 
@@ -348,13 +360,21 @@ For interactive scenarios, it's possible to pass the `auto-undeploy` option to t
 
     node deploy --auto-undeploy
 
-In this case, the HDI Deployer will ignore the undeploy whitelist `undeploy.json` file and will schedule all deleted files in the `src/` and `cfg/` folders for undeployment.
+In this case, the HDI Deployer will ignore the undeploy allowlist `undeploy.json` file and will schedule all deleted files in the `src/` and `cfg/` folders for undeployment.
 
 ## The default_access_role Role
 
-When an HDI container service instance is created by the SAP HANA Service Broker, e.g. service instance `foo` with schema name `FOO`, the broker creates an HDI container `FOO` (consisting of the runtime schema `FOO`, the HDI metadata and API schema `FOO#DI`, and the object owner `FOO#OO`) and a global access role `FOO::access_role` for the runtime schema. This access role is equipped with a default permission set for the runtime schema which consists of `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `EXECUTE`, `CREATE TEMPORARY TABLE`, and `SELECT CDS METADATA` (not on SAP HANA Cloud) on the runtime schema `FOO`.
+When an HDI container service instance is created by the SAP HANA Service Broker, for example, service instance `foo` with schema name `FOO`, the broker creates an HDI container named `FOO` (consisting of the run-time schema `FOO` , the HDI metadata and API schema `FOO#DI` , and the object owner `FOO#OO`) and, in addition, the following roles, which are assigned to the application user:
 
-Every time the service instance is bound to an application, the broker creates 2 new users which are specific to this binding. The first user is the application user who is named `user` in the instance's credentials. This user is used by the application to access the HDI container's runtime schema `FOO`. This user is equipped with the service instance's global access role `FOO::access_role`. The second user is the HDI API user who is named `hdi_user` in the credentials. This user is equipped with privileges for the container's APIs in the `FOO#DI` schema.
+- FOO::access_role
+  A global access role for the run-time schema. This access role is assigned a set of default permissions for the run-time schema: SELECT, INSERT, UPDATE, DELETE, EXECUTE, CREATE TEMPORARY TABLE, and SELECT CDS METADATA on the run-time schema `FOO`.
+
+- FOO::external_privileges_role
+  A role that grants the application user the privileges required to enable access to schemas and objects outside the HDI container, for example, the run-time container `BAR`.
+
+Note : The roles exist as long as the HDI container exists; they are not lost when the application binding user changes. New binding users are automatically assigned these roles by the broker.
+
+Every time the service instance is bound to an application, the service broker creates two new users that are specific to this binding. The first user is the application user who is named user in the instance's credentials. This user is used by the application to access the HDI container's run-time schema `FOO`. This user is assigned the service instance's global access role `FOO::access_role` and the role `FOO::external_privileges_role`. The second user is the HDI API user - named `hdi_user` in the credentials. This user is equipped with privileges for the container's APIs in the `FOO#DI` schema.
 
 The following diagram illustrates the binding-specific application users and the role of the global access role (the HDI API users and the bindings for the HDI Deployer are not shown for simplicity):
 
@@ -517,7 +537,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.0.5",
+    "@sap/hdi-deploy": "4.1.0",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1001,6 +1021,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--path-parameter [<path>:<key>=<value> ..]`: pass the given list of path-key-value parameters to the deployment
 - `--[no-]auto-undeploy`: [don't] undeploy artifacts automatically based on delta detection and ignore the `undeploy.json` file
 - `--[no-]treat-warnings-as-errors`: [don't] treat warnings as errors
+- `--[no-]validate-external-dependencies`: [don't] start a make, even if no files are in the deploy/undeploy sets; all deployed synonyms, projection views, and virtual tables in the container will be checked for changes to referenced objects and redeployed, if a change is detected.
 - `--[no-]simulate-make`: [don't] simulate the make and skip post-make activities; pre-make activities still take effect, e.g. grants
 - `--connection-timeout <ms>`: number of milliseconds to wait for the database connection(s)
 - `--delete-timeout <ms>`: number of milliseconds to wait for the DELETE call
@@ -1043,7 +1064,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "4.0.5",
+        "version": "4.1.0",
         "features": {
             "info": 2,
             "verbose": 1,
@@ -1059,12 +1080,13 @@ For a `--info client` call, the document looks as follows:
             "parameter": 1,
             "path-parameter": 1,
             "treat-warnings-as-errors": 1,
+            "validate-external-dependencies": 1,
             "simulate-make": 1,
             "service-replacements": 1,
             "modules": 2,
             "config-templates": 2,
             "environment-options": 1,
-            "undeploy-whitelist": 1
+            "undeploy-allowlist": 1
         }
     }
 }
