@@ -25,7 +25,7 @@
   "dependencies": {
     "@sap/abap-deploy": "0.10.23",
     "@sap/apihub-service-provider": "1.0.5",
-    "@sap/approuter": "10.4.2",
+    "@sap/approuter": "10.4.3",
     "@sap/asp-middleware": "1.0.6",
     "@sap/audit-logging": "5.0.0",
     "@sap/bas-sdk-cf-utils": "1.2.0",

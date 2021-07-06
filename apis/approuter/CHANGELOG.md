@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.4.3 - 2021-07-05
+
+### Fixed
+- Display log with tenant ID, also when using direct routing URIs
+- Support of session management with redis with multiple nodes plans
+
 ## 10.4.2 - 2021-06-13
 
 ### Fixed
