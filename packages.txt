@@ -1,1 +1,2 @@
-@sap/approuter
+@sap/destination-instance-service-provider
+@sap/wing-service-explorer

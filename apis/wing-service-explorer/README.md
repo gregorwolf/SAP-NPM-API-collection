@@ -1,4 +1,3 @@
-
 # @sap/wing-service-explorer
 
 ## Overview
