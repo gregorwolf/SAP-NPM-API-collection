@@ -1,2 +1,2 @@
-@sap/destination-instance-service-provider
-@sap/wing-service-explorer
+@sap/html5-repo-mock
+@sap/subaccount-destination-service-provider

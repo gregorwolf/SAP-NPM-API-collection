@@ -294,3 +294,6 @@ Use command line arguments to configure HTML5 Repo Mock
 ```
 
 [1]: https://www.npmjs.com/package/@sap/approuter
+
+### Support channel
+For reporting an issue, open a BCP ticket with component CA-BAS-RUN-HTML5 For reporting a feature request, please open an influence request (https://influence.sap.com/sap/ino/#campaign/2538)
