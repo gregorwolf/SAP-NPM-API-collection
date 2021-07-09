@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.1.1 - 2021-07-01
+
+### Fixed
+- Reading services will now properly check for K8s services when VCAP_SERVICES is defined but contains no services.
+- Getting a service will now properly check in K8s services if VCAP_SERVICES does not have the service.
+
+### Updated
+- `debug` dependency to 4.2.0.
+- `lodash` dependency to 4.17.21.
+
 ## 3.1.0 - 2020-11-20
 
 ### Added
