@@ -1,2 +1,5 @@
-@sap/html5-repo-mock
-@sap/subaccount-destination-service-provider
+@sap/cds-compiler
+@sap/cds-lsp
+@sap/generator-cap-project
+@sap/vscode-cds
+@sap/xsenv

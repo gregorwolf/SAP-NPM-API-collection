@@ -6,11 +6,35 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.2] - 2021-06-28
+
+### Changed
+- Internal refactorings
+
+## [1.5.1] - 2021-06-22
+
+### Changed
+- Use `cds env` to determine path to `@sap/cds-dk`.
+
+
+## [1.5.0] - 2021-05-04
+
+### Changed
+- Update dependencies
+
+
+## [1.4.3] - 2021-04-29
+
+### Changed
+- Internal updates for `@sap/cds-dk`support.
+
+
 ## [1.4.2] - 2021-01-29
 
 ### Changed
 - Consume latest version of `@sap-devx/yeoman-ui-types`.
 - Improved node modules lookup handling in `SAP Business Application Studio`.
+
 
 ## [1.4.1] - 2021-01-05
 

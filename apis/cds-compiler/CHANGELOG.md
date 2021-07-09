@@ -5,7 +5,94 @@
 <!-- (no-duplicate-heading)-->
 
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
-The compiler behaviour concerning `beta` features can change at any time without notice.
+The compiler behavior concerning `beta` features can change at any time without notice.
+
+## Version 2.4.4 - 2021-07-02
+
+### Fixed
+
+- Do not remove parentheses around single literals and references on the right-hand side of an `in` and `not in` operator.
+  of an `in` and `not in` operator.
+
+## Version 2.4.2 - 2021-07-01
+
+- Only changes to beta features. Refer to the [beta ChangeLog](doc/CHANGELOG_BETA.md#version-242) for more.
+
+## Version 2.4.0 - 2021-06-28
+
+### Added
+
+- to.edm(x):
+  + Warn if an `edm:Property` has no `Type` attribute.
+  + Warn about using the protected names 'Edm', 'odata', 'System', 'Transient' as `edm:Schema` `Namespace` values.
+  + Allow `$edmJson` inline annotations in `edm:Collection` and nested annotations.
+- to.hdi/sql/hdbcds: Transform a `exists <association>` into a `exists <subselect>`, where the subselect
+  selects from the target of `<association>` and establishes the same relation as `<association>` would via the WHERE clause.
+  Infix-filters of `<association>` are added to the WHERE clause.
+
+### Changed
+
+- Do not inherit `@cds.persistence.skip` when `@cds.persistence.table` is set on entity.
+- to.cdl: Opening and closing braces of empty services and contexts are now on the same line.
+
+### Fixed
+
+- `cdsc`: Option `--direct-backend` can now be combined with `toCsn`'s option `--with-localized`
+- The option `testSortCsn` was erroneously ignored in some compiler backends.
+
+## Version 2.3.2 - 2021-06-14
+
+### Fixed
+
+- for.odata: Propagate the `virtual` attribute correctly while flattening structures.
+- If internal relational types are used directly in CDL (e.g. `cds.Association`), an error is emitted.
+  In CSN, all artifacts of relational types need a `target` (/`targetAspect`) as well.
+- In Association to Join translation don't produce a JOIN node for exposed (transitive) associations in
+  combination with their exposed foreign keys. Also resolve foreign keys correctly against the target
+  entity allowing to expose renamed foreign keys when aliased.
+- The option `testSortCsn` (`--test-sort-csn` in `cdsc`) can be used to sort CSN definitions alphabetically.
+  This option is only intended for tests.  This will restore the pre-v2.3.0 ordering in EDMX.
+- to.sql:
+  + for SQL-dialect `sqlite`, render the string-format-time function (`strftime()`)
+    + `$at.from` with date-format: `'%Y-%m-%dT%H:%M:%S.000Z'`
+    + `$at.to` with date-format:  `'%Y-%m-%dT%H:%M:%S.001Z'` (**+1ms** compared to `$at.from`)
+  + for SQL-dialect `hana` wrap `SESSION_CONTEXT('VALID-TO')` and `SESSION_CONTEXT('VALID-FROM')` in `TO_TIMESTAMP(..)` function
+- to.hdbcds:
+  + Wrap `SESSION_CONTEXT('VALID-TO')` and `SESSION_CONTEXT('VALID-FROM')` in `TO_TIMESTAMP(..)` function
+
+## Version 2.3.0 - 2021-06-02
+
+### Added
+
+- `cdsc` got a new option `--fallback-parser <cdl|csn>` that is used
+  if an unknown or no file extension is used.
+- to.hdi/sql: Allow association publishing in UNIONs - this was previously forbidden, but this limitation only applies to HANA CDS.
+- to.edm(x): Support dynamic expressions as $edmJson inline code
+
+### Changed
+
+- Type `DecimalFloat` is no longer proposed for code-completion.
+- Non-string enums without values for their enum elements are warned about.
+- OData CSN is no longer sorted by definition names
+- to.edm(x): Update OData vocabularies 'Aggregation', 'Analytics', 'CodeList', 'Common', 'Measures', 'Session', 'UI'
+
+### Removed
+
+- to.hdbcds: Association publishing in subqueries is not supported by HANA CDS - an error is raised during compile time, instead of waiting for a deployment error.
+
+### Fixed
+
+- Correct auto-exposure in model with unscoped projection on deep scoped entity
+  (from managed aspect compositions: component in component, like they are common in ODM).
+- Internal types `cds.Association` and `cds.Composition` are no longer proposed for code-completion.
+- Fix various issues with Association to Join translation:
+  + Substitute `$self.alias` expressions and respect prefix paths in foreign key accesses.
+- to.hdbcds: In naming mode "hdbcds", correctly resolve $self backlinks with aliased foreign keys.
+- to.cdl:
+  + Correctly traverse subelements when rendering annotations for them.
+  + Quote element names (if required) in `annotate with` statements.
+- for.odata: Fix regression with detecting collision when generating foreign keys.
+- to.edmx: Correctly render final base types in EDMX V2 when called with transformed OData CSN for V4.
 
 ## Version 2.2.8 - 2021-05-20
 
@@ -331,6 +418,15 @@ synchronously.
 - to.cdl: Correctly render `event` typed as `projection`.
 - to.hdi.migration: Don't generate `ALTER` for type change from association to composition or vice versa (if the rest stays the same),
   as the resulting SQL is  identical.
+
+## Version 1.50.6 - 2021-05-05
+
+### Fixed
+
+- to.edm(x):
+  + OData V2: Render constraints only if all principal keys are used in association.
+  + OData V4: Don't remove `@Capabilities` annotations from containee.
+  + Allow `@Core.MediaType` on all types and raise a warning for those (scalar) types that can't be mapped to `Edm.String` or `Edm.Binary`.
 
 ## Version 1.50.4 - 2021-04-06
 

@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 4.1.1 - 2021-07-05
+
+### Changed
+
+- consume cds-lsp 5.1.1
+- consume cds-compiler 2.4.4
+- new performance relevant user settings
+  + `cds.workspace.debounceFastChanges`:  skip intermediate compilations when typing - enabled by default
+  + `cds.workspace.scanDependentModules`: skip scanning of node_modules - enabled by default, speeds up start-up time
+    
+    Note:
+    - when using code completion for global identifiers (see `cds.completion.workspaceSymbols.minPrefixLength`) this option needs to be enabled
+    - for code completion of import paths in `using` statements this option needs to be enabled
+    - to include definitions from nodejs dependent modules in workspace symbols this option needs to be enabled
+
+
 ## 4.1.0 - 2021-06-22
 
 ### Note
