@@ -6,6 +6,55 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.3.1 - 2021-08-12
+
+### Changed
+
+- New version of `@sap/eslint-plugin-cds`
+
+## Version 4.3.0 - 2021-07-08
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.16.3` for creating Java projects.
+- `cds init` generates dependency entry for `hdb` instead of `@sap/hana-client`.
+- Reworked templates for cds linter.
+
+### Added
+
+- `cds import` now supports OData V4 edmx files.
+- `cds-ts` executable starts `cds` CLI with [`ts-node`](https://www.npmjs.com/package/ts-node) to allow JIT compilation of Typescript
+- `cds` CLI will give you a best guess if a command cannot be found, e.g. in case of a typing mistake.
+- `cds.import` as API alternative to `cds import` command to convert edmx files to csn [beta]
+- `cds.compile.to.openapi` as API alternative to `cds compile --to openapi` to convert CDS models to OpenAPI definitions
+
+### Fixed
+
+- `cds import` fix for <documentation> tag in Odata V2 and <Annotation> tag in Odata v4
+- `cds import` now sets the `kind` attribute in package.json to the correct `odata-v2` value for OData v2 services.
+- `cds import` now maps edm.DateTime to cds.DateTime for Odata V2.
+- `cds compile --to edmx-v2/edmx-v4` now uses correct file naming when compiling a single CDS service.
+
+## Version 4.2.1 - 2021-06-09
+
+### Fixed
+
+- `cds deploy` w/o any file arguments now works again and no longer fails with `No cds models found at/in ''`.
+
+
+## Version 4.2.0 - 2021-06-07
+
+### Added
+
+- `cds add data` creates csv files with basic header lines for the entities in the project.  `--for` option allows for selecting individual entities or namespaces.
+
+### Fixed
+
+- `cds deploy` called with multiple sources ignored all but the first one
+- `cdd add mta` now sets a buildpack for the server modules (Node.js or Java).  This improves deploy performance and avoids issues with buildpack priorities, leading to potentially wrong buildpacks selected.
+- On drag and drop of an edmx file, `cds watch` now imports it in the proper working dir
+- `cds import` now moves the edmx file again to `srv/external` instead of copying it.
+
 ## Version 4.1.5 - 2021-05-21
 
 ### Fixed

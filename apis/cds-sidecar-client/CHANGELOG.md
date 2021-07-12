@@ -1,5 +1,47 @@
 # Changelog
 
+## Version 1.1.21 - 2021-06-28
+
+### Fixed
+
+- Fix subdomain determination with CF-CLI v7
+- Fix sending username and password for basic auth
+- Fix various requests
+
+## Version 1.1.20 - 2021-06-22
+
+### Fixed
+
+- Interpret various HTTP responses properly.
+- Token is now correctly obtained.
+
+## Version 1.1.19 - 2021-06-16
+
+### Fixed
+
+- Include compiled sources in published cds-sidecar-client package.
+
+## Version 1.1.18 - 2021-06-07
+
+### Changed
+
+- Replace vulnerable 'Got' dependency with 'Axios'.
+- To facilitate debugging, display a few start and end characters of certain secrets in DEBUG output
+  (applies to params that are not user-generated, i.e. short-lived and/or comprising many characters).
+
+## Version 1.1.17 - 2021-05-27
+
+### Fixed
+
+- Compatibility with CF-CLI v7: automatic determination of running apps and relevant CF space for `login`
+- Error on login with username and password (basic auth)
+- Error due to NPM binary not being found on Windows
+
+### Changed
+
+- On SAP Business Application Studio, disable keyring storage as it is unsupported (switch to plain-text automatically)
+- Hide secret data in token-request URL from log output
+
 ## Version 1.1.16 - 2021-05-04
 
 ### Fixed

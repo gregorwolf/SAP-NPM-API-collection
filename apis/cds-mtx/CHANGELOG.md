@@ -7,7 +7,68 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 2.1.2 - 2021-07-09
+
+## Version 2.1.1 - 2021-07-09
+
+
+## Version 2.1.0 - 2021-07-07
+
+
+- Tenant creation and deletion is now called via cds service `TenantPersistenceService` that
+applications can add handlers for
+```
+@protocol:'rest'
+service TenantPersistenceService {
+    type JSON {
+        // any json
+    }
+
+    action createTenant(tenantId: UUID, subscriptionData: JSON) returns String;
+    action deleteTenant(tenantId: UUID);
+}
+``` 
+
+## Version 2.0.4 - 2021-06-14
+
+
+### Added
+
+- The global meta tenant creation in `cds.mtx.in` can now be disabled by setting the `MTX_DISABLE_META_TENANT_CREATION` environment variable
+
+### Fixed
+
+- More error types and semantic HTTP status codes have been added
+- Setting `MTX_ROLLBACK_CORRUPTED_TENANT` to `true` will now also delete and recreate an HDI container if its bindings are missing
+
+## Version 2.0.3 - 2021-06-08
+
+
+### Fixed
+
+- MTX Bootstrap has been adapted so that application service handlers can access mtx services
+again
+- Logging is now consistently using cds.log
+- A caching problem with the metadata persistence factory is fixed
+
+### Changed
+
+- File system APIs are now asynchronous
+
+### Added
+
+- Allow array as configuration for mandatory scopes for subscription and update
+```
+mtx: {
+    security: {
+        "subscription-scope": ["myApp.subscription","myApp.superadmin"],
+        "deployment-scope": ["myApp.deployment", "myApp.superadmin"]
+    }
+}
+```
+
 ## Version 2.0.2 - 2021-05-21
+
 
 ### Added
 - Internal on- and offboarding API for sidecar usecase: POST `/mtx/v1/internal/provisioning/subscribe`

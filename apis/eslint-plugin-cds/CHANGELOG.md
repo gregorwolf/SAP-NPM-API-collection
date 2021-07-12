@@ -6,7 +6,78 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## [2.0.4] - 2021-07-12
+
+### Added
+
+- Plugin also considers 'outsider' files which are not part of a model
+### Changed
+
+- Custom formatter now prints projectPath for triggered env rule checks
+
+## [2.0.3] - 20210-07-09
+
+### Changed
+
+- Removed `npm-shrinkwrap.json` file from package
+
+## [2.0.2] - 2021-07-07
+
+
+### Changed
+
+- Fixed bug that always triggers csn-compile-err on type
+
+## [2.0.1] - 2021-07-06
+
+
+### Added
+
+- Re-added model rule 'csn-compile-err' to pass csn compile errors to eslint for readability
+
+### Changed
+
+- Formatter ignores all lint reports for other file extensions except for those in plugin overrides files
+
+## [2.0.0] - 2021-07-02
+
+
+### Added
+
+- New API: split exports into 'impl' (for eslint) and 'api' (for user)
+- CDS parser now ingests eslint-disable comments to turn off rules
+
+### Changed
+
+- API: getRuleTester now erquires relative path from ruleTester location to project root
+
+## [1.1.7] - 2021-06-22
+
+
+### Changed
+
+- Load/Update model must be in sync with every 'on-type' event
+
+## [1.1.6] - 2021-06-21
+
+
+### Changed
+
+- Formatter no longer has explicit dependencies, only reslies on 'stylish' output
+- Formatter behaves like eslint and does not print anything on success (no warning/error messages)
+- Formatter prints warnings/errors of 'uncategorized' rules separately
+- On glob file expressions, gets multiple models in series and reports on all warnings/errors
+
+## [1.1.5] - 2021-05-26
+
+
+- Naming convention rules changed to severity 'warning'
+- Rules of type 'suggestion' must return 'fix' for appliable multipass fixes
+- Split model generation into load and update to be able to work on all files
+
 ## [1.1.4] - 2021-05-20
+
 
 ### Changed
 

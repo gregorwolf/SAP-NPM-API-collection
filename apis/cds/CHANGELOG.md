@@ -4,10 +4,83 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Version 5.1.6 - TBD
+## Version 5.3.0 - 2021-07-07
+
+### Added
+
+- `cds serve` and `cds deploy` now also load `.ts` Typescript files if started with [`ts-node`](https://www.npmjs.com/package/ts-node)
+- Log formatter for Kibana (beta) via `cds.env.features.kibana_formatter`
+- First version of the `AuditLogService` (beta)
+  + Supported events: `dataAccessLog`, `dataModificationLog`, `configChangeLog`, and `securityLog`
+  + Usage: `const AuditLogService = await cds.connect.to('audit-log'); await AuditLogService.emit/send('<event>', <data>)`
+  + Out-of-the-box audit logging for modification of personal data and access to sensitive personal data via `cds.env.features.audit_personal_data`
+- Support for deep updates with compositions of one in `UPDATE(...).with(...)`
+- Support for logical events in `composite-messaging`
+- Initial support for generating OData V2 queries
+- Preserve `DraftAdministrativeData_DraftUUID` if OData v2 client (indicated by `@sap/cds-odata-v2-adapter-proxy`)
+- Use placeholder values for numbers with `cds.env.features.parameterized_numbers` (alpha)
+- Support for argument-less SQL functions (e.g., `current_date`)
+- Performance optimization: Resolve localized texts for `$search` queries at runtime (alternative to localized views resolution) to avoid the performance overhead of the SQL `coalesce` function in filter operations. To enable this *experimental feature* for SAP HANA, you can set the `cds.env.features.optimized_search` environment variable to `true`
+- Performance optimization: Optimize `$search` queries using the `CONTAINS` predicate instead of the `LIKE` predicate in the `WHERE` clause of a `SELECT` statement. To enable this *experimental feature* for SAP HANA, you can set the `cds.env.features.optimized_search` environment variable to `true`
+- OData lambda expressions in `$filter`:
+  + Basic support of structured types (`cds.env.odata.flavor = x4`) on SAP HANA
+  + Support of navigation paths on SAP HANA, for example, `GET /Books?$filter=author/books/all(d:d/stock gt 10)`
+
+### Changed
+
+- Custom build tasks are no longer restricted to `@SAP` namespace.
+- CDS build tasks of type `fiori` are no longer copying files located in the UI module folder into the deployment staging folder.
+- Leaner error messages for unsuccessful remote service calls
+- Incoming messages now contain a privileged user
+- Computed values are preserved during draft activate
+- `SELECT.where(...)` generates CQN with list of values for `in` operator
+- Always use flag `u` during input validation via `@assert.format`
+- Intermediate CQN format for lambda expressions with preceding navigation path
 
 ### Fixed
+
+- Projecting data works also for projections where one field maps to multiple entries
+- `SELECT` queries without user-specified columns only modify draft columns if the entity is draft-enabled.
+- Generated `index.html` erroneously showed entries for `contained` entities from managed compositions.
+- Use OData simple identifier format for links to entity sets in generated `index.html`.
+- `cds build` logged duplicate compilation errors for the identical `.cds` file, but with different relative path names.
+- `cds serve` no longer tries to redirect Fiori URLs starting with `$` to service URLs.
+- `cds build` now supports `HANA Table data properties files` in SaaS applications. These files have not been copied into the sidecar folder.
+- `cds deploy --dry` generates DROP/CREATE DDL statements with an order that also H2 can handle, i.e. with dependant views dropped before basic views.
+- `cds build` now correctly handles symbolic links for nodejs projects on Windows.
+- `cds build` now correctly filters CDS source files when building SaaS applications.
+- Deploy endpoint for messaging artifacts includes the needed roles
+- Detection of mocked services and forced resolving of views
+- `POST/PATCH/PUT` requests on `Composition of many` with association as key and custom `on` conditions
+- `$expand` on entities with `.` in name
+- Filter on external service when using `ne null` 
+- Primitive property access of Singletons defined without keys via URL like `/Singleton/name`
+- Expand and navigation in draft-enabled entity with composition of aspects
+- `@Core.ContentDisposition.Filename` instead of `@Core.ContentDisposition`
+- Select query with `$count` with combination with `$search`
+- Parsing of `Timestamp`, `DateTime` and `Date` values in OData request when using beta URL to CQN parser (`cds.env.features.odata_new_parser`)
+- Reset temporal session contexts
+- Caching of runtime aspects
+- Handling of foreign keys as well as an input validation when using nested associations as keys
+- Transaction handling in case of multiple changesets
+- Hana procedure call with output parameter
+- Skip foreign key propagation if target is annotated with `@cds.persistence.skip`
+- Values misidentified as operators in `$search`
+- Ensure UTC valus are written to DB
+- Etag handling in case of action with `$select`
+- Fix draft related issues in odata2cqn
+- Where clause in `@restrict` gets duplicated if `$search` query option is used
+
+## Version 5.2.0 - 2021-05-31
+
+### Fixed
+
+- Virtual fields are not filtered out before application service handlers
+- Clarification: the minimum required Node.js version is 12.18.  Versions < 12.18 might not work.
 - `cds build` supports validation of `extension-allowlist` which is replacing `entity-whitelist` or `service-whitelist` with cds-mtx 2.0. Warnings are no longer returned if neither entity-whitelist nor  service-whitelist is defined.
+- `cds compile -2 sql/edmx` erroneously wrote excessive compiler output to stderr
+- Resolve the correct `enterprise-messaging-shared` credentials from VCAP_SERVICES by default
+- `cds compile --to sql` now completes the last SQL statement with a proper semicolon
 
 ## Version 5.1.5 - 2021-05-21
 
@@ -15,6 +88,10 @@
 
 - `cds build` adds `engines.node` version to `package.json` if not present, in order to match the minimum required node version of CDS.
 - Generate an invocation context identifier (`cds.context.id`) if none can be derived
+
+### Changed
+
+- Better support for UI tools to get metadata for projects with both a Node.js and Java server
 
 ### Fixed
 

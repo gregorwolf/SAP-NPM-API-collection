@@ -1,6 +1,5 @@
-@sap/generator-fiori
-@sap/hana-client
-@sap/ux-cds-odata-language-server-extension
-@sap/ux-specification
-@sap/ux-ui5-fe-mockserver-middleware
-@sap/ux-ui5-tooling
+@sap/cds
+@sap/cds-dk
+@sap/cds-mtx
+@sap/cds-sidecar-client
+@sap/eslint-plugin-cds
