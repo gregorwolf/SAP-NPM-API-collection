@@ -4,6 +4,39 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.90.4] - 2021-06-30
+
+### Added
+
+- New structure elements at the Filterbar that represent the selection fields resulting from  the UI.SelectionFields annotation.
+
+### Changed
+
+- In the annotationPath information of the generated JSON schemas all alias definitions are now replaced by the full vocabulary name.
+- Descriptions in the schema now follow the following paradigm:
+  - For facets we need use title and description, the export logic takes the title and extracts the facet key from it for concatenating the stable ID. The text that shall be shown in the Page Editor shall be the description.  
+  - Thus we now generalise: all view nodes (isViewNode = true) have a description (but do not necessarily need a title).  
+  - Properties (no isViewNode tag) are not listed in the outline, but in the properties panel. Here, the title shall be used as a label, and the description shall be shown on hover (old UI) or rendered directly (new UI).
+
+### Removed
+
+- OData V4: remove initialLoad property from Object Page config
+
+### Deprecated
+
+### Fixed
+
+- The deletion of a custom section from the config file was not reflected in manifest.json.
+- New page export fails if parent page does not have navigation property defined.
+- Navigation is not cleared if we remove last associated page.
+- The import of unknow flex change properties into the config is now avoided.
+- The export of flex changes sometimes generated multiple flex changes into the dev workspace.
+- The script for extracting documentation had neglected patternProperties of the schemas.
+- An exception occurred in case of invalid annotation references, the schemas and config files were not generated in this case.
+- Too many actions had been listed as table columns: now it is restricted to the inline actions.
+
+### Quality
+
 ## [1.90.3] - 2021-06-28
 
 ### Fixed
@@ -38,8 +71,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - OData V2 - Flex changes not supported by specification module remain unaffected by the sync logic
 - OData V2 - Fix sync logic to avoid creation of duplicate flex changes in case of Object Page tables
 - OData V2 - ALP: Improved sync logic as some of the supported flex chagnes were not imported to config files
-
-### Quality
 
 ## [1.90.1] - 2021-06-03
 

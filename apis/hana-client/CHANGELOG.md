@@ -1,3 +1,13 @@
+# Hana Client 2.9.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.9 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.9/en-US
+
+For the latest updates please see SAP Note 3063974 - SAP HANA Client 2.9 Release Notes
+
+https://launchpad.support.sap.com/#/notes/3063974
+
 # Hana Client 2.8.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.8 documentation:

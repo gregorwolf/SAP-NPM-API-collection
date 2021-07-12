@@ -2,6 +2,11 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.2.4] - 2021-07-01
+### Changed
+- Minor fixes and refactoring
+
 ## [1.2.3] - 2021-06-17
 ### Added
 - Added new configuration parameter `fallthrough` for the fiori-tools-servestatic middleware

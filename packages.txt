@@ -1,5 +1,6 @@
-@sap/cds-compiler
-@sap/cds-lsp
-@sap/generator-cap-project
-@sap/vscode-cds
-@sap/xsenv
+@sap/generator-fiori
+@sap/hana-client
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-fe-mockserver-middleware
+@sap/ux-ui5-tooling

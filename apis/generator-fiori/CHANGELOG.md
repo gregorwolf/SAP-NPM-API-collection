@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.4] - 2021-07-08
+#### Added
+- Destinations configured with a service URL endpoint, or a hostname, can now be used with the Fiori generator in Business Application Studio.
+- Reuse components and libaries in the local workspace can now be added to your project.  Use the command palette entry `Fiori: Add Reference to SAP Fiori Reusable Libraries` to invoke this functionality.
+
+### Fixed
+- In Business Application Studio, the Cloud Foundry Destination dropdown in the Deployment Configuration step of the Generator should now successfully return all available destinations.
+
 ## [1.2.3] - 2021-06-24
 #### Added
 - Deploying to a system that requires authentication will now prompt for a username and password if a local `.env` file with the credentials is not present.
