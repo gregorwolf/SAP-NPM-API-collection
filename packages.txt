@@ -1,5 +1,3 @@
+@sap/apihub-service-provider
 @sap/cds
-@sap/cds-dk
-@sap/cds-mtx
-@sap/cds-sidecar-client
-@sap/eslint-plugin-cds
+@sap/wing-service-binding
