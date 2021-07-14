@@ -4,6 +4,24 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.3.1 - 2021-07-12
+
+### Changed
+
+- Task `@sap/cds-runtime/lib/messaging/deploy.js` moved to `@sap/cds/tasks/enterprise-messaging-deploy.js` after module merge
+- Parse OData lambda expression on collection of scalars with equals operator (i.e., `.../any(d:d = "<val>")`) to CQN with `contains` (pegjs-based parser only)
+
+### Fixed
+
+- Improved error message in case custom `server.js` doesn't export a function
+- Kibana formatter: `stacktrace` as array of strings
+- Bootstrapping for feature toggles
+- Deep operations for certain composition constellations
+- Aliasing on SQL layer for OData `ne` operator
+- Fixed scope issues in manual deployment for messaging
+- Projections with infix filters and cardinality changes are safely ignored during `CREATE`/`UPDATE`
+- Resolving of views if underlying projection has explicit aliases
+
 ## Version 5.3.0 - 2021-07-07
 
 ### Added
@@ -53,7 +71,7 @@
 - Detection of mocked services and forced resolving of views
 - `POST/PATCH/PUT` requests on `Composition of many` with association as key and custom `on` conditions
 - `$expand` on entities with `.` in name
-- Filter on external service when using `ne null` 
+- Filter on external service when using `ne null`
 - Primitive property access of Singletons defined without keys via URL like `/Singleton/name`
 - Expand and navigation in draft-enabled entity with composition of aspects
 - `@Core.ContentDisposition.Filename` instead of `@Core.ContentDisposition`
