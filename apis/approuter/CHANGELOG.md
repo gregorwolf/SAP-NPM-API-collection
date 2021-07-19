@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.5.0 - 2021-07-14
+
+### Added
+- Support of the configuration of the minimal logging level for the cf-nodejs-logging-support library
+
+### Fixed
+- Return an error code when calling login callback directly
+- Fix for request traces that crash the application router 
+
 ## 10.4.3 - 2021-07-05
 
 ### Fixed

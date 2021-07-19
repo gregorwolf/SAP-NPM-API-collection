@@ -4,6 +4,29 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.3.2 - 2021-07-16
+
+### Added
+
+- `enterprise-messaging`: Experimental support to send messages via HTTP (`emitPerHTTP: true`)
+
+### Changed
+
+- Aligned Node.js and Java auditlog APIs
+- `enterprise-messaging`: No topic manipulation for outbound events beginning with a different namespace
+
+### Fixed
+
+- Call `init()` and register custom handlers for every new `cds.ApplicationService` created in extensibility scenarios
+- Structured keys for deep operations in OData flavor `x4`
+- Wrong user in messaging requests coming from webhooks
+- Improvements in log formatter for Kibana:
+  + Remove redundant metadata information
+  + Add information from `req.headers`
+  + Treat error-like objects like errors
+  + Custom fields (alpha)
+- Minor fix for *optimized search* on SAP HANA
+
 ## Version 5.3.1 - 2021-07-12
 
 ### Changed

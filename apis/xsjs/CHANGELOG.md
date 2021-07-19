@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.2.2"></a>
+## 6.2.2 - 2021-07-13
+
+### Fixed
+- Update _nodemailer_ to v6.6.1
+
 <a name="6.2.1"></a>
 ## 6.2.1 - 2021-06-28
 
