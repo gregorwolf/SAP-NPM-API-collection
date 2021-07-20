@@ -1,3 +1,3 @@
-@sap/approuter
-@sap/cds
-@sap/xsjs
+@sap/abap-deploy
+@sap/generator-cap-project
+@sap/html5-app-deployer

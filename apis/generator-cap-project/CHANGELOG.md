@@ -6,10 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.4] - 2021-07-19
+
+### Fixed
+- Destination root handling in `SAP Business Application Studio`.
+
+
 ## [1.5.2] - 2021-06-28
 
 ### Changed
 - Internal refactorings
+
 
 ## [1.5.1] - 2021-06-22
 

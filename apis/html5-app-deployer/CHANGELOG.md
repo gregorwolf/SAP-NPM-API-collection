@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.1.1 - 2021-07-20
+
+### Fixed
+- Add xsappname in generated destinations
+- Add IAS domains in generated destinations
+
 ## 3.1.0 - 2021-05-25
 
 ### Added
