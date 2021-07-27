@@ -4,6 +4,31 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.90.5] - 2021-07-14
+
+### Added
+
+- annotationPath is added to the selectionFields node.
+
+### Changed
+
+- The import functions for filling the content of config files are now instantiating the required metadata based on factory classes (that had been introduced for the export before).
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- In the annotationPath of columns, qualifiers had not been added.
+- The namespace of the entity type is now present in all annotation paths.
+- Changing binding value to false removed flex changes from the file system.
+- The logic for section generation in app schemas did not consider qualifiers correctly.
+
+### Quality
+
+- Missing path to types in package.json was added. This is required because after introducing bundling with webpack, the index.d.ts file is not next to index-min.js
+
 ## [1.90.4] - 2021-06-30
 
 ### Added
@@ -22,8 +47,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 - OData V4: remove initialLoad property from Object Page config
 
-### Deprecated
-
 ### Fixed
 
 - The deletion of a custom section from the config file was not reflected in manifest.json.
@@ -34,8 +57,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - The script for extracting documentation had neglected patternProperties of the schemas.
 - An exception occurred in case of invalid annotation references, the schemas and config files were not generated in this case.
 - Too many actions had been listed as table columns: now it is restricted to the inline actions.
-
-### Quality
 
 ## [1.90.3] - 2021-06-28
 
@@ -53,8 +74,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 - The enum for fragment names of column extension is more restrictive now, it does not comprise cells anymore.
 - webpack uglify function names.
-
-### Deprecated
 
 ### Fixed
 
@@ -74,13 +93,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 ## [1.90.1] - 2021-06-03
 
-### Added
-
 ### Changed
 
 - The access to reflect metadata is now centralized in factory classes and thus runs in a generic way in most situations.
-
-### Deprecated
 
 ### Fixed
 

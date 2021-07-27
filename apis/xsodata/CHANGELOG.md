@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.4.4] - 2021-07-20
+
+* HANA client API usage changed: 'execQuery' used for read requests, change requests remain on 'exec'
+
 ## [7.4.2] - 2021-05-05
 
 * Quote reserve for calcview "in" formula
@@ -23,7 +27,7 @@ For Edm.String typed properties, all single quotes must be preserved.
 
 ### Fixed
 
-Authoization header parsing conform to RFC6750
+Authorization header parsing conform to RFC6750
 
 ## [7.3.4] - 2020-10-14
 

@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.3.0"></a>
+## 6.3.0 - 2021-07-21
+
+### Fixed
+- Update _@sap/hana-client_ to v2.9.23
+- Update _@sap/hdbext_ to v7.3.0
+- Update _@sap/xsodata_ to v7.4.4
+
 <a name="6.2.2"></a>
 ## 6.2.2 - 2021-07-13
 

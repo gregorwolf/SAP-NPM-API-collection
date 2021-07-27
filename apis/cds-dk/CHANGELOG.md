@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.3.3 - 2021-07-26
+
+### Fixed
+
+- Removed internal links in `npm-shrinkwrap.json`
+
+## Version 4.3.2 - 2021-07-26
+
+### Changed
+
+- Bumped version of `@sap/cds` to 5.3.2
+
 ## Version 4.3.1 - 2021-08-12
 
 ### Changed

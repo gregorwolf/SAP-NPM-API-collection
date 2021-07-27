@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.5] - 2021-07-22
+#### Added
+- Added support for Cloud Foundry deployment configuration during non-interactive generation.
+
+### Fixed
+- Better support for determining if pre-requisite `mta` library is installed before attempting to add Cloud Foundry deployment configuration.
+- Removed erroneous telemetry error messages when using the generator from the command line.
+- Fixed the deployment name character restrictions for ABAP deployment. 
+
 ## [1.2.4] - 2021-07-08
 #### Added
 - Destinations configured with a service URL endpoint, or a hostname, can now be used with the Fiori generator in Business Application Studio.

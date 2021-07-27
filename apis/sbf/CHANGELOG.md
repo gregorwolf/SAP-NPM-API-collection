@@ -8,6 +8,12 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.2.12"></a>
+## 6.2.12 - 2021-07-25
+
+### Added
+- Allow specification of x509 parameters when binding
+
 <a name="6.2.11"></a>
 ## 6.2.11 - 2021-06-22
 

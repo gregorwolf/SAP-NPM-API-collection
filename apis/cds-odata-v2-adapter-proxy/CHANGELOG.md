@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.7 - 2021-07-27
+
+### Fixed
+
+- Support inline return type for actions and functions
+- Default undefined message target to '/#TRANSIENT#'
+- Return 404 for unknown service name during model compilation
+- Enhance logging to contain service name for service lookup from request
+
 ## Version 1.7.6 - 2021-07-01
 
 ### Fixed

@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.5.1 - 2021-07-25
+
+### Fixed
+- Return error immediately when reaches login callback middleware via query parameters
+
+### Updated dependencies
+- deps: urijs@1.19.7
+
 ## 10.5.0 - 2021-07-14
 
 ### Added
