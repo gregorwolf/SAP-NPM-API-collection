@@ -1,3 +1,9 @@
+## 1.3.0
+
+### Fixes
+- Ignore control characters in SQLScript auto-completion
+- Improve auto-completion suggestions
+
 ## 1.2.0
 
 ### Fixes

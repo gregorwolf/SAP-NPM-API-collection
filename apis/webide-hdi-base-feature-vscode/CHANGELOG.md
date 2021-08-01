@@ -1,3 +1,10 @@
+## 1.3.0
+
+### Fixes
+- The search result now shows synonyms as expected when "Target Container Service" is selected with external service(s)
+- The option "use existing synonym" is no longer enabled by default for synonym creation
+- The schema name is now set correctly in generated hdbsynonymconfig files
+
 ## 1.2.0
 
 ### New Features

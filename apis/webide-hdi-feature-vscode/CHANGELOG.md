@@ -1,3 +1,25 @@
+## 1.4.0
+
+### New Features
+- Add keyboard shortcuts for commmon modeling actions
+- Keep join type and cardinality in the properties view when a non-equi-join uses an expression
+- Enable copy and paste of input parameters, variables, calculated columns, restricted columns, and hierarchies
+
+### Fixes
+- Fix an issue that could lead to deployment failures when using non-equi joins
+- Fix an issue where changes in a calculation view are not saved after deploying
+- Add infobox information to flags under Semantics --> Advanced
+- Fix generated XML for variables of type "Single Value" that use an expression as default value
+- Add "aggregate all nodes" option for migrated calculation views
+- Fix an issue where filter expressions on a multi-join node could disappear after closing the editor
+- Fix an issue where the validation of a newly added filter expression on a multi-join node fails
+- Fix an issue where adding an expression to a multi-join nodes results in deployment failure for the calculation view
+- Fix an issue where changes to column "Label" could be lost
+- Fix wrong expression when creating a non-equi join
+- Add missing cancel button in non-equi join "Create Constant" dialog
+- Fix value help dialog for "Single Value" parameter value
+- Remove deprecated field "Count Star Column" from Semantics --> General
+
 ## 1.3.0
 
 ### New Features

@@ -1,3 +1,11 @@
+## 1.4.0
+
+### New Features
+- It is now possible to create Document Store Collection Index (hdbcollectionindex) artifacts in projects with minimum feature version 1006 or higher
+
+### Fixes
+- Set SQL execution by default in generated calculation views
+
 ## 1.3.0
 
 ### New Features

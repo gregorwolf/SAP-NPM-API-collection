@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.6.0 - 2021-07-28
+
+### Added
+- HTML5 Application Repository Tenant Awareness support
+
+### Fixed
+- nullifying the Redis client when there's a connection issue with Redis
+- Clear interval when  calling approuter.close()
+
 ## 10.5.1 - 2021-07-25
 
 ### Fixed

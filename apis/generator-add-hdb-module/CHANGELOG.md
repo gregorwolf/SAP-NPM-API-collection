@@ -1,3 +1,13 @@
+## 1.3.0
+
+### New Features
+- The configuration of new projects now includes a mapping for hdbcollectionindex
+
+### Fixes
+- Upgrade Yeoman generator version from 4 to 5
+- Use Cloud Foundry API version 3
+- Usability improvements
+
 ## 1.2.0
 
 ### Fixes
