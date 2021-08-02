@@ -4,61 +4,8 @@
 <!-- (no-duplicate-heading)-->
 
 Note: `beta` fixes, changes and features are listed in this ChangeLog just for information.
-The compiler behavior concerning `beta` features can change at any time without notice.
+The compiler behaviour concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
-
-## Version 2.4.2
-
-### Added `keylessManagedAssoc`
-
-- Support managed associations without foreign keys. Associations targeting a definition without primary keys or with an
-  explicit empty foreign key tuple or with empty structured elements as foreign keys and their corresponding `$self`
-  comparisons do not describe the relationship between the source and the target entity.
-  These associations can be used to establish API navigations but cannot be used to access elements in the target
-  entity as they cannot be transformed into a valid JOIN expression.
-  Consequently, these associations are not added to the `WITH ASSOCIATIONS` clause or forwarded to HANA CDS.
-  Managed Associations without foreign keys must be enabled with `--beta: keylessManagedAssoc`
-
-
-## Version 2.4.0
-
-### Changed `foreignKeyConstraints`
-
-- `toSql`/`toHdbcds`: omit constraint generation if the option `skipDbConstraints` is set
-- If the database constraints are switched off by the global option,
-  render constraints nevertheless if an association / composition
-  is annotated with `@cds.persistency.assert.integrity: true`
-- omit constraint generation if an association / composition
-  is annotated with `@cds.persistency.assert.integrity: false`
-  -> for managed compositions, the `up_` link in the compositions target entity
-  will not result in a constraint if the composition is annotated as described
-
-## Version 2.0.8
-
-### Added `foreignKeyConstraints`
-
-to.sql/to.hdi: If the beta option `foreignKeyConstraints` is supplied,
-referential constraints are generated for compliant associations and compositions.
-
-## Version 2.0.2
-
-### Removed `dontRenderVirtualElements`
-
-Virtual elements are no longer rendered in views as `null as <id>` or
-added to potentially generated draft tables. This behavior can be turned off
-with deprecated option `renderVirtualElements` for backward compatibility.
-
-### Removed `originalKeysForTemporal`
-
-### Removed `odataDefaultValues`
-
-OData: Default values for EntityType properties are rendered always.
-
-### Removed `subElemRedirections`
-
-This option is now enabled by default.
-
-### Removed `keyRefError`
 
 ## Version 1.44.0
 
@@ -140,18 +87,18 @@ as we do not automatically rewrite the `on` condition in that situation yet.
 When the beta option `subElemRedirections` is set to true,
 _all_ structure types are expanded when referenced:
 
-- managed associations (and compositions to entities) are implicitly redirected
+* managed associations (and compositions to entities) are implicitly redirected
   when necessary,
-- sub elements of referred structure types can be annotated individually,
-- the resulting CSN is bigger (will be reduced in the future if possible)
+* sub elements of referred structure types can be annotated individually,
+* the resulting CSN is bigger (will be reduced in the future if possible)
   as `type` references to structures will now have a sibling `elements`.
 
 This option does not enable:
 
-- rewriting the `on` conditions of associations in sub elements,
-- aspect compositions as sub elements,
-- `localized` sub elements,
-- `key` property on sub elements.
+* rewriting the `on` conditions of associations in sub elements,
+* aspect compositions as sub elements,
+* `localized` sub elements,
+* `key` property on sub elements.
 
 ## Version 1.23.0
 

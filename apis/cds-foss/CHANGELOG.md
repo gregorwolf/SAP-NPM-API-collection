@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.0.0 - 2021-07-13
+
+### Changed
+
+- Bumped dependencies to current versions
+- Bump `fs-extra` to new major version 10
+
 ## Version 2.3.1 - 2021-04-27
 
 ### Added

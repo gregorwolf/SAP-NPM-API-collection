@@ -4,6 +4,55 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.4.0 - 2021-08-02
+
+### Added
+
+- Messaging: Support for format `cloudevents`
+- Messaging: Support for `@topic`
+- Messaging: Support for `subscribePrefix` and `publishPrefix`
+- Support for `ReadByKeyRestrictions` annotations
+- Support for OData `omit-values` preference in `Prefer` HTTP header
+- Object variant of service methods
+- Brazilian portuguese (`pt_BR`) is now in the list of [normalized locales](https://cap.cloud.sap/docs/guides/i18n#normalized-locales)
+- Support for actions and functions on Remote Service
+
+### Changed
+
+- In multitenant `enterprise-messaging`: If a tenant subscribes, the messaging artifact generation is awaited. In your provisioning service configuration, make sure to set `onSubscriptionAsync` to `true` and `callbackTimeoutMillis` to more than 10 minutes.
+- In `enterprise-messaging`: Messages are sent via HTTP
+- Computed values are preserved during draft activate
+- Messaging: No more topic manipulation per default
+- For consistency reasons `cds build` now determines the default model path using cds resolve
+- Match XSUAA's user attribute value `$UNRESTRICTED` case insensitive
+
+### Fixed
+
+- Disable persistency check for requests without a target
+- Expand at draft edit
+- Remove restriction for `$search` queries not accepting brackets
+- Select query with infix filter in custom handler
+- Order by on same named properties of different associations in draft
+- Allow to call bound actions and functions of read-only entities
+- Writing draft-enabled entities with composition of aspects (a.k.a. managed compositions)
+- Expand to autoexposed association/composition in draft case
+- `cds.parse.xpr()` always returns an array
+- Allow boolean options in `cds build` CLI
+- Integrity check in case of bulk query execution  
+
+### Removed
+
+- Messaging: The topic prefix `topic:` is deprecated
+- Messaging: No default headers for format not equal to `cloudevents`
+
+## Version 5.3.3 - 2021-07-28
+
+### Fixed
+
+- Validation of arrayed parameters of actions and functions
+- Skip not-to-be-audited entities in composition tree
+- In draft, `<entity>.texts` can be used without explicit exposure
+
 ## Version 5.3.2 - 2021-07-16
 
 ### Added
@@ -73,7 +122,6 @@
 - CDS build tasks of type `fiori` are no longer copying files located in the UI module folder into the deployment staging folder.
 - Leaner error messages for unsuccessful remote service calls
 - Incoming messages now contain a privileged user
-- Computed values are preserved during draft activate
 - `SELECT.where(...)` generates CQN with list of values for `in` operator
 - Always use flag `u` during input validation via `@assert.format`
 - Intermediate CQN format for lambda expressions with preceding navigation path

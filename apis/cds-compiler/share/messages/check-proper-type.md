@@ -1,17 +1,17 @@
 # check-proper-type
 
-A type artifact doesn’t have proper type information.
+A type artifact does not have proper type information.
 
-The message's severity is `Info` but may be raised to `Error` in the SQL,
-SAP HANA, and OData backends.  These backends require types to have type
-information.  Otherwise they aren’t able to render elements that use this
-type (for example, to SQL columns).
+The message's severity is `Info` but may be raised to `Error` in the SQL, HANA
+and OData backends.  These backends require types to have type information.
+Otherwise they are not able to render elements that use this type (e.g. to SQL
+columns).
 
-This message affects CSN input and shouldn’t appear if CDL input is used.
+This message affects CSN input and should not appear if CDL input is used.
 
 ## Example
 
-Erroneous code example:
+Erroneous code example
 
 ```json
 {
@@ -25,10 +25,10 @@ Erroneous code example:
 
 `MainType` is of kind "type" but has not further type information.
 
-## How to Fix
+## Fix
 
-To fix the issue, add explicit type information to `MainType`, for example, add
-an `elements` property to make a structured type.
+To fix the issue, add explicit type information to `MainType`, e.g. add an
+ `elements` property to make a structured type.
 
 ```json
 {
@@ -45,6 +45,6 @@ an `elements` property to make a structured type.
 }
 ```
 
-## Related Messages
+## Related messages
 
 - `check-proper-type-of`
