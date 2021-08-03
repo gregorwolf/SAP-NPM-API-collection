@@ -6,6 +6,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.4.1 - 2021-08-03
+
+### Fixed
+
+- Use `@sap/eslint-plugin-cds@2.0.4`
+
+## Version 4.4.0 - 2021-08-02
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.17.0` for creating Java projects.
+
+### Fixed
+
+- Fixed bug when logging in Business Application Studio during `New Project from Template` wizard.
+- `cds import` fix for <documentation> tag in Odata V2 for EntityType and ComplexType.
+- `cds help` does not crash with `this.load is not a function` in exotic installations
+
 ## Version 4.3.3 - 2021-07-26
 
 ### Fixed
@@ -18,7 +36,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Bumped version of `@sap/cds` to 5.3.2
 
-## Version 4.3.1 - 2021-08-12
+## Version 3.5.2 - 2021-07-21
+
+### Changed
+
+- Bump to latest versions
+- Use latest `cds-sidecar-client` to fix CVE-2021-33502
+
+## Version 4.3.1 - 2021-07-12
 
 ### Changed
 

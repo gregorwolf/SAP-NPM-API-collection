@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.6.1 - 2021-08-03
+
+### Fixed
+- Subscription callback requests will be directed to main routing configuration file 
+- App. config response headers modify additional headers value
+
 ## 10.6.0 - 2021-07-28
 
 ### Added

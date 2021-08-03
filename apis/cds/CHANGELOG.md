@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.4.1 - 2021-08-03
+
+### Fixed
+
+- Erroneously added Brazilian portuguese (`pt_BR`) removed from the list of normalized locales
+
 ## Version 5.4.0 - 2021-08-02
 
 ### Added

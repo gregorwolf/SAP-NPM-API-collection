@@ -7,7 +7,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## [2.0.5] - 2021-07-18
+
+### Added
+
+- When used from within VS Code ESLint exnteion, do not show environment rules
+### Changed
+
+-  Rule 'min-node-version' reverted to use cds.resolve not cds.home
+
 ## [2.0.4] - 2021-07-12
+
 
 ### Added
 

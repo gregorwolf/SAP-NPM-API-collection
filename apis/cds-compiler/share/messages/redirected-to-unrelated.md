@@ -1,16 +1,16 @@
 # redirected-to-unrelated
 
-The redirected target does not originate from the original target.
+The redirected target doesn’t originate from the original target.
 
 The message's severity is `Error` and is raised by the compiler.
-The error happens due to an ill-formed redirection which requires changes to
+The error happens due to an ill-formed redirection, which requires changes to
 your model.
 
 ## Example
 
 Erroneous code example:
 
-```
+```cdl
 entity Main {
     key id : Integer;
     // self association for example purpose only
@@ -27,15 +27,15 @@ entity InvalidRedirect as projection on Main {
 ```
 
 Projection `InvalidRedirect` tries to redirect `toMain` to `Secondary`.
-However, that entity does not have any connection to the original target
-`Main`, i.e. it does not originate from `Main`.
+However, that entity doesn’t have any connection to the original target
+`Main`, that means, it doesn’t originate from `Main`.
 
 While this example may be clear, your model may have multiple redirections
 that make the error not as obvious.
 
 Erroneous code example with multiple redirections:
 
-```
+```cdl
 entity Main {
     key id : Integer;
     toMain : Association to Main;
@@ -53,17 +53,17 @@ entity SecondRedirect as projection on FirstRedirect {
 
 The intent of the example above is to redirect `toMain` to its original target
 in `SecondRedirect`.  But because `SecondRedirect` uses `toMain` from
-`FirstRedirect`, the original target is `FirstRedirect`.  And `Main` does not
+`FirstRedirect`, the original target is `FirstRedirect`.  And `Main` doesn’t
 originate from `FirstRedirect` but only vice versa.
 
-## Fix
+## How to Fix
 
 To fix the issue, you must redirect the association to an entity that originates
 from the original target.  In the first example above you could redirect
-`SecondRedirect:toMain` to `SecondRedirect`.  However, if that is not feasible
+`SecondRedirect:toMain` to `SecondRedirect`.  However, if that isn’t feasible
 then you have to redefine the association using a mixin clause.
 
-```
+```cdl
 view SecondRedirect as select from FirstRedirect mixin {
     toMain : Association to Main on id = $self.id;
 } into {
@@ -72,6 +72,6 @@ view SecondRedirect as select from FirstRedirect mixin {
 };
 ```
 
-## Related messages
+## Related Messages
 
 - `redirected-to-ambiguous`

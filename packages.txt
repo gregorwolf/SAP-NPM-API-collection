@@ -1,4 +1,9 @@
+@sap/approuter
+@sap/artifact-management
 @sap/cds
 @sap/cds-compiler
-@sap/cds-foss
+@sap/cds-dk
+@sap/eslint-plugin-cds
 @sap/hana-performance-tools
+@sap/html5-repo-mock
+@sap/wing-service-explorer

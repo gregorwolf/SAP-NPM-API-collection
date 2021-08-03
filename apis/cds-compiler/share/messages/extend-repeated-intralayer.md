@@ -1,16 +1,17 @@
 # extend-repeated-intralayer
 
-The order of elements of an artifact may not be stable due to multiple extensions
-in the same layer (e.g. same file).
+The order of elements of an artifact may not be stable due to multiple
+extensions in the same layer (for example in the same file).
 
-A _layer_ can be seen as a group of connected sources, e.g. CDL files.
-They form a cyclic connection through their dependencies (e.g. `using` in CDL).
+A _layer_ can be seen as a group of connected sources, for example, CDL files.
+They form a cyclic connection through their dependencies
+(for example, `using` in CDL).
 
 ## Example
 
-Erroneous code example with a single CDL file.
+Erroneous code example with a single CDL file:
 
-```
+```cdl
 entity FooBar { }
 
 extend FooBar { foo : Integer; }
@@ -18,12 +19,12 @@ extend FooBar { bar : Integer; }
 ```
 
 Due to multiple extensions in the example above, the order of `foo` and `bar`
-inside `FooBar` may not be stable.  You therefore cannot depend on it.
+inside `FooBar` may not be stable.  You therefore can’t depend on it.
 
-It is also possible to trigger this warning with multiple files.
-Take a look at the example below:
+It's also possible to trigger this warning with multiple files.
+Look at the following example:
 
-```
+```cdl
 // (1) Definition.cds
 using from './Extension.cds';
 entity FooBar { };
@@ -35,21 +36,26 @@ extend FooBar { bar: Integer; }
 ```
 
 Here we have a cyclic dependency between (1) and (2).  Together they form one
-layer with multiple extensions.  Again, the element order is not stable.
+layer with multiple extensions.  Again, the element order isn’t stable.
 
-## Fix
+## How to Fix
 
-To fix the issue, move extensions for the same artifact into the extension block:
+To fix the issue, move extensions for the same artifact into the same extension
+block:
 
-```
+```cdl
+// (1) Definition.cds : No extension block
+using from './Extension.cds';
 entity FooBar { }
 
+// (2) Extension.cds : Now contains both extensions
+using from './Definition.cds';
 extend FooBar {
   foo : Integer;
   bar : Integer;
 }
 ```
 
-## Related messages
+## Related Messages
 
 - `extend-unrelated-layer`
