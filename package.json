@@ -549,6 +549,7 @@
     "@sap/jobs-client": "1.6.1",
     "@sap/logger-for-bas-extensions": "1.1.0",
     "@sap/logging": "6.0.3",
+    "@sap/mdk-tools": "1.0.1",
     "@sap/modules-exploration": "1.6.10",
     "@sap/mta-lib": "1.7.3",
     "@sap/node-jwt": "1.6.15",
