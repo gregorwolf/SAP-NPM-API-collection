@@ -2,6 +2,10 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.3.0] - 2021-07-29
+### Added
+- Provided the possibility to load UI5 libs directly from CDN, instead of loading via the fiori-tools-proxy
+- Introduced iAppState handling. The iAppState is now being deleted when an application is reloaded
 
 ## [1.2.5] - 2021-07-15
 ### Changed

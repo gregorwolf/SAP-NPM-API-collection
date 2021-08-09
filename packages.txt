@@ -1,1 +1,7 @@
-@sap/mdk-tools
+@sap/cds-odata-v2-adapter-proxy
+@sap/generator-fiori
+@sap/hana-client
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-fe-mockserver-middleware
+@sap/ux-ui5-tooling

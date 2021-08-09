@@ -5,7 +5,7 @@ Furthermore, the module expose the cli `fiori` offering e.g. the [`fiori run`](#
 
 ## [**Middlewares**](#middlewares)
 
-SAP Fiori tools use the capabilities of custom middlewares to start and preview Fiori elements applications, e.g. to enable auto refresh, to switch the version of UI5 sources or to serve static resources.
+SAP Fiori tools use the capabilities of custom middlewares to start and preview Fiori elements applications, e.g. to enable auto refresh, to switch the version of UI5 sources or to serve static resources. Starting with version `1.3.0` the behaviour of the preview of the Fiori applications has changed. Now the persistent iAppState is ignored in order to have the source code changes always apply when application is refreshed. If you want to enable the iAppState then you need to add the URL parameter `fiori-tools-iapp-state=true` to the browser URL, e.g. `http://localhost:8080/test/flpSandbox.html?fiori-tools-iapp-state=true#masterDetail-display`.
 
 ### [**1. Application Reload**](#1-application-reload)
 
@@ -174,6 +174,21 @@ By using the proxy configuration one can also change the UI5 version, which is u
 ```
 
 By using the `version` parameter one can choose the UI5 version which will used when `npx fiori run` is executed.
+
+**Note:** all UI5 requests are routed through the proxy. Sometimes this can cause performance issues. If you don't want route the UI5 requests through the proxy, then you can set parameter `directLoad: true`. This will inject the UI5 url in the HTML file of the application and thus the UI5 libs will be loaded directly.
+
+```
+- name: fiori-tools-proxy
+  afterMiddleware: compression
+  configuration:
+    ui5:
+      path:
+      - /resources
+      - /test-resources
+      url: https://sapui5.hana.ondemand.com
+      version: 1.78.0
+      directLoad: true
+```
 
 ### [**3. Serve Static**](#3-serve-static)
 

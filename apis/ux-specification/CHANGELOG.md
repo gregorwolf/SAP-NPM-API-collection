@@ -4,6 +4,28 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.90.6] - 2021-07-28
+
+### Added
+
+- OData V2: dateSettings property of Filterbar now supports addtional values
+- OData V2: Added growingThreshold property to Responsive Tables
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- When starting the app modeler for certain CDS projects, an exception occurs, and no pages nor schemas are listed.
+- Modified regex used in binding properties to avoid issues with Shebang plugin during consumption of specification module.
+
+### Quality
+
+- Upgrade of Annotation Vocabularies Tools to version 0.3.28
+
 ## [1.90.5] - 2021-07-14
 
 ### Added

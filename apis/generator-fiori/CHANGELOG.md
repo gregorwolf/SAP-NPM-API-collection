@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.3.0] - 2021-07-28
+### Fixed
+- Fixed an issue which caused the Fiori generator to crash due to presence of multiple schemas in the metadata file
+- Fixed an issue where generated project was missing undeploy script when deploy config was created for Cloud Foundry environment
+- Fixed an issue where the cloned reuse library with missing description in i18 file was not being listed for being added as a reference
+
+
 ## [1.2.5] - 2021-07-22
 #### Added
 - Added support for Cloud Foundry deployment configuration during non-interactive generation.
