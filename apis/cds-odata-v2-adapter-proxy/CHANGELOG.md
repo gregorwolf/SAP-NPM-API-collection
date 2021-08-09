@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.9 - 2021-08-06
+
+### Fixed
+
+- Add metadata type of inline return type for actions and functions
+- Proxy option 'messageTargetDefault' to specify default message target, if undefined
+- Empty proxy option 'messageTargetDefault' leaves message target untouched
+
 ## Version 1.7.8 - 2021-07-28
 
 ### Fixed
