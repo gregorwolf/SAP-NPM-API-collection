@@ -5,7 +5,23 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## 4.1.1 - 2021-07-05
+## Version 4.2.0 - 2021-07-30
+
+### Added
+
+- validation mode _ActiveEditorOnly_ (new default). 
+  The new mode reduces number of compilations during editing and thus improves responsiveness.
+- new command _Visualize CDS file dependencies_ to analyze using dependencies of CDS model files.
+  Getting an overview of file dependencies can help to keep your project architecture clean.
+  Requires the 3rd party extension _Graphviz (dot) language support for Visual Studio Code_ (joaompinto),
+  which can be installed with a single click.
+
+### Changed
+
+- consume cds-lsp 5.2.0
+- consume cds-compiler 2.5.0
+
+## Version 4.1.1 - 2021-07-05
 
 ### Changed
 
@@ -21,7 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
     - to include definitions from nodejs dependent modules in workspace symbols this option needs to be enabled
 
 
-## 4.1.0 - 2021-06-22
+## Version 4.1.0 - 2021-06-22
 
 ### Note
 
@@ -32,10 +48,10 @@ except `cds.contributions.enablement.odata` which should be switched `off` to sp
 
 Additonal hints to increase performance:
 - Within _SAP Business Application Studio_: close `CAP Data Models and Services` view. Otherwise it will ask for all workspace symbols at every change.
-- Settings: `Cds � Contributions � Enablement: Odata`: switch off as already mentioned above
-- Settings: `Editor � Goto Location: Alternative Definition Command`: do not select `goToReferences`. Otherwise being already on a definition will trigger find references which requires all dirty models to be recompiled.
-- Settings: `Workbench � Editor � Limit: Enabled`: switch on
-- Settings: `Workbench � Editor � Limit: Value`: lower the number. If open editors have `using` dependencies, a change in one editor will lead to a recompile of releated editors.
+- Settings: `Cds › Contributions › Enablement: Odata`: switch off as already mentioned above
+- Settings: `Editor › Goto Location: Alternative Definition Command`: do not select `goToReferences`. Otherwise being already on a definition will trigger find references which requires all dirty models to be recompiled.
+- Settings: `Workbench › Editor › Limit: Enabled`: switch on
+- Settings: `Workbench › Editor › Limit: Value`: lower the number. If open editors have `using` dependencies, a change in one editor will lead to a recompile of releated editors.
 - Commands `Go to References` / `Find All References` will recompile all models that might have changed due to a change in a depending model. If there are index models it often means the complete workspace is being recompiled. 
 Until a further change, reference calculation is resonably fast.
 - Command `Go to Symbol in Workspace` will recompile the complete workspace once, then it is reasonable fast

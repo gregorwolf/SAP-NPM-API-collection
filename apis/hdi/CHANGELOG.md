@@ -1,3 +1,11 @@
+## 4.1.0
+Features:
+- Node 16.x support
+- hana-client 2.9.x support
+
+Removed:
+- Node 8.x and 10.x support
+
 ## 4.0.2
 Features:
 - hana-client 2.8.x support
