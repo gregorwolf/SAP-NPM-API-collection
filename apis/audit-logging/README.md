@@ -23,6 +23,7 @@ Provides audit logging functionalities for Node.js applications.
   * [Data modification messages](#data-modification-messages-1)
   * [Configuration change messages](#configuration-change-messages-1)
   * [General security messages](#general-security-messages-1)
+- [OAuth2 User Token Exchange](#oauth2-user-token-exchange)
 - [Local development](#local-development)
   * [Without Audit log service](#without-audit-log-service)
   * [With Audit log service](#with-audit-log-service)
@@ -76,6 +77,11 @@ The library provides an API for writing audit messages of type configuration cha
 
 ### Importing the library
 
+`credentials` object is the bound audit log service's credentials.
+Take a look at *@sap/xsenv* package for more information on how to retrieve service credentials.
+
+#### Standard Plan (deprecated)
+
 ```js
 var credentials = {
   "user": "user",
@@ -85,12 +91,25 @@ var credentials = {
 var auditLog = require('@sap/audit-logging')(credentials);
 ```
 
-`credentials` object is the bound audit log service's credentials.
-Take a look at *@sap/xsenv* package for more information on how to retrieve service credentials.
+#### OAuth2 Plan
+
+```js
+var credentials = {
+  "uaa": {
+    "clientid": "clientid",
+    "clientsecret": "clientsecret",
+    "url": "https://host:port"
+  }
+  "url": "https://host:port"
+};
+var auditLog = require('@sap/audit-logging')(credentials);
+```
 
 ### Data access messages
 
 Let's suppose we need to create an entry for a data access operation over personal data. We can achieve that with the following code:
+
+#### Standard Plan (deprecated)
 
 ```js
 auditLog.read('user123')
@@ -98,8 +117,8 @@ auditLog.read('user123')
   .attribute('first name', true)
   .attribute('last name', true)
   .accessChannel('UI')
-  .by('John Doe')
   .tenant('tenantId')
+  .by('John Doe')
   .log(...);
 ```
 
@@ -115,15 +134,42 @@ auditLog.read('user123')
 * `tenant` - takes a string which specifies the tenant id. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
 * `log` - See [here](#logging-a-message)
 
+#### OAuth2 Plan
+
+```js
+auditLog.read('user123')
+  .attribute('username', true)
+  .attribute('first name', true)
+  .attribute('last name', true)
+  .accessChannel('UI')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .by('$USER')
+  .log(...);
+```
+
+* `read` - takes a string which identifies the object which is being *accessed*.
+* `attribute(name, successful)` - sets object attributes. It is **mandatory** to provide at least one attribute.
+  * `name` - is the name of the attribute being accessed.
+  * `successful` - specifies whether the access was successful or not.
+* `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
+* `accessChannel` - takes a string which specifies *channel* of access.
+* `attachment(id, name)` - if attachments or files are downloaded or displayed, information identifying the attachment shall be logged.
+  * `id` - attachment id
+  * `name` - attachment name
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**.
+* `log` - See [here](#logging-a-message)
+
 ### Data modification messages
 
 Here is how to create an entry for a data modification operation:
 
+#### Standard Plan (deprecated) 
+
 ```js
 auditLog.update('user123')
   .attribute('first name', 'john', 'John')
-  .by('John Doe')
   .tenant('tenantId')
+  .by('John Doe')
   .log(...);
 ```
 
@@ -132,8 +178,8 @@ auditLog.update('user123')
 ```js
 auditLog.update('user123')
   .attribute('password', false)
-  .by('John Doe')
   .tenant('tenantId')
+  .by('John Doe')
   .log(...);
 ```
 
@@ -155,6 +201,44 @@ auditLog.update('user123')
 * `tenant` - takes a string which specifies the tenant id. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
 * `log` - See [here](#logging-a-message)
 
+#### OAuth2 Plan
+
+```js
+auditLog.update('user123')
+  .attribute('first name', 'john', 'John')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .by('$USER')
+  .log(...);
+```
+
+**Note**: Specifying an old and a new value for an attribute is only supported in newer versions of the Audit log service. Providing these values while working with an older version of the service results in an error in the callback. In such cases one may use the `attribute` method with an alternative signature:
+
+```js
+auditLog.update('user123')
+  .attribute('password', false)
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .by('$USER')
+  .log(...);
+```
+
+* `update` - takes a string which identifies the object which is being *updated*.
+* `attribute(name, oldValue, newValue)` - sets object attributes. It is **mandatory** to provide at least one attribute.
+  * `name` - is the name of the attribute being modified.
+  * `oldValue` - is the current value of the attribute.
+  * `newValue` - is the value of the attribute after the change.
+
+  **Note**: One may use this signature of the `attribute` method only if the Audit log service being consumed supports old and new values.
+
+* `attribute(name, successful)` - sets object attributes. It is **mandatory** to provide at least one attribute.
+  * `name` - is the name of the attribute being modified.
+  * `successful` - specifies whether the modification was successful or not.
+
+  **Note**: this signature of the method is **deprecated**. It should be used only if the consumed Audit log service does not support old and new values.
+
+* `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `log` - See [here](#logging-a-message)
+
 ### Update data modification
 
 ```js
@@ -173,12 +257,14 @@ auditLog.updateDataModification(id, isSuccessful)
 
 Here is how to create an entry for a configuration change operation:
 
+#### Standard Plan (deprecated)
+
 ```js
 auditLog.configurationChange('configuration object')
   .attribute('session timeout', '5', '25')
+  .tenant('tenantId')
   .by('Application Admin')
   .successful(true)
-  .tenant('tenantId')
   .log(...);
 ```
 
@@ -192,6 +278,29 @@ auditLog.configurationChange('configuration object')
   * `isSuccessful` - should be a valid boolean.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
 * `tenant` - takes a string which specifies the tenant id. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `log` - See [here](#logging-a-message)
+
+#### OAuth2 Plan
+
+```js
+auditLog.configurationChange('configuration object')
+  .attribute('session timeout', '5', '25')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .by('$USER')
+  .successful(true)
+  .log(...);
+```
+
+* `configurationChange` - takes a string which identifies the object which is being *configured*.
+* `attribute(name, oldValue, newValue)` - sets object attributes. It is **mandatory** to provide at least one attribute.
+  * `name` - is the name of the attribute being accessed.
+  * `oldValue` - is the current value of the attribute being changed.
+  * `newValue` - is the value of the attribute after the change.
+* `successful(isSuccessful)` - used to mark whether the configuration change is finished with success, failure.
+  If not called configuration change will be marked as *pending*.
+  * `isSuccessful` - should be a valid boolean.
+* `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
 * `log` - See [here](#logging-a-message)
 
 ### Update configuration change
@@ -210,11 +319,13 @@ auditLog.updateConfigurationChange(id, isSuccessful)
 
 Here is how to create a general security audit log message:
 
+#### Standard Plan (deprecated)
+
 ```js
 auditLog.securityMessage('%d unsuccessful login attempts', 3)
+  .tenant('tenantId')
   .by('John Doe')
   .externalIP('127.0.0.1')
-  .tenant('tenantId')
   .log(...);
 ```
 
@@ -222,6 +333,22 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
 * `externalIP` - states the IP of the machine that contacts the system. It is not mandatory, but it should be either IPv4 or IPv6.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
 * `tenant` - takes a string which specifies the tenant id. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `log` - See [here](#logging-a-message)
+
+#### OAuth2 Plan
+
+```js
+auditLog.securityMessage('%d unsuccessful login attempts', 3)
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .by('$USER')
+  .externalIP('127.0.0.1')
+  .log(...);
+```
+
+* `securityMessage` - takes a formatted string as in [util.format()](https://nodejs.org/api/util.html#util_util_format_format_args).
+* `externalIP` - states the IP of the machine that contacts the system. It is not mandatory, but it should be either IPv4 or IPv6.
+* `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
 * `log` - See [here](#logging-a-message)
 
 ### Logging a message
@@ -253,6 +380,12 @@ message.log(function (err, id) {
 
 ### Importing the library
 
+`credentials` object with credentials for the Audit log service.
+Take a look at *@sap/xsenv* package for more information on how to retrieve service credentials.
+The callback will be called with an error if the Audit log server does not support version 2 of the REST APIs.
+
+#### Standard Plan (deprecated)
+
 ```js
 var credentials = {
   "user": "user",
@@ -270,11 +403,31 @@ auditLogging.v2(credentials, function(err, auditLog) {
 });
 ```
 
-`credentials` object with credentials for the Audit log service.
-Take a look at *@sap/xsenv* package for more information on how to retrieve service credentials.
-The callback will be called with an error if the Audit log server does not support version 2 of the REST APIs.
+#### OAuth2 Plan
+
+```js
+var credentials = {
+  "uaa": {
+    "clientid": "clientid",
+    "clientsecret": "clientsecret",
+    "url": "https://host:port"
+  }
+  "url": "https://host:port"
+};
+
+var auditLogging = require('@sap/audit-logging');
+auditLogging.v2(credentials, function(err, auditLog) {
+  if (err) {
+    // if the Audit log server does not support version 2 of the REST APIs
+    // an error in the callback is returned
+    return console.log(err);
+  }
+});
+```
 
 ### Data access messages
+
+#### Standard Plan (deprecated)
 
 ```js
 auditLog.read({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
@@ -304,7 +457,39 @@ auditLog.read({ type: 'online system', id: { name: 'Students info system', modul
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
 * `log` - logs the message.
 
+#### OAuth2 Plan
+
+```js
+auditLog.read({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
+  .attribute({ name: 'status' })
+  .attribute({ name: 'date-of-birth', successful: true })
+  .attachment({ id: 'exam-results-9537' })
+  .attachment({ id: 'recommendations-4381', name: 'file.doc' })
+  .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
+  // multiple data subjects can also be provided in array format as following:
+  //  .dataSubjects([{ type: 'student', id: { student_id: 'st_913' }, role: 'foreign student' },
+  //                 { type: 'student', id: { student_id: 'st_619' }, role: 'foreign student' }])
+  .accessChannel('UI')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .by('$USER')  
+  .log(function (err) {
+
+  });
+```
+
+* `read` - takes a JavaScript object which identifies the object which contains the data being accessed. Should have `type` and `id` properties.
+* `attribute(attribute)` - takes an object which describes an attribute. Should have a `name` property and optionally a `successful` property. It is **mandatory** to provide at least one attribute.
+* `attachment(attachment)` - takes an object which describes an attachment (used if attachments or files are downloaded or displayed). Should have an `id` property and optionally a `name` property.
+* `dataSubject` - takes an object describing the owner of the personal data. Should have `type` and `id` properties. The `role` property is optional. `dataSubject` or `dataSubjects` is **mandatory**.
+* `dataSubjects` - takes an array of data subject objects.
+* `accessChannel` - takes a string which specifies *channel* of access.
+* `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**.
+* `log` - logs the message.
+
 ### Data modification messages
+
+#### Standard Plan (deprecated)
 
 ```js
 var message = auditLog.update({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
@@ -330,7 +515,35 @@ message.logPrepare(function (err) {
 * `logSuccess` - Used to log that the operation over the data has been completed successfully.
 * `logFailure` - Used to log that the operation over the data has not been completed successfully.
 
+#### OAuth2 Plan
+
+```js
+var message = auditLog.update({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
+  .attribute({ name: 'status' })
+  .attribute({ name: 'town', old: 'Birmingham', new: 'London' })
+  .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .by('$USER');
+
+message.logPrepare(function (err) {
+  message.logSuccess(function (err) { });
+  // or
+  message.logFailure(function(err) { });
+});
+```
+
+* `update` - takes a JavaScript object which identifies the object which contains the data being updated. Should have `type` and `id` properties.
+* `attribute(attribute)` - takes an object which describes an attribute. Should have a `name` property and optionally - `old` and `new` properties. It is **mandatory** to provide at least one attribute.
+* `dataSubject` - takes an object describing the owner of the personal data. Should have `type` and `id` properties. The `role` property is optional. `dataSubject` is **mandatory**.
+* `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**.
+* `logPrepare` - Used to log that a user has started an operation over the data.
+* `logSuccess` - Used to log that the operation over the data has been completed successfully.
+* `logFailure` - Used to log that the operation over the data has not been completed successfully.
+
 ### Configuration change messages
+
+#### Standard Plan (deprecated)
 
 ```js
 var message = auditLog.configurationChange({ type: 'online system', id: { name: 'Students info system', configuration: 'global-config' } })
@@ -353,13 +566,38 @@ message.logPrepare(function (err) {
 * `logSuccess` - Used to log that the operation has been completed successfully.
 * `logFailure` - Used to log that the operation has not been completed successfully.
 
+#### OAuth2 Plan
+
+```js
+var message = auditLog.configurationChange({ type: 'online system', id: { name: 'Students info system', configuration: 'global-config' } })
+  .attribute({ name: 'session timeout', old: '5', new: '25' })
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .by('$USER');
+
+message.logPrepare(function (err) {
+  message.logSuccess(function (err) { });
+  // or
+  message.logFailure(function(err) { });
+});
+```
+
+* `configurationChange` - takes a JavaScript object which identifies the object which contains the data being configured. Should have `type` and `id` properties.
+* `attribute(attribute)` - takes an object which describes an attribute. Should have a `name`, `old` and `new` properties. It is **mandatory** to provide at least one attribute.
+* `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**.
+* `logPrepare` - Used to log that a user has started a configuration change operation.
+* `logSuccess` - Used to log that the operation has been completed successfully.
+* `logFailure` - Used to log that the operation has not been completed successfully.
+
 ### General security messages
+
+#### Standard Plan (deprecated)
 
 ```js
 auditLog.securityMessage('%d unsuccessful login attempts', 3)
-  .by('John Doe')
   .externalIP('127.0.0.1')
   .tenant('tenantId')
+  .by('John Doe')
   .log(function (err) {
 
   });
@@ -371,6 +609,64 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
 * `tenant` - takes a string which specifies the tenant id.
 * `log` - logs the message.
 
+#### OAuth2 Plan
+
+```js
+auditLog.securityMessage('%d unsuccessful login attempts', 3)
+  .externalIP('127.0.0.1')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .by('$USER')
+  .log(function (err) {
+
+  });
+```
+
+* `securityMessage` - takes a formatted string as in [util.format()](https://nodejs.org/api/util.html#util_util_format_format_args).
+* `externalIP` - states the IP of the machine that contacts the system. Specifying it is optional, but if provided, should be either IPv4 or IPv6.
+* `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
+* `tenant` - takes a string which specifies the tenant id.
+* `log` - logs the message.
+
+## OAuth2 User Token Exchange
+
+In order to make full use of the OAuth2, you will need to provide a **SecurityContext** to the library to be able to exchange user tokens to create auditlog entries on their behalf. To understand how to create a **SecurityContext**, please review [*@sap/xssec* library](https://www.npmjs.com/package/@sap/xssec).
+
+### v1
+
+```js
+var xssec = require('@sap/xssec');
+let auditlog;
+
+// access_token = user access token.
+
+xssec.createSecurityContext(access_token, xsuaa, function(error, securityContext, tokenInfo) {
+    if (error) {
+        console.log('Security Context creation failed');
+        return;
+    }
+    auditlog = require('@sap/audit-logging')(auditLogCreds, securityContext)
+});
+```
+
+### v2
+
+```js
+var xssec = require('@sap/xssec');
+var auditLogging = require('@sap/audit-logging');
+let auditlog;
+
+// access_token = user access token.
+
+xssec.createSecurityContext(access_token, xsuaa, function(error, securityContext, tokenInfo) {
+    if (error) {
+        console.log('Security Context creation failed');
+        return;
+    }
+    auditLogging.v2(auditLogCreds, securityContext, (err, auditlog) => {
+      auditLog = auditlog;
+    })
+});
+```
 
 ## Local development
 

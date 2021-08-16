@@ -1,6 +1,4 @@
-@sap/apihub-service-provider
-@sap/cds-lsp
-@sap/hdbext
-@sap/hdi
-@sap/vscode-cds
-@sap/xsjs
+@sap/audit-logging
+@sap/cds
+@sap/cds-compiler
+@sap/sbf

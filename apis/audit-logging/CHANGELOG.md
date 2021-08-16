@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.1.0 - 2021-08-12
+
+### Added
+- Added support for OAuth2 plan
+- Added support for SecurityContext with OAuth2 (and user token exchange)
+
 ## 5.0.0 - 2021-03-09
 
 ### Fixed
