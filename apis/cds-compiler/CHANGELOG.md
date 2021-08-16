@@ -7,6 +7,12 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.5.2 - 2021-08-10
+
+### Fixed
+
+- to.hdbcds: Fixed a bug introduced with 2.5.0 that caused virtual elements to be rendered in views.
+
 ## Version 2.5.0 - 2021-07-28
 
 ### Added

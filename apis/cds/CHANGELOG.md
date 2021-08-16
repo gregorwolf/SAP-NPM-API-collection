@@ -4,6 +4,25 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.4.3 - 2021-08-16
+
+### Fixed
+
+- Skip calculated properties while following projections
+- Safe access to `cds.env.log.levels.cli`
+- Unrestricted subclauses in `@restrict.where`
+
+## Version 5.4.2 - 2021-08-11
+
+### Fixed
+
+- Where condition in draft union in case of multiple keys
+- Handling of nulled properties in Service Consumption
+- Requests to Remote Services returning `text/html` result in an error
+- View resolving is more robust for path expressions
+- Skip foreign properties (e.g., mixins via associations) while following projections
+- UPDATE entity with composition to aspect with structure type property
+
 ## Version 5.4.1 - 2021-08-03
 
 ### Fixed
