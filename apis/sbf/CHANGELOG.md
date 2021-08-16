@@ -8,6 +8,13 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.2.13"></a>
+## 6.2.13 - 2021-08-13
+
+### Added
+- fix ambiguity error when SBF_CREDENTIALS_PROVIDER_SERVICE is set
+- allow brokers to be configured with tls and no basic authentication
+
 <a name="6.2.12"></a>
 ## 6.2.12 - 2021-07-25
 

@@ -55,14 +55,26 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
       - [Authentication with X.509 client certificates](#authentication-with-x509-client-certificates)
         * [XSUAA managed certificates](#xsuaa-managed-certificates)
         * [Externally managed certificates](#externally-managed-certificates)
+    + [IAS](#ias)
+      - [Prerequisites](#prerequisites-1)
+      - [Creating an IAS instance](#creating-an-ias-instance)
+      - [Binding an IAS instance to the broker application](#binding-an-IAS-instance-to-the-broker-application)
+      - [Unsupported Features](#unsupported-features)
   * [Unique service broker](#unique-service-broker)
   * [Secure outgoing connections](#secure-outgoing-connections)
   * [Stateless](#stateless)
   * [Memory usage](#memory-usage)
   * [User Interface](#user-interface)
   * [Security](#security)
-    + [Password rotation](#password-rotation)
     + [HTTPS](#https)
+    + [Authentication](#authentication)
+    	- [Basic Authentication](#basic-authentication)
+    		* [Service Broker Plain-Text Credentials](#service-broker-credentials)
+    		* [Service Broker Hashed Credentials](#service-broker-hashed-credentials)
+    	- [mTLS Authentication](#mtls-authentication)
+    		* [Out-of-the-Box mTLS](#out-of-the-box-mtls)
+    		* [Customized mTLS](#customized-mtls)
+    + [Password rotation](#password-rotation)
   * [Audit logging](#audit-logging)
     + [Auditlog Viewer](#auditlog-viewer)
       - [Running on XSA](#running-on-xsa)
@@ -74,18 +86,18 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
     + [ServiceBroker.app](#servicebrokerapp)
     + [ServiceBroker.callXsuaa(req, options, callback)](#servicebrokercallxsuaareq-options-callback)
     + [(static) ServiceBroker.createCredentialsProvider(credentials)](#static-servicebrokercreatecredentialsprovidercredentials)
-  * [Service Broker Credentials](#service-broker-credentials)
-  * [Service Broker Hashed Credentials](#service-broker-hashed-credentials)
   * [Service Catalog](#service-catalog)
   * [Additional Service Configuration](#additional-service-configuration)
   * [Automatic Credentials Generation](#automatic-credentials-generation)
   * [Credentials Provider Service](#credentials-provider-service)
   * [Business Service Support](#business-service-support)
   * [Hooks](#hooks)
+    + [`verifyClientCertificate(params, callback)`](#verifyclientcertificateparams-callback)
     + [`onProvision(params, callback)`](#onprovisionparams-callback)
     + [`onUpdate(params, callback)`](#onupdateparams-callback)
     + [`onDeprovision(params, callback)`](#ondeprovisionparams-callback)
     + [`onLastOperation(params, callback)`](#onlastoperationparams-callback)
+    + [`onBindLastOperation(params, callback)`](#onbindlastoperationparams-callback)
     + [`onFetchInstanceParams(params, callback)`](#onfetchinstanceparamsparams-callback)
     + [`onBind(params, callback)`](#onbindparams-callback)
     + [`onUnbind(params, callback)`](#onunbindparams-callback)
@@ -295,7 +307,7 @@ To do that, you can create a custom Node.js application for your service broker.
 This application can use the service broker framework as a normal Node.js package.
 Then you can register [custom callbacks](#hooks) to be invoked during each broker operation.
 
-Create a Node.js application and add a _@sap/sbf_ dependency as described [above](#create-a-nodejs-application).
+Create a Node.js application and add a _@sap/sbf_ dependency as described [above](#create-a-nodejs-application). 
 
 Create the start script of your broker application, e.g. _start.js_:
 ```js
@@ -373,6 +385,8 @@ function onLastOperation(params, callback) {
 }
 ```
 
+**Note:** With [IAS as a credentials provider](#ias) all requests are proxied to the IAS Broker, which manages the statuses of last operations. If you choose to implement a hook, do it with caution because you could override the original status received from the IAS Broker.  
+
 **Note:** If several instances of the service broker are running, it is very likely that the start of an asynchronous operation and subsequent polling via [onLastOperation](#onlastoperationparams-callback) will be handled by different broker instances.
 So make sure that all broker instances see the same state.
 
@@ -437,19 +451,28 @@ cf bind-service <application> <service-instance> -c parameters.json
 ```
 The content of _parameters.json_ is passed to the service broker and can be accessed in [`onBind`](#onbindparams-callback) hook via `params.parameters` argument.
 
+The same goes for CF service-keys:
+```sh
+cf create-service-key <service-instance> <key-name> -c parameters.json
+```
+
+**Note**: Binding for reuse service instace when XSUAA is the credentials' provider, allows for specific configuration in order to support certificate credentials, as specified here: [Authentication with X.509 client certificates](#authentication-with-x509-client-certificates)
+
 ### Credentials providers
 
 By default, this modul searches for a bound service instance which is responsible for generating credentials for the services offered by a service broker. The framework attempts to find a suitable service with the following properties in the following order:
 1. SAP HANA Service Instance (A service with label `hana` and plan `sbss`)
 2. PostgreSQL Service Instance (A service with label `postgresql` and tag `sbss`)
 3. XSUAA Service Instance (A service with label `xsuaa` and plan `broker`)
+4. IAS Service Instance (A service with the label `identity` and plan `application`)
 
 If no such service is found in the environment of the broker, an error is returned.
 
 You can disable this behavior by [setting the credentials provider service explicitly](#credentials-provider-service). When running on K8S you must always set the credentials provider service explicitly.
 
-Depending on the type of the credentials provider service, SBSS(for SAP HANA and PostgreSQL) or XSUAA, this module generates credentials and merges them into the `credentials` object of the response to the *bind* operation.
-The same object appears also in the `credentials` section for the respective service in the `VCAP_SERVICES` environment variable in bound applications. You can find some examples below.
+
+Depending on the type of the service that provides credentials: SBSS (for SAP HANA and PostgreSQL), XSUAA, or IAS, this module generates credentials and merges them to the `credentials` object received in the response to *bind* operation.
+The same object will appear also in the `credentials` section for the respective service in the `VCAP_SERVICES` environment variable in bound applications. You can find some examples below.
 
 #### SBSS
 
@@ -607,11 +630,35 @@ Authentication with X.509 client certificates can be enabled with the following 
 }
 ```
 
-X.509 client certificate authentication can be separately configured on 2 levels:
+X.509 client certificate authentication can be separately configured on 3 levels:
 
 1. XSUAA instance of plan _broker_. The required configuration can be provided in the parameters during service instance creation (_xs-security.json_). This enables X.509 authentication between SBF and XSUAA, and between the reuse service and XSUAA.
 
 2. Reuse service instance. The required configuration can be provided either via SBF's [additional service configuration](#additional-service-configuration) (property `extend_xssecurity`) or via the parameters during reuse service instance creation (_[parameters.json](#create-service-with-custom-parameters)_, property `xs-security`).
+
+3. Reuse service instance binding. The required configuration should be provided via the parameters during reuse service instance binding creation:
+    ```sh
+    cf bind-service <application> <service-instance> -c parameters.json
+    ```
+   Where the relevant configuration must be wrapped with `xsuaa`. The exact format in which the configuration should be provided is:
+    ```json
+    {
+      "xsuaa": { 
+           "credential-type": "x509", 
+           "x509": { 
+               "key-length": 2048, 
+               "validity": 7, 
+               "validity-type": "DAYS" 
+           } 
+       }
+   }
+   ```
+   The same goes for CF service-keys:
+   ```sh
+   cf create-service-key <service-instance> <key-name> -c parameters.json
+   ```
+    
+   **Note**: currently only `credential-type` and `x509` (and `X.509` for [Externally managed certificates](#externally-managed-certificates)) fields are supported under `xsuaa`.
 
 The certificate-key pairs that will be used can either be automatically generated by XSUAA (_XSUAA managed certificates_) or
 explicitly provided custom ones (_externally managed certificates_).
@@ -645,6 +692,42 @@ MIIEpA ...
 
 When enabled, SBF uses X.509 certificates authentication with precedence over `clientid` and `clientsecret`.
 
+#### IAS
+
+IAS (Identity and Authentication Service) is enabling service owners to maintain a service broker within IAS. 
+Therefore, SBF with IAS as credentials provider acts as a proxy to the IAS Broker, while still allowing you to extend functionalities by using custom hooks (an ability IAS Broker doesn't support).
+
+##### Prerequisites
+
+You can find the complete IAS Broker documentation [here](https://github.wdf.sap.corp/CPSecurity/Knowledge-Base/tree/master/08_Tutorials/iasbroker), along with prerequisites and procedures. 
+
+##### Creating an IAS instance
+Create an IAS instance of the plan _application_ (example):
+```sh
+cf create-service identity application <service-instance> -c catalog.json
+```
+Here, the catalog.json is passed to the IAS instance, as this instance represents a IAS Broker. Therefore, a file that contains the catalog should not be provided to the application (see [Service Catalog](#service-catalog)). 
+
+##### Binding an IAS instance to the broker application
+Bind an IAS instance (example):
+```sh
+cf bind-service <broker-app> <service-instance> -c '{"credential-type": "X509_GENERATED"}'
+```
+Here we use the IAS ability to generate X.509 client certificates for us. Refer to the [documentation](https://github.wdf.sap.corp/CPSecurity/Knowledge-Base/tree/master/08_Tutorials/iasbroker#service-binding-creation) for alternatives. 
+
+**Note:** communication between the SBF-based broker application and the IAS broker is based on TLS authentication (X.509 client certificates). Make sure you create the binding properly by passing the parameters correctly. 
+In addition, arbitrary parameters are not supported in app manifests in cf CLI v6.x (see [here](https://docs.cloudfoundry.org/devguide/services/application-binding.html#bind-with-manifest)), therefore the binding cannot be declared in the manifest.yml file.
+
+#### Unsupported Features
+The following [Additional Service Configuration](#additional-service-configuration) are not yet supported with IAS as credentials provider:
+1.  `extend_credentials`
+2. The following properties from the [Business Service Support](#business-service-support) section:
+    * `sap.cloud.service`
+    * `sap.cloud.service.alias`
+    * `saasregistryenabled`
+    
+You can still choose to extend the response with these parameters within the [onBind hook](#onbindparams-callback).
+
 ### Unique service broker
 
 Sometimes for testing it is useful to register the same broker multiple times as if it were multiple different brokers.
@@ -676,6 +759,7 @@ You can also register the same broker with another suffix:
 cf create-service-broker my-broker-xyz user password https://my-broker.domain.com/xyz --space-scoped
 ```
 This will append the suffix "xyz" to each service name, ID and plan ID in the catalog in that space.
+
 
 ### Secure outgoing connections
 
@@ -771,6 +855,91 @@ Use your start script in the `start` command in _package.json_
   }
 ```
 
+### Authentication
+SBF supports Basic and mTLS authentication. Below you can find information about how to configure each type of authentication. 
+#### Basic Authentication
+You can configure SBF to use basic authentication. You need to configure username and password. You set the credentials either in plain text
+or hashed format.
+##### Service Broker Credentials
+Credentials in plain text format used by the Cloud Controller and other clients to call the service broker.
+It is an object where each key is a user name and the value is the respective password. It may contain multiple credentials but at least one is required.
+
+Example:
+```json
+{
+  "user1": "password1",
+  "user2": "password2"
+}
+```
+
+These credentials can be provided via the option `brokerCredentials` or the environment variable `SBF_BROKER_CREDENTIALS`.
+
+**Note:** Service broker credentials must be provided either in plain text or [hashed](#service-broker-hashed-credentials) format.
+
+##### Service Broker Hashed Credentials
+Credentials in hashed format used by the Cloud Controller and other clients to call the service broker.
+It is an object where each key is a user name and the value is the respective password in format `sha256:<salt>:<hash-digest-of-salt+password>`.
+Here `<salt>` and `<hash-digest-of-salt+password>` are _base64_-encoded strings.
+It may contain multiple credentials but at least one is required.
+
+Example:
+```json
+{
+  "user1": "sha256:gVJILqx/97j4aWVQas5RbSUFpWzu7OpaHOt0O29CJOc=:4klnhxFY2YYwzHO7unYu7jc+HuikQLhF7Ebk8tjOJ9c=",
+  "user2": "sha256:0NRIb4Gzx1zFRTTs6qpElujmHuUE1TAIg3NbES219f0=:Gv1NMeIzxlbmOCLvY3q4DMbiDXamqF3xRfFivUdligo="
+}
+```
+
+These credentials can be provided via the option `brokerCredentialsHash` or the environment variable `SBF_BROKER_CREDENTIALS_HASH`.
+
+**Note:** Service broker credentials must be provided either in [plain text](#servic-broker-plain-text-credentials) or hashed format. 
+
+**Note:** To generate such hashed credentials, you can use the [hash-broker-password](#hash-broker-password) script.
+#### mTLS Authentication
+##### Out-of-the-Box mTLS
+***Note:*** In progress
+
+
+***Note:*** Only available on public PaaS.
+
+
+You can configure SBF broker to verify the Service Manager-issued client certificate each time the Service Manager communicates with the broker. 
+
+For that, you need to create your broker with the `secureIncomingConnections` option set to true, or set the environment variable `SBF_SECURE_INCOMING_CONNECTIONS` to true.
+
+You also have to specify the Service Manager tenant ID so that its identity can be verified.
+If you don't specify the Service Manager tenant ID, the out-of-box validation is not performed. 
+
+***Note:***
+In such case, the only validation performed is the one that your provided with the implementation of the  [verifyClientCertificate](#verifyclientcertificateparams-callback) hook. 
+
+If the hook is also not implemented, the validation fails.  
+
+To set the Service Manager ID, create the broker with the `serviceManagerTenantId` parameter or set the `SBF_SERVICE_MANAGER_TENANT_ID` environment variable.
+You can retrieve the Service Manager tenant ID at `https://service-manager.cfapps.{landscape-domain}/v1/info` from the `service_manager_tenant_id` field, where `{landscape-domain}` is the landscape in which you registered your broker. 
+
+For example, calling https://service-manager.cfapps.eu10.hana.ondemand.com, returns 
+```
+{
+	token_issuer_url: "https://svcmgr.authentication.eu10.hana.ondemand.com",
+	token_basic_auth: false,
+	service_manager_tenant_id: "svcmgr-cf-eu10"
+}
+```
+
+
+ You can enhance the out-of-box client certificate verification by implementing the [verifyClientCertificate](#verifyclientcertificateparams-callback) hook. 
+ 
+ With this hook, you can perform your own validations.
+
+##### Customized mTLS
+Alternatively, you can register your broker with your own certificate. 
+
+Once the service broker has been registered, it will send the client certificate you configured each time it communicates with SBF. 
+
+To enable this verification, make sure to create your broker with  the `secureIncomingConnections` option set to true, or set the `SBF_SECURE_INCOMING_CONNECTIONS` environment variable to true.
+You have to implement  [verifyClientCertificate](#verifyclientcertificateparams-callback) hook to verify the received certificate.
+
 ### Audit logging
 
 _@sap/sbf_ writes to audit log for every operation except for _catalog_
@@ -826,7 +995,9 @@ Creates a new ServiceBroker instance.
   * [`catalogSuffix`](#unique-service-broker) *String* Suffix which will be appended to each service name, ID and plan ID in the service catalog to make them unique across Cloud Foundry.
   * [`enableAuditLog`](#audit-logging) *Boolean* Enable/Disable audit logging. Defaults to **true**.
   * [`tenantId`](#auditlog-viewer) *String* Tenant ID of the broker application. It is used for audit logging. Mandatory if the broker is running on CF and audit logging is enabled.
-  * [`secureOutgoingConnections`](#secure-outgoing-connections) *Boolean* If *false*, unencrypted outgoing connections will be allowed. Defaults to **true**.
+  * [`secureOutgoingConnections`](#secure-outgoing-connections) *Boolean* If *false*, unencrypted outgoing connections will be allowed. Default value is **true**.
+  * [`secureIncomingConnections`](#mtls-authentication) *Boolean* If set to *true*, secure connection is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate, you also have to configure the `serviceManagerTenantId`. Default value is **false**.
+  * [`serviceManagerTenantId`](#out-of-the-box-mtls) *String* If `secureIncomingConnections` is set to true and `serviceManagerTenantId` is configured to the Service Manager tenant ID in the broker's landscape, the Service Manager [client certificate](#out-of-the-box-mtls) is verified in each public landscape.
   * [`clientCertificateKey`](#authentication-using-x509-client-certificates) *String* the private key corresponding to the client certificate used for authentication with XSUAA.
   * [`k8sSecretsPath`](#credentials-providers) *String* the path to the mounted volume containing service secrets when running on K8S. Default is '/etc/secrets/sapcp/'.
 
@@ -1023,6 +1194,8 @@ This is a JSON object describing all services and plans offered by this service 
 
 By default the service catalog is loaded from *./catalog.json* file. Alternatively, the catalog file could be explicitly set via the `SBF_CATALOG_FILE` environment variable.
 
+**Note:** In case of IAS as a credentials provider, the catalog is provided to the IAS instance. Do not provide the *./catalog.json* file. See more in the [IAS](#ias) section.
+
 **Note:** Each service name, ID and plan ID in the catalog must be unique across Cloud Foundry.
 GUIDs are recommended for service ID and plan ID.
 See [Unique service broker](#unique-service-broker).
@@ -1206,6 +1379,8 @@ SBF will automatically add the following properties to the credentials returned 
 * `sap.cloud.service.alias`
 * `saasregistryenabled`
 
+**Note:** In case of IAS as a credentials provider, properties `sap.cloud.service`, `sap.cloud.service.alias` and `saasregistryenabled` will not be automatically returned. See more in the [IAS](#ias) section.
+
 **Note:** In order to provide the `html5-apps-repo` automatically as part of the service credentials, the service broker must be bound to at least one *html5-apps-repo* service instance (*app-host* plan). In the case of K8S the service instance will be looked up by label *html5-apps-repo*.
 
 It is also possible to dynamically provide `app_host_id` in the [`onBind`](#onbindparams-callback) hook which will be merged with the `app_host_id`(s) of the already bound *html5-apps-repo* service instance(s) (if any). This can be achieved via the `reply.credentials` object returned by the `onBind` hook:
@@ -1256,7 +1431,36 @@ function onBind(params, callback) {
 
 ### Hooks
 Hooks are custom callback functions that allow you to extend and even replace default service broker functionality.
-There is a hook for each service broker operation (except for *catalog*).
+
+
+#### `verifyClientCertificate(params, callback)`
+This hook is called on each received request in SBF if the service broker was configured with the `SBF_SECURE_INCOMING_CONNECTIONS` parameter (See [Environment variables](#environment-variables)) set to true.
+
+* `params` *Object*
+  * `clientCertificate` *String*  Service Manager certificate.  
+  * `req` *Object* See [here](#req) for more details.
+* `callback` *function(error, reply)*
+  * `error` *Object* See [Error Handling](#error-handling).
+  * `reply` *Object* An object returned as a response to each request.
+  
+```js
+  const broker = new Broker({
+    autoCredentials: true,
+  	hooks: {
+      verifyClientCertificate:(params, callback) =>{
+          console.log(params.clientCertificate);
+          //do you validations here
+          //in case of failed verification pass Forbidden
+           callback(new Forbidden());
+                              
+      }
+    }});
+  broker.start();
+```
+
+SBF performs no additional processing for this operation.
+
+**Note:** Implementing `verifyClientCertificate` is not mandatory.
 
 #### `onProvision(params, callback)`
 Called when the broker receives a *provision* request.
@@ -1321,7 +1525,7 @@ For example, if XSUAA is used, the OAuth client clone will be deleted right afte
 **Note:** This hook should be repeatable (idempotent), i.e. if it completes successfully once, any subsequent invocations with the same parameters should be successful too. This is necessary in case the default SBF operation fails. Then it should be possible to repeat the whole operation to complete the cleanup. Also the platform may execute _deprovision_ after a failed _provision_ operation as part of [orphan mitigation](https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#orphans). So `onDeprovision` hook may be called even when the service instance and associated resources do not exist.
 
 #### `onLastOperation(params, callback)`
-Called when the broker receives a *last operation* request.
+Called when the broker receives a *last operation* request for an **instance**.
 
 * `params` *Object*
   * `instance_id` *String* Service instance ID
@@ -1336,9 +1540,33 @@ Called when the broker receives a *last operation* request.
     * `state` *String* Valid values are "in progress", "succeeded", and "failed". While "state": "in progress", the platform SHOULD continue polling. A response with "state": "succeeded" or "state": "failed" MUST cause the platform to cease polling.
     * `description` *String* (Optional) A user-facing message displayed to the platform API client. Can be used to tell the user details about the status of the operation.
 
-SBF performs no additional processing for this operation.
 
-**Note:** Implementing `onLastOperation` is mandatory, if any other operation hook returns `reply.async = true`. If this hook is not implemented, SBF will return status 501 (Not Implemented).
+SBF performs no additional processing for this operation, except for [IAS as credentials provider](#ias), where the request is proxied to the IAS Broker.
+
+**Note:** Implementing `onLastOperation` is mandatory, if any other instance operation hook returns `reply.async = true` (apart from IAS flow). If this hook is not implemented, SBF returns status 501 (Not Implemented). If IAS is the credentials provider, the hook is optional.
+
+See [Asynchronous broker operations](#asynchronous-broker-operations) for more information.
+
+#### `onBindLastOperation(params, callback)`
+Called when the broker receives a *last operation* request for **binding**.
+
+* `params` *Object*
+  * `instance_id` *String* Service instance ID
+  * `binding_id` *String* Service binding ID
+  * `originating_identity` *Object* Only available if the `X-Broker-API-Originating-Identity` header is provided in the request.
+  Contains the parsed data from the header (You can find more information about the structure [here](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/profile.md#originating-identity-header)).
+  * `user_id` *String* The authenticated user that called the broker.
+  * `req` *Object* You can find the details [here](#req).
+  * The parameters described in the OSB API specification under [Polling Last Operation, Parameters](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md#parameters)
+* `callback` *function(error, reply)*
+  * `error` *Object* See [Error handling](#error-handling).
+  * `reply` *Object* An object returned as a response to the *last operation* request.
+    * `state` *String* Valid values are "in progress", "succeeded", and "failed". While "state": "in progress", the platform SHOULD continue polling. A response with "state": "succeeded" or "state": "failed" MUST cause the platform to cease polling.
+    * `description` *String* (Optional) A user-facing message displayed to the platform API client. Can be used to tell the user details about the status of the operation.
+
+SBF performs no additional processing for this operation, except for [IAS as credentials provider](#ias), where the request is proxied to the IAS Broker.
+
+**Note:** Implementing `onBindLastOperation` is mandatory, if any other binding operation hook returns `reply.async = true` (apart from IAS flow). If this hook is not implemented, SBF returns status 501 (Not Implemented). If IAS is the credentials provider, the hook is optional.
 
 See [Asynchronous broker operations](#asynchronous-broker-operations) for more information.
 
@@ -1449,7 +1677,9 @@ Otherwise the broker will return HTTP status code 500 with a generic error messa
 - `SBF_CREDENTIALS_PROVIDER_SERVICE` - the name of the credentials provider service instance, see [Credentials provider service](#credentials-provider-service)
 - `SBF_SBSS_RESTRICTED_USER_SERVICE` - the name of the service containing restricted user credentials (SBSS on PostgreSQL case), see [Credentials provider service](#credentials-provider-service)
 - `SBF_UAA_TIMEOUT` - timeout in milliseconds for requests to XSUAA, default is 20 seconds.
-- `SBF_SECURE_OUTGOING_CONNECTIONS` - if `false`, unencrypted outgoing connections will be allowed, see [Secure outgoing connections](#secure-outgoing-connections)
+- `SBF_SECURE_OUTGOING_CONNECTIONS` - if set to false `false`, unencrypted outgoing connections will be allowed, see [Secure outgoing connections](#secure-outgoing-connections)
+- `SBF_SECURE_INCOMING_CONNECTIONS` - if set to true `true`, a [secured connection](#mtls-authentication) is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate, you also have to configure the `SBF_SERVICE_MANAGER_TENANT_ID` environment variable.
+- `SBF_SERVICE_MANAGER_TENANT_ID` - the Service Manager tenant ID. This variable has to be configured so that the Service Manager [client certificate](#out-of-the-box-mtls) is verified. Also, set `SBF_SECURE_INCOMING_CONNECTIONS` to true. You can retrieve the Service Manager tenant ID at `https://service-manager.cfapps.<landscape domain>/v1/info` from `the service_manager_tenant_id` field. The URL changes depending on your landscape domains. For example, https://service-manager.cfapps.eu10.hana.ondemand.com/v1/info.
 - `SBF_ENABLE_AUDITLOG` - if `false` disable audit logging, otherwise it is enabled.
 - `SBF_TENANT_ID` - Mandatory if the broker application is running on Cloud Foundry and audit logging is *enabled*.
 - `PORT` - the port on which the service broker will listen for requests, default is 8080.
