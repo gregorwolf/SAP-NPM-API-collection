@@ -2,6 +2,10 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.3.1] - 2021-08-12
+### Fixed
+- Fixed minor issues
+
 ## [1.3.0] - 2021-07-29
 ### Added
 - Provided the possibility to load UI5 libs directly from CDN, instead of loading via the fiori-tools-proxy

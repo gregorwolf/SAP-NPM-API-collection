@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.3.1] - 2021-08-19
+#### Added
+- Added support for generating Fiori applications using the SAP API Business Hub from the Service Center in Business Application Studio.
+- Non identifiable and optional telemetry data has been added for deployment.
+
+### Fixed
+- The `minUI5Version` version in the generated `manifest.json` file now details the UI5 version used during generation.
+- Improved support for detecting Reuse libraries in the local workspace.
+
 ## [1.3.0] - 2021-07-28
 ### Fixed
 - Fixed an issue which caused the Fiori generator to crash due to presence of multiple schemas in the metadata file

@@ -8,6 +8,19 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.3.1"></a>
+## 6.3.1 - 2021-08-22
+
+### Added
+- fix for auditlog oauth2 plan
+
+<a name="6.3.0"></a>
+## 6.3.0 - 2021-08-22
+
+### Added
+- Updating audit-logging to support oauth2 plan
+- Adapt to XSUAA's new mtls (x.509) security descriptor
+
 <a name="6.2.13"></a>
 ## 6.2.13 - 2021-08-13
 

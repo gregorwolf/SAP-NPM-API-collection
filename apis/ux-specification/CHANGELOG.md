@@ -4,6 +4,50 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.90.7] - 2021-08-12
+
+### Added
+
+- OData V2:
+  - Added description property to header actions in schema
+  - Table toolbar as structure node
+  - Added properties showClearOnFB, showFilterConfiguration and showRestoreOnFB to the FilterBar
+
+- OData V4:  
+  - Table toolbar as structure node
+  - enableOnSelect as property for table toolbar
+
+- Developer guide for contributors to this module
+
+- Actualization of JS-DOC
+
+- Enhanced error handling of API functions.
+
+- The generic schema is enhanced by the following information:
+  - artifact type (manifest setting, flex change or annotation)
+  - in case of flex change: control name
+
+### Changed
+
+- The node Selection Fields was renamed to Filter Fields, in accordance with the UI.
+
+- The generic schemas now already comprise anyOf definitions for enums of type string that allow binding changes. Previously this was only added during the generation of app specific schemas.
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- A common function was introduced to resolve path references of Common.Label annotations; endless loop references are interjected, the variable value or key is returned in this case.
+- Enhance function determineTableType to also check for presence of old tableType flag in manifest.json
+- OData V2:
+  - ALP: Use correct Id for flex changes generated in case of Filter Bar
+
+### Quality
+
+- Refactor interfaces and class definitions for ALP tables
+
 ## [1.90.6] - 2021-07-28
 
 ### Added

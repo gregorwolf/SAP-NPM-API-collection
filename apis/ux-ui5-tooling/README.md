@@ -157,6 +157,20 @@ Let's that you want to configure the proxy to send requests from a certain path 
       destination: my_backend
 ```
 
+#### [Providing Proxy Configuration](#providing-proxy-configuration)
+By the default the `fiori-tools-proxy` will read the proxy configuration from the Node.js environment variables `proxy`, `https-proxy` and `noproxy`. If those variables are not set, then you can also provide the proxy configuration in the `ui5.yaml` file. **Please note: if you want to exclude any domains from the proxy then you will need to set the `noproxy` variable, e.g. `npm config set noproxy "sap.com"`**.
+
+```
+- name: fiori-tools-proxy
+  afterMiddleware: compression
+  configuration:
+    proxy: https://myproxy.com:8443
+    backend:
+    - path: /sap
+      url: https://my.backend.com:1234
+
+```
+
 #### [UI5](#ui5)
 
 By using the proxy configuration one can also change the UI5 version, which is used to preview the application. With the application generation also the initial ui5 configuration for the proxy is created. It looks e.g. like this.
