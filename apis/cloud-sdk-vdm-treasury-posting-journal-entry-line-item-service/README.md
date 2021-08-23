@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-treasury-posting-journal-entry-line-item-service
 
-This package contains the OData VDM for the [Treasury Posting Journal Entry Line Item Service](https://api.sap.com/api/A_TRSYPOSTGJRNLENTRITM_CDS) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Finance - Treasury Posting Journal Integration (SAP_COM_0333).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/a5/c19312428b4fa7a956fbbf88440f44/frameset.htm).
+This package contains the OData VDM for the Treasury Posting Journal Entry Line Item Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

@@ -1,8 +1,6 @@
 # @sap/cloud-sdk-vdm-warehouse-service
 
-This package contains the OData VDM for the [Warehouse Service](https://api.sap.com/api/API_WAREHOUSE) of SAP S/4HANA Cloud.
-This service is part of the following communication scenarios: Warehousing - Master Data Integration (SAP_COM_0374).
-You can find additional documentation for this service on [help.sap.com](https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/latest/EN/52/2c8cc5ee864e81a0d6fe41631a11d4/frameset.htm).
+This package contains the OData VDM for the Warehouse Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

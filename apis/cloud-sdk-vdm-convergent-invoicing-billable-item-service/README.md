@@ -1,6 +1,6 @@
-# @sap/cloud-sdk-vdm-warehouse-resource-service
+# @sap/cloud-sdk-vdm-convergent-invoicing-billable-item-service
 
-This package contains the OData VDM for the Warehouse Resource Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Convergent Invoicing Billable Item Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 

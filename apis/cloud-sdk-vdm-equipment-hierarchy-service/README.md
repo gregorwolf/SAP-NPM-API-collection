@@ -1,6 +1,6 @@
-# @sap/cloud-sdk-vdm-warehouse-resource-service
+# @sap/cloud-sdk-vdm-equipment-hierarchy-service
 
-This package contains the OData VDM for the Warehouse Resource Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Equipment Hierarchy Service of SAP S/4HANA Cloud.
 
 ### Helpful Links
 
