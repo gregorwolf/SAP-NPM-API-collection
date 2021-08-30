@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.1.23 - 2021-08-25
+
+### Fixed
+
+- Re-enabled compatibility with compiler v1
+
 ## Version 1.1.21 - 2021-06-28
 
 ### Fixed

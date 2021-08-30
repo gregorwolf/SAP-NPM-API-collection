@@ -7,13 +7,59 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 2.2.2 - 2021-08-26
+
+### Fixed
+- Fixed a regression where the `ExtendCDSdelete` scope was required for extension activations even without `undeployExtension` set to `false`.
+- Fixed an application crash at startup when `MTX_DISABLE_META_TENANT_CREATION` is set and no Instance/Service Manager credentials are available.
+
+## Version 2.2.1 - 2021-08-19
+
+
+### Changed
+- To reduce the number of logs, the HDI deployment output is now only logged in debug mode.
+- Tenant metdata request via `mtx/v1/provisioning/tenant/` are now cached.
+
+### Fixed
+- Native HANA table data properties files are now supported.
+- `MT_LIB_TENANT-*`-prefixed tenants are now ignored when requesting `mtx/v1/provisioning/tenant`. This fixes a compatibility problem when using the `CDS_MULTITENANCY_DATASOURCE_HANADATABASEIDS` environment variable.
+
+## Version 2.2.0 - 2021-07-30
+
+
+
+### Added
+- `working_set` and `exclude_filter` can now be used as `HDI_DEPLOY_OPTIONS`
+- Job log is now cleaned up with each startup to avoid garbage after application shutdowns or crashes. 
+Maximum age of entries can be configured via cds configuration `mtx.jobs.cleanup.regular` and `mtx.jobs.cleanup.stale`
+(in milliseconds).
+"Regular" refers to finished or failed jobs (default is 30 min), "Stale" refers to queued or running jobs 
+(default is 7 days).
+- (BETA) The tenant specific URL returned to the `saas-registry` can now be specified
+via two environment variables `SUBSCRIPTION_URL` and `SUBSCRIPTION_URL_REPLACEMENT_RULES`.<br>
+The following example uses the MTX application URL and turns it into the UI
+application URL by replacing the application name suffix.
+  ```
+  SUBSCRIPTION_URL: ${protocol}://\${tenant_subdomain}-${default-uri}
+  SUBSCRIPTION_URL_REPLACEMENT_RULES: [['srv', 'app']]
+  ```
+  `\${tenant_subomain}` will be replaced by the domain of the subscribed tenant.
+
+### Changed
+
+- `/mtx/v1/metadata/edmx/` will now throw `ServiceMissingError` if no `name` query parameter is passed, instead of defaulting to `CatalogService`.
+- A `ModelNotFoundError` is thrown if no service model is found using `/mtx/v1/metadata/<modelType>/<tenantId>`.
+
+### Fixed
+- Access to metadata API (edmx, csn, languages, services) is now restricted
+to owner or provider tenant again
+- Allowed `HDI_DEPLOY_OPTIONS` are now filtered correctly 
+- Correlation ids of requests are now forwarded correctly to asynchronous jobs for
+better supportability of mtx tenant operations.
+
 ## Version 2.1.2 - 2021-07-09
 
-## Version 2.1.1 - 2021-07-09
-
-
-## Version 2.1.0 - 2021-07-07
-
+### Added
 
 - Tenant creation and deletion is now called via cds service `TenantPersistenceService` that
 applications can add handlers for

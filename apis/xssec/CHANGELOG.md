@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.2.3 - 2020-08-23
+- add checkFollowingInstanceScope to SecurityContext to retrieve instance specific scope without need to build scope string on your own
+- fix a reference error in key verification
+- support for multitenance IAS applications using 'x-zone_uuid' Header in jwks call
+
 ## 3.2.2 - 2020-06-16
 - Support for tokenexchanges with X.509 certificates managed by XSUAA
 - Support for tokenexchanges with manually managed X.509 certificates

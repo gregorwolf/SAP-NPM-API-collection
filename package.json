@@ -38,14 +38,14 @@
     "@sap/cds-hana": "1.25.2",
     "@sap/cds-lsp": "5.2.0",
     "@sap/cds-messaging": "1.8.3",
-    "@sap/cds-mtx": "2.1.2",
+    "@sap/cds-mtx": "2.2.2",
     "@sap/cds-odata-v2-adapter-proxy": "1.7.9",
     "@sap/cds-ql": "1.21.2",
     "@sap/cds-reflect": "2.13.5",
     "@sap/cds-rest": "1.6.3",
     "@sap/cds-runtime": "3.1.2",
     "@sap/cds-services": "1.27.2",
-    "@sap/cds-sidecar-client": "1.1.21",
+    "@sap/cds-sidecar-client": "1.1.23",
     "@sap/cds-sql": "1.24.1",
     "@sap/cds-sqlite": "1.24.1",
     "@sap/cf-tools": "2.0.1",
@@ -416,7 +416,6 @@
     "@sap/cloud-sdk-vdm-process-orders-service": "1.27.0",
     "@sap/cloud-sdk-vdm-process-warehouse-tasks-service": "1.27.0",
     "@sap/cloud-sdk-vdm-product-allocation-object-service": "1.27.0",
-    "@sap/cloud-sdk-vdm-product-allocation-sequence-service": "1.27.0",
     "@sap/cloud-sdk-vdm-product-availability-info-basic-service": "1.27.0",
     "@sap/cloud-sdk-vdm-product-exclusion-service": "1.27.0",
     "@sap/cloud-sdk-vdm-product-group-data-service": "1.27.0",
@@ -477,6 +476,7 @@
     "@sap/cloud-sdk-vdm-segment-service": "1.27.0",
     "@sap/cloud-sdk-vdm-sepa-mandate-accounts-receivable-service": "1.27.0",
     "@sap/cloud-sdk-vdm-service-confirmation-service": "1.27.0",
+    "@sap/cloud-sdk-vdm-service-contract-service": "1.27.0",
     "@sap/cloud-sdk-vdm-service-entry-sheet-service": "1.27.0",
     "@sap/cloud-sdk-vdm-service-order-service": "1.27.0",
     "@sap/cloud-sdk-vdm-service-order-template-service": "1.27.0",
@@ -625,6 +625,6 @@
     "@sap/xsjs-test": "3.2.2",
     "@sap/xsodata": "7.4.4",
     "@sap/xss-secure": "4.0.0",
-    "@sap/xssec": "3.2.2"
+    "@sap/xssec": "3.2.3"
   }
 }

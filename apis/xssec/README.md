@@ -169,10 +169,6 @@ config.keyCache = {
 passport.use(new JWTStrategy(config));
 ...
 ```
-### Support for automatic IAS to XSUAA token exchange
-Since verison 3.1.2 it is supported to automatically exchange an incoming IAS token with an XSUAA token, so the token contains scopes like XSUAA applications expect. 
-
-For details have a look [here](doc/IAStoXSUAA.md).
 
 ### Test Usage without having an Access Token
 
@@ -328,6 +324,15 @@ not available for tokens of grant_type `client_credentials`, returns unique prin
 ### checkLocalScope
 
 checks a scope that is published by the current application in the xs-security.json file.
+
+Parameters:
+
+* `scope` ... the scope whose existence is checked against the available scopes of the current user. Here, no prefix is required.
+* returns `true` if the scope is contained in the user's scopes, `false` otherwise
+
+### checkFollowingInstanceScope
+
+checks a instance specific scope that is published by the current application in the xs-security.json file.
 
 Parameters:
 
