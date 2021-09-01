@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.1.0"
+    "@sap/hdi-deploy": "4.2.0"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -345,13 +345,15 @@ On startup, the HDI Deployer recursively scans the local `src/` and `cfg/` folde
 
 In normal operation, the HDI Deployer will schedule only the set of added and modified files for deployment. The set of deleted files is not scheduled for undeployment.
 
-In order to undeploy deleted files, an application needs to include an undeploy allowlist via an `undeploy.json` file in the root directory of the `db` module (right beside the `src/` and `cfg/` folders). The undeploy allowlist `undeploy.json` file is a JSON document with a top-level array of file names:
+In order to undeploy deleted files, an application needs to include an undeploy allowlist via an `undeploy.json` file in the root directory of the `db` module (right beside the `src/` and `cfg/` folders). The undeploy allowlist `undeploy.json` file is a JSON document with a top-level array of file names. Both "real" paths and path patterns are supported.
 
 `undeploy.json`:
 
     [
         "src/Table.hdbcds",
-        "src/Procedure.hdbprocedure"
+        "src/Procedure.hdbprocedure",
+        "src/*.hdbtable",
+        "**/*.hdbtable"
     ]
 
 The file must list all artifacts which should be undeployed. The file path of the artifacts must be relative to the root directory of the `db` module, must use the HDI file path delimiter '/', and must be based on the HDI server-side folder structure. In case of reusable database modules, the server-side top-level folder `lib/` needs to be used instead of the local folder `node_modules/`.
@@ -537,7 +539,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.1.0",
+    "@sap/hdi-deploy": "4.2.0",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1064,7 +1066,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "4.1.0",
+        "version": "4.2.0",
         "features": {
             "info": 2,
             "verbose": 1,

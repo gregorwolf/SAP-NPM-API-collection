@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+
+## 10.7.1 - 2021-08-30
+
+### Added
+- Skip xs-app.json cache support
+- Login with XSUAA certificates 
+- Mutual Transport Layer Security (mTLS) handling
+- Single use token support
+
 ## 10.6.1 - 2021-08-03
 
 ### Fixed

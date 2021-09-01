@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.10 - 2021-08-31
+
+### Fixed
+
+- Fix query options not part of action parameters
+- Proxy option 'caseInsensitive' to transform search function e.g. 'substringof' to case insensitive variant
+
 ## Version 1.7.9 - 2021-08-06
 
 ### Fixed

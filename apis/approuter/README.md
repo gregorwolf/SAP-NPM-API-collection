@@ -49,6 +49,7 @@
 - [SaaS Application Registration in CF](#saas-application-registration-in-cloud-foundry)
   * [How To Expose Approuter for SaaS Subscription](#how-to-expose-approuter-for-saas-subscription)
 - [Authentication with Identity Service (IAS)](#authentication-with-identity-service-ias)
+- [Mutual TLS Authentication (mTLS) and Certificates Handling](#mutual-tls-authentication-mtls-and-certificates-handling)
 - [Integration with HTML5 Application Repository](#integration-with-html5-application-repository)
 - [Integration with Business Services](#integration-with-business-services)
 - [Web Sockets](#web-sockets)
@@ -356,8 +357,8 @@ If the response header name already exists in the additional http headers list, 
 
 ### Additional cookies configuration
 
-If configured, the application router will send additional cookies in its responses to the client.
-Additional cookies can be set in the `COOKIES` environment variable.
+If configured, the application router will send additional cookie values in its responses to the client.
+Additional cookie values can be set in the `COOKIES` environment variable.
 
 Example of configuration for cookies in the manifest.yml :
 
@@ -368,7 +369,7 @@ Example of configuration for cookies in the manifest.yml :
 ```
 In this example, the application router sets the SameSite cookie attribute to None for the JSESSIONID cookie in the responses to the client.
 
-Note: Currently, only the SameSite cookie is supported
+Note: Currently, only the SameSite cookie value is supported
 
 ### Plugins configuration
 
@@ -1662,6 +1663,19 @@ Note that the path segments of these urls are configurable.
 }
 ```
 Note that in order to provide certificates the url domain should contain a "cert" segment.
+
+## Mutual TLS Authentication (mTLS) and Certificates Handling
+Application router supports certificates usage for token creation and mTLS handshake in backend connections. To enable that the XSUAA or IAS instance bound to the application router should provide in its credentials a certificates chain and a private key
+
+Note that application router also supports providing private key via environment variables: XSUAA_PRIVATE_KEY (XSUAA) and IAS_PRIVATE_KEY (IAS).
+
+In case certificates and private key exists, application router fetches XSUAA/IAS tokens providing certificates chain and private key.
+When forwarding request to business services, application router also uses certificates to create a client_credentials token or exchange the login token.
+
+If certificates available, HTTP connection to backend is created using private key and a concatenation of intermediate and client certificates, enabling mTLS handshake.
+
+Cloud Foundry: client certificate is propagated via the x-forwarded-client-cert header. In order to enable that the backend url should contain a .cert segment in its domain.
+
 ## Integration with HTML5 Application Repository
 
 The application router supports seamless integration with the HTML5 Application Repository service. 
@@ -1740,6 +1754,13 @@ appVersion (application version) - Optional
 
 resourcePath (path to file)
 * The path to the file as it was stored in HTML5 Application Repository persistence
+
+Query Parameters:
+
+skipXSAppJsonCache - Optional
+* Value: true
+* Supports skipping the usage of cache when getting the xsApp configuration, bringing it remotely and re-setting the cache.
+* Note that the query parameter is removed from request url before route processing.
 
 ### Cache Buster Handling
 A cache buster allows the application router to notify the browser to refresh the resources only when the application resources have been changed. Otherwise the resources are always fetched from the browser's cache.

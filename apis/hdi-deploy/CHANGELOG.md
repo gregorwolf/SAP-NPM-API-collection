@@ -1,3 +1,14 @@
+## 4.2.0
+Features:
+- allow wildcard paths in the undeploy.json file to enable the undeployment of a set of files without having to specify every single file
+- added, modified, deleted and "treated as modified" files are logged during deployment
+- use @sap/hdi@4.1.0
+- use @sap/hana-client@2.9.28
+- Node 16.x support
+
+Removed:
+- Node 8.x and 10.x support
+
 ## 4.1.0
 Features:
 - provide `--validate-external-dependencies` option to always start a make, even if no files are in the deploy/undeploy sets
