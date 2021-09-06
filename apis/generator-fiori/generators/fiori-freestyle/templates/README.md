@@ -14,6 +14,7 @@
 |**Namespace**<br><%= projectNamespace %>|
 |**UI5 Theme**<br><%= ui5Theme %>|
 |**UI5 Version**<br><% if(projectUI5Version==="") { %><%= "Latest" %> <% }else{%><%= projectUI5Version %><% } %>|
+|**Enable Code Assist Libraries**<br><% if(enableCodeAssist === true) { %><%= "True" %><% } else { %><%= "False" %><% }%>|
 |**Enable Telemetry**<br><% if(enableTelemetry === false) { %><%= "False" %><% } else { %><%= "True" %><% } %>|<% if (additionalEntries) additionalEntries.forEach(entry => { %>
 |**<%= entry.label %>**<br><%= entry.value %>|<%})%>
 

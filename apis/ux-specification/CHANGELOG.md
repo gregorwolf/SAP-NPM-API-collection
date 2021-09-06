@@ -4,6 +4,30 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.90.8] - 2021-08-25
+
+### Added
+
+- OData V4:
+  - Added support for `AnayticalTable`
+  - Enhanced sync logic to avoid export of properties unknown to specification module to avoid modification in manifest.json
+  - Added support for new Custom Page syntax
+- Added test for function `convertInterfaces` to increase test coverage
+- Added flexchange layer information to API interface
+
+### Changed
+
+- V2. Unresolvable facets are not returned by schema to avoid creation of corrupted custom sections 
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- Object Page schema generation crash when 'Facets' entry is not defined for 'CollectionFacet'
+- Page schema generation - `annotationPath` was missing for `table/toolbar`
+
 ## [1.90.7] - 2021-08-12
 
 ### Added

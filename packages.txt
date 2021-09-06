@@ -1,5 +1,5 @@
-@sap/approuter
-@sap/cds-odata-v2-adapter-proxy
-@sap/cloud-sdk-vdm-product-allocation-sequence-service
-@sap/hdi-deploy
-@sap/open.fe
+@sap/cds-dk
+@sap/generator-fiori
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-tooling

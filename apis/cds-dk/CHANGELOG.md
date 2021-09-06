@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.4.2 - 2021-09-03
+
+### Fixed
+
+- Use latest `cds-sidecar-client` to fix file upload in `cds activate`
+
+## Version 3.5.3 - 2021-08-31
+
+### Fixed
+
+- Use latest `cds-sidecar-client` to fix file upload in `cds activate`
+
 ## Version 4.4.1 - 2021-08-03
 
 ### Fixed

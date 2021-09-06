@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.3.2] - 2021-09-02
+#### Added
+- Added ability to optionally include UI5 code assistance libraries to the generated application by choosing it in the advanced options of the generator.
+- Using a Saved System in VSCode will now ask the user to re-authenticate if the saved credentials are no longer valid.
+
+### Fixed
+- Fixed an issue which caused the Fiori generator to crash when connecting to a Cloud Foundry service if the SAP Business Application Studio subaccount is not the same as the Cloud Foundry organisation.
+
 ## [1.3.1] - 2021-08-19
 #### Added
 - Added support for generating Fiori applications using the SAP API Business Hub from the Service Center in Business Application Studio.
@@ -31,7 +39,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ## [1.2.4] - 2021-07-08
 #### Added
 - Destinations configured with a service URL endpoint, or a hostname, can now be used with the Fiori generator in Business Application Studio.
-- Reuse components and libaries in the local workspace can now be added to your project.  Use the command palette entry `Fiori: Add Reference to SAP Fiori Reusable Libraries` to invoke this functionality.
+- Reuse components and libraries in the local workspace can now be added to your project.  Use the command palette entry `Fiori: Add Reference to SAP Fiori Reusable Libraries` to invoke this functionality.
 
 ### Fixed
 - In Business Application Studio, the Cloud Foundry Destination dropdown in the Deployment Configuration step of the Generator should now successfully return all available destinations.
