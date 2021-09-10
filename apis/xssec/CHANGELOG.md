@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
+## 3.2.5 - 2020-09-07
+- fix to be backward-compatible for tokenFlow-APIs
+
+## 3.2.4 - 2020-09-03
+- fix an issue with IAS multitenancy support
+- remove the deprecated request library with got library
+
 ## 3.2.3 - 2020-08-23
 - add checkFollowingInstanceScope to SecurityContext to retrieve instance specific scope without need to build scope string on your own
 - fix a reference error in key verification

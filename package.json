@@ -30,7 +30,7 @@
     "@sap/asp-middleware": "1.0.6",
     "@sap/audit-logging": "5.1.0",
     "@sap/bas-sdk-cf-utils": "1.2.0",
-    "@sap/cds": "5.4.3",
+    "@sap/cds": "5.4.4",
     "@sap/cds-compiler": "2.5.2",
     "@sap/cds-dk": "4.4.2",
     "@sap/cds-dk-foss": "1.0.2",
@@ -39,7 +39,7 @@
     "@sap/cds-lsp": "5.2.0",
     "@sap/cds-messaging": "1.8.3",
     "@sap/cds-mtx": "2.2.2",
-    "@sap/cds-odata-v2-adapter-proxy": "1.7.10",
+    "@sap/cds-odata-v2-adapter-proxy": "1.7.11",
     "@sap/cds-ql": "1.21.2",
     "@sap/cds-reflect": "2.13.5",
     "@sap/cds-rest": "1.6.3",
@@ -448,6 +448,7 @@
     "@sap/cloud-sdk-vdm-purchasing-source-service": "1.27.0",
     "@sap/cloud-sdk-vdm-quality-info-record-service": "1.27.0",
     "@sap/cloud-sdk-vdm-raw-substance-service": "1.27.0",
+    "@sap/cloud-sdk-vdm-real-estate-contract-service": "1.27.0",
     "@sap/cloud-sdk-vdm-real-substance-service": "1.27.0",
     "@sap/cloud-sdk-vdm-recipe-service": "1.27.0",
     "@sap/cloud-sdk-vdm-repetitive-manufacturing-confirmation-service": "1.27.0",
@@ -570,7 +571,7 @@
     "@sap/hdbext": "7.3.1",
     "@sap/hdi": "4.1.0",
     "@sap/hdi-deploy": "4.2.0",
-    "@sap/hdi-dynamic-deploy": "2.2.0",
+    "@sap/hdi-dynamic-deploy": "2.3.0",
     "@sap/hrtt-core-vscode": "1.4.0",
     "@sap/html5-app-deployer": "3.1.1",
     "@sap/html5-repo-mock": "2.1.0",
@@ -625,6 +626,6 @@
     "@sap/xsjs-test": "3.2.2",
     "@sap/xsodata": "7.4.4",
     "@sap/xss-secure": "4.0.0",
-    "@sap/xssec": "3.2.3"
+    "@sap/xssec": "3.2.5"
   }
 }

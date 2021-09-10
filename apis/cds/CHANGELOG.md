@@ -4,6 +4,19 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.4.4 - 2021-09-09
+
+### Fixed
+
+- For drafts, the query parameter `$top=0` in combination with `$count=true` now returns the correct `@odata.count` value
+- Deep delete with composition of one with structured key in target
+- Implicit delete of child with structured key
+- Update of deeply nested entity with structured key
+- Order by join column during draft union
+- Skip calculated properties while following projections
+- The `with parameters` clause is now correctly handled in sub selects if the locale parameter exceeds 3 characters
+- Statement already finalized error on SQLite
+
 ## Version 5.4.3 - 2021-08-16
 
 ### Fixed

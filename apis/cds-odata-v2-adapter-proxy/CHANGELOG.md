@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.11 - 2021-09-09
+
+### Fixed
+
+- Convert ContentID for warning messages and error body and propagate to details
+- Fix batch boundary parsing from content type with charset definition
+- Functions 'startswith' and 'endswith' respect proxy option 'caseInsensitive'
+
 ## Version 1.7.10 - 2021-08-31
 
 ### Fixed
