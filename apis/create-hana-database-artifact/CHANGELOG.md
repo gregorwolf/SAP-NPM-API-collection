@@ -1,3 +1,8 @@
+## 1.5.0
+
+### New Features
+- Add SAP HANA getting started guide
+
 ## 1.4.0
 
 ### New Features

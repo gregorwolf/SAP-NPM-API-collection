@@ -1,3 +1,11 @@
+## 1.4.0
+
+### New Features
+- It is now possible to display the name of the service through which an external object is accessible when adding an object
+
+### Fixes
+- User-provided services using the target container credentials are handled correctly
+
 ## 1.3.0
 
 ### Fixes

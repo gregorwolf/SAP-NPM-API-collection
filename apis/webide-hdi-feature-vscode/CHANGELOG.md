@@ -1,3 +1,22 @@
+## 1.5.0
+
+### New Features
+- It is now possible to display the name of the service through which an external object is accessible when adding an object
+
+### Fixes
+- Fix an issue that could lead to orphaned table nodes in multi-join node models
+- Fixed replace with data source in star join models
+- User-provided services using the target container credentials are handled correctly
+- Set "Aggregate All nodes" to true by default
+- Column remapping works now if the DEL key is used to remove the old mapping
+- Fixed an issue that could lead to an inconsistency between the model in the file and the model in memory
+- Fixed incorrect display of SQL and column engine functions
+- Removed the field "Default Member" from node "Semantics" --> "General"
+- Fix quoting of numeric input parameters
+- Add the "Like" operator to the expression editor
+- Function keys are now working correctly when used as shortcuts
+- Include notes when copying a parameter
+
 ## 1.4.0
 
 ### New Features

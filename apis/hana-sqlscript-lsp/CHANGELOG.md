@@ -1,3 +1,9 @@
+## 1.4.0
+
+### Fixes
+- Fix JSON validation of hdbgrants files
+- Always use the target container for code suggestions and validation if multiple containers are configured
+
 ## 1.3.0
 
 ### Fixes

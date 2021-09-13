@@ -1,5 +1,5 @@
-@sap/cds
-@sap/cds-odata-v2-adapter-proxy
-@sap/cloud-sdk-vdm-real-estate-contract-service
-@sap/hdi-dynamic-deploy
-@sap/xssec
+@sap/create-hana-database-artifact
+@sap/hana-sqlscript-lsp
+@sap/hrtt-core-vscode
+@sap/webide-hdi-base-feature-vscode
+@sap/webide-hdi-feature-vscode
