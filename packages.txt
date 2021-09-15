@@ -1,5 +1,2 @@
-@sap/create-hana-database-artifact
-@sap/hana-sqlscript-lsp
-@sap/hrtt-core-vscode
-@sap/webide-hdi-base-feature-vscode
-@sap/webide-hdi-feature-vscode
+@sap/approuter
+@sap/cloud-sdk-vdm-billing-document-service

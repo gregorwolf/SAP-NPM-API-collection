@@ -5,8 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.8.0 - 2021-09-13
 
+### Added
+- Propagate destination headers in approuter
 
+### Fixed
+- Sessions expiration in Redis
+- Connections to Redis on Azure with premium plan
+- Same site support for Lax value
+- Request url with code parameter will be directed to authentication, in case it is required
+- Session handling documentation
+- When application name does not adhere to regex, the request will be directed to main routing configuration file
+ 
 ## 10.7.1 - 2021-08-30
 
 ### Added

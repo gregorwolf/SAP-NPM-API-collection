@@ -299,7 +299,7 @@ HTML5.PreserveHostHeader | x | If `true` , the application router preserves the 
 HTML5.DynamicDestination | x | If `true` , the application router allows to use this destination dynamically on host or path level.
 HTML5.SetXForwardedHeaders | x | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
 sap-client | x | If provided, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
-
+URL.headers.`<header-name>` | x | If provided, the application router propagates this special attribute in the destination as the header. The application router can get the headers list from the destination API. Existing request headers are not overwritten.
 
 <br />**Note:** 
 * In case destination with the same name is defined both in environment destination and destination service, the destination configuration will load from the environment.
@@ -369,7 +369,7 @@ Example of configuration for cookies in the manifest.yml :
 ```
 In this example, the application router sets the SameSite cookie attribute to None for the JSESSIONID cookie in the responses to the client.
 
-Note: Currently, only the SameSite cookie value is supported
+Note: Currently, only the SameSite cookie value is supported. SameSite = "Strict" is not supported.
 
 ### Plugins configuration
 
@@ -1574,7 +1574,6 @@ When a tenant is subscribed/unsubscribed to/from an application, the tenant will
 Also, onboarding and offboarding callbacks will be triggered for the subscribed/unsubscribed application and for the reuse services.
 
 If you use IAS by binding a multi-tenant application router to an identity service instance, the subscription manager service (SMS) should be used to enable the subscription to a subscriber zone and an IAS tenant.
-Currently the SMS subscription is only possible via SMS APIs.
 
 
 ### How To Expose Approuter for SaaS Subscription
@@ -1663,6 +1662,11 @@ Note that the path segments of these urls are configurable.
 }
 ```
 Note that in order to provide certificates the url domain should contain a "cert" segment.
+In addition the TENANT_HOST_PATTERN environment variable should be modified to support requests with the "cert" segment. 
+For example:
+```
+^(.*).<approuterHost>.(cert.)?<landscapeDomain>
+```
 
 ## Mutual TLS Authentication (mTLS) and Certificates Handling
 Application router supports certificates usage for token creation and mTLS handshake in backend connections. To enable that the XSUAA or IAS instance bound to the application router should provide in its credentials a certificates chain and a private key
@@ -1935,6 +1939,11 @@ The application router intercepts all _session_ cookies, sent by backend service
 **Note:** Non-session cookies from backend services are forwarded to the client. Cookie collisions may occur and the application should be able to handle them.
 
 If a pending request is canceled, the request cancellation will be propagated to the backend service.
+
+If there is no session in the application router, either because there has been a session timeout or because no session has been created yet, and if the incoming request matches a non-public route, the application router triggers a redirect to the authentication service (UAA or IAS).
+After a successful login, a redirect back to application router takes place using the login callback endpoint, which triggers the creation of a new session.
+If the incoming request is an AJAX request (has the request header X-Requested-With: XMLHttpRequest) or if the HTTP verb is not GET and no session exists (there is no session cookie and the request doesn’t have an x-approuter-authorization header), the application router returns the response code 401 - Unauthorized. This enables the client application to handle the 401 response before it navigates to the authentication service. For example, the application can store data entered by the user and prevent data loss.
+When the handling of the 401 response is completed, the client application should send a request without an xmlhttprequest object to trigger the application router authentication flow.
 
 ### Session Contents
 
