@@ -1,2 +1,1 @@
-@sap/approuter
-@sap/cloud-sdk-vdm-billing-document-service
+@sap/xb-msg-amqp-v100

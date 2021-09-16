@@ -618,7 +618,7 @@
     "@sap/wing-service-explorer": "1.7.2",
     "@sap/xb-msg": "0.9.12",
     "@sap/xb-msg-amqp-v091": "0.9.12",
-    "@sap/xb-msg-amqp-v100": "0.9.52",
+    "@sap/xb-msg-amqp-v100": "0.9.53",
     "@sap/xb-msg-env": "0.9.8",
     "@sap/xb-msg-mqtt-v311": "0.9.14",
     "@sap/xsenv": "3.1.1",

@@ -341,6 +341,31 @@ const options = {
 };
 ```
 
+### ClientOptions mTLS
+
+Furthermore, settings to use client certificates (mTLS), possible with or without websocket, this example with websocket:
+
+```bash
+const options = {
+    uri: 'wss://xxx.eu10-canary.em.services.cloud.sap/protocols/amqp10ws'
+    wss: {
+        key: fs.readFileSync('../config/pem/my-key.pem'),      // or Buffer.from('')
+        cert: fs.readFileSync('../config/pem/my-cert.pem')     // or Buffer.from('')
+    },
+    oa2: {
+        endpoint: 'https://xxx.accountsxxx.ondemand.com/oauth2/token',
+        client: 'myclientid',
+        secret: '',
+        request: {
+            key: fs.readFileSync('../config/pem/my-key.pem'),  // or Buffer.from('')
+            cert: fs.readFileSync('../config/pem/my-cert.pem') // or Buffer.from('')
+        }
+    }
+};
+```
+
+Actually, all options from [TLS core](https://nodejs.org/docs/latest-v12.x/api/tls.html#tls_tls_createsecurecontext_options) can be used.
+
 ### Server Options
 
 Similar to the client class new `Server` instances are created, using the constructor:
@@ -945,21 +970,6 @@ However, it has already been introduced by [RabbitMQ AMQP 1.0 plugin](https://gi
 
 For an outgoing message payload with special type `'amqp-1.0'` the encoder will either write `payload.chunks` (if provided) directly without any validation or it will encode the given `payload.data` as AMQP value or AMQP sequence.
 
-## Limitations
-Similar to other libraries not the full scope of AMQP 1.0 could be implemented so far:
-* Only the following SASL mechanisms are supported: ANONYMOUS, PLAIN, EXTERNAL,
-* Deliveries cannot be resumed; once reconnected those messages are sent again with a new delivery,
-* Delivery state [Received](http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-messaging-v1.0-os.html#type-received) is not used,
-* Delivery state [Modified](http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-messaging-v1.0-os.html#type-modified) is not supported,
-* Multiple Transfer Frames for one delivery are collected until the whole message can be provided to the application,
-* Message Footer is not supported, received but not exposed at the API,
-* Message Delivery Annotations are not supported, received, but not exposed at the API,
-* Decimal values are provided/accepted as binary data only, using a `Buffer` instance; use a specialized library for the conversion,
-* Transactions are not supported,
-* Incoming streams handle Quality of Service _Exactly Once_ with one single callback to the application only,
-* Source filters are not supported,
-* Several fine-grained settings for endpoint lifecycle control may be ignored.
-
 ### Message Examples
 Just a few copy&paste templates:
 
@@ -1097,10 +1107,26 @@ Just a few copy&paste templates:
     },
     done: () => { console.log('message was sent'); },
     failed: (err) => { console.log('message not sent,', err); }
-  },
+  };
 
   ```
 
+## Limitations
+
+Similar to other libraries not the full scope of AMQP 1.0 could be implemented so far:
+
+* Only the following SASL mechanisms are supported: ANONYMOUS, PLAIN, EXTERNAL,
+* Deliveries cannot be resumed; once reconnected those messages are sent again with a new delivery,
+* Delivery state [Received](http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-messaging-v1.0-os.html#type-received) is not used,
+* Delivery state [Modified](http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-messaging-v1.0-os.html#type-modified) is not supported,
+* Multiple Transfer Frames for one delivery are collected until the whole message can be provided to the application,
+* Message Footer is not supported, received but not exposed at the API,
+* Message Delivery Annotations are not supported, received, but not exposed at the API,
+* Decimal values are provided/accepted as binary data only, using a `Buffer` instance; use a specialized library for the conversion,
+* Transactions are not supported,
+* Incoming streams handle Quality of Service _Exactly Once_ with one single callback to the application only,
+* Source filters are not supported,
+* Several fine-grained settings for endpoint lifecycle control may be ignored.
 
 ## Further Links
 

@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.53] - 2021-09-14
+
+- added: example for mTLS
+- added: 2-mode strategy for OAuth2.0 token request (auth via header, auth via params)
+
 ## [0.9.52] - 2021-06-25
 
 - fixed: return response payload as part of error text on failed websocket upgrade
