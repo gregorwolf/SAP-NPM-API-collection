@@ -1,1 +1,8 @@
-@sap/xb-msg-amqp-v100
+@sap/cds
+@sap/dwc-cli
+@sap/generator-fiori
+@sap/hana-client
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-tooling
+@sap/xssec
