@@ -7,7 +7,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## [2.1.0] - 2021-09-23
+
+## Changed
+
+- Source code is now Javascript only
+- Rule API simplified to only include report and cds
+- Added new rules `no-db-keywords` and `require-2many-oncond`
+- Filter out lint messages when run from command line with custom formatter
+
 ## [2.0.5] - 2021-07-18
+
 
 ### Added
 

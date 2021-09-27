@@ -7,6 +7,67 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.7.0 - 2021-09-22
+
+### Added
+
+- to.hdi.migration:
+  + Support changes to HANA comments.
+
+### Changed
+
+- Updated OData vocabularies 'Common', 'Core'
+
+### Fixed
+
+- Fix memory issue: do not keep reference to last-compiled model.
+- Fix dump which occured when trying to report that the user has defined an element to be both `key` and `localized` if
+  `localized` was inherited via the provided type, or in the generated entity for a managed composition of aspect.
+- Properly auto-expose targets of associations in parameters and `many`.
+- for.Odata:
+  + Fix handling of annotation `@cds.odata.valuelist` in conjunction with associations in structures using flat-mode and sqlMapping set to plain.
+  + Set correctly the $localized property in the OData backend resulting CSN for artifacts that have localized convenience views.
+- to.edm(x):
+  + Fix rendering of structured referential constraints and nested partnerships in combination with `$self` comparisons.
+  + Fix merging of `@Capabilities` annotations while transforming them into `NavigationCapabilities` from the containee into the container.
+- to.sql/hdi/hdbcds:
+  + Fix a bug in Association to Join translation in multi-level association redirection in combination with `$self`.
+  + Correctly flatten paths with filters or parameters.
+  + Improve error message in case of invalid `exists`.
+
+## Version 2.6.2 - 2021-08-26
+
+### Fixed
+
+- to.sql/hdi/hdbcds/edm(x)/for.odata: Correctly handle tuple expansion in subqueries of Unions.
+
+## Version 2.6.0 - 2021-08-23
+
+### Added
+
+- Support managed associations without foreign keys. Associations targeting a definition without primary keys or with an
+  explicit empty foreign key tuple or with empty structured elements as foreign keys and their corresponding `$self`
+  comparisons do not describe the relationship between the source and the target entity.
+  These associations can be used to establish API navigations but cannot be used to access elements in the target
+  entity as they cannot be transformed into a valid JOIN expression.
+  Consequently, these associations are not added to the `WITH ASSOCIATIONS` clause or forwarded to HANA CDS.
+- to.sql/hdi/hdbcds/edm(x)/for.odata: Structure/managed association comparisons (tuple comparisons) are now
+  also expanded in infix filters, all expressions and all on-conditions.
+- to.hdbcds: Better locations for messages - mostly concerning keywords and duplicates
+
+### Changed
+
+- to.sql/hdi/hdbcds: Invalid (i.e. not expandable) usage of structures is now checked - an error is raised
+
+### Removed
+
+- The internal non-enumerable CSN property `$env` has been removed from the compiled CSN.
+
+### Fixed
+
+- Make `;` optional before `}` in all circumstances (was not the case with `many`).
+- to.sql/hdi/hdbcds/edm(x): More graceful handling of CSN input where associations do not have `keys` or an `on`-condition
+
 ## Version 2.5.2 - 2021-08-10
 
 ### Fixed
@@ -53,19 +114,19 @@ The compiler behavior concerning `beta` features can change at any time without 
   and 'Ignoring draft node for composition target ... because it is not part of a service'
 - Doc comments are no longer ignored after enum values and on view columns in parseCdl mode.
 - to.cdl:
-  - Doc comments for enum values are correctly rendered.
-  - Enum value and doc comments are now correctly rendered if the enum is called `doc`.
-  - Doc comments at type references are correctly rendered.
-  - Empty doc comments are correctly rendered and not left out.
-  - Doc comments on view columns are correctly rendered.
+  + Doc comments for enum values are correctly rendered.
+  + Enum value and doc comments are now correctly rendered if the enum is called `doc`.
+  + Doc comments at type references are correctly rendered.
+  + Empty doc comments are correctly rendered and not left out.
+  + Doc comments on view columns are correctly rendered.
 - to.edm(x):
-  - OData V2: Ignore `@odata.singleton`.
-  - OData V4: Do not render an `edm:NavigationPropertyBinding` to a singleton if the association has
+  + OData V2: Ignore `@odata.singleton`.
+  + OData V4: Do not render an `edm:NavigationPropertyBinding` to a singleton if the association has
     cardinality 'to-many'.
 - forOData:
-  - Fix automatic renaming of shortcut annotation (eg. `@label`) with value `null`.
+  + Fix automatic renaming of shortcut annotation (eg. `@label`) with value `null`.
 - CSN parser:
-  - Empty doc comments are correctly parsed and not complained about.
+  + Empty doc comments are correctly parsed and not complained about.
 
 ## Version 2.4.4 - 2021-07-02
 
@@ -482,6 +543,12 @@ synchronously.
 - to.cdl: Correctly render `event` typed as `projection`.
 - to.hdi.migration: Don't generate `ALTER` for type change from association to composition or vice versa (if the rest stays the same),
   as the resulting SQL is  identical.
+
+## Version 1.50.10 - 2021-07-30
+
+### Fixed
+
+- to.hdi.migration: Check for incompatible CSN versions to avoid wrongly generated ALTER|DROP|ADD statements.
 
 ## Version 1.50.8 - 2021-07-01
 

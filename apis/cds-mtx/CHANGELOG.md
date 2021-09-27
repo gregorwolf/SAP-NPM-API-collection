@@ -7,11 +7,68 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 2.3.0 - 2021-09-27
+
+### Fixed
+- The maximum filename length of sources files that are stored with the tenant metadata has been
+increased from 200 to 500. The tenant metadata store will be updated accordingly with any tenant
+operation (extend, upgrade).
+- Exceptions from asynchronous jobs are now visible in the application log again
+
+### Added
+- Tenant upgrade is now internally called via cds service `TenantPersistenceService` that
+  applications can add handlers for
+  ```
+  @protocol:'rest'
+  service TenantPersistenceService {
+      type JSON {
+          // any json
+      }
+      ...
+      action upgradeTenant(tenantId: UUID, instanceData: JSON, deploymentOptions: JSON) returns JSON;
+  }
+  ```
+  Please note that this API is not meant to be called by applications but has been
+  introduced to allow applications to create handlers for custom logic to be executed
+  with the tenant upgrade.
+- (BETA) It is now possible to get the edmx for services with a different odata version than the version configured
+for the build. API `mtx.getEdmx(tenantId, service, language, odataVersion)` and the endpoint
+`/mtx/v1/metadata/edmx/<tenant-id>?name=<service>&language=<lang>&odataVersion=<version>` now supports a parameter `odataVersion`.
+Please note that the output is compiled on-the-fly if `odataVersion` is specified which has potential impact on the performance.
+- Extensions can now be reset via API `/mtx/v1/model/reset` and `/mtx/v1/model/asyncReset`.
+- The job removal timeout is now configurable using `cds.mtx.jobs.removalTimeout`.
+- `mtx.jobs.maxParallelExecutions` can now be used to parallelize asynchronous jobs. The default is `2`.
+
+### Changed
+
+- Tenant updates are now parallelized. You can set the pool size using `mtx.jobs.parallelUpgradeLimit`. The default is `4`.
+- `mtx.jobs.intervalTimeout` is now deprecated, as the job queue does not require polling any more.
+- The default queue size for asynchronous jobs has been increased to `1000`.
+- In case of errors, the full `hdi-deploy` logs are now also printed for the default logging level.
+
 ## Version 2.2.2 - 2021-08-26
 
 ### Fixed
 - Fixed a regression where the `ExtendCDSdelete` scope was required for extension activations even without `undeployExtension` set to `false`.
 - Fixed an application crash at startup when `MTX_DISABLE_META_TENANT_CREATION` is set and no Instance/Service Manager credentials are available.
+
+### Added
+- There are new APIs for diagnosing memory, asynchronous jobs, and HDI containers. They can be called via
+  - `/mtx/v1/diagnose/memory`
+  - `/mtx/v1/diagnose/jobs`
+  - `/mtx/v1/diagnose/container/<tenantId>`
+
+  Note that with this change, the `/mtx/v1/model/diagnose` API is not available any more.
+  The new API will work out-of-the-box with `@sap/cds >= 5.5.0`, but you have to opt-in with earlier versions by setting
+
+  ```json
+  "mtx": {
+    "api": {
+      "diagnose": true
+    }
+  }
+  ```
+  in your `package.json`.
 
 ## Version 2.2.1 - 2021-08-19
 
@@ -30,10 +87,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 - `working_set` and `exclude_filter` can now be used as `HDI_DEPLOY_OPTIONS`
-- Job log is now cleaned up with each startup to avoid garbage after application shutdowns or crashes. 
+- Job log is now cleaned up with each startup to avoid garbage after application shutdowns or crashes.
 Maximum age of entries can be configured via cds configuration `mtx.jobs.cleanup.regular` and `mtx.jobs.cleanup.stale`
 (in milliseconds).
-"Regular" refers to finished or failed jobs (default is 30 min), "Stale" refers to queued or running jobs 
+"Regular" refers to finished or failed jobs (default is 30 min), "Stale" refers to queued or running jobs
 (default is 7 days).
 - (BETA) The tenant specific URL returned to the `saas-registry` can now be specified
 via two environment variables `SUBSCRIPTION_URL` and `SUBSCRIPTION_URL_REPLACEMENT_RULES`.<br>
@@ -53,7 +110,7 @@ application URL by replacing the application name suffix.
 ### Fixed
 - Access to metadata API (edmx, csn, languages, services) is now restricted
 to owner or provider tenant again
-- Allowed `HDI_DEPLOY_OPTIONS` are now filtered correctly 
+- Allowed `HDI_DEPLOY_OPTIONS` are now filtered correctly
 - Correlation ids of requests are now forwarded correctly to asynchronous jobs for
 better supportability of mtx tenant operations.
 
@@ -73,7 +130,7 @@ service TenantPersistenceService {
     action createTenant(tenantId: UUID, subscriptionData: JSON) returns String;
     action deleteTenant(tenantId: UUID);
 }
-``` 
+```
 
 ## Version 2.0.4 - 2021-06-14
 
@@ -85,7 +142,7 @@ service TenantPersistenceService {
 ### Fixed
 
 - More error types and semantic HTTP status codes have been added
-- Setting `MTX_ROLLBACK_CORRUPTED_TENANT` to `true` will now also delete and recreate an HDI container if its bindings are missing
+- Setting `MTX_ROLLBACK_CORRUPTED_CONTAINER` to `true` will now also delete and recreate an HDI container if its bindings are missing
 
 ## Version 2.0.3 - 2021-06-08
 
@@ -118,8 +175,8 @@ mtx: {
 
 ### Added
 - Internal on- and offboarding API for sidecar usecase: POST `/mtx/v1/internal/provisioning/subscribe`
-and POST `/mtx/v1/internal/provisioning/unsubscribe` 
-with payload 
+and POST `/mtx/v1/internal/provisioning/unsubscribe`
+with payload
 ```
 {
   "subscribedTenantId": <tenant id>,
@@ -147,11 +204,11 @@ with payload
 
 ### Added
 - Saas provisioning operations GET, PUT and DELETE on API `/mtx/v1/provisioning/tenant/`
-now require scope `mtcallback`. Upgrade calls on API `/mtx/v1/model/upgrade/` and 
+now require scope `mtcallback`. Upgrade calls on API `/mtx/v1/model/upgrade/` and
 `/mtx/v1/model/upgradeAsync/` now require scope `mtdeployment`.
-This is now aligned with the 
+This is now aligned with the
 [mandatory scope check required for the java runtime](../java/multitenancy#xsuaa-mt-configuration).<br>
-To adapt the scope names to the java runtime scope configuration, 
+To adapt the scope names to the java runtime scope configuration,
 the scope names can be changed using the following cds configuration:
 ```
 mtx: {
@@ -173,7 +230,7 @@ be removed.
   "tenant": "<tenant id>"
 }
 ```
-- Support automatic roll-back for corrupted tenants when `MTX_ROLLBACK_CORRUPTED_TENANT` is set to `true`. This should _never_ be used in production, but only for integration tests.
+- Support automatic roll-back for corrupted tenants when `MTX_ROLLBACK_CORRUPTED_CONTAINER` is set to `true`. This should _never_ be used in production, but only for integration tests.
 
 ### Changed
 
@@ -182,7 +239,7 @@ be removed.
 - Job IDs are now generated using the `uuid` package
 - The default behavior of the `extension-allowlist` has changed. If `extension-allowlist`
 is not configured, it is not allowed to apply any extension.<br>
-Extensions can be easily enabled for all entities and services by adding the following 
+Extensions can be easily enabled for all entities and services by adding the following
 to the configuration.
 ```
 mtx: {
@@ -211,7 +268,7 @@ mtx: {
 ### Fixed
 - Undeployment for model upgrade via `advancedOptions` working again
 - Undeployment of base model artifacts via 'undeploy.json' is working again
-- Unallowed `@cds.persistence.journal` annotations in extensions are now checked 
+- Unallowed `@cds.persistence.journal` annotations in extensions are now checked
 
 ### Added
 - Size of job queue can now be configured via cds env
@@ -231,7 +288,7 @@ or parameter `CDS_MTX_JOBQUEUE_SIZE=10`
 - Multitenant applications now support extensions of entities using schema evolution based on `.hdbmigrationtable` files.
 - It is now possible to specify limits for the number of extension fields per entity.
 If no limit is specified, the number of extension fields is not limited.\
-If this list exists, only entities and services contained in this list can be extended. 
+If this list exists, only entities and services contained in this list can be extended.
 ```
 "mtx" : {
   "extension-allowlist": [
@@ -249,7 +306,7 @@ If this list exists, only entities and services contained in this list can be ex
 ## Version 1.1.5 - 2021-03-09
 
 ### Fixed
-- The extension API `/mtx/v1/content` now returns a correct json if a collection is requested with any version of 
+- The extension API `/mtx/v1/content` now returns a correct json if a collection is requested with any version of
 @sap/cds used by the application. The `cds extend` command was returning `(intermediate result) is not iterable` because
 of an incorrect server response.
 - Connection handling has been improved. Errors of type `TimeoutError: Acquiring client from pool timed out` are reduced.
@@ -263,15 +320,15 @@ of an incorrect server response.
 ## Version 1.1.2 - 2021-03-01
 
 
-### Added 
+### Added
 - Multitenant applications **without tenant specific extensions** now support schema evolution based on `.hdbmigrationtable` files.
 - Provisioning parameters for the container creation can now also be set
 via cds environment `mtx.provisioning.container` or environment variable `CDS_MTX_PROVISIONING_CONTAINER`.\
-Provisioning parameters that are set in the subscription request to `mtx/v1/provisioning/tenant` 
+Provisioning parameters that are set in the subscription request to `mtx/v1/provisioning/tenant`
 override the values from the environment.
 - Dedicated hdi deployment options can now be set via environment variable
 `HDI_DEPLOY_OPTIONS`, e. g. `HDI_DEPLOY_OPTIONS="{\"trace\": true }"`. \
-See also 
+See also
 [HDI deploy options](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.05/en-US/a4bbc2dd8a20442387dc7b706e8d3070.html).
 
 ### Fixed
@@ -280,9 +337,9 @@ See also
 
 ## Version 1.0.28 - 2021-02-22
 
-### Added 
+### Added
 
-- It is now possible to pass hdi deployment parameters `undeploy` and `path-parameter` with the model upgrade 
+- It is now possible to pass hdi deployment parameters `undeploy` and `path-parameter` with the model upgrade
 (`mtx/v1/model/upgrade` and `mtx/v1/model/asyncUpgrade`)
 
 ## Version 1.0.27 - 2021-02-01
@@ -304,14 +361,14 @@ See also
 
 ### Added
 
-- Added enhanced authentication API needed for the @sap/cds-sidecar-client 
+- Added enhanced authentication API needed for the @sap/cds-sidecar-client
 to support authentication with clientid/clientsecret from subscriber account.
 This is needed to extend multitentant applications that are provided as services.
 
 ### Fixed
 
 - Activation via cds-sidecar-client shows linter errors again
-- Offboarding of tenants does no longer cause a reconnect of cds 
+- Offboarding of tenants does no longer cause a reconnect of cds
 (also requires update of @sap/cds dependency to minimum @sap/cds@4.3)
 
 ## Version 1.0.24 - 2020-11-07
@@ -328,7 +385,7 @@ This is needed to extend multitentant applications that are provided as services
 
 - MTX is now compatible with latest versions of @sap/hana-client
 - Linters can now handle extension projects with subfolders again
-- The connection pool used by mtx is now correctly updated on offboarding 
+- The connection pool used by mtx is now correctly updated on offboarding
 even with scaled applications
 
 ## Version 1.0.22 - 2020-10-21
@@ -340,7 +397,7 @@ even with scaled applications
 can now also be set in the header field 'application_url'
 - The build task used when onboarding do now use the right defaults. When being used
 as sidecar application, build task do no longer have to have the model option.
-- New entities with namespaces in extensions are now correctly 
+- New entities with namespaces in extensions are now correctly
 checked by the extensibility linter on extension activation
 - Call of onboarding and offboarding via javacript API is now fixed ('Cannot read property 'headers' of undefined')
 
@@ -355,7 +412,7 @@ checked by the extensibility linter on extension activation
 
 
 ### Fixed
-- Custom content upload using `/mtx/v1/model/updateCustomTenantContent` now also works 
+- Custom content upload using `/mtx/v1/model/updateCustomTenantContent` now also works
 with cds 4
 
 ## Version 1.0.19 - 2020-09-03
@@ -363,7 +420,7 @@ with cds 4
 ### Added
 - The asynchronous model update API now accepts a callback URL (header field `MTX_STATUS_CALLBACK`) that
   is called when the update is finished
-- A new REST API for activating extensions from csn sources was added. Use `POST /mtx/v1/model/activateCsn/` 
+- A new REST API for activating extensions from csn sources was added. Use `POST /mtx/v1/model/activateCsn/`
 with a csn JSON as payload. Example:
 
 ```
@@ -374,7 +431,7 @@ with a csn JSON as payload. Example:
 ```
 
 ### Fixed
-- The sequence of extensions added through `cds.mtx.activate()` is now stable, even after 
+- The sequence of extensions added through `cds.mtx.activate()` is now stable, even after
 a base model update.
 
 ## Version 1.0.18 - 2020-08-28
@@ -384,7 +441,7 @@ a base model update.
 ### Fixed
 - Asynchronous basemodel upgrade and job status requests that failed when using @sap/cds@^4 are now fixed
 - Extensions that got lost when running onboarding multiple times are now preserved
-- The cds env configuration is now also available for service-manager 
+- The cds env configuration is now also available for service-manager
 
 ## Version 1.0.16 - 2020-08-03
 

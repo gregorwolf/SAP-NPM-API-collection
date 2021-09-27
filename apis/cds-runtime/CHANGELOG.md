@@ -6,6 +6,107 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.3.0 - tbd
+
+### Added
+
+- Support for logical events in `composite-messaging`
+- Initial support for generating OData V2 queries
+- Support of lambda expressions via navigation like `GET /Books?$filter=author/books/all(d:d/stock gt 10)` on SAP HANA when using beta URL to CQN parser (`cds.env.features.odata_new_parser`)
+- Preserve `DraftAdministrativeData_DraftUUID` if OData v2 client (indicated by `@sap/cds-odata-v2-adapter-proxy`)
+
+### Changed
+
+- Incoming messages now contain a privileged user
+- Computed values are preserved during draft activate
+- `SELECT.where(...)` generates CQN with list of values for `in` operator
+- Always use flag `u` during input validation via `@assert.format`
+- Intermediate cqn format for lambda expressions with preceeding navigation path when using beta URL to CQN parser (`cds.env.features.odata_new_parser`)
+
+### Fixed
+
+- Deploy endpoint for messaging artifacts includes the needed roles
+- Detection of mocked services and forced resolving of views
+- `POST/PATCH/PUT` requests on `Composition of many` with association as key and custom `on` conditions
+- `$expand` on entities with `.` in name
+- Filter on external service when using `ne null` 
+- Primitive property access of Singletons defined without keys via URL like `/Singleton/name`
+- Expand of draft with composition of aspects
+- `@Core.ContentDisposition.Filename` instead of `@Core.ContentDisposition`
+
+### Removed
+
+## Version 3.2.2 - 2021-06-17
+
+### Fixed
+
+- Binary keys handling in $filter
+- `odata.metadata` accept header fragment ignored during deserializer lookup in odata-server
+- Don't overwrite manual error code in case of data-server error
+- MTX enabled check
+- Invoke custom error handler (`srv.on('error')`) for each error and preserve modifications in case of changesets
+- Evaluation of restrictions for custom requests to the same `ApplicationService`
+- Misinterpreted SQL keyword as argument in QL's fluid usage
+
+## Version 3.2.1 - 2021-06-04
+
+### Added
+
+- Support for AMQP options in AQMP-based message brokers
+
+### Fixed
+
+- Requests using lambda operators in `$filter` in combination with instance based authorization
+
+## Version 3.2.0 - 2021-05-31
+
+### Added
+
+- Automatic topic manipulation for non-declared events
+- Support for events which are declared outside of service
+- Prefer headers `return=minimal` and `return=representation`
+  + Default value is configurable at `cds.env.odata.prefer.return`
+  + If not configured, the default is `representation`
+- Support for annotation `@Core.ContentDisposition`
+- Include `x-correlation-id` in headers of outbound message
+- Service consumption supports `search` property  and arbitrary functions in CQN
+- Support for temporal requests with different data types
+- Support for reading single draft-enabled entities via service API (`srv.read(<entity>, { ..., IsActiveEntity: true/false })`)
+- Support for feature toggles via `@cds/mtx`'s `ModelProviderService` based on DwC's product configuration header (alpha)
+  + Activate via `cds.env.features.alpha_toggles`
+- Support for structured keys used in composition of aspects (beta)
+
+### Changed
+
+- Emit logs promoted to `info`
+- Simpler topic names for `local`, `file-based-messaging` and `message-queuing`
+- `messaging.emit(...)` also uses outbox
+- Messaging will start listening to events once the `listening` event was fired on the `cds` object
+- Cascade delete order reversed from leaves to root
+- Intermediate cqn format for lambda expressions in odata
+- OData function names and structure are kept unchanged after parsing a URL to CQN in the adapter layer, corresponding "CQN-to-SQL" logic is moved to the DB layer. The changes affect the following functions: `contains`, `startswith`, `endswith`, `toupper`, `tolower`, `indexof`, `day`, `date` and `time`.
+- Template cache at prototype of `RootTransaction`
+- Both strings and numbers are accepted as decimals
+  + Strict numbers handling can be reenabled via `cds.env.features.strict_numbers`
+
+### Fixed
+
+- Star columns can be written as `'*'` or `{ref: ['*']}`
+- Arrayed and structured elements in draft mode
+- Cascade delete where child entity has more than one parent
+- Ignore `@restrict` conditions when reading `DraftAdministrativeData` of drafts
+- Navigation to one composition via association in `containment` mode (`cds.odata.containment = true`)
+- Create, update and delete requests to entity projections annotated with the annotation `@cds.persistence.table` are not resolved correctly
+- Using inline `$filter` query option in deeply nested expands on SAP HANA
+- Runtime exception when PATCH or PUT request methods are used for non-existing IDs. For example, → `PUT /api/v1/CustomerOrder('non-existing Id')/items(id='')/product`
+- Drafts: read active children of active or draft entities using deeply nested navigation or `$expand` query option
+- Select media type and content disposition information from base entity
+- Attempt to calculate time delta with unresolved target crashes server
+- OData string functions `contains`, `startswith` and `endswith` find records with `null` attributes when used with `not` operator
+- Deep deletion of sensitive data (annotated with `@PersonalData.IsPotentiallyPersonal` or `@PersonalData.IsPotentiallySensitive`) during update is properly considered in audit logging
+- Pseudo-variables as default value in draft-enabled entities
+- Escape CDL keywords when used in URL path
+
 ## Version 3.1.2 - 2021-05-28
 
 ### Fixed

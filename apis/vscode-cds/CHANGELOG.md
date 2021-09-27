@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.3.0 - 2021-09-23
+
+### Added
+
+- doc comments are automatically aligned
+- new command: Restart CDS Language Support
+
+### Fixed
+
+- certain localized elements were still indexed
+- new i18n entry in properties file has corrupted existing last entry
+- inconsistency in dependency calculation could have led to incorrect revalidations after a change
+
+### Changed
+
+- consume cds-lsp 5.3.0
+- consume cds-compiler 2.7.0
+- translation support is now lazy
+- performance improvements when translation files changed
+- last workspace/symbols are cached now to speed up CAP explorer
+- user setting cds.workspace.scanCsn has now three modes: Off, ByFileExtension (new default) and InspectJson 
+
+
 ## Version 4.2.0 - 2021-07-30
 
 ### Added

@@ -6,6 +6,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.5.0 - 2021-09-23
+
+### Added
+
+- `cds import` supports import of functions, action, functionimport and actionimport from both OData v2 and v4 edmx files.
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.18.1` for creating Java projects.
+
+### Fixed
+
+- `cds watch` additional CLI args were not passed to launched process, e.g. `--odata x4`.
+- `cds import` fix for TypeError issue during OData v4 edmx conversion to csn.
+- `cds import` fix for multi-line documentation text in OData v2 edmx file.
+- `cds import` fix for v4 csn generation when non standard OData vocabularies are referred.
+- `cds add data`
+    - no longer fails for entities without keys
+    - no longer creates csv files for synthetic draft entities
+    - no longer creates entries for virtual fields
+    - no longer skips over entities marked with `@cds.persistence.skip`, which is true for 'external' entities created by `cds import`.
+- `cds init --add` handles comma list correctly.
+
+
 ## Version 4.4.2 - 2021-09-03
 
 ### Fixed

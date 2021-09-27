@@ -4,6 +4,224 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.5.1 - 2021-09-24
+
+### Added
+
+- Support for casting SQL function input
+
+### Fixed
+
+- Typo in `DELETE` method of `cds.test`
+- View resolving for intermediate queries
+- Result post processing for renamed expands
+- Don't use placeholder values for `null`
+
+## Version 5.5.0 - 2021-09-23
+
+### Added
+
+- Support for minified models
+- Messaging: Webhooks use 'application/json' as the default content type
+- Messaging: If senders don't use `data` as a property of the payload, then the whole payload is interpreted as `data`
+- Messaging: Support for `$namespace` placeholer in queue name
+- Support for deletable singletons with `@odata.singleton.nullable`
+- Remote requests set the `accept-language` header according to the original request or the user's locale
+- Support for choosing data source names different from names of respective service definitions.
+  + Example:
+    ```json
+      {"cds":{"requires":{
+        "S4": {
+          "model": "...", "service": "API_BUSINESS_PARTNER"
+        }
+      }}}
+    ```
+- When calling `cds.tx()` to create new transactions, this now automatically inherits the current event context from `cds.context`. In case that creates issues set `cds.env.features.cds_tx_inheritance = false` to restore the former behaviour. You can still overwrite individual context settings, for example:
+    ```js
+    const tx = cds.tx() // inherits tenant and user
+    const tx = cds.tx({ // inherits tenant 
+      user: new cds.User.Privileged 
+    })
+    ```
+- Method `cds.tx()` now allows to pass a function which will be executed within a new managed transaction, with `tx.commit/rollback()` handled automatically. For example:
+    ```js
+    await cds.tx (tx => {
+      await tx.insert (...)
+      await tx.read (...)
+    })
+    ```
+    is equivalent to:
+    ```js
+    const tx = cds.tx ()
+    try {
+      await tx.insert (...)
+      await tx.read (...)
+      await tx.commit()
+    } catch {
+      await tx.rollback()
+    }
+    ```
+- Method `cds.tx({user})` now allows specifying a user as a plain string, for example:
+    ```js
+    cds.tx ({ user:'me' })
+    ```
+    is equivalent to:
+    ```js
+    cds.tx ({ user: new cds.User('me') })
+    ```
+- Newly introduced method `cds.spawn()` allows correctly and conveniently spawning background jobs from within event handlers. Thereby ensuring a detached fully-managed ACID transaction set as `cds.context` for each execution of the background job, inheriting the current event context from the outer `cds.context` by default. Usage options:
+    ```js
+    cds.spawn (async ()=>{
+      await INSERT.into ('Ticker') ...
+    }) 
+    ```
+    ```js
+    cds.spawn (async ()=>{
+      await INSERT.into ('Ticker') ...
+    },{ after: 111 /* ms */ }) 
+    ```
+    ```js
+    let n=0, handle = cds.spawn (async ()=>{
+      await INSERT.into ('Ticker') ...
+      if (++n>9) clearTimeout (handle)
+    },{ every: 111 /* ms */ }) 
+    ```
+    ```js
+    cds.spawn (async ()=>{
+      await INSERT.into ('Ticker') ...
+    },{ // inherits tenant 
+      every: 111 /* ms */,
+      user: new cds.User.Privileged 
+    }) 
+    ```
+- Default server is CORS-enabled for all origins if not in production
+- Default lock acquire timeout for `SELECT FOR UPDATE` via `cds.env.sql.lock_acquire_timeout`
+- Optimized search: Support `groupby` for localized data (when the environment variable `cds.env.features.optimized_search` is set to `true` on SAP HANA)
+- Out-of-the-box audit logging for deep structures without own association to data subject
+  + limited to one data subject per role per composition tree
+- Support for reading streams via `GET /<Entity>(<ID>)/$value`
+- Draft choreography: support of navigation with `SiblingEntity`
+- Support for where exists with infix filters in `@restrict`
+- Support annotation `@Capabilities.ExpandRestrictions.NonExpandableProperties` 
+- `@Core.ContentID` added to OData error responses if `content-id` header is specified
+- New OData URL to CQN parser (`cds.env.features.odata_new_parser`):
+  + support of navigation to primitive properties using `$value`
+  + support of `not` operator with string functions (`contains`, `startswith`, `endswith`)
+- Support for default values for virtual fields
+- Payload for non-writable navigation targets removed from `req.data`
+- `cds build` supports i18n message bundles for Java and Nodejs apps and a default CSN format option for Java
+- View resolving considers renaming of foreign keys and `excluding` names when `columns` are explicitly provided in CQN
+- Resilient acquire for HANA via `cds.env.requires.db.connection_attempts = <number>` (alpha; hard max of 3 enforced)
+
+### Changed
+
+- Messaging: Webhooks will always generate tokens
+- Messaging: In multitenancy mode, messaging artifacts are only deployed to subscribers (unless the service option `deployForProvider` is set to `true`)
+- Messaging: Incoming messages without corresponding handlers are not acknowledged
+- If a service executes a query targeting a projection on one of its entities, the query is resolved along with projections to an entity known by the executing service. The result is post-processed to reflect the expected result of the incoming query. The reason is that no handlers of the executing service were executed as they did not know the query target.
+  + Deactivate during two month grace period via compact feature flag `cds.env.features.resolve_views = false`
+- Use `@sap/cds-compiler`'s `smartId` function to determine whether a reference needs to be quoted.
+  + Allows the use of non-word characters in column names, for example `entity Foo { ![bar/bz]: String; }`.
+  + Support for columns with spaces with feature flag `cds.env.features.spaced_columns`.
+  + Note: Restrictions in other layers (example: OData's simple identifier schema) still apply.
+  + Note: Expressions in references (example: `ref: ['foo as bar']`) currently works but was never intended to and will be removed in future versions.
+- Clear draft data based on their draft UUID instead of via deep delete
+- Support `@sap/cds-compiler`'s changes for DB constraints: managed and unmanaged compositions of one behave like associations. This means that only `$self`-managed composition of one gets `DELETE CASCADE` constraint. Since all other "2one" cases require extra `DELETE` handled by the runtime, that constraint is ignored.
+- Value with regards to date and time functions are not converted to strings in the OData protocol adapter
+- No placeholders for `LIMIT` to enable statement caching during pagination
+- Arrayed elements stringified in DB layer
+- Return values of handlers will have precedence over database reads
+- Error of a failed request to a Remote Service contains now the response payload if available
+- Configuring ad-hoc destinations via `credentials.url` is now allowed in `NODE_ENV=production`
+- New OData URL to CQN parser (`cds.env.features.odata_new_parser`):
+  + CQN for `$select` and `$expand` columns
+
+### Fixed
+
+- `SELECT.from (Foo, f => f.bar('*').where(...))` resulted in a runtime exception
+- Preserved locales are now considered when accessing database tables
+- Integrity checks for compositions by draft enabled entities
+- Constant columns must not be quoted anymore, i.e. `{ val: "'myValue'", as: "myColumn"}` must be changed to `{ val: "myValue", as: "myColumn" }`
+- Accidental `tx.run()` after prior `tx.commit/rollback()` lead to acquired connections not returned to pool. This is detected and disallowed now. In case that creates issues set `cds.env.features.cds_tx_protection = false` to restore the former behaviour.
+- Structured keys are correctly resolved with pegjs-based parser
+- Template processing for columns with spaces in their name
+- Deep delete with recursions in composition tree (with limited recursion depth)
+- Draft edit with recursions in composition tree (with limited recursion depth)
+- `emit` for messaging services now also works in custom express middlewares
+- `req.query` is a CQN object (previously array with one entry) in case of batch insert in REST adapter
+- HasActiveEntity flag with expand
+- `compile.to.serviceinfo` now honors default Java endpoint paths if none are configured in `application.yaml`
+- `PATCH` request to a non-existent entity annotated with the `@PersonalData` annotation
+- `req.diff()` while deep updating via composition
+- Convert data type of elements in sub-entities (to one association) when forwarding responses to external services
+- Update children of a composition of many (`INSERT > DELETE`) with `PATCH/PUT` having at the same time another association to one composition child respects foreign key constraints.
+- Handling of virtual fields used in the `$filter` query option of navigation requests
+- Copy texts in default language from active to draft table on draft edit
+- Optimized search: Escape double quotation marks and backslashes (when the environment variable `cds.env.features.optimized_search` is set to `true`)
+- Update for multiple rows
+- Expand during draft union
+- Validate content type for `$batch` requests
+- Support for `SELECT` statements in `where` clauses when resolving views
+- `INSERT.rows()` does not silently fill in `INSERT.entries` anymore &rarr; use `INSERT.entries()` to do so instead.
+- `UPDATE(Foo).with({foo:{'=':'bar'})` erroneously produced:
+  ```js
+  {UPDATE:{..., with:{foo:{ref:['bar']}}}} //> wrong
+  ``` 
+  instead of:
+  ```js
+  {UPDATE:{..., data:{foo:'bar'}}} // correct
+  ``` 
+  &rarr; to produce the ref, use one of:
+  ```js
+  UPDATE(Foo).with ({foo:{ref:['bar']}}) 
+  UPDATE(Foo).with `foo=bar`
+  ```
+- `UPDATE.with` property stays undefined until actually filled with data
+- Differentiate between require and initialize error of audit logging client
+- The built-in model tree-shaking erroneously deleted explicitly modeled `.texts` entities
+- Actions and functions with `Integer` response type in REST services
+- Occasional drop of conditions in `WHERE` depending on the value when using structured types
+- `PATCH` fixed for singletons and when having a keyless, for example, managed to-one navigation path
+- Internal server error when forwarding a query to an external service whose target entity does not contain keys
+- Nested where exists in `@restrict` via navigation (CRUD-only; beta)
+- Expand to one in draft union
+- Patch to autoexposed entity through composition of aspect from Fiori Elements
+- Diff for delete in draft
+- Streaming requests on views with joins no longer crash the application
+
+### Removed
+
+- Direct usage of body-parser
+- Queries constructed from `cds.ql` do not have the _internal_ property `cqn` anymore
+- Inofficial variant `SELECT({'expand(foo)':['a','b']})` is not supported anymore 
+&rarr; use one of these official APIs for expands instead:
+  ```js
+  SELECT(x => { x.a, x.foo (f =>{ f.b, f.c }) })
+  SELECT(['a',{ref:['foo'], expand:['b','c']}])
+  ```
+- Inofficial variant `SELECT.orderBy('foo','desc')` is not supported anymore 
+&rarr; use one of these official APIs instead:
+  ```js
+  SELECT.from(Foo).orderBy({foo:'desc'})
+  SELECT.from(Foo).orderBy('foo desc')
+  ```
+- Inofficial variant `SELECT.orderBy('foo, bar desc')` is not supported anymore 
+&rarr; use one of these official APIs instead:
+  ```js
+  SELECT.from(Foo).orderBy({foo:1,bar:-1})
+  SELECT.from(Foo).orderBy('foo','bar desc')
+  SELECT.from(Foo).orderBy `foo, bar desc`
+  ```
+- Inofficial variant `SELECT.where({ or: [{ foo: 'bar' }, { foo: 'baz' }] })` is not supported anymore 
+&rarr; use one of these official APIs instead:
+  ```js
+  SELECT.from(Foo).where({ foo: 'bar', or: { foo: 'baz' } })
+  SELECT.from(Foo).where `foo='bar' or foo='baz'`
+  ```
+- Usage of SQL window functions during expand on HANA
+- Hidden symbol for where clause elements originating from `@restrict`
+- Error masking gate keeper for `cds.env.log.levels.cli`
+
 ## Version 5.4.6 - 2021-09-18
 
 ### Added
@@ -40,8 +258,8 @@
 ### Fixed
 
 - Skip calculated properties while following projections
-- Safe access to `cds.env.log.levels.cli`
 - Unrestricted subclauses in `@restrict.where`
+- Safe access to `cds.env.log.levels.cli`
 
 ## Version 5.4.2 - 2021-08-11
 
@@ -81,6 +299,7 @@
 - Messaging: No more topic manipulation per default
 - For consistency reasons `cds build` now determines the default model path using cds resolve
 - Match XSUAA's user attribute value `$UNRESTRICTED` case insensitive
+- CDS build now uses new CDS logging facade to allow for consistent logging behaviour accross the different CDS modules
 
 ### Fixed
 
@@ -94,7 +313,7 @@
 - Expand to autoexposed association/composition in draft case
 - `cds.parse.xpr()` always returns an array
 - Allow boolean options in `cds build` CLI
-- Integrity check in case of bulk query execution  
+- Integrity check in case of bulk query execution
 
 ### Removed
 

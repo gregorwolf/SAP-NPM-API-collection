@@ -1,11 +1,36 @@
 # ChangeLog of Beta Features for cdx compiler and backends
 
 <!-- markdownlint-disable MD024 -->
+<!-- markdownlint-disable MD004 -->
 <!-- (no-duplicate-heading)-->
 
 Note: `beta` fixes, changes and features are listed in this ChangeLog just for information.
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
+
+## Version 2.6.0
+
+### Removed `pretransformedCSN`
+
+### Removed `renderSql`
+
+### Removed `keylessManagedAssoc`
+
+This is now the default - see CHANGELOG entry for 2.6.0
+
+### Fixed `nestedProjections`
+
+- to.sql/hdi/hdbcds: now work correctly when nested projections are used
+
+### Fixed `foreignKeyConstraints`
+
+- Always use the name of the association / backlink compared to
+  `$self` as name suffix for a constraint
+- Composition of one always result in:
+  + ON DELETE RESTRICT
+  + ON UPDATE RESTRICT
+- Composition of one w/o backlink will result in a constraint in
+  the entity where the composition is defined
 
 ## Version 2.4.4
 
@@ -15,8 +40,8 @@ The compiler behavior concerning `beta` features can change at any time without 
   `longer.ref as name { *, … } excluding { … }`, `{ col_expression1 as sub1, … } as name`, etc.
 - Support `inline`: columns can look like `assoc_or_struct_or_tabalias.{ col_expression1, … }`,
   `longer.ref[filter = condition].{ *, … } excluding { … }`, `assoc_or_struct_or_tabalias.*`, etc.
-- _Some checks are missing and will be added!  Minor changes might occur._
-- __The SQL backends might not work properly yet if nested projections are used!__
+- _Some checks are missing and will be added! Minor changes might occur._
+- **The SQL backends might not work properly yet if nested projections are used!**
 
 ## Version 2.4.2
 
@@ -29,7 +54,6 @@ The compiler behavior concerning `beta` features can change at any time without 
   entity as they cannot be transformed into a valid JOIN expression.
   Consequently, these associations are not added to the `WITH ASSOCIATIONS` clause or forwarded to HANA CDS.
   Managed Associations without foreign keys must be enabled with `--beta: keylessManagedAssoc`
-
 
 ## Version 2.4.0
 

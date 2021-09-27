@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 5.3.0 - 2021-09-23
+
+### Added
+
+- doc comments are automatically aligned
+
+### Fixed
+
+- certain localized elements were still indexed
+- new i18n entry in properties file has corrupted existing last entry
+- inconsistency in dependency calculation could have led to incorrect revalidations after a change
+
+### Changed
+
+- translation support is now lazy
+- performance improvements when translation files changed
+- last workspace/symbols are cached now to speed up CAP explorer
+- user setting cds.workspace.scanCsn has now three modes: Off, ByFileExtension (new default) and InspectJson 
+
+
 ## 5.2.0 - 2021-07-30
 
 ### Added
@@ -22,6 +43,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - consume cds-compiler 2.5.0
 
+
 ## 5.1.1 - 2021-07-05
 
 ### Changed
@@ -33,6 +55,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
       Note: 
       - when using code completion for global identifiers (see `cds.completion.workspaceSymbols.minPrefixLength`) this option needs to be enabled
       - for code completion of import paths in `using` statements this option needs to be enabled
+
 
 ## 5.1.0 - 2021-06-22
 
@@ -62,12 +85,14 @@ Until a further change, reference calculation is resonably fast.
     + cds.workspaceValidationMode new default: OpenEditorsOnly
     + cds.workspace.scanCsn new settings with default switch off (before implicitly on)
     + cds.quickfix.importArtifact new setting with default off (before implicitly on)
-    
+
+
 ## 5.0.5 - 2021-05-11
 
 ### Fixed
 
 - asynchronous scanning of workspace blocked and led to high cpu usage (mostly on Linux/macOS) 
+
 
 ## 5.0.3 - 2021-05-06
 

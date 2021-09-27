@@ -1,8 +1,8 @@
 @sap/cds
-@sap/dwc-cli
-@sap/generator-fiori
-@sap/hana-client
-@sap/ux-cds-odata-language-server-extension
-@sap/ux-specification
-@sap/ux-ui5-tooling
-@sap/xssec
+@sap/cds-compiler
+@sap/cds-dk
+@sap/cds-lsp
+@sap/cds-mtx
+@sap/cds-runtime
+@sap/eslint-plugin-cds
+@sap/vscode-cds
