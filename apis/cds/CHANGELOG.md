@@ -4,6 +4,24 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.4.6 - 2021-09-18
+
+### Added
+
+- Support for nested where exists in `@restrict` (CRUD-only; beta)
+
+### Fixed
+
+- Inverse transition mapping calculation
+- Skip empty structures during deep update
+
+## Version 5.4.5 - 2021-09-15
+
+### Fixed
+
+- Processing of null elements during deep update
+- Performance issue during template processing
+
 ## Version 5.4.4 - 2021-09-09
 
 ### Fixed

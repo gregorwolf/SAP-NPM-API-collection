@@ -332,7 +332,7 @@ Parameters:
 
 ### checkFollowingInstanceScope
 
-checks a instance specific scope that is published by the current application in the xs-security.json file.
+checks a instance specific scope that is published by the current application in the xs-security.json file. Use this to check a scope from a service instance.
 
 Parameters:
 

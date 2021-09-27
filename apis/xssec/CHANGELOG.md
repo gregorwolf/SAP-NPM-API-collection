@@ -1,6 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.2.7 - 2020-09-15
+- replace got with axios library because of a bug in got lib during https get
 
 ## 3.2.5 - 2020-09-07
 - fix to be backward-compatible for tokenFlow-APIs

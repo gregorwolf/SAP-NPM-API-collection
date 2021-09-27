@@ -4,6 +4,26 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.90.9] - 2021-09-08
+
+### Added
+
+- OData V4:
+  - Header Facets are now shown in the schemas and configs, along with their actual manifest settings.
+- OData V2:
+  - OVP: Added support for property `dataPointAnnotationPath` in ListCard settings
+  - OVP: Added support for OData V4 Link List Card
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- V4. Import and export of Custom Page properties could get out of sync when specific properties were missing.  
+
 ## [1.90.8] - 2021-08-25
 
 ### Added

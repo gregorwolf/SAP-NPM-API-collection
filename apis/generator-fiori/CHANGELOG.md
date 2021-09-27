@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.3.3] - 2021-09-16
+#### Added
+- The generator now supports optionally adding eslint validation to the generated project.  Choosing this option from the advanced options of the generator will add the eslint libraries and a new target `npm run lint` to perform the validation.
+- ABAP deployment now allows the user to provide a project ZIP file from either the local filesystem or from a remote URL.
+- Successful deployment to Cloud Foundry will provide instructions on how to retreive the URL of the deployed application.
+- Using the `CF Application Router Generator` for generating a multi-targeted application no longer asks for the version of the MTA, but will default to `0.0.1` in the generated `mta.yaml` file.
+
+### Fixed
+- Better handling for destinations with SAML authentication.
+- Deployment logic updated to ensure only files in the `dist` folder are uploaded.
+- Better support for long MTA identifier names during Cloud Foundry deployment.
+- Improved support for project folders with spaces with the generator.
+
 ## [1.3.2] - 2021-09-02
 #### Added
 - Added ability to optionally include UI5 code assistance libraries to the generated application by choosing it in the advanced options of the generator.

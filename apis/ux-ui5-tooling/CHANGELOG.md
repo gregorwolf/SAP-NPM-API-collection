@@ -2,6 +2,13 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.3.3] - 2021-09-09
+### Added
+- Added instructions for users on how to retrieve the URL of a deployed application on Cloud foundry
+
+### Fixed
+- Fixed Regex for injecting the UI5 URL into the application's HTML file
+
 ## [1.3.1] - 2021-08-12
 ### Fixed
 - Fixed minor issues
