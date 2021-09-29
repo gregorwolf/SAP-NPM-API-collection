@@ -209,6 +209,10 @@ The service broker is configured by default to audit log every operation. It nee
 
 Create Audit log service with the following command:
 ```sh
+cf create-service auditlog oauth2 broker-audit
+```
+You can also use the standard plan. It was deprecated, however still supported:
+```sh
 cf create-service auditlog standard broker-audit
 ```
 
@@ -992,9 +996,6 @@ These credentials can be provided via the option `brokerCredentialsHash` or the 
 **Note:** To generate such hashed credentials, you can use the [hash-broker-password](#hash-broker-password) script.
 #### mTLS Authentication
 ##### Out-of-the-Box mTLS
-***Note:*** In progress
-
-
 ***Note:*** Only available on public PaaS.
 
 
@@ -1002,23 +1003,25 @@ You can configure SBF broker to verify the Service Manager-issued client certifi
 
 For that, you need to create your broker with the `secureIncomingConnections` option set to true, or set the environment variable `SBF_SECURE_INCOMING_CONNECTIONS` to true.
 
-You also have to specify the Service Manager tenant ID so that its identity can be verified.
-If you don't specify the Service Manager tenant ID, the out-of-box validation is not performed. 
+You also have to specify the Service Manager certificate's subject so that its identity can be verified.
+If you don't specify the Service Manager certificate's subject the out-of-box validation is not performed. 
 
 ***Note:***
 In such case, the only validation performed is the one that your provided with the implementation of the  [verifyClientCertificate](#verifyclientcertificateparams-callback) hook. 
 
 If the hook is also not implemented, the validation fails.  
 
-To set the Service Manager ID, create the broker with the `serviceManagerTenantId` parameter or set the `SBF_SERVICE_MANAGER_TENANT_ID` environment variable.
-You can retrieve the Service Manager tenant ID at `https://service-manager.cfapps.{landscape-domain}/v1/info` from the `service_manager_tenant_id` field, where `{landscape-domain}` is the landscape in which you registered your broker. 
+To set the Service Manager certificate's subject, create the broker with the `serviceManagerCertificateSubject` parameter or set the `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` environment variable.
+You can retrieve the Service Manager certificate's subject at `https://service-manager.cfapps.{landscape-domain}/v1/info` from the `service_manager_certificate_subject` field, where `{landscape-domain}` is the landscape in which you registered your broker. 
 
-For example, calling https://service-manager.cfapps.eu10.hana.ondemand.com, returns 
+For example, calling https://service-manager.cfapps.stagingaws.hanavlab.ondemand.com/v1/info, returns 
 ```
 {
-	token_issuer_url: "https://svcmgr.authentication.eu10.hana.ondemand.com",
-	token_basic_auth: false,
-	service_manager_tenant_id: "svcmgr-cf-eu10"
+  "token_issuer_url": "https://svcmgr.authentication.stagingaws.hanavlab.ondemand.com",
+  "token_basic_auth": false,
+  "service_manager_tenant_id": "svcmgr-cf-us10-staging",
+  "service_manager_subaccount_id": "svcmgr-cf-us10-staging",
+  "service_manager_certificate_subject":"/C=DE/O=SAP SE/OU=SAP Cloud Platform Clients/OU=Staging/OU=svcmgr-cf-us10-staging/L=service-manager/CN=service-manager"
 }
 ```
 
@@ -1091,8 +1094,8 @@ Creates a new ServiceBroker instance.
   * [`enableAuditLog`](#audit-logging) *Boolean* Enable/Disable audit logging. Defaults to **true**.
   * [`tenantId`](#auditlog-viewer) *String* Tenant ID of the broker application. It is used for audit logging. Mandatory if the broker is running on CF and audit logging is enabled.
   * [`secureOutgoingConnections`](#secure-outgoing-connections) *Boolean* If *false*, unencrypted outgoing connections will be allowed. Default value is **true**.
-  * [`secureIncomingConnections`](#mtls-authentication) *Boolean* If set to *true*, secure connection is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate, you also have to configure the `serviceManagerTenantId`. Default value is **false**.
-  * [`serviceManagerTenantId`](#out-of-the-box-mtls) *String* If `secureIncomingConnections` is set to true and `serviceManagerTenantId` is configured to the Service Manager tenant ID in the broker's landscape, the Service Manager [client certificate](#out-of-the-box-mtls) is verified in each public landscape.
+  * [`secureIncomingConnections`](#mtls-authentication) *Boolean* If set to *true*, secure connection is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate's subject, you also have to configure the `serviceManagerCertificateSubject`. Default value is **false**.
+  * [`serviceManagerCertificateSubject`](#out-of-the-box-mtls) *String* If `secureIncomingConnections` is set to true and `serviceManagerCertificateSubject` is configured to the Service Manager certificate's subject in the broker's landscape, the Service Manager [client certificate](#out-of-the-box-mtls) is verified in each public landscape.
   * [`clientCertificateKey`](#authentication-using-x509-client-certificates) *String* the private key corresponding to the client certificate used for authentication with XSUAA.
   * [`k8sSecretsPath`](#credentials-providers) *String* the path to the mounted volume containing service secrets when running on K8S. Default is '/etc/secrets/sapcp/'.
 
@@ -1773,8 +1776,8 @@ Otherwise the broker will return HTTP status code 500 with a generic error messa
 - `SBF_SBSS_RESTRICTED_USER_SERVICE` - the name of the service containing restricted user credentials (SBSS on PostgreSQL case), see [Credentials provider service](#credentials-provider-service)
 - `SBF_UAA_TIMEOUT` - timeout in milliseconds for requests to XSUAA, default is 20 seconds.
 - `SBF_SECURE_OUTGOING_CONNECTIONS` - if set to false `false`, unencrypted outgoing connections will be allowed, see [Secure outgoing connections](#secure-outgoing-connections)
-- `SBF_SECURE_INCOMING_CONNECTIONS` - if set to true `true`, a [secured connection](#mtls-authentication) is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate, you also have to configure the `SBF_SERVICE_MANAGER_TENANT_ID` environment variable.
-- `SBF_SERVICE_MANAGER_TENANT_ID` - the Service Manager tenant ID. This variable has to be configured so that the Service Manager [client certificate](#out-of-the-box-mtls) is verified. Also, set `SBF_SECURE_INCOMING_CONNECTIONS` to true. You can retrieve the Service Manager tenant ID at `https://service-manager.cfapps.<landscape domain>/v1/info` from `the service_manager_tenant_id` field. The URL changes depending on your landscape domains. For example, https://service-manager.cfapps.eu10.hana.ondemand.com/v1/info.
+- `SBF_SECURE_INCOMING_CONNECTIONS` - if set to true `true`, a [secured connection](#mtls-authentication) is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate, you also have to configure the `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` environment variable.
+- `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` - the Service Manager client certificate's subject. This variable has to be configured so that the Service Manager [client certificate](#out-of-the-box-mtls) is verified. Also, set `SBF_SECURE_INCOMING_CONNECTIONS` to true. You can retrieve the Service Manager certificate's subject at `https://service-manager.cfapps.<landscape domain>/v1/info` from the `service_manager_certificate_subject` field. The URL changes depending on your landscape domains. For example, https://service-manager.cfapps.eu10.hana.ondemand.com/v1/info.
 - `SBF_ENABLE_AUDITLOG` - if `false` disable audit logging, otherwise it is enabled.
 - `SBF_TENANT_ID` - Mandatory if the broker application is running on Cloud Foundry and audit logging is *enabled*.
 - `PORT` - the port on which the service broker will listen for requests, default is 8080.

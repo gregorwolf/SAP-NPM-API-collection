@@ -4,6 +4,15 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.5.2 - 2021-09-29
+
+### Fixed
+
+- `$expand` requests with virtual fields with the same name in root and child
+- Requests expanding `DraftAdministrativeData` when compound keys are used
+- `SELECT.columns` with an empty array as argument
+- Queries with complex lambda filters
+
 ## Version 5.5.1 - 2021-09-24
 
 ### Added

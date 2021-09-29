@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.6.0] - 2021-09-20
+### Changed
+- Consume latest version of `@sap-devx/yeoman-ui-types`.
+- Consume latest version of `yeomand-generator`.
+
+### Added
+- New log label `[cds]` for log output.
+
+
 ## [1.5.4] - 2021-07-19
 
 ### Fixed

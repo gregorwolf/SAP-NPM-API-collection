@@ -1,8 +1,4 @@
 @sap/cds
-@sap/cds-compiler
-@sap/cds-dk
-@sap/cds-lsp
-@sap/cds-mtx
-@sap/cds-runtime
-@sap/eslint-plugin-cds
-@sap/vscode-cds
+@sap/generator-cap-project
+@sap/graph-toolkit
+@sap/sbf
