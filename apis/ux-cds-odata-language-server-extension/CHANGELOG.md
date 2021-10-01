@@ -2,6 +2,11 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.3.5] - 2021-09-30
+### Fixed
+- Unjustified error "path does not exist" for paths pointing to entity elements defined as structured type. 
+
 ## [1.2.5] - 2021-07-22
 ### Fixed
 - Unjustified warning for the 'assert.integrity' term when applied to the service.

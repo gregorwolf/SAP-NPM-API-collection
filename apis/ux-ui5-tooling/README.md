@@ -5,11 +5,11 @@ Furthermore, the module expose the cli `fiori` offering e.g. the [`fiori run`](#
 
 ## [**Middlewares**](#middlewares)
 
-SAP Fiori tools use the capabilities of custom middlewares to start and preview Fiori elements applications, e.g. to enable auto refresh, to switch the version of UI5 sources or to serve static resources. Starting with version `1.3.0` the behaviour of the preview of the Fiori applications has changed. Now the persistent iAppState is ignored in order to have the source code changes always apply when application is refreshed. If you want to enable the iAppState then you need to add the URL parameter `fiori-tools-iapp-state=true` to the browser URL, e.g. `http://localhost:8080/test/flpSandbox.html?fiori-tools-iapp-state=true#masterDetail-display`.
+SAP Fiori tools use the capabilities of custom middlewares to start and preview SAP Fiori elements or SAPUI5 freestyle applications, e.g. to enable auto refresh, to switch the version of SAPUI5 sources or to serve static resources. Starting with version `1.3.0` the behaviour of the preview of the SAP Fiori applications has changed. Now the persistent iAppState is ignored in order to have the source code changes always apply when application is refreshed. If you want to enable the iAppState then you need to add the URL parameter `fiori-tools-iapp-state=true` to the browser URL, e.g. `http://localhost:8080/test/flpSandbox.html?fiori-tools-iapp-state=true#masterDetail-display`.
 
 ### [**1. Application Reload**](#1-application-reload)
 
-The application reload middleware allows developers to preview Fiori elements applications while developing/configuring them. Whenever a file relevant for Fiori elements is changed, the application reload middleware will refresh the application preview.
+The application reload middleware allows developers to preview SAP Fiori applications while developing/configuring them. Whenever a file relevant for the SAP Fiori application is changed, the reload middleware will refresh the application preview.
 
 #### Example Configuration
 
@@ -24,12 +24,12 @@ server:
 
 #### Configuration options
 
-The application reload middleware does not require any configuration parameters. However, there are optional parameters that can be used if the project structure differs from standard Fiori elements projects.
+The application reload middleware does not require any configuration parameters. However, there are optional parameters that can be used if the project structure differs from standard SAP Fiori projects.
 
 #### path
 
 - `<string>` (default: `webapp`)
-Path that is to be watched. By default the standard UI5 `webapp` folder is used
+Path that is to be watched. By default the standard SAPUI5 `webapp` folder is used
 
 #### ext
 
@@ -48,7 +48,7 @@ Set this parameter to get more log information.
 
 ### [**2. Proxy**](#2-proxy)
 
-The proxy middleware provides you with the capabilities to connect to diffent back-end systems or to switch the UI5 version of the application. The proxy is based on the [http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware).
+The proxy middleware provides you with the capabilities to connect to diffent back-end systems or to switch the SAPUI5 version of the application. The proxy is based on the [http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware).
 
 ### Configuration Examples
 
@@ -173,7 +173,7 @@ By the default the `fiori-tools-proxy` will read the proxy configuration from th
 
 #### [UI5](#ui5)
 
-By using the proxy configuration one can also change the UI5 version, which is used to preview the application. With the application generation also the initial ui5 configuration for the proxy is created. It looks e.g. like this.
+By using the proxy configuration one can also change the SAPUI5 version, which is used to preview the application. With the application generation also the initial ui5 configuration for the proxy is created. It looks e.g. like this.
 
 ```
 - name: fiori-tools-proxy
@@ -187,7 +187,7 @@ By using the proxy configuration one can also change the UI5 version, which is u
       version: 1.78.0
 ```
 
-By using the `version` parameter one can choose the UI5 version which will used when `npx fiori run` is executed.
+By using the `version` parameter one can choose the SAPUI5 version which will used when `npx fiori run` is executed.
 
 **Note:** all UI5 requests are routed through the proxy. Sometimes this can cause performance issues. If you don't want route the UI5 requests through the proxy, then you can set parameter `directLoad: true`. This will inject the UI5 url in the HTML file of the application and thus the UI5 libs will be loaded directly.
 
@@ -206,10 +206,10 @@ By using the `version` parameter one can choose the UI5 version which will used 
 
 ### [**3. Serve Static**](#3-serve-static)
 
-The serve static middleware provides the capability to serve any static resources locally from your machine. E.g. you can serve UI5 locally or any other resources.
+The serve static middleware provides the capability to serve any static resources locally from your machine. E.g. you can serve SAPUI5 locally or any other resources.
 
 
-#### [Example Configuration for serving locally UI5](#example-configuration-for-serving-locally-ui5)
+#### [Example Configuration for serving locally SAPUI5](#example-configuration-for-serving-locally-ui5)
 
 **Pre-requisites:**
 SAPUI5 SDK version is downloaded and extracted locally on the machine. One can download UI5 resources from <https://tools.hana.ondemand.com/#sapui5>
@@ -263,11 +263,11 @@ server:
 
 ## [**Tasks**](#tasks)
 
-SAP Fiori tools use the capabilities of custom tasks to deploy the Fiori elements projects to ABAP servers.
+SAP Fiori tools use the capabilities of custom tasks to deploy the SAP Fiori projects to ABAP servers.
 
 ### [Deployment to ABAP](#deployment-to-abap)
 
-The deployment to ABAP task allows deploying Fiori applications to SAP systems using the [SAPUI5 Repository OData service](https://sapui5.hana.ondemand.com/#/topic/a883327a82ef4cc792f3c1e7b7a48de8.html).
+The deployment to ABAP task allows deploying SAP Fiori applications to SAP systems using the [SAPUI5 Repository OData service](https://sapui5.hana.ondemand.com/#/topic/a883327a82ef4cc792f3c1e7b7a48de8.html).
 
 **Pre-requisites:**
 
@@ -479,10 +479,10 @@ Destination configured to connect to the backend on Cloud Foundry. If there's a 
 ##### Prefix
 Prefix used for the ID of the MTA and the service names. It defaults to the namespace of the app. If a namespace is not found, it defaults to `test`. Please choose a prefix so that the service names are unique to your MTA. Otherwise deployment by multiple people will overwrite the same service.
 
-At the end of the generation, it's possible to optionally generate Fiori Launchpad configuration (default: no).
+At the end of the generation, it's possible to optionally generate  SAP Fiori launchpad configuration (default: no).
 
 ### [fiori add flp-config](#fiori-add-flp-config---fiori-launchpad-configuration-generation) - Fiori Launchpad configuration generation
-It's possible to create configuration and artifacts required to run the application in an SAP Fiori Launchpad. Depending on the target, the command will update either only the application `manifest.json` with the required inbound navigation property, or will also enhance the MTA configuration to contain a standalone FLP on CF.
+It's possible to create configuration and artifacts required to run the application in an SAP Fiori launchpad. Depending on the target, the command will update either only the application `manifest.json` with the required inbound navigation property, or will also enhance the MTA configuration to contain a standalone FLP on CF.
 
 ### [fiori deploy](#fiori-deploy---performs-the-deployment-of-the-application-into-an-abap-system) - performs the deployment of the application into an ABAP system
 Deploys an application to an ABAP frontend server.

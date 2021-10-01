@@ -6,11 +6,32 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.5.2 - 2021-09-30
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.19.0` for creating Java projects.
+
+### Fixed
+
+- `cds deploy --to sqlite` now writes `credentials.database` again to `package.json`
+
+## Version 4.5.1 - 2021-09-29
+
+### Added
+
+- `cds import` introduced option `--as` which converts EDMX file to different file formats such as cds, csn and json.
+- `cds import` introduced flag `--f` which forcefully overwrite the content of existing cds file when specified with `--as` option.
+
+### Changed
+
+- Marked `cds lint` as beta again to further investigate issues from 'extends' via prettier plugin.
+
 ## Version 4.5.0 - 2021-09-23
 
 ### Added
 
-- `cds import` supports import of functions, action, functionimport and actionimport from both OData v2 and v4 edmx files.
+- `cds import` supports import of functions, action, functionimport and actionimport from both OData V2 and V4 EDMX files.
 
 ### Changed
 
@@ -18,16 +39,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- `cds watch` additional CLI args were not passed to launched process, e.g. `--odata x4`.
-- `cds import` fix for TypeError issue during OData v4 edmx conversion to csn.
-- `cds import` fix for multi-line documentation text in OData v2 edmx file.
-- `cds import` fix for v4 csn generation when non standard OData vocabularies are referred.
+- `cds watch` additional CLI args were not passed to launched process, for example, `--odata x4`.
+- `cds import` fix for TypeError issue during OData V4 EDMX conversion to CSN.
+- `cds import` fix for multi-line documentation text in OData V2 EDMX file.
+- `cds import` fix for V4 CSN generation when non standard OData vocabularies are referred.
 - `cds add data`
-    - no longer fails for entities without keys
-    - no longer creates csv files for synthetic draft entities
-    - no longer creates entries for virtual fields
-    - no longer skips over entities marked with `@cds.persistence.skip`, which is true for 'external' entities created by `cds import`.
+    + no longer fails for entities without keys
+    + no longer creates csv files for synthetic draft entities
+    + no longer creates entries for virtual fields
+    + no longer skips over entities marked with `@cds.persistence.skip`, which is true for 'external' entities created by `cds import`.
 - `cds init --add` handles comma list correctly.
+- `cds import` fix for multi-line documentation text in OData V4 EDMX file.
 
 
 ## Version 4.4.2 - 2021-09-03

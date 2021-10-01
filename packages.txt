@@ -1,4 +1,5 @@
-@sap/cds
-@sap/generator-cap-project
-@sap/graph-toolkit
-@sap/sbf
+@sap/cds-dk
+@sap/generator-fiori
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-tooling

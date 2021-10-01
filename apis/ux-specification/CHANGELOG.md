@@ -4,6 +4,35 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.90.10] - 2021-09-22
+
+### Added
+
+- New html files showing a graphical representation of the content of each generic schema.
+- OData V2:
+    - We show field groups and fields now as part of the object page schema, and allow the maintenance of the visible property for fields.
+    - Support of property `flexEnabled`on app level.
+
+### Changed
+
+- The default for titles and labels of schema nodes - in case of missing annotation labels - has been adapted, for facets and header facets. There will be node-specific content now in all cases instead of generic defaults like "Form".
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V2: 
+    - Invalid flexChanges are now ignored during sync, hence configs and pages files are created.
+- OData V4:
+    - Exception occurred in case of invalid custom page definitions in manifest
+    - Page determination went wrong in case of irregular ordering of routing targets
+
+### Quality
+
+- Bugs & code smells removed that had been detected by SonarQube
+
 ## [1.90.9] - 2021-09-08
 
 ### Added
@@ -14,15 +43,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
   - OVP: Added support for property `dataPointAnnotationPath` in ListCard settings
   - OVP: Added support for OData V4 Link List Card
 
-### Changed
-
-### Removed
-
-### Deprecated
-
 ### Fixed
 
-- V4. Import and export of Custom Page properties could get out of sync when specific properties were missing.  
+- OData V4: Import and export of Custom Page properties could get out of sync when specific properties were missing.  
 
 ## [1.90.8] - 2021-08-25
 
@@ -37,11 +60,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 ### Changed
 
-- V2. Unresolvable facets are not returned by schema to avoid creation of corrupted custom sections 
-
-### Removed
-
-### Deprecated
+- OData V2: Unresolvable facets are not returned by schema to avoid creation of corrupted custom sections 
 
 ### Fixed
 
@@ -77,10 +96,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 - The generic schemas now already comprise anyOf definitions for enums of type string that allow binding changes. Previously this was only added during the generation of app specific schemas.
 
-### Removed
-
-### Deprecated
-
 ### Fixed
 
 - A common function was introduced to resolve path references of Common.Label annotations; endless loop references are interjected, the variable value or key is returned in this case.
@@ -98,12 +113,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 - OData V2: dateSettings property of Filterbar now supports addtional values
 - OData V2: Added growingThreshold property to Responsive Tables
-
-### Changed
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 
@@ -123,10 +132,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Changed
 
 - The import functions for filling the content of config files are now instantiating the required metadata based on factory classes (that had been introduced for the export before).
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 

@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.3.5] - 2021-09-30
+#### Added
+- The Fiori command line tools now has help context information available.  Typing `npx fiori help` will give the user a list of commands that the Fiori command line tools support.  Help text for individual Fiori commands can also be displayed, e.g. `npx fiori add help`.
+
+### Fixed
+- Adding deployment configuration to a Fiori application with an existng MTA project should now successfully update the `mta.yaml` and `package.json` files in the parent folder.
+- Fixed standalone deployment configuration for Cloud Foundry destinations.
+- The Fiori generator no longer crashes if the Cloud Foundry account does not match that configured in SAP Business Application Studio.
+
 ## [1.3.3] - 2021-09-16
 #### Added
 - The generator now supports optionally adding eslint validation to the generated project.  Choosing this option from the advanced options of the generator will add the eslint libraries and a new target `npm run lint` to perform the validation.
