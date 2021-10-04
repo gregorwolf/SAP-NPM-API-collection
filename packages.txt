@@ -1,5 +1,1 @@
-@sap/cds-dk
-@sap/generator-fiori
-@sap/ux-cds-odata-language-server-extension
-@sap/ux-specification
-@sap/ux-ui5-tooling
+@sap/cds-mtx
