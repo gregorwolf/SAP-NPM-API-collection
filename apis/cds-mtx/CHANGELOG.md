@@ -7,12 +7,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 2.3.2 - 2021-10-06
+
+### Added
+- Additional user-provided services are now accessible for the deployment
+
+### Fixed
+
+- The `mtx/v1/diagnose/jobs` API will now correctly deliver job information about jobs in memory.
+- Compatibility with cds < @sap/cds@5.5.0 when running onboarding, upgrade or extend on java projects 
+has been fixed.
+
 ## Version 2.3.1 - 2021-09-30
 
 ### Fixed
 - Configuration `mtx.jobs.parallelUpgradeLimit` is now correctly limiting the number
 of parallel tenant upgrades.
  
+
 ## Version 2.3.0 - 2021-09-27
 
 

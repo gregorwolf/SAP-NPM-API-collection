@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.12 - 2021-10-07
+
+### Fixed
+
+- Proxy option 'propagateMessageToDetails' to always propagate root error or message to details section
+- Support for fetching Edmx metadata locally via 'cds.mtx.getEdmx'
+- Support for fetching Edmx metadata remotely via MTX service url
+
 ## Version 1.7.11 - 2021-09-09
 
 ### Fixed

@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.5.3 - 2021-10-05
+
+### Fixed
+
+- `cds import` fix for `--dry` shortcut `-`
+- `cds import` fix for missing type properties in csn for unbounded action and function in OData V4.
+- A  bug with `cds init` when called in BAS project wizard
+
 ## Version 4.5.2 - 2021-09-30
 
 ### Changed

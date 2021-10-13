@@ -217,6 +217,7 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
   - **returnPrimitivePlain**: Function import return value of primitive type is rendered as plain JSON value. Default is `true`.
   - **messageTargetDefault**: Specifies the message target default, if target is undefined. Default is `/#TRANSIENT#`.
   - **caseInsensitive**: Transforms search functions e.g. substringof to case insensitive variant. Default is `false`.
+  - **propagateMessageToDetails**: Propagates root error or message always to details section. Default is `false`.
 
 All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
 under section `cds.cov2ap` and accessed via `cds.env.cov2ap`.
