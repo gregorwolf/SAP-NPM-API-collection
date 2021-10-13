@@ -9,12 +9,14 @@ The building blocks provided by SAP Fiori elements are:
 	<li>Field</li>
     <li>Form Element</li>
     <li>Table</li>
+    <li>Filter Bar</li>
     <li>Micro Chart</li>
     <li>FCL Actions</li>
     <li>"Share" Functionality</li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="https://ui5.sap.com/#/api/sap.fe.macros.Field" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="https://ui5.sap.com/#/topic/24c1304739dd4f19af0ce2482c4d9bbe" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="https://ui5.sap.com/#/api/sap.fe.macros.FormElement" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="https://ui5.sap.com/#/topic/24c1304739dd4f19af0ce2482c4d9bbe" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="https://ui5.sap.com/#/api/sap.fe.macros.Table" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="https://ui5.sap.com/#/topic/24c1304739dd4f19af0ce2482c4d9bbe" target="_blank">Documentation</a></li>
+    <li style="list-style-type: none"><a style="font-size: 0.75em" href="https://ui5.sap.com/#/api/sap.fe.macros.FilterBar" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="https://ui5.sap.com/#/topic/24c1304739dd4f19af0ce2482c4d9bbe" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="https://ui5.sap.com/#/api/sap.fe.macros.MicroChart" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="https://ui5.sap.com/#/topic/24c1304739dd4f19af0ce2482c4d9bbe" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="https://ui5.sap.com/#/api/sap.fe.macros.FlexibleColumnLayoutActions" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="https://ui5.sap.com/#/topic/24c1304739dd4f19af0ce2482c4d9bbe" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="https://ui5.sap.com/#/api/sap.fe.macros.Share" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="https://ui5.sap.com/#/topic/24c1304739dd4f19af0ce2482c4d9bbe" target="_blank">Documentation</a></li>

@@ -1,1 +1,10 @@
+@sap/approuter
+@sap/cds
+@sap/cds-dk
 @sap/cds-mtx
+@sap/cds-odata-v2-adapter-proxy
+@sap/eslint-plugin-cds
+@sap/generator-fiori
+@sap/hdbext
+@sap/open.fe
+@sap/xsjs
