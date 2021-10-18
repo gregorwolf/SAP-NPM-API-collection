@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.5.4 - 2021-10-07
+
+### Fixed
+
+- `cds watch` no longer fails if started with `--ext`, `--livereload`, or `--open` arguments
+
 ## Version 4.5.3 - 2021-10-05
 
 ### Fixed

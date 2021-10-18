@@ -25,3 +25,4 @@ OPTIONS:
 | --archive-url  | -au | Download app bundle from this url and upload this bundle for deployment |
 | --strict-ssl   | -ss | Perform certificate validation on archive url (Y/n)|
 | --archive-path | -ap | Provide path of the app bundle for deployment |
+| --testMode     | -tm | Run deploy in test mode. ABAP backend reports deploy error without actual deploy the bundle. |

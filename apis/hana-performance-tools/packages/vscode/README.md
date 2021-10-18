@@ -56,16 +56,44 @@ Until we release this software via [Visual Studio Code Marketplace](https://mark
 
 Here is the brief history of releases.
 
+### 1.2.21
+* Fix plv parsing pausing issue when it has jeReduction plan
+
+### 1.2.17
+* Restore badge displaying, file exporting feature
+* Fix config panel option selection issue
+
+### 1.2.13
+* Replace parser from node-expat to sax
+* Enable column filter and search feature in operator list
+
+### 1.2.11
+* Supprot electron v13 for Mac
+
+### 1.2.9
+* Recover lost edges in specific cases
+
+### 1.2.5
+* Support electron v13 which is enabled from vscode 1.59
+
+### 1.2.3
+
+* Provide CPU Time based analysis for HEX Plan.
+* Support side panel to describe node/edge properties. Callout is deprecated
+* Auto expanding initial nodes when opening plv file.
+* Allow plv extension to export plangraph.
+* Support SessionVariable tag parsing. It will be shown in SQL pane.
+
 ### 1.1.9 
 
-For VScode market place
--Update TimelineChart to handle multiple compile time that each innper plan has.
--Support file export of inner plan with communication data.
--Filter access table which shows outmost operator among same table name
+* For VScode market place
+* -Update TimelineChart to handle multiple compile time that each innper plan has.
+* -Support file export of inner plan with communication data.
+* -Filter access table which shows outmost operator among same table name
 
 ### 1.0.3
 
-First official release
+* First official release
 
 ## Feedbacks
 

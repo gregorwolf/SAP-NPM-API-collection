@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.3.7] - 2021-10-14
+#### Added
+- A new npm script for ABAP deployment configuration has been added, `deploy-test`.  Using this target will allow you to validate your deployment configuration without actually deploying.
+
+## [1.3.6] - 2021-10-07
+### Fixed
+- OData services that require a querystring parameter in the URL are now supported.
+
 ## [1.3.5] - 2021-09-30
 #### Added
 - The Fiori command line tools now has help context information available.  Typing `npx fiori help` will give the user a list of commands that the Fiori command line tools support.  Help text for individual Fiori commands can also be displayed, e.g. `npx fiori add help`.

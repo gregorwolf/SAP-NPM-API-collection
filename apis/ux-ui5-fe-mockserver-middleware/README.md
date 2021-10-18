@@ -32,8 +32,7 @@ In order to use the mock server, the npm module `@sap/ux-ui5-fe-mockserver-middl
 [..]
 ```
 
-
-**Example for a yaml configuration file** 
+**Example for a yaml configuration file**
 
 ```
 
@@ -54,17 +53,17 @@ server:
               urlBasePath: '/sap/opu/odata/sap'
               name: '<SERVICE_NAME>'
               metadataXmlPath: './webapp/localService/metadata.xml'
-              mockdataRootPath: './webapp/localService/data'   
+              mockdataRootPath: './webapp/localService/data'
 
 ```
 
-**Sample application** 
+**Sample application**
 
 See the usage in demo apps [SAP Fiori sample apps](https://github.com/SAP-samples/fiori-tools-samples)
 
 ## Support
 
 Join the [SAP Fiori tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.
-Please assign tag: *SAP Fiori tools*
+Please assign tag: _SAP Fiori tools_
 
 To log an issue with SAP Fiori tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).

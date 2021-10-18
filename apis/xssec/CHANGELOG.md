@@ -1,49 +1,54 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 3.2.7 - 2020-09-15
+## 3.2.8 - 2021-10-18
+- add additional getter for user properties on XSUAA context
+- remove deed and unneeded code for IAS context
+- fix token flows in requests if subdomain is provided using certificate
+
+## 3.2.7 - 2021-09-15
 - replace got with axios library because of a bug in got lib during https get
 
-## 3.2.5 - 2020-09-07
+## 3.2.5 - 2021-09-07
 - fix to be backward-compatible for tokenFlow-APIs
 
-## 3.2.4 - 2020-09-03
+## 3.2.4 - 2021-09-03
 - fix an issue with IAS multitenancy support
 - remove the deprecated request library with got library
 
-## 3.2.3 - 2020-08-23
+## 3.2.3 - 2021-08-23
 - add checkFollowingInstanceScope to SecurityContext to retrieve instance specific scope without need to build scope string on your own
 - fix a reference error in key verification
 - support for multitenance IAS applications using 'x-zone_uuid' Header in jwks call
 
-## 3.2.2 - 2020-06-16
+## 3.2.2 - 2021-06-16
 - Support for tokenexchanges with X.509 certificates managed by XSUAA
 - Support for tokenexchanges with manually managed X.509 certificates
 - support for configuration objects that does not provide a clientsecret (but a certificate)
 
-## 3.2.1 - 2020-06-01
+## 3.2.1 - 2021-06-01
 - Add some more error and tracing information
 
-## 3.2.0 - 2020-04-20
+## 3.2.0 - 2021-04-20
 - Support for IAS token validation. ([more details](doc/IAS.md))
 
-## 3.1.2 - 2020-03-01
+## 3.1.2 - 2021-03-01
 - Feature: Support for IAS to XSUAA token exchange ([more details](doc/IAStoXSUAA.md))
 - Feature: Support for ZoneID enabled token flows ([more details](doc/TokenFlows.md))
 
 
-## 3.1.1 - 2020-02-11
+## 3.1.1 - 2021-02-11
 - Bugfix: Tokenexchange with additional attributes may result in a wrong formatted url
 - Feature: The passport middleware allows to provide scopes to be validated at authentication time. Details [here](http://www.passportjs.org/docs/oauth/#scope)
 
-## 3.1.0 - 2020-02-10
+## 3.1.0 - 2021-02-10
 - Support for multiple configurations for one security context ([more details here](doc/MultiConfiguration.md))
 - Bugfix: support for additional attributes in token exchange
 - Bugfix: authorization now in payload for better XSUAA support
 - correct support for azp (clientid) in token payload
 - method to identify an XSUAA token
 
-## 3.0.10 - 2020-10-01
+## 3.0.10 - 2021-10-01
 - The requests to the XSUAA are now available using the requests module also if you do not have a securityContext
 
 ## 3.0.9 - 2020-08-06

@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.2.0 - 2021-10-08
+
+### Added
+- Added ssl certificate option 
+
 ## 5.1.1 - 2021-01-22
 
 ### Fixed
