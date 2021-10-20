@@ -4,24 +4,6 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Version 5.5.4 - 2021-10-12
-
-### Fixed
-
-- Backwards compatibility for `cds.tx({ user: new User ({ tenant, locale }) })`
-- Transaction API fix: `cds.tx ({ tenant }, tx => { ... })` instead of `cds.tx (tx => { ... }, { tenant })`
-- Writable and reliable `query._target`
-- `req.target` in REST with navigations in URL
-
-## Version 5.5.3 - 2021-10-06
-
-### Fixed
-
-- Resolving of views for view definitions using aliases
-- `cds.test` in `cds repl` no longer yields an error with the `beforeEach` function not found
-- Aliasing in case of draft union when expanding more than one `to-one` association
-- Resolving of views if intermediate views are defined in database namespace
-
 ## Version 5.5.2 - 2021-09-29
 
 ### Fixed
@@ -66,8 +48,8 @@
 - When calling `cds.tx()` to create new transactions, this now automatically inherits the current event context from `cds.context`. In case that creates issues set `cds.env.features.cds_tx_inheritance = false` to restore the former behaviour. You can still overwrite individual context settings, for example:
     ```js
     const tx = cds.tx() // inherits tenant and user
-    const tx = cds.tx({ // inherits tenant
-      user: new cds.User.Privileged
+    const tx = cds.tx({ // inherits tenant 
+      user: new cds.User.Privileged 
     })
     ```
 - Method `cds.tx()` now allows to pass a function which will be executed within a new managed transaction, with `tx.commit/rollback()` handled automatically. For example:
@@ -100,26 +82,26 @@
     ```js
     cds.spawn (async ()=>{
       await INSERT.into ('Ticker') ...
-    })
+    }) 
     ```
     ```js
     cds.spawn (async ()=>{
       await INSERT.into ('Ticker') ...
-    },{ after: 111 /* ms */ })
+    },{ after: 111 /* ms */ }) 
     ```
     ```js
     let n=0, handle = cds.spawn (async ()=>{
       await INSERT.into ('Ticker') ...
       if (++n>9) clearTimeout (handle)
-    },{ every: 111 /* ms */ })
+    },{ every: 111 /* ms */ }) 
     ```
     ```js
     cds.spawn (async ()=>{
       await INSERT.into ('Ticker') ...
-    },{ // inherits tenant
+    },{ // inherits tenant 
       every: 111 /* ms */,
-      user: new cds.User.Privileged
-    })
+      user: new cds.User.Privileged 
+    }) 
     ```
 - Default server is CORS-enabled for all origins if not in production
 - Default lock acquire timeout for `SELECT FOR UPDATE` via `cds.env.sql.lock_acquire_timeout`
@@ -129,7 +111,7 @@
 - Support for reading streams via `GET /<Entity>(<ID>)/$value`
 - Draft choreography: support of navigation with `SiblingEntity`
 - Support for where exists with infix filters in `@restrict`
-- Support annotation `@Capabilities.ExpandRestrictions.NonExpandableProperties`
+- Support annotation `@Capabilities.ExpandRestrictions.NonExpandableProperties` 
 - `@Core.ContentID` added to OData error responses if `content-id` header is specified
 - New OData URL to CQN parser (`cds.env.features.odata_new_parser`):
   + support of navigation to primitive properties using `$value`
@@ -193,14 +175,14 @@
 - `UPDATE(Foo).with({foo:{'=':'bar'})` erroneously produced:
   ```js
   {UPDATE:{..., with:{foo:{ref:['bar']}}}} //> wrong
-  ```
+  ``` 
   instead of:
   ```js
   {UPDATE:{..., data:{foo:'bar'}}} // correct
-  ```
+  ``` 
   &rarr; to produce the ref, use one of:
   ```js
-  UPDATE(Foo).with ({foo:{ref:['bar']}})
+  UPDATE(Foo).with ({foo:{ref:['bar']}}) 
   UPDATE(Foo).with `foo=bar`
   ```
 - `UPDATE.with` property stays undefined until actually filled with data
@@ -220,26 +202,26 @@
 
 - Direct usage of body-parser
 - Queries constructed from `cds.ql` do not have the _internal_ property `cqn` anymore
-- Inofficial variant `SELECT({'expand(foo)':['a','b']})` is not supported anymore
+- Inofficial variant `SELECT({'expand(foo)':['a','b']})` is not supported anymore 
 &rarr; use one of these official APIs for expands instead:
   ```js
   SELECT(x => { x.a, x.foo (f =>{ f.b, f.c }) })
   SELECT(['a',{ref:['foo'], expand:['b','c']}])
   ```
-- Inofficial variant `SELECT.orderBy('foo','desc')` is not supported anymore
+- Inofficial variant `SELECT.orderBy('foo','desc')` is not supported anymore 
 &rarr; use one of these official APIs instead:
   ```js
   SELECT.from(Foo).orderBy({foo:'desc'})
   SELECT.from(Foo).orderBy('foo desc')
   ```
-- Inofficial variant `SELECT.orderBy('foo, bar desc')` is not supported anymore
+- Inofficial variant `SELECT.orderBy('foo, bar desc')` is not supported anymore 
 &rarr; use one of these official APIs instead:
   ```js
   SELECT.from(Foo).orderBy({foo:1,bar:-1})
   SELECT.from(Foo).orderBy('foo','bar desc')
   SELECT.from(Foo).orderBy `foo, bar desc`
   ```
-- Inofficial variant `SELECT.where({ or: [{ foo: 'bar' }, { foo: 'baz' }] })` is not supported anymore
+- Inofficial variant `SELECT.where({ or: [{ foo: 'bar' }, { foo: 'baz' }] })` is not supported anymore 
 &rarr; use one of these official APIs instead:
   ```js
   SELECT.from(Foo).where({ foo: 'bar', or: { foo: 'baz' } })

@@ -3,10 +3,10 @@
 This package specifies the structure of SAP Fiori Element templates in form of typescript types and JSON schema files. You can find the JSON schemas under dist/schema.
 It is used by SAP Fiori Tools (see documentation link below) but can also be used independent from this application.
 
-The major and minor version of this specification package matches the major and minor version of SAPUI5, which contains Fiori elements.
+The major and minor version of this specification package matches the major and minor version of SAP UI5, which contains Fiori elements.
 
 _Example_:  
-`@sap/ux-specification@1.76.x` specifies the Fiori elements that are delivered with SAPUI5 version 1.76.x
+`@sap/ux-specification@1.76.x` specifies the Fiori elements that are delivered with UI5 version 1.76.x
 
 The module supports both the OData V2 and the OData V4 version of the templates (aka FioriElementsVersion), you thus can find two different access points for the typescript definitions:
 
@@ -24,8 +24,8 @@ You can retrieve any generic schema via schemaAccess.ts.
 Besides the specification, src/api.ts provides functions that can be used with SAP Fiori apps in connection with the JSON schemas:
 
 - generateSchema: converts one generic schema to an application specific one, enriched by app specific information like annotations.
-- importConfig: imports information from the app, like manifest settings or SAPUI5 flexibility changes, into one JSON configuration file that relates to a given schema (representing the central settings of the app or of a page of the app).
-- exportConfig: exports from one JSON configuration file, returning an updated manifest.json file and a list of SAPUI5 flexibility changes.
+- importConfig: imports information from the app, like manifest settings or UI5 flexibility changes, into one JSON configuration file that relates to a given schema (representing the central settings of the app or of a page of the app).
+- exportConfig: exports from one JSON configuration file, returning an updated manifest.json file and a list of UI5 flexibility changes.
 - importProject: imports information from the app and generates all schemas and JSON configuration files.
 - importProjectSchema: imports information from the app and generates all schemas but no JSON configuration files.
 - getApiVersion: returns the given API version. The API version starts with 1 and will only be increased in case of incompatible changes where the consumption layer must react on.
