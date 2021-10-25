@@ -44,8 +44,8 @@ For example:
 cf create-service html5-apps-repo app-host myApps-app-host
 ```
 
-If no "resources=" tag is provided HTML5 application deployer will still try to upload files from resources folder. If no resources folder is found,the upload will fail.In the resources folder there should be one folder or one zip archive for each application that should be uploaded. 
-In each application folder/zip archive there should be two files at root level: manifest.json and xs-app.json. 
+If no "resources=" tag is provided HTML5 application deployer will still try to upload files from resources folder. If no resources folder is found,the upload will fail. In the resources folder there should be one folder or one zip archive for each application that should be uploaded. 
+In each application folder/zip archive there should be two files at root level: `manifest.json` and `xs-app.json`. 
 
 For example:   
    ```
@@ -63,16 +63,15 @@ For example:
        
    ```
 
-The manifest.json file should contain at least sap.app.id and sap.app.applicationVersion.version. 
+The manifest.json file should contain at least `sap.app.id` and `sap.app.applicationVersion.version`. 
 
-Note that sap.app.id and sap.app.applicationVersion.version are used in the HTML5 application repository as applicationName and applicationVersion. If sap.app.id contains dots or dashes, they will be removed in the applicationName.
+Note that `sap.app.id` and `sap.app.applicationVersion.version` are used in the HTML5 application repository as applicationName and applicationVersion. If `sap.app.id` contains dots or dashes, they will be removed in the applicationName.
 The version format must be xx.xx.xx, whereas x is a digit. For example: 1.0.10
 
 Note that different app-host service instances cannot be used to upload applications with the same application id/name.
 
-For example:
+For example (`manifest.json`):
    ```
-   manifest.json
    {
      "_version": "1.7.0",
      "sap.app": {
@@ -86,10 +85,9 @@ For example:
    }
    ```
 
-The xs-app.json file that can be used by the application router to support application routing. 
+The `xs-app.json` file that can be used by the application router to support application routing. 
 For example:
    ```
-   xs-app.json
    "welcomeFile": "index.html",
    "authenticationMethod": "route",
    "routes": [
@@ -107,15 +105,15 @@ For example:
    }
    ```
 
-The @sap/html5-app-deployer consumer application should be bound to a single html5-apps-repo service instance of the app-host service plan. 
-When the @sap/html5-app-deployer consumer application is started, the @sap/html5-app-deployer module creates a zip archive for each folder in the “resources” folder - if it is not zipped already - and triggers the upload of all zip archives to the HTML5 application repository via multi-part request.
+The `@sap/html5-app-deployer` consumer application should be bound to a single html5-apps-repo service instance of the app-host service plan. 
+When the `@sap/html5-app-deployer` consumer application is started, the `@sap/html5-app-deployer` module creates a zip archive for each folder in the “resources” folder - if it is not zipped already - and triggers the upload of all zip archives to the HTML5 application repository via multi-part request.
 
 ## Deploying HTML5 Application Deployer App
 To deploy an sap/html5-app-deployer consumer application in the Cloud Foundry environment you can choose one of the following procedures: 
 
 ### Deploying HTML5 Application Deployer App Using cf push
 
-#### 1. Create a manifest.yaml file in the following format:
+#### 1. Create a `manifest.yaml` file in the following format:
 ```
 applications:
 
@@ -147,7 +145,7 @@ To use cf deploy the installation of the deploy plugin is required, see [deploy 
 In addition, create an *.mtar archive using WebIDE or MTA Build Tool.
 
 #### 1. Create an mtad.yaml file.
-The MTA project should have an mtad.yaml file in the following format:
+The MTA project should have an `mtad.yaml` file in the following format:
 ```
 ID: myApps.deployer                  //MTA ID 
 _schema-version: '2.0'
@@ -170,13 +168,13 @@ resources:
      service-name: myApps-app-host       //Service instance name
 ```
 #### 2. Generate *.mtar file.
-Use the WebIDE build or the MTA Build Tool to generate a valid myAppDeployer.mtar file.
+Use the WebIDE build or the [MTA Build Tool](https://sap.github.io/cloud-mta-build-tool/) to generate a valid `myAppDeployer.mtar` file.
 
 #### 3. Deploy *.mtar file.
 ```
 cf deploy myAppsDeployer.mtar
 ```
-After deploying the *.mtar file, an application called myAppsDeployer (stopped) is shown in cf apps.
+After deploying the `*.mtar` file, an application called myAppsDeployer (stopped) is shown in cf apps.
 
 ## Undeploy HTML5 Application Deployer Apps
 When you undeploy the  HTML5 application deployer app using MTA ID, the related HTML5 application repository content should be deleted too.
@@ -192,7 +190,7 @@ cf unbind-service  myAppsDeployer myApps-app-host
 
 #### 2. Delete html5-apps-repo app-host service instance
 This step deletes the HTML5 application respository content.
-For example
+For example:
 ```
 cf delete-service  myApps-app-host
 ```
@@ -206,7 +204,7 @@ cf delete  myAppsDeployer
 
 ### Undeploy HTML5 Application Deployer App Using cf undeploy
 When you undeploy the HTML5 application deployer app, the HTML5 application deployer app is deleted and you can - in the same step - delete the app-host service instance of the html5-apps-repo. To delete the app-host service instance of the html5-apps-repo, the  --delete-service parameter should be passed. 
-Note that the undeploy requires the mta id, which can be obtained by calling cf mtas or from the mtad.yaml ID.
+Note that the undeploy requires the mta id, which can be obtained by calling cf mtas or from the `mtad.yaml` ID.
 
 #### 1. Undeploy HTML5 Application Deployer App and delete the service instance
 For example:

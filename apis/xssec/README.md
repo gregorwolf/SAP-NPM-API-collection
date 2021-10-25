@@ -72,6 +72,57 @@ The creation function `xssec.createSecurityContext` is to be used for an end-use
 
 With version 3.1.0 there is a support for multiple configuration objects for one SecurityContext. For more details have a look [here](doc/MultiConfiguration.md).
 
+### Support for X-Correlation-ID header
+
+The xssec library internally calls REST APIs of the XSUAA.
+Now it's possible to set a `correlationId` during context creation and for token exchange calls.
+For this you have to restructe the configuration object.
+
+```js
+const config = {
+  credentials: xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa,
+  correlationId: "1111-1111-11111111"
+};
+
+//now you can call the createSecurityContext method as always
+xssec.createSecurityContext(access_token, config, function(error, securityContext, tokenInfo) {
+    if (error) {
+        console.log('Security Context creation failed');
+        return;
+    }
+    console.log('Security Context created successfully');
+    console.log(tokenInfo.getPublicClaims());
+});
+```
+
+### Disable the cache for the current call (ONLY FOR TESTING!)
+The xssec library internally calls REST APIs to fetch the public verification keys from XSUAA/IAS.
+For performance reasons there is a cache, so not all calls have to fetch the key again.
+
+Now it's possible to turn off the cache using the  `disableCache` option during context creation.
+For this you have to restructe the configuration object.
+
+```js
+const config = {
+  credentials: xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa,
+  correlationId: "1111-1111-11111111"
+  disableCache: true
+};
+
+//now you can call the createSecurityContext method as always
+//internally no Cache will be used!
+xssec.createSecurityContext(access_token, config, function(error, securityContext, tokenInfo) {
+    if (error) {
+        console.log('Security Context creation failed');
+        return;
+    }
+    console.log('Security Context created successfully');
+    console.log(tokenInfo.getPublicClaims());
+});
+```
+
+This also works for the Tokenexchange methods!
+
 ### Usage with Passport Strategy
 
 If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.

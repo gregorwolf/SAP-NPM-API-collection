@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.2.9 - 2021-10-22
+- custom domain support for IAS
+- support for "x-correlation-id" header to be set for createSecurityContext and tokenexchange-calls
+- support to turn off the internal cache for a createSecurityContext call
+
 ## 3.2.8 - 2021-10-18
 - add additional getter for user properties on XSUAA context
 - remove deed and unneeded code for IAS context

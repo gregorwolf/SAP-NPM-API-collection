@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.9.0 - 2021-10-24
+
+### Added
+- Additional cookie logs
+- Support client certificate authentication (format p12)
+- Change log level to info for backend logs 
+- IAS token support in service to approuter flow
+
+### Updated dependencies
+- deps: sap/xssec@3.2.8
+
 ## 10.8.2 - 2021-10-11
 
 ### Fixed

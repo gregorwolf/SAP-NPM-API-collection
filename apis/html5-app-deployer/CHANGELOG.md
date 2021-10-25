@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.2.0 - 2021-10-24
+
+### Added
+- Mutual Transport Layer Security (mTLS) handling
+
+### Fixed
+- html5-repo credentials handling
+
 ## 3.1.1 - 2021-07-20
 
 ### Fixed

@@ -1,3 +1,14 @@
+## 1.5.0
+
+### New Features
+- Roles can be chosen graphically when creating a synonym
+
+### Fixes
+- Filtering columns when adding a data source could lead to unexpected behavior
+- A synonym created when adding a data source could be missing the schema field
+- Columns of an external object could be missing
+- The "Finish" button could be enabled if a synonym already exists
+
 ## 1.4.0
 
 ### New Features

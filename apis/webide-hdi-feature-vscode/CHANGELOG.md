@@ -1,3 +1,26 @@
+## 1.6.0
+
+### New Features
+- Additional keyboard shortcuts
+- Roles can be chosen graphically when creating a synonym
+- Calculated columns, input parameters, and restricted columns can be filtered
+- The default join in a star join is set to left-outer instead of referential
+- Improved usability when debugging a calculation view
+- Enable data preview using a different database user
+- Input parameters of calculation views can be mapped to input parameters of SQL views
+
+### Fixes
+- It is now possible to show the source service when creating a synonym
+- Improved usability when copying a variable with a filter
+- Opening a dimension calculation view when debugging a start join works as expected
+- It is now possible to set a client column when the data source is a calculation view
+- The default values for generating time tables are no longer invalid
+- Expressions in non-equi-joins are validated correctly
+- The expressions for new default values of input parameters and variables are now marked as SQL
+- Warn when assigning a variable to an attribute that already has a variable assigned
+- Fixed an inconsistency when replacing a data source with a node
+- Fix shortcuts on MacOS
+
 ## 1.5.0
 
 ### New Features
