@@ -31,6 +31,7 @@ bundles the module into one single deployment artifact and supports one click de
 ### Pre-Requisites to Build and Deploy MTARs
 
 * [MTAR builder](https://www.npmjs.com/package/mbt) (`npm install -g mbt`)
+* Install [lerna] for mono-repo building (`npm install -g lerna`)
 * Install MDK-Tools, `npm install @sap/mdk-tools -g`
 * [Cloud Foundary CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html), Install cf-cli and run command `cf install-plugin multiapps`.
 
@@ -384,11 +385,11 @@ const entities = await api.readItems(filter);
 
 ## Capability to Test run
 ###### Method
-`run(option?: string | undefined, logger? : IChildLogger ) : Promise<void>`
+`run(option?: string[] | undefined, logger? : IChildLogger ) : Promise<void>`
 ###### Description
 It starts the CDS server and watches for any modifications in the files, if any changes detected it automatically restarts to serve the new content 
 ###### Parameters
-- options: (Optional) run options.
+- options: (Optional) run options. Comma separated list of options and their values. e.g. ['port', '8008', 'open']. Currently only supports port number and open option.
 - logger: (Optional) An instance of IChildLogger which can be implemented by consumers of this library.
 ###### returns
 - `Promise<void>`
@@ -399,7 +400,7 @@ await api.run();
 ```
 ###### CLI
 ```
-dev-project run  <my-application-folder-root absolute path> 
+dev-project run  <my-application-folder-root absolute path> port 9039 open
 ```
 
 ---
@@ -473,6 +474,51 @@ resources:
     ...
 
 ```
+
+#### Get MTA Manifest content
+###### Method
+`getManifest(logger? : IChildLogger) : Promise<any>;`
+###### Description
+Get the content of the `mta.yaml` file.
+###### Parameters
+- logger: (Optional) An instance of IChildLogger which can be implemented by consumers of Project API.
+###### returns
+- `Promise<any>`
+###### CLI
+```
+./src/project-api/bin/dev-project get-mta ../risk-management-example
+```
+###### Sample Output
+```
+_schema-version: '3.1'
+ID: cpapp
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+   - builder: custom
+     commands:
+      - npm install --production
+      ...
+      ...
+
+modules:
+ - name: cpapp-app
+   type: html5
+   path: app
+   build-parameters:
+     builder: custom
+     commands:
+      - bash build.sh
+     supported-platforms: []
+     build-result: dist
+  ...
+  ...
+
+```
 ---
 
 ## Deployment of MTAR to Cloud Foundry
@@ -495,6 +541,32 @@ Build and deploy in one step
 dev-project deploy  <my-application-folder-root absolute path> 
 ```
 
+---
+
+#### Get Launchpad URL
+###### Method
+`getLaunchpadURL(logger? : IChildLogger) : Promise<string | undefined>;`
+###### Description
+Get the launchpad URL of application deployed to currently targeted CF space.
+###### Parameters
+- logger: (Optional) An instance of IChildLogger which can be implemented by consumers of Project API.
+###### returns
+- `Promise<string | undefined>`
+###### Example
+```
+const api = new ProjectImpl(projectPath);
+const launchpadURL = await api.getLaunchpadURL();
+```
+###### CLI
+```
+dev-project get-launchpad-url <my-application-folder-root absolute path>
+```
+###### Sample Output
+```
+{
+  launchpadURL : <launchpadUrl>
+}
+```
 ---
 
 ## Get Detail Information of Entities
