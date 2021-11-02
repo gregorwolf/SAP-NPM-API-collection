@@ -1,7 +1,4 @@
-@sap/approuter
-@sap/cloud-sdk-op-vdm-responsibility-management-team-configuration-service
-@sap/generator-fiori
-@sap/ux-cds-odata-language-server-extension
-@sap/ux-specification
-@sap/ux-ui5-tooling
-@sap/xb-msg-mqtt-v311
+@sap/cds
+@sap/cds-compiler
+@sap/cds-dk
+@sap/eslint-plugin-cds

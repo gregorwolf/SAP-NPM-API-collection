@@ -7,6 +7,109 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.10.2 - 2021-10-29
+
+### Fixed
+
+- to.sql/hdi/hdbcds: Correctly handle `exists` in conjunction with mixin-associations
+
+## Version 2.10.0 - 2021-10-28
+
+### Added
+
+- Support arbitrary paths after `$user` - similar to `$session`.
+- Support scale `floating` and `variable` for `cds.Decimal` in CDL and CSN. Backend specific handling is descibed in their sections.
+- Allow select item wildcard (`*`) in a `select`/`projection` at any position, not just the first.
+
+- to.edm(x):
+  + In Odata V4 generate transitive navigation property binding paths along containment hierarchies and terminate on the
+    first non-containment association. The association target is either an explicit Edm.EntitySet in the same EntityContainer
+    or in a referred EntityContainer (cross service references) or an implicit EntitySet identified by the containment path
+    originating from an explicit EntitySet. This enhancement has an observable effect only in structured format with containment
+    turned on.
+  + Support for scales `variable` and `floating`:
+    + V4: `variable` and `floating` are rendered as `Scale="variable"`. Since V4 does not support `floating`, it is aproximated as `variable`.
+    + V2: `variable` and `floating` are announced via property annotation `sap:variable-scale="true"`
+  
+- to.sql/hdi/hdbcds:
+  + Reject scale `floating` and `variable`.
+  + Reject arbitrary `$user` or `$session` paths that cannot be translated to valid SQL.
+  + Following a valid `exists`, further `exists` can be used inside of the filter-expression: `exists assoc[exists another[1=1]]`
+  + `exists` can now be followed by more than one association step.
+  `exists assoc.anotherassoc.moreassoc` is semantically equivalent to `exists assoc[exists anotherassoc[exists moreassoc]]`
+
+### Removed
+
+### Changed
+
+- to.odata: Inform when overwriting draft action annotations like @Common.DraftRoot.ActivationAction.
+
+### Fixed
+
+## Version 2.9.0 - 2021-10-15
+
+### Changed
+
+- to.edm(x): Raise `odata-spec-violation-type` to a downgradable error.
+
+### Fixed
+
+- to.edm(x):
+  + Fix a bug in annotation propagation to foreign keys.
+  + Don't render annotations for not rendered stream element in V2.
+- to.hdi:
+  + for naming mode "hdbcds" and "quoted" parameter definitions are not quoted anymore.
+- to.hdi/sql/hdbcds:
+  + Correctly handle explicit and implicit alias during flattening.
+  + Raise an error for `@odata.draft.enabled` artifacts with elements without types - instead of crashing with internal assertions.
+
+## Version 2.8.0 - 2021-10-07
+
+### Added
+
+- Allow defining unmanaged associations in anonymous aspects of compositions.
+- Enable extensions of anonymous aspects for managed compositions of aspects.
+- When the option `addTextsLanguageAssoc` is set to true and
+  the model contains an entity `sap.common.Languages` with an element `code`,
+  all generated texts entities additionally contain an element `language`
+  which is an association to `sap.common.Languages` using element `local`.
+- for.odata:
+  + In `--odata-format=flat`, structured view parameters are flattened like elements.
+- to.hdbcds
+  + Use "smart quotes" for naming mode "plain" - automatically quote identifier which are reserved keywords or non-regular.
+
+### Changed
+
+- for.odata:
+  + In `--data-format=structured`, anonymous sub elements of primary keys and parameters are set to `notNull:true`,
+    an existing `notNull` attribute is _not_ overwritten. Referred named types are _not_ modified.
+- to.edm(x):
+  + Improve specification violation checks of (nested) keys:
+    + All (sub-)elements must be `Nullable: false` (error).
+    + Must represent a single value (error).
+    + In V4 must be a specification compliant Edm.PrimitiveType (warning).
+- to.hdi/hdbcds/sql: $user.\<xy\> now has \<xy\> added as alias - "$user.\<xy\> as \<xy\>"
+
+### Fixed
+
+- Properly generate auto-exposed entities for associations in parameters.
+- Correctly apply extensions to anonymous array item types.
+- Correctly apply/render annotations to anonymous action return types.
+- With CSN flavor `plain` (`gensrc`), correctly render annotations on elements
+  of referred structure types as `annotate` statements in the CSN's `extensions` property.
+- to.cdl:
+  + Correctly render extensions on array item types
+  + Correctly render annotations on action return types
+- to/for: Correctly handle CSN input where the prototype of objects is not the "default"
+- to.hdi:
+  + for naming mode "hdbcds" and "quoted" parameter definitions are now quoted.
+  + for naming mode "plain", smart quotation is applied to parameter definitions if they are reserved words.
+- to.hdi/hdbcds/sql:
+  + Ensure that cdl-style casts to localized types do not lose their localized property
+  + Fix a small memory leak during rendering of SQL/HDBCDS.
+- to.edm(x): Remove ambiguous `Partner` attribute from `NavigationProperty`. A forward association referred
+  to by multiple backlinks (`$self` comparisons) is no longer partner to an arbitrary backlink.
+
 ## Version 2.7.0 - 2021-09-22
 
 ### Added

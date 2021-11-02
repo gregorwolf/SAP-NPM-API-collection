@@ -4,6 +4,138 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.6.0 - 2021-10-29
+
+### Added
+
+- New REST protocol adapter (beta)
+  + Makes use of the beta OData URL to CQN parser. Hence, almost all OData requests are supported (see limitations below). 
+  + Activate via `cds.env.features.rest_new_adapter = true`
+  + Out of scope (compared to OData protocol adapter):
+    + OData query option `$apply`
+    + Batch requests (with or without atomicity groups)
+    + Draft handling
+- New GraphQL protocol adapter (alpha)
+  + Serves single endpoint for all services based on `served` event at `/graphql` (subject to change).
+  + Activate via `cds.env.features.graphql = true`
+  + Required additional dependencies: `@graphql-tools/schema`, `express-graphql`, and `graphql`
+  + Not meant for productive use! For example, authentication and authorization are out of scope.
+- Support of the following features when using beta OData URL to CQN parser (`cds.env.features.odata_new_parser`):
+  + REST-style URLs (example: `GET /Foo/1`)
+  + `$expand=*` query option on different nested expand levels (`$levels` is not yet supported)
+  + draft handling
+  + structured keys
+  + streaming
+  + navigation to primitive properties without `$value` query option
+- Optimized Search: Support `$filter` query option in combination with optimize `$search` and localized data (when the environment variable `cds.env.features.optimized_search` is set to `true`)
+- `GET` requests support static values in ON-conditions of composition parents when using unmanaged backlinks
+- `destinationOptions` can be configured for Remote Services
+  + Example:
+    ```json
+      {"cds":{"requires":{
+        "S4": {
+          "destinationOptions": {
+            "selectionStrategy": "subscriberFirst",
+            ...
+          }
+        }
+      }}}
+    ```
+- `forwardAuthToken` can be configured for Remote Services
+  + Example:
+    ```json
+      {"cds":{"requires":{
+        "credentials": {
+          "url": "...",
+          "forwardAuthToken": true
+          }
+        }
+      }}}
+    ```
+- File to store private project settings `.cdsrc-private.json` (should not be checked in source code management)
+- Read additional configuration from JSON files or directory structures using `CDS_CONFIG` env variable
+- Missing typescript definitions for services' `.send` shortcuts `get`, `put`, `post`, `patch`, and `delete`
+- Build VCAP_SERVICES env variable dynamically for compatibility (`cds.env.features.emulate_vcap_services`)
+- GET requests to Remote OData Service are automatically sent as `$batch` if the generated URL is too long
+  + Can be configured via `cds.env.remote.max_get_url_length` (beta, default: 1028).
+- Provide ETag in response headers in case of `prefer: return=minimal`
+- Kibana formatter: log the user's id via `cds.env.log.user = true` (beta)
+  + Consider the data privacy implications!
+- Experimental support for uiflex running locally on sqlite by setting `cds.requires.extensibility.kind = uiflex`
+- Minified `cds.model` (deactivate via `cds.env.features.skip_unused = false`)
+
+### Changed
+
+- Query API: Specified keys are now part of the target path, e.g. `SELECT.from('Books', 1)` will move the key condition into `SELECT.from.ref`.
+  + Deactivate during two month grace period via compat feature flag `cds.env.features.keys_into_where = true`
+- Removed duplicate integrity checks
+- Optimized search: Optimize queries for non-localized elements
+- Non-specified columns are resolved at database layer
+- `cds deploy` no longer enforces the presence of SAP CommonCryptoLib (checked with env variable `SECUDIR`) on Windows since it uses now the built-in security libraries
+- Target keys are not included into a body when sending `PATCH` requests to external services
+
+### Fixed
+
+- Audit logging of non-string values
+- Query API compilation error when keys start with `{`
+- Handling of wrong Edm.DateTimeOffset values
+- Using UUIDs in search with beta OData URL to CQN parser (`cds.env.features.odata_new_parser`)
+- Runtime exception for READ requests with deeply nested navigation and structured keys, for example:
+`GET foo/Bar/b708ad6c-2dd4-40d5-91c0-2e3eacf306d2/Info/sales(a='1010',b='10',c='00')/functions(functionName='error')`
+- The check for the minimum Node.js version now properly enforces version 12.18, i.e. aborts server startup.
+- `cds.test` fails with a clearer error message if the server wasn't started at all
+- Audit logging for modification of personal or sensitive data when using same entity as a composition child in different parent entities
+- Deleting an entity defined with managed composition of one, whereas a dependent entity is defined having an independent managed association to its composition parent no longer crashes the application
+- Audit logging for entities having arrayed elements
+- Filtering for `cds.Date` on Remote OData V2 services
+- Crash when `rollup` function was used in groupBy in odata requests
+- Or for $filter with IsActiveEntity=true for access to active entities
+- Reading draft-enabled entity with `$expand` targeting non-draft associations
+- Delete with sub-select
+- Runtime exception when streaming property annotated with `@Core.MediaType: 'application/json'`
+- Reading streams via navigation when entity containing large data is a part of a draft-enabled composition tree
+- Read draft entity with nested exists restriction
+- Activate draft of entity having `to-one` and `to-many` compositions
+- Caching issue that causes the OData `omit-values` preference in `Prefer` HTTP headers to misbehaves
+- Deletion of draft instances if multiple draft enabled entities are used within one service
+- Queries with `contains` filter targeting a remote odata v2 service
+- Schema evolution support for nested CDS entities in `cds build`
+- I18n texts with quotes and other special characters get escaped correctly if they appear in XML and Json documents
+- Execution of plain SQL statements on SQLite
+- `Content-Disposition` header is now url encoded
+
+### Removed
+
+- Usage of `@sap/xsenv` is superseded with `cds.env` in node.js cds-runtime
+- `@odata.on.insert/update` and `#user/now` are deprecated and will be removed in the next major version. Use `@cds.on.insert/update` and `$user/now` instead.
+
+## Version 5.5.5 - 2021-10-20
+
+### Fixed
+
+- Action parameters set to null
+- Restrictions with "where exists" clause and filter on ambiguous fields
+- Nulled user attribute in restrictions with "where exists" clause
+- Wait for all queries to settle during deep operation
+
+## Version 5.5.4 - 2021-10-12
+
+### Fixed
+
+- Backwards compatibility for `cds.tx({ user: new User ({ tenant, locale }) })`
+- Transaction API fix: `cds.tx ({ tenant }, tx => { ... })` instead of `cds.tx (tx => { ... }, { tenant })`
+- Writable and reliable `query._target`
+- `req.target` in REST with navigations in URL
+
+## Version 5.5.3 - 2021-10-06
+
+### Fixed
+
+- Resolving of views for view definitions using aliases
+- `cds.test` in `cds repl` no longer yields an error with the `beforeEach` function not found
+- Aliasing in case of draft union when expanding more than one `to-one` association
+- Resolving of views if intermediate views are defined in database namespace
+
 ## Version 5.5.2 - 2021-09-29
 
 ### Fixed
@@ -31,6 +163,7 @@
 ### Added
 
 - Support for minified models
+- Messaging: Support for string payloads
 - Messaging: Webhooks use 'application/json' as the default content type
 - Messaging: If senders don't use `data` as a property of the payload, then the whole payload is interpreted as `data`
 - Messaging: Support for `$namespace` placeholer in queue name
@@ -48,8 +181,8 @@
 - When calling `cds.tx()` to create new transactions, this now automatically inherits the current event context from `cds.context`. In case that creates issues set `cds.env.features.cds_tx_inheritance = false` to restore the former behaviour. You can still overwrite individual context settings, for example:
     ```js
     const tx = cds.tx() // inherits tenant and user
-    const tx = cds.tx({ // inherits tenant 
-      user: new cds.User.Privileged 
+    const tx = cds.tx({ // inherits tenant
+      user: new cds.User.Privileged
     })
     ```
 - Method `cds.tx()` now allows to pass a function which will be executed within a new managed transaction, with `tx.commit/rollback()` handled automatically. For example:
@@ -82,26 +215,26 @@
     ```js
     cds.spawn (async ()=>{
       await INSERT.into ('Ticker') ...
-    }) 
+    })
     ```
     ```js
     cds.spawn (async ()=>{
       await INSERT.into ('Ticker') ...
-    },{ after: 111 /* ms */ }) 
+    },{ after: 111 /* ms */ })
     ```
     ```js
     let n=0, handle = cds.spawn (async ()=>{
       await INSERT.into ('Ticker') ...
       if (++n>9) clearTimeout (handle)
-    },{ every: 111 /* ms */ }) 
+    },{ every: 111 /* ms */ })
     ```
     ```js
     cds.spawn (async ()=>{
       await INSERT.into ('Ticker') ...
-    },{ // inherits tenant 
+    },{ // inherits tenant
       every: 111 /* ms */,
-      user: new cds.User.Privileged 
-    }) 
+      user: new cds.User.Privileged
+    })
     ```
 - Default server is CORS-enabled for all origins if not in production
 - Default lock acquire timeout for `SELECT FOR UPDATE` via `cds.env.sql.lock_acquire_timeout`
@@ -111,7 +244,7 @@
 - Support for reading streams via `GET /<Entity>(<ID>)/$value`
 - Draft choreography: support of navigation with `SiblingEntity`
 - Support for where exists with infix filters in `@restrict`
-- Support annotation `@Capabilities.ExpandRestrictions.NonExpandableProperties` 
+- Support annotation `@Capabilities.ExpandRestrictions.NonExpandableProperties`
 - `@Core.ContentID` added to OData error responses if `content-id` header is specified
 - New OData URL to CQN parser (`cds.env.features.odata_new_parser`):
   + support of navigation to primitive properties using `$value`
@@ -128,7 +261,7 @@
 - Messaging: In multitenancy mode, messaging artifacts are only deployed to subscribers (unless the service option `deployForProvider` is set to `true`)
 - Messaging: Incoming messages without corresponding handlers are not acknowledged
 - If a service executes a query targeting a projection on one of its entities, the query is resolved along with projections to an entity known by the executing service. The result is post-processed to reflect the expected result of the incoming query. The reason is that no handlers of the executing service were executed as they did not know the query target.
-  + Deactivate during two month grace period via compact feature flag `cds.env.features.resolve_views = false`
+  + Deactivate during two month grace period via compat feature flag `cds.env.features.resolve_views = false`
 - Use `@sap/cds-compiler`'s `smartId` function to determine whether a reference needs to be quoted.
   + Allows the use of non-word characters in column names, for example `entity Foo { ![bar/bz]: String; }`.
   + Support for columns with spaces with feature flag `cds.env.features.spaced_columns`.
@@ -175,14 +308,14 @@
 - `UPDATE(Foo).with({foo:{'=':'bar'})` erroneously produced:
   ```js
   {UPDATE:{..., with:{foo:{ref:['bar']}}}} //> wrong
-  ``` 
+  ```
   instead of:
   ```js
   {UPDATE:{..., data:{foo:'bar'}}} // correct
-  ``` 
+  ```
   &rarr; to produce the ref, use one of:
   ```js
-  UPDATE(Foo).with ({foo:{ref:['bar']}}) 
+  UPDATE(Foo).with ({foo:{ref:['bar']}})
   UPDATE(Foo).with `foo=bar`
   ```
 - `UPDATE.with` property stays undefined until actually filled with data
@@ -202,26 +335,26 @@
 
 - Direct usage of body-parser
 - Queries constructed from `cds.ql` do not have the _internal_ property `cqn` anymore
-- Inofficial variant `SELECT({'expand(foo)':['a','b']})` is not supported anymore 
+- Inofficial variant `SELECT({'expand(foo)':['a','b']})` is not supported anymore
 &rarr; use one of these official APIs for expands instead:
   ```js
   SELECT(x => { x.a, x.foo (f =>{ f.b, f.c }) })
   SELECT(['a',{ref:['foo'], expand:['b','c']}])
   ```
-- Inofficial variant `SELECT.orderBy('foo','desc')` is not supported anymore 
+- Inofficial variant `SELECT.orderBy('foo','desc')` is not supported anymore
 &rarr; use one of these official APIs instead:
   ```js
   SELECT.from(Foo).orderBy({foo:'desc'})
   SELECT.from(Foo).orderBy('foo desc')
   ```
-- Inofficial variant `SELECT.orderBy('foo, bar desc')` is not supported anymore 
+- Inofficial variant `SELECT.orderBy('foo, bar desc')` is not supported anymore
 &rarr; use one of these official APIs instead:
   ```js
   SELECT.from(Foo).orderBy({foo:1,bar:-1})
   SELECT.from(Foo).orderBy('foo','bar desc')
   SELECT.from(Foo).orderBy `foo, bar desc`
   ```
-- Inofficial variant `SELECT.where({ or: [{ foo: 'bar' }, { foo: 'baz' }] })` is not supported anymore 
+- Inofficial variant `SELECT.where({ or: [{ foo: 'bar' }, { foo: 'baz' }] })` is not supported anymore
 &rarr; use one of these official APIs instead:
   ```js
   SELECT.from(Foo).where({ foo: 'bar', or: { foo: 'baz' } })

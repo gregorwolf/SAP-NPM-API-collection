@@ -6,6 +6,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.6.0 - 2021-11-02
+### Added
+
+- `cds bind` binds the given service to a hana instance by storing the credentials in `.cdsrc.json` in your user home directory [beta].
+- `cds import` introduced option `--include-namespaces` which imports the custom defined namespaces.
+- `cds import` preserve documentation in CSN file for actions and functions from OData V4 EDMX file.
+- `cds import` now supports reading values of the `as` option from cds.env
+
+### Fixed
+
+- `cds import` fix for reflecting only supported datatypes in csn for actions and functions for OData V4.
+- `cds import` fix for TypeError issue (#9868) during OData V4 EDMX conversion to CSN.
+- `cds watch` no longer omits starting some services every other time it is restarting the process
+- `cds-ts watch` now honors a local `tsconfig.json` file
+- `cds import` fix for TypeError issue (#9950) during OData V2 EDMX conversion to CSN.
+- `cds import` fix to generate the csn (#9950) during OData V2 EDMX conversion to CSN.
+- `cds import` fix to replace the aliases with original schema namespace value.
+- `cds import` adds `@cds.persistence.skip` back to imported models.  Its accidental removal in 4.5.0 caused wrong DB deployments of imported entities.
+
 ## Version 4.5.4 - 2021-10-07
 
 ### Fixed
@@ -64,6 +83,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
     + no longer skips over entities marked with `@cds.persistence.skip`, which is true for 'external' entities created by `cds import`.
 - `cds init --add` handles comma list correctly.
 - `cds import` fix for multi-line documentation text in OData V4 EDMX file.
+- `cds import` fix preserves the missing entities in csn for OData V2 EDMX file.
 
 
 ## Version 4.4.2 - 2021-09-03
