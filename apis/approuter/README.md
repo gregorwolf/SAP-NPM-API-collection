@@ -42,7 +42,7 @@
   * [Forwarding Headers](#forwarding-headers)
   * [Hop-by-hop Headers](#hop-by-hop-headers)
   * [Custom Headers](#custom-headers)
-  * [Authorization Header](#authorization-header)
+  * [Authorization Header](#authorization-header-beta-version)
 - [CSRF Protection](#csrf-protection)
 - [Support of SAP Statistics](#support-of-sap-statistics)
 - [Connectivity](#connectivity)
@@ -56,7 +56,7 @@
 - [Session Handling](#session-handling)
   * [Session Contents](#session-contents)
 - [External Session Management](#external-session-management)
-- [Service to Application Router](#service-to-application-router)
+- [Service to Application Router](#service-to-application-router-beta-version)
 - [Central Logout](#central-logout)
 - [User API Service](#user-api-service)
 - [Allowlist Service](#whitelist-service)
@@ -303,8 +303,9 @@ URL.headers.`<header-name>` | x | If provided, the application router propagates
 
 <br />**Note:** 
 * In case destination with the same name is defined both in environment destination and destination service, the destination configuration will load from the environment.
+* Destination service available only in Cloud Foundry.
 * Destinations on destination service instance level are supported.
-* Only destination client certificates of type p12 are supported.
+
 
 ### UAA configuration
 
@@ -1528,7 +1529,7 @@ In a multi-tenancy landscape, the application router will calculate the tenant i
  - x-forwarded-host header or host if EXTERNAL_REVERSE_PROXY is false or not specified
 
 ### Authorization Header
-* x-approuter-authorization: Contains the JWT or OIDC token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
+* x-approuter-authorization: Contains the JWT token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
 
 ## CSRF Protection
 
@@ -1992,12 +1993,12 @@ For information about the configuration of a custom storage driver, see [Configu
 
 ## Service to Application Router
 
-The application router can receive a consumer service xsuaa JWT or IAS OIDC token and use it to access the UI and the data. The token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
+The application router can receive a consumer service xsuaa JWT token and use it to access the UI and the data. The JWT token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
 
 Cookie Handling:
 In this flow client cookies are merged to backend cookies in case a backend cookie with the same key does not exist.
 
-**Note**: The xsuaa JWT or IAS OIDC token is generated with the same xsuaa service or identity instance that is bound to the application router. 
+**Note**: The xsuaa JWT token is generated with the same xsuaa service instance that is bound to the application router. 
 
 
 ## Central Logout

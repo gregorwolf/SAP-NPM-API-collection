@@ -1,7 +1,7 @@
-@sap/artifact-management
-@sap/artifact-management-base
-@sap/artifact-management-base-types
-@sap/artifact-management-types
-@sap/cloud-sdk-op-vdm-document-management-service
-@sap/hana-performance-tools
-@sap/hrtt-core-vscode
+@sap/approuter
+@sap/cloud-sdk-op-vdm-responsibility-management-team-configuration-service
+@sap/generator-fiori
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-tooling
+@sap/xb-msg-mqtt-v311

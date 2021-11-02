@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.4.0] - 2021-10-28
+#### Added
+- UUA Authentication is now supported during deployment without launching a browser, as long as the relevant authentication parameters are supplied. See the SAP Fiori tools help portal for full details.
+
+### Fixed
+- Generating an application into a CAP project no longer adds unnecessary npm dependencies.
+- Destinations in SAP Business Application Studio are now filtered to show only those that can be used in the generator.
+
 ## [1.3.7] - 2021-10-14
 #### Added
 - A new npm script for ABAP deployment configuration has been added, `deploy-test`.  Using this target will allow you to validate your deployment configuration without actually deploying.

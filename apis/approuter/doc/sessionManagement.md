@@ -11,7 +11,6 @@ Extended Session Management
 - [Example](#example)
 - [Performance](#performance)
 - [Custom Storage Driver](#custom-storage-driver)
-- [Credentials Structure](#credentials-structure)
 
 <!-- tocstop -->
 
@@ -484,21 +483,3 @@ For example:
     "externalStoreFilePath": "./src/storage/my-special-storage"
 }
 ``` 
-
-## Credentials Structure when using Redis
-
-Redis store can be used on both CF and Kyma, however the external session managment expects to receive the credentials in a certain structure,
-similar to the structure of the CF redis service instance.
-If you're using Kyma, create a [K8s secret](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-config-file/#create-the-config-file) that includes the credentials in the following structure:
-```json
-{
-    "cluster_mode": "(Mandatory) boolean",
-    "tls": "(Mandatory) boolean",
-    "ca_base64": "(Optional) string",
-    "sentinel_nodes": "(Optional) Array of objects of hostname and port, e.g '[{hostname: 127.0.0.1, port: 26543}]'",
-    "uri": "(Mandatory if using sentinel_nodes) string",
-    "password": "(Mandatory) string",
-    "hostname": "(Mandatory) string",
-    "port": "string"
-}
-```
