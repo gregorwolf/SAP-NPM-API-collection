@@ -4,12 +4,21 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.6.1 - 2021-11-02
+
+### Fixed
+
+- UAA credentials lookup
+- Revert return type validation for `cds.String` for compatibility with older `@sap/cds-mtx` versions
+- Messaging: Ill-defined incoming AMQP messages will not crash the app
+- `cds compile -l` does no longer crash if called without `--to` option
+
 ## Version 5.6.0 - 2021-10-29
 
 ### Added
 
 - New REST protocol adapter (beta)
-  + Makes use of the beta OData URL to CQN parser. Hence, almost all OData requests are supported (see limitations below). 
+  + Makes use of the beta OData URL to CQN parser. Hence, almost all OData requests are supported (see limitations below).
   + Activate via `cds.env.features.rest_new_adapter = true`
   + Out of scope (compared to OData protocol adapter):
     + OData query option `$apply`
