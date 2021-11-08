@@ -7,12 +7,78 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 2.4.0 - 2021-11-02
+
+### Added
+- Added parameter `subscriptionData` to `TenantPersistenceService.deleteTenant` so that
+custom handlers get more information about the tenant that is deleted. Can be `{}`
+if there was a failed deletion attempt before that already removed the metadata.
+- Database deployment is now internally called via cds service `TenantPersistenceService` that
+  applications can add handlers for
+  ```
+  @protocol:'rest'
+  service TenantPersistenceService {
+      type JSON {
+          // any json
+      }
+      ...
+      action deployToDb(sourceDir: String, instanceData: JSON, deploymentOptions: JSON, additionalServices: JSON);
+  }
+  ```
+  Please note that this API is not meant to be called by applications but has been
+  introduced to allow applications to create handlers for custom logic to be executed
+  with the database deployment.
+- You can now diagnose deployed tables using `mtx/v1/diagnose/tables/<tenantId>`.
+
+### Changed
+- Parallel tenant upgrades have been optimized so that build results for non-extended tenants are shared and the number of database interactions is reduced.
+- An `EventTypeMissingError` is now thrown when the `eventType` parameter is missing at tenant creation.
+
+### Fixed
+- APIs `mtx.getEdmx(tenantId, service, language, odataVersion)` and the endpoint
+`/mtx/v1/metadata/edmx/<tenant-id>?name=<service>&language=<lang>&odataVersion=<version>`
+now reuse the preuild edmx if `odataVersion` equals configured version (`cds.odata.version`)
+- Job list returned by diagnose API now contains correct results
+- Offboarding via CDS transactions is now working without an explicit `where` clause, i.e. you can simplify
+  ```js
+  await transaction.delete('tenant', tenantId).where({ subscribedTenantId: tenantId })
+  ```
+  into 
+  ```js
+  await transaction.delete('tenant', tenantId)
+  ```
+
+## Version 2.3.4 - 2021-10-18
+
+### Fixed
+- Fixed full build logs not being part of the jobs logs.
+
+## Version 2.3.3 - 2021-10-14
+
+### Fixed
+- Job status reports for asynchronous tenant base model updates now contain the correct build and deployment logs.
+- With HANA build task configurations having subfolders, e. g. `sap/db` instead of `db`,
+native HANA artifacts and csv files are now deployed correctly.
+- API `mtx/v1/model/content` now also works with tenant from url as specified
+- Update of tenant metadata containers on HANA Cloud no longer fails
+
+## Version 2.3.2 - 2021-10-06
+
+### Added
+- Additional user-provided services are now accessible for the deployment
+
+### Fixed
+
+- The `mtx/v1/diagnose/jobs` API will now correctly deliver job information about jobs in memory.
+- Compatibility with cds < @sap/cds@5.5.0 when running onboarding, upgrade or extend on java projects
+has been fixed.
+
 ## Version 2.3.1 - 2021-09-30
 
 ### Fixed
 - Configuration `mtx.jobs.parallelUpgradeLimit` is now correctly limiting the number
 of parallel tenant upgrades.
- 
+
 ## Version 2.3.0 - 2021-09-27
 
 
@@ -42,6 +108,7 @@ operation (extend, upgrade).
 for the build. API `mtx.getEdmx(tenantId, service, language, odataVersion)` and the endpoint
 `/mtx/v1/metadata/edmx/<tenant-id>?name=<service>&language=<lang>&odataVersion=<version>` now supports a parameter `odataVersion`.
 Please note that the output is compiled on-the-fly if `odataVersion` is specified which has potential impact on the performance.
+You will also have to run a tenant upgrade for existing tenants (`/mtx/v1/model/upgrade`) to get a correct result.
 - Extensions can now be reset via API `/mtx/v1/model/reset` and `/mtx/v1/model/asyncReset`.
 - The job removal timeout is now configurable using `cds.mtx.jobs.removalTimeout`.
 - `mtx.jobs.maxParallelExecutions` can now be used to parallelize asynchronous jobs. The default is `2`.

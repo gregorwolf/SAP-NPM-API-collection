@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.7.14 - 2021-11-03
+
+### Fixed
+
+- Decode url key values before conversion
+
 ## Version 1.7.13 - 2021-10-18
 
 ### Fixed
