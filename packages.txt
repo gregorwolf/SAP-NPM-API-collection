@@ -1,3 +1,6 @@
-@sap/cds
-@sap/cloud-sdk-op-vdm-material-document-service
-@sap/cloud-sdk-vdm-controlling-debit-credit-code-service
+@sap/cds-mtx
+@sap/cds-odata-v2-adapter-proxy
+@sap/cloud-sdk-op-vdm-business-event-queue-service
+@sap/cloud-sdk-op-vdm-planning-category-service
+@sap/open.fe
+@sap/xssec

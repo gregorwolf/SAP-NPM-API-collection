@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.2.10 - 2021-11-02
+- fix correlationID header names to "x-vcap-request-id" or "x-correlationid"
+
 ## 3.2.9 - 2021-10-22
 - custom domain support for IAS
 - support for "x-correlation-id" header to be set for createSecurityContext and tokenexchange-calls

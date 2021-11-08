@@ -41,8 +41,8 @@
     "@sap/cds-hana": "1.25.2",
     "@sap/cds-lsp": "5.3.0",
     "@sap/cds-messaging": "1.8.3",
-    "@sap/cds-mtx": "2.3.4",
-    "@sap/cds-odata-v2-adapter-proxy": "1.7.13",
+    "@sap/cds-mtx": "2.4.0",
+    "@sap/cds-odata-v2-adapter-proxy": "1.7.14",
     "@sap/cds-ql": "1.21.2",
     "@sap/cds-reflect": "2.13.5",
     "@sap/cds-rest": "1.6.3",
@@ -73,6 +73,7 @@
     "@sap/cloud-sdk-op-vdm-buffer-profile-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-buffer-sizing-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-business-area-service": "1.27.0",
+    "@sap/cloud-sdk-op-vdm-business-event-queue-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-business-event-subscription-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-business-partner-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-business-situation-service": "1.27.0",
@@ -153,6 +154,7 @@
     "@sap/cloud-sdk-op-vdm-physical-inventory-doc-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-planned-independent-requirement-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-planned-orders-service": "1.27.0",
+    "@sap/cloud-sdk-op-vdm-planning-category-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-process-order-confirmation-v2-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-process-order-v2-service": "1.27.0",
     "@sap/cloud-sdk-op-vdm-product-allocation-object-service": "1.27.0",
@@ -590,7 +592,7 @@
     "@sap/odata-server": "1.8.3",
     "@sap/odata-v4": "1.9.0",
     "@sap/odm": "2.0.0",
-    "@sap/open.fe": "1.94.0",
+    "@sap/open.fe": "1.95.0",
     "@sap/pdms-sdk": "1.0.0",
     "@sap/portal-cf-content-deployer": "4.12.0-20210201101230",
     "@sap/sbf": "6.4.0",
@@ -628,6 +630,6 @@
     "@sap/xsjs-test": "3.2.2",
     "@sap/xsodata": "7.4.4",
     "@sap/xss-secure": "4.0.0",
-    "@sap/xssec": "3.2.9"
+    "@sap/xssec": "3.2.10"
   }
 }
