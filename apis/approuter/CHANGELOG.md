@@ -5,6 +5,53 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.9.2 - 2021-11-09
+
+### Fixed
+- Backend invalid cookies handling
+- Add checking for missing xsappConfig file along with xs-app.json on configuration load
+- Support compression of response content with multipart/mixed content type
+
+### Updated dependencies
+- deps: cf-nodejs-logging-support@6.11.0
+- deps: validator@13.7.0
+
+## 10.9.1 - 2021-10-28
+
+### Fixed
+- Missing HTML5 repo token in cache failure 
+
+## 10.9.0 - 2021-10-24
+
+### Added
+- Additional cookie logs
+- Support client certificate authentication (format p12)
+- Change log level to info for backend logs 
+- IAS token support in service to approuter flow
+
+### Updated dependencies
+- deps: sap/xssec@3.2.8
+
+## 10.8.2 - 2021-10-11
+
+### Fixed
+- Remove clientsecret validation for mtls
+
+## 10.8.1 - 2021-10-07
+
+### Added
+- New audit log SDK support
+- Kyma Redis credentials documentation
+
+### Fixed
+- Redis credentials handling in Kyma
+- X509 client secret validation in uua schema 
+
+### Updated dependencies
+- deps: http-proxy-agent@4.0.1
+- deps: https-proxy-agent@5.0.0
+- deps: @sap/audit-logging@5.1.0
+
 ## 10.8.0 - 2021-09-13
 
 ### Added

@@ -8,7 +8,13 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-<a name="6.4.0"></a>
+<a name="6.4.1"></a>
+## 6.4.1 - 2021-11-10
+
+### Added
+- mTls fixes
+
+<a name="6.4.1"></a>
 ## 6.4.0 - 2021-09-26
 
 ### Added

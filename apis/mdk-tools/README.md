@@ -27,20 +27,6 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
     ```
 ## Features
 
-- Builder
-
-    You can build metadata project into js or zip file.
-
-    Target 'js' can build to bundle.js and bundle.js.map, you can use it to update your local run project.   
-    Target 'zip' can build to uploadBundle.zip, you can uploaded it to Mobile Services.
-
-
-    ```bash
-    mdk build --target js
-    mdk build --target js  --project /path/to/Your-MDK-metadata-project 
-    mdk build --target zip --project /path/to/Your-MDK-metadata-project
-    ```
-
 - Deployer
 
     You can deploy MDK metadata project directly to SAP Business Technology Platform (BTP) Cloud Foundry environment.
@@ -58,10 +44,6 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --showqr
         ```
 
-        If your Mobile Services is Preview version, you can add *--preview* option.
-        ```bash
-        mdk deploy --target mobile --name "com.mdk.myapp" --preview
-        ```
     - Deploy to HTML5 repository on Cloud Foundry to run it as web application
 
         It bundles MDK metadata project, builds it to MTA project and deploys to HTML5 repository.

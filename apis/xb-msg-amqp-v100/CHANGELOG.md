@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.54] - 2021-11-04
+
+- fixed: handle null values as message payload
+
 ## [0.9.53] - 2021-09-14
 
 - added: example for mTLS

@@ -42,7 +42,7 @@
   * [Forwarding Headers](#forwarding-headers)
   * [Hop-by-hop Headers](#hop-by-hop-headers)
   * [Custom Headers](#custom-headers)
-  * [Authorization Header](#authorization-header-beta-version)
+  * [Authorization Header](#authorization-header)
 - [CSRF Protection](#csrf-protection)
 - [Support of SAP Statistics](#support-of-sap-statistics)
 - [Connectivity](#connectivity)
@@ -56,7 +56,7 @@
 - [Session Handling](#session-handling)
   * [Session Contents](#session-contents)
 - [External Session Management](#external-session-management)
-- [Service to Application Router](#service-to-application-router-beta-version)
+- [Service to Application Router](#service-to-application-router)
 - [Central Logout](#central-logout)
 - [User API Service](#user-api-service)
 - [Allowlist Service](#whitelist-service)
@@ -303,9 +303,8 @@ URL.headers.`<header-name>` | x | If provided, the application router propagates
 
 <br />**Note:** 
 * In case destination with the same name is defined both in environment destination and destination service, the destination configuration will load from the environment.
-* Destination service available only in Cloud Foundry.
 * Destinations on destination service instance level are supported.
-
+* Only destination client certificates of type p12 are supported.
 
 ### UAA configuration
 
@@ -1296,6 +1295,7 @@ Property | Type | Optional | Description
 -------- | ---- |:--------:| -----------
 minSize | Number | x | Text resources larger than this size will be compressed.
 enabled | Boolean | x | Globally disables or enables compression. Default value is true.
+compressResponseMixedTypeContent | Boolean | x | Determines whether response content of multipart/mixed content type should be compressed. The default value is false.
 
 **Note:** There are 3 ways to disable compression:
 * Global - within the compression section add ```"enabled": false```
@@ -1312,6 +1312,17 @@ Example of globally disabling compression using the environment variable `COMPRE
 **Note:** The header field `Content-Length` is used to determine the resource size.
 If `Content-Length` is missing, the chunk size is used to determine whether to compress the resource.
 For more information, see the npm module compression.
+
+Here is a complete example of the compression environment variable:
+```json
+  env:
+   COMPRESSION: >
+        { 
+	  "enabled": true,
+	  "minSize": 2048,
+	  "compressResponseMixedTypeContent": true
+	  }
+```
 
 ### *pluginMetadataEndpoint* property
 
@@ -1529,7 +1540,7 @@ In a multi-tenancy landscape, the application router will calculate the tenant i
  - x-forwarded-host header or host if EXTERNAL_REVERSE_PROXY is false or not specified
 
 ### Authorization Header
-* x-approuter-authorization: Contains the JWT token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
+* x-approuter-authorization: Contains the JWT or OIDC token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
 
 ## CSRF Protection
 
@@ -1993,12 +2004,12 @@ For information about the configuration of a custom storage driver, see [Configu
 
 ## Service to Application Router
 
-The application router can receive a consumer service xsuaa JWT token and use it to access the UI and the data. The JWT token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
+The application router can receive a consumer service xsuaa JWT or IAS OIDC token and use it to access the UI and the data. The token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
 
 Cookie Handling:
 In this flow client cookies are merged to backend cookies in case a backend cookie with the same key does not exist.
 
-**Note**: The xsuaa JWT token is generated with the same xsuaa service instance that is bound to the application router. 
+**Note**: The xsuaa JWT or IAS OIDC token is generated with the same xsuaa service or identity instance that is bound to the application router. 
 
 
 ## Central Logout

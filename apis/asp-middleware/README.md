@@ -3,10 +3,16 @@
 
 <!-- toc -->
 
-- [Overview](#overview)
-- [Usage](#usage)
-- [Supported Approuter versions](#supported-approuter-versions)
-- [Getting Support](#getting-support)
+- [@sap/asp-middleware](#sapasp-middleware)
+	- [Overview](#overview)
+	- [Usage](#usage)
+		- [Approuter Middleware](#approuter-middleware)
+		- [ABAP Solution Runtime Client](#abap-solution-runtime-client)
+			- [Get Tenant](#get-tenant)
+		- [Configuration](#configuration)
+			- [Custom User Onboarding Path](#custom-user-onboarding-path)
+	- [Supported Approuter versions](#supported-approuter-versions)
+	- [Getting Support](#getting-support)
 
 <!-- tocstop -->
 
