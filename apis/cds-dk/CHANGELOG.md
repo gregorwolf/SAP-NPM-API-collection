@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.6.2 - 2021-11-09
+
+### Fixed
+
+- `cds add lint` now correctly detects missing local `eslint`
+- `cds add lint` no longer removes parts of `package.json`
+- `cds add lint` no longer creates duplicate configuration entries
+
+## Version 4.6.1 - 2021-11-08
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.20.0` for creating Java projects.
+- `cds watch` now resolves local node modules like `hdb` even though `@sap/cds` is not installed locally.  This is useful during development where `@sap/cds` shall only be installed in a 'central' location, while extra modules shall still be found in the app's dir.
+
+### Fixed
+
+- `cds repl` now finds modules like `hdb` that are installed locally in the app folder
+- `cds repl` now enables the `await` statement also on Windows
+- `cds lint` now limits all file extensions to those allowed by the @sap/eslint-plugin-cds ESLint configuration
+
 ## Version 4.6.0 - 2021-11-02
 ### Added
 

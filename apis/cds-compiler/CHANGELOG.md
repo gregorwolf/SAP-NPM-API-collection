@@ -7,6 +7,16 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.10.4 - 2021-11-05
+
+### Fixed
+
+- to.sql/hdi/hdbcds:
+  + Correctly complain about `exists` in conjunction with non-associations/compositions
+  + Don't resolve types in action returns, as this causes issues with $self-resolution
+
+- to.edm(x): Be robust against transitively untyped keys in stacked view hierarchies
+
 ## Version 2.10.2 - 2021-10-29
 
 ### Fixed
@@ -38,13 +48,9 @@ The compiler behavior concerning `beta` features can change at any time without 
   + `exists` can now be followed by more than one association step.
   `exists assoc.anotherassoc.moreassoc` is semantically equivalent to `exists assoc[exists anotherassoc[exists moreassoc]]`
 
-### Removed
-
 ### Changed
 
-- to.odata: Inform when overwriting draft action annotations like @Common.DraftRoot.ActivationAction.
-
-### Fixed
+- to.odata: Inform when overwriting draft action annotations like `@Common.DraftRoot.ActivationAction`.
 
 ## Version 2.9.0 - 2021-10-15
 

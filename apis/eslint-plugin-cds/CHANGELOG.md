@@ -68,6 +68,45 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Added preprocessor to avoid (other plugins) parsing errors on cds files
 
+## [2.2.2] - 2021-11-08
+
+## Added
+
+- Added new rule 'no-join-on-draft-enabled-entities'
+
+## Changed
+
+- Compile 'model' files based on CSN flavor 'inferred'
+- Compile 'outsider' files based on CSN flavor 'parsed'
+
+## [2.2.1] - 2021-11-01
+
+## Changed
+
+- Optimized model loading and fixed bug in loading of 'outsider' files
+
+## [2.2.0] - 2021-10-29
+
+## Added
+
+- Added typings to javascript for all exposed apis
+
+## Changed
+
+- Aligned rule creation and tester api with ESLint
+
+## [2.1.2] - 2021-10-05
+
+## Changed
+
+- Allow not only *.js but also other file types (i.e. *.ts, etc) to bypass plugin rules
+
+## [2.1.1] - 2021-10-04
+
+## Changed
+
+- Added preprocessor to avoid (other plugins) parsing errors on cds files
+
 ## [2.1.0] - 2021-09-23
 
 ## Changed

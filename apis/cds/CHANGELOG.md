@@ -4,6 +4,19 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.6.2 - 2021-11-08
+
+### Fixed
+
+- Handle arrayed elements using templating mechanism
+- OData requests to `$count` endpoint of ETag enabled entity
+- `cds.test` does no longer crash if executed in `cds repl` on a remote service call
+- Crash on draft activate after draft edit for not existing composition of one
+- Ensure request correlation (with default server)
+- `<entity>.texts` points to real text entity
+- Draft union with expand to to-one and to-many
+- No columns in draft lock statement (i.e., use `SELECT 1`)
+
 ## Version 5.6.1 - 2021-11-02
 
 ### Fixed

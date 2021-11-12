@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.4.1 - 2021-11-09
+
+### Fixed
+- Additional HDI_DEPLOY_OPTIONS do no longer affect the stability
+of the meta tenant creation
+- Reduction of redundant file system operations to improve stability of 
+tenant upgrade
 
 ## Version 2.4.0 - 2021-11-02
 
