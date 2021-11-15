@@ -1,12 +1,12 @@
-# @sap/cloud-sdk-vdm-product-allocation-sequence-service
+# @sap/cloud-sdk-vdm-complementary-table-data-maintenance-service
 
-This package contains the OData VDM for the Product Allocation Sequence Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Complementary Table Data Maintenance Service of SAP S/4HANA Cloud.
 
 ## Usage Example
 ```
-import { ProdAllocSequenceT } from '@sap/cloud-sdk-vdm-product-allocation-sequence-service';
+import { Cfe } from '@sap/cloud-sdk-vdm-complementary-table-data-maintenance-service';
 
-const resultPromise = ProdAllocSequenceT.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const resultPromise = Cfe.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

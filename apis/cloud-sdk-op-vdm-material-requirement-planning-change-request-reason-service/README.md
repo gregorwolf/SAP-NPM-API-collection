@@ -1,12 +1,12 @@
-# @sap/cloud-sdk-vdm-product-allocation-sequence-service
+# @sap/cloud-sdk-op-vdm-material-requirement-planning-change-request-reason-service
 
-This package contains the OData VDM for the Product Allocation Sequence Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Material Requirement Planning Change Request Reason Service.
 
 ## Usage Example
 ```
-import { ProdAllocSequenceT } from '@sap/cloud-sdk-vdm-product-allocation-sequence-service';
+import { MrpChangeRequestReason } from '@sap/cloud-sdk-op-vdm-material-requirement-planning-change-request-reason-service';
 
-const resultPromise = ProdAllocSequenceT.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const resultPromise = MrpChangeRequestReason.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

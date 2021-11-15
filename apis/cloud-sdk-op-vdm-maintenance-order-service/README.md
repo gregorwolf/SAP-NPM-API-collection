@@ -1,12 +1,12 @@
-# @sap/cloud-sdk-vdm-product-allocation-sequence-service
+# @sap/cloud-sdk-op-vdm-maintenance-order-service
 
-This package contains the OData VDM for the Product Allocation Sequence Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Maintenance Order Service.
 
 ## Usage Example
 ```
-import { ProdAllocSequenceT } from '@sap/cloud-sdk-vdm-product-allocation-sequence-service';
+import { MaintenanceOrder } from '@sap/cloud-sdk-op-vdm-maintenance-order-service';
 
-const resultPromise = ProdAllocSequenceT.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const resultPromise = MaintenanceOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

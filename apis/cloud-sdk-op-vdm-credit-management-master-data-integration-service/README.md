@@ -1,12 +1,12 @@
-# @sap/cloud-sdk-vdm-product-allocation-sequence-service
+# @sap/cloud-sdk-op-vdm-credit-management-master-data-integration-service
 
-This package contains the OData VDM for the Product Allocation Sequence Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Credit Management Master Data Integration Service.
 
 ## Usage Example
 ```
-import { ProdAllocSequenceT } from '@sap/cloud-sdk-vdm-product-allocation-sequence-service';
+import { CreditManagementAccount } from '@sap/cloud-sdk-op-vdm-credit-management-master-data-integration-service';
 
-const resultPromise = ProdAllocSequenceT.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const resultPromise = CreditManagementAccount.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

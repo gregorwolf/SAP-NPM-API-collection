@@ -1,12 +1,12 @@
-# @sap/cloud-sdk-vdm-product-allocation-sequence-service
+# @sap/cloud-sdk-op-vdm-mobile-data-for-last-mile-distribution-service
 
-This package contains the OData VDM for the Product Allocation Sequence Service of SAP S/4HANA Cloud.
+This package contains the OData VDM for the Mobile Data For Last Mile Distribution Service.
 
 ## Usage Example
 ```
-import { ProdAllocSequenceT } from '@sap/cloud-sdk-vdm-product-allocation-sequence-service';
+import { Stops } from '@sap/cloud-sdk-op-vdm-mobile-data-for-last-mile-distribution-service';
 
-const resultPromise = ProdAllocSequenceT.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const resultPromise = Stops.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 
