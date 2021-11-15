@@ -13,7 +13,7 @@
 |**Application Title**<br><%= projectTitle %>|
 |**Namespace**<br><%= projectNamespace %>|
 |**UI5 Theme**<br><%= ui5Theme %>|
-|**UI5 Version**<br><% if(projectUI5Version==="") { %><%= "Latest" %> <% }else{%><%= projectUI5Version %><% } %>|
+|**UI5 Version**<br><% if (projectUI5Version==="") { %><%- "Latest" %><% } else { %><%- projectUI5Version %><% } %>|
 |**Enable Code Assist Libraries**<br><% if(enableCodeAssist === true) { %><%= "True" %><% } else { %><%= "False" %><% }%>|
 |**Add Eslint configuration**<br><% if(enableEslint === true) { %><%= "True, see https://www.npmjs.com/package/eslint-plugin-fiori-custom for the eslint rules." %><% } else { %><%= "False" %><% }%>|
 |**Enable Telemetry**<br><% if(enableTelemetry === false) { %><%= "False" %><% } else { %><%= "True" %><% } %>|<% if (additionalEntries) additionalEntries.forEach(entry => { %>

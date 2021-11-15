@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.4.1] - 2021-11-11
+#### Added
+- Generating an Analytical List Page application with an OData V4 data source will now default to a table type of `AnalyticalTable`, and the user will no longer be asked to choose a table type.  The user can change this table type after generation using the Page Editor tool.
+
+#### Changed
+- Fiori generator for application type `SAPUI5 freestyle` now consumes the open source Freestyle templates published [here](https://github.com/SAP/open-ux-tools).
+
+### Fixed
+- Saved SAP systems should not ask the user to re-authenticate when being used with the Fiori generator in VSCode, unless needed.
+
 ## [1.4.0] - 2021-10-28
 #### Added
 - UUA Authentication is now supported during deployment without launching a browser, as long as the relevant authentication parameters are supplied. See the SAP Fiori tools help portal for full details.

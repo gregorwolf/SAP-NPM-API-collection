@@ -4,6 +4,94 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.90.14] - 2021-11-03
+
+### Added
+
+### Changed
+
+- In the JSON schema, the description of DataPoints as part of sections or header facets now reflects the Title of the target annotation.
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+- Code smell solved: "Define a constant instead of duplicating this literal n times."
+
+## [1.90.13] - 2021-10-20
+
+### Added
+
+- OData V2:
+  - Support for (Sub)Section properties: `visible`.
+  - ALP: Schema now comprises of entity properties for config `createWithParameterDialog`->`fields`
+  - OP: Added support for multiple flex changes in Form and Header Actions
+- V2 & V4: Footer actions are now part of the schema. A node for header actions is visible even if there are no actions yet.
+
+### Changed
+
+- OData V2: 
+  - Enhanced sync logic to use generic approach for handling unknown properties. As a result sync logic is more robust and handles more unknown properties.
+
+### Removed
+
+- OData V2:
+  - OVP: Removed `tab` property from `Stack` and `Link List` cards as view switch control is not supported
+
+### Deprecated
+
+### Fixed
+
+- OData V4:
+  - Pages Schema. Exception if path in UI.SelectionFields is not valid.
+  - Object page sections referring to UI.Identification with qualifer shall show actions besides the fields.
+- V2 & V4: 
+  - replace alias of namespace definitions of header actions even for references that are not related to OData vocabularies.
+  - Add `visible` property to DataField types
+- annotationPath definitions of header and footer actions.
+
+### Quality
+
+- Settings for sonarlint have been added.
+- Upgrade of Annotation Vocabularies Tools.
+- Fix of code smells reported by SonarQube.
+
+## [1.90.12] - 2021-10-18
+
+### Fixed
+
+For some V4 apps, the export of property changes failed due to invalid schema definitions.
+
+## [1.90.11] - 2021-10-06
+
+### Added
+
+- Annotation path com.sap.vocabularies.UI.v1.HeaderInfo added to ObjectPageHeader in V2 and V4.
+- Added `i18nClassification` for `title`, `description` properties for `App.json` schema in V2 and V4.
+- OData V4: Header actions are now part of the Object Page schema.
+- OData V2:
+  - OVP: Added support for property `annotationPath` in Linklist card settings.
+  - OVP: property `requireAppAuthorization` is now supported for all card types.
+
+### Changed
+
+- README file updated.
+- Order and naming of view nodes for the V2 Object Page adapted.
+- Pattern for binding changes in V2: there are now two different patterns for List Report and Object Page; the one for the Object Page  provides the additional enum values  "{ui>/editable}" and "{= !${ui>/editable}}"
+
+### Fixed
+
+- V4: if one section comprises a field group without qualifier, and one referred to UI.Identification, the properties of the field group had been displayed for Identification section of header facet as well.
+
+### Quality
+
+- Fix of vulnerabilities by upgrade of npm modules.
+- Fix of bugs nd code smells reported by SonarQube.
+
 ## [1.90.10] - 2021-09-22
 
 ### Added
