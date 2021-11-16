@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.56] - 2021-11-15
+
+- fixed: late connection container close
+
+## [0.9.55] - 2021-11-15
+
+- fixed: oauth via params
+
 ## [0.9.54] - 2021-11-04
 
 - fixed: handle null values as message payload

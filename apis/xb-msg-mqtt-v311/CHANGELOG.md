@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.16] - 2021-11-15
+
+- fixed: oauth with mTLS
+- fixed: cleanup assert handler in examples
+- fixed: stream ready after client connected
+
+## [0.9.15] - 2021-10-28
+
+- added: oauth2, try legacy mode as fallback
+- updated dev dependencies
+
 ## [0.9.13] - 2020-06-25
 
 - added: license file for new delivery channel

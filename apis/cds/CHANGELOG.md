@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.6.3 - 2021-11-15
+
+### Fixed
+
+- `cds run` does not fail if `cds.requires.multitenancy` is explicitly set to `false`
+- Calculation of `DraftIsCreatedByMe` or `DraftIsProcessedByMe` when expanding or navigating to `DraftAdministrativeData`
+- Nested `any` in `$filter` query option
+- Crash on draft activate after draft edit for not existing composition of one, if no explicit DB service is defined
+- Typescript definition of `srv.delete` no longer leads to a duplication error
+
 ## Version 5.6.2 - 2021-11-08
 
 ### Fixed

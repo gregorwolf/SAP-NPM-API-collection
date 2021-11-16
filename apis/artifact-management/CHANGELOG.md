@@ -1,3 +1,16 @@
+## 1.1.2 - 16 November, 2021
+### Fixed
+* Fixed deploy issue with respect to launchpad.
+
+## 1.1.1 - 15 November, 2021
+### Changed
+* Changed the title of landing page after deployment from `Project Preview` to `Application Overview`.
+
+### Fixed
+* Fixed Fiori application deployement issue by adding @ui5/cli dependency for HTML5 module in mta.yaml.
+* Handled scenarios where CDS returns empty folders map.
+* Fixed import issues in artifact-management-types by adding correct references to artifact-management-base-types.
+
 ## 1.1.0 - 25 October, 2021
 ### Added
 * Added new api `getManifest` and corresponding CLI command `show-manifest` to get contents of mta.yaml.
