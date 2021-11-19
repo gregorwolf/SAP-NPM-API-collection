@@ -218,6 +218,7 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
   - **messageTargetDefault**: Specifies the message target default, if target is undefined. Default is `/#TRANSIENT#`.
   - **caseInsensitive**: Transforms search functions e.g. substringof to case insensitive variant. Default is `false`.
   - **propagateMessageToDetails**: Propagates root error or message always to details section. Default is `false`.
+  - **contentDisposition**: Default content disposition for media streams (inline, attachment). Default is `attachment`.
 
 All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
 under section `cds.cov2ap` and accessed via `cds.env.cov2ap`.
@@ -242,6 +243,7 @@ The following CDS OData V2 Adapter Proxy specific annotations are supported:
 **Entity Element Level**:
 
 - `@Core.ContentDisposition.Filename: <element>`: Specifies entity element, representing the filename during file upload/download.
+- `@Core.ContentDisposition.Type: <value>`: Controls the content disposition behavior in client/browser (`inline` or `attachment`).
 - `@cov2ap.headerDecode`: Array of sequential decoding procedures ('uri', 'uriComponent', 'base64') used for media entity upload header.
 
 ### CDS Modelling

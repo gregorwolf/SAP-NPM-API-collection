@@ -5,12 +5,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.10.0 - 2021-11-18
+
+### Added
+- Propagate correlationId to xssec and UAA requests
+- Support compression of response content with multipart/mixed content type
+
+### Fixed
+- Subscriber destination consumption in public flows
+- Samesite attribute in callback login response header
+- Support destination trust certificate propagation (format pem)
+
+### Updated dependencies
+- deps: sap/xssec@3.2.10
+
 ## 10.9.2 - 2021-11-09
 
 ### Fixed
 - Backend invalid cookies handling
 - Add checking for missing xsappConfig file along with xs-app.json on configuration load
-- Support compression of response content with multipart/mixed content type
+
 
 ### Updated dependencies
 - deps: cf-nodejs-logging-support@6.11.0

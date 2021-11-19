@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.6.3 - 2021-11-16
+
+### Fixed
+
+- `cds watch` recovers again from compilation errors and properly prints these
+- `cds import` fix for omitting empty `doc` components.
+- `cds add lint` no longer duplicates initial contents in `package.json`
+- `cds add data` no longer ignores imported services for which credentials are stored in the project
+
 ## Version 4.6.2 - 2021-11-09
 
 ### Fixed

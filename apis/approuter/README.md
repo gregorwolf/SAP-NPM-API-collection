@@ -305,6 +305,7 @@ URL.headers.`<header-name>` | x | If provided, the application router propagates
 * In case destination with the same name is defined both in environment destination and destination service, the destination configuration will load from the environment.
 * Destinations on destination service instance level are supported.
 * Only destination client certificates of type p12 are supported.
+* Only destination trust certificates of the type privacy-enhanced mail (PEM) are supported.
 
 ### UAA configuration
 
