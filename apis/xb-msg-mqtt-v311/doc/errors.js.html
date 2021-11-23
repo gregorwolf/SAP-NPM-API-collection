@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: errors.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: errors.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+const util = require('util');
+const constants = require('./serialize/constants');
+const component = constants.RUNTIME.LIBRARY + ' ' + constants.RUNTIME.VERSION;
+
+const EC = Object.freeze({
+
+    DECODE_FRAME_SIZE_MISMATCH   : '[101] decoder, expected frame size of %s bytes, but found %s bytes',
+    DECODE_REM_LEN_INVALID       : '[102] decoder, more than 4 bytes used for remaining length of packet',
+    DECODE_REM_LEN_EXCEEDS       : '[103] decoder, remaining length of %s bytes exceeds limit of %s bytes',
+    DECODE_INV_WILL_QOS          : '[104] decoder, invalid will qos value received',
+    DECODE_INV_QOS               : '[105] decoder, invalid qos',
+    DECODE_INV_PACKET_TYPE       : '[106] decoder, invalid control packet type %s',
+    DECODE_CHUNK_UNDERFLOW       : '[107] decoder, chunk reader needs more bytes to continue',
+    DECODE_PACKET_UNEXPECTED     : '[108] protocol, unexpected control packet received, type %s',
+    DECODE_PACKET_ID_UNEXPECTED  : '[109] protocol, internal, failed to lookup packet by packetID %s',
+
+    ENCODE_INTERNAL_ERROR        : '[151] encoder, internal error',
+    ENCODE_FILTER_LIST_EMPTY     : '[152] encoder, empty topic filter list must not be seralialized',
+    ENCODE_INV_SUBSCRIBE_RESULT  : '[153] encoder, invalid subscription result codes',
+    ENCODE_NO_SUBSCRIBE_RESULT   : '[154] encoder, empty subscription result code list',
+    ENCODE_INV_PAYLOAD_TYPE      : '[163] encoder, payload type "%s" not supported, use null, Buffer, Array of Buffer or single instance of Payload (-like class)',
+
+    OPT_INV_TYPE                 : '[201] application error, invalid arguments for "%s", expected type "%s"',
+    OPT_INV_DATA                 : '[202] application error, invalid arguments for "%s"',
+    OPT_INV_DATA_EXPECT          : '[203] application error, invalid arguments for "%s", expected "%s"',
+    OPT_INV_URI                  : '[204] application error: invalid arguments for uri schema "%s"',
+    OPT_INV_WILL_PAYLOAD         : '[205] application error, invalid payload type for last will message, expects null, Buffer or Payload',
+    OPT_NOT_SUPPORTED            : '[206] application error, option "%s" not supported by current client version',
+
+    WS_UPGRADE_REQUEST_ABORTED   : '[251] web socket error, upgrade request aborted by broker',
+    WS_UPGRADE_REQUEST_FAILED    : '[252] web socket error, upgrade request failed, code %d %s',
+    WS_UPGRADE_ACCEPT_MISMATCH   : '[253] web socket error, upgrade request sec-websocket-accept does not match sec-websocket-key',
+    WS_UPGRADE_HEADER_MISSING    : '[254] web socket error, upgrade request invalid, field "%s" missing',
+    WS_MASK_NOT_EXPECTED         : '[255] web socket error, mask not expected at inbound datagram',
+    WS_INV_PAYLOAD_LENGTH        : '[256] web socket error, length "%s" not supported, exeeds node js max-safe-integer',
+    WS_CODE_TEXT_NOT_EXPECTED    : '[257] web socket error, text message not expected for sub-protocol amqp',
+    WS_CLOSE_ERROR               : '[258] web socket closed with code %s %s',
+
+    OAUTH_NO_ACCESS_TOKEN        : '[301] oauth error, no access token received from endpoint',
+    OAUTH_RESPONSE_ERROR         : '[302] oauth response error: %s',
+    OAUTH_REQUEST_FAILED         : '[303] oauth request failed, code %s data %s',
+
+    CLIENT_MISS_DEST             : '[401] connection error, missing connection data, provide client options either for tls, net, wss or ws',
+    CLIENT_STATE_ERROR           : '[402] client state error on %s, already in state "%s"',
+    CLIENT_CONNECT_RETRY         : '[403] retry connect using alternative destination %d',
+    CLIENT_CONNECT_REFUSED       : '[404] connect failed, service not available (ECONNREFUSED)',
+    CLIENT_CONNECT_TIMEOUT       : '[405] connect failed, no response received (ETIMEDOUT)',
+    CLIENT_CONNECT_FAILURE       : '[406] connect failed, connection closed unexpectedly',
+
+    CONNACK_FAILED_VERSION       : '[420] connect failed, broker does not support protocol version',
+    CONNACK_FAILED_CLIENT_ID     : '[421] connect failed, client ID not accepted',
+    CONNACK_FAILED_SERVICE       : '[422] connect failed, service not available',
+    CONNACK_FAILED_CREDENTIALS   : '[423] connect failed, invalid user name or password',
+    CONNACK_FAILED_AUTH          : '[424] connect failed, client not authorized',
+    CONNACK_FAILED_RETURN_CODE   : '[425] connect failed, unknown return code %d',
+
+    CLEANUP_SESSION_FAILED       : '[430] session state present after %d reconnect(s) with clean session flag',
+
+    SERVER_INV_CONN_DATA         : '[451] server error, invalid connection data, define either "tls", "net", "wss" or "ws"',
+    SERVER_INV_CONN_TYPE         : '[452] server error, invalid connection type "%s", use either "tls", "net", "wss" or "ws"',
+
+    PUBLISH_INV_TOPIC_TYPE       : '[501] invalid topic type "%s" to publish, "string" expected',
+    PUBLISH_INV_TOPIC_CHAR       : '[502] invalid topic to publish, contains invalid characters',
+    PUBLISH_INV_QOS              : '[503] invalid qos to publish "%s"',
+    SUBSCRIBE_INV_QOS            : '[504] invalid qos to subscribe "%s"',
+    SUBSCRIBE_INV_FILTER         : '[505] invalid topic filter',
+    SUBSCRIBE_INV_FILTER_TYPE    : '[506] invalid topic filter type, provide single string, array or set of strings',
+    SUBSCRIBE_FILTER_INITIAL     : '[507] initial string as topic filter',
+    SUBSCRIBE_FILTER_SYNTAX      : '[508] syntax error in topic filter after "%s" in "%s"',
+    SUBSCRIBE_RECEIVE_CALLBACK   : '[509] function expected as receive callback instead of "%s"',
+
+    MSG_DISCARD_ON_DISCONNECT    : '[601] outgoing message discarded after application forced client to disconnect',
+    MSG_DONE_NOT_EXPECTED        : '[602] done for received message not expected anymore',
+    MSG_ISTREAM_UNKNOWN_ERROR    : '[603] istream "%s" with unknown application error',
+
+    UNIFIED_ISTREAM_INV_OPT      : '[701] invalid unified istream options for "%s"',
+    UNIFIED_ISTREAM_INV_ID       : '[702] invalid unified istream id "%s"',
+    UNIFIED_OSTREAM_INV_OPT      : '[703] invalid unified ostream options for "%s"',
+    UNIFIED_OSTREAM_INV_ID       : '[704] invalid unified ostream id "%s"'
+
+});
+
+/**
+ * @param {string} code
+ * @param {...*} params
+ * @return {Error}
+ * @private
+ */
+function ErrMsg(code, ...params) {
+    return new Error(util.format(component + ' ' + code, ...params));
+}
+
+/**
+ * @param values
+ * @return {string}
+ */
+function ErrOpt(...values) {
+    return '[ ' + values.join(' | ') + ' ]';
+}
+
+/**
+ * @param {Error} error
+ * @param {NotifyOfFailed=} callback
+ * @param {EventEmitter=} emitter
+ * @private
+ */
+function Raise(error, callback, emitter) {
+    if (typeof callback === 'function')
+        callback(error);
+    else if (emitter)
+        emitter.emit('error', error);
+}
+
+module.exports = {
+    EC : EC,
+    ErrMsg : ErrMsg,
+    ErrOpt : ErrOpt,
+    Raise : Raise
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li><li><a href="IStream.html">IStream</a></li><li><a href="OStream.html">OStream</a></li><li><a href="Payload.html">Payload</a></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:assert">assert</a></li><li><a href="Client.html#event:authenticated">authenticated</a></li><li><a href="Client.html#event:connected">connected</a></li><li><a href="Client.html#event:disconnected">disconnected</a></li><li><a href="Client.html#event:drain">drain</a></li><li><a href="Client.html#event:error">error</a></li><li><a href="Client.html#event:idle">idle</a></li><li><a href="Client.html#event:ping">ping</a></li><li><a href="Client.html#event:reconnecting">reconnecting</a></li><li><a href="IStream.html#event:subscribed">subscribed</a></li><li><a href="OStream.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:abort">abort</a></li><li><a href="TcpConnection.html#event:assert">assert</a></li><li><a href="TcpConnection.html#event:close">close</a></li><li><a href="TcpConnection.html#event:error">error</a></li><li><a href="TcpConnection.html#event:final">final</a></li><li><a href="TcpConnection.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:valid">valid</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CLIENT_DEFAULT_OPTIONS">CLIENT_DEFAULT_OPTIONS</a></li><li><a href="global.html#CLIENT_MINIMUM_OPTIONS">CLIENT_MINIMUM_OPTIONS</a></li><li><a href="global.html#ErrOpt">ErrOpt</a></li><li><a href="global.html#mapStreamMessageSource">mapStreamMessageSource</a></li><li><a href="global.html#mapStreamMessageTarget">mapStreamMessageTarget</a></li><li><a href="global.html#objectValues">objectValues</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Nov 23 2021 20:08:26 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

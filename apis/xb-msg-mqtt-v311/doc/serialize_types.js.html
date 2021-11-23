@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: serialize/types.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: serialize/types.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/*********************************************************************************************************************/
+/** defined types: base layer ****************************************************************************************/
+/*********************************************************************************************************************/
+
+/**
+ * @typedef {Object} StreamParameters
+ * @property {number} istreamHighWaterFrames - The outbound stream high water mark as number of frames.
+ * @property {number} istreamHighWaterBytes - The outbound stream high water mark in bytes.
+ * @property {number} ostreamHighWaterFrames - The outbound stream high water mark as number of frames.
+ * @property {number} ostreamHighWaterBytes - The outbound stream high water mark in bytes.
+ * @property {number} ostreamChunkRecycleLimit - A number of chunks with default size to keep in recycle buffer.
+ * @property {number} ostreamChunkDefaultSize - A proposal in bytes for chunks sizes in outbound stream.
+ * @property {number} ostreamPayloadCopyLimit - A proposal in bytes to avoid payload copy in outbound stream
+ */
+
+/**
+ * @callback JsStyleCallback
+ * @param {Error=} error
+ */
+
+/**
+ * @callback NotifyOfDone
+ */
+
+/**
+ * @callback NotifyOfFailed
+ * @param {Error} error
+ */
+
+/**
+ * @callback PacketFactory
+ * @param {number} type
+ * @return {!Packet}
+ * @private
+ */
+
+/**
+ * @callback PacketHandler
+ * @param {!Packet} packet
+ * @private
+ */
+
+/**
+ * @typedef {number} PacketID
+ * @private
+ */
+
+/**
+ * @typedef {Object} PacketIdentifiable
+ * @property {?PacketID} packetID
+ * @private
+ */
+
+/*********************************************************************************************************************/
+/** implemented types: base layer ************************************************************************************/
+/*********************************************************************************************************************/
+
+/**
+ * @final
+ */
+class Payload {
+
+    /**
+     * @param {(string|Buffer)=} first - A string will be used as (mime) type attribute, a Buffer as first chunk
+     * @param {...Buffer} chunks - Further chunks given initially
+     */
+    constructor(first, ...chunks) {
+
+        /**
+         * @type {Array&lt;!Buffer>}
+         */
+        this.chunks = typeof first === 'string' ? chunks : Buffer.isBuffer(first) ? [first].concat(chunks) : chunks;
+
+        /**
+         * @type {?string}
+         */
+        this.type = typeof first === 'string' ? first : null;
+
+        // noinspection JSUnusedGlobalSymbols
+        /**
+         * @type {?string}
+         */
+        this.encoding = null;
+
+        // noinspection JSUnusedGlobalSymbols
+        /**
+         * @type {*}
+         */
+        this.data = null;
+
+        // noinspection JSUnusedGlobalSymbols
+        /**
+         * @type {?Object}
+         */
+        this.properties = null;
+
+    }
+
+    /**
+     * @return {number}
+     */
+    size() {
+        let size = 0;
+        for (const chunk of this.chunks)
+            size += chunk.length;
+        return size;
+    }
+
+    // noinspection JSUnusedGlobalSymbols
+    /**
+     * @param {number} maxSize
+     * @param {function(Buffer)} consume
+     */
+    toSlices(maxSize, consume) {
+        for (const chunk of this.chunks) {
+            let offset = 0;
+            let length = chunk.length;
+            while (length) {
+                if (length > maxSize) {
+                    consume(chunk.slice(offset, offset + maxSize));
+                    offset += maxSize;
+                    length -= maxSize;
+                } else {
+                    consume(chunk.slice(offset, offset + length));
+                    length = 0;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param {string=} encoding
+     * @returns {!string}
+     */
+    toString(encoding) {
+        switch (this.chunks.length) {
+            case 0:
+                return '';
+            case 1:
+                return this.chunks[0].toString(encoding);
+            default:
+                return Buffer.concat(this.chunks).toString(encoding);
+        }
+    }
+
+    /**
+     * @returns {!Buffer}
+     */
+    toBuffer() {
+        switch (this.chunks.length) {
+            case 0:
+                return Buffer.alloc(0);
+            case 1:
+                return this.chunks[0];
+            default:
+                return Buffer.concat(this.chunks);
+        }
+    }
+
+}
+
+/**
+ * @interface
+ * @private
+ */
+class Packet {
+
+    /**
+     * @param {number} type
+     */
+    constructor(type) {
+
+        /**
+         * @type {number}
+         */
+        this.type = type;
+
+        /**
+         * @type {number}
+         */
+        this.flags = 0x00;
+    }
+
+    /**
+     * Update flags, calculate variable length
+     * @return {number} variable length
+     * @abstract
+     */
+    serializing() {
+    }
+
+    /**
+     * @param {!Encoder} encoder
+     * @abstract
+     */
+    serialize(encoder) {
+    }
+
+    /**
+     * @param {!Decoder} decoder
+     * @abstract
+     */
+    deserialize(decoder) {
+    }
+
+}
+
+module.exports = {
+    Payload : Payload,
+    Packet : Packet,
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li><li><a href="IStream.html">IStream</a></li><li><a href="OStream.html">OStream</a></li><li><a href="Payload.html">Payload</a></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:assert">assert</a></li><li><a href="Client.html#event:authenticated">authenticated</a></li><li><a href="Client.html#event:connected">connected</a></li><li><a href="Client.html#event:disconnected">disconnected</a></li><li><a href="Client.html#event:drain">drain</a></li><li><a href="Client.html#event:error">error</a></li><li><a href="Client.html#event:idle">idle</a></li><li><a href="Client.html#event:ping">ping</a></li><li><a href="Client.html#event:reconnecting">reconnecting</a></li><li><a href="IStream.html#event:subscribed">subscribed</a></li><li><a href="OStream.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:abort">abort</a></li><li><a href="TcpConnection.html#event:assert">assert</a></li><li><a href="TcpConnection.html#event:close">close</a></li><li><a href="TcpConnection.html#event:error">error</a></li><li><a href="TcpConnection.html#event:final">final</a></li><li><a href="TcpConnection.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:valid">valid</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CLIENT_DEFAULT_OPTIONS">CLIENT_DEFAULT_OPTIONS</a></li><li><a href="global.html#CLIENT_MINIMUM_OPTIONS">CLIENT_MINIMUM_OPTIONS</a></li><li><a href="global.html#ErrOpt">ErrOpt</a></li><li><a href="global.html#mapStreamMessageSource">mapStreamMessageSource</a></li><li><a href="global.html#mapStreamMessageTarget">mapStreamMessageTarget</a></li><li><a href="global.html#objectValues">objectValues</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Nov 23 2021 20:08:26 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

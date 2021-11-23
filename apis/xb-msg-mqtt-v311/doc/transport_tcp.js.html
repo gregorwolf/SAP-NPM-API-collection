@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: transport/tcp.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: transport/tcp.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+const EventEmitter = require('events');
+const tls = require('tls');
+const net = require('net');
+
+const { Writable, Transform } = require('stream');
+const { Encoder } = require('../serialize/encoder');
+const { Decoder } = require('../serialize/decoder');
+
+/**
+ * @typedef {Object} ConnectOptions
+ * @property {ProtocolSettings} mqtt - Protocol specific settings
+ * @property {StreamParameters} tune - Fine tuning
+ * @private
+ */
+
+/**
+ * @callback NotifyOfConnect
+ * @param {!TcpConnection} connection
+ * @private
+ */
+
+/**
+ * @callback NotifyOfTimeout
+ * @param {number} timeout
+ * @return {number}
+ * @private
+ */
+
+/**
+ * @param {*=} result
+ * @return {*}
+ * @private
+ */
+function nop(result) { return result; }
+
+/**
+ * @private
+ */
+class TcpReader extends Transform {
+
+    /**
+     * @param {!StreamParameters} options
+     * @param {!PacketFactory} factory
+     */
+    constructor(options, factory) {
+
+        super({
+            decodeStrings: false,
+            allowHalfOpen: false,
+            highWaterMark: undefined,
+            writableObjectMode: false,
+            writableHighWaterMark: options.istreamHighWaterBytes,  // as of nodeJS 8, fixed in Aug 2017
+            readableObjectMode: true,
+            readableHighWaterMark: options.istreamHighWaterFrames, // as of nodeJS 8, fixed in Aug 2017
+        });
+
+        /**
+         * @type {Decoder}
+         */
+        this.decoder = new Decoder(factory,
+            (frame) => this.push(frame)
+        );
+
+    }
+
+    // noinspection JSUnusedGlobalSymbols
+    /**
+     * @param {!Buffer} chunk
+     * @param {!string} encoding
+     * @param {!function(Error=, Packet=)} callback
+     * @override
+     */
+    _transform(chunk, encoding, callback) {
+        try {
+            this._decode(chunk);
+            callback();
+        } catch (e) {
+            this.decoder.stop();
+            callback(e);
+        }
+    }
+
+    /**
+     * @param {!Buffer} chunk
+     * @abstract
+     */
+    _decode(chunk) {
+        this.decoder.push(chunk);
+    }
+
+}
+
+/**
+ * @private
+ */
+class TcpWriter extends Writable {
+
+    /**
+     * @param {!StreamParameters} options
+     * @param {!Socket} socket
+     */
+    constructor(options, socket) {
+
+        super({
+            highWaterMark: options.ostreamHighWaterFrames,
+            decodeStrings: false,
+            objectMode: true,
+        });
+
+        /**
+         * @type {number}
+         */
+        this.statChunkDefAllocCount = 0;
+
+        /**
+         * @type {number}
+         */
+        this.statChunkBigAllocCount = 0;
+
+        /**
+         * @type {number}
+         */
+        this.statChunkRecycledCount = 0;
+
+        /**
+         * @const {number}
+         * @private
+         */
+        this._chunkDefaultSize = options.ostreamChunkDefaultSize;
+
+        /**
+         * @type {number}
+         * @private
+         */
+        this._bytesInFlightCount = 0;
+
+        /**
+         * @const {number}
+         * @private
+         */
+        this._bytesInFlightLimit = options.ostreamHighWaterBytes;
+
+        /**
+         * @type {boolean}
+         * @private
+         */
+        this._bytesInFlightPause = false;
+
+        /**
+         * @const {number}
+         * @private
+         */
+        this._chunkRecycleLimit = options.ostreamChunkRecycleLimit;
+
+        /**
+         * @type {!Array&lt;!Buffer>}
+         * @private
+         */
+        this._chunkRecycleCache = [];
+
+        /**
+         * @type {boolean}
+         * @private
+         */
+        this._nextTickNotActive = true;
+
+        /**
+         * @type {!Socket}
+         * @private
+         */
+        this._socket = socket;
+
+        /**
+         * @type {!Encoder}
+         */
+        this.encoder = new Encoder(options,
+            (minSize) => this._chunkAllocate(minSize),
+            (useChunk, rawChunk) => this._chunkDispatch(useChunk, rawChunk)
+        );
+
+        socket
+            .on('error', () => socket.destroyed ? this._onSocketClosed() : undefined)
+            .on('close', () => this._onSocketClosed())
+        ;
+
+    }
+
+    // noinspection JSUnusedGlobalSymbols, JSUnusedLocalSymbols
+    /**
+     * @param {!Packet} packet
+     * @param {string} encoding
+     * @param {function(Error=, Buffer=)} callback
+     * @override
+     * @final
+     */
+    _write(packet, encoding, callback) {
+        try {
+            if (this.encoder.push(packet) &amp;&amp; this._nextTickNotActive) {
+                this._nextTickNotActive = false;
+                process.nextTick(() => this._onProcessNextTick());
+            }
+            if (this._bytesInFlightCount > this._bytesInFlightLimit) {
+                this._bytesInFlightPause = true;
+            }
+            if (this._bytesInFlightPause) {
+                this.once('continue', callback);
+                return;
+            }
+            callback();
+        } catch (e) {
+            this.encoder.stop();
+            callback(e);
+        }
+    }
+
+    /**
+     * @private
+     */
+    _onSocketClosed() {
+        this.write = () => nop(false);
+        this.encoder.stop();
+        this._socket.write = () => nop(false);
+        this._onProcessNextTick = nop;
+    }
+
+    /**
+     * @private
+     */
+    _onProcessNextTick() {
+        try {
+            this._nextTickNotActive = true;
+            this.encoder.flush();
+        } catch (e) {
+            this.encoder.stop();
+            this.emit('error', e);
+        }
+    }
+
+    /**
+     * @param {number} minSize
+     * @return {!Buffer}
+     */
+    _chunkAllocate(minSize) {
+        if (minSize &amp;&amp; minSize > this._chunkDefaultSize) {
+            ++this.statChunkBigAllocCount;
+            return Buffer.allocUnsafe(minSize);
+        } else if (this._chunkRecycleCache.length === 0) {
+            ++this.statChunkDefAllocCount;
+            return Buffer.allocUnsafe(this._chunkDefaultSize);
+        } else {
+            ++this.statChunkRecycledCount;
+            return this._chunkRecycleCache.pop();
+        }
+    }
+
+    /**
+     * @param {!Buffer} useChunk
+     * @param {?Buffer} rawChunk
+     */
+    _chunkDispatch(useChunk, rawChunk) {
+        this._bytesInFlightCount += useChunk.length;
+        try {
+            this._socket.write(useChunk, (error) => this._chunkReleased(error, useChunk, rawChunk));
+        } catch(e) {
+            this._onSocketClosed();
+        }
+    }
+
+    /**
+     * @param {!Error} error
+     * @param {!Buffer} useChunk
+     * @param {Buffer} rawChunk
+     * @private
+     */
+    _chunkReleased(error, useChunk, rawChunk) {
+        if (error) {
+            this._onSocketClosed();
+            return;
+        }
+        if (rawChunk &amp;&amp; rawChunk.length === this._chunkDefaultSize &amp;&amp; this._chunkRecycleCache.length &lt; this._chunkRecycleLimit) {
+            this._chunkRecycleCache.push(rawChunk);
+        }
+        this._bytesInFlightCount -= useChunk.length;
+        if (this._bytesInFlightPause &amp;&amp; this._bytesInFlightCount &lt; this._bytesInFlightLimit) {
+            this._bytesInFlightPause = false;
+            this.emit('continue');
+        }
+    }
+
+}
+
+/**
+ * @private
+ */
+class TcpConnection extends EventEmitter {
+
+    /**
+     * Closed before authenticated.
+     * @event TcpConnection#abort
+     * @param {boolean} hadError
+     */
+
+    /**
+     * Authenticated successfully.
+     * @event TcpConnection#valid
+     */
+
+    /**
+     * Ready for use by protocol layer.
+     * @event TcpConnection#ready
+     */
+
+    /**
+     * Error occurred.
+     * @event TcpConnection#error
+     * @param {Error} error
+     */
+
+    /**
+     * Inbound error requires to close, last chance to end with error frame instead of direct close.
+     * @event TcpConnection#assert
+     * @param {Error} error
+     */
+
+    /**
+     * Ending without immediate close, last chance to set an individual close timer.
+     * @event TcpConnection#final
+     * @param {boolean} hadAssert
+     * @param {number} closeTimeout
+     */
+
+    /**
+     * Closed finally.
+     * @event TcpConnection#close
+     * @param {boolean} hadError
+     */
+
+    /**
+     * @param {!ConnectOptions} options
+     * @param {!Socket} socket
+     * @param {!TcpReader} reader
+     * @param {!TcpWriter} writer
+     */
+    constructor(options, socket, reader, writer) {
+        super();
+
+        /**
+         * @type {ConnectOptions}
+         */
+        this.options = options;
+
+        /**
+         * @type {number}
+         */
+        this.statConnectedSince = Date.now();
+
+        /**
+         * @type {number}
+         */
+        this.statPingRequests = 0;
+
+        /**
+         * @type {number}
+         */
+        this.statPingResponses = 0;
+
+        /**
+         * @type {number}
+         */
+        this.statInboundDrains = 0;
+
+        /**
+         * @type {number}
+         */
+        this.statOutboundDrains = 0;
+
+        /**
+         * @type {number}
+         */
+        this.statPacketIDDrains = 0;
+
+        /**
+         * @type {boolean}
+         * @private
+         */
+        this._valid = false;
+
+        /**
+         * @type {boolean}
+         * @private
+         */
+        this._ready = false;
+
+        /**
+         * @type {number}
+         * @private
+         */
+        this._paused = 0;
+
+        /**
+         * @type {Error}
+         * @private
+         */
+        this._assert = null;
+
+        /**
+         * @type {!Socket}
+         */
+        this._socket = socket;
+
+        /**
+         * @type {!TcpReader}
+         */
+        this.istream = reader;
+
+        /**
+         * @type {!TcpWriter}
+         */
+        this.ostream = writer;
+
+        /* socket settings */
+
+        if (options.tune.socketNoDelay) {
+            socket.setNoDelay(true);
+        }
+
+        socket
+            .on('error', (error) => this.emit('error', error))
+            .on('end', () => socket.destroyed ? undefined : this.close())
+            .on('close', (hadError) => this.emit(this._valid ? 'close' : 'abort', hadError))
+        ;
+
+        /* istream handler */
+
+        this.istream
+            .on('error', (error) => this.assert(error))
+            .on('drain', () => this.statInboundDrains += 1)
+        ;
+
+        /* ostream handler */
+
+        this.ostream
+            .on('error', (error) => this.close(error))
+            .on('drain', () => this.statOutboundDrains += 1)
+        ;
+
+        this._socket.pipe(this.istream);
+    }
+
+    /**
+     * @param {boolean} local
+     * @return {string}
+     */
+    host(local = false) {
+        // noinspection JSUnresolvedVariable
+        return local ? this._socket.localAddress : this._socket.remoteAddress;
+    }
+
+    /**
+     * @param {boolean} local
+     * @return {number}
+     */
+    port(local = false) {
+        // noinspection JSUnresolvedVariable
+        return local ? this._socket.localPort : this._socket.remotePort;
+    }
+
+    /**
+     *
+     */
+    valid() {
+        if (this._valid)
+            return;
+        this._valid = true;
+
+        process.nextTick(() => {
+            if (this._socket.destroyed)
+                return;
+            this.emit('valid');
+        });
+    }
+
+    /**
+     * @param {number} timeout
+     * @param {NotifyOfTimeout} handler
+     */
+    ready(timeout, handler) {
+        if (this._ready)
+            return;
+        this._ready = true;
+
+        if (timeout &amp;&amp; handler) {
+            this._socket.on('timeout', () => this._socket.setTimeout(handler(timeout)));
+            this._socket.setTimeout(timeout);
+        }
+
+        this.istream.cork();
+        process.nextTick(() => {
+            if (this._socket.destroyed)
+                return;
+            this.emit('ready');
+            this.istream.uncork();
+        });
+    }
+
+    /**
+     * @return {boolean}
+     */
+    paused() {
+        return this._paused > 0;
+    }
+
+    /**
+     *
+     */
+    pause() {
+        this._paused += 1;
+        this.istream.cork();
+    }
+
+    /**
+     *
+     */
+    resume() {
+        this._paused -= 1;
+        this.istream.uncork();
+    }
+
+    /**
+     * @param {Error} error
+     */
+    assert(error) {
+        this._assert = error;
+        if (this._valid &amp;&amp; this._socket.end !== nop)
+            this.emit('assert', error);
+        if (this._socket.end !== nop)
+            this.close(error);
+    }
+
+    /**
+     * @param {Packet=} packet
+     */
+    end(packet = null) {
+        try {
+            this._socket.removeAllListeners('timeout');
+            const timeout = this.options.tune.socketEndCloseTimeout;
+            if (timeout > 0) this._socket.setTimeout(timeout, () => this.close());
+
+            this.emit('final', this._assert !== null, timeout);
+            if (packet) this.ostream.encoder.push(packet);
+            this._onBeforeEnd();
+
+            this.ostream.encoder.flush();
+            this.ostream.encoder.stop();
+            this.ostream.end();
+            this._socket.end();
+
+            this._socket.end = nop;
+            this.end = nop;
+            this.pause = nop;
+            this.resume = nop;
+        } catch (e) {
+            this._socket.end = nop;
+            this.end = nop;
+            this.pause = nop;
+            this.resume = nop;
+        }
+    }
+
+    /**
+     * @abstract
+     */
+    _onBeforeEnd() {
+    }
+
+    /**
+     * @param {Error=} error
+     */
+    close(error = null) {
+        try {
+            this.ostream.encoder.stop();
+            this.ostream.end();
+            this._socket.destroy(error);
+
+            this._socket.end = nop;
+            this._socket.destroy = nop;
+            this.end = nop;
+            this.close = nop;
+            this.pause = nop;
+            this.resume = nop;
+        } catch (e) {
+            this._socket.end = nop;
+            this._socket.destroy = nop;
+            this.end = nop;
+            this.close = nop;
+            this.pause = nop;
+            this.resume = nop;
+        }
+    }
+
+    /**
+     * @typedef {Object} TcpConnectionStatistics
+     * @property {Date} connectedSince - The point in time when the connection was established
+     * @property {number} pingRequests -  The amount of ping requests sent to the broker since connected.
+     * @property {number} pingResponses -  The amount of ping responses received from the broker since connected.
+     * @property {number} inboundDrains - The amount of drain events for the inbound stream (after it was throttled).
+     * @property {number} outboundDrains - The amount of drain events for the outbound stream (after it was throttled).
+     * @property {number} outboundDrainsPacketID - The amount of drain events for the packet ID stream (after all packet ID's were in use).
+     * @property {number} inboundBytes - The amount of bytes received.
+     * @property {number} outboundBytes - The amount of bytes sent.
+     * @property {number} inboundFrames - The amount of frames received.
+     * @property {number} outboundFrames - The amount of frames sent.
+     * @property {number} inboundChunks - The amount of chunks received.
+     * @property {number} outboundChunks - The amount of chunks sent.
+     * @property {number} outboundChunksRecycled - The outbound chunk recycle count
+     * @property {number} outboundChunksDefAlloc - The amount of allocated chunks using default chunk size
+     * @property {number} outboundChunksBigAlloc - The amount of allocated chunks above default chunk size
+     * @property {WsConnectionStatistics} ws - The web socket connection statistics (if used)
+     */
+
+    /**
+     * @returns {!TcpConnectionStatistics}
+     */
+    statistics() {
+        return /** @type {TcpConnectionStatistics} */ {
+            connectedSince         : this.statConnectedSince,
+            pingRequests           : this.statPingRequests,
+            pingResponses          : this.statPingResponses,
+            inboundDrains          : this.statInboundDrains,
+            outboundDrains         : this.statOutboundDrains,
+            outboundDrainsPacketID : this.statPacketIDDrains,
+            inboundBytes           : this._socket.bytesRead,
+            outboundBytes          : this._socket.bytesWritten,
+            inboundFrames          : this.istream.decoder.statFrameCount,
+            outboundFrames         : this.ostream.encoder.statFrameCount,
+            inboundChunks          : this.istream.decoder.statChunkCount,
+            outboundChunks         : this.ostream.encoder.statChunkCount,
+            outboundChunksRecycled : this.ostream.statChunkRecycledCount,
+            outboundChunksDefAlloc : this.ostream.statChunkDefAllocCount,
+            outboundChunksBigAlloc : this.ostream.statChunkBigAllocCount,
+        };
+    }
+
+}
+
+// /**
+//  * @abstract
+//  * @private
+//  */
+// class TcpServer extends EventEmitter {
+//
+//     /**
+//      * @event TcpServer#listening
+//      * @param {string} address
+//      * @param {number=} port
+//      * @param {string=} family
+//      */
+//
+//     /**
+//      * @event TcpServer#connection
+//      * @param {Socket} socket
+//      */
+//
+//     /**
+//      * @event TcpServer#error
+//      * @param {Error} error
+//      */
+//
+//     /**
+//      * @event TcpServer#close
+//      * @param {Error=} error
+//      */
+//
+//     /**
+//      * @param {!ServerOptions} options
+//      */
+//     constructor(options) {
+//         super();
+//
+//         /**
+//          * @type {ServerOptions}
+//          */
+//         this.options = options;
+//     }
+//
+//     /**
+//      * @abstract
+//      */
+//     listen() {
+//     }
+//
+//     /**
+//      * @abstract
+//      */
+//     close() {
+//     }
+//
+//     /**
+//      * @param {string} type
+//      * @param {string|object} address
+//      * @return {boolean}
+//      */
+//     _onListening(type, address) {
+//         if (typeof address === 'object')
+//             return this.emit('listening', type, address.address, address.port, address.family);
+//         else
+//             return this.emit('listening', type, address);
+//     }
+//
+//     /**
+//      * @param {Socket} socket
+//      */
+//     _onConnection(socket) {
+//         this.emit('connection', socket);
+//     }
+//
+//     /**
+//      * @param {Error} error
+//      */
+//     _onError(error) {
+//         this.emit('error', error);
+//     }
+//
+//     /**
+//      * @param {Error=} error
+//      */
+//     _onClose(error) {
+//         this.emit('close', error);
+//     }
+//
+// }
+//
+// /**
+//  * @private
+//  */
+// class TcpSecureServer extends TcpServer {
+//
+//     /**
+//      * @param {!ServerOptions} options
+//      */
+//     constructor(options) {
+//         super(options);
+//
+//         /**
+//          * @type {tls.Server}
+//          */
+//         this._server = tls.createServer(Object.assign({allowHalfOpen : false, pauseOnConnect : false}, options.tls));
+//
+//         /**
+//          * set event handler
+//          */
+//         this._server
+//             .on('listening', () => this._onListening('tls', this._server.address()))
+//             .on('secureConnection', (socket) => this._onConnection(socket))
+//             .on('error', (error) => this._onError(error))
+//         ;
+//     }
+//
+//     /**
+//      * @override
+//      */
+//     listen() {
+//         this._server.listen(this.options.tls);
+//     }
+//
+//     /**
+//      * @override
+//      */
+//     close() {
+//         this._server.close((error) => this._onClose(error));
+//     }
+//
+// }
+//
+// /**
+//  * @private
+//  */
+// class TcpSimpleServer extends TcpServer {
+//
+//     /**
+//      * @param {!ServerOptions} options
+//      */
+//     constructor(options) {
+//         super(options);
+//
+//         /**
+//          * @type {net.Server}
+//          */
+//         this._server = net.createServer(Object.assign({allowHalfOpen : false, pauseOnConnect : false}, options.net));
+//
+//         /**
+//          * set event handler
+//          */
+//         this._server
+//             .on('listening', () => this._onListening('net', this._server.address()))
+//             .on('connection', (socket) => this._onConnection(socket))
+//             .on('error', (error) => this._onError(error))
+//         ;
+//     }
+//
+//     /**
+//      * @override
+//      */
+//     listen() {
+//         this._server.listen(this.options.net);
+//     }
+//
+//     /**
+//      * @override
+//      */
+//     close() {
+//         this.server.close((error) => this._onClose(error));
+//     }
+//
+// }
+//
+// /**
+//  * @param {ServerOptions} options
+//  * @return {TcpServer}
+//  */
+// function tlsServer(options) {
+//     return new TcpSecureServer(options);
+// }
+//
+// /**
+//  * @param {ServerOptions} options
+//  * @return {TcpServer}
+//  */
+// function netServer(options) {
+//     return new TcpSimpleServer(options);
+// }
+//
+// /**
+//  * @param {Socket} socket
+//  * @param {ConnectOptions} options
+//  * @param {!PacketFactory} factory
+//  * @return {TcpConnection}
+//  */
+// function srvAccept(socket, options, factory) {
+//     return new TcpConnection(options, socket, new TcpReader(options.tune, factory), new TcpWriter(options.tune, socket));
+// }
+
+/**
+ * @param {!ClientOptions} options
+ * @param {!PacketFactory} factory
+ * @param {!NotifyOfConnect} done
+ * @param {!NotifyOfFailed} failed
+ * @private
+ */
+function tlsConnect(options, factory, done, failed) {
+    const socket = tls.connect(options.tls, () => {
+        socket.removeListener('error', failed);
+        done(new TcpConnection(options, socket, new TcpReader(options.tune, factory), new TcpWriter(options.tune, socket)));
+    });
+    socket.once('error', failed);
+}
+
+/**
+ * @param {!ClientOptions} options
+ * @param {!PacketFactory} factory
+ * @param {!NotifyOfConnect} done
+ * @param {!NotifyOfFailed} failed
+ * @private
+ */
+function netConnect(options, factory, done, failed) {
+    const socket = net.connect(options.net, () => {
+        socket.removeListener('error', failed);
+        done(new TcpConnection(options, socket, new TcpReader(options.tune, factory), new TcpWriter(options.tune, socket)));
+    });
+    socket.once('error', failed);
+}
+
+module.exports = {
+    TcpReader : TcpReader,
+    TcpWriter : TcpWriter,
+    TcpConnection : TcpConnection,
+    // TcpServer : TcpServer,
+    // tlsServer : tlsServer,
+    // netServer : netServer,
+    // tlsAccept : srvAccept,
+    // netAccept : srvAccept,
+    tlsConnect : tlsConnect,
+    netConnect : netConnect
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li><li><a href="IStream.html">IStream</a></li><li><a href="OStream.html">OStream</a></li><li><a href="Payload.html">Payload</a></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:assert">assert</a></li><li><a href="Client.html#event:authenticated">authenticated</a></li><li><a href="Client.html#event:connected">connected</a></li><li><a href="Client.html#event:disconnected">disconnected</a></li><li><a href="Client.html#event:drain">drain</a></li><li><a href="Client.html#event:error">error</a></li><li><a href="Client.html#event:idle">idle</a></li><li><a href="Client.html#event:ping">ping</a></li><li><a href="Client.html#event:reconnecting">reconnecting</a></li><li><a href="IStream.html#event:subscribed">subscribed</a></li><li><a href="OStream.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:abort">abort</a></li><li><a href="TcpConnection.html#event:assert">assert</a></li><li><a href="TcpConnection.html#event:close">close</a></li><li><a href="TcpConnection.html#event:error">error</a></li><li><a href="TcpConnection.html#event:final">final</a></li><li><a href="TcpConnection.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:valid">valid</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CLIENT_DEFAULT_OPTIONS">CLIENT_DEFAULT_OPTIONS</a></li><li><a href="global.html#CLIENT_MINIMUM_OPTIONS">CLIENT_MINIMUM_OPTIONS</a></li><li><a href="global.html#ErrOpt">ErrOpt</a></li><li><a href="global.html#mapStreamMessageSource">mapStreamMessageSource</a></li><li><a href="global.html#mapStreamMessageTarget">mapStreamMessageTarget</a></li><li><a href="global.html#objectValues">objectValues</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Nov 23 2021 20:08:26 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: serialize/decoder.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: serialize/decoder.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+const { EC, ErrMsg } = require('../errors');
+const { Payload } = require('./types');
+
+const constants = require('./constants');
+const LEN_VALUE_BASE = constants.PACKET.LENGTH.VALUE_BASE;
+const LEN_BYTE_LIMIT = constants.PACKET.LENGTH.BYTE_LIMIT;
+const LEN_DATA_BIT_MASK = constants.PACKET.LENGTH.DATA_BIT_MASK;
+const CONTINUATION_BIT = constants.PACKET.LENGTH.CONTINUATION_BIT;
+const START_TYPE_BIT_MASK = constants.PACKET.START.TYPE_BIT_MASK;
+const START_FLAG_BIT_MASK = constants.PACKET.START.FLAG_BIT_MASK;
+
+/**
+ * @callback BlockCheck
+ * @return {boolean}
+ * @private
+ */
+
+/**
+ * @private
+ */
+class Decoder {
+
+    /**
+     * @param {PacketFactory} factory
+     * @param {PacketHandler} handler
+     */
+    constructor(factory, handler) {
+
+        /**
+         * @type {number}
+         */
+        this.statChunkCount = 0;
+
+        /**
+         * @type {number}
+         */
+        this.statFrameCount = 0;
+
+        /**
+         * @type {!PacketFactory}
+         * @private
+         */
+        this._factory = factory;
+
+        /**
+         * @type {!PacketHandler}
+         * @private
+         */
+        this._handler = handler;
+
+        /**
+         * @type {number}
+         * @private
+         */
+        this._inputAvailable = 0;
+
+        /**
+         * @type {!Array&lt;!Buffer>}
+         * @private
+         */
+        this._inputQueue = new Array(0);
+
+        /**
+         * @type {?{startByte : number, varLength : number, lengthBytes : number, lengthBase : number, lengthReading : boolean}}
+         * @private
+         */
+        this._fixedHeader = null;
+
+        /**
+         * @type {!number}
+         * @private
+         */
+        this._frameDeclared = 0;
+
+        /**
+         * @type {!number}
+         * @private
+         */
+        this._frameConsumed = 0;
+
+        /**
+         * @type {!number}
+         * @private
+         */
+        this._chunkAvailable = 0;
+
+        /**
+         * @type {!number}
+         * @private
+         */
+        this._chunkConsumed = 0;
+
+        /**
+         * @type {!number}
+         * @private
+         */
+        this._chunkOffset = 0;
+
+        /**
+         * @type {!Buffer}
+         * @private
+         */
+        this._chunkReading = null;
+    }
+
+    /**
+     *
+     */
+    stop() {
+        this._read = nop;
+    }
+
+    /**
+     * @param {!Buffer} chunk
+     */
+    push(chunk) {
+        if (chunk.length === 0) {
+            return;
+        } else if (this._inputAvailable === 0) {
+            this._inputAvailable = chunk.length;
+            this._chunkAvailable = chunk.length;
+            this._chunkConsumed = 0;
+            this._chunkOffset = 0;
+            this._chunkReading = chunk;
+        } else {
+            this._inputQueue.push(chunk);
+            this._inputAvailable += chunk.length;
+        }
+        ++this.statChunkCount;
+        this._read();
+    }
+
+    /**
+     * @private
+     */
+    _read() {
+        while (this._inputAvailable > 0) {
+            if (this._fixedHeader === null) {
+                this._fixedHeader = {startByte: this.readUInt8(), varLength: 0, lengthBytes: 0, lengthBase: 1, lengthReading : true};
+                continue;
+            }
+            if (this._fixedHeader.lengthReading) {
+                const byte = this.readUInt8();
+                this._fixedHeader.varLength += (byte &amp; LEN_DATA_BIT_MASK) * this._fixedHeader.lengthBase;
+                this._fixedHeader.lengthBytes += 1;
+
+                if ((byte &amp; CONTINUATION_BIT) !== 0) {
+                    if (this._fixedHeader.lengthBytes === LEN_BYTE_LIMIT) {
+                        throw ErrMsg(EC.DECODE_REM_LEN_EXCEEDS);
+                    } else {
+                        this._fixedHeader.lengthBase *= LEN_VALUE_BASE;
+                        continue;
+                    }
+                }
+                this._fixedHeader.lengthReading = false;
+            }
+            if (this._fixedHeader.varLength > this._inputAvailable) {
+                return;
+            }
+            this._frameDeclared = 1 + this._fixedHeader.lengthBytes + this._fixedHeader.varLength;
+
+            const packet = this._factory(this._fixedHeader.startByte &amp; START_TYPE_BIT_MASK);
+            packet.flags = this._fixedHeader.startByte &amp; START_FLAG_BIT_MASK;
+            packet.deserialize(this);
+
+            if (this._frameDeclared !== this._frameConsumed) {
+                throw ErrMsg(EC.DECODE_FRAME_SIZE_MISMATCH, this._frameDeclared, this._frameConsumed);
+            }
+
+            this._frameConsumed = 0;
+            this._fixedHeader = null;
+            ++this.statFrameCount;
+
+            this._handler(packet);
+        }
+
+        if (this._inputAvailable === 0 &amp;&amp; this._frameConsumed === 0) {  // no further data and no incomplete frame
+            this._chunkAvailable = 0;                                   // keep build buffer, but free last chunk
+            this._chunkConsumed = 0;
+            this._chunkOffset = 0;
+            this._chunkReading = null;
+        }
+    }
+
+    /**
+     * @param {number} length
+     * @private
+     */
+    _reading(length) {
+        if(length > this._inputAvailable)
+            throw ErrMsg(EC.DECODE_CHUNK_UNDERFLOW);
+        if(length > this._chunkAvailable)
+            this._readingMore(length);
+        this._chunkOffset = this._chunkConsumed;
+        this._chunkConsumed += length;
+        this._chunkAvailable -= length;
+        this._frameConsumed += length;
+        this._inputAvailable -= length;
+    }
+
+    /**
+     * @param {number} length
+     * @private
+     */
+    _readingMore(length) {
+        if (this._chunkAvailable === 0 &amp;&amp; length &lt;= this._inputQueue[0].length) {
+            this._chunkReading = this._inputQueue.shift();
+            this._chunkAvailable = this._chunkReading.length;
+        } else {
+            this._readingMoreConcat(length);
+        }
+        this._chunkConsumed = 0;
+    }
+
+    /**
+     * @param {number} length
+     * @private
+     */
+    _readingMoreConcat(length) {
+        const chunks = [];
+        if (this._chunkAvailable > 0) {
+            chunks.push(this._chunkReading.slice(this._chunkConsumed));
+        }
+        while (this._chunkAvailable &lt; length) {
+            const miss = length - this._chunkAvailable, next = this._inputQueue[0], nlen = next.length;
+            if (miss >= nlen || (miss > 42 &amp;&amp; nlen &lt; 256)) {
+                this._chunkAvailable += nlen;
+                chunks.push(this._inputQueue.shift());
+            } else {
+                this._chunkAvailable += miss;
+                chunks.push(next.slice(0, miss));
+                this._inputQueue[0] = next.slice(miss);
+            }
+        }
+        this._chunkReading = chunks.length > 1 ? Buffer.concat(chunks, this._chunkAvailable) : chunks[0];
+    }
+
+    /**
+     * @param {number} size
+     * @return {!Buffer}
+     * @private
+     */
+    _readDataBlob(size) {
+        this._reading(size);
+        return (size === this._chunkReading.length) ? this._chunkReading : this._chunkReading.slice(this._chunkOffset, this._chunkOffset + size);
+    }
+
+    /**
+     * @param {!Array&lt;!Buffer>} target
+     * @param {number} length
+     * @private
+     */
+    _readDataBlobArray(target, length) {
+        while (length > 0) {
+            if(this._chunkAvailable === 0) {
+                const size = Math.min(length, this._inputQueue[0].length);
+                target.push(this._readDataBlob(size));
+                length -= size;
+            } else if (length > this._chunkAvailable) {
+                const size = this._chunkAvailable;
+                target.push(this._readDataBlob(size));
+                length -= size;
+            } else {
+                target.push(this._readDataBlob(length));
+                length = 0;
+            }
+        }
+    }
+
+    /**
+     * @return {number}
+     */
+    readUInt8() {
+        this._reading(1);
+        return this._chunkReading.readUInt8(this._chunkOffset);
+    }
+
+    /**
+     * @return {number}
+     */
+    readUInt16() {
+        this._reading(2);
+        return this._chunkReading.readUInt16BE(this._chunkOffset);
+    }
+
+    /**
+     * @return {!string}
+     */
+    readString() {
+        const length = this.readUInt16();
+        if (length > 0) {
+            this._reading(length);
+            return this._chunkReading.toString('utf8', this._chunkOffset, this._chunkOffset + length);
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * @return {?Buffer}
+     */
+    readBlob16() {
+        const length = this.readUInt16();
+        if (length > 0) {
+            this._reading(length);
+            return this._chunkReading.slice(this._chunkOffset, this._chunkOffset + length);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @return {?Payload}
+     */
+    readPayload() {
+        let length = this._frameDeclared - this._frameConsumed;
+        if (length &lt;= 0) return null;
+        const payload = new Payload();
+        this._readDataBlobArray(payload.chunks, length);
+        return payload;
+    }
+
+    /**
+     * @returns {boolean}
+     */
+    hasFrameData() {
+        return this._frameDeclared > this._frameConsumed;
+    }
+
+}
+
+/**
+ * @param {*=} result
+ * @return {*}
+ * @private
+ */
+function nop(result) { return result; }
+
+module.exports = {
+    Decoder : Decoder
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li><li><a href="IStream.html">IStream</a></li><li><a href="OStream.html">OStream</a></li><li><a href="Payload.html">Payload</a></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:assert">assert</a></li><li><a href="Client.html#event:authenticated">authenticated</a></li><li><a href="Client.html#event:connected">connected</a></li><li><a href="Client.html#event:disconnected">disconnected</a></li><li><a href="Client.html#event:drain">drain</a></li><li><a href="Client.html#event:error">error</a></li><li><a href="Client.html#event:idle">idle</a></li><li><a href="Client.html#event:ping">ping</a></li><li><a href="Client.html#event:reconnecting">reconnecting</a></li><li><a href="IStream.html#event:subscribed">subscribed</a></li><li><a href="OStream.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:abort">abort</a></li><li><a href="TcpConnection.html#event:assert">assert</a></li><li><a href="TcpConnection.html#event:close">close</a></li><li><a href="TcpConnection.html#event:error">error</a></li><li><a href="TcpConnection.html#event:final">final</a></li><li><a href="TcpConnection.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:valid">valid</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CLIENT_DEFAULT_OPTIONS">CLIENT_DEFAULT_OPTIONS</a></li><li><a href="global.html#CLIENT_MINIMUM_OPTIONS">CLIENT_MINIMUM_OPTIONS</a></li><li><a href="global.html#ErrOpt">ErrOpt</a></li><li><a href="global.html#mapStreamMessageSource">mapStreamMessageSource</a></li><li><a href="global.html#mapStreamMessageTarget">mapStreamMessageTarget</a></li><li><a href="global.html#objectValues">objectValues</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Nov 23 2021 20:08:26 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: model/types.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: model/types.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+const constants = require('../serialize/constants');
+const AT_MOST_ONCE = constants.QOS.AT_MOST_ONCE;
+const AT_LEAST_ONCE = constants.QOS.AT_LEAST_ONCE;
+const EXACTLY_ONCE = constants.QOS.EXACTLY_ONCE;
+const QOS_VALUES = [AT_MOST_ONCE, AT_LEAST_ONCE, EXACTLY_ONCE];
+
+/*********************************************************************************************************************/
+/** defined types: api layer *****************************************************************************************/
+/*********************************************************************************************************************/
+
+/**
+ * @typedef {Object} ProtocolSettings - Protocol specific settings
+ * @property {string} clientID - The client id, initial means the broker will generate one
+ * @property {boolean} cleanSession - An indicator to cleanup all session data at the end
+ * @property {number} keepAlive - Seconds of idle time after which to send a PING request
+ * @property {boolean} willFlag - Use a last will message
+ * @property {string} willTopic - Last will message topic
+ * @property {number} willQoS - Last will message quality of service
+ * @property {Buffer} willPayload - Last will message payload
+ * @property {boolean} willRetain - Last will message shall be retained
+ * @property {number} maxPacketID - A limit for the number of used packet ID's, in consequence a limit for packets in flight
+ * @property {number} cleanSessionRetries - The number of connect retries to cleanup found session state
+ * @property {MapStreamMessageSource} mapStreamMessageSource - A callback to set stream message source from received data
+ * @property {MapStreamMessageTarget} mapStreamMessageTarget - A callback to set publish data from stream message target
+ */
+
+/**
+ * @typedef {Object} PeerInfo
+ * @property {string} platform
+ * @property {string} product
+ * @property {string} version
+ * @property {string} description
+ */
+
+/**
+ * A topic filter for subscriptions, a single topic or pattern or an array or set of it. See also {@link http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html#_Toc398718106 topic pattern syntax}
+ * @typedef {!(!string|Array&lt;!string>|Set&lt;!string>)} TopicFilter
+ */
+
+/**
+ * @typedef {Object} QoSResult
+ * @property {number} requested - The qos level requested by client
+ * @property {number} granted - The qos level granted by broker
+ */
+
+/**
+ * @typedef {!Map&lt;string, QoSResult>} SubscribeAccepted
+ */
+
+/**
+ * @typedef {!Set&lt;string>} SubscribeFailed
+ */
+
+/**
+ * @callback NotifyOfSubscribeDone
+ * @param {!SubscribeAccepted} accepted
+ * @param {!SubscribeFailed} rejected
+ */
+
+/**
+ * @callback ReceiveCallbackSync
+ * @param {string} topic
+ * @param {Payload} payload
+ * @param {number} qos
+ * @param {boolean} duplicate
+ */
+
+/**
+ * @callback ReceiveCallbackAsync
+ * @param {string} topic
+ * @param {Payload} payload
+ * @param {number} qos
+ * @param {boolean} duplicate
+ * @param {JsStyleCallback} callback
+ */
+
+/**
+ * @typedef {(ReceiveCallbackSync | ReceiveCallbackAsync)} ReceiveCallback
+ */
+
+/*********************************************************************************************************************/
+/** defined types: stream api ****************************************************************************************/
+/*********************************************************************************************************************/
+
+/**
+ * @typedef {Object} StreamMessage
+ * @property {StreamMessageSource} source
+ * @property {StreamMessageTarget} target
+ * @property {Buffer|Array&lt;Buffer>|Payload} payload - payload data, incoming streams always provide Payload objects, outgoing streams accept all listed types
+ * @property {NotifyOfDone} done - A callback to use after successful message processing
+ * @property {NotifyOfFailed} failed - A callback to use on failed message processing
+ */
+
+/**
+ * @typedef {Object} StreamMessageSource
+ * @property {TopicFilter} topic
+ * @property {number} qos
+ * @property {boolean} duplicate
+ */
+
+/**
+ * @typedef {Object} StreamMessageTarget
+ * @property {string} topic
+ * @property {number} qos
+ * @property {boolean} retain
+ */
+
+/**
+ * @typedef {Object} OptionsToConsume
+ * @property {string} filter - The topic filter to subscribe with
+ * @property {number} qos - The highest qos supported
+ * @property {number} highWaterMark - The high water mark for the stream (number of messages)
+ * @property {MapStreamMessageSource} mapSource - A source mapper callback
+ */
+
+/**
+ * @typedef {Object} OptionsToProduce
+ * @property {string} topic - The topic to publish to, static unless maptarget is defined
+ * @property {number} qos - The quality of service to publish all messages of this stream
+ * @property {boolean} retain - Indicates whether or not to set the retain flag
+ * @property {number} highWaterMark - The high water mark for the stream (number of messages)
+ * @property {MapStreamMessageTarget} mapTarget - A target mapper callback
+ */
+
+/*********************************************************************************************************************/
+/** default callbacks: api layer *************************************************************************************/
+/*********************************************************************************************************************/
+
+/**
+ * @callback MapStreamMessageSource
+ * @param {string} topic
+ * @param {number} qos
+ * @param {boolean} duplicate
+ * @return {StreamMessageSource}
+ */
+
+/**
+ * @param {string} topic
+ * @param {number} qos
+ * @param {boolean} duplicate
+ * @return {StreamMessageSource|*}
+ */
+function mapStreamMessageSource(topic, qos, duplicate) {
+    return {
+        topic: topic,
+        qos : qos,
+        duplicate : duplicate
+    };
+}
+
+/**
+ * @callback MapStreamMessageTarget
+ * @param {StreamMessageTarget|*} target
+ * @param {OptionsToProduce} stream
+ * @return {{topic: string, qos: number}}
+ */
+
+/**
+ * @param {StreamMessageTarget|*} target
+ * @param {OptionsToProduce} stream
+ * @return {?{topic: string, qos: number, retain: boolean}}
+ */
+function mapStreamMessageTarget(target, stream) {
+    return (target === null || typeof target !== 'object') ? null : {
+        topic: typeof target.topic === 'string' ? target.topic : stream.topic,
+        qos: QOS_VALUES.includes(target.qos) ? target.qos : stream.qos,
+        retain: typeof target.retain === 'boolean' ? target.retain : stream.retain
+    };
+}
+
+module.exports = {
+    mapStreamMessageSource : mapStreamMessageSource,
+    mapStreamMessageTarget : mapStreamMessageTarget
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li><li><a href="IStream.html">IStream</a></li><li><a href="OStream.html">OStream</a></li><li><a href="Payload.html">Payload</a></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:assert">assert</a></li><li><a href="Client.html#event:authenticated">authenticated</a></li><li><a href="Client.html#event:connected">connected</a></li><li><a href="Client.html#event:disconnected">disconnected</a></li><li><a href="Client.html#event:drain">drain</a></li><li><a href="Client.html#event:error">error</a></li><li><a href="Client.html#event:idle">idle</a></li><li><a href="Client.html#event:ping">ping</a></li><li><a href="Client.html#event:reconnecting">reconnecting</a></li><li><a href="IStream.html#event:subscribed">subscribed</a></li><li><a href="OStream.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:abort">abort</a></li><li><a href="TcpConnection.html#event:assert">assert</a></li><li><a href="TcpConnection.html#event:close">close</a></li><li><a href="TcpConnection.html#event:error">error</a></li><li><a href="TcpConnection.html#event:final">final</a></li><li><a href="TcpConnection.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:valid">valid</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CLIENT_DEFAULT_OPTIONS">CLIENT_DEFAULT_OPTIONS</a></li><li><a href="global.html#CLIENT_MINIMUM_OPTIONS">CLIENT_MINIMUM_OPTIONS</a></li><li><a href="global.html#ErrOpt">ErrOpt</a></li><li><a href="global.html#mapStreamMessageSource">mapStreamMessageSource</a></li><li><a href="global.html#mapStreamMessageTarget">mapStreamMessageTarget</a></li><li><a href="global.html#objectValues">objectValues</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Nov 23 2021 20:08:26 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

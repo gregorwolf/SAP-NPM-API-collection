@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: client.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: client.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+const EventEmitter = require('events');
+const fs = require('fs');
+const url = require('url');
+const tcp = require('./transport/tcp');
+const ws = require('./transport/ws');
+const oa2 = require('./transport/oa2');
+const { EC, ErrMsg, ErrOpt, Raise } = require('./errors');
+const { Matcher } = require('./tools/matcher');
+const { mergeValues } = require('./tools/options');
+const { Payload } = require('./serialize/types');
+const { buildPacket, Connect, Disconnect, Publish, PingRequest } = require('./model/packets');
+const { PacketStream, SubscriptionState, PublishState } = require('./model/controller');
+const { setupStreamOptions, IStream, OStream } = require('./model/streams');
+const { mapStreamMessageSource, mapStreamMessageTarget } = require('./model/types');
+
+const constants = require('./serialize/constants');
+const AT_MOST_ONCE = constants.QOS.AT_MOST_ONCE;
+const AT_LEAST_ONCE = constants.QOS.AT_LEAST_ONCE;
+const EXACTLY_ONCE = constants.QOS.EXACTLY_ONCE;
+
+const CONNACK = constants.PACKET.TYPES.CONNACK;
+const PUBLISH = constants.PACKET.TYPES.PUBLISH;
+const PUBACK = constants.PACKET.TYPES.PUBACK;
+const PUBREC = constants.PACKET.TYPES.PUBREC;
+const PUBREL = constants.PACKET.TYPES.PUBREL;
+const PUBCOMP = constants.PACKET.TYPES.PUBCOMP;
+const SUBACK = constants.PACKET.TYPES.SUBACK;
+const UNSUBACK = constants.PACKET.TYPES.UNSUBACK;
+const PINGRESP = constants.PACKET.TYPES.PINGRESP;
+
+const ACCEPTED = constants.CONNACK.RC.ACCEPTED;
+const UNACCEPTABLE_LEVEL = constants.CONNACK.RC.UNACCEPTABLE_LEVEL;
+const CLIENT_ID_REJECTED = constants.CONNACK.RC.CLIENT_ID_REJECTED;
+const SERVICE_UNAVAILABLE = constants.CONNACK.RC.SERVICE_UNAVAILABLE;
+const BAD_CREDENTIALS = constants.CONNACK.RC.BAD_CREDENTIALS;
+const NOT_AUTHORIZED = constants.CONNACK.RC.NOT_AUTHORIZED;
+
+/**
+ * @typedef {Object} ClientOptions
+ * @property {Object} tls - The options for tls.connect(), used in favour of net, wss or ws; see also {@link https://nodejs.org/api/tls.html#tls_tls_connect_options_callback options}
+ * @property {string} tls.host - The remote host, defaults to 127.0.0.1
+ * @property {number} tls.port - The remote port, defaults to 5671
+ * @property {Object} net - The options for net.connect(), used in favour of wss or ws; see also {@link https://nodejs.org/api/net.html#net_socket_connect_options_connectlistener options}
+ * @property {string} net.host - The remote host, defaults to 127.0.0.1
+ * @property {number} net.port - The remote port, defaults to 5672
+ * @property {Object} wss - The options for https.request(), used in favour of ws; method and ws header fields will be overwritten, see also {@link https://nodejs.org/api/https.html#https_https_request_options_callback options}
+ * @property {string} wss.host - The remote host, defaults to 127.0.0.1
+ * @property {number} wss.port - The remote port, defaults to 443
+ * @property {string} wss.path - The target path, defaults to '/'
+ * @property {Object} wss.headers - Further header fields, optional
+ * @property {Object} ws - The options for http.request(), method and header fields will be overwritten, see also {@link https://nodejs.org/api/http.html#http_http_request_options_callback options}
+ * @property {string} ws.host - The remote host, defaults to 127.0.0.1
+ * @property {number} ws.port - The remote port, defaults to 80
+ * @property {string} ws.path - The target path, defaults to '/'
+ * @property {Object} ws.headers - Further header fields, optional
+ * @property {Object} oa2 - The parameters for OAuth 2.0,
+ * @property {string} oa2.endpoint - The token endpoint url
+ * @property {string} oa2.request - Further parameters to use in the http(s) request, e.g. additional trusts
+ * @property {string} oa2.flow - The grant type, either {@link https://tools.ietf.org/html/rfc6749#section-4.4 'client_credentials'} which is also the default or {@link https://tools.ietf.org/html/rfc6749#section-4.3 'password'}
+ * @property {string} oa2.client - The OAuth client id
+ * @property {string} oa2.secret - The OAuth client secret
+ * @property {string} oa2.scope - The requested scope
+ * @property {string} oa2.user - Resource owners user name in case of flow 'password'
+ * @property {string} oa2.password - Resource owners password in case of flow 'password'
+ * @property {string|Array&lt;string>} uri - URI encoded connection data, defined parts overwrite defaults, array provides alternatives}
+ * @property {Object} credentials - Used with CONNECT control packet, not for http or https request
+ * @property {string} credentials.user - The remote user
+ * @property {string} credentials.password - The remote user password
+ * @property {ProtocolSettings} mqtt - Protocol settings
+ * @property {StreamParameters} tune - Fine tuning
+ * @property {Object} istreams - Incoming stream definitions
+ * @property {Object} ostreams - Outgoing stream definitions
+ */
+
+/**
+ * @type {ClientOptions}
+ */
+const CLIENT_DEFAULT_OPTIONS     = /** @type {ClientOptions} */ Object.freeze({
+    tls                          : Object.freeze({
+        host                     : '127.0.0.1',
+        port                     : 8883
+    }),
+    net                          : Object.freeze({
+        host                     : '127.0.0.1',
+        port                     : 1883
+    }),
+    wss                          : Object.freeze({
+        host                     : '127.0.0.1',
+        port                     : 443,
+        path                     : '/',
+        headers                  : {}
+    }),
+    ws                           : Object.freeze({
+        host                     : '127.0.0.1',
+        port                     : 80,
+        path                     : '/',
+        headers                  : {}
+    }),
+    oa2                          : Object.freeze({
+        request                  : {},
+        endpoint                 : '',
+        flow                     : 'client_credentials',       // 'client_credentials' or 'password'
+        client                   : '',
+        secret                   : '',
+        scope                    : '',
+        user                     : '',                         // only for flow 'password'
+        password                 : ''                          // only for flow 'password'
+    }),
+    credentials                  : Object.freeze({
+        user                     : '',
+        password                 : ''
+    }),
+    mqtt                         : Object.freeze({
+        clientID                 : '',
+        cleanSession             : true,
+        keepAlive                : 0,
+        willFlag                 : false,
+        willTopic                : '',
+        willQoS                  : 0,
+        willPayload              : null,
+        willRetain               : false,
+        maxPacketID              : 2000,
+        cleanSessionRetries      : 1,
+        mapStreamMessageSource   : mapStreamMessageSource,
+        mapStreamMessageTarget   : mapStreamMessageTarget
+    }),
+    tune                         : Object.freeze({
+        istreamHighWaterFrames   : 16,
+        istreamHighWaterBytes    : 16384,
+        ostreamHighWaterFrames   : 16,
+        ostreamHighWaterBytes    : 16384,
+        ostreamChunkRecycleLimit : 16,
+        ostreamChunkDefaultSize  : 4096,
+        ostreamPayloadCopyLimit  : 1024,
+        socketNoDelay            : false,
+        socketEndCloseTimeout    : 300
+    }),
+    istreams                     : Object.freeze({
+    }),
+    ostreams                     : Object.freeze({
+    })
+});
+
+/**
+ * @type {ClientOptions}
+ */
+const CLIENT_MINIMUM_OPTIONS     = /** @type {ClientOptions} */ Object.freeze({
+    mqtt                         : Object.freeze({
+        maxPacketID              : 128,
+        cleanSessionRetries      : 1,
+    }),
+    tune                         : Object.freeze({
+        istreamHighWaterFrames   : 4,
+        istreamHighWaterBytes    : 4096,
+        ostreamHighWaterFrames   : 4,
+        ostreamHighWaterBytes    : 4096,
+        ostreamChunkRecycleLimit : 0,
+        ostreamChunkDefaultSize  : 512,
+        ostreamPayloadCopyLimit  : 128,
+        socketEndCloseTimeout    : 0
+    })
+});
+
+/**
+ * @enum {number}
+ * @private
+ */
+const CLIENT_STATE = Object.freeze({
+    CONNECTING                   : 0x01,
+    CONNECTED                    : 0x02,
+    DISCONNECTING                : 0x03,
+    DISCONNECTED                 : 0x04
+});
+
+
+/**
+ * A client instance represents a single connection to the broker.
+ */
+class Client extends EventEmitter {
+
+    /**
+     * The client has been authenticated.
+     * @event Client#authenticated
+     * @param {number} destination - Used destination, can be greater than 0 if multiple URIs are defined.
+     */
+
+    /**
+     * The client is now connected.
+     * @event Client#connected
+     * @param {number} destination - Used destination, can be greater than 0 if multiple URIs are defined.
+     * @param {PeerInfo} peerInfo - Peer info
+     */
+
+    /**
+     * The client is now reconnecting using an alternative destination.
+     * @event Client#reconnecting
+     * @param {number} destination - Used destination, can be greater than 0 if multiple URIs are defined.
+     */
+
+    /**
+     * The client is now disconnected. No automatic reconnect will follow. Wait a short time with (re-) connect.
+     * @event Client#disconnected
+     * @param {boolean} hadError - An error occurred and forced the connection to be closed.
+     * @param {boolean} byServer - The server has closed the connection (unexpectedly).
+     * @param {!TcpConnectionStatistics} statistics - Statistics for the already closed connection.
+     */
+
+    /**
+     * An error occurred.
+     * @event Client#error
+     * @param {!Error} error - The error object that originates from internally processing or from callbacks.
+     */
+
+    /**
+     * An assert occurred.
+     * @event Client#assert
+     * @param {!Error} error - The error object that originates from incoming stream validation.
+     */
+
+    /**
+     * The client is sending a ping request to the broker. It means also the client is currently idle.
+     * @event Client#idle
+     * @param {number} keepAliveTime - The idle duration in seconds after which a ping request was send to the broker.
+     */
+
+    /**
+     * The client received a ping response from the broker.
+     * @event Client#ping
+     * @param {number} keepAliveTime - The idle duration in seconds after which a ping request was send to the broker.
+     */
+
+    /**
+     * The client is able to accept further data, after the application was asked to pause publish calls temporarily.
+     * @event Client#drain
+     * @param {boolean} qosAtMostOnce - Indicates whether the scope is at-most-once or any higher quality of service
+     */
+
+    /**
+     * Create a new client
+     * @param {(ClientOptions|Object)=} options - The options to use for a client
+     * @throws {!Error} - If options are invalid
+     */
+    constructor(options) {
+        super();
+
+        /**
+         * @const {!Array&lt;!ClientOptions>}
+         * @private
+         */
+        this._options = setupOptions(options);
+
+        /**
+         * @type {number}
+         * @private
+         */
+        this._optUsed = 0;
+
+        /**
+         * @type {number}
+         * @private
+         */
+        this._state = CLIENT_STATE.DISCONNECTED;
+
+        /**
+         * @type {TcpConnection}
+         * @private
+         */
+        this._connection = null;
+
+        /**
+         * @type {Error}
+         * @private
+         */
+        this._connectFailure = null;
+
+        /**
+         * @type {boolean}
+         * @private
+         */
+        this._sessionPresent = false;
+
+        /**
+         * @type {number}
+         * @private
+         */
+        this._sessionRetries = 0;
+
+        /**
+         * @type {PacketStream}
+         * @private
+         */
+        this._packetStream = null;
+
+        /**
+         * @type {!PublishState}
+         * @private
+         */
+        this._publishState = new PublishState();
+
+        /**
+         * @type {!SubscriptionState}
+         * @private
+         */
+        this._subscriptions = new SubscriptionState();
+
+        /**
+         * @const {!Failed} error
+         * @private
+         */
+        this._cbDefFailed = (error) => this.emit('error', error);
+
+        /**
+         * @const {Map&lt;string, IStream>}
+         * @private
+         */
+        this._istreams = new Map();
+
+        /**
+         * @const {Map&lt;string, OStream>}
+         * @private
+         */
+        this._ostreams = new Map();
+
+        /* setup event handler */
+
+        this._publishState
+            .on('error', error => this.emit('error', error))
+        ;
+
+        this._subscriptions
+            .on('error', error => this.emit('error', error))
+        ;
+
+        /* setup consumer streams (istreams) */
+
+        const cfg = this._options[0];
+
+        for (const id of Object.getOwnPropertyNames(cfg.istreams)) {
+            this._istreams.set(id, new IStream(id, this, cfg.istreams[id]));
+        }
+
+        for (const id of Object.getOwnPropertyNames(cfg.ostreams)) {
+            this._ostreams.set(id, new OStream(id, this, cfg.ostreams[id]));
+        }
+    }
+
+    /**
+     * @param {NotifyOfDone=} done
+     * @param {NotifyOfFailed=} failed
+     */
+    connect(done = null, failed = null) {
+
+        /* check status */
+
+        switch (this._state) {
+            case CLIENT_STATE.CONNECTING: {
+                Raise(ErrMsg(EC.CLIENT_STATE_ERROR, 'connect', 'connecting'), failed);
+                return;
+            }
+            case CLIENT_STATE.CONNECTED: {
+                Raise(ErrMsg(EC.CLIENT_STATE_ERROR, 'connect', 'connected'), failed);
+                return;
+            }
+            case CLIENT_STATE.DISCONNECTING: {
+                Raise(ErrMsg(EC.CLIENT_STATE_ERROR, 'connect', 'disconnecting'), failed);
+                return;
+            }
+        }
+        this._state = CLIENT_STATE.CONNECTING;
+
+        /* create socket and connect */
+
+        const options = this._options[this._optUsed];
+
+        const init = (connection) => this._onConnectionOpened(connection, done, failed);
+        const fail = (error) => this._onConnectionFailed(error, true, done, failed);
+
+        if (options.tls) {
+            tcp.tlsConnect(options, buildPacket, init, fail);
+        } else if (options.net) {
+            tcp.netConnect(options, buildPacket, init, fail);
+        } else if (options.wss) {
+            if(options.oa2) {
+                oa2.runGrantFlow(options.oa2,
+                    (headers) => ws.tlsConnect(options, buildPacket, headers, init, fail),
+                    fail
+                );
+            } else {
+                ws.tlsConnect(options, buildPacket, {}, init, fail);
+            }
+        } else if (options.ws) {
+            if(options.oa2) {
+                oa2.runGrantFlow(options.oa2,
+                    (headers) => ws.netConnect(options, buildPacket, headers, init, fail),
+                    fail
+                );
+            } else {
+                ws.netConnect(options, buildPacket, {}, init, fail);
+            }
+        } else {
+            fail(ErrMsg(EC.CLIENT_MISS_DEST));
+        }
+
+    }
+
+    /**
+     * @param {!TcpConnection} connection
+     * @param {?NotifyOfDone} done
+     * @param {?NotifyOfFailed} failed
+     * @private
+     */
+    _onConnectionOpened(connection, done, failed) {
+        // noinspection JSUnresolvedFunction
+        connection
+            .once('valid', () => this._onConnectionValid(connection, done, failed))
+            .on('assert', (error) => this._onConnectionAssert(error))
+            .on('error', (error) => this._onConnectionError(error))
+            .once('abort', (hadError) => this._onConnectionFailed(this._connectFailure, hadError, done, failed))
+        ;
+        connection.istream
+            .on('data', (packet) => this._onPacketReceived(connection, packet))
+        ;
+        connection.ostream
+            .on('drain', () => this.emit('drain', false))
+        ;
+
+        this._connection = connection;
+
+        const packet = new Connect(), mqtt = connection.options.mqtt, cred = connection.options.credentials;
+        packet.clientID = mqtt.clientID;
+        packet.cleanSession = mqtt.cleanSession;
+        packet.willFlag = mqtt.willFlag;
+        packet.willTopic = mqtt.willTopic;
+        packet.willMessage = mqtt.willMessage;
+        packet.willQoS = mqtt.willQoS;
+        packet.willRetain = mqtt.willRetain;
+        packet.user = cred.user;
+        packet.password = cred.password;
+        packet.keepAlive = mqtt.keepAlive;
+        connection.ostream.write(packet);
+    }
+
+    /**
+     * @param {!ConnectAcknowledge} packet
+     * @private
+     */
+    _onConnectAcknowledge(packet) {
+        switch(packet.returnCode) {
+            case ACCEPTED:
+                this.emit('authenticated', this._optUsed);
+                this._sessionPresent = packet.sessionPresent;
+                this._connection.valid();
+                break;
+            case UNACCEPTABLE_LEVEL:
+                this._connection.close(ErrMsg(EC.CONNACK_FAILED_VERSION));
+                break;
+            case CLIENT_ID_REJECTED:
+                this._connection.close(ErrMsg(EC.CONNACK_FAILED_CLIENT_ID));
+                break;
+            case SERVICE_UNAVAILABLE:
+                this._connection.close(ErrMsg(EC.CONNACK_FAILED_SERVICE));
+                break;
+            case BAD_CREDENTIALS:
+                this._connection.close(ErrMsg(EC.CONNACK_FAILED_CREDENTIALS));
+                break;
+            case NOT_AUTHORIZED:
+                this._connection.close(ErrMsg(EC.CONNACK_FAILED_AUTH));
+                break;
+            default:
+                this._connection.close(ErrMsg(EC.CONNACK_FAILED_RETURN_CODE, packet.returnCode));
+        }
+    }
+
+    /**
+     * @param {!TcpConnection} connection
+     * @param {?NotifyOfDone} done
+     * @param {?NotifyOfFailed} failed
+     * @private
+     */
+    _onConnectionValid(connection, done, failed) {
+        // noinspection JSUnresolvedFunction
+        connection
+            .removeAllListeners('abort')   // will release the connect failed callback
+            .once('ready', () => this._onConnectionReady(connection, done))
+            .once('close', (hadError) => this._onConnectionClosed(connection, hadError))
+        ;
+
+        if (this._state !== CLIENT_STATE.CONNECTING) {
+            connection.close();
+            return;
+        }
+
+        if (this._sessionPresent &amp;&amp; connection.options.mqtt.cleanSession) {
+            if (this._sessionRetries &lt; connection.options.mqtt.cleanSessionRetries) {
+                // noinspection JSUnresolvedFunction
+                connection
+                    .removeAllListeners('close')
+                    .on('close', () => this._onConnectionRetry(done, failed))
+                ;
+                connection.close();
+            } else {
+                connection.close(ErrMsg(EC.CLEANUP_SESSION_FAILED, this._sessionRetries));
+            }
+            return;
+        }
+
+        this._state = CLIENT_STATE.CONNECTED;
+
+        this._packetStream = new PacketStream(connection.options);
+        this._packetStream.pipe(connection.ostream);
+        this._packetStream.on('drain', () => { ++connection.statPacketIDDrains; this.emit('drain', true);});
+
+        this._publishState.onConnectionValid(this._packetStream, connection.ostream, this._sessionPresent);
+        this._subscriptions.onConnectionValid(this._packetStream, error => this.emit('error', error));
+
+        connection.ready(connection.options.mqtt.keepAlive * 1000, (timeout) => this._onConnectionTimeout(connection, timeout));
+    }
+
+    /**
+     * @param {!TcpConnection} connection
+     * @param {?NotifyOfDone} done
+     * @private
+     */
+    _onConnectionReady(connection, done) {
+        if (typeof done === 'function') done();
+        this.emit('connected', this._optUsed, {description : `${connection.host(false)}:${connection.port(false)}`});
+    }
+
+    /**
+     * @param {!TcpConnection} connection
+     * @param {number} timeout
+     */
+    _onConnectionTimeout(connection, timeout) {
+        connection.ostream.write(new PingRequest());
+        ++connection.statPingRequests;
+        this.emit('idle', connection.options.mqtt.keepAlive);
+        return timeout;
+    }
+
+    /**
+     * @param {!Error} error
+     * @private
+     */
+    _onConnectionAssert(error) {
+        if (this.emit('assert', error))
+            this._connection.end(new Disconnect());
+        else
+            this._connection.close(error);
+    }
+
+    /**
+     * @param {!Error} error
+     * @private
+     */
+    _onConnectionError(error) {
+        if (this._state === CLIENT_STATE.DISCONNECTING) {
+            switch(error.code) {
+                case 'ECONNRESET':
+                    return;
+                case 'ECONNABORTED':
+                    return;
+            }
+        }
+        if (this._state === CLIENT_STATE.CONNECTING) {
+            this._connectFailure = error;
+            return;
+        }
+        this.emit('error', error);
+    }
+
+    /**
+     * @param {NotifyOfDone} done
+     * @param {NotifyOfFailed} failed
+     * @private
+     */
+    _onConnectionRetry(done, failed) {
+        this._sessionRetries += 1;
+        process.nextTick(() => this.connect(done, failed));
+    }
+
+    /**
+     * @param {!TcpConnection} connection
+     * @param {boolean} hadError
+     * @private
+     */
+    _onConnectionClosed(connection, hadError) {
+        this._sessionRetries = 0;
+        this._optUsed = 0;
+        const byServer = this._state === CLIENT_STATE.CONNECTED;
+        this._publishState.onConnectionClose(byServer);
+        this._subscriptions.onConnectionClose();
+        this._packetStream.unpipe();
+        this._packetStream.removeAllListeners();
+        this._packetStream = null;
+        const statistics = connection.statistics();
+        this._connection.removeAllListeners();
+        this._connection = null;
+        this._state = CLIENT_STATE.DISCONNECTED;
+        this.emit('disconnected', hadError, byServer, statistics);
+    }
+
+    /**
+     * @param {Error} error
+     * @param {boolean} hadError
+     * @param {?NotifyOfDone} done
+     * @param {?NotifyOfFailed} failed
+     * @private
+     */
+    _onConnectionFailed(error, hadError, done, failed) {
+        this._state = CLIENT_STATE.DISCONNECTED;
+        if (error) {
+            switch(error.code) {
+                case 'ECONNREFUSED':
+                    Raise(ErrMsg(EC.CLIENT_CONNECT_REFUSED), failed, this);
+                    break;
+                case 'ETIMEDOUT':
+                    Raise(ErrMsg(EC.CLIENT_CONNECT_TIMEOUT), failed, this);
+                    break;
+                default:
+                    Raise(error, failed, this);
+            }
+        } else if (!hadError) {
+            Raise(ErrMsg(EC.CLIENT_CONNECT_FAILURE), failed, this);
+        }
+        if (++this._optUsed &lt; this._options.length) {
+            this.emit('reconnecting', this._optUsed);
+            process.nextTick(() => this.connect(done, failed));
+        } else {
+            this._optUsed = 0;
+            this.emit('disconnected', hadError, false);
+        }
+    }
+
+    /**
+     * Client shall disconnect from server
+     * @param {NotifyOfDone=} done
+     * @param {NotifyOfFailed=} failed
+     */
+    disconnect(done, failed) {
+        switch (this._state) {
+            case CLIENT_STATE.CONNECTING: {
+                this._state = CLIENT_STATE.DISCONNECTING;
+                if (typeof done === 'function') this.once('disconnected', done);
+                if (this._connection === null) return;
+                this._connection.close();                   // close connection immediately
+                break;
+            }
+            case CLIENT_STATE.CONNECTED: {
+                this._state = CLIENT_STATE.DISCONNECTING;
+                this._publishState.onConnectionFinal();
+                this._subscriptions.onConnectionFinal();
+                this._connection.end(new Disconnect());     // close following the protocol
+                if (typeof done === 'function') this.once('disconnected', done);
+                break;
+            }
+            case CLIENT_STATE.DISCONNECTING: {
+                Raise(ErrMsg(EC.CLIENT_STATE_ERROR, 'disconnect', 'disconnecting'), failed);
+                break;
+            }
+            case CLIENT_STATE.DISCONNECTED: {
+                Raise(ErrMsg(EC.CLIENT_STATE_ERROR, 'disconnect', 'disconnected'), failed);
+                break;
+            }
+        }
+    }
+
+    /**
+     * @param {!TcpConnection} connection
+     * @param {!Packet} packet
+     * @private
+     */
+    _onPacketReceived(connection, packet) {
+        try {
+            switch(packet.type) {
+                case PUBLISH: {
+                    const publish = /** @type{!Publish} */(packet);
+                    publish.receiver = this._subscriptions.collectInboundPublishHandler(publish.topic);
+                    this._publishState.onInboundPublish(publish);
+                    break;
+                }
+                case PUBREL: {
+                    this._publishState.onInboundPublishRelease(/** @type{!PublishRelease} */ (packet));
+                    break;
+                }
+                case PUBACK: {
+                    this._publishState.onOutboundPublishAcknowledge(/** @type{!PublishAcknowledge} */ (packet));
+                    break;
+                }
+                case PUBREC: {
+                    this._publishState.onOutboundPublishReceived(/** @type{!PublishReceived} */ (packet));
+                    break;
+                }
+                case PUBCOMP: {
+                    this._publishState.onOutboundPublishComplete(/** @type{!PublishComplete} */ (packet));
+                    break;
+                }
+                case SUBACK: {
+                    this._subscriptions.onSubscribeAcknowledge(/** @type{!SubscribeAcknowledge} */ (packet));
+                    break;
+                }
+                case UNSUBACK: {
+                    this._subscriptions.onUnsubscribeAcknowledge(/** @type{!UnsubscribeAcknowledge} */ (packet));
+                    break;
+                }
+                case PINGRESP: {
+                    ++connection.statPingResponses;
+                    this.emit('ping', this._connection.options.mqtt.keepAlive);
+                    break;
+                }
+                case CONNACK: {
+                    this._onConnectAcknowledge(/** @type{!ConnectAcknowledge} */ (packet));
+                    break;
+                }
+                default:
+                    this.emit('error', ErrMsg(EC.DECODE_PACKET_UNEXPECTED, packet.type));
+            }
+        } catch(e) {
+            this.emit('error', e);
+        }
+    }
+
+    // noinspection JSUnusedGlobalSymbols
+    /**
+     * Returns current connection statistics while being connected and null otherwise.
+     * The event 'disconnected' will also provide statistics, a very last time, after the connection was already destroyed.
+     * @return {?TcpConnectionStatistics}
+     */
+    statistics() {
+        return this._connection ? this._connection.statistics() : null;
+    }
+
+    /**
+     * Indicates whether or not the client was called to pause receiving any data
+     * @return {boolean}
+     */
+    pausing() {
+        return this._state === CLIENT_STATE.CONNECTED ? this._connection.paused() : false;
+    }
+
+    /**
+     * &lt;p>The client shall pause receiving any data, as the broker is sending faster than the application can consume.&lt;/p>
+     * &lt;p>Before using this method consider changing one single channels flow only.&lt;/p>
+     * &lt;p>As soon as possible call the client to resume.&lt;/p>
+     * &lt;p>The whole connection is paused. Hence, it affects for example also confirms as well as connection or channel exceptions.&lt;/p>
+     */
+    pause() {
+        if (this._state === CLIENT_STATE.CONNECTED) this._connection.pause();
+    }
+
+    /**
+     * The client shall continue to receive data, after pause was called previously.
+     */
+    resume() {
+        if (this._state === CLIENT_STATE.CONNECTED) this._connection.resume();
+    }
+
+    /**
+     * &lt;p>Publish a message.&lt;/p>
+     * &lt;p>If the return value indicates that outbound high water mark is reached, pause and wait for drain event.&lt;/p>
+     * &lt;p>However, the message has been accepted and will be processed. Memory consumption increases.&lt;/p>
+     * @param {string} topic - The topic to use as target
+     * @param {Buffer|Array&lt;Buffer>|Payload|{chunks: Array&lt;Buffer>}} payload - The payload to add
+     * @param {number=} qos - The requested quality of service (0, 1 or 2)
+     * @param {boolean=} retain - The retain flag shall be set
+     * @param {NotifyOfDone=} done - Notify of successful completion
+     * @param {NotifyOfFailed=} failed - Notify of failed action
+     * @return {boolean} Running below high water mark
+     */
+    publish(topic, payload, qos, retain, done, failed) {
+        if (typeof topic !== 'string') {
+            Raise(ErrMsg(EC.PUBLISH_INV_TOPIC_TYPE, typeof topic), failed, this);
+            return true;
+        }
+        if (Matcher.invalidTopic(topic)) {
+            Raise(ErrMsg(EC.PUBLISH_INV_TOPIC_CHAR), failed, this);
+            return true;
+        }
+
+        const packet = new Publish();
+        packet.topic = topic;
+        packet.qos = qos ? qos : AT_MOST_ONCE;
+        packet.retain = typeof retain === 'boolean' ? retain : false;
+
+        if (payload) {
+            if (Buffer.isBuffer(payload)) {
+                packet.payload = payload;
+            } else if (Array.isArray(payload) &amp;&amp; payload.every(item => Buffer.isBuffer(item))) {
+                packet.payload = payload;
+            } else if (payload &amp;&amp; typeof payload === 'object' &amp;&amp; Array.isArray(payload.chunks) &amp;&amp; payload.chunks.every(item => Buffer.isBuffer(item))) {
+                packet.payload = payload.chunks;
+            } else {
+                Raise(ErrMsg(EC.ENCODE_INV_PAYLOAD_TYPE, typeof payload === 'object' ? payload.constructor.name : payload ), failed, this);
+                return true;
+            }
+        }
+
+        packet.onDispose = typeof done === 'function' ? done : nop;
+        packet.onFailure = typeof failed === 'function' ? failed : this._cbDefFailed;
+
+        switch (packet.qos) {
+            case AT_MOST_ONCE:
+                return this._publishState.onOutboundPublishAtMostOnce(packet);
+            case AT_LEAST_ONCE:
+                return this._publishState.onOutboundPublishAtLeastOnce(packet);
+            case EXACTLY_ONCE:
+                return this._publishState.onOutboundPublishExactlyOnce(packet);
+            default:
+                Raise(ErrMsg(EC.PUBLISH_INV_QOS, packet.qos), failed, this);
+                return true;
+        }
+    }
+
+    /**
+     * @param {!TopicFilter} filter - A single topic or topic pattern or an array or set of it
+     * @param {!number} qos - The requested quality of service
+     * @param {!ReceiveCallback} handler - A callback to process received messages
+     * @param {NotifyOfSubscribeDone=} done - Notify of subscription success
+     * @param {NotifyOfFailed=} failed - Notify of action failed
+     */
+    subscribe(filter, qos, handler, done, failed) {
+
+        const topics = [];
+        const patterns = [];
+
+        const error = Matcher.acceptFilter(filter, topics, patterns);
+        if (error) {
+            Raise(error, failed, this);
+            return;
+        }
+
+        switch (qos) {
+            case AT_MOST_ONCE:
+                break;
+            case AT_LEAST_ONCE:
+                break;
+            case EXACTLY_ONCE:
+                break;
+            default:
+                Raise(ErrMsg(EC.SUBSCRIBE_INV_QOS, qos), failed, this);
+                return;
+        }
+
+        if (typeof handler !== 'function') {
+            Raise(ErrMsg(EC.SUBSCRIBE_RECEIVE_CALLBACK), failed, this);
+            return;
+        }
+
+        this._subscriptions.onSubscribeRequested(topics, patterns, qos, handler,
+            typeof done === 'function' ? done : nop,
+            typeof failed === 'function' ? failed : this._cbDefFailed
+        );
+
+    }
+
+    /**
+     * @param {!TopicFilter} filter - A single topic or topic pattern or an array or set of it
+     * @param {NotifyOfDone=} done - Notify of unsubscribe success
+     * @param {NotifyOfFailed=} failed - Notify of action failed
+     * @param {ReceiveCallback=} handler - A handler to which unsubscribe is restricted to
+     */
+    unsubscribe(filter, done, failed, handler) {
+
+        const topics = [];
+        const patterns = [];
+
+        const error = Matcher.acceptFilter(filter, topics, patterns);
+        if (error) {
+            Raise(error, failed, this);
+            return;
+        }
+
+        this._subscriptions.onUnsubscribeRequested(topics, patterns,
+            typeof handler === 'function' ? handler : null,
+            typeof done === 'function' ? done : nop,
+            typeof failed === 'function' ? failed : this._cbDefFailed
+        );
+
+    }
+
+    /**
+     * Provide a unified consumer stream instance
+     * @param {!string} id - The id that was declared as part of the client options
+     * @return {!IStream} A readable stream for unified stream messages
+     */
+    istream(id) {
+        const stream = this._istreams.get(id);
+        if (stream) {
+            return stream;
+        } else {
+            throw ErrMsg(EC.UNIFIED_ISTREAM_INV_ID, id);
+        }
+    }
+
+    /**
+     * Provide a unified producer stream instance
+     * @param {!string} id - The id that was declared as part of the client options
+     * @return {!OStream} A writable stream for unified stream messages
+     */
+    ostream(id) {
+        const stream = this._ostreams.get(id);
+        if (stream) {
+            return stream;
+        } else {
+            throw ErrMsg(EC.UNIFIED_OSTREAM_INV_ID, id);
+        }
+    }
+
+}
+
+/**
+ * @typedef {Object} UriData
+ * @property {string} protocol
+ * @property {string} hostname
+ * @property {number} port
+ * @property {string} pathname
+ * @property {string} auth
+ * @property {Object} query
+ * @property {string} query.cacertfile
+ * @property {string} query.certfile
+ * @property {string} query.keyfile
+ * @property {string} query.clientid
+ * @property {string} query.cleansession
+ * @property {string} query.keepalive
+ * @private
+ */
+
+/**
+ * @param {!ClientOptions} target
+ * @param {!string} uri
+ * @return {!ClientOptions}
+ * @private
+ */
+function mergeCfgURI(target, uri) {
+    /** @const {UriData} */
+    const data = url.parse(uri, true, false);
+    let secure = null;
+
+    switch(data.protocol) {
+        case 'mqtt:':
+        {
+            delete target.tls;
+            delete target.ws;
+            delete target.wss;
+
+            if (!target.net) {
+                target.net = Object.assign({}, CLIENT_DEFAULT_OPTIONS.net);
+            }
+            if (data.hostname) {
+                target.net.host = data.hostname;
+            }
+            if (data.port) {
+                target.net.port = parseInt(data.port);
+            }
+
+            break;
+        }
+        case 'mqtts:':
+        {
+            delete target.net;
+            delete target.ws;
+            delete target.wss;
+
+            if (!target.tls) {
+                target.tls = Object.assign({}, CLIENT_DEFAULT_OPTIONS.tls);
+            }
+            if (data.hostname) {
+                target.tls.host = data.hostname;
+            }
+            if (data.port) {
+                target.tls.port = parseInt(data.port);
+            }
+
+            secure = target.tls;
+
+            break;
+        }
+        case 'ws:':
+        {
+            delete target.net;
+            delete target.tls;
+            delete target.wss;
+
+            if (!target.ws) {
+                target.ws = Object.assign({}, CLIENT_DEFAULT_OPTIONS.ws);
+            }
+            if (data.hostname) {
+                target.ws.host = data.hostname;
+            }
+            if (data.port) {
+                target.ws.port = parseInt(data.port);
+            }
+            if (typeof data.pathname === 'string' &amp;&amp; data.pathname.length > 1) {
+                target.ws.path = data.pathname;
+            }
+
+            break;
+        }
+        case 'wss:':
+        {
+            delete target.net;
+            delete target.tls;
+            delete target.ws;
+
+            if (!target.wss) {
+                target.wss = Object.assign({}, CLIENT_DEFAULT_OPTIONS.wss);
+            }
+            if (data.hostname) {
+                target.wss.host = data.hostname;
+            }
+            if (data.port) {
+                target.wss.port = parseInt(data.port);
+            }
+            if (typeof data.pathname === 'string' &amp;&amp; data.pathname.length > 1) {
+                target.wss.path = data.pathname;
+            }
+
+            secure = target.wss;
+
+            break;
+        }
+        case null:
+            break;
+        default: {
+            throw ErrMsg(EC.OPT_INV_URI, data.protocol);
+        }
+    }
+
+    if (secure) {
+        const ca = data.query.cacertfile;
+        if (ca) {
+            if (Array.isArray(ca)) {
+                secure.ca = [];
+                for (const file of ca) {
+                    secure.ca.push(fs.readFileSync(file));
+                }
+            } else {
+                secure.ca = fs.readFileSync(ca);
+            }
+        }
+
+        const cert = data.query.certfile;
+        if (cert) {
+            if (Array.isArray(cert)) {
+                secure.cert = [];
+                for (const file of cert) {
+                    secure.cert.push(fs.readFileSync(file));
+                }
+            } else {
+                secure.cert = fs.readFileSync(cert);
+            }
+        }
+
+        const key = data.query.keyfile;
+        if (key) {
+            if (Array.isArray(key)) {
+                secure.key = [];
+                for (const file of key) {
+                    secure.key.push(fs.readFileSync(file));
+                }
+            } else {
+                secure.key = fs.readFileSync(key);
+            }
+        }
+    }
+
+    if (!target.credentials) {
+        target.credentials = {};
+    }
+    if (typeof data.auth === 'string') {
+        const spos = data.auth.indexOf(':');
+        if (spos === -1) {
+            target.credentials.user = data.auth;
+            target.credentials.password = '';
+        } else {
+            target.credentials.user = data.auth.slice(0, spos);
+            target.credentials.password = data.auth.slice(spos + 1);
+        }
+    }
+
+    if (!target.mqtt) {
+        target.mqtt = {};
+    }
+    if (data.query.clientid) {
+        target.mqtt.clientID = typeof data.query.clientid === 'string' ? data.query.clientid : data.query.clientid[0];
+    }
+    if (data.query.cleansession === 'false' || (Array.isArray(data.query.cleansession) &amp;&amp; data.query.cleansession[0] === 'false')) {
+        target.mqtt.cleanSession = false;
+    }
+    if (data.query.keepalive) {
+        target.mqtt.keepAlive = typeof data.query.keepalive === 'string' ? parseInt(data.query.keepalive) : parseInt(data.query.keepalive[0]);
+    }
+
+    return target;
+}
+
+/**
+ * @param {(ClientOptions|Object)=} options
+ * @return {!Array&lt;ClientOptions>}
+ * @private
+ */
+function setupOptions(options) {
+    const cfg = {};
+
+    if (options) {
+        if (typeof options !== 'object') {
+            throw ErrMsg(EC.OPT_INV_TYPE, 'options', 'object');
+        }
+        if (options.constructor !== Object) {
+            throw ErrMsg(EC.OPT_INV_TYPE, 'options', 'object');
+        }
+
+        mergeValues(cfg, options, [], false);
+        delete cfg.uri;
+        mergeValues(cfg, CLIENT_DEFAULT_OPTIONS, ['tls', 'net', 'ws', 'wss', 'oa2'], false);
+
+        if (cfg.wss &amp;&amp; cfg.wss.path &amp;&amp; cfg.wss.path[0] !== '/') throw ErrMsg(EC.OPT_INV_DATA_EXPECT, 'wss.path', '/' + cfg.wss.path);
+        if (cfg.ws &amp;&amp; cfg.ws.path &amp;&amp; cfg.ws.path[0] !== '/') throw ErrMsg(EC.OPT_INV_DATA_EXPECT, 'ws.path', '/' + cfg.ws.path);
+        if (cfg.oa2) oa2.setupOptions(cfg.oa2);
+        if (!cfg.tls &amp;&amp; !cfg.net &amp;&amp; !cfg.wss &amp;&amp; !cfg.ws) cfg.net = mergeValues({}, CLIENT_DEFAULT_OPTIONS.net, [], false);
+
+        mergeValues(cfg, CLIENT_MINIMUM_OPTIONS, [], true);
+
+        const payload = cfg.mqtt.willPayload;
+        if (payload) {
+            if (payload instanceof Buffer) {
+                cfg.mqtt.willPayload = new Payload(payload);
+            } else if (payload instanceof Payload) {
+
+            } else {
+                throw ErrMsg(EC.OPT_INV_WILL_PAYLOAD);
+            }
+        }
+
+        setupStreamOptions(cfg);
+
+        if (cfg.mqtt.cleanSession === false) {
+            throw ErrMsg(EC.OPT_NOT_SUPPORTED, 'cleanSession === false');
+        }
+    } else {
+        mergeValues(cfg, CLIENT_DEFAULT_OPTIONS, ['tls', 'ws', 'wss', 'oa2'], false); // net
+        return [cfg];
+    }
+
+    if (typeof options.uri === 'string') {
+        mergeCfgURI(cfg, options.uri);
+        if (!cfg.wss &amp;&amp; !cfg.ws &amp;&amp; !cfg.tls &amp;&amp; !cfg.net) cfg.net = CLIENT_DEFAULT_OPTIONS.net;
+        if (!cfg.wss &amp;&amp; !cfg.ws) delete cfg.oa2;
+        return [cfg];
+    }
+
+    if (Array.isArray(options.uri)) {
+        const result = [];
+        for (const uri of options.uri) {
+            if (typeof uri !== 'string')
+                throw ErrMsg(EC.OPT_INV_TYPE, 'uri[i]', 'string');
+            const data = mergeValues({}, cfg, [], false);
+            mergeCfgURI(data, uri);
+            if (!cfg.wss &amp;&amp; !cfg.ws &amp;&amp; !cfg.tls &amp;&amp; !cfg.net) cfg.net = CLIENT_DEFAULT_OPTIONS.net;
+            if (!cfg.wss &amp;&amp; !cfg.ws) delete cfg.oa2;
+            result.push(data);
+        }
+        if (result.length) {
+            return result;
+        } else {
+            delete options.uri;
+        }
+    }
+
+    if (options.uri === undefined) {
+        if (!cfg.wss &amp;&amp; !cfg.ws &amp;&amp; !cfg.tls &amp;&amp; !cfg.net) cfg.net = CLIENT_DEFAULT_OPTIONS.net;
+        if (!cfg.wss &amp;&amp; !cfg.ws) delete cfg.oa2;
+        return [cfg];
+    }
+
+    throw ErrMsg(EC.OPT_INV_TYPE, 'uri', ErrOpt('string', 'array', 'undefined'));
+}
+
+/**
+ * @param {*=} result
+ * @return {*}
+ * @private
+ */
+function nop(result) { return result; }
+
+module.exports = {
+    Client : Client,
+    setupOptions : setupOptions,
+    mergeCfgURI : mergeCfgURI
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li><li><a href="IStream.html">IStream</a></li><li><a href="OStream.html">OStream</a></li><li><a href="Payload.html">Payload</a></li></ul><h3>Events</h3><ul><li><a href="Client.html#event:assert">assert</a></li><li><a href="Client.html#event:authenticated">authenticated</a></li><li><a href="Client.html#event:connected">connected</a></li><li><a href="Client.html#event:disconnected">disconnected</a></li><li><a href="Client.html#event:drain">drain</a></li><li><a href="Client.html#event:error">error</a></li><li><a href="Client.html#event:idle">idle</a></li><li><a href="Client.html#event:ping">ping</a></li><li><a href="Client.html#event:reconnecting">reconnecting</a></li><li><a href="IStream.html#event:subscribed">subscribed</a></li><li><a href="OStream.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:abort">abort</a></li><li><a href="TcpConnection.html#event:assert">assert</a></li><li><a href="TcpConnection.html#event:close">close</a></li><li><a href="TcpConnection.html#event:error">error</a></li><li><a href="TcpConnection.html#event:final">final</a></li><li><a href="TcpConnection.html#event:ready">ready</a></li><li><a href="TcpConnection.html#event:valid">valid</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CLIENT_DEFAULT_OPTIONS">CLIENT_DEFAULT_OPTIONS</a></li><li><a href="global.html#CLIENT_MINIMUM_OPTIONS">CLIENT_MINIMUM_OPTIONS</a></li><li><a href="global.html#ErrOpt">ErrOpt</a></li><li><a href="global.html#mapStreamMessageSource">mapStreamMessageSource</a></li><li><a href="global.html#mapStreamMessageTarget">mapStreamMessageTarget</a></li><li><a href="global.html#objectValues">objectValues</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Nov 23 2021 20:08:26 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
