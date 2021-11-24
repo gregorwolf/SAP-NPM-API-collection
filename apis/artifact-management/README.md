@@ -486,7 +486,7 @@ Get the content of the `mta.yaml` file.
 - `Promise<any>`
 ###### CLI
 ```
-./src/project-api/bin/dev-project get-mta ../risk-management-example
+./src/project-api/bin/dev-project show-manifest ../risk-management-example
 ```
 ###### Sample Output
 ```
@@ -543,11 +543,11 @@ dev-project deploy  <my-application-folder-root absolute path>
 
 ---
 
-#### Get Launchpad URL
+#### Get Project Overview URL
 ###### Method
-`getLaunchpadURL(logger? : IChildLogger) : Promise<string | undefined>;`
+`getProjectOverviewURL(logger? : IChildLogger) : Promise<string | undefined>;`
 ###### Description
-Get the launchpad URL of application deployed to currently targeted CF space.
+Get the Project Overview URL of application deployed to currently targeted CF space.
 ###### Parameters
 - logger: (Optional) An instance of IChildLogger which can be implemented by consumers of Project API.
 ###### returns
@@ -555,16 +555,16 @@ Get the launchpad URL of application deployed to currently targeted CF space.
 ###### Example
 ```
 const api = new ProjectImpl(projectPath);
-const launchpadURL = await api.getLaunchpadURL();
+const projectOverviewURL = await api.getProjectOverviewURL();
 ```
 ###### CLI
 ```
-dev-project get-launchpad-url <my-application-folder-root absolute path>
+dev-project get-projectoverview-url <my-application-folder-root absolute path>
 ```
 ###### Sample Output
 ```
 {
-  launchpadURL : <launchpadUrl>
+  applicationOverviewURL : <projectOverviewURL>
 }
 ```
 ---
@@ -581,7 +581,7 @@ Get additional detail information about a particular item.
 - entityPath: (Optional) Path of the item.
 - logger: (Optional) An instance of IChildLogger which can be implemented by consumers of this library.
 ###### returns
-- `Item` or `undefined
+- `Item` or `undefined`
 
 ###### Example
 ```

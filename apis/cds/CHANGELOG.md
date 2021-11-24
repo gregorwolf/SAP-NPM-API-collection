@@ -4,6 +4,17 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.6.4 - 2021-11-23
+
+### Fixed
+
+- Preserve log level in Kibana formatter
+- RFC 3986 compliant segment recognition in beta URL to CQN parser (`cds.env.features.odata_new_parser`)
+- Support for `$skiptoken` OData query option when using beta URL to CQN parser (`cds.env.features.odata_new_parser`)
+- OData requests with `$skip` and without `$top` query option to services with defined default limit (`cds.query.limit.default`)
+- Creating entities with binary keys. Currently the binary keys may be provided only as Node.js `Buffer` instances using a custom handler.
+- Requests with payload containing nested arrayed elements no longer crash the application
+
 ## Version 5.6.3 - 2021-11-15
 
 ### Fixed

@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.6.4 - 2021-11-24
+
+### Fixed
+
+- `cds import` fix for TypeError issue during OData V2 EDMX conversion to CSN.
+- `cds import <file_name>` fix now updates the service name in the `package.json` with only the file name. Earlier, the service name sometimes used to be of the form `A.B`, with `A` being file name and `B` being a part of the schema namespace value in the EDMX file
+
+### Changed
+
+- `cds init` uses latest `Maven Java archetype` version `1.20.3` for creating Java projects.
+
 ## Version 4.6.3 - 2021-11-16
 
 ### Fixed

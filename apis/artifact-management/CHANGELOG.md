@@ -1,3 +1,16 @@
+## 1.2.0 - 24 November, 2021
+### Added
+* Added workflow section containing workflow apps such as My Inbox, Workflow Definitions and Workflow Instances in `Application overview page`.
+* Added cache implementation for `getProjectOverviewURL` api.
+* Enhanced info message codes to indicate the source module in case of exceptions.
+* Added item links between workflow and taskUi app, workflow and service entity, and two db entities.
+### Changed
+* Force update mdk module during deployment.
+* Enhanced the mechanism to identify the workflow folder.
+### Fixed
+* Fixed issue related to concurrent access to `readItems` api.
+
+
 ## 1.1.2 - 16 November, 2021
 ### Fixed
 * Fixed deploy issue with respect to launchpad.

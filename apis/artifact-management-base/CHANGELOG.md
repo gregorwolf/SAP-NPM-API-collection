@@ -1,3 +1,5 @@
+## 1.2.0 - 24 November, 2021
+* Version update for `@sap/artifact-managment@1.2.0`
 ## 1.1.1 - 15 November, 2021
 ### Changed
 * Remove import of `ReflectedModel` from cds and changed the type of csn object to `any`.
