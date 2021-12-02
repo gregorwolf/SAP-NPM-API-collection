@@ -213,7 +213,9 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
   - **isoTimestamp:** Use ISO 8601 format for type cds.Timestamp (Edm.DateTimeOffset). Default is `false`.
   - **isoDateTimeOffset:** Use ISO 8601 format for type Edm.DateTimeOffset (cds.DateTime, cds.Timestamp). Default is `false`.
   - **bodyParserLimit:** Request and response body parser size limit. Default is '100mb'.
+  - **returnCollectionNested**: Collection of entity type is returned nested into a `results` section. Default is `true`.
   - **returnComplexNested**: Function import return structure of complex type (non collection) is nested using function import name. Default is `true`.
+  - **returnPrimitiveNested**: Function import return structure of primitive type (non collection) is nested using function import name. Default is `true`.
   - **returnPrimitivePlain**: Function import return value of primitive type is rendered as plain JSON value. Default is `true`.
   - **messageTargetDefault**: Specifies the message target default, if target is undefined. Default is `/#TRANSIENT#`.
   - **caseInsensitive**: Transforms search functions e.g. substringof to case insensitive variant. Default is `false`.

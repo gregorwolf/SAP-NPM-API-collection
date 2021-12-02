@@ -11,13 +11,21 @@ We want unit tests on templating to be:
 In each test module you want to register the macros the Jest Test should expand at templating. (Otherwise you would get some
 `<macro:nonRegisteredMacro context="{bindingcontext}"/>` in the output of the templating).
 
+You should register the macros in the test set up using something like `beforAll` and unregister them in
+the test teardown with something like `afterAll`.
+
 ```js
+import {registerMacro, unregisterMacro} from "sap/fe/test/JestTemplatingHelper";
 import FieldMetadata from "sap/fe/macros/internal/Field.metadata";
 
 describe("MacroField", () => {
     beforeAll(() => {
         registerMacro(FieldMetadata);
         // you could also register more macros here
+    });
+    afterAll(() => {
+        unregisterMacro(FieldMetadata);
+        // you should unregister any other macros register in the beforeAll
     });
     //...
 });

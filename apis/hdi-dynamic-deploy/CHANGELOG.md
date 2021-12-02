@@ -1,3 +1,13 @@
+# 2.3.2
+Features:
+- use @sap/hdi-deploy@4.2.3
+- use @sap/audit-logging@5.3.0
+- routes `/v1/deploy/to/instance` and `/v1/deploy/to/instance/async` accept the response of a service manager GET
+
+# 2.3.1
+Features:
+- use @sap/hdi-deploy@4.2.2
+
 # 2.3.0
 Features:
 - use @sap/hdi-deploy@4.2.0

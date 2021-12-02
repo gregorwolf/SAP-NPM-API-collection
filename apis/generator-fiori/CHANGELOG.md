@@ -3,6 +3,20 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.4.3] - 2021-11-25
+#### Added
+- A new SAP Fiori elements floor plan is now available.  The `Form Entry Object Page` floor plan for V4 OData sources allows you to create an SAP Fiori application with an object page for data entry.
+- The `List Report Object Page` floor plan and the new `Form Entry Object Page` floor plan can now optionally generate UI annotations during generation if there are none already available in the supplied data source.  **Note:** This is an experimental feature and can be switched off by disabling the `Sap › Ux › Application Modeler: Enable Experimental Features` option in the settings.
+
+#### Changed
+- Generated applications now use the Fiori CLI in the generated launch configuration to start the application.
+
+### Fixed
+- Fixed crash in the `CF Application Router` generator if an MTA ID with invalid characters is provided.
+- Using the SAP Fiori generator from the command line in Business Application Studio now supports data sources using the API Business Hub.
+- Generating a SAP Fiori freestyle application into a CAP project with an `mta.yaml` file should now launch successfully.
+- Using a Java CAP project with the SAP Fiori generator no longer requires a `package.json` file in the root folder.
+
 ## [1.4.1] - 2021-11-11
 #### Added
 - Generating an Analytical List Page application with an OData V4 data source will now default to a table type of `AnalyticalTable`, and the user will no longer be asked to choose a table type.  The user can change this table type after generation using the Page Editor tool.

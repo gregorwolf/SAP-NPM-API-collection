@@ -2,14 +2,14 @@
 
 ## Features
 
-The **SAP Fiori application generator** provides a single entry point to generate both SAP Fiori elements applications and SAP Fiori freestyle applications. Users can choose the type of template required, along with the relevant data source, and an application will be generated into the specified folder. 
+The **SAP Fiori application generator** provides a single entry point to generate both SAP Fiori elements applications and SAP Fiori freestyle applications. Users can choose the type of template required, along with the relevant data source, and an application will be generated into the specified folder.
 
 The generated application conforms to the [Fiori Design guidelines](https://experience.sap.com/fiori-design-web/floorplans/floorplan-overview/) and SAP best practices.
 
 ## Installation
 
 1. Get [Node.js](https://nodejs.org/en/download/)
-1. Install Yeoman(https://https://yeoman.io/) by executing `npm install -g yo`.
+1. Install Yeoman(https://https://yeoman.io/) by executing `npm install -g yo`. Note: `yo` version 4.3.0 or higher required for macOS Monterey.
 1. Install the [MTA](https://www.npmjs.com/package/mta) Node.js package (version 1.0 or higher) by executing `npm install -g mta`.
 
 The SAP Fiori generator can be installed using either of the following methods:
@@ -21,19 +21,19 @@ The SAP Fiori generator can be installed using either of the following methods:
     ```sh
     npm install -g @sap/generator-fiori
     ```
-    
-- **Install the generator from the SAP Fiori tools extension pack.**
 
-  - Installing the SAP Fiori tools extension pack will automatically check if the SAP Fiori generator is installed and install it if necessary.
+- **Install the generator from the SAP Fiori Tools extension pack.**
+
+  - Installing the SAP Fiori Tools extension pack will automatically check if the SAP Fiori generator is installed and install it if necessary.
 
 After installation, verify your installation to see if Yeoman has been installed correctly with the Fiori generator.
 
 ```
 yo
-```   
-   
+```
+
   Make sure you see the `@sap/fiori` generator listed.
-  
+
 ## Launch Fiori application generator
 
 ### Using Yeoman
@@ -69,8 +69,8 @@ Select the required template type to use when generating your application. The g
 - Overview Page
 
 **SAP Fiori freestyle**
-- SAP Fiori Worklist Application 
-- SAP Fiori Master-Detail Application 
+- SAP Fiori Worklist Application
+- SAP Fiori Master-Detail Application
 - SAPUI5 Application
 
 #### 2. Select Data Source
@@ -80,12 +80,12 @@ Currently, the generator supports the following methods to provide the Data Sour
 - **Connect to a System**
 
   You can connect to a System in VSCode by selecting one of the following methods:
-  
+
   1. You can choose to connect to an existing ABAP on premise system by providing the URL and optional SAP Client identifier.  If the URL requires authentication, you will need to provide those details during generation.
-  1. You can connect to an ABAP environment on the SAP Business Technology Platform.  In this case, you must provide a local file that defines the service connection details for the desired ABAP Environment.  Once you provide these details, a browser tab will launch for you to provide authentication details.  
-  
+  1. You can connect to an ABAP environment on the SAP Business Technology Platform.  In this case, you must provide a local file that defines the service connection details for the desired ABAP Environment.  Once you provide these details, a browser tab will launch for you to provide authentication details.
+
   In both cases, if you choose to save the SAP system for future reference, the system details will be stored in the secure storage location of your operating system.
-  
+
 - **Connect to an OData service**
 
   Enter the OData endpoint URL you wish to use in your generated application. Currently, the generator supports an OData endpoint that is either unauthenticated or authenticated with Basic authentication. For an authenticated OData endpoint, you will be asked to provide a username and password.
@@ -93,11 +93,11 @@ Currently, the generator supports the following methods to provide the Data Sour
 - **Connect to SAP API Business Hub**
 
   You can use any of the services available in the SAP API Business Hub by providing your authentication details and choosing the relevant service.
-  
+
 - **Use a Local CAP Project**
 
   For Odata V4 CAP projects, you can reference an existing project and use the service in that project during generation.
-  
+
 - **Upload a data service metadata file**
 
   Upload a service metadata file that represents the back end service from the file system. This allows the user to generate the application without relying on a back end service being available.
@@ -122,7 +122,7 @@ In the next step, provide the following information:
 
   - **UI5 CSS Theme**
   - **UI5 Javascript Library Version**
-  
+
 - **Deployment Configuration** Optional.  If selected, an extra step will be added to the generator for adding deployment configuration using either ABAP or Cloud Foundry
 
 - **FLP Configuration** Optional.  If selected, an extra step will be added to the generator for adding Fiori launchpad configuration to the generated application.
@@ -154,7 +154,7 @@ The generated application requires the following software to be installed:
 
 ## Support
 
-Join the [SAP Fiori tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.  
+Join the [SAP Fiori Tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.
 Please assign tag: _SAP Fiori tools_
 
-To log an issue with SAP Fiori tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).
+To log an issue with SAP Fiori Tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).

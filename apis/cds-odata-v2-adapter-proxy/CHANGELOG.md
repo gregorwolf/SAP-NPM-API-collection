@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.8.2 - 2021-12-01
+
+### Fixed
+
+- Catch and handle unexpected errors during proxy request processing
+- Validate request body and content-type in request
+- Switch of internal NPM repository (Nexus -> Artifactory)
+
+## Version 1.8.1 - 2021-11-19
+
+### Fixed
+
+- Change action/function return type value representation for primitive types to include nesting to conform to OData standard
+- Introduce proxy options `returnPrimitiveNested: false` to keep previous action/function return value representation for primitive types
+- Introduce proxy option `returnCollectionNested` to control collection of entity type nesting into a `results` section. Default is `true`
+- Fill standardized `x-correlation-id` request header in addition to `x-correlationid` for proxy requests
+
 ## Version 1.8.0 - 2021-11-17
 
 ### Fixed

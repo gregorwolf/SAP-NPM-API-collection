@@ -27,7 +27,7 @@ Usually, `@sap/hdi-dynamic-deploy` gets installed via a `package.json`-based dep
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-dynamic-deploy": "2.1.2"
+    "@sap/hdi-dynamic-deploy": "2.3.2"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-dynamic-deploy/"
@@ -128,7 +128,9 @@ Example:
 
 Since version 1.2.0 of the dynamic deployer there is a second way to trigger a deployment by sending a HTTP POST request to the url `http(s)://<hostname>:<port>/v1/deploy/to/instance`. The request body is simply a managed service instance as retrieved from the Instance Manager with a HTTP GET.
 
-Example:
+Since version 2.3.2 of the dynamic deployer the request body can be a managed service instance as retrieved from the Instance Manager or Service Manager with a HTTP GET.
+
+Example: Instance Manager
 
 ```
 {
@@ -142,6 +144,43 @@ Example:
   "managed_binding_id": "a5cba4c8-95a3-42c8-982d-e075d0a6b941",
   "status": "CREATION_SUCCEEDED",
   "updated_on": 1494322225942,
+  "credentials": {
+    "host": "srv1234567.host.name",
+    "port": "30015",
+    "driver": "com.sap.db.jdbc.Driver",
+    "url": "jdbc:sap://srv1234567.host.name:30015/?currentschema=55D392C7232649E8A2F08993645B28B5",
+    "schema": "55D392C7232649E8A2F08993645B28B5",
+    "hdi_user": "SBSS_78283957013891283645150604040575244555286482237534978212872169092",
+    "hdi_password": "password",
+    "user": "SBSS_92380540949443696814788249184554628165227387555319796659663474608",
+    "password": "password"
+  }
+}
+```
+
+Example: Service Manager
+
+```
+{
+  "id": "da7ff475-fd3f-4a86-a3e7-cd3e41e3653d",
+  "ready": true,
+  "service_instance_id": "790e19ae-b9f7-4d80-8e4d-d368d96f79bd",
+  "last_operation": {
+        "id": "e9061cfe-b70a-405b-a402-084b3ec74711",
+        "ready": true,
+        "type": "create",
+        "state": "succeeded",
+        "resource_id": "bf24e49c-fd62-4ad4-83fc-6c09132f8cf7",
+        "resource_type": "/v1/service_bindings",
+        "platform_id": "service-manager",
+        "correlation_id": "ec849486-34b3-40ac-71e6-baf91c91cd0b",
+        "reschedule": false,
+        "reschedule_timestamp": "0001-01-01T00:00:00Z",
+        "deletion_scheduled": "0001-01-01T00:00:00Z",
+        "created_at": "2021-11-02T09:22:47.667677Z",
+        "updated_at": "2021-11-02T09:22:49.288825Z"
+    },
+  "name": "91ce8c49-a1c8-4557-8b25-0e2c4034a4cf",
   "credentials": {
     "host": "srv1234567.host.name",
     "port": "30015",
@@ -172,6 +211,8 @@ If there was no problem with the basic authentication and the request reaches th
 ### Asynchronous deployment
 
 Since version 1.7.0 of the dynamic deployer there is a third way to trigger a deployment by sending a HTTP POST request to the url `http(s)://<hostname>:<port>/v1/deploy/to/instance/async`. The request body is simply a managed service instance as retrieved from the Instance Manager with a HTTP GET, i.e. the same as for `http(s)://<hostname>:<port>/v1/deploy/to/instance`. But instead of waiting until the deployment is done and then returning the results, a GUID is returned.
+
+Since version 2.3.2 of the dynamic deployer the request body can be a managed service instance as retrieved from the Instance Manager or Service Manager with a HTTP GET.
 
 This GUID can be used to query the status of the deployment by sending a GET request to `http(s)://<hostname>:<port>/v1/status/:guid` - if the deployment is still running, the response just contains a `status` property. If the deployment is finished, the usual response is returned - in conjunction with the `status` property.
 

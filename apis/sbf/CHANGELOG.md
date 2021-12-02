@@ -8,6 +8,12 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.4.2"></a>
+## 6.4.2 - 2021-11-25
+
+### Added
+- Get certurl field from xsuaa binding 
+
 <a name="6.4.1"></a>
 ## 6.4.1 - 2021-11-10
 

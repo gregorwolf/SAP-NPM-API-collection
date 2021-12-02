@@ -34,3 +34,12 @@ requests.requestClientCredentialsToken(subdomain, serviceCredentials, additional
 // ?zoneId: sometimes you do not know the subdomain. Then you have to set the zoneID (optional)
 // cb: the callback function cb(err, encodedTokenAsString)
 ```
+
+#### Password Token flow
+```js
+requests.requestPasswordUserToken(subdomain, serviceCredentials, additionalAttributes, cb);
+// subdomain: The subdomain of the xsuaa instance (or null)
+// serviceCredentials: the service credentials. (the config object from environment)
+// additionalAttributes: object if you need to set additional attributes (or null)
+// cb: the callback function cb(err, encodedTokenAsString)
+```

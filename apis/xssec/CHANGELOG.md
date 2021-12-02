@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.2.11 - 2021-11-30
+- add support for timeout setting for all requests-calls 
+- support for password token flow in requests module
+- support for setting scopes for all requests to XSUAA
 ## 3.2.10 - 2021-11-02
 - fix correlationID header names to "x-vcap-request-id" or "x-correlationid"
 
