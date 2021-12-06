@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.10.2 - 2021-12-02
+
+### Fixed
+- Adding expiration date on login-callback-provider check 
+- Increase client_credentials token request timeout to 5000 ms
+- Protect accessToken references
+
+### Updated dependencies
+- deps: compressible@2.0.18
+- deps: sap/xssec@3.2.11
+
+## 10.10.1 - 2021-11-21
+
+### Fixed
+- Avoid sending certificates if not authentication type is client certificate or trusted certificate
+
 ## 10.10.0 - 2021-11-18
 
 ### Added
