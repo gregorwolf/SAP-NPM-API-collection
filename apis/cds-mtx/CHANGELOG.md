@@ -6,7 +6,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.5.0 - 2021-12-06
+
+### Added
+- Binding of both service-manager and managed-hana is now supported. To enable it, you have to
+set the feature flag `cds.features.hybrid_instance_manager` to true. Please note that you also 
+need a compatible version of `@sap/instance-manager`.
+
+## Version 2.4.2 - 2021-12-02
+
+### Fixed
+- Authentication request for cds extension client is now returning token again
+- `hdbmigrationtable` files from an updated model with multiple new migration versions 
+are now correctly merged with tenant specific `hdbmigrationtable` files
+
+
 ## Version 2.4.1 - 2021-11-09
+
 
 ### Fixed
 - Additional HDI_DEPLOY_OPTIONS do no longer affect the stability

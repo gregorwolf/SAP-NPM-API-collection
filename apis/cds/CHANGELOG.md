@@ -4,6 +4,104 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.7.1 - 2021-12-06
+
+### Fixed
+
+- Draft (OData flavors `w4`, `x4` and `v4` with structs): Flags `HasActiveEntity`, `HasDraftEntity`, and `IsActiveEntity` are now included in the HTTP response for GET requests.
+- Instance-based restriction on entities using localized fields in draft
+- Results of actions/functions do not ignore nested data if query options are present
+
+## Version 5.7.0 - 2021-12-03
+
+### Added
+
+- Deferred emitting via persistent outbox, enabled through service `outbox` of kind `persistent-outbox`
+- Support for compiler-generated referential constraints (beta)
+  + Activate via `cds.env.features.assert_integrity: '<preset>'`
+  + Available presets:
+    + `off`: no database constraints and no runtime checks
+    + `app`: runtime checks by default
+    + `db`: database constraints by default
+  + "by default": if not excluded, the runtime check or database constraint applies
+  + "opt-in": if included, the runtime check or database constraint applies
+  + Behavior can be overridden via `@assert.integrity: <true/false/'RT'/'DB'>` on property, entity, or service level (lowest applies)
+- Allow `--with-mocks` in production via `cds.env.features.with_mocks = true`
+- Set media type from content type header while inbound streaming
+- Support for navigations with `$count` in `$filter`, for example `GET Entity?$filter=toMany/$count gt 0`
+- Draft: Generate UUIDs for request payloads to which extra data items are added (without the UUID keys) in a custom application handler.
+- Generate GraphQL schema via `cds compile -2 gql` (alpha)
+- Log requests to remote services if respective log level is set to `debug`
+- Beta OData URL to CQN parser (`cds.env.features.odata_new_parser`):
+  + support for `$skiptoken` query option
+  + limited support for `$apply` query option
+    + Supported are following transformations and their combinations: `aggregate`, `groupby`, `topcount`, `bottomcount`, `filter`, `search`
+    + Not supported:
+      + Transformations `topsum`, `bottomsum`, `toppercent`, `bottompercent`, `expand`, `concat`, `compute`, `identity`
+      + `rollup` and `$all` in `groupby` transformation
+      + Filter function `isdefined`
+      + Custom aggregation methods, arithmetic operators (`add`, `sub`, `mul` and so on) and keyword `from` in `aggregate` transformation
+      + OData vocabulary for Data Aggregation, `@Aggregation.default` annotation
+    + Out of scope:
+      + Draft handling
+- Out-of-the-box audit logging for draft enabled entities
+- Support for `@sap/instance-manager`'s hybrid mode
+  + Enable via `cds.env.features.hybrid_instance_manager`
+  + Respective version of `@sap/instance-manager` required
+- `cds.minify()` (alpha) as static method
+- Annotation `@open` for actions in new Rest Adapter
+- Audit logging (`cds.env.features.audit_personal_data`) supports annotation `@PersonalData.EntitySemantics: 'Other'` and allows an arbitrary composition of entities with respect to `@PersonalData.EntitySemantics` annotations
+
+### Changed
+
+- `if-match` and `if-none-match` headers are  ignored for entities without etags
+- Improve response time of `SELECT` queries that check referential integrity by adding an upper bound `LIMIT 1`
+- Leaner implementation for `sap-statistics`
+- Leading and trailing whitespaces are allowed for `$search` query parameter
+- Insert / Update of Composition of one with empty object is not allowed for non UUID keys
+- Search behavior of whitespaces changed as follow:
+  + Searches for plain whitespace, for example, `"$search= "` matches the complete data set.
+  + Searches for whitespace surrounded by double-quotes, for example, `$search=" "` matches all entries containing whitespaces.
+- In single tenant mode, the default SQLite database is used, regardless of `context.tenant`
+- `cds build` for Node.js projects now copies `package-lock.json` files into the staging folder (usually `gen/srv`). This allows the execution of `npm ci` there.
+- Relaxed UUIDs in beta URL to CQN parser (`cds.env.features.odata_new_parser`)
+- Authentication strategies `dummy` and `mock` no longer require `passport`
+- In production, debug logs of `cds.DatabaseService` and `cds.RemoteService` have sanitized values
+  + Deactivate via `cds.env.log.sanitize_values = false`
+
+### Fixed
+
+- Path resolution for references in sub selects
+- Where exists without infix filter, e.g., `@restrict.where: 'exists author'`
+- `@restrict.where: 'exists [...]'` in draft union scenario
+- Select query with path exists predicates e.g., `WHERE EXISTS books[year = 2000].pages[wordcount > 1000]`
+- Proper registration of audit log event handlers
+- Draft: Generate foreign keys for request payloads to which extra data items are added in a custom application handler.
+- `cds build` correctly merges `hdbmigrationtable` files that have multiple new migration versions defined.
+- `cds.test` converts response data of failed requests to JSON to prevent lost error details
+- Instance based restriction for draft enabled entities
+- Delete requests for localized with compositions
+- Ignore input for static and calculated fields during draft activate
+- Clear extension map entry on error during CSN fetching
+- Do not ignore errors during diff calculation
+- Requests to mocked remote service when using custom service name with `.service` property
+- Rollback on already backrolled or committed transactions are ignored
+- Rollback handling in spawned background job
+- `cds.spawn()` throws error if passed options is an instance of `cds.EventContext`
+- Delete `timestamp` from options passed to `cds.spawn()` (transactions create their own timestamp)
+- Type error during programmatic action/function call if no params defined
+- Fully qualified bound actions/ functions in beta URL to CQN parser (`cds.env.features.odata_new_parser`)
+- Draft handling: `GET` requests with navigation via `SiblingEntity` and expand to-one
+- No audit log if sensitive data not selected
+- Kibana formatter: do not log authorization header value
+- Audit logging (`cds.env.features.audit_personal_data`) no longer crashes the application
+  + when using the same entity as a composition child in different parent entities
+  + when accessing a not existing entity
+
+### Removed
+
+- Deprecated feature flags `cds.env.runtime.skipWithParameters` and `cds.env.features.skip_with_parameters`. Use `cds.env.features.with_parameters` instead.
+
 ## Version 5.6.4 - 2021-11-23
 
 ### Fixed
@@ -113,6 +211,9 @@
   + Deactivate during two month grace period via compat feature flag `cds.env.features.keys_into_where = true`
 - Removed duplicate integrity checks
 - Optimized search: Optimize queries for non-localized elements
+- OData to CQN parsing changed to enable remote service consumption. As a side effect, application code in `srv.on('READ', handler)` custom handlers relaying on CQN might need to be adapted. The following has changed:
+  - Previously, columns in `req.query.SELECT.columns` were always defined. Now, in case there is no `$select` and `$expand` query options in the OData query, `req.query.SELECT.columns` is `undefined`.
+  - Previously, if the `$expand` query option was specified in the OData query, all elements of the expanded navigation property were listed explicitly in the CQN query. Now, an `*` (asterisk) is listed instead.
 - Non-specified columns are resolved at database layer
 - `cds deploy` no longer enforces the presence of SAP CommonCryptoLib (checked with env variable `SECUDIR`) on Windows since it uses now the built-in security libraries
 - Target keys are not included into a body when sending `PATCH` requests to external services
@@ -585,6 +686,7 @@
 - `SELECT.where(...)` generates CQN with list of values for `in` operator
 - Always use flag `u` during input validation via `@assert.format`
 - Intermediate CQN format for lambda expressions with preceding navigation path
+- Better error messages for draft enabled entities
 
 ### Fixed
 

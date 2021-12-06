@@ -6,6 +6,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.4.0 - 2021-12-03
+
+### Added
+
+- progress indication for initialization, configuration changed, references and workspace symbols
+- support for protocol:selectionRange (though, VSCode has a bug and does not considers it currently)
+
+### Fixed
+
+- goto definition of certain references was wrong
+- symlinks were not followed when scanning workspace
+- (speedup) indexes might got stale even model file hasn't changed
+
+### Changed
+
+- consume cds-compiler 2.11.0
+- import artifact quickfix now shortens the using path
+- @sap/cds/common.cds now included by default
+- speedup initialization: no scan/read workspace, reusing source files first read by compiler, unless reference or workspaceSymbols require a scan
+- speedup: cache missed paths when compiler resolves using paths
+- speedup: only consider models from app/srv/db folders (according cds env) for references and workspace symbols
+- speedup when config changes: revalidation of files only if relevant settings changed
+- speedup resolution of using paths
+- speedup: cds env is now loaded synchronously in-process
+- speedup: calculate annotation diagnostics only for active file
+- speedup: dynamic registration of configurable requests now done asynchronously at startup
+- speedup: files to index for references now ordered by rank
 
 ## 5.3.0 - 2021-09-23
 

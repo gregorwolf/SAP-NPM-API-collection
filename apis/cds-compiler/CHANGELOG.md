@@ -7,6 +7,56 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.11.0 - 2021-12-02
+
+### Added
+
+- Option `defaultBinaryLength` to set a `length` type facet for all definitions with type `cds.Binary`. This option
+  overrides the default binary length in the database backends and is also used as `MaxLength` attribute in Odata.
+- If doc-comments are ignored by the compiler, an info message is now emitted.  A doc-comment is ignored,
+  if it can't be assigned to an artifact.  For example for two subsequent doc-comments, the first doc-comment
+  is ignored.  To suppress these info messages, explicitly set option `docComment` to `false`.
+- `cdsc`:
+  - `cdsc explain list` can now be used to get a list of message IDs with explanation texts.
+  - `cdsc` now respects the environment variable `NO_COLOR`. If set, no ANSI escape codes will be used.
+    Can be overwritten by `cdsc --color always`.
+- to.sql/hdi: Support SQL Window Functions
+- to.sql/hdi/hdbcds:
+  + Support configuration of `$session` and `$user` via option `variableReplacements`.
+  + Restricted support for SQL foreign key constraints if option `assertIntegrityType` is set to `"DB"`.
+    The behavior of this feature might change in the future.
+
+### Changed
+
+- Updated OData vocabularies 'Common' and 'UI'.
+- to.sql/hdi/hdbcds: The default length of `cds.Binary` is set to `5000` similar to `cds.String`.
+
+### Removed
+
+- to.hdbcds: Doc comments on view columns are not rendered anymore. Doc comments on string literals will make the deployment fail
+  as the SAP HANA CDS compiler concatenates the doc comment with the string literal. Besides that, doc comments on view columns
+  are not transported to the database by SAP HANA CDS.
+- to.hdbcds/sql/hdi: Forbid associations in filters after `exists` (except for nested `exists`), as the final behavior is not yet specified.
+
+### Fixed
+
+- CSN parser: doc-comment extensions are no longer ignored.
+- Properly check for duplicate annotation definitions.
+- Correctly apply annotations on inherited enum symbols.
+- Correctly apply annotations on elements in an inherited structure array.
+- Fix a bug in API `defaultStringLength` value evaluation.
+- Fix crash if named arguments are used in a function that's inside a `CASE` statement.
+- to.sql/hdi/hdbcds:
+  + Properly flatten ad-hoc defined elements in `returns` / `params` of `actions` and `functions`.
+  + Correctly handle `*` in non-first position.
+  + Correctly handle action return types
+  + Correctly handle mixin association named `$self`
+- to.cdl: doc-comments are no longer rendered twice.
+- to.edm(x):
+  + Fix a bug in V2/V4 partner ship calculation.
+  + Remove warning of unknown types for Open Types in `@Core.Dictionary`.
+  + An empty CSN no longer results in a JavaScript type error
+
 ## Version 2.10.4 - 2021-11-05
 
 ### Fixed

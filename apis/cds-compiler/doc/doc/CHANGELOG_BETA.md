@@ -8,6 +8,10 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 2.11.0
+
+### Removed `foreignKeyConstraints`
+
 ## Version 2.10.4
 
 ### Fixed `nestedProjections`

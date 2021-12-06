@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.4.0 - 2021-12-03
+
+### Added
+- progress monitor for long runners like References and WorkspaceSymbols
+
+### Changed
+- new 'cold start' start-up behaviour: 
+    + workspace is not scanned unless required (references, workspace symbols)
+    + file contents read during compilation is cached, incl. tried missing paths during path resolution
+    + many changes to improve performance and reduce required memory
+- `cds preview` now opens a read-only editor to show the cds file preview.
+
+### Components
+- @sap/cds-lsp 5.4.0
+- @sap/cds-compiler 2.11.0
+
 ## Version 4.3.0 - 2021-09-23
 
 ### Added
@@ -25,14 +41,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - translation support is now lazy
 - performance improvements when translation files changed
 - last workspace/symbols are cached now to speed up CAP explorer
-- user setting cds.workspace.scanCsn has now three modes: Off, ByFileExtension (new default) and InspectJson 
+- user setting cds.workspace.scanCsn has now three modes: Off, ByFileExtension (new default) and InspectJson
 
 
 ## Version 4.2.0 - 2021-07-30
 
 ### Added
 
-- validation mode _ActiveEditorOnly_ (new default). 
+- validation mode _ActiveEditorOnly_ (new default).
   The new mode reduces number of compilations during editing and thus improves responsiveness.
 - new command _Visualize CDS file dependencies_ to analyze using dependencies of CDS model files.
   Getting an overview of file dependencies can help to keep your project architecture clean.
@@ -53,7 +69,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - new performance relevant user settings
   + `cds.workspace.debounceFastChanges`:  skip intermediate compilations when typing - enabled by default
   + `cds.workspace.scanDependentModules`: skip scanning of node_modules - enabled by default, speeds up start-up time
-    
+
     Note:
     - when using code completion for global identifiers (see `cds.completion.workspaceSymbols.minPrefixLength`) this option needs to be enabled
     - for code completion of import paths in `using` statements this option needs to be enabled
@@ -66,7 +82,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 This is a quality release focusing on performance for large models.
 There are new user settings and some have changed their defaults.
-Best performance is achieved with default settings, 
+Best performance is achieved with default settings,
 except `cds.contributions.enablement.odata` which should be switched `off` to speed up compilation, unless feature is needed.
 
 Additonal hints to increase performance:
@@ -75,7 +91,7 @@ Additonal hints to increase performance:
 - Settings: `Editor › Goto Location: Alternative Definition Command`: do not select `goToReferences`. Otherwise being already on a definition will trigger find references which requires all dirty models to be recompiled.
 - Settings: `Workbench › Editor › Limit: Enabled`: switch on
 - Settings: `Workbench › Editor › Limit: Value`: lower the number. If open editors have `using` dependencies, a change in one editor will lead to a recompile of releated editors.
-- Commands `Go to References` / `Find All References` will recompile all models that might have changed due to a change in a depending model. If there are index models it often means the complete workspace is being recompiled. 
+- Commands `Go to References` / `Find All References` will recompile all models that might have changed due to a change in a depending model. If there are index models it often means the complete workspace is being recompiled.
 Until a further change, reference calculation is resonably fast.
 - Command `Go to Symbol in Workspace` will recompile the complete workspace once, then it is reasonable fast
 - Changing settings in `CDS` section will currently perform a complete workspace invalidation i.e. required indexes will lead to recompilations on-demand as described above
@@ -519,7 +535,7 @@ Official support for code formatting
 - support LSP configuration via settings file in workspace incl. logs in workspace
 
 ### Fixed
-- Fix indentation after element definitions using Association or Composition 
+- Fix indentation after element definitions using Association or Composition
 - fix: extraction of root models did no longer work since @sap/cds#3.19
 - code formatting
     - Fix indentation of keywords `union`, `except`, and `minus`
