@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.4.4] - 2021-12-09
+#### Added
+- Added support for the experimental SAP Horizon theme, as long as a supported version of UI5 is selected during generation.
+
+#### Changed
+- Choosing the UI5 version for your application is no longer under `Advanced Options` and is now directly on the `Project Attributes` step for better visibility.
+
+### Fixed
+- Selecting a Fiori freestyle SAPUI5 template with no datasource no longer crashes the generator.
+- Performing a test deployment no longer reports the result as an error unless the test deployment fails.
+
 ## [1.4.3] - 2021-11-25
 #### Added
 - A new SAP Fiori elements floor plan is now available.  The `Form Entry Object Page` floor plan for V4 OData sources allows you to create an SAP Fiori application with an object page for data entry.

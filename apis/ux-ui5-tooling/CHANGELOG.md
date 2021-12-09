@@ -2,6 +2,29 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.4.3] - 2021-11-18
+### Changed
+- Updated help texts
+
+### Fixed
+- Fixed an issue with resetting the IAppState on the Object Page
+
+## [1.4.1] - 2021-11-04
+### Fixed
+- Fixed minor issues
+
+## [1.4.0] - 2021-10-21
+### Added
+- Added a new option to create delivery variants/views
+
+### Fixed
+- Removed wrong WARN messages in the terminal when executing `npx fiori run`
+
+## [1.3.7] - 2021-10-07
+### Changed
+- Fixed minor issues and refactoring
+
 ## [1.3.5] - 2021-09-23
 ### Added
 - Added help options for SAP Fiori tools CLI. Typing `npx fiori help` will give the list of commands that the command line tools support. Help text for individual `fiori` commands can also be displayed, e.g. `npx fiori add help`.

@@ -1,3 +1,20 @@
+## 4.2.3
+Features:
+- allow pattern negations in the undeploy.json file
+
+## 4.2.2
+Fixes:
+- removed extraneous packages in shrinkwrap
+
+## 4.2.1
+Features:
+- added option `--hana-client-trace` to enable tracing for the SAP HANA client interactions with the SAP HANA server
+- added option `--hana-client-packet-trace` to enable packet tracing for the SAP HANA client interactions with the SAP HANA server
+- added custom listeners to handle SIGBUS errors
+
+Fixes:
+- log client messages and errors to structured log
+
 ## 4.2.0
 Features:
 - allow wildcard paths in the undeploy.json file to enable the undeployment of a set of files without having to specify every single file

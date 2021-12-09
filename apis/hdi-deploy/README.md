@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.2.0"
+    "@sap/hdi-deploy": "4.2.3"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -345,7 +345,8 @@ On startup, the HDI Deployer recursively scans the local `src/` and `cfg/` folde
 
 In normal operation, the HDI Deployer will schedule only the set of added and modified files for deployment. The set of deleted files is not scheduled for undeployment.
 
-In order to undeploy deleted files, an application needs to include an undeploy allowlist via an `undeploy.json` file in the root directory of the `db` module (right beside the `src/` and `cfg/` folders). The undeploy allowlist `undeploy.json` file is a JSON document with a top-level array of file names. Both "real" paths and path patterns are supported.
+In order to undeploy deleted files, an application needs to include an undeploy allowlist via an `undeploy.json` file in the root directory of the `db` module (right beside the `src/` and `cfg/` folders). The undeploy allowlist `undeploy.json` file is a JSON document with a top-level array of file names. 
+"real" paths, path patterns and path negations are supported.
 
 `undeploy.json`:
 
@@ -353,7 +354,8 @@ In order to undeploy deleted files, an application needs to include an undeploy 
         "src/Table.hdbcds",
         "src/Procedure.hdbprocedure",
         "src/*.hdbtable",
-        "**/*.hdbtable"
+        "**/*.hdbtable",
+        "!**/temp/*.hdbtable"
     ]
 
 The file must list all artifacts which should be undeployed. The file path of the artifacts must be relative to the root directory of the `db` module, must use the HDI file path delimiter '/', and must be based on the HDI server-side folder structure. In case of reusable database modules, the server-side top-level folder `lib/` needs to be used instead of the local folder `node_modules/`.
@@ -539,7 +541,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.2.0",
+    "@sap/hdi-deploy": "4.2.3",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1009,6 +1011,10 @@ The file works just like the `--exclude-filter` option and they can be used at t
 
 `@sap/hdi-deploy` supports the following options for interactive deployment scenarios, e.g. for orchestration via the WEB IDE or for CI scripts:
 
+- `--version`: print version and exit
+- `-t, --trace`: enable tracing
+- `--hana-client-trace`: enable tracing for the SAP HANA client; All interactions with the SAP HANA server will be traced which can lead to a large amount of trace information to be written
+- `--hana-client-packet-trace`: enable PACKET tracing for the SAP HANA client; Must only be used in combination with --hana-client-trace
 - `--[no-]verbose`: [don't] print detailed log messages to the console
 - `--structured-log <file>`: write log messages as JSON objects into the given file; messages are appended if the file already exists
 - `--[no-]exit`: [don't] exit after deployment of artifacts
@@ -1066,7 +1072,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "4.2.0",
+        "version": "4.2.3",
         "features": {
             "info": 2,
             "verbose": 1,
