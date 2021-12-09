@@ -7,6 +7,14 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.11.2 - 2021-12-06
+
+### Fixed
+
+- to.sql/hdi/hdbcds:
+  + No foreign key constraint will be rendered for managed `composition of one` if annotated with `@assert.integrity: false`
+  + Correctly handle managed associations with other managed associations as foreign keys in conjunction with `exists`
+
 ## Version 2.11.0 - 2021-12-02
 
 ### Added

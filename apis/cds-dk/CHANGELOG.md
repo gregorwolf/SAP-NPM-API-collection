@@ -6,6 +6,35 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.7.1 - 2021-12-06
+
+### Fixed
+
+- `cds activate` authentication no longer fails
+- `cds.compile.to.openapi` does no longer crash if `cds.compile` was already initialized
+
+## Version 4.7.0 - 2021-12-06
+
+### Added
+
+- `cds add data --for` can be passed a regular expression, allowing more flexible name filters.  For example `--for '^Supplier$'` would only match entity `Supplier`, but not `SupplierAddress`.  Note that as before, `--for Supplier` is interpreted as `--for '^Supplier.*'`, i.e. matches both entities.
+- `cds init --add hana` and `cds add hana` now add a `undeploy.json` file containing wildcards. This ensures that SAP HANA artefacts are automatically cleaned-up in case views, unique keys or constraint definitions of associations have been changed in CDS model.
+
+### Changed
+
+- `cds import` now adds annotations for missing ON conditions in associations instead of appending it in `doc`.
+- `cds import` has updated mapping for OData V2 and V4
+- `cds add lint` now configures `csv` files in `.vscode/settings.json`
+- `cds add hana` for Java projects now adds an `engines.node` version of `^16` to the generated `db/package.json`, to pin the Node.js version.  This will help in the future when runtime environments change their default to some version higher than the one supported by `@sap/hdi-deploy`.
+- `cds add mta` for Node.js projects now adds `npm ci` commands instead of `npm install`.  This makes use of `package-lock.json` to enforce reproducible builds.
+- `cds watch` now ignores folders named `target`, to avoid restarts when Maven's build output changes
+
+### Fixed
+
+- `cds import` throws warning messages for unsupported data types.
+- `cds watch` allows the explicit `--with-mocks` option, although this is anyways included by default
+- `cds watch` no longer runs into multiple restarts if many files are changed at once, like in git branch changes
+
 ## Version 4.6.4 - 2021-11-24
 
 ### Fixed
@@ -15,7 +44,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- `cds init` uses latest `Maven Java archetype` version `1.20.3` for creating Java projects.
+- `cds init` uses latest Maven Java archetype version `1.20.3` for creating Java projects.
 
 ## Version 4.6.3 - 2021-11-16
 

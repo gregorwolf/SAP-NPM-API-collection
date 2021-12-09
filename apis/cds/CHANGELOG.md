@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.7.2 - 2021-12-09
+
+### Fixed
+
+- Instance-based restriction for activation of draft enabled entities
+- `.columns('*')` on projections of remote services using renamed properties
+- GraphQL filters on nested fields are now applied correctly
+- Performance degradation during processing of `where exists`
+- Read drafts via navigation with complex filter expression
+
 ## Version 5.7.1 - 2021-12-06
 
 ### Fixed
