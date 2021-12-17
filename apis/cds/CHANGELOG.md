@@ -4,6 +4,18 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.7.3 - 2021-12-16
+
+### Fixed
+
+- Message Queuing now accepts `amqp` options
+- OData requests using lambda expressions with `contains` function
+- Result of OData query option `$count=true` when using `$apply`
+- `$filter` with navigation to-one equals value crashes
+- `$skiptoken` query option allows to use arbitrary symbols except of `&` with beta OData URL to CQN parser (`cds.env.features.odata_new_parser`). In this non-integer value case the value will not be parsed into CQN.
+- Function names in `$filter` can now be case insensitive (as per OData 4.01)
+- `$count` in `$expand` caused server to crash
+
 ## Version 5.7.2 - 2021-12-09
 
 ### Fixed

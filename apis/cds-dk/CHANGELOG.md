@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.7.2 - 2021-12-15
+
+### Fixed
+
+- `cds add lint` uses JSONC parser to read ESLint config files of type `.eslintrc[.js,.cjs,.json]`.
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version `1.21.0` for creating Java projects.
+
 ## Version 4.7.1 - 2021-12-06
 
 ### Fixed
