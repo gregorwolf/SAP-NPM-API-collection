@@ -1,3 +1,14 @@
+## 1.7.0
+
+### New Features
+- Calculation views can be configured to use the session user when evaluating masked data
+- Improved value help for calculation view execution hints
+
+### Fixes
+- Improved message if a debug query fails
+- Fixed the deletion of a hiarchical privilege in the analytical privilege editor
+- Fixed an error when mapping fuzzy search parameters
+
 ## 1.6.0
 
 ### New Features

@@ -97,11 +97,13 @@ Property | Mandatory | Details
 sm_url | x | URL of _Service Manager_.
 url | x | URL of _UAA_ server from which to fetch tokens which will be send to _Service Manager_.
 clientid | x | Used when retrieving a token.
-clientsecret | x | Used when retrieving a token.
+clientsecret (not required for mTLS) | x | Used when retrieving a token.
+certificate (only for mTLS) | x | Used when retrieving a token.
+certurl (only for mTLS) | x | Used when retrieving a token.
 service |  | Defaults to 'hana'. Name of the service of which to manage instances.
 plan |  | Defaults to 'hdi-shared'. Name of a plan from the selected service of which to manage instances.
 
-**Note**: A _service-manager_ binding contains all the mandatory properties mentioned above.
+**Note**: A _service-manager_ binding contains all the mandatory properties mentioned above. For non-mTLS authentication *clientsecret* is required, where *certificate* and *certurl* are required for mTLS authentication.
 
 #### Optional parameters
 
@@ -139,9 +141,10 @@ Reports an error having a `statusCode` property with value of `409` if an instan
 
 **Note**: With _Service Manager_ the properties provided on the managed instance are a subset (`label`, `plan`, `tags`, `credentials`, `tenant_id` and `status`) of the properties provided on it when using _Instance Manager_.
 
-- `get(tenant, callback)` - gets the corresponding instance for the provided tenant either from cache or from server.
+- `get(tenant, bindingParams, callback)` - gets the corresponding instance for the provided tenant either from cache or from server. Includes a binding creation fallback if instance has no bindings.
 Value of `null` means that a service instance for this tenant does not exist.
   - tenant | *String* | Tenant name.
+  - optionalParameters | *Object* | **Optional.**  JSON object with parameters for provisioning or binding, as would be done with the -c options of the CLI commands. Used during binding creation fallback.
   - callback | *function(err, instance)* | Callback function with the instance as second argument.
 
 **Note**: In _Instance Manager_ case this method only polls if the instance is in status `CREATION_IN_PROGRESS`.
@@ -149,7 +152,8 @@ In all other cases it returns the service instance as it is on server.
 Thus, having the `credentials` property on the `instance` object in the callback is not guaranteed.
 In _Service Manager_ case if the managed instance is not ready to be used, the method returns an error.
 
-- `getAll(callback)` - gets the instances for all tenants as an array of objects. This method updates the cache.
+- `getAll(optionalParameters, callback)` - gets the instances for all tenants as an array of objects. This method updates the cache. Includes binding creation fallback for each instance without binding. If binding creation fails it will log an error message and continue processing.
+  - optionalParameters | *Object* | **Optional.**  JSON object with parameters for provisioning or binding, as would be done with the -c options of the CLI commands. Used during binding creation fallback.
   - callback | *function(err, instances)* | Callback function with all instances as second argument.
 
 **Note**: In _Instance Manager_ case filtering of the instances according to their status (e.g. `CREATION_SUCCEEDED`, `CREATION_IN_PROGRESS`) does not take place. Thus, having the `credentials` property on each of the instances provided in the callback is not guaranteed. In _Service Manager_ case only ready to be used managed instances are returned.

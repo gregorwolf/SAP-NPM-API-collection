@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.58] - 2021-12-14
+
+- fixed: oauth payload length issue on method fallback
+
+## [0.9.57] - 2021-12-08
+
+- added: oauth request timeout
+
 ## [0.9.56] - 2021-11-15
 
 - fixed: late connection container close

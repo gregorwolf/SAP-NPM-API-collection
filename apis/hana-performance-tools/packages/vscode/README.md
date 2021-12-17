@@ -56,6 +56,10 @@ Until we release this software via [Visual Studio Code Marketplace](https://mark
 
 Here is the brief history of releases.
 
+### 1.3.0
+* Improve layout algorithm
+* Upgrade timeline chart library to prevent vulnerability
+
 ### 1.2.21
 * Fix plv parsing pausing issue when it has jeReduction plan
 

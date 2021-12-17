@@ -1,3 +1,16 @@
+## 1.7.0
+
+### New Features
+- It is now possible to deploy artifacts directly from the SAP HANA getting started guide
+
+### Fixes
+- Various SAP HANA getting started guide improvements
+
+## 1.6.0
+
+### Fixes
+- SAP HANA getting started guide improvements
+
 ## 1.5.0
 
 ### New Features

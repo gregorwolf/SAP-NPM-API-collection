@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.9.17] - 2021-12-16
+
+- fixed: oauth request, method fallback and payload length
+
 ## [0.9.16] - 2021-11-15
 
 - fixed: oauth with mTLS

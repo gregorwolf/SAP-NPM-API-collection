@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.1.0 - 2021-12-13
+
+### Added
+- **Service Manager.** Support for mTLS authentication
+- **Service Manager.** Retrieving an instance will create a binding if no binding exists for that instance.
+- **Service Manager.** Creating a new instance will now also put the *tenant_id* as label.
+- **Service Manager.** Optional parameters supported for get and getAll to support fallback for mTLS.
+
 ## 3.0.0 - 2021-05-05
 
 ### Fixed

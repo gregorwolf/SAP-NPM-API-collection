@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.4.5] - 2021-12-15
+
+* Suppress $metadata annotation <code>sap:aggregation-role="dimension"</code> on calculation view property if it is used as description property referenced by annotation <code>sap:text</code> by another property of the calulation view. The annotation is only supressed if the corresponding xsodata-file has <code>settings</code> containing this: <code>noDimensionAnnoOnTextProperty true;</code>
+* Improvements on URI parsing errors:
+  * reporting URI resource path character position on parsing error, if possible
+  * Invalid navigation property on <code>$expand</code> system query option returns 400 (Bad Request) instead of 500 (Internal Server Error)
+* Removed support for NodeJS version 10
+
 ## [7.4.4] - 2021-07-20
 
 * HANA client API usage changed: 'execQuery' used for read requests, change requests remain on 'exec'

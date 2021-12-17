@@ -5,6 +5,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.10.4 - 2021-12-16
+
+### Fixed
+- SameSite cookie property concatenation   
+
+## 10.10.3 - 2021-12-13
+
+### Fixed
+- Handle bad cookie decryption error
+- Fix missing session when token validity too short
+- Set client_credentials token by tenant timeout to 5000 ms
+- setXForwardedFor remove headers correction
+
+### Added
+- Adding serverKeepAlive from env variable to routerConfig
+
+### Updated dependencies
+- deps: @sap/audit-logging@5.3.0
+- deps: debug@4.3.2 
+- deps: uuid@8.3.2
+- deps: scmp@2.1.0
+
 ## 10.10.2 - 2021-12-02
 
 ### Fixed

@@ -1,6 +1,10 @@
-# Graph Toolkit
+# SAP Graph Toolkit
 
-The SAP Graph Command Line Tool allows privileged users with the role of _SAP_Graph_Key_User_ to configure the SAP Graph tenant.
+SAP Graph is a unified API for SAP, using modern open standards like OData v4.
+
+With SAP Graph, developers access SAP-managed business data as a single semantically connected data graph, spanning the suite of SAP products. Targeting SAP's ecosystem of developers and customers, SAP Graph's one API and Business Data Graph reduce the cost and complexity of creating and deploying reusable extension applications.
+
+The SAP Graph Command Line Tool allows users with the role of _SAP_Graph_Key_User_ to mantain business data graphs.
 
 ## Installation
 
@@ -8,10 +12,10 @@ The SAP Graph Command Line Tool allows privileged users with the role of _SAP_Gr
 npm install -g @sap/graph-toolkit
 ```
 
-or for a specific version (e.g. 1.0.2)
+or for a specific version (e.g. 3.0.3)
 
 ```sh
-npm install -g @sap/graph-toolkit@1.0.2
+npm install -g @sap/graph-toolkit@3.0.3
 ```
 
 Test your installation with
@@ -23,7 +27,7 @@ graphctl --version
 For this example, you should see the output
 
 ```sh
-1.0.2
+3.0.3
 ```
 
 ## Usage

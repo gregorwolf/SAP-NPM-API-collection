@@ -78,7 +78,7 @@
 
 ## Overview
 
-When a business application consists of several different apps (microservices),
+When a business application consists of several different apps  (microservices),
 the application router is used to provide a single entry point to that business application.
 It has the responsibility to:
 
@@ -221,6 +221,8 @@ Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fra
 Backend Cookies Secret | `BACKEND_COOKIES_SECRET` | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
 Service to Application Router | `SERVICE_2_APPROUTER` | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
 Client certificate header name | `CLIENT_CERTIFICATE_HEADER_NAME` | When set application router will use this header name to get the client certificate from the request header in subscription callback. If not provided the default header name `x-forwarded-client-cert` is used.
+Server keep alive | `SERVER_KEEP_ALIVE` | server keep alive timeout (positive integer in milliseconds).
+
 
 **Note:** all those environment variables are optional.
 

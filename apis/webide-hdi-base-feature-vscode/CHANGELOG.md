@@ -1,3 +1,8 @@
+## 1.6.0
+
+### Fixes
+- The add data source dialog displays a warning message when adding objects with same name as a calculation view
+
 ## 1.5.0
 
 ### New Features
