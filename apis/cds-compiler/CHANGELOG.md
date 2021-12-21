@@ -7,6 +7,27 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.11.4 - 2021-12-21
+
+### Fixed
+
+- CDL parser: in many situations, improve message when people use reserved keywords as identifier
+- Improve error text and error location for ambiguious auto-redirection target
+- to.sql/hdi/hdbcds:
+  + Correctly detect `exists` in projections
+  + Correctly handle elements starting with `$` in the on-condition of associations
+  + Correctly handle sub queries in an entity defined with `projection on`
+  + Correctly handle associations in sub queries in a `from` of a sub query
+  + foreign key constraints: respect @assert.integrity: false for compositions
+- to.hdbcds: Correctly quote elements named `$self` and `$projection`
+- to.cdl: `when` was added to the keyword list for smart quoting
+- Compiler support for code completion for `$user` and `$session` now respect user
+  provided variables in `options.variableReplacements`.
+- API: `deduplicateMessages()` no longer removes messages for `duplicate` artifact/annotation errors.
+  Prior to this version, only one of the duplicated artifacts had a message, leaving the user to
+  guess where the other duplicates were.
+
+
 ## Version 2.11.2 - 2021-12-06
 
 ### Fixed
@@ -25,8 +46,8 @@ The compiler behavior concerning `beta` features can change at any time without 
   if it can't be assigned to an artifact.  For example for two subsequent doc-comments, the first doc-comment
   is ignored.  To suppress these info messages, explicitly set option `docComment` to `false`.
 - `cdsc`:
-  - `cdsc explain list` can now be used to get a list of message IDs with explanation texts.
-  - `cdsc` now respects the environment variable `NO_COLOR`. If set, no ANSI escape codes will be used.
+  + `cdsc explain list` can now be used to get a list of message IDs with explanation texts.
+  + `cdsc` now respects the environment variable `NO_COLOR`. If set, no ANSI escape codes will be used.
     Can be overwritten by `cdsc --color always`.
 - to.sql/hdi: Support SQL Window Functions
 - to.sql/hdi/hdbcds:
