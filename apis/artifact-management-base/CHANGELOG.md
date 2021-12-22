@@ -1,3 +1,5 @@
+## 1.3.0 - 22 December, 2021
+* Version update for `@sap/artifact-managment@1.3.0`
 ## 1.2.0 - 24 November, 2021
 * Version update for `@sap/artifact-managment@1.2.0`
 ## 1.1.1 - 15 November, 2021

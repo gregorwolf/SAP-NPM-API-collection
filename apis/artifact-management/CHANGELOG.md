@@ -1,3 +1,19 @@
+## 1.3.0 - 22 December, 2021
+### Added
+* Support dependency relationship between entity and sample data.
+* Support version deployment as per the version in project.
+* Support sample data for external services.
+* Added support for reading full name of external entity.
+* Set default runtime allocation for LCAP apps.
+### Changed
+* Updated open source libraries to newer versions. 
+* Handling references from artifact-management and it's corresponding types.
+* Enhanced `getProjectOverviewURL` cache.
+### Fixed
+* Improved performance w.r.t. watch functionality.
+* Fixed launching of Fiori app while link opened without launchpad.
+* Fixed issue w.r.t. project in subfolder structure.
+
 ## 1.2.0 - 24 November, 2021
 ### Added
 * Added workflow section containing workflow apps such as My Inbox, Workflow Definitions and Workflow Instances in `Application overview page`.
