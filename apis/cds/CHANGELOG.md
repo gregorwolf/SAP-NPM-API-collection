@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.7.4 - 2021-12-22
+
+### Fixed
+
+- Complex `@restrict.where: 'exists [...] or (... or ...) or ...'` in draft union scenario no longer crashes the application
+- Sanitization of null values for `cds.RemoteService`
+- Handling of boolean values in draft union scenario with `$expand` query option
+- `_4odata` flag in CQN stays non-enumerable when forwarding to another application service
+- Handling of type references on properties of associations in `cds.minify`
+
 ## Version 5.7.3 - 2021-12-16
 
 ### Fixed
