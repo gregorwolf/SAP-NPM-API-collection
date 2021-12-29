@@ -27,6 +27,45 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
     ```
 ## Features
 
+- Builder
+
+    You can build metadata project into js or zip file.
+    - target
+
+        Target 'js' can build to bundle.js and bundle.js.map, you can use it to update your local run project.   
+        Target 'zip' can build to uploadBundle.zip, you can uploaded it to Mobile Services.
+        
+        The build results are generated in .build folder under project.
+    - project
+
+        Metadata project, it's current folder if not provided.
+
+    - externals
+
+        Libs need to be ignored in webpack bundle process. The built-in externals are:
+        - @nativescript/core
+        - mdk-core
+
+        ```bash
+        mdk build --target zip --externals "@nativescript/geolocation" "external2"
+        ```
+
+    - filters
+
+        Project folders/files need to be filtered in bundle procees. The builtin filters are:
+        - /Web/
+
+        ```bash
+        mdk build --target zip --filters "/FolderA/" "/FolderB/readme.txt"
+        ```
+
+    ```bash
+    mdk build --target js
+    mdk build --target js  --project /path/to/Your-MDK-metadata-project 
+    mdk build --target zip --project /path/to/Your-MDK-metadata-project
+    ```
+    
+
 - Deployer
 
     You can deploy MDK metadata project directly to SAP Business Technology Platform (BTP) Cloud Foundry environment.
@@ -44,6 +83,15 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --showqr
         ```
 
+        If your Mobile Services is Preview version, you can add *--preview* option.
+        ```bash
+        mdk deploy --target mobile --name "com.mdk.myapp" --preview
+        ```
+        In case of deploying MDK bundle zip exproted from SAP Web IDE or Business Application Studio.
+        ```
+        mdk deploy --target mobile --name "com.mdk.myapp" --zip Your-MDK-bundle-zip-file
+        ```
+
     - Deploy to HTML5 repository on Cloud Foundry to run it as web application
 
         It bundles MDK metadata project, builds it to MTA project and deploys to HTML5 repository.
@@ -54,4 +102,38 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         ```bash
         mdk deploy --target cf --name "MyWebApplication"
         mdk deploy --target cf --name "MyWebApplication" --project /path/to/Your-MDK-metadata-project 
+        ```
+- Migrator
+
+    Migrate the MDK project to the latest schema version including metadata files and script files.
+
+    The option '--preview' is only used to list all files that need to be migrated but not to do a real migration.
+    ```bash
+    mdk migrate --project /path/to/Your-MDK-metadata-project 
+    mdk migrate --project /path/to/Your-MDK-metadata-project --preview
+    ```
+
+    If you want to migrate metadata files only (not include script files), use '--uncheck-script' option:
+    ```bash
+    mdk migrate --project /path/to/Your-MDK-metadata-project --uncheck-script
+    ```
+
+    Use 'log-file' option output the logs to a file (no need to create the log file firstly, it will be generated automatically):
+    ```bash
+    mdk migrate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt
+    ```
+
+    - Migrate script files
+    
+        Only migrate script files (file extension is .ts, .js, or .json), and not include the metadata files:
+        ```bash
+        mdk migrate-script -s /path/to/Your-MDK-metadata-project
+        ```
+        You can also use '--help' option to check all supported options:
+        ```bash
+        mdk migrate-script --help
+        ```
+        Or
+        ```bash
+        mdk migrate-script -h
         ```

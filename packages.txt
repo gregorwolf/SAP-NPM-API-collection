@@ -1,10 +1,4 @@
-@sap/artifact-management
-@sap/artifact-management-base
-@sap/artifact-management-base-types
-@sap/artifact-management-types
-@sap/cds
-@sap/cloud-sdk-op-vdm-material-requirement-planning-change-request-priority-service
-@sap/cloud-sdk-op-vdm-material-requirement-planning-change-request-reason-service
-@sap/cloud-sdk-vdm-business-event-subscription-service
-@sap/cloud-sdk-vdm-catalog-type-cause-service
-@sap/cloud-sdk-vdm-warehouse-physical-inventory-a2x-service
+@sap/cloud-sdk-op-vdm-maintenance-plan-service
+@sap/cloud-sdk-vdm-workforce-timesheet-service
+@sap/mdk-tools
+@sap/open.fe
