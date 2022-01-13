@@ -8,6 +8,11 @@ Provides audit logging functionalities for Node.js applications.
   * [General audit logging principles](#general-audit-logging-principles)
   * [Prerequisites](#prerequisites)
   * [Versions](#versions)
+  * [Express Middleware](#express-middleware)
+    - [Simple Usage](#simple-usage)
+    - [Making Use of the SecurityContext and User Token Exchange Flow](#making-use-of-the-securitycontext-and-user-token-exchange-flow)
+    - [Plugging Middleware Only When Needed](#plugging-middleware-only-when-needed)
+  * [mTLS Support](#mtls-support)
 - [API - v1](#api---v1)
   * [Importing the library](#importing-the-library)
   * [Data access messages](#data-access-messages)
@@ -71,6 +76,101 @@ both of these versions of the server's APIs.
 **Note:** It is recommended to use REST APIs v2 if available on the Audit log server being in use (and respectively the JavaScript v2 APIs).
 The initial version of the Audit log server REST APIs is deprecated in favor of the v2 version. The same applies to the JavaScript APIs provided by this library.
 
+### Express Middleware
+
+The Audit Log client provides an easier way to use the auditlog client in an express application. Below you can find a few examples on how to make use of the express middleware. The middleware works with both **v1** and **v2** of the Auditlog Service.
+
+#### Simple Usage
+
+```js
+const express = require("express");
+const app = express();
+
+const auditMiddleware = require('./node-audit-logging/middleware');
+
+// Config for auditLoggingService.
+const auditLogConfig = {...}; // Retrieved from the environment using @sap/xsenv.
+// app.use(auditMiddleware(auditLogConfig, 1)); // Here we select using v1.
+app.use(auditMiddleware(auditLogConfig, 2));
+
+app.get('/', async function (req, res) {
+  let auditLog = req.auditLog;
+  // ...
+});
+```
+
+#### Making Use of the SecurityContext and User Token Exchange Flow
+
+In order to make use also of the *SecurityContext* that comes from the *@sap/xssec* library, you need to make sure you import the *@sap/xssec* middleware before the auditlogging. **This only works with the OAuth2 plan.**
+
+```js
+const express = require('express');
+// Includes required for xssec.
+const passport = require('passport');
+const { JWTStrategy } = require('xssec');
+// Includes required for auditLogging.
+const auditLogMiddleware = require('@sap/audit-logging/middleware');
+
+const app = express();
+
+// Config for xssec middelware.
+const xsuaaConfig = {...}; // Retrieved from the environment using @sap/xsenv.
+passport.use(new JWTStrategy(xsuaaConfig));
+app.use(passport.initialize());
+app.use(passport.authenticate('JWT', { session: false, failWithError: true }));
+
+// Config for auditLoggingService.
+const auditLogConfig = {...}; // Retrieved from the environment using @sap/xsenv.
+app.use(auditLogMiddleware(auditLogConfig));
+
+app.get('/', async function (req, res) {
+  let auditLog = req.auditLog;
+  // ...
+});
+```
+
+#### Plugging Middleware Only When Needed
+
+If you have the case where you do not want to include the auditLog to a request, you can plug the middleware only on the routes it is required:
+
+```js
+const express = require('express');
+// Includes required for xssec.
+const passport = require('passport');
+const { JWTStrategy } = require('xssec');
+// Includes required for auditLogging.
+const auditLogMiddleware = require('@sap/audit-logging/middleware');
+
+const app = express();
+
+// Config for xssec middelware.
+const xsuaaConfig = {...}; // Retrieved from the environment using @sap/xsenv.
+passport.use(new JWTStrategy(xsuaaConfig));
+app.use(passport.initialize());
+app.use(passport.authenticate('JWT', { session: false, failWithError: true }));
+
+// Config for auditLoggingService.
+const auditLogConfig = {...}; // Retrieved from the environment using @sap/xsenv.
+
+// In this API we need auditlog, so we add the auditLogMiddleware
+app.get('/withAuditLog', auditLogMiddleware(auditLogConfig), function(req, res) {
+    let auditLog = req.auditLog; // This will be undefined.
+    // ...
+});
+
+// Here we do not need the auditLog, so we do not add the auditLogMiddleware.
+app.get('/withoutAuditLog', function(req, res) {
+    let auditLog = req.auditLog; // This will be undefined.
+    // ...
+});
+```
+
+### mTLS Support
+
+The library also supports certificate based authentication. In order to use this type of authentication, you need to create x509 credentials and pass them to the auditlog library the same way you would pass all other credential types. If you are retrieving credentials via *@sap/xsenv* you might need to create **binding** and not **service key**.
+
+For further information how to create the appropriate credential type, visit [Audit Log Retrieval API Usage for the Cloud Foundry Environment](https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/30ece35bac024ca69de8b16bff79c413.html).
+
 ## API - v1
 
 The library provides an API for writing audit messages of type configuration changes, data modifications, data accesses and security events.
@@ -102,8 +202,11 @@ var credentials = {
   }
   "url": "https://host:port"
 };
-var auditLog = require('@sap/audit-logging')(credentials);
+var auditLog = require('@sap/audit-logging')(credentials, securityContext);
 ```
+
+* `credentials` - Retrieved from the environment.
+* `securityContext` - *Optional* - created manually or through usage of the req.AuthInfo from **@sap/xssec**.
 
 ### Data access messages
 
@@ -119,6 +222,7 @@ auditLog.read('user123')
   .accessChannel('UI')
   .tenant('tenantId')
   .by('John Doe')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(...);
 ```
 
@@ -132,6 +236,7 @@ auditLog.read('user123')
   * `id` - attachment id
   * `name` - attachment name
 * `tenant` - takes a string which specifies the tenant id. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - See [here](#logging-a-message)
 
 #### OAuth2 Plan
@@ -142,8 +247,9 @@ auditLog.read('user123')
   .attribute('first name', true)
   .attribute('last name', true)
   .accessChannel('UI')
-  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
   .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(...);
 ```
 
@@ -156,14 +262,15 @@ auditLog.read('user123')
 * `attachment(id, name)` - if attachments or files are downloaded or displayed, information identifying the attachment shall be logged.
   * `id` - attachment id
   * `name` - attachment name
-* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. `subdomain` is an optional value used only with '$SUBSCRIBER'.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - See [here](#logging-a-message)
 
 ### Data modification messages
 
 Here is how to create an entry for a data modification operation:
 
-#### Standard Plan (deprecated) 
+#### Standard Plan (deprecated)
 
 ```js
 auditLog.update('user123')
@@ -180,6 +287,7 @@ auditLog.update('user123')
   .attribute('password', false)
   .tenant('tenantId')
   .by('John Doe')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(...);
 ```
 
@@ -199,6 +307,7 @@ auditLog.update('user123')
 
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
 * `tenant` - takes a string which specifies the tenant id. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - See [here](#logging-a-message)
 
 #### OAuth2 Plan
@@ -206,7 +315,7 @@ auditLog.update('user123')
 ```js
 auditLog.update('user123')
   .attribute('first name', 'john', 'John')
-  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
   .by('$USER')
   .log(...);
 ```
@@ -216,8 +325,9 @@ auditLog.update('user123')
 ```js
 auditLog.update('user123')
   .attribute('password', false)
-  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
   .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(...);
 ```
 
@@ -236,7 +346,8 @@ auditLog.update('user123')
   **Note**: this signature of the method is **deprecated**. It should be used only if the consumed Audit log service does not support old and new values.
 
 * `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
-* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant. `subdomain` is an optional value used only with '$SUBSCRIBER'.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - See [here](#logging-a-message)
 
 ### Update data modification
@@ -265,6 +376,7 @@ auditLog.configurationChange('configuration object')
   .tenant('tenantId')
   .by('Application Admin')
   .successful(true)
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(...);
 ```
 
@@ -278,6 +390,7 @@ auditLog.configurationChange('configuration object')
   * `isSuccessful` - should be a valid boolean.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
 * `tenant` - takes a string which specifies the tenant id. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - See [here](#logging-a-message)
 
 #### OAuth2 Plan
@@ -285,9 +398,10 @@ auditLog.configurationChange('configuration object')
 ```js
 auditLog.configurationChange('configuration object')
   .attribute('session timeout', '5', '25')
-  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
   .by('$USER')
   .successful(true)
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(...);
 ```
 
@@ -300,7 +414,8 @@ auditLog.configurationChange('configuration object')
   If not called configuration change will be marked as *pending*.
   * `isSuccessful` - should be a valid boolean.
 * `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
-* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant. `subdomain` is an optional value used only with '$SUBSCRIBER'.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - See [here](#logging-a-message)
 
 ### Update configuration change
@@ -326,6 +441,7 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
   .tenant('tenantId')
   .by('John Doe')
   .externalIP('127.0.0.1')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(...);
 ```
 
@@ -333,22 +449,25 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
 * `externalIP` - states the IP of the machine that contacts the system. It is not mandatory, but it should be either IPv4 or IPv6.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
 * `tenant` - takes a string which specifies the tenant id. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - See [here](#logging-a-message)
 
 #### OAuth2 Plan
 
 ```js
 auditLog.securityMessage('%d unsuccessful login attempts', 3)
-  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
   .by('$USER')
   .externalIP('127.0.0.1')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(...);
 ```
 
 * `securityMessage` - takes a formatted string as in [util.format()](https://nodejs.org/api/util.html#util_util_format_format_args).
 * `externalIP` - states the IP of the machine that contacts the system. It is not mandatory, but it should be either IPv4 or IPv6.
 * `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
-* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. The provided value is ignored by older versions of the Audit log service that do not support setting a tenant. `subdomain` is an optional value used only with '$SUBSCRIBER'.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - See [here](#logging-a-message)
 
 ### Logging a message
@@ -416,7 +535,7 @@ var credentials = {
 };
 
 var auditLogging = require('@sap/audit-logging');
-auditLogging.v2(credentials, function(err, auditLog) {
+auditLogging.v2(credentials, securityContext, function(err, auditLog) {
   if (err) {
     // if the Audit log server does not support version 2 of the REST APIs
     // an error in the callback is returned
@@ -424,6 +543,10 @@ auditLogging.v2(credentials, function(err, auditLog) {
   }
 });
 ```
+
+* `credentials` - Retrieved from the environment.
+* `securityContext` - *Optional* - created manually or through usage of the req.AuthInfo from **@sap/xssec**.
+*Note: This method is backwards compatible if you provide the callback instead of the securityContext it will still work.*
 
 ### Data access messages
 
@@ -442,6 +565,7 @@ auditLog.read({ type: 'online system', id: { name: 'Students info system', modul
   .accessChannel('UI')
   .tenant('tenantId')
   .by('John Doe')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(function (err) {
 
   });
@@ -455,6 +579,7 @@ auditLog.read({ type: 'online system', id: { name: 'Students info system', modul
 * `accessChannel` - takes a string which specifies *channel* of access.
 * `tenant` - takes a string which specifies the tenant id.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - logs the message.
 
 #### OAuth2 Plan
@@ -470,8 +595,9 @@ auditLog.read({ type: 'online system', id: { name: 'Students info system', modul
   //  .dataSubjects([{ type: 'student', id: { student_id: 'st_913' }, role: 'foreign student' },
   //                 { type: 'student', id: { student_id: 'st_619' }, role: 'foreign student' }])
   .accessChannel('UI')
-  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
-  .by('$USER')  
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
+  .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(function (err) {
 
   });
@@ -484,7 +610,8 @@ auditLog.read({ type: 'online system', id: { name: 'Students info system', modul
 * `dataSubjects` - takes an array of data subject objects.
 * `accessChannel` - takes a string which specifies *channel* of access.
 * `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
-* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. `subdomain` is an optional value used only with '$SUBSCRIBER'.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - logs the message.
 
 ### Data modification messages
@@ -497,7 +624,8 @@ var message = auditLog.update({ type: 'online system', id: { name: 'Students inf
   .attribute({ name: 'town', old: 'Birmingham', new: 'London' })
   .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
   .tenant('tenantId')
-  .by('John Doe');
+  .by('John Doe')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z');
 
 message.logPrepare(function (err) {
   message.logSuccess(function (err) { });
@@ -511,6 +639,7 @@ message.logPrepare(function (err) {
 * `dataSubject` - takes an object describing the owner of the personal data. Should have `type` and `id` properties. The `role` property is optional. `dataSubject` is **mandatory**.
 * `tenant` - takes a string which specifies the tenant id.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
+* `at(time)` - sets a custom timestamp for event time.
 * `logPrepare` - Used to log that a user has started an operation over the data.
 * `logSuccess` - Used to log that the operation over the data has been completed successfully.
 * `logFailure` - Used to log that the operation over the data has not been completed successfully.
@@ -522,8 +651,9 @@ var message = auditLog.update({ type: 'online system', id: { name: 'Students inf
   .attribute({ name: 'status' })
   .attribute({ name: 'town', old: 'Birmingham', new: 'London' })
   .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
-  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
-  .by('$USER');
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
+  .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z');
 
 message.logPrepare(function (err) {
   message.logSuccess(function (err) { });
@@ -536,7 +666,8 @@ message.logPrepare(function (err) {
 * `attribute(attribute)` - takes an object which describes an attribute. Should have a `name` property and optionally - `old` and `new` properties. It is **mandatory** to provide at least one attribute.
 * `dataSubject` - takes an object describing the owner of the personal data. Should have `type` and `id` properties. The `role` property is optional. `dataSubject` is **mandatory**.
 * `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
-* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. `subdomain` is an optional value used only with '$SUBSCRIBER'.
+* `at(time)` - sets a custom timestamp for event time.
 * `logPrepare` - Used to log that a user has started an operation over the data.
 * `logSuccess` - Used to log that the operation over the data has been completed successfully.
 * `logFailure` - Used to log that the operation over the data has not been completed successfully.
@@ -549,7 +680,8 @@ message.logPrepare(function (err) {
 var message = auditLog.configurationChange({ type: 'online system', id: { name: 'Students info system', configuration: 'global-config' } })
   .attribute({ name: 'session timeout', old: '5', new: '25' })
   .tenant('tenantId')
-  .by('Application Admin');
+  .by('Application Admin')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z');
 
 message.logPrepare(function (err) {
   message.logSuccess(function (err) { });
@@ -562,6 +694,7 @@ message.logPrepare(function (err) {
 * `attribute(attribute)` - takes an object which describes an attribute. Should have a `name`, `old` and `new` properties. It is **mandatory** to provide at least one attribute.
 * `tenant` - takes a string which specifies the tenant id.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
+* `at(time)` - sets a custom timestamp for event time.
 * `logPrepare` - Used to log that a user has started a configuration change operation.
 * `logSuccess` - Used to log that the operation has been completed successfully.
 * `logFailure` - Used to log that the operation has not been completed successfully.
@@ -571,8 +704,9 @@ message.logPrepare(function (err) {
 ```js
 var message = auditLog.configurationChange({ type: 'online system', id: { name: 'Students info system', configuration: 'global-config' } })
   .attribute({ name: 'session timeout', old: '5', new: '25' })
-  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
-  .by('$USER');
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
+  .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z');
 
 message.logPrepare(function (err) {
   message.logSuccess(function (err) { });
@@ -584,7 +718,8 @@ message.logPrepare(function (err) {
 * `configurationChange` - takes a JavaScript object which identifies the object which contains the data being configured. Should have `type` and `id` properties.
 * `attribute(attribute)` - takes an object which describes an attribute. Should have a `name`, `old` and `new` properties. It is **mandatory** to provide at least one attribute.
 * `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
-* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**.
+* `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. `subdomain` is an optional value used only with '$SUBSCRIBER'.
+* `at(time)` - sets a custom timestamp for event time.
 * `logPrepare` - Used to log that a user has started a configuration change operation.
 * `logSuccess` - Used to log that the operation has been completed successfully.
 * `logFailure` - Used to log that the operation has not been completed successfully.
@@ -598,6 +733,7 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
   .externalIP('127.0.0.1')
   .tenant('tenantId')
   .by('John Doe')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(function (err) {
 
   });
@@ -607,6 +743,7 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
 * `externalIP` - states the IP of the machine that contacts the system. Specifying it is optional, but if provided, should be either IPv4 or IPv6.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
 * `tenant` - takes a string which specifies the tenant id.
+* `at(time)` - sets a custom timestamp for event time.
 * `log` - logs the message.
 
 #### OAuth2 Plan
@@ -614,8 +751,9 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
 ```js
 auditLog.securityMessage('%d unsuccessful login attempts', 3)
   .externalIP('127.0.0.1')
-  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
   .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(function (err) {
 
   });
@@ -623,8 +761,9 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
 
 * `securityMessage` - takes a formatted string as in [util.format()](https://nodejs.org/api/util.html#util_util_format_format_args).
 * `externalIP` - states the IP of the machine that contacts the system. Specifying it is optional, but if provided, should be either IPv4 or IPv6.
-* `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
-* `tenant` - takes a string which specifies the tenant id.
+* `by` -  takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**. `subdomain` is an optional value used only with '$SUBSCRIBER'.
+* `tenant` -  takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**.
+* `at(time)` - sets a custom timestamp for event time.f
 * `log` - logs the message.
 
 ## OAuth2 User Token Exchange

@@ -543,7 +543,7 @@ dev-project deploy  <my-application-folder-root absolute path>
 
 ---
 
-#### Get Project Overview URL
+## Get Project Overview URL
 ###### Method
 `getProjectOverviewURL(logger? : IChildLogger) : Promise<string | undefined>;`
 ###### Description
@@ -565,6 +565,33 @@ dev-project get-projectoverview-url <my-application-folder-root absolute path>
 ```
 {
   applicationOverviewURL : <projectOverviewURL>
+}
+```
+---
+
+## Get Application Deployment Summary
+###### Method
+`getApplicationDeploymentSummary(logger? : IChildLogger) : Promise<{ ProjectOverviewURL?: string; DeployedUTCTime?: String; } | undefined>;`
+###### Description
+Get the Application Deployment Summary of application deployed to currently targeted CF space which contains ProjectOverviewURL and DeployedUTCTime.
+###### Parameters
+- logger: (Optional) An instance of IChildLogger which can be implemented by consumers of Project API.
+###### returns
+- `Promise<{ ProjectOverviewURL?: string; DeployedUTCTime?: String; } | undefined>`
+###### Example
+```
+const api = new ProjectImpl(projectPath);
+const applicationSummary = await api.getApplicationDeploymentSummary();
+```
+###### CLI
+```
+dev-project get-application-deployment-summary <my-application-folder-root absolute path>
+```
+###### Sample Output
+```
+{
+  applicationOverviewURL : <projectOverviewURL>,
+  DeployedUTCTime : <deployedUTCTime>
 }
 ```
 ---

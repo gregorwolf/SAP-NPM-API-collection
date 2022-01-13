@@ -5,6 +5,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.4.0 - 2022-01-03
+
+### Updated
+- Documentation with new usage for tenant() when providing subdomain.
+
+### Fixed
+- $SUBSCRIBER option can now be properly used by providing a subdomain in tenant().
+
+## 5.3.0 - 2021-11-22
+
+### Added
+- Added mTLS support.
+- Custom Timestamp functionality via .at() method for messages.
+
+### Updated
+- Documentation with mTLS support guidelines.
+- Documentation with custom timestamp usage.
+- *@sap/xssec* library to v3.2.10.
+
+## 5.2.0 - 2021-10-08
+
+### Added
+- Added express middleware functionality.
+
+### Updated
+- Documentation with express middleware usage steps.
+
 ## 5.1.0 - 2021-08-12
 
 ### Added

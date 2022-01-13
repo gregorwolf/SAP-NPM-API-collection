@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.2.0 - 2022-01-12
+
+### Added
+- **Migration Manager.** Implement Migration Manager to help with transition from Instance to Service Manager on Cloud Foundry.
+
+### Fixed
+- **Service Manager.** Fixed Token retrieval max timeout.
+
+## 3.1.1 - 2022-01-04
+
+### Fixed
+- **Service Manager.** Fixed a bug where if binding creation (fallback) failed it will call callback twice.
+
 ## 3.1.0 - 2021-12-13
 
 ### Added

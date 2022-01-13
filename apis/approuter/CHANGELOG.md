@@ -5,6 +5,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.11.2 - 2022-01-13
+
+### Updated dependencies
+- deps: scmp@1.0.0
+
+## 10.11.1 - 2022-01-12
+
+### Updated dependencies
+- deps: node-forge@1.2.1
+
+## 10.11.0 - 2022-01-11
+
+### Added
+- POST method support for logout flows
+- New env. variable to skip loading client_credentials tokens on approuter start
+- Adding minimumTokenValidity from env variable
+
+### Fixed
+- Get uaadomain from subscription manager in case XSUAA is not bound
+- Logs reduction -remove stackTrace on error log level
+- Websocket try to get status code from message string when statusCode property undefined
+- isDynamicRouting read defaultEnv.json file only in development environment
+- accessToken references
+
+### Updated dependencies
+- deps: node-forge@1.2.0
+
 ## 10.10.4 - 2021-12-16
 
 ### Fixed

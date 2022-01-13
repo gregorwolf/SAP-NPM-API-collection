@@ -214,6 +214,7 @@ _Secure_ flag of session cookie | `SECURE_SESSION_COOKIE` | Can be set to `true`
 Trusted CA certificates | `XS_CACERT_PATH` | List of files paths with trusted CA certificates used for outbound https connections (UAA, destinations, etc.). File paths are separated by [path.delimiter](https://nodejs.org/api/path.html#path_path_delimiter). If this is omitted, several well known "root" CAs (like VeriSign) will be used. This variable is set automatically by XSA On-premise runtime.
 Reject untrusted certificates | `NODE_TLS_REJECT_UNAUTHORIZED` | By default an outbound https connection is terminated if the remote end does not provide a trusted certificate. This check can be disabled by setting `NODE_TLS_REJECT_UNAUTHORIZED` to `0`. This is a built-in feature of Node.js. **Note:** Do not use this in production as it compromises security!
 External reverse proxy flag | `EXTERNAL_REVERSE_PROXY` | Boolean value that indicates the use of application router behind an external reverse proxy (outside of Cloud Foundry domain)
+Skip client credentials tokens load on start | `SKIP_CLIENT_CREDENTIALS_TOKENS_LOAD` | Boolean value that indicates that no client credentials tokens should be created during the application router start phase 
 [Cross-Origin Resource Sharing](#cross-origin-resource-sharing-configuration) | `CORS` | Configuration regarding CORS enablement.
 Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fragment part of the URL provided during first request of not logged-in user to protected route will be preserved, and after login flow user is redirected to original URL including fragment part. However, this may break programmatic access to Approuter (e.g. e2e tests), since it introduces change in login flow, which is incompatible with Approuter version 4.0.1 and earlier. Setting value to `false` makes login flow backward compatible, however will not take fragment part of the URL into account.
 [Direct Routing URI Patterns](#direct-routing-uri-patterns-configuration) | `DIRECT_ROUTING_URI_PATTERNS` | Configuration for direct routing URI patterns. 
@@ -221,7 +222,8 @@ Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fra
 Backend Cookies Secret | `BACKEND_COOKIES_SECRET` | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
 Service to Application Router | `SERVICE_2_APPROUTER` | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
 Client certificate header name | `CLIENT_CERTIFICATE_HEADER_NAME` | When set application router will use this header name to get the client certificate from the request header in subscription callback. If not provided the default header name `x-forwarded-client-cert` is used.
-Server keep alive | `SERVER_KEEP_ALIVE` | server keep alive timeout (positive integer in milliseconds).
+Server Keep Alive | `SERVER_KEEP_ALIVE` | server keep alive timeout (positive integer in milliseconds).
+Minimum Token Validity | `MINIMUM_TOKEN_VALIDITY` | positive integer in seconds. When set, approuter will check that the token returned from the authorization service has an expiration time higher than the minimum token validity value.
 
 
 **Note:** all those environment variables are optional.
@@ -1101,6 +1103,15 @@ The default endpoint is `/login/callback`.
 ### *logout* property
 
 In this object you can define your business application's central logout endpoint through the `logoutEndpoint` property.
+The value of logout property should be an object with the following properties:
+
+Property | Type | Optional | Description
+-------- | ---- |:--------:| -----------
+logoutPath | String |  | The path to be used when logging out from application router.
+logoutPage | String | x | The logout page url path.
+logoutMethod | String | x | Could be POST or GET. The default value is GET.
+csrfProtection | Boolean | x | Can only be defined if logoutMethod is POST. If logoutMethod is POST and this property is not defined, default is true. It can be set to false – for example if csrfProtection is implemented in backend application.
+
 For example, if somewhere in your *xs-app.json* you have:
 
 ```json
@@ -1199,6 +1210,59 @@ UAA application security descriptor:
     ]    
 }
 ```
+
+Using POST method for Logout
+
+For security reasons it is recommended to model the logout flow using "POST" method and enable CSRF protection. 
+
+In that case, logoutMethod and csrfProtection parameters should be added in logout property:
+```json
+  "logout": {
+    "logoutEndpoint": "/my/logout",
+    "logoutPage": "/logout-page.html",
+    "logoutMethod": "POST",
+    "csrfProtection": true
+}
+```
+**Note**: For backward compatibility reasons logoutMethod default value is GET. 
+The csrfProtection property can only be set if logoutMethod is POST. 
+If logoutMethod is POST and csrfProtection property is not set, csrfProtection will be enabled by default.
+
+Consumption example:
+The POST request should be an AJAX request and include CSRF token.
+```
+async function getToken() {
+  return new Promise((resolve) => {
+  jQuery.ajax({
+    type: "GET",
+    url: 'my/logout',
+    headers: {
+      "X-CSRF-Token": 'fetch',
+      contentType: "application/json",
+    },
+    success: function(data, textStatus, request){
+      resolve(request.getResponseHeader('X-CSRF-Token'));
+    },
+   });
+ });
+};
+```
+POST request example:
+```
+const token = await getToken();
+jQuery.ajax({
+  type: "POST",
+  url: "my/logout",
+  headers: {
+    "X-CSRF-Token": token,
+    contentType: "application/json",
+  },
+  success: function (data) {
+    window.location.href = data;
+  }
+});
+```
+**Note**:  Make sure that url field matches logoutEndpoint.
 
 ### *destinations* property
 
@@ -2168,7 +2232,7 @@ For example to set all logging and tracing to finest level set `XS_APP_LOG_LEVEL
 
 If the application is deployed on Cloud Foundry, you can change the log level by running command:
 ```sh
-cf set-env <application-name> XS_APP_LOG_LEVEL DEBUG
+cf set-env <application-name> XS_APP_LOG_LEVEL debug
 ```
 
 If the application is deployed on XS Advanced On-premise Runtime, you can change the log level without restarting the application.

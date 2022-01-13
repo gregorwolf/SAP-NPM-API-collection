@@ -1,2 +1,11 @@
-@sap/cloud-sdk-vdm-sales-pricing-procedure-service
-@sap/cloud-sdk-vdm-supplier-quotation-service
+@sap/approuter
+@sap/artifact-management
+@sap/artifact-management-base
+@sap/artifact-management-base-types
+@sap/artifact-management-types
+@sap/audit-logging
+@sap/dwc-cli
+@sap/grunt-sapui5-bestpractice-build
+@sap/instance-manager
+@sap/node-jwt
+@sap/node-vsi

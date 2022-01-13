@@ -1,3 +1,10 @@
+## 1.4.0 - 07 January, 2022
+### Added
+* Added new API getApplicationDeploymentSummary() which provides information about project overview url and the time of last successful deployment time in UTC format.
+### Fixed
+* Fixed UI issues on preview and application overview pages.
+* Fixed the issue where sample data for external service was not read immediately after creation.
+
 ## 1.3.0 - 22 December, 2021
 ### Added
 * Support dependency relationship between entity and sample data.
