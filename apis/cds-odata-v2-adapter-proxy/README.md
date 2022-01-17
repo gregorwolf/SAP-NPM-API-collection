@@ -286,6 +286,7 @@ Logging layers of CDS OData V2 Adapter Proxy start with `cov2ap`.
 
 - `cov2ap/Service` : Service definition not found for request path
 - `cov2ap/Context` : Definition not found in CDS meta model
+- `cov2ap/Batch` : Response changeset order does not match request changeset order
 
 #### XS_APP_LOG_LEVEL = debug
 

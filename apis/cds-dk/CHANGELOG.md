@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.7.3 - 2022-01-14
+
+### Changed
+
+- Bump `follow-redirects` package to 1.14.7 (CVE-2022-0155)
+
+
 ## Version 4.7.2 - 2021-12-15
 
 ### Fixed

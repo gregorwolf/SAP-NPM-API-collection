@@ -4,6 +4,20 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.7.5 - 2022-01-14
+
+### Fixed
+
+- Instance-based restriction for activation of draft-enabled entities using `or` in restriction
+- Messaging: Duplicate handler execution if application service registered events twice
+- Post of a deeply nested sub-entity with structured parent keys
+- Negating lambda expressions in OData using the `not` operator
+- Event Mesh: Redelivery count when using AMQP
+- OData requests using lambda expressions on localized data
+- `cds.db.exists` wrongly generated a `SELECT * FROM ...` for odata flavor x4
+- Return localized texts on draft activate
+- Unicode characters in unquoted search terms in beta OData to CQN parser
+
 ## Version 5.7.4 - 2021-12-22
 
 ### Fixed
