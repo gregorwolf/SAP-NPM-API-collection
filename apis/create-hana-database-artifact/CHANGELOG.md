@@ -1,3 +1,9 @@
+## 1.8.0
+
+### New Features
+- How to access remote objects was added as a second getting started scenario
+- The extension now reports anonymized usage analytics data
+
 ## 1.7.0
 
 ### New Features

@@ -1,3 +1,22 @@
+## 1.8.0
+
+### New Features
+- Improved usability and user experience of the find objects dialog
+- A new configuration option was added to explicitly configure whether a data preview query should be automatically executed
+- The data preview allows the preview of hierarchies on SAP HANA Cloud
+
+### Fixes
+- The input parameter/variable mapping dialog is refreshed correctly
+- The non-equi-join cardinality is set correctly
+- An error message is shown if the generation of time data fails
+- Fixed the conversion of graphical restricted columns to expressions
+- Fixed the data preview after reordering dimensions
+- Fixed the display of the parameter pane when multiple calculation view editor instances are open
+- Time data is generated correctly if the project is inconsistent
+- Fixed the aggregatable flag for count distinct columns
+- Stacking multi-join nodes could lead to erratic behavior
+- Spatial join information could be lost in XML or wrong
+
 ## 1.7.0
 
 ### New Features

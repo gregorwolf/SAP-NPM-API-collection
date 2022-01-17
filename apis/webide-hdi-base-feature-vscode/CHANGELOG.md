@@ -1,3 +1,12 @@
+## 1.7.0
+
+### New Features
+- Improved usability and user experience of the find objects dialog
+
+### Fixes
+- The "Finish" button is enabled when only one item is selected
+- Fixed an issue when opening the "Find data sources" dialog in the analytical privileges dialog
+
 ## 1.6.0
 
 ### Fixes
