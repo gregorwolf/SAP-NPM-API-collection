@@ -1,11 +1,1 @@
-@sap/cds
-@sap/cds-dk
-@sap/cds-odata-v2-adapter-proxy
-@sap/cloud-sdk-op-vdm-activity-phone-call-service
-@sap/cloud-sdk-op-vdm-buffer-profile-service
-@sap/cloud-sdk-op-vdm-business-event-queue-service
-@sap/cloud-sdk-op-vdm-cash-security-deposit-service
-@sap/create-hana-database-artifact
-@sap/hrtt-core-vscode
-@sap/webide-hdi-base-feature-vscode
-@sap/webide-hdi-feature-vscode
+@sap/cloud-sdk-op-vdm-group-reporting-transaction-data-service
