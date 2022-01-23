@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.4.6] - 2022-01-13
+### Fixed
+- Improved variant management validation logic
+
 ## [1.4.3] - 2021-11-18
 ### Changed
 - Updated help texts

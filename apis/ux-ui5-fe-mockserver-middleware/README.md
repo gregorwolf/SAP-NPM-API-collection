@@ -49,10 +49,12 @@ server:
             annotations:
               localPath: './webapp/annotations/annotation.xml'
               urlPath: '/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations*'
-            service:
-              urlBasePath: '/sap/opu/odata/sap'
-              name: '<SERVICE_NAME>'
+            services:
+              - urlPath: '/sap/opu/odata/sap/<SERVICE_NAME>'
               metadataXmlPath: './webapp/localService/metadata.xml'
+              mockdataRootPath: './webapp/localService/data'
+              - urlPath: '/sap/opu/odata/sap/<OTHER_SERVICE_NAME>'
+              metadataXmlPath: './webapp/localService/other_metadata.xml'
               mockdataRootPath: './webapp/localService/data'
 
 ```

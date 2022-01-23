@@ -35,8 +35,6 @@ The following features are NOT impleneted yet:
 
 ## How To Install
 
-Until we release this software via [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/VSCode) this year, you need to install the extension file manually.
-
 1. Install [Visual Studio Code](https://code.visualstudio.com) if not installed already (>= 1.53.0 is required because the extension is relying on the APIs from that version).
 1. Open VSCode and click Extensions tab (puzzle icon) from the left side menu bar
 1. Search for 'SAP HANA SQL Analyzer' and install Visual Studio Code Extension file (vsc-extension-sa-<ver>.vsix) of this new SQL Analyzer from [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=SAPSE.vsc-extension-sa).
@@ -50,37 +48,41 @@ Until we release this software via [Visual Studio Code Marketplace](https://mark
 
 ## Documentation
 
-[SQL Analyzer Extension](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.05/en-US/50bc09af2fa549c3ace4178b61056da8.html) - SAP Help Portal
+[SQL Analyzer Extension](https://help.sap.com/viewer/product/HANA_SQL_ANALYZER/1.3.1/en-US) - SAP Help Portal
 
 ## Release Notes
 
 Here is the brief history of releases.
 
+### 1.3.4
+* Support real-time analysis
+* Support plan comparison report
+
 ### 1.3.0
 * Improve layout algorithm
 * Upgrade timeline chart library to prevent vulnerability
 
-### 1.2.21
+### 1.2.20
 * Fix plv parsing pausing issue when it has jeReduction plan
 
-### 1.2.17
+### 1.2.16
 * Restore badge displaying, file exporting feature
 * Fix config panel option selection issue
 
-### 1.2.13
+### 1.2.12
 * Replace parser from node-expat to sax
 * Enable column filter and search feature in operator list
 
-### 1.2.11
+### 1.2.10
 * Supprot electron v13 for Mac
 
-### 1.2.9
+### 1.2.8
 * Recover lost edges in specific cases
 
-### 1.2.5
+### 1.2.4
 * Support electron v13 which is enabled from vscode 1.59
 
-### 1.2.3
+### 1.2.2
 
 * Provide CPU Time based analysis for HEX Plan.
 * Support side panel to describe node/edge properties. Callout is deprecated

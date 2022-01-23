@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.2.1 - 2022-01-20
+
+### Added
+- **Service Manager.** Added token caching.
+
+### Updated
+- `node-fetch` version updated to v2.6.7.
+
 ## 3.2.0 - 2022-01-12
 
 ### Added

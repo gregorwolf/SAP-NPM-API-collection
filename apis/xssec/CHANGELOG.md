@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
+## 3.2.12 - 2022-01-19
+- add support for UAA system plan 
+- upgrade to newer axios library
+
 ## 3.2.11 - 2021-11-30
 - add support for timeout setting for all requests-calls 
 - support for password token flow in requests module

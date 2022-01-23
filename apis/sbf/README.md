@@ -1871,5 +1871,4 @@ There are two possible solutions:
 
 If `create-service` operation fails with error "Client already exists", you are probably attempting to create a second service instance with the same *xsappname* in the parameters. Note that *xsappname* should be different for each service instance.
 
-
 [xs-security.json]: https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.03/en-US/6d3ed64092f748cbac691abc5fe52985.html

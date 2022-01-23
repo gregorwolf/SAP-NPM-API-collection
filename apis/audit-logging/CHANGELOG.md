@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.4.1 - 2022-01-20
+
+### Fixed
+- Updated *node-fetch* to 2.6.7
+
 ## 5.4.0 - 2022-01-03
 
 ### Updated

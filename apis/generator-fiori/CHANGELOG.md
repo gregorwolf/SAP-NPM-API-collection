@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.4.6] - 2022-01-20
+#### Added
+- Generating an SAP Fiori freestyle application will launch the `Application Info` page for that application after generation completes. 
+
+#### Changed
+- The SAP Fiori freestyle template `SAP Fiori Master-Detail Application` has been renamed `SAP Fiori List-Detail Application`.
+
+### Fixed
+- Starting your SAP Fiori application from the launch/debug configuration with a specified version of UI5 will now use that specific version of UI5.
+- Fixed linting errors displayed after application is deployed.
+- SAP Fiori freestyle applications generated with a CAP project no longer identify as SAP Fiori elements applications within the SAP Fiori tools suite.
+
 ## [1.4.4] - 2021-12-09
 #### Added
 - Added support for the experimental SAP Horizon theme, as long as a supported version of UI5 is selected during generation.
