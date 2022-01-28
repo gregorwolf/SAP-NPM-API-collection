@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.11.3 - 2022-01-25
+
+### Updated dependencies
+- deps: @sap/audit-logging@5.4.1
+- deps: @sap/xssec@3.2.12
+
 ## 10.11.2 - 2022-01-13
 
 ### Updated dependencies

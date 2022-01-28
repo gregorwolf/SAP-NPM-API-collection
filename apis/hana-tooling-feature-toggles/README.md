@@ -10,16 +10,16 @@ Create an instance managing your feature toggles. The first parameter is the abs
 Pure Node.js:
 
 ```javascript
-    var FeatureToggles = new (require("@sap/hana-tooling-feature-toggles"))(__dirname + "/../featureToggles.json");
-
+    import FeatureToggles = require("@sap/hana-tooling-feature-toggles");
+    const FeatureToggleInstance = new FeatureToggles(__dirname + "/../features.json");
 ```
 
 Visual Studio Code:
 
 ```javascript
     const vscode = require( 'vscode' );
-    var FeatureToggles = new (require("@sap/hana-tooling-feature-toggles"))(__dirname + "/../featureToggles.json", "featuretoggletest", vscode);
-
+    import FeatureToggles = require("@sap/hana-tooling-feature-toggles");
+    const FeatureToggleInstance = new FeatureToggles(__dirname + "/../features.json", "featuretoggletest", vscode);
 ```
 
 The structure of your .json file (first parameter) should be:
