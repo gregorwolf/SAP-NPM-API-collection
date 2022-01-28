@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.6.0"></a>
+## 7.6.0 - 2022-27-01
+
+### Added
+- Node.js 16.x support.
+
 <a name="7.5.0"></a>
 ## 7.5.0 - 2021-12-16
 

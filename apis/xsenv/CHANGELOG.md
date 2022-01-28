@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.2.0 - 2022-01-24
+
+### Added
+- Support Node.js 16.x
+
+### Updated
+- `debug` dependency to 4.3.3.
+
 ## 3.1.1 - 2021-07-01
 
 ### Fixed
