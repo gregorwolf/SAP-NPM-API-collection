@@ -2041,7 +2041,7 @@ The application router supports a backup of user sessions in an external session
 To enable this capability, you must bind a service instance of a service that supports a fast persistence store, such as *Redis*. When such a service is bound, the application router backs up the in-memory session information into the external persistency store.  
 If, in subsequent requests, the session information is not found in the in-memory session store, the application router tries to rebuild the in-memory session information from the external persistency store.   
 
-The sessions are stored encrypted and compressed. For capacity planning, you can assume 50 Kb per session storage in the fast persistence store. 
+The sessions are stored compressed. For capacity planning, you can assume 50 Kb per session storage in the fast persistence store. 
 
 ### External Session Management Configuration
 In order to use this feature, you have to set the following environment variable:
@@ -2051,8 +2051,7 @@ In order to use this feature, you have to set the following environment variable
 The variable value must be defined in the JSON format and provide the following properties:
 * **instanceName (mandatory)** - the name of the service instance of the storage service.
 * **storageType (mandatory)** - the type of the storage, for example - "redis". Note that if no custom storage driver is used, only “redis” is allowed.
-* **sessionSecret (mandatory)** - Since application router stores encrypted sessions in persistence store, a shared secret shall be provided. 
-Please generate a unique string with at least 64 characters.  
+* **sessionSecret (mandatory)** - a secret to be used to generate a session cookie. Please generate a unique string with at least 64 characters.
 
 For example: 
 ```json

@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.1.0 - 2022-01-24
+
+### Added
+- Node.js 16.x support.
+
+### Fixed
+- Update *@sap/e2e-trace* dependency to v3.1.0
+
+
 ## 6.0.3 - 2021-02-22
 
 ### Fixed

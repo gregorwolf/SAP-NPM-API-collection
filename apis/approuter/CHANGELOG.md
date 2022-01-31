@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.12.0 - 2022-01-30
+
+### Added 
+- Replace 'request' module by 'axios'
+- Support query params in user-api
+
+### Updated dependencies
+- deps: tough-cookie@4.0.0
+
 ## 10.11.3 - 2022-01-25
 
 ### Updated dependencies

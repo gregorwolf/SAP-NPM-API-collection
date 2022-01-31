@@ -5,10 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 5.4.1 - 2022-01-20
+## 5.5.0 - 2022-01-28
+
+### Added
+- Node.js 16.x support
 
 ### Fixed
-- Updated *node-fetch* to 2.6.7
+- Updated *@sap/hdbext* to 7.6.0
+- Updated *debug* to 4.3.3
 
 ## 5.4.0 - 2022-01-03
 

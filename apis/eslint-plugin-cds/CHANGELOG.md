@@ -6,60 +6,75 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.3.2] - 2022-01-24
 
-## [2.3.0] - 201-12-03
+### Changed
 
-## Added
+- Rule `require-2many-oncond` now also detect navigations of aaspects for flavor 'parsed'
+- Removed duplicates from rule results of category 'Environment'
+
+## [2.3.1] - 2021-12-10
+
+### Changed
+
+- Removed custom formatter as it is no longer used by `cds lint`.
+- Deduplicate lint results from from rules of category environment.
+- Removed 'unpeploy.json' from files as no lint rule requires it
+- Fixed redundant triggers of model recompilations for non-model files and model files without changes
+
+## [2.3.0] - 2021-12-03
+
+### Added
 
 - Added new rule 'valid-csv-header'
 
-## Changed
+### Changed
 
 - Fixed suggestion messages in editor option (and disabled auto-fix)
 - Added rule properties 'docs.recommended', 'severity'
 
 ## [2.2.2] - 2021-11-08
 
-## Added
+### Added
 
 - Added new rule 'no-join-on-draft-enabled-entities'
 
-## Changed
+### Changed
 
 - Compile 'model' files based on CSN flavor 'inferred'
 - Compile 'outsider' files based on CSN flavor 'parsed'
 
 ## [2.2.1] - 2021-11-01
 
-## Changed
+### Changed
 
 - Optimized model loading and fixed bug in loading of 'outsider' files
 
 ## [2.2.0] - 2021-10-29
 
-## Added
+### Added
 
 - Added typings to javascript for all exposed apis
 
-## Changed
+### Changed
 
 - Aligned rule creation and tester api with ESLint
 
 ## [2.1.2] - 2021-10-05
 
-## Changed
+### Changed
 
 - Allow not only *.js but also other file types (i.e. *.ts, etc) to bypass plugin rules
 
 ## [2.1.1] - 2021-10-04
 
-## Changed
+### Changed
 
 - Added preprocessor to avoid (other plugins) parsing errors on cds files
 
 ## [2.1.0] - 2021-09-23
 
-## Changed
+### Changed
 
 - Source code is now Javascript only
 - Rule API simplified to only include report and cds

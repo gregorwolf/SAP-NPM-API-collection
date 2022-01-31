@@ -1,8 +1,10 @@
 @sap/approuter
-@sap/cloud-sdk-op-vdm-legal-document-access-level-service
-@sap/e2e-trace
-@sap/hana-tooling-feature-toggles
-@sap/hdbext
-@sap/sbf
-@sap/textbundle
-@sap/xsenv
+@sap/audit-logging
+@sap/cds
+@sap/cds-compiler
+@sap/cds-lsp
+@sap/cloud-sdk-op-vdm-sales-contract-service
+@sap/eslint-plugin-cds
+@sap/logging
+@sap/vscode-cds
+@sap/xss-secure
