@@ -1,4 +1,4 @@
-# CDS Language Server - ```@sap/cds-lsp```
+# CDS Language Server
 
 The CDS language server implements the Language Server Protocol ([LSP](https://github.com/Microsoft/language-server-protocol))
 for SAP's Core Data Services ([CDS](https://cap.cloud.sap/docs/cds/cdl)).
@@ -62,6 +62,8 @@ It provides many useful features for working with and enjoying CDS sources.
         - Config UI with simulation of options for Visual Studio Code and Eclipse
         - JSON schema for textual support
     - also for markdown in doc comments
+
+- Code formatting via CLI
 
 - Translation support
     - properties, JSON, and CSV files

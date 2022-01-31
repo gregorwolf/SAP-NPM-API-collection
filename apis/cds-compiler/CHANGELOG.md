@@ -7,12 +7,69 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.12.0 - 2022-01-25
+
+### Added
+
+- CDL parser: You can now use multiline string literals and text blocks.  
+  Use backticks (\`) for string literals that can span multiple lines and can use JavaScript-like escape
+  sequences such as `\u{0020}`.  You can also use three backticks (\`\`\`) for strings (a.k.a. text blocks)
+  which are automatically indentation-stripped and can have an optional language identifier that is used
+  for syntax highlighting, similar to markdown.  In difference to the former, text blocks require the
+  opening and closing backticks to be on separate lines.
+  Example:
+
+      @annotation: `Multi
+       line\u{0020}strings`
+  
+      @textblock: ```xml
+                  <summary>
+                    <detail>The root tag has no indentation in this example</detail>
+                  </summary>
+                  ```
+      ...
+
+- Enhance the ellipsis operator `...` for array annotations by an `up to ‹val›`:
+  only values in the array of the base annotation up to (including) the first match
+  of the specified `‹val›` are included at the specified place in the final array value.
+  An array annotation can have more than on `... up to ‹val›` items and must also
+  have a pure `...` item after them.  
+  A structured `‹val›` matches if the array item is also a structure and all property
+  values in `‹val›` are equal to the corresponding property value in the array value;
+  it is not necessary to specify all properties of the array value items in `‹val›`.
+  Example
+
+      @Anno: [{name: one, val: 1}, {name: two, val: 2}, {name: four, val: 4}]
+      type T: Integer;
+      @Anno: [{name: zero, val: 0}, ... up to {name: two}, {name: three, val: 3}, ...]
+      annotate T;
+
+- for.odata: Support `@cds.on {update|insert}` as replacement for deprecated `@odata.on { update|insert }` to
+  set `@Core.Computed`.
+
+### Changed
+
+- Update OData Vocabularies 'Aggregation', 'Capabilities', 'Common', 'Core', PersonalData, 'Session', 'UI'
+
+### Fixed
+
+- to.sql/hdi/hdbcds: With `exists`, ensure that the precedence of the existing association-on-conditions and where-conditions is kept by adding braces.
+- to.sql/hdi: Window function suffixes are now properly rendered.
+- to.sql: `$self` comparisons inside aspects are not checked and won't result in an error anymore.
+- to.hdbcds:
+  + Correctly apply the "."-to-"_"-translation algorithm to artifacts that are marked with `@cds.persistence.exists`.
+  + Message with ID `anno-hidden-exists` (former `anno-unstable-hdbcds`) is now
+    only issued if the compiler generates a SAP HANA CDS artifact which would hide
+    a native database object from being resolved in a SAP HANA CDS `using … as …`.
+- to.cdl: Annotation paths containing special characters such as spaces or `@` are now quoted, e.g. `@![some@annotation]`.
+- compiler: A warning is emitted for elements of views with localized keys as the localized property is ignored for them.
+
 ## Version 2.11.4 - 2021-12-21
 
 ### Fixed
 
 - CDL parser: in many situations, improve message when people use reserved keywords as identifier
-- Improve error text and error location for ambiguious auto-redirection target
+- Improve error text and error location for ambiguous auto-redirection target
 - to.sql/hdi/hdbcds:
   + Correctly detect `exists` in projections
   + Correctly handle elements starting with `$` in the on-condition of associations

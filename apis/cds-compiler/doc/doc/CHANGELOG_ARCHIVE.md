@@ -1516,7 +1516,7 @@ Changes
 * Preserve the `key` properties of elements selected in a view (like we do in projections).
 * Improve the CSN representation for views.
   Represent the `where` and `on` condition of `select`s like other conditions.
-* Project name in github is now `cdx/cds-compiler`.
+* Project name in github is now `cap/cds-compiler`.
 
 Features
 * Support `select *` in views.

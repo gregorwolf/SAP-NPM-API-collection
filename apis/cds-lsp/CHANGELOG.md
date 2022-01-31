@@ -6,6 +6,39 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 5.5.0 - 2022-01-28
+
+### Added
+
+- Command-line interface for code formatter
+- CDS language server is now bundled and minified to speed up initialization
+- workspace symbols query now supports filters for kinds
+
+### Changed
+
+- consume cds-compiler 2.12.0
+- code completion for `index.cds` files will now render just the folder
+- performance: revalidate file on focus got only if stale index
+- memory consumption: indexes are now cached per file, no longer per compilation
+
+### Fixed
+
+- `enum` was not indexed 
+- `composition` of aspect was not indexed
+- symbols contained localized entries with recent compiler versions
+- workspaces with _many_ workspace folders could lead to stop lsp
+- syntax highlighting is now better aligned with CDS grammar:
+  + multi-lined strings disabled
+  + backslash escaping disabled
+  + doubled quotes inside strings to reproduce single quotes
+  + element types now include scopes and length/size arguments
+
+### Note
+
+Starting with version 5.5.0 @sap/cds-lsp requires NodeJS 14.15+
+
+
 ## 5.4.0 - 2021-12-03
 
 ### Added

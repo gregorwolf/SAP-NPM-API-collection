@@ -8,6 +8,12 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 2.12.0 - 2022-01-25
+
+### Added `sqlSnippets`
+
+- to.sql/hdi/hdbcds: Introduce the annotations `@sql.prepend` and `@sql.append` that allow inserting user-written SQL snippets into the compiler generated content.
+
 ## Version 2.11.0
 
 ### Removed `foreignKeyConstraints`
@@ -162,6 +168,12 @@ The association to join transformation treats foreign key accesses with priority
 ### Removed `uniqueconstraints`
 
 Unique constraints are now generally available.
+
+## Version 1.33.0 - 2020-08-24
+
+### Added `hanaAssocRealCardinality`
+
+Render JOIN cardinality in native HANA association if provided. If no cardinality has been specified.
 
 ## Version 1.32.0 - 2020-07-10
 

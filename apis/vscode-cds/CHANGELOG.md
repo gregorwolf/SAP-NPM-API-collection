@@ -5,13 +5,46 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+
+## Version 4.5.0 - 2022-01-28
+
+### Added
+
+- workspace symbols query now supports filters for kinds
+
+### Changed
+
+- consume cds-compiler 2.12.0
+- code completion for `index.cds` files will now render just the folder
+- CDS language server is now bundled and minified to speed up initialization
+- performance: revalidate file on focus got only if stale index
+- memory consumption: indexes are now cached per file, no longer per compilation
+
+### Fixed
+
+- `cds preview` is now refreshing the preview correctly when called after the underlying cds file has been changed
+- `enum` was not indexed 
+- `composition` of aspect was not indexed
+- symbols contained localized entries with recent compiler versions
+- workspaces with _many_ workspace folders could lead to stop lsp
+- syntax highlighting is now better aligned with CDS grammar:
+  + multi-lined strings disabled
+  + backslash escaping disabled
+  + doubled quotes inside strings to reproduce single quotes
+  + element types now include scopes and length/size arguments
+
+### Components
+- @sap/cds-lsp 5.5.0
+- @sap/cds-compiler 2.12.0
+
+
 ## Version 4.4.0 - 2021-12-03
 
 ### Added
 - progress monitor for long runners like References and WorkspaceSymbols
 
 ### Changed
-- new 'cold start' start-up behaviour: 
+- new 'cold start' start-up behaviour:
     + workspace is not scanned unless required (references, workspace symbols)
     + file contents read during compilation is cached, incl. tried missing paths during path resolution
     + many changes to improve performance and reduce required memory

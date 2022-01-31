@@ -4,6 +4,78 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.8.0 - 2022-01-27
+
+### Added
+
+- Custom `server.js` don't have to export `cds.server` anymore -> we use that by default now. 
+- In `cds.requires`: Support to replace primitive values with objects
+- Support filter functions on renamed properties from external service
+- Results of database queries use `big.js` for values of type `cds.Decimal` and `cds.Integer64` if enabled via `cds.env.features.bigjs`
+- Support lambda in `$filter` in `$expand`
+- Support for `GET` requests on service root in REST adapter (old and new)
+- Support for `HEAD` requests in REST adapter (old and new)
+- New hook `req.before('commit')`
+- Draft (Access control for bound actions): Only the user that is the owner of the draft can execute its bound actions.
+- Check that all keys are provided in REST adapter
+- Restrict access to all services via `cds.env.requires.auth.restrict_all_services = true`
+  + That is, all unrestricted services (i.e., w/o own `@requires`) are treated as having `@requires: 'authenticated-user'`
+- Threshold for automatically sending GET requests as `$batch` (beta, cf. @sap/cds@5.6.0) can be configured per remote service via `cds.env.requires.<srv>.max_get_url_length` (if not configured on service, the global config applies)
+- Alpha out-of-the-box support for DwC
+  + Authentication based on headers set by Jupiter router via `cds.env.requires.auth.kind = 'dwc-auth'`
+  + All DwC headers are forwarded to remote service via `cds.env.requires.<srv>.forward_dwc_headers = true`
+- Limited support for binary data in OData
+  + In payloads, the binary data must be a base64 encoded string
+  + In URLs, the binary data must have the following format: `binary'<url-safe base64 encoded>'`, e.g., `$filter=ID eq binary'Q0FQIE5vZGUuanM='`
+  + The use of binary data in some advanced constructs like `$apply` and `/any()` may be limited
+  + On SQLite, the base64 encoded string is stored to the database
+  + It is strongly discouraged to use binary data as keys. See "Primary Keys — Best Practices" in documentation.
+- Support for OData annotation `@Core.ContentDisposition.Type` with `attachment` as the default value
+- Support for returning custom stream objects in custom handlers (beta):
+  + Example:
+    ```js
+    return {
+      value: instanceof Readable || null,
+      $mediaContentType = 'image/jpeg',
+      $mediaContentDispositionFilename = 'foo.bar', // > optional
+      $mediaContentDispositionType = 'inline' // > optional
+    }
+    ```
+
+### Changed
+
+- `cds deploy --to hana` now uses `cf curl` instead of `cf` command natively
+- Event Mesh: In multitenancy mode, messaging artifacts are also deployed for provider accounts (unless the service option `deployForProvider` is set to `false`)
+- Status code in case of multiple errors (rules apply in order):
+  + If all errors have the same status code, that status code is used
+  + If there is at least one 5xx status code, the resulting status code is 500
+  + If there is at least one 4xx status code, the resulting status code is 400
+  + If none of the rules apply, the resulting status code is 500
+- Ignore the `If-Match` HTTP request header for `UPDATE`/`DELETE` requests whose target entities are not annotated with the `@odata.etag` annotation.
+- I18n template strings now are replaced in EDMX documents such that they can occur multiple times.  For example, the `{i18n>key1} - {i18n>key2}` template results in `value1 - value2`, while previously only the first string was replaced, leading to `value1 - {i18n>key2}`.  This is helpful for the [`Template` strings of `UI.ConnectedFields`](https://github.com/SAP/odata-vocabularies/blob/ac9fe832df9b8c8d35517c637dba7c0ac2753b0f/vocabularies/UI.xml#L168).
+
+### Fixed
+
+- At Node.js runtime, the `development` configuration profile is no longer active if `CDS_ENV` is set to `production` and `NODE_ENV` is undefined
+- Enterprise Messaging: The user is now privileged for AMQP
+- `cds.spawn` also works with synchronous functions
+- Foreign keys in parent are set to `null` when deleting composition of one
+- `cds version` now always prints the version of `@sap/cds-dk`, especially if `cds version` was called from within an npm script, i.e. not from `cds-dk`'s CLI.
+- Better error message in case destination of Remote Service is not found
+- Differentiate between draft already exists and entity locked
+- OData adapter: rollback transaction before rethrowing standard error in case of atomicty group
+- Results of actions/functions do not ignore custom data when using `$expand` query option
+- `req.data` is available in custom error handler in case of deserialization error thrown by legacy odata server
+- Joining entities with renamed foreign keys (limited to single-level projections)
+- Requests with draft and `$expand=*` caused problems in some cases
+- `cds serve` during development longer redirects URLs with similar path segments like `/browse/123/browse/` to e.g. `/browse/`
+- Post processing for renamed column in expand
+- Deploy to HANA: passing of options to `hdi-deploy` via `HDI_DEPLOY_OPTIONS` now possible
+- Keys as path segments in beta OData to CQN parser
+- OData V2 Remote Service (`"kind": "odata-v2"`):
+  + Request data properties of types `cds.Date`, `cds.DateTime` and `cds.Timestamp` are converted accordingly to OData V2 specification
+  + Response data properties of types `cds.Decimal`, `cds.DecimalFloat` (deprecated) and `cds.Integer64` are handled properly when using `Accept` header with `IEEE754Compatible=true/false` and `ExponentialDecimals=true/false` format parameters
+
 ## Version 5.7.5 - 2022-01-14
 
 ### Fixed
