@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.5.2 - 2022-01-26
+
+### Added
+- It is now checked if CDS annotations `@sql.append` and `@sql.prepend` are used in extensions. Using these annotations in extensions is currently not allowed.
+
+### Fixed
+- API `/mtx/v1/provisioning/tenant` does no longer return duplicate tenants in case of concurrent API calls. 
+- Dependencies to `VCAP_SERVICES` environment have been removed. Service dependencies can now be fully defined via `cds.env`, except for databases shared between tenants.
+
 ## Version 2.5.1 - 2021-12-09
 
 ### Fixed

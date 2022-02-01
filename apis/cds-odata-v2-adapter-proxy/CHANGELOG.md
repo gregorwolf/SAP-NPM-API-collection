@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.8.6 - 2022-02-01
+
+### Fixed
+
+- Fix README for combined custom backend bootstrap
+- Allow annotation `@odata.type` in lower case format
+- Allow type prefix `datetime` in addition to `datetimeoffset`
+- Add peer dependency @types/express
+
 ## Version 1.8.5 - 2022-01-17
 
 ### Fixed
