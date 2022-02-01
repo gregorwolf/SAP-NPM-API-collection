@@ -1,3 +1,9 @@
+## 1.7.1
+
+### Fixes
+- The analytical privilege editor displays the procedure correctly when selecting dynamic analytical privileges
+- External objects are now shown when adding data sources in the synonym editor
+
 ## 1.7.0
 
 ### New Features

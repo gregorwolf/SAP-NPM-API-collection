@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.3.0 - 2022-01-30
+
+### Fixed
+- Update `@sap/hdbext` to 7.6.0
+- Update `debug` to 4.3.3
+
+### Added
+- Node.js 16 support
+
 ## 5.2.0 - 2021-10-08
 
 ### Added

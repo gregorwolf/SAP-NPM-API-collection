@@ -1,3 +1,12 @@
+## 1.5.0 - 28 January, 2022
+### Added
+* Support capability to return the user roles for LCAP application.
+### Changed
+* Enhanced taskUi item name to use name of the app instead of `TaskUI`.
+### Fixed
+* Fixed issue related to persistence of links even when dependency was deleted.
+* Fixed issue where click on the application tile in preview page was unresponsive.
+
 ## 1.4.0 - 07 January, 2022
 ### Added
 * Added new API getApplicationDeploymentSummary() which provides information about project overview url and the time of last successful deployment time in UTC format.

@@ -1,3 +1,14 @@
+## 1.8.2
+
+### Fixes
+- External objects are now shown when adding data sources in the synonym editor
+- Time data generation now works when generating fiscal data with variants
+
+## 1.8.1
+
+### Fixes
+- The configuration option to explicitly configure whether a data preview query should be automatically executed did not work correctly under some circumstances
+
 ## 1.8.0
 
 ### New Features
