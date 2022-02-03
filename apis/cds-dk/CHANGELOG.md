@@ -6,12 +6,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.8.0 - 2022-01-28
+
+### Added
+
+- `cds import` now reflects the entity set and entity container level annotations in the csn.
+- `cds activate --sync` allows to use the synchronous server API for extension upload.
+
+### Changed
+
+- The forked package `@mendix/sqlite3` is now used instead of `sqlite3` to overcome CVE-2021-32804.  No code changes in applications are needed, as the new package installed by `npm` with the same name `sqlite3`.
+- [beta] The templating for `cds init` and `cds add` has been rewritten from scratch. This will allow for some new, more complex commands, such as `cds add mtx` or `cds add xsuaa`.
+
+### Fixed
+
+- `cds import` now omits function imports with `put/delete` kind.
+- `cds import` has fixed the entity type to entity set mapping in OData V2.
+- `cds import` now supports collection type.
+- `cds watch` now picks a free livereload port if the standard port 35729 is already bound
+- `cds extend`, `cds activate`, `cds login`, and `cds logout` now prioritize command-line options over saved settings
+- MTX client now logs fewer characters of secrets in debug output
+- MTX client now handles incomplete error responses better
+
 ## Version 4.7.3 - 2022-01-14
 
 ### Changed
 
 - Bump `follow-redirects` package to 1.14.7 (CVE-2022-0155)
-
 
 ## Version 4.7.2 - 2021-12-15
 

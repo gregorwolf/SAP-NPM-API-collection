@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 3.1.0 - 2021-12-13
+
+### Changed
+
+- Bump `generic-pool` to 3.8.2
+
 ## Version 3.0.0 - 2021-07-13
 
 ### Changed

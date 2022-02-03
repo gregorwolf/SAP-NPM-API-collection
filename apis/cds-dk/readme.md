@@ -1,6 +1,6 @@
 # @sap/cds-dk
 
-The command line client and development toolkit for the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap).
+The command line client and development toolkit for the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap/).
 
 See the [documentation](https://cap.cloud.sap/docs/get-started/) for more details.
 
