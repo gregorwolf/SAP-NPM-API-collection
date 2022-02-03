@@ -1,3 +1,7 @@
-@sap/cds-dk
-@sap/cds-foss
-@sap/cloud-sdk-op-vdm-purchasing-source-list-service
+@sap/cloud-sdk-op-vdm-brazil-business-place-service
+@sap/cloud-sdk-op-vdm-brazil-nota-fiscal-service
+@sap/cloud-sdk-op-vdm-document-management-service
+@sap/cloud-sdk-op-vdm-flexible-constraint-service
+@sap/cloud-sdk-op-vdm-maintenance-bill-of-material-service
+@sap/cloud-sdk-op-vdm-material-valuation-service
+@sap/cloud-sdk-op-vdm-sales-contract-service
