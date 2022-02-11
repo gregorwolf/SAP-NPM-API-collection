@@ -4,6 +4,21 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.8.1 - 2022-02-11
+
+### Fixed
+
+- Use single transaction for update mutations in GraphQL adapter
+- ODATA to CQN parser returned not selected keys in `@odata.context`
+- Draft: `$expand` with special draft columns in `$orderBy` for active entities
+- Reading distinct values of draft enabled entity
+- Handling of LOB data on HANA
+- Fix streaming draft by navigation
+- Empty to-many arrays are not removed from req.data for inserts
+- `$filter` query option in structured mode (OData flavors `w4` and `x4`)
+  + Using JSON-stringified objects no longer occasionally crashes an application
+  + Filtering on a structured element with `ne null` condition also selects data having some `null` properties within
+
 ## Version 5.8.0 - 2022-01-27
 
 ### Added
