@@ -6,6 +6,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.5.3 - 2022-02-04
+
+### Added
+
+- test support for contribution providers
+
+### Changed
+
+- CDS language server back to Node 12 (5.5.0 required Node 14 which led to problems in BAS)
+- typings for contribution implementors are now bundled and accessible directly via `@sap/cds-lsp`
+
+### Fixed
+
+- format-cds CLI was not working under certain circumstances
+- syntax highlighting glitches
+- code formatting of nested projections
 
 ## 5.5.0 - 2022-01-28
 
@@ -33,10 +49,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
   + backslash escaping disabled
   + doubled quotes inside strings to reproduce single quotes
   + element types now include scopes and length/size arguments
-
-### Note
-
-Starting with version 5.5.0 @sap/cds-lsp requires NodeJS 14.15+
 
 
 ## 5.4.0 - 2021-12-03

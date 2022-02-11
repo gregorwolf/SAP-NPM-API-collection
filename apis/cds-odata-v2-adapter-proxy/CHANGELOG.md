@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.8.9 - 2022-02-09
+
+### Fixed
+
+- Stabilization fixes
+
+## Version 1.8.8 - 2022-02-08
+
+### Fixed
+
+- Proxy option `calcContentDisposition` to calculate `content-disposition` header even if already available
+
+## Version 1.8.7 - 2022-02-03
+
+### Fixed
+
+- Proxy option `fixDraftRequests` to convert unsupported draft request to a working version (default: false)
+
 ## Version 1.8.6 - 2022-02-01
 
 ### Fixed

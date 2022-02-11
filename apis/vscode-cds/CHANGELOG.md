@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.5.1 - 2022-02-04
+
+### Fixed
+
+- extension did not start in Business Application Studio
+
+### Components
+- @sap/cds-lsp 5.5.2
+
 
 ## Version 4.5.0 - 2022-01-28
 
