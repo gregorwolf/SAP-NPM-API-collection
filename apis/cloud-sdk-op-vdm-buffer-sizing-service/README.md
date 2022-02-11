@@ -4,9 +4,10 @@ This package contains the OData VDM for the Buffer Sizing Service.
 
 ## Usage Example
 ```
-import { ActualStock } from '@sap/cloud-sdk-op-vdm-buffer-sizing-service';
+import { bufferSizingService } from '@sap/cloud-sdk-op-vdm-buffer-sizing-service';
 
-const resultPromise = ActualStock.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { actualStockApi } = bufferSizingService()
+const resultPromise = actualStockApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Activity Appointment Service.
 
 ## Usage Example
 ```
-import { AppointmentActivity } from '@sap/cloud-sdk-op-vdm-activity-appointment-service';
+import { activityAppointmentService } from '@sap/cloud-sdk-op-vdm-activity-appointment-service';
 
-const resultPromise = AppointmentActivity.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { appointmentActivityApi } = activityAppointmentService()
+const resultPromise = appointmentActivityApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Division Service.
 
 ## Usage Example
 ```
-import { Division } from '@sap/cloud-sdk-op-vdm-division-service';
+import { divisionService } from '@sap/cloud-sdk-op-vdm-division-service';
 
-const resultPromise = Division.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { divisionApi } = divisionService()
+const resultPromise = divisionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

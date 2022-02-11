@@ -4,9 +4,10 @@ This package contains the OData VDM for the Master Recipe Service.
 
 ## Usage Example
 ```
-import { MasterRecipePhase } from '@sap/cloud-sdk-op-vdm-master-recipe-service';
+import { masterRecipeService } from '@sap/cloud-sdk-op-vdm-master-recipe-service';
 
-const resultPromise = MasterRecipePhase.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { masterRecipePhaseApi } = masterRecipeService()
+const resultPromise = masterRecipePhaseApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 
