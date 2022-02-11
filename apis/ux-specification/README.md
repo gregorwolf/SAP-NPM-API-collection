@@ -29,6 +29,7 @@ Besides the specification, src/api.ts provides functions that can be used with S
 - importProject: imports information from the app and generates all schemas and JSON configuration files.
 - importProjectSchema: imports information from the app and generates all schemas but no JSON configuration files.
 - getApiVersion: returns the given API version. The API version starts with 1 and will only be increased in case of incompatible changes where the consumption layer must react on.
+- generateCustomExtension: generates custom extensions, e.g. Custom Page, Custom Column etc. for a V4 application by using the `@sap-ux/fe-fpm-writer`.
 
 When calling any API function you may pass a logger instance for collecting any messages. The interface of your logger must fit to the ExtensionLogger definition. If no logger is passed, the output channel for messages is the console.
 

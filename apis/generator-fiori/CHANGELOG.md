@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.4.7] - 2022-02-03
+#### Changed
+- Updated the `Analytical List Page` floorplan, when used with an V4 OData service, to now only support version 1.90 and above of SAPUI5.  This enables the generated project to adhere to the latest recommended configuration.
+- Updated the local preview `npm` targets to not use the browser cache to ensure the latest updates are being reflected in the browser.
+- Removed unneeded i18n references from the generated manifest file.
+
+### Fixed
+- Fixed an issue where the Fiori generator would crash if attempting to connect to an on-premise system using SAML in VSCode.
+
 ## [1.4.6] - 2022-01-20
 #### Added
 - Generating an SAP Fiori freestyle application will launch the `Application Info` page for that application after generation completes. 

@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.4.7] - 2022-01-27
+### Changed
+- Forward request to next available middleware if UI5 proxy response returns 404
+- Consolidate UI5 version handling
+
 ## [1.4.6] - 2022-01-13
 ### Fixed
 - Improved variant management validation logic

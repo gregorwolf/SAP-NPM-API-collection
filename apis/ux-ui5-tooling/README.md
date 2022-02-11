@@ -1,6 +1,6 @@
 # @sap/ux-ui5-tooling
 
-The SAP Fiori tools - UI5 Tooling contains a selection of custom [middlewares](https://sap.github.io/ui5-tooling/pages/extensibility/CustomServerMiddleware/) that can be used with the command `ui5 serve` as well as custom [tasks](https://sap.github.io/ui5-tooling/pages/extensibility/CustomTasks/) that can be used with the command `ui5 build`. 
+The SAP Fiori Tools - UI5 Tooling contains a selection of custom [middlewares](https://sap.github.io/ui5-tooling/pages/extensibility/CustomServerMiddleware/) that can be used with the command `ui5 serve` as well as custom [tasks](https://sap.github.io/ui5-tooling/pages/extensibility/CustomTasks/) that can be used with the command `ui5 build`. 
 Furthermore, the module expose the cli `fiori` offering e.g. the [`fiori run`](#run) command is a wrapper of the `ui5 serve` commands and provides some additional parameters as well as `fiori add deploy-config` and `fiori add flp-config` to extend an existing project.
 
 ## [**Middlewares**](#middlewares)
@@ -261,9 +261,30 @@ server:
           fallthrough: false
 ```
 
+### [**4. Preview**](#4-preview)
+The `fiori-tools-preview` middleware enables the developer variant creation for SAP Fiori applications.
+
+### Example configuration
+Executing `npx fiori run --open preview.html` in your project with the configuration below in the `ui5.yaml` opens a new browser tab with the application switched to UI adaptation mode for variant creation. The file `preview.html` is created dynamically at runtime by the `fiori-tools-preview` middleware.
+
+```
+server:
+  customMiddleware:
+  - name: fiori-tools-preview
+    afterMiddleware: fiori-tools-appreload
+    configuration:
+      component: myapp
+      ui5Theme: sap_fiori_3
+```
+
+### Configuration options
+- **`component`** - application component of the SAP Fiori application (value is prefilled when the application is generated with https://www.npmjs.com/package/@sap/generator-fiori).
+- **`ui5Theme`** - SAP Fiori theme of the application (value is prefilled when the application is generated with https://www.npmjs.com/package/@sap/generator-fiori).
+- **`libs`** - a comma separated list of additional libraries that should be loaded, e.g. `libs: my.custom.lib1, my.custom.lib2`
+
 ## [**Tasks**](#tasks)
 
-SAP Fiori tools use the capabilities of custom tasks to deploy the SAP Fiori projects to ABAP servers.
+SAP Fiori Tools use the capabilities of custom tasks to deploy the SAP Fiori projects to ABAP servers.
 
 ### [Deployment to ABAP](#deployment-to-abap)
 
@@ -520,14 +541,14 @@ Most probably the `OpenSSL` package is not installed on your OS. Please install 
 
 ## [Support](#support)
 
-Join the [SAP Fiori tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.  
+Join the [SAP Fiori Tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.  
 Please assign tag: _SAP Fiori tools_.
 
-To log an issue with SAP Fiori tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).
+To log an issue with SAP Fiori Tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).
 
 ## [Documentation](#documentation) 
 
-- Visit **SAP Help Portal** for [SAP Fiori tools](https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US) documentation. 
+- Visit **SAP Help Portal** for [SAP Fiori Tools](https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US) documentation. 
 
 ## [License](#license)
 
