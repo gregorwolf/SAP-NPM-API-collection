@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/sap/cloud-foundry-tools-api/compare/v2.0.4...v2.2.0) (2022-02-09)
+
+
+### Features
+
+* support origin for CF login ([#150](https://github.com/sap/cloud-foundry-tools-api/issues/150)) ([064fa99](https://github.com/sap/cloud-foundry-tools-api/commit/064fa9903e403e1e66fd614afb1a57e6f22ba36c))
+
+
+### Bug Fixes
+
+* incorrect output analyzing ([#146](https://github.com/sap/cloud-foundry-tools-api/issues/146)) ([de2bed0](https://github.com/sap/cloud-foundry-tools-api/commit/de2bed0777c114389c03f83dfe7a277e47116532))
+
 ### [2.1.1](https://github.com/sap/cloud-foundry-tools-api/compare/v2.0.4...v2.1.1) (2021-12-06)
 
 

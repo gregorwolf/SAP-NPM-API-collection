@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [4.17.0]
+### Changed
+- Changed jszip to version 3.7.0
+
 ## [4.10.0]
 ### Changed
 - Setting Header to lowercase - EUXTEAMNADAV-690

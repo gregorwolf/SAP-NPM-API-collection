@@ -13,7 +13,7 @@
 
 ## General things
 
-Note : @sap/hana-client must be installed by yourself. Version 2.7.x , 2.8.x and 2.9.x are currently supported by @sap/hdi 4.1.0.
+Note: @sap/hana-client must be installed by yourself. Version 2.7.x, 2.8.x, 2.9.x and 2.10.x are currently supported by @sap/hdi 4.2.0.
 To install the latest @sap/hana-client simply run `npm install @sap/hana-client`.
 
 Assuming that your **npm registry** is correctly configured and has access to SAP packages, simply running `npm install --save @sap/hdi` will install the package and add it as a dependency to your **package.json**.

@@ -1,3 +1,11 @@
+## 1.6.0 - 10 February, 2022
+### Added
+* Added immutability/read-only view to Project-API result object data structures.
+### Changed
+* Removed in-memory cache for project summary.
+### Fixed
+* Fixed roles issue when xs-security.json is absent.
+
 ## 1.5.0 - 28 January, 2022
 ### Added
 * Support capability to return the user roles for LCAP application.

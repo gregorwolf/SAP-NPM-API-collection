@@ -1,3 +1,10 @@
+## 4.2.0
+Features:
+- hana-client 2.10.x support
+- added APIs `getDefaultContainerRoleAdminPrivileges`, `getDefaultCommonPrivileges` and `grant/revokeDISupportPrivilege` to HDI-API
+- added APIs `import/exportContainerForCopy` and `getDependencies` to Container-API
+- added APIs `import/exportContainerForCopy`, `grant/revokeContainerSupportPrivileges`, `getDefaultContainerRoleAdminPrivileges`, `getDefaultCommonPrivileges` and `enable/disableContainerUser` to ContainerGroup-API
+
 ## 4.1.0
 Features:
 - Node 16.x support
