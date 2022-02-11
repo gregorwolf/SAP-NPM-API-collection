@@ -4,9 +4,10 @@ This package contains the OData VDM for the Personnel Settlement Document Servic
 
 ## Usage Example
 ```
-import { PersCompnElmntCostAssgmt } from '@sap/cloud-sdk-vdm-personnel-settlement-document-service';
+import { personnelSettlementDocumentService } from '@sap/cloud-sdk-vdm-personnel-settlement-document-service';
 
-const resultPromise = PersCompnElmntCostAssgmt.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { persCompnElmntCostAssgmtApi } = personnelSettlementDocumentService()
+const resultPromise = persCompnElmntCostAssgmtApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

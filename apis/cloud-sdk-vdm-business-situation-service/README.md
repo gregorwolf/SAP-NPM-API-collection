@@ -4,9 +4,10 @@ This package contains the OData VDM for the Business Situation Service of SAP S/
 
 ## Usage Example
 ```
-import { SitnInstance } from '@sap/cloud-sdk-vdm-business-situation-service';
+import { businessSituationService } from '@sap/cloud-sdk-vdm-business-situation-service';
 
-const resultPromise = SitnInstance.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { sitnInstanceApi } = businessSituationService()
+const resultPromise = sitnInstanceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

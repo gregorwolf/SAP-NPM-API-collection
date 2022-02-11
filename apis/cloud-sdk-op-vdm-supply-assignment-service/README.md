@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supply Assignment Service.
 
 ## Usage Example
 ```
-import { SupplyAssignment } from '@sap/cloud-sdk-op-vdm-supply-assignment-service';
+import { supplyAssignmentService } from '@sap/cloud-sdk-op-vdm-supply-assignment-service';
 
-const resultPromise = SupplyAssignment.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { supplyAssignmentApi } = supplyAssignmentService()
+const resultPromise = supplyAssignmentApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

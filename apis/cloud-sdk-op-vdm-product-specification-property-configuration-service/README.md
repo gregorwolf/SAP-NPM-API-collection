@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Specification Property Confi
 
 ## Usage Example
 ```
-import { ProdSpecPrptyDefinition } from '@sap/cloud-sdk-op-vdm-product-specification-property-configuration-service';
+import { productSpecificationPropertyConfigurationService } from '@sap/cloud-sdk-op-vdm-product-specification-property-configuration-service';
 
-const resultPromise = ProdSpecPrptyDefinition.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodSpecPrptyDefinitionApi } = productSpecificationPropertyConfigurationService()
+const resultPromise = prodSpecPrptyDefinitionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

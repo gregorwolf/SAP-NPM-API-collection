@@ -4,9 +4,10 @@ This package contains the OData VDM for the Consolidation Unit Service of SAP S/
 
 ## Usage Example
 ```
-import { ConsolidationUnit } from '@sap/cloud-sdk-vdm-consolidation-unit-service';
+import { consolidationUnitService } from '@sap/cloud-sdk-vdm-consolidation-unit-service';
 
-const resultPromise = ConsolidationUnit.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { consolidationUnitApi } = consolidationUnitService()
+const resultPromise = consolidationUnitApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

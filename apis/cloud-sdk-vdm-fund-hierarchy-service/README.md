@@ -4,9 +4,10 @@ This package contains the OData VDM for the Fund Hierarchy Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { FundHierarchy } from '@sap/cloud-sdk-vdm-fund-hierarchy-service';
+import { fundHierarchyService } from '@sap/cloud-sdk-vdm-fund-hierarchy-service';
 
-const resultPromise = FundHierarchy.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { fundHierarchyApi } = fundHierarchyService()
+const resultPromise = fundHierarchyApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

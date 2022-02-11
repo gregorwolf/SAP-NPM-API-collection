@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Area Service of SAP S/4HANA Cl
 
 ## Usage Example
 ```
-import { SalesArea } from '@sap/cloud-sdk-vdm-sales-area-service';
+import { salesAreaService } from '@sap/cloud-sdk-vdm-sales-area-service';
 
-const resultPromise = SalesArea.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesAreaApi } = salesAreaService()
+const resultPromise = salesAreaApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchasing Info Record Process Servi
 
 ## Usage Example
 ```
-import { PurInfoRecdPrcgCndn } from '@sap/cloud-sdk-op-vdm-purchasing-info-record-process-service';
+import { purchasingInfoRecordProcessService } from '@sap/cloud-sdk-op-vdm-purchasing-info-record-process-service';
 
-const resultPromise = PurInfoRecdPrcgCndn.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purInfoRecdPrcgCndnApi } = purchasingInfoRecordProcessService()
+const resultPromise = purInfoRecdPrcgCndnApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

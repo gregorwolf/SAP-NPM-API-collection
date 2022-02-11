@@ -4,9 +4,10 @@ This package contains the OData VDM for the Field Logistics Shipment Voyage Serv
 
 ## Usage Example
 ```
-import { FieldLogisticsShipmentVoyage } from '@sap/cloud-sdk-vdm-field-logistics-shipment-voyage-service';
+import { fieldLogisticsShipmentVoyageService } from '@sap/cloud-sdk-vdm-field-logistics-shipment-voyage-service';
 
-const resultPromise = FieldLogisticsShipmentVoyage.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { fieldLogisticsShipmentVoyageApi } = fieldLogisticsShipmentVoyageService()
+const resultPromise = fieldLogisticsShipmentVoyageApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

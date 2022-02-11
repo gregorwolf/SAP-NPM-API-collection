@@ -4,9 +4,10 @@ This package contains the OData VDM for the Specification Phrase Service.
 
 ## Usage Example
 ```
-import { SpecificationPhrase } from '@sap/cloud-sdk-op-vdm-specification-phrase-service';
+import { specificationPhraseService } from '@sap/cloud-sdk-op-vdm-specification-phrase-service';
 
-const resultPromise = SpecificationPhrase.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { specificationPhraseApi } = specificationPhraseService()
+const resultPromise = specificationPhraseApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

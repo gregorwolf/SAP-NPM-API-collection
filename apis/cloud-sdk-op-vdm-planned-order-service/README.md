@@ -4,9 +4,10 @@ This package contains the OData VDM for the Planned Order Service.
 
 ## Usage Example
 ```
-import { PlannedOrderHeader } from '@sap/cloud-sdk-op-vdm-planned-order-service';
+import { plannedOrderService } from '@sap/cloud-sdk-op-vdm-planned-order-service';
 
-const resultPromise = PlannedOrderHeader.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { plannedOrderHeaderApi } = plannedOrderService()
+const resultPromise = plannedOrderHeaderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

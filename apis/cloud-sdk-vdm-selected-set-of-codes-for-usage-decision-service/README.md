@@ -4,9 +4,10 @@ This package contains the OData VDM for the Selected Set Of Codes For Usage Deci
 
 ## Usage Example
 ```
-import { UsgeDcsnSeldCodeText } from '@sap/cloud-sdk-vdm-selected-set-of-codes-for-usage-decision-service';
+import { selectedSetOfCodesForUsageDecisionService } from '@sap/cloud-sdk-vdm-selected-set-of-codes-for-usage-decision-service';
 
-const resultPromise = UsgeDcsnSeldCodeText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { usgeDcsnSeldCodeTextApi } = selectedSetOfCodesForUsageDecisionService()
+const resultPromise = usgeDcsnSeldCodeTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

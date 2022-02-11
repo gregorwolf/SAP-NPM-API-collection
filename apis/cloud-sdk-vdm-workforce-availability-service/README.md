@@ -4,9 +4,10 @@ This package contains the OData VDM for the Workforce Availability Service of SA
 
 ## Usage Example
 ```
-import { TimeOverviewSet } from '@sap/cloud-sdk-vdm-workforce-availability-service';
+import { workforceAvailabilityService } from '@sap/cloud-sdk-vdm-workforce-availability-service';
 
-const resultPromise = TimeOverviewSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { timeOverviewSetApi } = workforceAvailabilityService()
+const resultPromise = timeOverviewSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

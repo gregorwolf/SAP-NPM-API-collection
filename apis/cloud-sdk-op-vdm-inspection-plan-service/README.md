@@ -4,9 +4,10 @@ This package contains the OData VDM for the Inspection Plan Service.
 
 ## Usage Example
 ```
-import { InspPlanOpPrt } from '@sap/cloud-sdk-op-vdm-inspection-plan-service';
+import { inspectionPlanService } from '@sap/cloud-sdk-op-vdm-inspection-plan-service';
 
-const resultPromise = InspPlanOpPrt.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { inspPlanOpPrtApi } = inspectionPlanService()
+const resultPromise = inspPlanOpPrtApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

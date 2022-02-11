@@ -4,9 +4,10 @@ This package contains the OData VDM for the Maintenance Item Service of SAP S/4H
 
 ## Usage Example
 ```
-import { MaintenanceItem } from '@sap/cloud-sdk-vdm-maintenance-item-service';
+import { maintenanceItemService } from '@sap/cloud-sdk-vdm-maintenance-item-service';
 
-const resultPromise = MaintenanceItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintenanceItemApi } = maintenanceItemService()
+const resultPromise = maintenanceItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

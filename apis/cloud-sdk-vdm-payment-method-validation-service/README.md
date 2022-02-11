@@ -4,9 +4,10 @@ This package contains the OData VDM for the Payment Method Validation Service of
 
 ## Usage Example
 ```
-import { PaymentMethodValidationSet } from '@sap/cloud-sdk-vdm-payment-method-validation-service';
+import { paymentMethodValidationService } from '@sap/cloud-sdk-vdm-payment-method-validation-service';
 
-const resultPromise = PaymentMethodValidationSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { paymentMethodValidationSetApi } = paymentMethodValidationService()
+const resultPromise = paymentMethodValidationSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

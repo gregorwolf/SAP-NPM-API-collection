@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Storage Bin A2X Service of
 
 ## Usage Example
 ```
-import { WarehouseStorageBin } from '@sap/cloud-sdk-vdm-warehouse-storage-bin-a2x-service';
+import { warehouseStorageBinA2XService } from '@sap/cloud-sdk-vdm-warehouse-storage-bin-a2x-service';
 
-const resultPromise = WarehouseStorageBin.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { warehouseStorageBinApi } = warehouseStorageBinA2XService()
+const resultPromise = warehouseStorageBinApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

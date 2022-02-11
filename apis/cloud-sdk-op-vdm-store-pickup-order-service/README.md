@@ -4,9 +4,10 @@ This package contains the OData VDM for the Store Pickup Order Service.
 
 ## Usage Example
 ```
-import { StorePickupOrder } from '@sap/cloud-sdk-op-vdm-store-pickup-order-service';
+import { storePickupOrderService } from '@sap/cloud-sdk-op-vdm-store-pickup-order-service';
 
-const resultPromise = StorePickupOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { storePickupOrderApi } = storePickupOrderService()
+const resultPromise = storePickupOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

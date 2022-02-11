@@ -4,9 +4,10 @@ This package contains the OData VDM for the Commitment And Actual Items Service 
 
 ## Usage Example
 ```
-import { PubSecCmtmtActlItem } from '@sap/cloud-sdk-vdm-commitment-and-actual-items-service';
+import { commitmentAndActualItemsService } from '@sap/cloud-sdk-vdm-commitment-and-actual-items-service';
 
-const resultPromise = PubSecCmtmtActlItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { pubSecCmtmtActlItemApi } = commitmentAndActualItemsService()
+const resultPromise = pubSecCmtmtActlItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

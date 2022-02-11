@@ -4,9 +4,10 @@ This package contains the OData VDM for the Functional Location Service.
 
 ## Usage Example
 ```
-import { Value } from '@sap/cloud-sdk-op-vdm-functional-location-service';
+import { functionalLocationService } from '@sap/cloud-sdk-op-vdm-functional-location-service';
 
-const resultPromise = Value.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { valueApi } = functionalLocationService()
+const resultPromise = valueApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

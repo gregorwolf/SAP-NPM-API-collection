@@ -4,9 +4,10 @@ This package contains the OData VDM for the Inspection Plan Service of SAP S/4HA
 
 ## Usage Example
 ```
-import { InspectionPlan } from '@sap/cloud-sdk-vdm-inspection-plan-service';
+import { inspectionPlanService } from '@sap/cloud-sdk-vdm-inspection-plan-service';
 
-const resultPromise = InspectionPlan.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { inspectionPlanApi } = inspectionPlanService()
+const resultPromise = inspectionPlanApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

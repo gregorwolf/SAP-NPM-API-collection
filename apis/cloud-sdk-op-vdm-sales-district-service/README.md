@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales District Service.
 
 ## Usage Example
 ```
-import { SalesDistrict } from '@sap/cloud-sdk-op-vdm-sales-district-service';
+import { salesDistrictService } from '@sap/cloud-sdk-op-vdm-sales-district-service';
 
-const resultPromise = SalesDistrict.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesDistrictApi } = salesDistrictService()
+const resultPromise = salesDistrictApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

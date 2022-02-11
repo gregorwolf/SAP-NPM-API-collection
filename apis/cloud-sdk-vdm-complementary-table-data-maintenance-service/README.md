@@ -4,9 +4,10 @@ This package contains the OData VDM for the Complementary Table Data Maintenance
 
 ## Usage Example
 ```
-import { Cfe } from '@sap/cloud-sdk-vdm-complementary-table-data-maintenance-service';
+import { complementaryTableDataMaintenanceService } from '@sap/cloud-sdk-vdm-complementary-table-data-maintenance-service';
 
-const resultPromise = Cfe.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { cfeApi } = complementaryTableDataMaintenanceService()
+const resultPromise = cfeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

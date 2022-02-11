@@ -4,9 +4,10 @@ This package contains the OData VDM for the Trial Balance Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { C_Trialbalance } from '@sap/cloud-sdk-vdm-trial-balance-service';
+import { trialBalanceService } from '@sap/cloud-sdk-vdm-trial-balance-service';
 
-const resultPromise = C_Trialbalance.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { c_TrialbalanceApi } = trialBalanceService()
+const resultPromise = c_TrialbalanceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

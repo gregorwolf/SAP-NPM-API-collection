@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchase Contract Service.
 
 ## Usage Example
 ```
-import { PurCtrAccount } from '@sap/cloud-sdk-op-vdm-purchase-contract-service';
+import { purchaseContractService } from '@sap/cloud-sdk-op-vdm-purchase-contract-service';
 
-const resultPromise = PurCtrAccount.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purCtrAccountApi } = purchaseContractService()
+const resultPromise = purCtrAccountApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

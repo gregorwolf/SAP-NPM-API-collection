@@ -4,9 +4,10 @@ This package contains the OData VDM for the Defect Category Service.
 
 ## Usage Example
 ```
-import { DefectCategory } from '@sap/cloud-sdk-op-vdm-defect-category-service';
+import { defectCategoryService } from '@sap/cloud-sdk-op-vdm-defect-category-service';
 
-const resultPromise = DefectCategory.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { defectCategoryApi } = defectCategoryService()
+const resultPromise = defectCategoryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

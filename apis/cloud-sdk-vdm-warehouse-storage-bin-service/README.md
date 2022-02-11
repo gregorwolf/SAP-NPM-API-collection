@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Storage Bin Service of SAP
 
 ## Usage Example
 ```
-import { WarehouseStorageBin } from '@sap/cloud-sdk-vdm-warehouse-storage-bin-service';
+import { warehouseStorageBinService } from '@sap/cloud-sdk-vdm-warehouse-storage-bin-service';
 
-const resultPromise = WarehouseStorageBin.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { warehouseStorageBinApi } = warehouseStorageBinService()
+const resultPromise = warehouseStorageBinApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Maintenance Bill Of Material Service
 
 ## Usage Example
 ```
-import { BomItem } from '@sap/cloud-sdk-op-vdm-maintenance-bill-of-material-service';
+import { maintenanceBillOfMaterialService } from '@sap/cloud-sdk-op-vdm-maintenance-bill-of-material-service';
 
-const resultPromise = BomItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { bomItemApi } = maintenanceBillOfMaterialService()
+const resultPromise = bomItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

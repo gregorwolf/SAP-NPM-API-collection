@@ -4,9 +4,10 @@ This package contains the OData VDM for the Pooled Capacity Service of SAP S/4HA
 
 ## Usage Example
 ```
-import { WorkCenterCapacity } from '@sap/cloud-sdk-vdm-pooled-capacity-service';
+import { pooledCapacityService } from '@sap/cloud-sdk-vdm-pooled-capacity-service';
 
-const resultPromise = WorkCenterCapacity.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { workCenterCapacityApi } = pooledCapacityService()
+const resultPromise = workCenterCapacityApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

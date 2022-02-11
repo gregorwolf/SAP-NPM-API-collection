@@ -4,9 +4,10 @@ This package contains the OData VDM for the Nutrient Statement Service.
 
 ## Usage Example
 ```
-import { NutrientStatement } from '@sap/cloud-sdk-op-vdm-nutrient-statement-service';
+import { nutrientStatementService } from '@sap/cloud-sdk-op-vdm-nutrient-statement-service';
 
-const resultPromise = NutrientStatement.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { nutrientStatementApi } = nutrientStatementService()
+const resultPromise = nutrientStatementApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

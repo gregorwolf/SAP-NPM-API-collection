@@ -4,9 +4,10 @@ This package contains the OData VDM for the Material Planning Data Service of SA
 
 ## Usage Example
 ```
-import { MrpMaterial } from '@sap/cloud-sdk-vdm-material-planning-data-service';
+import { materialPlanningDataService } from '@sap/cloud-sdk-vdm-material-planning-data-service';
 
-const resultPromise = MrpMaterial.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { mrpMaterialApi } = materialPlanningDataService()
+const resultPromise = mrpMaterialApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Journal Entry Item Basic Service.
 
 ## Usage Example
 ```
-import { CostCenter } from '@sap/cloud-sdk-op-vdm-journal-entry-item-basic-service';
+import { journalEntryItemBasicService } from '@sap/cloud-sdk-op-vdm-journal-entry-item-basic-service';
 
-const resultPromise = CostCenter.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { costCenterApi } = journalEntryItemBasicService()
+const resultPromise = costCenterApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

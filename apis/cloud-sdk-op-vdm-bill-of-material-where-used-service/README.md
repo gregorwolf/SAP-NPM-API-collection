@@ -4,9 +4,10 @@ This package contains the OData VDM for the Bill Of Material Where Used Service.
 
 ## Usage Example
 ```
-import { BomWhereUsed } from '@sap/cloud-sdk-op-vdm-bill-of-material-where-used-service';
+import { billOfMaterialWhereUsedService } from '@sap/cloud-sdk-op-vdm-bill-of-material-where-used-service';
 
-const resultPromise = BomWhereUsed.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { bomWhereUsedApi } = billOfMaterialWhereUsedService()
+const resultPromise = bomWhereUsedApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

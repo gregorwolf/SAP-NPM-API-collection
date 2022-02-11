@@ -4,9 +4,10 @@ This package contains the OData VDM for the Production Orders Service of SAP S/4
 
 ## Usage Example
 ```
-import { ProductionOrder } from '@sap/cloud-sdk-vdm-production-orders-service';
+import { productionOrdersService } from '@sap/cloud-sdk-vdm-production-orders-service';
 
-const resultPromise = ProductionOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { productionOrderApi } = productionOrdersService()
+const resultPromise = productionOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

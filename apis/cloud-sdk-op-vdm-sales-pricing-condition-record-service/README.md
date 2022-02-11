@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Pricing Condition Record Servi
 
 ## Usage Example
 ```
-import { SlsPrcgCndnRecdSuplmnt } from '@sap/cloud-sdk-op-vdm-sales-pricing-condition-record-service';
+import { salesPricingConditionRecordService } from '@sap/cloud-sdk-op-vdm-sales-pricing-condition-record-service';
 
-const resultPromise = SlsPrcgCndnRecdSuplmnt.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { slsPrcgCndnRecdSuplmntApi } = salesPricingConditionRecordService()
+const resultPromise = slsPrcgCndnRecdSuplmntApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

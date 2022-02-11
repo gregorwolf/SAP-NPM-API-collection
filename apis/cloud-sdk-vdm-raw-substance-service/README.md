@@ -4,9 +4,10 @@ This package contains the OData VDM for the Raw Substance Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { RawSubstance } from '@sap/cloud-sdk-vdm-raw-substance-service';
+import { rawSubstanceService } from '@sap/cloud-sdk-vdm-raw-substance-service';
 
-const resultPromise = RawSubstance.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { rawSubstanceApi } = rawSubstanceService()
+const resultPromise = rawSubstanceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

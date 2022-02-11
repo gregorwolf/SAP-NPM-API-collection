@@ -4,9 +4,10 @@ This package contains the OData VDM for the Defect Service of SAP S/4HANA Cloud.
 
 ## Usage Example
 ```
-import { Defect } from '@sap/cloud-sdk-vdm-defect-service';
+import { defectService } from '@sap/cloud-sdk-vdm-defect-service';
 
-const resultPromise = Defect.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { defectApi } = defectService()
+const resultPromise = defectApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

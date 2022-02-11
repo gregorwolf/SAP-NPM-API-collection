@@ -4,9 +4,10 @@ This package contains the OData VDM for the Recipe Service.
 
 ## Usage Example
 ```
-import { Recipe } from '@sap/cloud-sdk-op-vdm-recipe-service';
+import { recipeService } from '@sap/cloud-sdk-op-vdm-recipe-service';
 
-const resultPromise = Recipe.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { recipeApi } = recipeService()
+const resultPromise = recipeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

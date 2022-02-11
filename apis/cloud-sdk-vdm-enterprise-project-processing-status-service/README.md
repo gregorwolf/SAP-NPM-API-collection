@@ -4,9 +4,10 @@ This package contains the OData VDM for the Enterprise Project Processing Status
 
 ## Usage Example
 ```
-import { ProcessingStatus } from '@sap/cloud-sdk-vdm-enterprise-project-processing-status-service';
+import { enterpriseProjectProcessingStatusService } from '@sap/cloud-sdk-vdm-enterprise-project-processing-status-service';
 
-const resultPromise = ProcessingStatus.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { processingStatusApi } = enterpriseProjectProcessingStatusService()
+const resultPromise = processingStatusApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

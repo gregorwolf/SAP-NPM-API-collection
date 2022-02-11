@@ -4,9 +4,10 @@ This package contains the OData VDM for the Segmentation Structure Service.
 
 ## Usage Example
 ```
-import { SegmentationStrategy } from '@sap/cloud-sdk-op-vdm-segmentation-structure-service';
+import { segmentationStructureService } from '@sap/cloud-sdk-op-vdm-segmentation-structure-service';
 
-const resultPromise = SegmentationStrategy.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { segmentationStrategyApi } = segmentationStructureService()
+const resultPromise = segmentationStrategyApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

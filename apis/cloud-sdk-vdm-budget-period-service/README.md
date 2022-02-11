@@ -4,9 +4,10 @@ This package contains the OData VDM for the Budget Period Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { BudgetPeriod } from '@sap/cloud-sdk-vdm-budget-period-service';
+import { budgetPeriodService } from '@sap/cloud-sdk-vdm-budget-period-service';
 
-const resultPromise = BudgetPeriod.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { budgetPeriodApi } = budgetPeriodService()
+const resultPromise = budgetPeriodApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

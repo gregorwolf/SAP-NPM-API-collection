@@ -4,9 +4,10 @@ This package contains the OData VDM for the Cdr File Downloads Service of SAP S/
 
 ## Usage Example
 ```
-import { ListFiles } from '@sap/cloud-sdk-vdm-cdr-file-downloads-service';
+import { cdrFileDownloadsService } from '@sap/cloud-sdk-vdm-cdr-file-downloads-service';
 
-const resultPromise = ListFiles.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { listFilesApi } = cdrFileDownloadsService()
+const resultPromise = listFilesApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

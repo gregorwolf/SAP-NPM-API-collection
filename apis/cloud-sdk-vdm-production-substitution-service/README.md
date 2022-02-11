@@ -4,9 +4,10 @@ This package contains the OData VDM for the Production Substitution Service of S
 
 ## Usage Example
 ```
-import { ProdSubstn } from '@sap/cloud-sdk-vdm-production-substitution-service';
+import { productionSubstitutionService } from '@sap/cloud-sdk-vdm-production-substitution-service';
 
-const resultPromise = ProdSubstn.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodSubstnApi } = productionSubstitutionService()
+const resultPromise = prodSubstnApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

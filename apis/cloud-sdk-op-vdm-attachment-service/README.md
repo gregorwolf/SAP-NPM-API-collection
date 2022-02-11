@@ -4,9 +4,10 @@ This package contains the OData VDM for the Attachment Service.
 
 ## Usage Example
 ```
-import { AttachmentContentSet } from '@sap/cloud-sdk-op-vdm-attachment-service';
+import { attachmentService } from '@sap/cloud-sdk-op-vdm-attachment-service';
 
-const resultPromise = AttachmentContentSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { attachmentContentSetApi } = attachmentService()
+const resultPromise = attachmentContentSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

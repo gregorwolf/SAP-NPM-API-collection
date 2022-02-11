@@ -4,9 +4,10 @@ This package contains the OData VDM for the Finance Complementary Table Data Mai
 
 ## Usage Example
 ```
-import { Cfe } from '@sap/cloud-sdk-op-vdm-finance-complementary-table-data-maintenance-service';
+import { financeComplementaryTableDataMaintenanceService } from '@sap/cloud-sdk-op-vdm-finance-complementary-table-data-maintenance-service';
 
-const resultPromise = Cfe.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { cfeApi } = financeComplementaryTableDataMaintenanceService()
+const resultPromise = cfeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

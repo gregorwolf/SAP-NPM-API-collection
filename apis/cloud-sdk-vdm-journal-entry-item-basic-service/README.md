@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { CostCenter } from '@sap/cloud-sdk-vdm-journal-entry-item-basic-service';
+import { journalEntryItemBasicService } from '@sap/cloud-sdk-vdm-journal-entry-item-basic-service';
 
-const resultPromise = CostCenter.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { costCenterApi } = journalEntryItemBasicService()
+const resultPromise = costCenterApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

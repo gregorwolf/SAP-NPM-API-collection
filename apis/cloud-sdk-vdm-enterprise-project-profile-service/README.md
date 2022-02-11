@@ -4,9 +4,10 @@ This package contains the OData VDM for the Enterprise Project Profile Service o
 
 ## Usage Example
 ```
-import { ProjectProfileCode } from '@sap/cloud-sdk-vdm-enterprise-project-profile-service';
+import { enterpriseProjectProfileService } from '@sap/cloud-sdk-vdm-enterprise-project-profile-service';
 
-const resultPromise = ProjectProfileCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { projectProfileCodeApi } = enterpriseProjectProfileService()
+const resultPromise = projectProfileCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

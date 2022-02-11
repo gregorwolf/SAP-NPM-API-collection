@@ -4,9 +4,10 @@ This package contains the OData VDM for the Bank Detail Service of SAP S/4HANA C
 
 ## Usage Example
 ```
-import { BankDetail } from '@sap/cloud-sdk-vdm-bank-detail-service';
+import { bankDetailService } from '@sap/cloud-sdk-vdm-bank-detail-service';
 
-const resultPromise = BankDetail.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { bankDetailApi } = bankDetailService()
+const resultPromise = bankDetailApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

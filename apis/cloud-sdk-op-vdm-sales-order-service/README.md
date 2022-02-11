@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Order Service.
 
 ## Usage Example
 ```
-import { SalesOrder } from '@sap/cloud-sdk-op-vdm-sales-order-service';
+import { salesOrderService } from '@sap/cloud-sdk-op-vdm-sales-order-service';
 
-const resultPromise = SalesOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesOrderApi } = salesOrderService()
+const resultPromise = salesOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

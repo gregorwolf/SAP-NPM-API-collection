@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product 2 Service of SAP S/4HANA Clo
 
 ## Usage Example
 ```
-import { Product } from '@sap/cloud-sdk-vdm-product-2-service';
+import { product2Service } from '@sap/cloud-sdk-vdm-product-2-service';
 
-const resultPromise = Product.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { productApi } = product2Service()
+const resultPromise = productApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

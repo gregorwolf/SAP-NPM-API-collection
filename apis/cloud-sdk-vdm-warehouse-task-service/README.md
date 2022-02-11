@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Task Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { WarehouseTask } from '@sap/cloud-sdk-vdm-warehouse-task-service';
+import { warehouseTaskService } from '@sap/cloud-sdk-vdm-warehouse-task-service';
 
-const resultPromise = WarehouseTask.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { warehouseTaskApi } = warehouseTaskService()
+const resultPromise = warehouseTaskApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

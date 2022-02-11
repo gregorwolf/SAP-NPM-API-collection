@@ -4,9 +4,10 @@ This package contains the OData VDM for the Outbound Delivery Service of SAP S/4
 
 ## Usage Example
 ```
-import { OutbDeliveryItem } from '@sap/cloud-sdk-vdm-outbound-delivery-service';
+import { outboundDeliveryService } from '@sap/cloud-sdk-vdm-outbound-delivery-service';
 
-const resultPromise = OutbDeliveryItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { outbDeliveryItemApi } = outboundDeliveryService()
+const resultPromise = outbDeliveryItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

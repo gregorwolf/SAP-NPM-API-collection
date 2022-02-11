@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Quotation Service.
 
 ## Usage Example
 ```
-import { SalesQuotation } from '@sap/cloud-sdk-op-vdm-sales-quotation-service';
+import { salesQuotationService } from '@sap/cloud-sdk-op-vdm-sales-quotation-service';
 
-const resultPromise = SalesQuotation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesQuotationApi } = salesQuotationService()
+const resultPromise = salesQuotationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

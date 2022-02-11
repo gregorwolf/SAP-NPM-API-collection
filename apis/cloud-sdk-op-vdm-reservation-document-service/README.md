@@ -4,9 +4,10 @@ This package contains the OData VDM for the Reservation Document Service.
 
 ## Usage Example
 ```
-import { ReservationDocumentItem } from '@sap/cloud-sdk-op-vdm-reservation-document-service';
+import { reservationDocumentService } from '@sap/cloud-sdk-op-vdm-reservation-document-service';
 
-const resultPromise = ReservationDocumentItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { reservationDocumentItemApi } = reservationDocumentService()
+const resultPromise = reservationDocumentItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

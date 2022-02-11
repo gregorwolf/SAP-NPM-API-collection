@@ -4,9 +4,10 @@ This package contains the OData VDM for the Profit Center Service.
 
 ## Usage Example
 ```
-import { ProfitCenter } from '@sap/cloud-sdk-op-vdm-profit-center-service';
+import { profitCenterService } from '@sap/cloud-sdk-op-vdm-profit-center-service';
 
-const resultPromise = ProfitCenter.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { profitCenterApi } = profitCenterService()
+const resultPromise = profitCenterApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

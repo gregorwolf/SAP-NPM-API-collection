@@ -4,9 +4,10 @@ This package contains the OData VDM for the Vms Vehicle Search Area Service.
 
 ## Usage Example
 ```
-import { VmsVehicleSearchArea } from '@sap/cloud-sdk-op-vdm-vms-vehicle-search-area-service';
+import { vmsVehicleSearchAreaService } from '@sap/cloud-sdk-op-vdm-vms-vehicle-search-area-service';
 
-const resultPromise = VmsVehicleSearchArea.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { vmsVehicleSearchAreaApi } = vmsVehicleSearchAreaService()
+const resultPromise = vmsVehicleSearchAreaApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Accounting Document Service.
 
 ## Usage Example
 ```
-import { OperationalAcctgDocItemCube } from '@sap/cloud-sdk-op-vdm-accounting-document-service';
+import { accountingDocumentService } from '@sap/cloud-sdk-op-vdm-accounting-document-service';
 
-const resultPromise = OperationalAcctgDocItemCube.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { operationalAcctgDocItemCubeApi } = accountingDocumentService()
+const resultPromise = operationalAcctgDocItemCubeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

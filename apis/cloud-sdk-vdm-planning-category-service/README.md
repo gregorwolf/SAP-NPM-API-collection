@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { PlanningCategory } from '@sap/cloud-sdk-vdm-planning-category-service';
+import { planningCategoryService } from '@sap/cloud-sdk-vdm-planning-category-service';
 
-const resultPromise = PlanningCategory.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { planningCategoryApi } = planningCategoryService()
+const resultPromise = planningCategoryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

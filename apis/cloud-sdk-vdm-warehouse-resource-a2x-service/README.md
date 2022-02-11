@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Resource A2X Service of SA
 
 ## Usage Example
 ```
-import { WarehouseResource } from '@sap/cloud-sdk-vdm-warehouse-resource-a2x-service';
+import { warehouseResourceA2XService } from '@sap/cloud-sdk-vdm-warehouse-resource-a2x-service';
 
-const resultPromise = WarehouseResource.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { warehouseResourceApi } = warehouseResourceA2XService()
+const resultPromise = warehouseResourceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

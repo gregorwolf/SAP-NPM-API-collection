@@ -4,9 +4,10 @@ This package contains the OData VDM for the Master Inspection Characteristic Ser
 
 ## Usage Example
 ```
-import { InspectionSpecification } from '@sap/cloud-sdk-vdm-master-inspection-characteristic-service';
+import { masterInspectionCharacteristicService } from '@sap/cloud-sdk-vdm-master-inspection-characteristic-service';
 
-const resultPromise = InspectionSpecification.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { inspectionSpecificationApi } = masterInspectionCharacteristicService()
+const resultPromise = inspectionSpecificationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

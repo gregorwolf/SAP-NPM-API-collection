@@ -4,9 +4,10 @@ This package contains the OData VDM for the Variant Table Content Service of SAP
 
 ## Usage Example
 ```
-import { VarConfigurationTableContent } from '@sap/cloud-sdk-vdm-variant-table-content-service';
+import { variantTableContentService } from '@sap/cloud-sdk-vdm-variant-table-content-service';
 
-const resultPromise = VarConfigurationTableContent.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { varConfigurationTableContentApi } = variantTableContentService()
+const resultPromise = varConfigurationTableContentApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

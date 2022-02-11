@@ -4,9 +4,10 @@ This package contains the OData VDM for the Subsequent Billing Document Service 
 
 ## Usage Example
 ```
-import { SubsqntBillgDocForSelfBillg } from '@sap/cloud-sdk-vdm-subsequent-billing-document-service';
+import { subsequentBillingDocumentService } from '@sap/cloud-sdk-vdm-subsequent-billing-document-service';
 
-const resultPromise = SubsqntBillgDocForSelfBillg.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { subsqntBillgDocForSelfBillgApi } = subsequentBillingDocumentService()
+const resultPromise = subsqntBillgDocForSelfBillgApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

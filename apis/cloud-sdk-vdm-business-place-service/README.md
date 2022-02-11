@@ -4,9 +4,10 @@ This package contains the OData VDM for the Business Place Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { BusinessPlaceSet } from '@sap/cloud-sdk-vdm-business-place-service';
+import { businessPlaceService } from '@sap/cloud-sdk-vdm-business-place-service';
 
-const resultPromise = BusinessPlaceSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { businessPlaceSetApi } = businessPlaceService()
+const resultPromise = businessPlaceSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

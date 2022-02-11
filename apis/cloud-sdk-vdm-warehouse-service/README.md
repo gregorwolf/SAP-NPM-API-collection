@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Service of SAP S/4HANA Clo
 
 ## Usage Example
 ```
-import { Warehouse } from '@sap/cloud-sdk-vdm-warehouse-service';
+import { warehouseService } from '@sap/cloud-sdk-vdm-warehouse-service';
 
-const resultPromise = Warehouse.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { warehouseApi } = warehouseService()
+const resultPromise = warehouseApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

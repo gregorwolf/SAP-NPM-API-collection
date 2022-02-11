@@ -4,9 +4,10 @@ This package contains the OData VDM for the Enterprise Project Priority Service 
 
 ## Usage Example
 ```
-import { EntProjPriorityCode } from '@sap/cloud-sdk-vdm-enterprise-project-priority-service';
+import { enterpriseProjectPriorityService } from '@sap/cloud-sdk-vdm-enterprise-project-priority-service';
 
-const resultPromise = EntProjPriorityCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { entProjPriorityCodeApi } = enterpriseProjectPriorityService()
+const resultPromise = entProjPriorityCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

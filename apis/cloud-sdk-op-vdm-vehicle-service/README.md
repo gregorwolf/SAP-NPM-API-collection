@@ -4,9 +4,10 @@ This package contains the OData VDM for the Vehicle Service.
 
 ## Usage Example
 ```
-import { VmsVehicle } from '@sap/cloud-sdk-op-vdm-vehicle-service';
+import { vehicleService } from '@sap/cloud-sdk-op-vdm-vehicle-service';
 
-const resultPromise = VmsVehicle.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { vmsVehicleApi } = vehicleService()
+const resultPromise = vmsVehicleApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

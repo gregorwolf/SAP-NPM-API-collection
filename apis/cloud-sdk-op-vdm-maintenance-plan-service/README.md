@@ -4,9 +4,10 @@ This package contains the OData VDM for the Maintenance Plan Service.
 
 ## Usage Example
 ```
-import { MaintenanceItem } from '@sap/cloud-sdk-op-vdm-maintenance-plan-service';
+import { maintenancePlanService } from '@sap/cloud-sdk-op-vdm-maintenance-plan-service';
 
-const resultPromise = MaintenanceItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintenanceItemApi } = maintenancePlanService()
+const resultPromise = maintenanceItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

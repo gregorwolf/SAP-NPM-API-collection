@@ -4,9 +4,10 @@ This package contains the OData VDM for the Object Dependency Service of SAP S/4
 
 ## Usage Example
 ```
-import { VarConfignObjectDependency } from '@sap/cloud-sdk-vdm-object-dependency-service';
+import { objectDependencyService } from '@sap/cloud-sdk-vdm-object-dependency-service';
 
-const resultPromise = VarConfignObjectDependency.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { varConfignObjectDependencyApi } = objectDependencyService()
+const resultPromise = varConfignObjectDependencyApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

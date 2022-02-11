@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Request Service.
 
 ## Usage Example
 ```
-import { ServiceRequest } from '@sap/cloud-sdk-op-vdm-service-request-service';
+import { serviceRequestService } from '@sap/cloud-sdk-op-vdm-service-request-service';
 
-const resultPromise = ServiceRequest.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { serviceRequestApi } = serviceRequestService()
+const resultPromise = serviceRequestApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

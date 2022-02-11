@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { OperationalAcctgDocItemCube } from '@sap/cloud-sdk-vdm-accounting-document-service';
+import { accountingDocumentService } from '@sap/cloud-sdk-vdm-accounting-document-service';
 
-const resultPromise = OperationalAcctgDocItemCube.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { operationalAcctgDocItemCubeApi } = accountingDocumentService()
+const resultPromise = operationalAcctgDocItemCubeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

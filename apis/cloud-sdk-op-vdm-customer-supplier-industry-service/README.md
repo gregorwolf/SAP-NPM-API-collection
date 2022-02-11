@@ -4,9 +4,10 @@ This package contains the OData VDM for the Customer Supplier Industry Service.
 
 ## Usage Example
 ```
-import { CustomerSupplierIndustry } from '@sap/cloud-sdk-op-vdm-customer-supplier-industry-service';
+import { customerSupplierIndustryService } from '@sap/cloud-sdk-op-vdm-customer-supplier-industry-service';
 
-const resultPromise = CustomerSupplierIndustry.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { customerSupplierIndustryApi } = customerSupplierIndustryService()
+const resultPromise = customerSupplierIndustryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

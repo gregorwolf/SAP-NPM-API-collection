@@ -4,9 +4,10 @@ This package contains the OData VDM for the Fixed Asset Service of SAP S/4HANA C
 
 ## Usage Example
 ```
-import { FixedAssetUsageObject } from '@sap/cloud-sdk-vdm-fixed-asset-service';
+import { fixedAssetService } from '@sap/cloud-sdk-vdm-fixed-asset-service';
 
-const resultPromise = FixedAssetUsageObject.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { fixedAssetUsageObjectApi } = fixedAssetService()
+const resultPromise = fixedAssetUsageObjectApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

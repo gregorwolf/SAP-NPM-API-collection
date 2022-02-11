@@ -4,9 +4,10 @@ This package contains the OData VDM for the Bill Of Material Comparison Service.
 
 ## Usage Example
 ```
-import { ComparisonResultSet } from '@sap/cloud-sdk-op-vdm-bill-of-material-comparison-service';
+import { billOfMaterialComparisonService } from '@sap/cloud-sdk-op-vdm-bill-of-material-comparison-service';
 
-const resultPromise = ComparisonResultSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { comparisonResultSetApi } = billOfMaterialComparisonService()
+const resultPromise = comparisonResultSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

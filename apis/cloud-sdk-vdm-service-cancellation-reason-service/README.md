@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Cancellation Reason Service 
 
 ## Usage Example
 ```
-import { ServiceCancellationReason } from '@sap/cloud-sdk-vdm-service-cancellation-reason-service';
+import { serviceCancellationReasonService } from '@sap/cloud-sdk-vdm-service-cancellation-reason-service';
 
-const resultPromise = ServiceCancellationReason.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { serviceCancellationReasonApi } = serviceCancellationReasonService()
+const resultPromise = serviceCancellationReasonApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

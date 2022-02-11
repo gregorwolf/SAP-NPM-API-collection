@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchase Order Process Service.
 
 ## Usage Example
 ```
-import { PurchaseOrder } from '@sap/cloud-sdk-op-vdm-purchase-order-service';
+import { purchaseOrderProcessService } from '@sap/cloud-sdk-op-vdm-purchase-order-service';
 
-const resultPromise = PurchaseOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purchaseOrderApi } = purchaseOrderProcessService()
+const resultPromise = purchaseOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

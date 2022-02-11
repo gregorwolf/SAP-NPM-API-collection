@@ -4,9 +4,10 @@ This package contains the OData VDM for the Pack Container Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { ShipmentContainer } from '@sap/cloud-sdk-vdm-pack-container-service';
+import { packContainerService } from '@sap/cloud-sdk-vdm-pack-container-service';
 
-const resultPromise = ShipmentContainer.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { shipmentContainerApi } = packContainerService()
+const resultPromise = shipmentContainerApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

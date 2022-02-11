@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Transaction Item Category Se
 
 ## Usage Example
 ```
-import { SrvcDocumentItemCategory } from '@sap/cloud-sdk-vdm-service-transaction-item-category-service';
+import { serviceTransactionItemCategoryService } from '@sap/cloud-sdk-vdm-service-transaction-item-category-service';
 
-const resultPromise = SrvcDocumentItemCategory.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { srvcDocumentItemCategoryApi } = serviceTransactionItemCategoryService()
+const resultPromise = srvcDocumentItemCategoryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

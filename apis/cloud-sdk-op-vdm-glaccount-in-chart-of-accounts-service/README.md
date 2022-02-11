@@ -4,9 +4,10 @@ This package contains the OData VDM for the Glaccount In Chart Of Accounts Servi
 
 ## Usage Example
 ```
-import { GlAccountText } from '@sap/cloud-sdk-op-vdm-glaccount-in-chart-of-accounts-service';
+import { glaccountInChartOfAccountsService } from '@sap/cloud-sdk-op-vdm-glaccount-in-chart-of-accounts-service';
 
-const resultPromise = GlAccountText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { glAccountTextApi } = glaccountInChartOfAccountsService()
+const resultPromise = glAccountTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

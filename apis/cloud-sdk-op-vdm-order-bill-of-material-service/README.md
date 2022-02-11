@@ -4,9 +4,10 @@ This package contains the OData VDM for the Order Bill Of Material Service.
 
 ## Usage Example
 ```
-import { SalesOrderBom } from '@sap/cloud-sdk-op-vdm-order-bill-of-material-service';
+import { orderBillOfMaterialService } from '@sap/cloud-sdk-op-vdm-order-bill-of-material-service';
 
-const resultPromise = SalesOrderBom.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesOrderBomApi } = orderBillOfMaterialService()
+const resultPromise = salesOrderBomApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

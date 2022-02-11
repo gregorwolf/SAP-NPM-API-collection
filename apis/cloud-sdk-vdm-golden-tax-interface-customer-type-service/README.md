@@ -4,9 +4,10 @@ This package contains the OData VDM for the Golden Tax Interface Customer Type S
 
 ## Usage Example
 ```
-import { GtiCustomerTypeSet } from '@sap/cloud-sdk-vdm-golden-tax-interface-customer-type-service';
+import { goldenTaxInterfaceCustomerTypeService } from '@sap/cloud-sdk-vdm-golden-tax-interface-customer-type-service';
 
-const resultPromise = GtiCustomerTypeSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { gtiCustomerTypeSetApi } = goldenTaxInterfaceCustomerTypeService()
+const resultPromise = gtiCustomerTypeSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

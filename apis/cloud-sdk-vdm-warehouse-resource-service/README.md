@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Resource Service of SAP S/
 
 ## Usage Example
 ```
-import { WarehouseResource } from '@sap/cloud-sdk-vdm-warehouse-resource-service';
+import { warehouseResourceService } from '@sap/cloud-sdk-vdm-warehouse-resource-service';
 
-const resultPromise = WarehouseResource.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { warehouseResourceApi } = warehouseResourceService()
+const resultPromise = warehouseResourceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

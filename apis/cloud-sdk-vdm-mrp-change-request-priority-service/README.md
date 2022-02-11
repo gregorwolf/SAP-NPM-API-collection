@@ -4,9 +4,10 @@ This package contains the OData VDM for the Mrp Change Request Priority Service 
 
 ## Usage Example
 ```
-import { MrpChangeRequestPriority } from '@sap/cloud-sdk-vdm-mrp-change-request-priority-service';
+import { mrpChangeRequestPriorityService } from '@sap/cloud-sdk-vdm-mrp-change-request-priority-service';
 
-const resultPromise = MrpChangeRequestPriority.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { mrpChangeRequestPriorityApi } = mrpChangeRequestPriorityService()
+const resultPromise = mrpChangeRequestPriorityApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

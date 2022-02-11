@@ -4,9 +4,10 @@ This package contains the OData VDM for the Event Based Revenue Recognition Inte
 
 ## Usage Example
 ```
-import { Es_ActionResult } from '@sap/cloud-sdk-vdm-event-based-revenue-recognition-integration-service';
+import { eventBasedRevenueRecognitionIntegrationService } from '@sap/cloud-sdk-vdm-event-based-revenue-recognition-integration-service';
 
-const resultPromise = Es_ActionResult.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { es_ActionResultApi } = eventBasedRevenueRecognitionIntegrationService()
+const resultPromise = es_ActionResultApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supplier Evaluation Response Service
 
 ## Usage Example
 ```
-import { SuplrEvalRspSection } from '@sap/cloud-sdk-vdm-supplier-evaluation-response-service';
+import { supplierEvaluationResponseService } from '@sap/cloud-sdk-vdm-supplier-evaluation-response-service';
 
-const resultPromise = SuplrEvalRspSection.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { suplrEvalRspSectionApi } = supplierEvaluationResponseService()
+const resultPromise = suplrEvalRspSectionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

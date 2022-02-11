@@ -4,9 +4,10 @@ This package contains the OData VDM for the Real Estate Contract Type Service of
 
 ## Usage Example
 ```
-import { ReContractType } from '@sap/cloud-sdk-vdm-real-estate-contract-type-service';
+import { realEstateContractTypeService } from '@sap/cloud-sdk-vdm-real-estate-contract-type-service';
 
-const resultPromise = ReContractType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { reContractTypeApi } = realEstateContractTypeService()
+const resultPromise = reContractTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

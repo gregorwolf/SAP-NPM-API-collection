@@ -4,9 +4,10 @@ This package contains the OData VDM for the Material Stock Service.
 
 ## Usage Example
 ```
-import { MaterialStock } from '@sap/cloud-sdk-op-vdm-material-stock-service';
+import { materialStockService } from '@sap/cloud-sdk-op-vdm-material-stock-service';
 
-const resultPromise = MaterialStock.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { materialStockApi } = materialStockService()
+const resultPromise = materialStockApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

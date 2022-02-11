@@ -4,9 +4,10 @@ This package contains the OData VDM for the Brazil Nota Fiscal Service of SAP S/
 
 ## Usage Example
 ```
-import { Br_Nftax } from '@sap/cloud-sdk-vdm-brazil-nota-fiscal-service';
+import { brazilNotaFiscalService } from '@sap/cloud-sdk-vdm-brazil-nota-fiscal-service';
 
-const resultPromise = Br_Nftax.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { br_NftaxApi } = brazilNotaFiscalService()
+const resultPromise = br_NftaxApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

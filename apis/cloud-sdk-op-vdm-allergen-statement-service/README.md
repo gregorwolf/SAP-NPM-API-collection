@@ -4,9 +4,10 @@ This package contains the OData VDM for the Allergen Statement Service.
 
 ## Usage Example
 ```
-import { AllergenStatement } from '@sap/cloud-sdk-op-vdm-allergen-statement-service';
+import { allergenStatementService } from '@sap/cloud-sdk-op-vdm-allergen-statement-service';
 
-const resultPromise = AllergenStatement.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { allergenStatementApi } = allergenStatementService()
+const resultPromise = allergenStatementApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Fund Service of SAP S/4HANA Cloud.
 
 ## Usage Example
 ```
-import { Fund } from '@sap/cloud-sdk-vdm-fund-service';
+import { fundService } from '@sap/cloud-sdk-vdm-fund-service';
 
-const resultPromise = Fund.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { fundApi } = fundService()
+const resultPromise = fundApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Inbound Delivery Service o
 
 ## Usage Example
 ```
-import { WhseInboundDeliveryHead } from '@sap/cloud-sdk-vdm-warehouse-inbound-delivery-service';
+import { warehouseInboundDeliveryService } from '@sap/cloud-sdk-vdm-warehouse-inbound-delivery-service';
 
-const resultPromise = WhseInboundDeliveryHead.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { whseInboundDeliveryHeadApi } = warehouseInboundDeliveryService()
+const resultPromise = whseInboundDeliveryHeadApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Physical Inventory Service
 
 ## Usage Example
 ```
-import { WhsePhysicalInventoryItem } from '@sap/cloud-sdk-vdm-warehouse-physical-inventory-service';
+import { warehousePhysicalInventoryService } from '@sap/cloud-sdk-vdm-warehouse-physical-inventory-service';
 
-const resultPromise = WhsePhysicalInventoryItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { whsePhysicalInventoryItemApi } = warehousePhysicalInventoryService()
+const resultPromise = whsePhysicalInventoryItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

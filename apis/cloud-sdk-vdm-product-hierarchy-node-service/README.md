@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Hierarchy Node Service of SA
 
 ## Usage Example
 ```
-import { ProdUniversalHierarchy } from '@sap/cloud-sdk-vdm-product-hierarchy-node-service';
+import { productHierarchyNodeService } from '@sap/cloud-sdk-vdm-product-hierarchy-node-service';
 
-const resultPromise = ProdUniversalHierarchy.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodUniversalHierarchyApi } = productHierarchyNodeService()
+const resultPromise = prodUniversalHierarchyApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

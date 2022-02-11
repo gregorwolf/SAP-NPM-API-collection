@@ -4,9 +4,10 @@ This package contains the OData VDM for the Glaccount Line Item Service.
 
 ## Usage Example
 ```
-import { GlAccountLineItem } from '@sap/cloud-sdk-op-vdm-glaccount-line-item-service';
+import { glaccountLineItemService } from '@sap/cloud-sdk-op-vdm-glaccount-line-item-service';
 
-const resultPromise = GlAccountLineItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { glAccountLineItemApi } = glaccountLineItemService()
+const resultPromise = glAccountLineItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Chart Of Accounts Service of SAP S/4
 
 ## Usage Example
 ```
-import { ChartOfAccounts } from '@sap/cloud-sdk-vdm-chart-of-accounts-service';
+import { chartOfAccountsService } from '@sap/cloud-sdk-vdm-chart-of-accounts-service';
 
-const resultPromise = ChartOfAccounts.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { chartOfAccountsApi } = chartOfAccountsService()
+const resultPromise = chartOfAccountsApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

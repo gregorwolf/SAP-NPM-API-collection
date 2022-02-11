@@ -4,9 +4,10 @@ This package contains the OData VDM for the Substance Volumes Service of SAP S/4
 
 ## Usage Example
 ```
-import { Sales } from '@sap/cloud-sdk-vdm-substance-volumes-service';
+import { substanceVolumesService } from '@sap/cloud-sdk-vdm-substance-volumes-service';
 
-const resultPromise = Sales.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesApi } = substanceVolumesService()
+const resultPromise = salesApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

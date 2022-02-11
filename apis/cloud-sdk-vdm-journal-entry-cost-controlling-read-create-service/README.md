@@ -4,9 +4,10 @@ This package contains the OData VDM for the Journal Entry Cost Controlling Read 
 
 ## Usage Example
 ```
-import { CostRevenueReassignment } from '@sap/cloud-sdk-vdm-journal-entry-cost-controlling-read-create-service';
+import { journalEntryCostControllingReadCreateService } from '@sap/cloud-sdk-vdm-journal-entry-cost-controlling-read-create-service';
 
-const resultPromise = CostRevenueReassignment.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { costRevenueReassignmentApi } = journalEntryCostControllingReadCreateService()
+const resultPromise = costRevenueReassignmentApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

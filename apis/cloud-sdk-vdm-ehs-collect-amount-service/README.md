@@ -4,9 +4,10 @@ This package contains the OData VDM for the Ehs Collect Amount Service of SAP S/
 
 ## Usage Example
 ```
-import { EhsAmountExternalSource } from '@sap/cloud-sdk-vdm-ehs-collect-amount-service';
+import { ehsCollectAmountService } from '@sap/cloud-sdk-vdm-ehs-collect-amount-service';
 
-const resultPromise = EhsAmountExternalSource.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { ehsAmountExternalSourceApi } = ehsCollectAmountService()
+const resultPromise = ehsAmountExternalSourceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

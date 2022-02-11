@@ -4,9 +4,10 @@ This package contains the OData VDM for the Process Order Confirmation V2 Servic
 
 ## Usage Example
 ```
-import { ProcOrdConf2 } from '@sap/cloud-sdk-op-vdm-process-order-confirmation-v2-service';
+import { processOrderConfirmationV2Service } from '@sap/cloud-sdk-op-vdm-process-order-confirmation-v2-service';
 
-const resultPromise = ProcOrdConf2.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { procOrdConf2Api } = processOrderConfirmationV2Service()
+const resultPromise = procOrdConf2Api.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

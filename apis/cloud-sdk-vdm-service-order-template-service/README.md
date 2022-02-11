@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Order Template Service of SA
 
 ## Usage Example
 ```
-import { ServiceOrderTemplate } from '@sap/cloud-sdk-vdm-service-order-template-service';
+import { serviceOrderTemplateService } from '@sap/cloud-sdk-vdm-service-order-template-service';
 
-const resultPromise = ServiceOrderTemplate.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { serviceOrderTemplateApi } = serviceOrderTemplateService()
+const resultPromise = serviceOrderTemplateApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

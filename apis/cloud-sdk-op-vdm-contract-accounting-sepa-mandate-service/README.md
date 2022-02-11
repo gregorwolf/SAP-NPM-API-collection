@@ -4,9 +4,10 @@ This package contains the OData VDM for the Contract Accounting Sepa Mandate Ser
 
 ## Usage Example
 ```
-import { SepaMandateSet } from '@sap/cloud-sdk-op-vdm-contract-accounting-sepa-mandate-service';
+import { contractAccountingSepaMandateService } from '@sap/cloud-sdk-op-vdm-contract-accounting-sepa-mandate-service';
 
-const resultPromise = SepaMandateSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { sepaMandateSetApi } = contractAccountingSepaMandateService()
+const resultPromise = sepaMandateSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

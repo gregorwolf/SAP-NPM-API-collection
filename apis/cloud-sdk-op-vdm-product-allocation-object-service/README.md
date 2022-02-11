@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Allocation Object Service.
 
 ## Usage Example
 ```
-import { ProdAllocationObject } from '@sap/cloud-sdk-op-vdm-product-allocation-object-service';
+import { productAllocationObjectService } from '@sap/cloud-sdk-op-vdm-product-allocation-object-service';
 
-const resultPromise = ProdAllocationObject.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodAllocationObjectApi } = productAllocationObjectService()
+const resultPromise = prodAllocationObjectApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

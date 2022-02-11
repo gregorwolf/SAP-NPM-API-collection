@@ -4,9 +4,10 @@ This package contains the OData VDM for the Lead Service.
 
 ## Usage Example
 ```
-import { Lead } from '@sap/cloud-sdk-op-vdm-lead-service';
+import { leadService } from '@sap/cloud-sdk-op-vdm-lead-service';
 
-const resultPromise = Lead.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { leadApi } = leadService()
+const resultPromise = leadApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

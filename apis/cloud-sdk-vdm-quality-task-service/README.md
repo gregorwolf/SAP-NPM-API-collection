@@ -4,9 +4,10 @@ This package contains the OData VDM for the Quality Task Service of SAP S/4HANA 
 
 ## Usage Example
 ```
-import { QualityTask } from '@sap/cloud-sdk-vdm-quality-task-service';
+import { qualityTaskService } from '@sap/cloud-sdk-vdm-quality-task-service';
 
-const resultPromise = QualityTask.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { qualityTaskApi } = qualityTaskService()
+const resultPromise = qualityTaskApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

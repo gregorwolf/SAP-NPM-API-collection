@@ -4,9 +4,10 @@ This package contains the OData VDM for the Defect Code Service of SAP S/4HANA C
 
 ## Usage Example
 ```
-import { DefectCode } from '@sap/cloud-sdk-vdm-defect-code-service';
+import { defectCodeService } from '@sap/cloud-sdk-vdm-defect-code-service';
 
-const resultPromise = DefectCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { defectCodeApi } = defectCodeService()
+const resultPromise = defectCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

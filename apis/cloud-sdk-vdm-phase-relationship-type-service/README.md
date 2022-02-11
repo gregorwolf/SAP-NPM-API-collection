@@ -4,9 +4,10 @@ This package contains the OData VDM for the Phase Relationship Type Service of S
 
 ## Usage Example
 ```
-import { PhaseRelationshipType } from '@sap/cloud-sdk-vdm-phase-relationship-type-service';
+import { phaseRelationshipTypeService } from '@sap/cloud-sdk-vdm-phase-relationship-type-service';
 
-const resultPromise = PhaseRelationshipType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { phaseRelationshipTypeApi } = phaseRelationshipTypeService()
+const resultPromise = phaseRelationshipTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

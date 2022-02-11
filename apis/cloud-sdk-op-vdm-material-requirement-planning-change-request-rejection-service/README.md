@@ -4,9 +4,10 @@ This package contains the OData VDM for the Material Requirement Planning Change
 
 ## Usage Example
 ```
-import { MrpChangeRequestRejection } from '@sap/cloud-sdk-op-vdm-material-requirement-planning-change-request-rejection-service';
+import { materialRequirementPlanningChangeRequestRejectionService } from '@sap/cloud-sdk-op-vdm-material-requirement-planning-change-request-rejection-service';
 
-const resultPromise = MrpChangeRequestRejection.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { mrpChangeRequestRejectionApi } = materialRequirementPlanningChangeRequestRejectionService()
+const resultPromise = mrpChangeRequestRejectionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

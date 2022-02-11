@@ -4,9 +4,10 @@ This package contains the OData VDM for the Bank Service.
 
 ## Usage Example
 ```
-import { Bank } from '@sap/cloud-sdk-op-vdm-bank-service';
+import { bankService } from '@sap/cloud-sdk-op-vdm-bank-service';
 
-const resultPromise = Bank.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { bankApi } = bankService()
+const resultPromise = bankApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

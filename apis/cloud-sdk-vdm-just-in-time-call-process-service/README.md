@@ -4,9 +4,10 @@ This package contains the OData VDM for the Just In Time Call Process Service of
 
 ## Usage Example
 ```
-import { JitCallHeader } from '@sap/cloud-sdk-vdm-just-in-time-call-process-service';
+import { justInTimeCallProcessService } from '@sap/cloud-sdk-vdm-just-in-time-call-process-service';
 
-const resultPromise = JitCallHeader.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { jitCallHeaderApi } = justInTimeCallProcessService()
+const resultPromise = jitCallHeaderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

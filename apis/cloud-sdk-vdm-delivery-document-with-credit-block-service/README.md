@@ -4,9 +4,10 @@ This package contains the OData VDM for the Delivery Document With Credit Block 
 
 ## Usage Example
 ```
-import { SalesDocumentRjcnReason } from '@sap/cloud-sdk-vdm-delivery-document-with-credit-block-service';
+import { deliveryDocumentWithCreditBlockService } from '@sap/cloud-sdk-vdm-delivery-document-with-credit-block-service';
 
-const resultPromise = SalesDocumentRjcnReason.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesDocumentRjcnReasonApi } = deliveryDocumentWithCreditBlockService()
+const resultPromise = salesDocumentRjcnReasonApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

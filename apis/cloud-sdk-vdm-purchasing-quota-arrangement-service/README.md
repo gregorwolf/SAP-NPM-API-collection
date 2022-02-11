@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchasing Quota Arrangement Service
 
 ## Usage Example
 ```
-import { PurgQuotaArrangementItem } from '@sap/cloud-sdk-vdm-purchasing-quota-arrangement-service';
+import { purchasingQuotaArrangementService } from '@sap/cloud-sdk-vdm-purchasing-quota-arrangement-service';
 
-const resultPromise = PurgQuotaArrangementItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purgQuotaArrangementItemApi } = purchasingQuotaArrangementService()
+const resultPromise = purgQuotaArrangementItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Enterprise Project Internal Type Ser
 
 ## Usage Example
 ```
-import { EntProjectType } from '@sap/cloud-sdk-vdm-enterprise-project-internal-type-service';
+import { enterpriseProjectInternalTypeService } from '@sap/cloud-sdk-vdm-enterprise-project-internal-type-service';
 
-const resultPromise = EntProjectType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { entProjectTypeApi } = enterpriseProjectInternalTypeService()
+const resultPromise = entProjectTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

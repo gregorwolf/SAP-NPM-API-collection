@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Defect Service.
 
 ## Usage Example
 ```
-import { Defect } from '@sap/cloud-sdk-op-vdm-warehouse-defect-service';
+import { warehouseDefectService } from '@sap/cloud-sdk-op-vdm-warehouse-defect-service';
 
-const resultPromise = Defect.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { defectApi } = warehouseDefectService()
+const resultPromise = defectApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

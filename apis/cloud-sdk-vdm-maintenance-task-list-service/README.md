@@ -4,9 +4,10 @@ This package contains the OData VDM for the Maintenance Task List Service of SAP
 
 ## Usage Example
 ```
-import { MaintenanceTaskList } from '@sap/cloud-sdk-vdm-maintenance-task-list-service';
+import { maintenanceTaskListService } from '@sap/cloud-sdk-vdm-maintenance-task-list-service';
 
-const resultPromise = MaintenanceTaskList.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintenanceTaskListApi } = maintenanceTaskListService()
+const resultPromise = maintenanceTaskListApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

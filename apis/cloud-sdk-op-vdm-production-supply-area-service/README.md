@@ -4,9 +4,10 @@ This package contains the OData VDM for the Production Supply Area Service.
 
 ## Usage Example
 ```
-import { ProductionSupplyArea } from '@sap/cloud-sdk-op-vdm-production-supply-area-service';
+import { productionSupplyAreaService } from '@sap/cloud-sdk-op-vdm-production-supply-area-service';
 
-const resultPromise = ProductionSupplyArea.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { productionSupplyAreaApi } = productionSupplyAreaService()
+const resultPromise = productionSupplyAreaApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

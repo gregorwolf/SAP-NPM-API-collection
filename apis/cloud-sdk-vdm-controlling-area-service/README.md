@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { ControllingArea } from '@sap/cloud-sdk-vdm-controlling-area-service';
+import { controllingAreaService } from '@sap/cloud-sdk-vdm-controlling-area-service';
 
-const resultPromise = ControllingArea.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { controllingAreaApi } = controllingAreaService()
+const resultPromise = controllingAreaApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

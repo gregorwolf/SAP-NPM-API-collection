@@ -4,9 +4,10 @@ This package contains the OData VDM for the Cost Rate Service of SAP S/4HANA Clo
 
 ## Usage Example
 ```
-import { PlanCostRate } from '@sap/cloud-sdk-vdm-cost-rate-service';
+import { costRateService } from '@sap/cloud-sdk-vdm-cost-rate-service';
 
-const resultPromise = PlanCostRate.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { planCostRateApi } = costRateService()
+const resultPromise = planCostRateApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

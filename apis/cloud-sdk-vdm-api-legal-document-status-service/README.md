@@ -4,9 +4,10 @@ This package contains the OData VDM for the Api Legal Document Status Service of
 
 ## Usage Example
 ```
-import { LegalDocumentStatus } from '@sap/cloud-sdk-vdm-api-legal-document-status-service';
+import { apiLegalDocumentStatusService } from '@sap/cloud-sdk-vdm-api-legal-document-status-service';
 
-const resultPromise = LegalDocumentStatus.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { legalDocumentStatusApi } = apiLegalDocumentStatusService()
+const resultPromise = legalDocumentStatusApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

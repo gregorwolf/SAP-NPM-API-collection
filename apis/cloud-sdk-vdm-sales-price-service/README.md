@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Price Service of SAP S/4HANA C
 
 ## Usage Example
 ```
-import { SalesPrice } from '@sap/cloud-sdk-vdm-sales-price-service';
+import { salesPriceService } from '@sap/cloud-sdk-vdm-sales-price-service';
 
-const resultPromise = SalesPrice.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesPriceApi } = salesPriceService()
+const resultPromise = salesPriceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Measuring Point Service of SAP S/4HA
 
 ## Usage Example
 ```
-import { MeasuringPoint } from '@sap/cloud-sdk-vdm-measuring-point-service';
+import { measuringPointService } from '@sap/cloud-sdk-vdm-measuring-point-service';
 
-const resultPromise = MeasuringPoint.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { measuringPointApi } = measuringPointService()
+const resultPromise = measuringPointApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

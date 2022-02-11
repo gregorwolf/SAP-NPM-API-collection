@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supply Availability Protection Plan 
 
 ## Usage Example
 ```
-import { SupplyProtection } from '@sap/cloud-sdk-op-vdm-supply-availability-protection-plan-service';
+import { supplyAvailabilityProtectionPlanService } from '@sap/cloud-sdk-op-vdm-supply-availability-protection-plan-service';
 
-const resultPromise = SupplyProtection.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { supplyProtectionApi } = supplyAvailabilityProtectionPlanService()
+const resultPromise = supplyProtectionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Business Solution Quotation Service.
 
 ## Usage Example
 ```
-import { BusSolnQtanItemText } from '@sap/cloud-sdk-op-vdm-business-solution-quotation-service';
+import { businessSolutionQuotationService } from '@sap/cloud-sdk-op-vdm-business-solution-quotation-service';
 
-const resultPromise = BusSolnQtanItemText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { busSolnQtanItemTextApi } = businessSolutionQuotationService()
+const resultPromise = busSolnQtanItemTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Controlling Area Service.
 
 ## Usage Example
 ```
-import { ControllingArea } from '@sap/cloud-sdk-op-vdm-controlling-area-service';
+import { controllingAreaService } from '@sap/cloud-sdk-op-vdm-controlling-area-service';
 
-const resultPromise = ControllingArea.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { controllingAreaApi } = controllingAreaService()
+const resultPromise = controllingAreaApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

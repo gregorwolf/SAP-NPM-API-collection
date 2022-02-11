@@ -4,9 +4,10 @@ This package contains the OData VDM for the Enterprise Project Service of SAP S/
 
 ## Usage Example
 ```
-import { EnterpriseProject } from '@sap/cloud-sdk-vdm-enterprise-project-service';
+import { enterpriseProjectService } from '@sap/cloud-sdk-vdm-enterprise-project-service';
 
-const resultPromise = EnterpriseProject.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { enterpriseProjectApi } = enterpriseProjectService()
+const resultPromise = enterpriseProjectApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

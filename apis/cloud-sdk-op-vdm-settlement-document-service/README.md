@@ -4,9 +4,10 @@ This package contains the OData VDM for the Settlement Document Service.
 
 ## Usage Example
 ```
-import { SetlDoc } from '@sap/cloud-sdk-op-vdm-settlement-document-service';
+import { settlementDocumentService } from '@sap/cloud-sdk-op-vdm-settlement-document-service';
 
-const resultPromise = SetlDoc.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { setlDocApi } = settlementDocumentService()
+const resultPromise = setlDocApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

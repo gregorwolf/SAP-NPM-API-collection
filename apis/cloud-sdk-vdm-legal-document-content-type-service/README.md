@@ -4,9 +4,10 @@ This package contains the OData VDM for the Legal Document Content Type Service 
 
 ## Usage Example
 ```
-import { LglCntntMDocContentType } from '@sap/cloud-sdk-vdm-legal-document-content-type-service';
+import { legalDocumentContentTypeService } from '@sap/cloud-sdk-vdm-legal-document-content-type-service';
 
-const resultPromise = LglCntntMDocContentType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { lglCntntMDocContentTypeApi } = legalDocumentContentTypeService()
+const resultPromise = lglCntntMDocContentTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

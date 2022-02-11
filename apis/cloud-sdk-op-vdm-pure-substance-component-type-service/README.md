@@ -4,9 +4,10 @@ This package contains the OData VDM for the Pure Substance Component Type Servic
 
 ## Usage Example
 ```
-import { PureSubstanceComponentType } from '@sap/cloud-sdk-op-vdm-pure-substance-component-type-service';
+import { pureSubstanceComponentTypeService } from '@sap/cloud-sdk-op-vdm-pure-substance-component-type-service';
 
-const resultPromise = PureSubstanceComponentType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { pureSubstanceComponentTypeApi } = pureSubstanceComponentTypeService()
+const resultPromise = pureSubstanceComponentTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

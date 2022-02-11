@@ -4,9 +4,10 @@ This package contains the OData VDM for the Work Center Pooled Capacity Service.
 
 ## Usage Example
 ```
-import { WorkCenterCapacity } from '@sap/cloud-sdk-op-vdm-work-center-pooled-capacity-service';
+import { workCenterPooledCapacityService } from '@sap/cloud-sdk-op-vdm-work-center-pooled-capacity-service';
 
-const resultPromise = WorkCenterCapacity.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { workCenterCapacityApi } = workCenterPooledCapacityService()
+const resultPromise = workCenterCapacityApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Batch Service of SAP S/4HANA Cloud.
 
 ## Usage Example
 ```
-import { Batch } from '@sap/cloud-sdk-vdm-batch-service';
+import { batchService } from '@sap/cloud-sdk-vdm-batch-service';
 
-const resultPromise = Batch.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { batchApi } = batchService()
+const resultPromise = batchApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

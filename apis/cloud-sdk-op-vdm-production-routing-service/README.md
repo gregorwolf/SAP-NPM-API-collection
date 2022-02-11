@@ -4,9 +4,10 @@ This package contains the OData VDM for the Production Routing Service.
 
 ## Usage Example
 ```
-import { OpDocumentPrtAssgmt } from '@sap/cloud-sdk-op-vdm-production-routing-service';
+import { productionRoutingService } from '@sap/cloud-sdk-op-vdm-production-routing-service';
 
-const resultPromise = OpDocumentPrtAssgmt.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { opDocumentPrtAssgmtApi } = productionRoutingService()
+const resultPromise = opDocumentPrtAssgmtApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

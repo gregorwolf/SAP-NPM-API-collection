@@ -4,9 +4,10 @@ This package contains the OData VDM for the Controlling Debit Credit Code Servic
 
 ## Usage Example
 ```
-import { ControllingDebitCreditCode } from '@sap/cloud-sdk-op-vdm-controlling-debit-credit-code-service';
+import { controllingDebitCreditCodeService } from '@sap/cloud-sdk-op-vdm-controlling-debit-credit-code-service';
 
-const resultPromise = ControllingDebitCreditCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { controllingDebitCreditCodeApi } = controllingDebitCreditCodeService()
+const resultPromise = controllingDebitCreditCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

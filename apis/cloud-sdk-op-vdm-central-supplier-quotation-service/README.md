@@ -4,9 +4,10 @@ This package contains the OData VDM for the Central Supplier Quotation Service.
 
 ## Usage Example
 ```
-import { CentralSupplierQuotation } from '@sap/cloud-sdk-op-vdm-central-supplier-quotation-service';
+import { centralSupplierQuotationService } from '@sap/cloud-sdk-op-vdm-central-supplier-quotation-service';
 
-const resultPromise = CentralSupplierQuotation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { centralSupplierQuotationApi } = centralSupplierQuotationService()
+const resultPromise = centralSupplierQuotationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

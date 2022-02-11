@@ -4,9 +4,10 @@ This package contains the OData VDM for the Budget Period Hierarchy Service of S
 
 ## Usage Example
 ```
-import { BudgetPeriodHierarchy } from '@sap/cloud-sdk-vdm-budget-period-hierarchy-service';
+import { budgetPeriodHierarchyService } from '@sap/cloud-sdk-vdm-budget-period-hierarchy-service';
 
-const resultPromise = BudgetPeriodHierarchy.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { budgetPeriodHierarchyApi } = budgetPeriodHierarchyService()
+const resultPromise = budgetPeriodHierarchyApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

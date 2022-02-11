@@ -4,9 +4,10 @@ This package contains the OData VDM for the Billing Document Request Service of 
 
 ## Usage Example
 ```
-import { BillingDocReqPartner } from '@sap/cloud-sdk-vdm-billing-document-request-service';
+import { billingDocumentRequestService } from '@sap/cloud-sdk-vdm-billing-document-request-service';
 
-const resultPromise = BillingDocReqPartner.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { billingDocReqPartnerApi } = billingDocumentRequestService()
+const resultPromise = billingDocReqPartnerApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

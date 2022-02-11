@@ -4,9 +4,10 @@ This package contains the OData VDM for the Buffer Profile Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { ProfileDetails } from '@sap/cloud-sdk-vdm-buffer-profile-service';
+import { bufferProfileService } from '@sap/cloud-sdk-vdm-buffer-profile-service';
 
-const resultPromise = ProfileDetails.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { profileDetailsApi } = bufferProfileService()
+const resultPromise = profileDetailsApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

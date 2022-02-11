@@ -4,9 +4,10 @@ This package contains the OData VDM for the Settlement Document Type Service of 
 
 ## Usage Example
 ```
-import { SettlmtDocType } from '@sap/cloud-sdk-vdm-settlement-document-type-service';
+import { settlementDocumentTypeService } from '@sap/cloud-sdk-vdm-settlement-document-type-service';
 
-const resultPromise = SettlmtDocType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { settlmtDocTypeApi } = settlementDocumentTypeService()
+const resultPromise = settlmtDocTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

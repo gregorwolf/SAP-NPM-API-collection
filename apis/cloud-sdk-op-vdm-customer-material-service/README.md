@@ -4,9 +4,10 @@ This package contains the OData VDM for the Customer Material Service.
 
 ## Usage Example
 ```
-import { CustomerMaterial } from '@sap/cloud-sdk-op-vdm-customer-material-service';
+import { customerMaterialService } from '@sap/cloud-sdk-op-vdm-customer-material-service';
 
-const resultPromise = CustomerMaterial.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { customerMaterialApi } = customerMaterialService()
+const resultPromise = customerMaterialApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

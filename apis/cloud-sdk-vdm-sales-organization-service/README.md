@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { SalesOrganization } from '@sap/cloud-sdk-vdm-sales-organization-service';
+import { salesOrganizationService } from '@sap/cloud-sdk-vdm-sales-organization-service';
 
-const resultPromise = SalesOrganization.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesOrganizationApi } = salesOrganizationService()
+const resultPromise = salesOrganizationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

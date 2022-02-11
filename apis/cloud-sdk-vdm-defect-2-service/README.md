@@ -4,9 +4,10 @@ This package contains the OData VDM for the Defect 2 Service of SAP S/4HANA Clou
 
 ## Usage Example
 ```
-import { Defect } from '@sap/cloud-sdk-vdm-defect-2-service';
+import { defect2Service } from '@sap/cloud-sdk-vdm-defect-2-service';
 
-const resultPromise = Defect.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { defectApi } = defect2Service()
+const resultPromise = defectApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

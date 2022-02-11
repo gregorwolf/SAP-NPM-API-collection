@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { CostCenter } from '@sap/cloud-sdk-vdm-financial-planning-entry-item-service';
+import { financialPlanningEntryItemService } from '@sap/cloud-sdk-vdm-financial-planning-entry-item-service';
 
-const resultPromise = CostCenter.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { costCenterApi } = financialPlanningEntryItemService()
+const resultPromise = costCenterApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

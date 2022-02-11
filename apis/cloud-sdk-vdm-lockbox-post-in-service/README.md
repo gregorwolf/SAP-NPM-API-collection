@@ -4,9 +4,10 @@ This package contains the OData VDM for the Lockbox Post In Service of SAP S/4HA
 
 ## Usage Example
 ```
-import { LockboxBatch } from '@sap/cloud-sdk-vdm-lockbox-post-in-service';
+import { lockboxPostInService } from '@sap/cloud-sdk-vdm-lockbox-post-in-service';
 
-const resultPromise = LockboxBatch.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { lockboxBatchApi } = lockboxPostInService()
+const resultPromise = lockboxBatchApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

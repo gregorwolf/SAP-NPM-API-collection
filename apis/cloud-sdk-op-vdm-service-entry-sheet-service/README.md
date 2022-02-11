@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Entry Sheet Service.
 
 ## Usage Example
 ```
-import { ServiceEntrySheet } from '@sap/cloud-sdk-op-vdm-service-entry-sheet-service';
+import { serviceEntrySheetService } from '@sap/cloud-sdk-op-vdm-service-entry-sheet-service';
 
-const resultPromise = ServiceEntrySheet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { serviceEntrySheetApi } = serviceEntrySheetService()
+const resultPromise = serviceEntrySheetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Characteristic Attribute Catalog Ser
 
 ## Usage Example
 ```
-import { CharcAttribSeldSetT } from '@sap/cloud-sdk-vdm-characteristic-attribute-catalog-service';
+import { characteristicAttributeCatalogService } from '@sap/cloud-sdk-vdm-characteristic-attribute-catalog-service';
 
-const resultPromise = CharcAttribSeldSetT.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { charcAttribSeldSetTApi } = characteristicAttributeCatalogService()
+const resultPromise = charcAttribSeldSetTApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

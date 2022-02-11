@@ -4,9 +4,10 @@ This package contains the OData VDM for the Vms Vehicle Sharing Level Service.
 
 ## Usage Example
 ```
-import { VmsVehicleSharingLevel } from '@sap/cloud-sdk-op-vdm-vms-vehicle-sharing-level-service';
+import { vmsVehicleSharingLevelService } from '@sap/cloud-sdk-op-vdm-vms-vehicle-sharing-level-service';
 
-const resultPromise = VmsVehicleSharingLevel.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { vmsVehicleSharingLevelApi } = vmsVehicleSharingLevelService()
+const resultPromise = vmsVehicleSharingLevelApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

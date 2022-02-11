@@ -4,9 +4,10 @@ This package contains the OData VDM for the Change Process Group Service.
 
 ## Usage Example
 ```
-import { ChangeProcess } from '@sap/cloud-sdk-op-vdm-change-process-group-service';
+import { changeProcessGroupService } from '@sap/cloud-sdk-op-vdm-change-process-group-service';
 
-const resultPromise = ChangeProcess.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { changeProcessApi } = changeProcessGroupService()
+const resultPromise = changeProcessApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

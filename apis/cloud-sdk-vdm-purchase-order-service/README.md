@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchase Order Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { PurchaseOrder } from '@sap/cloud-sdk-vdm-purchase-order-service';
+import { purchaseOrderService } from '@sap/cloud-sdk-vdm-purchase-order-service';
 
-const resultPromise = PurchaseOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purchaseOrderApi } = purchaseOrderService()
+const resultPromise = purchaseOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

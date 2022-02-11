@@ -4,9 +4,10 @@ This package contains the OData VDM for the Partner Company Service.
 
 ## Usage Example
 ```
-import { PartnerCompany } from '@sap/cloud-sdk-op-vdm-partner-company-service';
+import { partnerCompanyService } from '@sap/cloud-sdk-op-vdm-partner-company-service';
 
-const resultPromise = PartnerCompany.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { partnerCompanyApi } = partnerCompanyService()
+const resultPromise = partnerCompanyApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

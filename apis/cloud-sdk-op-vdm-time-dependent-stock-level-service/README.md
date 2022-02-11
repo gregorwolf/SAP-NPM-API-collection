@@ -4,9 +4,10 @@ This package contains the OData VDM for the Time Dependent Stock Level Service.
 
 ## Usage Example
 ```
-import { ProdTimeDepdntStockLvl } from '@sap/cloud-sdk-op-vdm-time-dependent-stock-level-service';
+import { timeDependentStockLevelService } from '@sap/cloud-sdk-op-vdm-time-dependent-stock-level-service';
 
-const resultPromise = ProdTimeDepdntStockLvl.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodTimeDepdntStockLvlApi } = timeDependentStockLevelService()
+const resultPromise = prodTimeDepdntStockLvlApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchasing Pricing Condition Record 
 
 ## Usage Example
 ```
-import { PurgPrcgCndnRecdSuplmnt } from '@sap/cloud-sdk-vdm-purchasing-pricing-condition-record-service';
+import { purchasingPricingConditionRecordService } from '@sap/cloud-sdk-vdm-purchasing-pricing-condition-record-service';
 
-const resultPromise = PurgPrcgCndnRecdSuplmnt.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purgPrcgCndnRecdSuplmntApi } = purchasingPricingConditionRecordService()
+const resultPromise = purgPrcgCndnRecdSuplmntApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

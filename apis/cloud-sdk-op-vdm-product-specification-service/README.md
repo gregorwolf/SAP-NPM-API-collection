@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Specification Service.
 
 ## Usage Example
 ```
-import { ProdSpecCmpstn } from '@sap/cloud-sdk-op-vdm-product-specification-service';
+import { productSpecificationService } from '@sap/cloud-sdk-op-vdm-product-specification-service';
 
-const resultPromise = ProdSpecCmpstn.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodSpecCmpstnApi } = productSpecificationService()
+const resultPromise = prodSpecCmpstnApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

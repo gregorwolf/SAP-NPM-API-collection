@@ -4,9 +4,10 @@ This package contains the OData VDM for the Planned Orders Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { PlannedOrder } from '@sap/cloud-sdk-vdm-planned-orders-service';
+import { plannedOrdersService } from '@sap/cloud-sdk-vdm-planned-orders-service';
 
-const resultPromise = PlannedOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { plannedOrderApi } = plannedOrdersService()
+const resultPromise = plannedOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

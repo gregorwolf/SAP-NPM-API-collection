@@ -4,9 +4,10 @@ This package contains the OData VDM for the Project Service.
 
 ## Usage Example
 ```
-import { Project } from '@sap/cloud-sdk-op-vdm-project-service';
+import { projectService } from '@sap/cloud-sdk-op-vdm-project-service';
 
-const resultPromise = Project.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { projectApi } = projectService()
+const resultPromise = projectApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

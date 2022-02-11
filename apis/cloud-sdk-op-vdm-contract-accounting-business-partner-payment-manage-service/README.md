@@ -4,9 +4,10 @@ This package contains the OData VDM for the Contract Accounting Business Partner
 
 ## Usage Example
 ```
-import { BusPartPayment } from '@sap/cloud-sdk-op-vdm-contract-accounting-business-partner-payment-manage-service';
+import { contractAccountingBusinessPartnerPaymentManageService } from '@sap/cloud-sdk-op-vdm-contract-accounting-business-partner-payment-manage-service';
 
-const resultPromise = BusPartPayment.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { busPartPaymentApi } = contractAccountingBusinessPartnerPaymentManageService()
+const resultPromise = busPartPaymentApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

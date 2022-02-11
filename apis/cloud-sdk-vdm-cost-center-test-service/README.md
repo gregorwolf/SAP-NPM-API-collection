@@ -5,9 +5,10 @@ This service is part of the following communication scenarios: Employee Integrat
 
 ## Usage Example
 ```
-import { CostCenter } from '@sap/cloud-sdk-vdm-cost-center-test-service';
+import { costCenterTestService } from '@sap/cloud-sdk-vdm-cost-center-test-service';
 
-const resultPromise = CostCenter.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { costCenterApi } = costCenterTestService()
+const resultPromise = costCenterApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Customer Return Service.
 
 ## Usage Example
 ```
-import { CustomerReturn } from '@sap/cloud-sdk-op-vdm-customer-return-service';
+import { customerReturnService } from '@sap/cloud-sdk-op-vdm-customer-return-service';
 
-const resultPromise = CustomerReturn.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { customerReturnApi } = customerReturnService()
+const resultPromise = customerReturnApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

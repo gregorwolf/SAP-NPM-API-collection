@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supply Assignment Priority Service.
 
 ## Usage Example
 ```
-import { ARunPriority } from '@sap/cloud-sdk-op-vdm-supply-assignment-priority-service';
+import { supplyAssignmentPriorityService } from '@sap/cloud-sdk-op-vdm-supply-assignment-priority-service';
 
-const resultPromise = ARunPriority.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { aRunPriorityApi } = supplyAssignmentPriorityService()
+const resultPromise = aRunPriorityApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

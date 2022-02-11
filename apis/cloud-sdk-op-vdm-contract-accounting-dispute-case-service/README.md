@@ -4,9 +4,10 @@ This package contains the OData VDM for the Contract Accounting Dispute Case Ser
 
 ## Usage Example
 ```
-import { DisputeCase } from '@sap/cloud-sdk-op-vdm-contract-accounting-dispute-case-service';
+import { contractAccountingDisputeCaseService } from '@sap/cloud-sdk-op-vdm-contract-accounting-dispute-case-service';
 
-const resultPromise = DisputeCase.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { disputeCaseApi } = contractAccountingDisputeCaseService()
+const resultPromise = disputeCaseApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

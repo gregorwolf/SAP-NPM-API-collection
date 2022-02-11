@@ -4,9 +4,10 @@ This package contains the OData VDM for the Align Purchase Requisition Service.
 
 ## Usage Example
 ```
-import { PurReqnAlgnmt } from '@sap/cloud-sdk-op-vdm-align-purchase-requisition-service';
+import { alignPurchaseRequisitionService } from '@sap/cloud-sdk-op-vdm-align-purchase-requisition-service';
 
-const resultPromise = PurReqnAlgnmt.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purReqnAlgnmtApi } = alignPurchaseRequisitionService()
+const resultPromise = purReqnAlgnmtApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Flexible Constraint Service.
 
 ## Usage Example
 ```
-import { Text } from '@sap/cloud-sdk-op-vdm-flexible-constraint-service';
+import { flexibleConstraintService } from '@sap/cloud-sdk-op-vdm-flexible-constraint-service';
 
-const resultPromise = Text.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { textApi } = flexibleConstraintService()
+const resultPromise = textApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

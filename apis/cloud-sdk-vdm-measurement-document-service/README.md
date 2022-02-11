@@ -4,9 +4,10 @@ This package contains the OData VDM for the Measurement Document Service of SAP 
 
 ## Usage Example
 ```
-import { MeasurementDocument } from '@sap/cloud-sdk-vdm-measurement-document-service';
+import { measurementDocumentService } from '@sap/cloud-sdk-vdm-measurement-document-service';
 
-const resultPromise = MeasurementDocument.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { measurementDocumentApi } = measurementDocumentService()
+const resultPromise = measurementDocumentApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

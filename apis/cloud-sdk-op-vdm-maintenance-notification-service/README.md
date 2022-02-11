@@ -4,9 +4,10 @@ This package contains the OData VDM for the Maintenance Notification Service.
 
 ## Usage Example
 ```
-import { MaintenanceNotification } from '@sap/cloud-sdk-op-vdm-maintenance-notification-service';
+import { maintenanceNotificationService } from '@sap/cloud-sdk-op-vdm-maintenance-notification-service';
 
-const resultPromise = MaintenanceNotification.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintenanceNotificationApi } = maintenanceNotificationService()
+const resultPromise = maintenanceNotificationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

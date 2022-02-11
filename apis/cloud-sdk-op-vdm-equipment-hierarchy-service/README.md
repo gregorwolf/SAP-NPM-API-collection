@@ -4,9 +4,10 @@ This package contains the OData VDM for the Equipment Hierarchy Service.
 
 ## Usage Example
 ```
-import { EquipmentStructureList } from '@sap/cloud-sdk-op-vdm-equipment-hierarchy-service';
+import { equipmentHierarchyService } from '@sap/cloud-sdk-op-vdm-equipment-hierarchy-service';
 
-const resultPromise = EquipmentStructureList.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { equipmentStructureListApi } = equipmentHierarchyService()
+const resultPromise = equipmentStructureListApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Catalog Profile Service of SAP S/4HA
 
 ## Usage Example
 ```
-import { MaintNotifCatalogProfile } from '@sap/cloud-sdk-vdm-catalog-profile-service';
+import { catalogProfileService } from '@sap/cloud-sdk-vdm-catalog-profile-service';
 
-const resultPromise = MaintNotifCatalogProfile.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintNotifCatalogProfileApi } = catalogProfileService()
+const resultPromise = maintNotifCatalogProfileApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Payment Release List Approval China 
 
 ## Usage Example
 ```
-import { PaymentReleaseListItemSet } from '@sap/cloud-sdk-vdm-payment-release-list-approval-china-service';
+import { paymentReleaseListApprovalChinaService } from '@sap/cloud-sdk-vdm-payment-release-list-approval-china-service';
 
-const resultPromise = PaymentReleaseListItemSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { paymentReleaseListItemSetApi } = paymentReleaseListApprovalChinaService()
+const resultPromise = paymentReleaseListItemSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

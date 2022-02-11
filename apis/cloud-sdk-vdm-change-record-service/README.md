@@ -4,9 +4,10 @@ This package contains the OData VDM for the Change Record Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { ChangeRecord } from '@sap/cloud-sdk-vdm-change-record-service';
+import { changeRecordService } from '@sap/cloud-sdk-vdm-change-record-service';
 
-const resultPromise = ChangeRecord.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { changeRecordApi } = changeRecordService()
+const resultPromise = changeRecordApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Debit Memo Request Service.
 
 ## Usage Example
 ```
-import { DebitMemoReqText } from '@sap/cloud-sdk-op-vdm-debit-memo-request-service';
+import { debitMemoRequestService } from '@sap/cloud-sdk-op-vdm-debit-memo-request-service';
 
-const resultPromise = DebitMemoReqText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { debitMemoReqTextApi } = debitMemoRequestService()
+const resultPromise = debitMemoReqTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

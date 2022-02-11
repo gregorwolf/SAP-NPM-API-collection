@@ -4,9 +4,10 @@ This package contains the OData VDM for the Grant Hierarchy Service of SAP S/4HA
 
 ## Usage Example
 ```
-import { GrantHierarchy } from '@sap/cloud-sdk-vdm-grant-hierarchy-service';
+import { grantHierarchyService } from '@sap/cloud-sdk-vdm-grant-hierarchy-service';
 
-const resultPromise = GrantHierarchy.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { grantHierarchyApi } = grantHierarchyService()
+const resultPromise = grantHierarchyApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

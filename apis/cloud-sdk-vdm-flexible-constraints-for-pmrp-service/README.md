@@ -4,9 +4,10 @@ This package contains the OData VDM for the Flexible Constraints For Pmrp Servic
 
 ## Usage Example
 ```
-import { PmrpFlexibleConstraint } from '@sap/cloud-sdk-vdm-flexible-constraints-for-pmrp-service';
+import { flexibleConstraintsForPmrpService } from '@sap/cloud-sdk-vdm-flexible-constraints-for-pmrp-service';
 
-const resultPromise = PmrpFlexibleConstraint.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { pmrpFlexibleConstraintApi } = flexibleConstraintsForPmrpService()
+const resultPromise = pmrpFlexibleConstraintApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

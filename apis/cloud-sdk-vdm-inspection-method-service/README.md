@@ -4,9 +4,10 @@ This package contains the OData VDM for the Inspection Method Service of SAP S/4
 
 ## Usage Example
 ```
-import { InspectionMethod } from '@sap/cloud-sdk-vdm-inspection-method-service';
+import { inspectionMethodService } from '@sap/cloud-sdk-vdm-inspection-method-service';
 
-const resultPromise = InspectionMethod.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { inspectionMethodApi } = inspectionMethodService()
+const resultPromise = inspectionMethodApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

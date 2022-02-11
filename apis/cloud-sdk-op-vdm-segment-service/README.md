@@ -4,9 +4,10 @@ This package contains the OData VDM for the Segment Service.
 
 ## Usage Example
 ```
-import { Segment } from '@sap/cloud-sdk-op-vdm-segment-service';
+import { segmentService } from '@sap/cloud-sdk-op-vdm-segment-service';
 
-const resultPromise = Segment.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { segmentApi } = segmentService()
+const resultPromise = segmentApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

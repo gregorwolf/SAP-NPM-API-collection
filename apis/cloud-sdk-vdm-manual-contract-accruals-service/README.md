@@ -4,9 +4,10 @@ This package contains the OData VDM for the Manual Contract Accruals Service of 
 
 ## Usage Example
 ```
-import { ImportData } from '@sap/cloud-sdk-vdm-manual-contract-accruals-service';
+import { manualContractAccrualsService } from '@sap/cloud-sdk-vdm-manual-contract-accruals-service';
 
-const resultPromise = ImportData.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { importDataApi } = manualContractAccrualsService()
+const resultPromise = importDataApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

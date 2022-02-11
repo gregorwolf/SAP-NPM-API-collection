@@ -4,9 +4,10 @@ This package contains the OData VDM for the Planned Independent Requirement Serv
 
 ## Usage Example
 ```
-import { PlannedIndepRqmt } from '@sap/cloud-sdk-op-vdm-planned-independent-requirement-service';
+import { plannedIndependentRequirementService } from '@sap/cloud-sdk-op-vdm-planned-independent-requirement-service';
 
-const resultPromise = PlannedIndepRqmt.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { plannedIndepRqmtApi } = plannedIndependentRequirementService()
+const resultPromise = plannedIndepRqmtApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

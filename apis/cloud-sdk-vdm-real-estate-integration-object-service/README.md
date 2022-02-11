@@ -4,9 +4,10 @@ This package contains the OData VDM for the Real Estate Integration Object Servi
 
 ## Usage Example
 ```
-import { ReIntegrationObject } from '@sap/cloud-sdk-vdm-real-estate-integration-object-service';
+import { realEstateIntegrationObjectService } from '@sap/cloud-sdk-vdm-real-estate-integration-object-service';
 
-const resultPromise = ReIntegrationObject.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { reIntegrationObjectApi } = realEstateIntegrationObjectService()
+const resultPromise = reIntegrationObjectApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

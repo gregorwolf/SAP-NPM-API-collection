@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { ComparisonResultSet } from '@sap/cloud-sdk-vdm-bill-of-material-comparison-service';
+import { billOfMaterialComparisonService } from '@sap/cloud-sdk-vdm-bill-of-material-comparison-service';
 
-const resultPromise = ComparisonResultSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { comparisonResultSetApi } = billOfMaterialComparisonService()
+const resultPromise = comparisonResultSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

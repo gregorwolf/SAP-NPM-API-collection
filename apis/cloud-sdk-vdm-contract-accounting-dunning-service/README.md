@@ -4,9 +4,10 @@ This package contains the OData VDM for the Contract Accounting Dunning Service 
 
 ## Usage Example
 ```
-import { CaDunning } from '@sap/cloud-sdk-vdm-contract-accounting-dunning-service';
+import { contractAccountingDunningService } from '@sap/cloud-sdk-vdm-contract-accounting-dunning-service';
 
-const resultPromise = CaDunning.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { caDunningApi } = contractAccountingDunningService()
+const resultPromise = caDunningApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

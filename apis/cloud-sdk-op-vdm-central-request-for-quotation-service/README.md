@@ -4,9 +4,10 @@ This package contains the OData VDM for the Central Request For Quotation Servic
 
 ## Usage Example
 ```
-import { CentralRequestForQuotation } from '@sap/cloud-sdk-op-vdm-central-request-for-quotation-service';
+import { centralRequestForQuotationService } from '@sap/cloud-sdk-op-vdm-central-request-for-quotation-service';
 
-const resultPromise = CentralRequestForQuotation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { centralRequestForQuotationApi } = centralRequestForQuotationService()
+const resultPromise = centralRequestForQuotationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

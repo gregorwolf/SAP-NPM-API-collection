@@ -4,9 +4,10 @@ This package contains the OData VDM for the Handling Unit Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { HandlingUnit } from '@sap/cloud-sdk-vdm-handling-unit-service';
+import { handlingUnitService } from '@sap/cloud-sdk-vdm-handling-unit-service';
 
-const resultPromise = HandlingUnit.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { handlingUnitApi } = handlingUnitService()
+const resultPromise = handlingUnitApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

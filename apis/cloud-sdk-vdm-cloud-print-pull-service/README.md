@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { PrintOptions } from '@sap/cloud-sdk-vdm-cloud-print-pull-service';
+import { cloudPrintPullService } from '@sap/cloud-sdk-vdm-cloud-print-pull-service';
 
-const resultPromise = PrintOptions.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { printOptionsApi } = cloudPrintPullService()
+const resultPromise = printOptionsApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

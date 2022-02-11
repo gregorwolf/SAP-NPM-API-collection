@@ -4,9 +4,10 @@ This package contains the OData VDM for the Planning Category Service.
 
 ## Usage Example
 ```
-import { PlanningCategory } from '@sap/cloud-sdk-op-vdm-planning-category-service';
+import { planningCategoryService } from '@sap/cloud-sdk-op-vdm-planning-category-service';
 
-const resultPromise = PlanningCategory.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { planningCategoryApi } = planningCategoryService()
+const resultPromise = planningCategoryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

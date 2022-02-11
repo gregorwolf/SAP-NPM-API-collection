@@ -4,9 +4,10 @@ This package contains the OData VDM for the Vehicle Location Service.
 
 ## Usage Example
 ```
-import { VmsVehicleLocation } from '@sap/cloud-sdk-op-vdm-vehicle-location-service';
+import { vehicleLocationService } from '@sap/cloud-sdk-op-vdm-vehicle-location-service';
 
-const resultPromise = VmsVehicleLocation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { vmsVehicleLocationApi } = vehicleLocationService()
+const resultPromise = vmsVehicleLocationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

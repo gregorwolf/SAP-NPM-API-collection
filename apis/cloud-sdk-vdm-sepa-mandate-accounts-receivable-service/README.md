@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sepa Mandate Accounts Receivable Ser
 
 ## Usage Example
 ```
-import { SepaMandateSet } from '@sap/cloud-sdk-vdm-sepa-mandate-accounts-receivable-service';
+import { sepaMandateAccountsReceivableService } from '@sap/cloud-sdk-vdm-sepa-mandate-accounts-receivable-service';
 
-const resultPromise = SepaMandateSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { sepaMandateSetApi } = sepaMandateAccountsReceivableService()
+const resultPromise = sepaMandateSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

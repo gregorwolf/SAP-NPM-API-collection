@@ -4,9 +4,10 @@ This package contains the OData VDM for the Condition Contract Service.
 
 ## Usage Example
 ```
-import { ConditionContract } from '@sap/cloud-sdk-op-vdm-condition-contract-service';
+import { conditionContractService } from '@sap/cloud-sdk-op-vdm-condition-contract-service';
 
-const resultPromise = ConditionContract.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { conditionContractApi } = conditionContractService()
+const resultPromise = conditionContractApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

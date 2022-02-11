@@ -4,9 +4,10 @@ This package contains the OData VDM for the Visit List Service.
 
 ## Usage Example
 ```
-import { Visit } from '@sap/cloud-sdk-op-vdm-visit-list-service';
+import { visitListService } from '@sap/cloud-sdk-op-vdm-visit-list-service';
 
-const resultPromise = Visit.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { visitApi } = visitListService()
+const resultPromise = visitApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

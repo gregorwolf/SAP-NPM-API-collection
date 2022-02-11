@@ -4,9 +4,10 @@ This package contains the OData VDM for the Contract Accounting Document Manage 
 
 ## Usage Example
 ```
-import { GlItem } from '@sap/cloud-sdk-op-vdm-contract-accounting-document-manage-service';
+import { contractAccountingDocumentManageService } from '@sap/cloud-sdk-op-vdm-contract-accounting-document-manage-service';
 
-const resultPromise = GlItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { bpItemApi } = contractAccountingDocumentManageService()
+const resultPromise = bpItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

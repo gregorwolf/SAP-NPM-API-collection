@@ -4,9 +4,10 @@ This package contains the OData VDM for the Maintenance Bom Service of SAP S/4HA
 
 ## Usage Example
 ```
-import { BomItem } from '@sap/cloud-sdk-vdm-maintenance-bom-service';
+import { maintenanceBomService } from '@sap/cloud-sdk-vdm-maintenance-bom-service';
 
-const resultPromise = BomItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { bomItemApi } = maintenanceBomService()
+const resultPromise = bomItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

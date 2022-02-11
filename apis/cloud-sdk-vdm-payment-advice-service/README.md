@@ -4,9 +4,10 @@ This package contains the OData VDM for the Payment Advice Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { PaymentAdvice } from '@sap/cloud-sdk-vdm-payment-advice-service';
+import { paymentAdviceService } from '@sap/cloud-sdk-vdm-payment-advice-service';
 
-const resultPromise = PaymentAdvice.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { paymentAdviceApi } = paymentAdviceService()
+const resultPromise = paymentAdviceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

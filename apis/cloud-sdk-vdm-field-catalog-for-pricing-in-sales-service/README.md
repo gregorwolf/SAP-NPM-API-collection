@@ -4,9 +4,10 @@ This package contains the OData VDM for the Field Catalog For Pricing In Sales S
 
 ## Usage Example
 ```
-import { SalesPricingConditionField } from '@sap/cloud-sdk-vdm-field-catalog-for-pricing-in-sales-service';
+import { fieldCatalogForPricingInSalesService } from '@sap/cloud-sdk-vdm-field-catalog-for-pricing-in-sales-service';
 
-const resultPromise = SalesPricingConditionField.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesPricingConditionFieldApi } = fieldCatalogForPricingInSalesService()
+const resultPromise = salesPricingConditionFieldApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Pricing Procedure Service.
 
 ## Usage Example
 ```
-import { SlsPrcgCndnTypeText } from '@sap/cloud-sdk-op-vdm-sales-pricing-procedure-service';
+import { salesPricingProcedureService } from '@sap/cloud-sdk-op-vdm-sales-pricing-procedure-service';
 
-const resultPromise = SlsPrcgCndnTypeText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { slsPrcgCndnTypeTextApi } = salesPricingProcedureService()
+const resultPromise = slsPrcgCndnTypeTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

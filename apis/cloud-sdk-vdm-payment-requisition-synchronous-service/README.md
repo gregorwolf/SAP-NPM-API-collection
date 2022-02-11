@@ -4,9 +4,10 @@ This package contains the OData VDM for the Payment Requisition Synchronous Serv
 
 ## Usage Example
 ```
-import { Requisition } from '@sap/cloud-sdk-vdm-payment-requisition-synchronous-service';
+import { paymentRequisitionSynchronousService } from '@sap/cloud-sdk-vdm-payment-requisition-synchronous-service';
 
-const resultPromise = Requisition.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { requisitionApi } = paymentRequisitionSynchronousService()
+const resultPromise = requisitionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

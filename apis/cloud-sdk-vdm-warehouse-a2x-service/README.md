@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse A2X Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { Warehouse } from '@sap/cloud-sdk-vdm-warehouse-a2x-service';
+import { warehouseA2XService } from '@sap/cloud-sdk-vdm-warehouse-a2x-service';
 
-const resultPromise = Warehouse.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { warehouseApi } = warehouseA2XService()
+const resultPromise = warehouseApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Joint Operating Agreement Service of
 
 ## Usage Example
 ```
-import { JntOpgAgrmt } from '@sap/cloud-sdk-vdm-joint-operating-agreement-service';
+import { jointOperatingAgreementService } from '@sap/cloud-sdk-vdm-joint-operating-agreement-service';
 
-const resultPromise = JntOpgAgrmt.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { jntOpgAgrmtApi } = jointOperatingAgreementService()
+const resultPromise = jntOpgAgrmtApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

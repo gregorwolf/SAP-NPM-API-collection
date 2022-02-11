@@ -4,9 +4,10 @@ This package contains the OData VDM for the Financial Planning Entry Item Servic
 
 ## Usage Example
 ```
-import { CostCenter } from '@sap/cloud-sdk-op-vdm-financial-planning-entry-item-service';
+import { financialPlanningEntryItemService } from '@sap/cloud-sdk-op-vdm-financial-planning-entry-item-service';
 
-const resultPromise = CostCenter.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { costCenterApi } = financialPlanningEntryItemService()
+const resultPromise = costCenterApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

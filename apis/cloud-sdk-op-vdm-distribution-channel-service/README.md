@@ -4,9 +4,10 @@ This package contains the OData VDM for the Distribution Channel Service.
 
 ## Usage Example
 ```
-import { DistributionChannel } from '@sap/cloud-sdk-op-vdm-distribution-channel-service';
+import { distributionChannelService } from '@sap/cloud-sdk-op-vdm-distribution-channel-service';
 
-const resultPromise = DistributionChannel.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { distributionChannelApi } = distributionChannelService()
+const resultPromise = distributionChannelApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

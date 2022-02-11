@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { SalesDistrict } from '@sap/cloud-sdk-vdm-sales-district-service';
+import { salesDistrictService } from '@sap/cloud-sdk-vdm-sales-district-service';
 
-const resultPromise = SalesDistrict.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesDistrictApi } = salesDistrictService()
+const resultPromise = salesDistrictApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

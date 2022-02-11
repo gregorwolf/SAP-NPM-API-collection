@@ -4,9 +4,10 @@ This package contains the OData VDM for the Report Ehs Incident Service.
 
 ## Usage Example
 ```
-import { Person } from '@sap/cloud-sdk-op-vdm-report-ehs-incident-service';
+import { reportEhsIncidentService } from '@sap/cloud-sdk-op-vdm-report-ehs-incident-service';
 
-const resultPromise = Person.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { personApi } = reportEhsIncidentService()
+const resultPromise = personApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

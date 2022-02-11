@@ -4,9 +4,10 @@ This package contains the OData VDM for the Brazil Business Place Service.
 
 ## Usage Example
 ```
-import { SmtpNumbersSet } from '@sap/cloud-sdk-op-vdm-brazil-business-place-service';
+import { brazilBusinessPlaceService } from '@sap/cloud-sdk-op-vdm-brazil-business-place-service';
 
-const resultPromise = SmtpNumbersSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { smtpNumbersSetApi } = brazilBusinessPlaceService()
+const resultPromise = smtpNumbersSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

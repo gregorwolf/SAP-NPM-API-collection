@@ -4,9 +4,10 @@ This package contains the OData VDM for the Maintenance Order Service.
 
 ## Usage Example
 ```
-import { MaintenanceOrder } from '@sap/cloud-sdk-op-vdm-maintenance-order-service';
+import { maintenanceOrderService } from '@sap/cloud-sdk-op-vdm-maintenance-order-service';
 
-const resultPromise = MaintenanceOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintenanceOrderApi } = maintenanceOrderService()
+const resultPromise = maintenanceOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

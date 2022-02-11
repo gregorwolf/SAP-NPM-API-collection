@@ -4,9 +4,10 @@ This package contains the OData VDM for the Commercial Project Service of SAP S/
 
 ## Usage Example
 ```
-import { DemandSet } from '@sap/cloud-sdk-vdm-commercial-project-service';
+import { commercialProjectService } from '@sap/cloud-sdk-vdm-commercial-project-service';
 
-const resultPromise = DemandSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { demandSetApi } = commercialProjectService()
+const resultPromise = demandSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

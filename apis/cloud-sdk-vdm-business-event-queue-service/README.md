@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { C_Behqueuedata } from '@sap/cloud-sdk-vdm-business-event-queue-service';
+import { businessEventQueueService } from '@sap/cloud-sdk-vdm-business-event-queue-service';
 
-const resultPromise = C_Behqueuedata.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { c_BehqueuedataApi } = businessEventQueueService()
+const resultPromise = c_BehqueuedataApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

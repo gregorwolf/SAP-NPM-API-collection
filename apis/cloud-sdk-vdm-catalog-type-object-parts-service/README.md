@@ -4,9 +4,10 @@ This package contains the OData VDM for the Catalog Type Object Parts Service of
 
 ## Usage Example
 ```
-import { MaintNotifObjPrtCode } from '@sap/cloud-sdk-vdm-catalog-type-object-parts-service';
+import { catalogTypeObjectPartsService } from '@sap/cloud-sdk-vdm-catalog-type-object-parts-service';
 
-const resultPromise = MaintNotifObjPrtCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintNotifObjPrtCodeApi } = catalogTypeObjectPartsService()
+const resultPromise = maintNotifObjPrtCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchasing Pricing Procedure Service
 
 ## Usage Example
 ```
-import { PurgPrcgCndnTypeText } from '@sap/cloud-sdk-vdm-purchasing-pricing-procedure-service';
+import { purchasingPricingProcedureService } from '@sap/cloud-sdk-vdm-purchasing-pricing-procedure-service';
 
-const resultPromise = PurgPrcgCndnTypeText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purgPrcgCndnTypeTextApi } = purchasingPricingProcedureService()
+const resultPromise = purgPrcgCndnTypeTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

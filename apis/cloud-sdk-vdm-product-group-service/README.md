@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { ProductGroup } from '@sap/cloud-sdk-vdm-product-group-service';
+import { productGroupService } from '@sap/cloud-sdk-vdm-product-group-service';
 
-const resultPromise = ProductGroup.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { productGroupApi } = productGroupService()
+const resultPromise = productGroupApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

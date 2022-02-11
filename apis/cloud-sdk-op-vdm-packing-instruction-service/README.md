@@ -4,9 +4,10 @@ This package contains the OData VDM for the Packing Instruction Service.
 
 ## Usage Example
 ```
-import { PackingInstructionText } from '@sap/cloud-sdk-op-vdm-packing-instruction-service';
+import { packingInstructionService } from '@sap/cloud-sdk-op-vdm-packing-instruction-service';
 
-const resultPromise = PackingInstructionText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { packingInstructionTextApi } = packingInstructionService()
+const resultPromise = packingInstructionTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

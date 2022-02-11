@@ -4,9 +4,10 @@ This package contains the OData VDM for the Intelligent Product Proposal Service
 
 ## Usage Example
 ```
-import { SalesDocumentProposalItem } from '@sap/cloud-sdk-op-vdm-intelligent-product-proposal-service';
+import { intelligentProductProposalService } from '@sap/cloud-sdk-op-vdm-intelligent-product-proposal-service';
 
-const resultPromise = SalesDocumentProposalItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesDocumentProposalItemApi } = intelligentProductProposalService()
+const resultPromise = salesDocumentProposalItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

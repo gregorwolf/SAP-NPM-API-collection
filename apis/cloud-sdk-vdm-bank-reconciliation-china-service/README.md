@@ -4,9 +4,10 @@ This package contains the OData VDM for the Bank Reconciliation China Service of
 
 ## Usage Example
 ```
-import { JournalEntryItemSet } from '@sap/cloud-sdk-vdm-bank-reconciliation-china-service';
+import { bankReconciliationChinaService } from '@sap/cloud-sdk-vdm-bank-reconciliation-china-service';
 
-const resultPromise = JournalEntryItemSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { journalEntryItemSetApi } = bankReconciliationChinaService()
+const resultPromise = journalEntryItemSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

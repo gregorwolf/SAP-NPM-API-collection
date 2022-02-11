@@ -4,9 +4,10 @@ This package contains the OData VDM for the Pure Substance Service.
 
 ## Usage Example
 ```
-import { PureSubstance } from '@sap/cloud-sdk-op-vdm-pure-substance-service';
+import { pureSubstanceService } from '@sap/cloud-sdk-op-vdm-pure-substance-service';
 
-const resultPromise = PureSubstance.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { pureSubstanceApi } = pureSubstanceService()
+const resultPromise = pureSubstanceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

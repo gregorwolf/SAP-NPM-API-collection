@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sold To Party Assignment Service.
 
 ## Usage Example
 ```
-import { DelivSchedSoldToPartyDetn } from '@sap/cloud-sdk-op-vdm-sold-to-party-assignment-service';
+import { soldToPartyAssignmentService } from '@sap/cloud-sdk-op-vdm-sold-to-party-assignment-service';
 
-const resultPromise = DelivSchedSoldToPartyDetn.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { delivSchedSoldToPartyDetnApi } = soldToPartyAssignmentService()
+const resultPromise = delivSchedSoldToPartyDetnApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

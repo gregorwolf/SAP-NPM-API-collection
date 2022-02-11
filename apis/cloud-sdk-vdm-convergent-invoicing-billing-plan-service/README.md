@@ -4,9 +4,10 @@ This package contains the OData VDM for the Convergent Invoicing Billing Plan Se
 
 ## Usage Example
 ```
-import { CaBillgPln } from '@sap/cloud-sdk-vdm-convergent-invoicing-billing-plan-service';
+import { convergentInvoicingBillingPlanService } from '@sap/cloud-sdk-vdm-convergent-invoicing-billing-plan-service';
 
-const resultPromise = CaBillgPln.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { caBillgPlnApi } = convergentInvoicingBillingPlanService()
+const resultPromise = caBillgPlnApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

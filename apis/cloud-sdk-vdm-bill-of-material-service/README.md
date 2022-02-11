@@ -4,9 +4,10 @@ This package contains the OData VDM for the Bill Of Material Service of SAP S/4H
 
 ## Usage Example
 ```
-import { BillOfMaterial } from '@sap/cloud-sdk-vdm-bill-of-material-service';
+import { billOfMaterialService } from '@sap/cloud-sdk-vdm-bill-of-material-service';
 
-const resultPromise = BillOfMaterial.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { billOfMaterialApi } = billOfMaterialService()
+const resultPromise = billOfMaterialApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

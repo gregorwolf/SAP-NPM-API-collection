@@ -4,9 +4,10 @@ This package contains the OData VDM for the Legal Document Access Level Service 
 
 ## Usage Example
 ```
-import { LglCntntMAccessLvl } from '@sap/cloud-sdk-vdm-legal-document-access-level-service';
+import { legalDocumentAccessLevelService } from '@sap/cloud-sdk-vdm-legal-document-access-level-service';
 
-const resultPromise = LglCntntMAccessLvl.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { lglCntntMAccessLvlApi } = legalDocumentAccessLevelService()
+const resultPromise = lglCntntMAccessLvlApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

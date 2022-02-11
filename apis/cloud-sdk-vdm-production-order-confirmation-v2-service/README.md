@@ -4,9 +4,10 @@ This package contains the OData VDM for the Production Order Confirmation V2 Ser
 
 ## Usage Example
 ```
-import { ProdnOrdConf2 } from '@sap/cloud-sdk-vdm-production-order-confirmation-v2-service';
+import { productionOrderConfirmationV2Service } from '@sap/cloud-sdk-vdm-production-order-confirmation-v2-service';
 
-const resultPromise = ProdnOrdConf2.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodnOrdConf2Api } = productionOrderConfirmationV2Service()
+const resultPromise = prodnOrdConf2Api.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Task Code Service of SAP S/4HANA Clo
 
 ## Usage Example
 ```
-import { TaskCode } from '@sap/cloud-sdk-vdm-task-code-service';
+import { taskCodeService } from '@sap/cloud-sdk-vdm-task-code-service';
 
-const resultPromise = TaskCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { taskCodeApi } = taskCodeService()
+const resultPromise = taskCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

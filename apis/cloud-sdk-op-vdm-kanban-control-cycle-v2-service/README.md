@@ -4,9 +4,10 @@ This package contains the OData VDM for the Kanban Control Cycle V2 Service.
 
 ## Usage Example
 ```
-import { KanbanDelivery } from '@sap/cloud-sdk-op-vdm-kanban-control-cycle-v2-service';
+import { kanbanControlCycleV2Service } from '@sap/cloud-sdk-op-vdm-kanban-control-cycle-v2-service';
 
-const resultPromise = KanbanDelivery.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { kanbanDeliveryApi } = kanbanControlCycleV2Service()
+const resultPromise = kanbanDeliveryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

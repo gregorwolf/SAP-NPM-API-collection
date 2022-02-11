@@ -4,9 +4,10 @@ This package contains the OData VDM for the Returns Inspection Service.
 
 ## Usage Example
 ```
-import { ReturnsInspection } from '@sap/cloud-sdk-op-vdm-returns-inspection-service';
+import { returnsInspectionService } from '@sap/cloud-sdk-op-vdm-returns-inspection-service';
 
-const resultPromise = ReturnsInspection.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { returnsInspectionApi } = returnsInspectionService()
+const resultPromise = returnsInspectionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { MaintainYearsPeriodSet } from '@sap/cloud-sdk-vdm-forecast-demand-service';
+import { forecastDemandService } from '@sap/cloud-sdk-vdm-forecast-demand-service';
 
-const resultPromise = MaintainYearsPeriodSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintainYearsPeriodSetApi } = forecastDemandService()
+const resultPromise = maintainYearsPeriodSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

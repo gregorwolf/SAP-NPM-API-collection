@@ -4,9 +4,10 @@ This package contains the OData VDM for the Recipe Service of SAP S/4HANA Cloud.
 
 ## Usage Example
 ```
-import { Recipe } from '@sap/cloud-sdk-vdm-recipe-service';
+import { recipeService } from '@sap/cloud-sdk-vdm-recipe-service';
 
-const resultPromise = Recipe.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { recipeApi } = recipeService()
+const resultPromise = recipeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Maintenance Order Confirmation Servi
 
 ## Usage Example
 ```
-import { MaintOrderConfirmation } from '@sap/cloud-sdk-vdm-maintenance-order-confirmation-service';
+import { maintenanceOrderConfirmationService } from '@sap/cloud-sdk-vdm-maintenance-order-confirmation-service';
 
-const resultPromise = MaintOrderConfirmation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintOrderConfirmationApi } = maintenanceOrderConfirmationService()
+const resultPromise = maintOrderConfirmationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

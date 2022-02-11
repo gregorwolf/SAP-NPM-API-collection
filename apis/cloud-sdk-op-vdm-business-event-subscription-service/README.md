@@ -4,9 +4,10 @@ This package contains the OData VDM for the Business Event Subscription Service.
 
 ## Usage Example
 ```
-import { SubscriptionRead } from '@sap/cloud-sdk-op-vdm-business-event-subscription-service';
+import { businessEventSubscriptionService } from '@sap/cloud-sdk-op-vdm-business-event-subscription-service';
 
-const resultPromise = SubscriptionRead.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { subscriptionReadApi } = businessEventSubscriptionService()
+const resultPromise = subscriptionReadApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

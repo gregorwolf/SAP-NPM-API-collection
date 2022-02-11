@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Order Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { ServiceOrder } from '@sap/cloud-sdk-vdm-service-order-service';
+import { serviceOrderService } from '@sap/cloud-sdk-vdm-service-order-service';
 
-const resultPromise = ServiceOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { serviceOrderApi } = serviceOrderService()
+const resultPromise = serviceOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

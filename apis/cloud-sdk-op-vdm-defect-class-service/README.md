@@ -4,9 +4,10 @@ This package contains the OData VDM for the Defect Class Service.
 
 ## Usage Example
 ```
-import { DefectClass } from '@sap/cloud-sdk-op-vdm-defect-class-service';
+import { defectClassService } from '@sap/cloud-sdk-op-vdm-defect-class-service';
 
-const resultPromise = DefectClass.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { defectClassApi } = defectClassService()
+const resultPromise = defectClassApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

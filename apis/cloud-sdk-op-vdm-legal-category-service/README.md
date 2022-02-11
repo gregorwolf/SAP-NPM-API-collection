@@ -4,9 +4,10 @@ This package contains the OData VDM for the Legal Category Service.
 
 ## Usage Example
 ```
-import { LegalCategory } from '@sap/cloud-sdk-op-vdm-legal-category-service';
+import { legalCategoryService } from '@sap/cloud-sdk-op-vdm-legal-category-service';
 
-const resultPromise = LegalCategory.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { legalCategoryApi } = legalCategoryService()
+const resultPromise = legalCategoryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

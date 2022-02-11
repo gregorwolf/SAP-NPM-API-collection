@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Type Service of SAP S/4HANA 
 
 ## Usage Example
 ```
-import { ProductType } from '@sap/cloud-sdk-vdm-product-type-service';
+import { productTypeService } from '@sap/cloud-sdk-vdm-product-type-service';
 
-const resultPromise = ProductType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { productTypeApi } = productTypeService()
+const resultPromise = productTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

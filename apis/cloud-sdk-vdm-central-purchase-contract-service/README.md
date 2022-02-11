@@ -4,9 +4,10 @@ This package contains the OData VDM for the Central Purchase Contract Service of
 
 ## Usage Example
 ```
-import { CentralPurchaseContract } from '@sap/cloud-sdk-vdm-central-purchase-contract-service';
+import { centralPurchaseContractService } from '@sap/cloud-sdk-vdm-central-purchase-contract-service';
 
-const resultPromise = CentralPurchaseContract.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { centralPurchaseContractApi } = centralPurchaseContractService()
+const resultPromise = centralPurchaseContractApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Responsibility Management Team Confi
 
 ## Usage Example
 ```
-import { TeamTypes } from '@sap/cloud-sdk-op-vdm-responsibility-management-team-configuration-service';
+import { responsibilityManagementTeamConfigurationService } from '@sap/cloud-sdk-op-vdm-responsibility-management-team-configuration-service';
 
-const resultPromise = TeamTypes.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { teamTypesApi } = responsibilityManagementTeamConfigurationService()
+const resultPromise = teamTypesApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

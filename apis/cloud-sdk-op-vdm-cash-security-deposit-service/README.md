@@ -4,9 +4,10 @@ This package contains the OData VDM for the Cash Security Deposit Service.
 
 ## Usage Example
 ```
-import { CaSecurityDeposit } from '@sap/cloud-sdk-op-vdm-cash-security-deposit-service';
+import { cashSecurityDepositService } from '@sap/cloud-sdk-op-vdm-cash-security-deposit-service';
 
-const resultPromise = CaSecurityDeposit.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { caSecurityDepositApi } = cashSecurityDepositService()
+const resultPromise = caSecurityDepositApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

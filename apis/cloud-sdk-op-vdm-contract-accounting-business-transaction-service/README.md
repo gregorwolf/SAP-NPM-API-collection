@@ -4,9 +4,10 @@ This package contains the OData VDM for the Contract Accounting Business Transac
 
 ## Usage Example
 ```
-import { BusinessTransaction } from '@sap/cloud-sdk-op-vdm-contract-accounting-business-transaction-service';
+import { contractAccountingBusinessTransactionService } from '@sap/cloud-sdk-op-vdm-contract-accounting-business-transaction-service';
 
-const resultPromise = BusinessTransaction.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { businessTransactionApi } = contractAccountingBusinessTransactionService()
+const resultPromise = businessTransactionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

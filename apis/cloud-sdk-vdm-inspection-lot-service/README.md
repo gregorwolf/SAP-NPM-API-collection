@@ -4,9 +4,10 @@ This package contains the OData VDM for the Inspection Lot Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { InspectionLot } from '@sap/cloud-sdk-vdm-inspection-lot-service';
+import { inspectionLotService } from '@sap/cloud-sdk-vdm-inspection-lot-service';
 
-const resultPromise = InspectionLot.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { inspectionLotApi } = inspectionLotService()
+const resultPromise = inspectionLotApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

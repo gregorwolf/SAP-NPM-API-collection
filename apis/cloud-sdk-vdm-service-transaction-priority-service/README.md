@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Transaction Priority Service
 
 ## Usage Example
 ```
-import { ServiceDocumentPriority } from '@sap/cloud-sdk-vdm-service-transaction-priority-service';
+import { serviceTransactionPriorityService } from '@sap/cloud-sdk-vdm-service-transaction-priority-service';
 
-const resultPromise = ServiceDocumentPriority.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { serviceDocumentPriorityApi } = serviceTransactionPriorityService()
+const resultPromise = serviceDocumentPriorityApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

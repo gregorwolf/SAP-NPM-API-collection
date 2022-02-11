@@ -4,9 +4,10 @@ This package contains the OData VDM for the Joint Venture Billing Service of SAP
 
 ## Usage Example
 ```
-import { AttachmentLinkSet } from '@sap/cloud-sdk-vdm-joint-venture-billing-service';
+import { jointVentureBillingService } from '@sap/cloud-sdk-vdm-joint-venture-billing-service';
 
-const resultPromise = AttachmentLinkSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { attachmentLinkSetApi } = jointVentureBillingService()
+const resultPromise = attachmentLinkSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

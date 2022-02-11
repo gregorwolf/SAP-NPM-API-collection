@@ -4,9 +4,10 @@ This package contains the OData VDM for the Company Code Service of SAP S/4HANA 
 
 ## Usage Example
 ```
-import { CompanyCode } from '@sap/cloud-sdk-vdm-company-code-service';
+import { companyCodeService } from '@sap/cloud-sdk-vdm-company-code-service';
 
-const resultPromise = CompanyCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { companyCodeApi } = companyCodeService()
+const resultPromise = companyCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

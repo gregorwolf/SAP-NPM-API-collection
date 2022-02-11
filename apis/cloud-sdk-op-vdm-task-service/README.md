@@ -4,9 +4,10 @@ This package contains the OData VDM for the Task Service.
 
 ## Usage Example
 ```
-import { CustMgmtTask } from '@sap/cloud-sdk-op-vdm-task-service';
+import { taskService } from '@sap/cloud-sdk-op-vdm-task-service';
 
-const resultPromise = CustMgmtTask.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { custMgmtTaskApi } = taskService()
+const resultPromise = custMgmtTaskApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

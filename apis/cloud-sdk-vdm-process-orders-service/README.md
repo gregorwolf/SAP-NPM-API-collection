@@ -4,9 +4,10 @@ This package contains the OData VDM for the Process Orders Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { ProcessOrder } from '@sap/cloud-sdk-vdm-process-orders-service';
+import { processOrdersService } from '@sap/cloud-sdk-vdm-process-orders-service';
 
-const resultPromise = ProcessOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { processOrderApi } = processOrdersService()
+const resultPromise = processOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

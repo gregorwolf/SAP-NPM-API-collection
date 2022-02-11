@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Inquiry Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { SalesInquiry } from '@sap/cloud-sdk-vdm-sales-inquiry-service';
+import { salesInquiryService } from '@sap/cloud-sdk-vdm-sales-inquiry-service';
 
-const resultPromise = SalesInquiry.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesInquiryApi } = salesInquiryService()
+const resultPromise = salesInquiryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

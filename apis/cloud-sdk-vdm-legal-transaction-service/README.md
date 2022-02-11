@@ -4,9 +4,10 @@ This package contains the OData VDM for the Legal Transaction Service of SAP S/4
 
 ## Usage Example
 ```
-import { LglTransDate } from '@sap/cloud-sdk-vdm-legal-transaction-service';
+import { legalTransactionService } from '@sap/cloud-sdk-vdm-legal-transaction-service';
 
-const resultPromise = LglTransDate.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { lglTransDateApi } = legalTransactionService()
+const resultPromise = lglTransDateApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

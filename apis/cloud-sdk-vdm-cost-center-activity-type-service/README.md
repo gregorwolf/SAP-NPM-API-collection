@@ -4,9 +4,10 @@ This package contains the OData VDM for the Cost Center Activity Type Service of
 
 ## Usage Example
 ```
-import { CostCenterActivityType } from '@sap/cloud-sdk-vdm-cost-center-activity-type-service';
+import { costCenterActivityTypeService } from '@sap/cloud-sdk-vdm-cost-center-activity-type-service';
 
-const resultPromise = CostCenterActivityType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { costCenterActivityTypeApi } = costCenterActivityTypeService()
+const resultPromise = costCenterActivityTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Allowlist Intercompany Postings Serv
 
 ## Usage Example
 ```
-import { Allowlist } from '@sap/cloud-sdk-vdm-allowlist-intercompany-postings-service';
+import { allowlistIntercompanyPostingsService } from '@sap/cloud-sdk-vdm-allowlist-intercompany-postings-service';
 
-const resultPromise = Allowlist.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { allowlistApi } = allowlistIntercompanyPostingsService()
+const resultPromise = allowlistApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

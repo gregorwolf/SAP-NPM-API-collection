@@ -4,9 +4,10 @@ This package contains the OData VDM for the Business Situation Type Service of S
 
 ## Usage Example
 ```
-import { SituationType } from '@sap/cloud-sdk-vdm-business-situation-type-service';
+import { businessSituationTypeService } from '@sap/cloud-sdk-vdm-business-situation-type-service';
 
-const resultPromise = SituationType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { situationTypeApi } = businessSituationTypeService()
+const resultPromise = situationTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

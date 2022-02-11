@@ -4,9 +4,10 @@ This package contains the OData VDM for the Grant Service of SAP S/4HANA Cloud.
 
 ## Usage Example
 ```
-import { Grant } from '@sap/cloud-sdk-vdm-grant-service';
+import { grantService } from '@sap/cloud-sdk-vdm-grant-service';
 
-const resultPromise = Grant.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { grantApi } = grantService()
+const resultPromise = grantApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

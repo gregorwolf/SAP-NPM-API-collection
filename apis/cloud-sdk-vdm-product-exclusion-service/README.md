@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Exclusion Service of SAP S/4
 
 ## Usage Example
 ```
-import { ProdSubstnExclsn } from '@sap/cloud-sdk-vdm-product-exclusion-service';
+import { productExclusionService } from '@sap/cloud-sdk-vdm-product-exclusion-service';
 
-const resultPromise = ProdSubstnExclsn.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodSubstnExclsnApi } = productExclusionService()
+const resultPromise = prodSubstnExclsnApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

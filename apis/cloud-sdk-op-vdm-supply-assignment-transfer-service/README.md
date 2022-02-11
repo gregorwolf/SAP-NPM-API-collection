@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supply Assignment Transfer Service.
 
 ## Usage Example
 ```
-import { SupplyAssignmentTransfer } from '@sap/cloud-sdk-op-vdm-supply-assignment-transfer-service';
+import { supplyAssignmentTransferService } from '@sap/cloud-sdk-op-vdm-supply-assignment-transfer-service';
 
-const resultPromise = SupplyAssignmentTransfer.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { supplyAssignmentTransferApi } = supplyAssignmentTransferService()
+const resultPromise = supplyAssignmentTransferApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

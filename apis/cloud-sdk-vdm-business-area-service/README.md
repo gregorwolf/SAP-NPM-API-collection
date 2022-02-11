@@ -4,9 +4,10 @@ This package contains the OData VDM for the Business Area Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { BusinessArea } from '@sap/cloud-sdk-vdm-business-area-service';
+import { businessAreaService } from '@sap/cloud-sdk-vdm-business-area-service';
 
-const resultPromise = BusinessArea.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { businessAreaApi } = businessAreaService()
+const resultPromise = businessAreaApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Work Centers Service of SAP S/4HANA 
 
 ## Usage Example
 ```
-import { WorkCenters } from '@sap/cloud-sdk-vdm-work-centers-service';
+import { workCentersService } from '@sap/cloud-sdk-vdm-work-centers-service';
 
-const resultPromise = WorkCenters.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { workCentersApi } = workCentersService()
+const resultPromise = workCentersApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

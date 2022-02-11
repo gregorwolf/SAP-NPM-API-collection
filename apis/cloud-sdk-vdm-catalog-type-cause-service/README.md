@@ -4,9 +4,10 @@ This package contains the OData VDM for the Catalog Type Cause Service of SAP S/
 
 ## Usage Example
 ```
-import { MaintNotifCauseCode } from '@sap/cloud-sdk-vdm-catalog-type-cause-service';
+import { catalogTypeCauseService } from '@sap/cloud-sdk-vdm-catalog-type-cause-service';
 
-const resultPromise = MaintNotifCauseCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintNotifCauseCodeApi } = catalogTypeCauseService()
+const resultPromise = maintNotifCauseCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

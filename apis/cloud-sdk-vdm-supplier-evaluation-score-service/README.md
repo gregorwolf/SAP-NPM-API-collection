@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supplier Evaluation Score Service of
 
 ## Usage Example
 ```
-import { SupplierOplScoresAv } from '@sap/cloud-sdk-vdm-supplier-evaluation-score-service';
+import { supplierEvaluationScoreService } from '@sap/cloud-sdk-vdm-supplier-evaluation-score-service';
 
-const resultPromise = SupplierOplScoresAv.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { supplierOplScoresAvApi } = supplierEvaluationScoreService()
+const resultPromise = supplierOplScoresAvApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

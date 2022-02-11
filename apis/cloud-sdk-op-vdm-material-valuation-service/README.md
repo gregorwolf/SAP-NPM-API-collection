@@ -4,9 +4,10 @@ This package contains the OData VDM for the Material Valuation Service.
 
 ## Usage Example
 ```
-import { MaterialValuationSet } from '@sap/cloud-sdk-op-vdm-material-valuation-service';
+import { materialValuationService } from '@sap/cloud-sdk-op-vdm-material-valuation-service';
 
-const resultPromise = MaterialValuationSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { materialValuationSetApi } = materialValuationService()
+const resultPromise = materialValuationSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

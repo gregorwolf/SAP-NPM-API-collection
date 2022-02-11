@@ -4,9 +4,10 @@ This package contains the OData VDM for the Mobile Data For Last Mile Distributi
 
 ## Usage Example
 ```
-import { Stops } from '@sap/cloud-sdk-op-vdm-mobile-data-for-last-mile-distribution-service';
+import { mobileDataForLastMileDistributionService } from '@sap/cloud-sdk-op-vdm-mobile-data-for-last-mile-distribution-service';
 
-const resultPromise = Stops.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { stopsApi } = mobileDataForLastMileDistributionService()
+const resultPromise = stopsApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

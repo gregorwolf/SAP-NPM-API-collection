@@ -4,9 +4,10 @@ This package contains the OData VDM for the Inbound Delivery V2 Service of SAP S
 
 ## Usage Example
 ```
-import { InbDeliveryItem } from '@sap/cloud-sdk-vdm-inbound-delivery-v2-service';
+import { inboundDeliveryV2Service } from '@sap/cloud-sdk-vdm-inbound-delivery-v2-service';
 
-const resultPromise = InbDeliveryItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { inbDeliveryItemApi } = inboundDeliveryV2Service()
+const resultPromise = inbDeliveryItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

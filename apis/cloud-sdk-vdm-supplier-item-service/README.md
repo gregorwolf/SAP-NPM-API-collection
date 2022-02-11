@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supplier Item Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { SupplierItem } from '@sap/cloud-sdk-vdm-supplier-item-service';
+import { supplierItemService } from '@sap/cloud-sdk-vdm-supplier-item-service';
 
-const resultPromise = SupplierItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { supplierItemApi } = supplierItemService()
+const resultPromise = supplierItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

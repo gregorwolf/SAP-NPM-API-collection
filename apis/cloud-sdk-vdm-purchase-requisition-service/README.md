@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchase Requisition Service of SAP 
 
 ## Usage Example
 ```
-import { PurReqAddDelivery } from '@sap/cloud-sdk-vdm-purchase-requisition-service';
+import { purchaseRequisitionService } from '@sap/cloud-sdk-vdm-purchase-requisition-service';
 
-const resultPromise = PurReqAddDelivery.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purReqAddDeliveryApi } = purchaseRequisitionService()
+const resultPromise = purReqAddDeliveryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

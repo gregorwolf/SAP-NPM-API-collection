@@ -4,9 +4,10 @@ This package contains the OData VDM for the Functional Location Hierarchy Servic
 
 ## Usage Example
 ```
-import { FuncnlLocEquipStrucList } from '@sap/cloud-sdk-vdm-functional-location-hierarchy-service';
+import { functionalLocationHierarchyService } from '@sap/cloud-sdk-vdm-functional-location-hierarchy-service';
 
-const resultPromise = FuncnlLocEquipStrucList.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { funcnlLocEquipStrucListApi } = functionalLocationHierarchyService()
+const resultPromise = funcnlLocEquipStrucListApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

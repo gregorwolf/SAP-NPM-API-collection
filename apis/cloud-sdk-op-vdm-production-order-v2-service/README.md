@@ -4,9 +4,10 @@ This package contains the OData VDM for the Production Order V2 Service.
 
 ## Usage Example
 ```
-import { ProductionOrder_2 } from '@sap/cloud-sdk-op-vdm-production-order-v2-service';
+import { productionOrderV2Service } from '@sap/cloud-sdk-op-vdm-production-order-v2-service';
 
-const resultPromise = ProductionOrder_2.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { productionOrder_2Api } = productionOrderV2Service()
+const resultPromise = productionOrder_2Api.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Catalog Coding Type Service of SAP S
 
 ## Usage Example
 ```
-import { MaintNotifCodingCode } from '@sap/cloud-sdk-vdm-catalog-coding-type-service';
+import { catalogCodingTypeService } from '@sap/cloud-sdk-vdm-catalog-coding-type-service';
 
-const resultPromise = MaintNotifCodingCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintNotifCodingCodeApi } = catalogCodingTypeService()
+const resultPromise = maintNotifCodingCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

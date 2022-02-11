@@ -4,9 +4,10 @@ This package contains the OData VDM for the External Events Read Create Service.
 
 ## Usage Example
 ```
-import { BhvrlInsgtsExternalEvent } from '@sap/cloud-sdk-op-vdm-external-events-read-create-service';
+import { externalEventsReadCreateService } from '@sap/cloud-sdk-op-vdm-external-events-read-create-service';
 
-const resultPromise = BhvrlInsgtsExternalEvent.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { bhvrlInsgtsExternalEventApi } = externalEventsReadCreateService()
+const resultPromise = bhvrlInsgtsExternalEventApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

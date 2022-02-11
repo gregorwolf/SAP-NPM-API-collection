@@ -4,9 +4,10 @@ This package contains the OData VDM for the Functional Area Service.
 
 ## Usage Example
 ```
-import { FunctionalArea } from '@sap/cloud-sdk-op-vdm-functional-area-service';
+import { functionalAreaService } from '@sap/cloud-sdk-op-vdm-functional-area-service';
 
-const resultPromise = FunctionalArea.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { functionalAreaApi } = functionalAreaService()
+const resultPromise = functionalAreaApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Master Data Including Classi
 
 ## Usage Example
 ```
-import { ClfnProduct } from '@sap/cloud-sdk-op-vdm-product-master-data-including-classification-service';
+import { productMasterDataIncludingClassificationService } from '@sap/cloud-sdk-op-vdm-product-master-data-including-classification-service';
 
-const resultPromise = ClfnProduct.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { clfnProductApi } = productMasterDataIncludingClassificationService()
+const resultPromise = clfnProductApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

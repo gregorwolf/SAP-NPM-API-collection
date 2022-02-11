@@ -4,9 +4,10 @@ This package contains the OData VDM for the Cost Center Service.
 
 ## Usage Example
 ```
-import { CostCenter } from '@sap/cloud-sdk-op-vdm-cost-center-service';
+import { costCenterService } from '@sap/cloud-sdk-op-vdm-cost-center-service';
 
-const resultPromise = CostCenter.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { costCenterApi } = costCenterService()
+const resultPromise = costCenterApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

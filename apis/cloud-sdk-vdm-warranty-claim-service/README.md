@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warranty Claim Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { WarrantyClaim } from '@sap/cloud-sdk-vdm-warranty-claim-service';
+import { warrantyClaimService } from '@sap/cloud-sdk-vdm-warranty-claim-service';
 
-const resultPromise = WarrantyClaim.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { warrantyClaimApi } = warrantyClaimService()
+const resultPromise = warrantyClaimApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

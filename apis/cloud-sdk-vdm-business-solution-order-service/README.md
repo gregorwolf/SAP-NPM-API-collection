@@ -4,9 +4,10 @@ This package contains the OData VDM for the Business Solution Order Service of S
 
 ## Usage Example
 ```
-import { BusinessSolutionOrder } from '@sap/cloud-sdk-vdm-business-solution-order-service';
+import { businessSolutionOrderService } from '@sap/cloud-sdk-vdm-business-solution-order-service';
 
-const resultPromise = BusinessSolutionOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { businessSolutionOrderApi } = businessSolutionOrderService()
+const resultPromise = businessSolutionOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

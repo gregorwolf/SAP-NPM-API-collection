@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales And Distribution Document Reas
 
 ## Usage Example
 ```
-import { SdDocumentReason } from '@sap/cloud-sdk-op-vdm-sales-and-distribution-document-reason-service';
+import { salesAndDistributionDocumentReasonService } from '@sap/cloud-sdk-op-vdm-sales-and-distribution-document-reason-service';
 
-const resultPromise = SdDocumentReason.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { sdDocumentReasonApi } = salesAndDistributionDocumentReasonService()
+const resultPromise = sdDocumentReasonApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

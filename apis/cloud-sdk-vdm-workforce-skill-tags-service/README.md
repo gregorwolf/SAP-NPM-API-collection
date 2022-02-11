@@ -4,9 +4,10 @@ This package contains the OData VDM for the Workforce Skill Tags Service of SAP 
 
 ## Usage Example
 ```
-import { SkillTagSet } from '@sap/cloud-sdk-vdm-workforce-skill-tags-service';
+import { workforceSkillTagsService } from '@sap/cloud-sdk-vdm-workforce-skill-tags-service';
 
-const resultPromise = SkillTagSet.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { skillTagSetApi } = workforceSkillTagsService()
+const resultPromise = skillTagSetApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

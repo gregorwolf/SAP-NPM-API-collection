@@ -4,9 +4,10 @@ This package contains the OData VDM for the Assortment Module Service.
 
 ## Usage Example
 ```
-import { ExplicitAssortmentModule } from '@sap/cloud-sdk-op-vdm-assortment-module-service';
+import { assortmentModuleService } from '@sap/cloud-sdk-op-vdm-assortment-module-service';
 
-const resultPromise = ExplicitAssortmentModule.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { explicitAssortmentModuleApi } = assortmentModuleService()
+const resultPromise = explicitAssortmentModuleApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Real Estate Space Group Enable Use T
 
 ## Usage Example
 ```
-import { ReSpaceGrpEnableUseType } from '@sap/cloud-sdk-vdm-real-estate-space-group-enable-use-type-service';
+import { realEstateSpaceGroupEnableUseTypeService } from '@sap/cloud-sdk-vdm-real-estate-space-group-enable-use-type-service';
 
-const resultPromise = ReSpaceGrpEnableUseType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { reSpaceGrpEnableUseTypeApi } = realEstateSpaceGroupEnableUseTypeService()
+const resultPromise = reSpaceGrpEnableUseTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

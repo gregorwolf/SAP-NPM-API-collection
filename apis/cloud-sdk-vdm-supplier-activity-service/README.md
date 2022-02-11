@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supplier Activity Service of SAP S/4
 
 ## Usage Example
 ```
-import { SupplierActivity } from '@sap/cloud-sdk-vdm-supplier-activity-service';
+import { supplierActivityService } from '@sap/cloud-sdk-vdm-supplier-activity-service';
 
-const resultPromise = SupplierActivity.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { supplierActivityApi } = supplierActivityService()
+const resultPromise = supplierActivityApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

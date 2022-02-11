@@ -4,9 +4,10 @@ This package contains the OData VDM for the Real Substance Service of SAP S/4HAN
 
 ## Usage Example
 ```
-import { RealSubstance } from '@sap/cloud-sdk-vdm-real-substance-service';
+import { realSubstanceService } from '@sap/cloud-sdk-vdm-real-substance-service';
 
-const resultPromise = RealSubstance.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { realSubstanceApi } = realSubstanceService()
+const resultPromise = realSubstanceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

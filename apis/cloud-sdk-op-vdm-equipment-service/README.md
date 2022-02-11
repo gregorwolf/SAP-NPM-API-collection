@@ -4,9 +4,10 @@ This package contains the OData VDM for the Equipment Service.
 
 ## Usage Example
 ```
-import { Equipment } from '@sap/cloud-sdk-op-vdm-equipment-service';
+import { equipmentService } from '@sap/cloud-sdk-op-vdm-equipment-service';
 
-const resultPromise = Equipment.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { equipmentApi } = equipmentService()
+const resultPromise = equipmentApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

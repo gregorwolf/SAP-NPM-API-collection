@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Service.
 
 ## Usage Example
 ```
-import { Product } from '@sap/cloud-sdk-op-vdm-product-service';
+import { productService } from '@sap/cloud-sdk-op-vdm-product-service';
 
-const resultPromise = Product.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { productApi } = productService()
+const resultPromise = productApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

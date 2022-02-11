@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { SalesOrderBom } from '@sap/cloud-sdk-vdm-order-bill-of-material-service';
+import { orderBillOfMaterialService } from '@sap/cloud-sdk-vdm-order-bill-of-material-service';
 
-const resultPromise = SalesOrderBom.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesOrderBomApi } = orderBillOfMaterialService()
+const resultPromise = salesOrderBomApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

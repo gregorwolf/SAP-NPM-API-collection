@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Organization Service.
 
 ## Usage Example
 ```
-import { SalesOrganization } from '@sap/cloud-sdk-op-vdm-sales-organization-service';
+import { salesOrganizationService } from '@sap/cloud-sdk-op-vdm-sales-organization-service';
 
-const resultPromise = SalesOrganization.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesOrganizationApi } = salesOrganizationService()
+const resultPromise = salesOrganizationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

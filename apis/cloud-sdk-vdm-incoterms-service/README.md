@@ -4,9 +4,10 @@ This package contains the OData VDM for the Incoterms Service of SAP S/4HANA Clo
 
 ## Usage Example
 ```
-import { IncotermsVersion } from '@sap/cloud-sdk-vdm-incoterms-service';
+import { incotermsService } from '@sap/cloud-sdk-vdm-incoterms-service';
 
-const resultPromise = IncotermsVersion.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { incotermsVersionApi } = incotermsService()
+const resultPromise = incotermsVersionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

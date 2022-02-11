@@ -4,9 +4,10 @@ This package contains the OData VDM for the Contract Account Service of SAP S/4H
 
 ## Usage Example
 ```
-import { ContractAccount } from '@sap/cloud-sdk-vdm-contract-account-service';
+import { contractAccountService } from '@sap/cloud-sdk-vdm-contract-account-service';
 
-const resultPromise = ContractAccount.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { contractAccountApi } = contractAccountService()
+const resultPromise = contractAccountApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

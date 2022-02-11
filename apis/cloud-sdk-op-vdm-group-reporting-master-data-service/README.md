@@ -4,9 +4,10 @@ This package contains the OData VDM for the Group Reporting Master Data Service.
 
 ## Usage Example
 ```
-import { Plant } from '@sap/cloud-sdk-op-vdm-group-reporting-master-data-service';
+import { groupReportingMasterDataService } from '@sap/cloud-sdk-op-vdm-group-reporting-master-data-service';
 
-const resultPromise = Plant.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { plantApi } = groupReportingMasterDataService()
+const resultPromise = plantApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

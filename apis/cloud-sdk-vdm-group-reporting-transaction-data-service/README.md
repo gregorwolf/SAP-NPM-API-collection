@@ -4,9 +4,10 @@ This package contains the OData VDM for the Group Reporting Transaction Data Ser
 
 ## Usage Example
 ```
-import { GrTransactionData } from '@sap/cloud-sdk-vdm-group-reporting-transaction-data-service';
+import { groupReportingTransactionDataService } from '@sap/cloud-sdk-vdm-group-reporting-transaction-data-service';
 
-const resultPromise = GrTransactionData.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { grTransactionDataApi } = groupReportingTransactionDataService()
+const resultPromise = grTransactionDataApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Default Segment Value Maintenance Se
 
 ## Usage Example
 ```
-import { DfltStkSgmtPurReqn } from '@sap/cloud-sdk-op-vdm-default-segment-value-maintenance-service';
+import { defaultSegmentValueMaintenanceService } from '@sap/cloud-sdk-op-vdm-default-segment-value-maintenance-service';
 
-const resultPromise = DfltStkSgmtPurReqn.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { dfltStkSgmtPurReqnApi } = defaultSegmentValueMaintenanceService()
+const resultPromise = dfltStkSgmtPurReqnApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Physical Inventory Doc Service.
 
 ## Usage Example
 ```
-import { PhysInventoryDocItem } from '@sap/cloud-sdk-op-vdm-physical-inventory-doc-service';
+import { physicalInventoryDocService } from '@sap/cloud-sdk-op-vdm-physical-inventory-doc-service';
 
-const resultPromise = PhysInventoryDocItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { physInventoryDocItemApi } = physicalInventoryDocService()
+const resultPromise = physInventoryDocItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

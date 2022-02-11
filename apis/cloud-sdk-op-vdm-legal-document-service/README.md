@@ -4,9 +4,10 @@ This package contains the OData VDM for the Legal Document Service.
 
 ## Usage Example
 ```
-import { LglDocStamp } from '@sap/cloud-sdk-op-vdm-legal-document-service';
+import { legalDocumentService } from '@sap/cloud-sdk-op-vdm-legal-document-service';
 
-const resultPromise = LglDocStamp.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { lglDocStampApi } = legalDocumentService()
+const resultPromise = lglDocStampApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

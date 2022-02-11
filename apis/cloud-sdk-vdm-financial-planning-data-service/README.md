@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { FinancialPlanData } from '@sap/cloud-sdk-vdm-financial-planning-data-service';
+import { financialPlanningDataService } from '@sap/cloud-sdk-vdm-financial-planning-data-service';
 
-const resultPromise = FinancialPlanData.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { financialPlanDataApi } = financialPlanningDataService()
+const resultPromise = financialPlanDataApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

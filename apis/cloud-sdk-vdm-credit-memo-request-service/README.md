@@ -4,9 +4,10 @@ This package contains the OData VDM for the Credit Memo Request Service of SAP S
 
 ## Usage Example
 ```
-import { CreditMemoReqText } from '@sap/cloud-sdk-vdm-credit-memo-request-service';
+import { creditMemoRequestService } from '@sap/cloud-sdk-vdm-credit-memo-request-service';
 
-const resultPromise = CreditMemoReqText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { creditMemoReqTextApi } = creditMemoRequestService()
+const resultPromise = creditMemoReqTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

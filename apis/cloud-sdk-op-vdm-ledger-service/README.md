@@ -4,9 +4,10 @@ This package contains the OData VDM for the Ledger Service.
 
 ## Usage Example
 ```
-import { Ledger } from '@sap/cloud-sdk-op-vdm-ledger-service';
+import { ledgerService } from '@sap/cloud-sdk-op-vdm-ledger-service';
 
-const resultPromise = Ledger.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { ledgerApi } = ledgerService()
+const resultPromise = ledgerApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

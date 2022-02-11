@@ -4,9 +4,10 @@ This package contains the OData VDM for the Production Volume Capture Service of
 
 ## Usage Example
 ```
-import { ProductionVolume } from '@sap/cloud-sdk-vdm-production-volume-capture-service';
+import { productionVolumeCaptureService } from '@sap/cloud-sdk-vdm-production-volume-capture-service';
 
-const resultPromise = ProductionVolume.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { productionVolumeApi } = productionVolumeCaptureService()
+const resultPromise = productionVolumeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

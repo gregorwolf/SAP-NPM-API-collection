@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Specification Composition Co
 
 ## Usage Example
 ```
-import { ProdSpecComponent } from '@sap/cloud-sdk-op-vdm-product-specification-composition-configuration-service';
+import { productSpecificationCompositionConfigurationService } from '@sap/cloud-sdk-op-vdm-product-specification-composition-configuration-service';
 
-const resultPromise = ProdSpecComponent.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodSpecComponentApi } = productSpecificationCompositionConfigurationService()
+const resultPromise = prodSpecComponentApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

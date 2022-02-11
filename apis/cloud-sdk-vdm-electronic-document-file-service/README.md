@@ -4,9 +4,10 @@ This package contains the OData VDM for the Electronic Document File Service of 
 
 ## Usage Example
 ```
-import { ElectronicDocFile } from '@sap/cloud-sdk-vdm-electronic-document-file-service';
+import { electronicDocumentFileService } from '@sap/cloud-sdk-vdm-electronic-document-file-service';
 
-const resultPromise = ElectronicDocFile.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { electronicDocFileApi } = electronicDocumentFileService()
+const resultPromise = electronicDocFileApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

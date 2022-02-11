@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { ProductStructureNode } from '@sap/cloud-sdk-vdm-product-structure-service';
+import { productStructureService } from '@sap/cloud-sdk-vdm-product-structure-service';
 
-const resultPromise = ProductStructureNode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { productStructureNodeApi } = productStructureService()
+const resultPromise = productStructureNodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

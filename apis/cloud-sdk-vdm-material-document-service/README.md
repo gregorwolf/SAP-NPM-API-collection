@@ -4,9 +4,10 @@ This package contains the OData VDM for the Material Document Service of SAP S/4
 
 ## Usage Example
 ```
-import { MaterialDocumentItem } from '@sap/cloud-sdk-vdm-material-document-service';
+import { materialDocumentService } from '@sap/cloud-sdk-vdm-material-document-service';
 
-const resultPromise = MaterialDocumentItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { materialDocumentItemApi } = materialDocumentService()
+const resultPromise = materialDocumentItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchasing Pricing Condition Type Se
 
 ## Usage Example
 ```
-import { PurgPrcgCndnTypeText } from '@sap/cloud-sdk-op-vdm-purchasing-pricing-condition-type-service';
+import { purchasingPricingConditionTypeService } from '@sap/cloud-sdk-op-vdm-purchasing-pricing-condition-type-service';
 
-const resultPromise = PurgPrcgCndnTypeText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purgPrcgCndnTypeTextApi } = purchasingPricingConditionTypeService()
+const resultPromise = purgPrcgCndnTypeTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

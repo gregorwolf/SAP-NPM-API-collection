@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Order Without Charge Service o
 
 ## Usage Example
 ```
-import { SlsOrdWthoutChrgText } from '@sap/cloud-sdk-vdm-sales-order-without-charge-service';
+import { salesOrderWithoutChargeService } from '@sap/cloud-sdk-vdm-sales-order-without-charge-service';
 
-const resultPromise = SlsOrdWthoutChrgText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { slsOrdWthoutChrgTextApi } = salesOrderWithoutChargeService()
+const resultPromise = slsOrdWthoutChrgTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

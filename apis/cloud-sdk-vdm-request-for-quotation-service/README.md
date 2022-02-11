@@ -4,9 +4,10 @@ This package contains the OData VDM for the Request For Quotation Service of SAP
 
 ## Usage Example
 ```
-import { RequestForQuotation } from '@sap/cloud-sdk-vdm-request-for-quotation-service';
+import { requestForQuotationService } from '@sap/cloud-sdk-vdm-request-for-quotation-service';
 
-const resultPromise = RequestForQuotation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { requestForQuotationApi } = requestForQuotationService()
+const resultPromise = requestForQuotationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

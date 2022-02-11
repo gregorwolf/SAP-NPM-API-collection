@@ -4,9 +4,10 @@ This package contains the OData VDM for the Characteristic Data For Classificati
 
 ## Usage Example
 ```
-import { ClfnCharcRefForKeyDate } from '@sap/cloud-sdk-op-vdm-characteristic-data-for-classification-service';
+import { characteristicDataForClassificationService } from '@sap/cloud-sdk-op-vdm-characteristic-data-for-classification-service';
 
-const resultPromise = ClfnCharcRefForKeyDate.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { clfnCharcRefForKeyDateApi } = characteristicDataForClassificationService()
+const resultPromise = clfnCharcRefForKeyDateApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

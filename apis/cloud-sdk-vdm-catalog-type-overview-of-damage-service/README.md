@@ -4,9 +4,10 @@ This package contains the OData VDM for the Catalog Type Overview Of Damage Serv
 
 ## Usage Example
 ```
-import { MaintNotifOvwDamageCode } from '@sap/cloud-sdk-vdm-catalog-type-overview-of-damage-service';
+import { catalogTypeOverviewOfDamageService } from '@sap/cloud-sdk-vdm-catalog-type-overview-of-damage-service';
 
-const resultPromise = MaintNotifOvwDamageCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintNotifOvwDamageCodeApi } = catalogTypeOverviewOfDamageService()
+const resultPromise = maintNotifOvwDamageCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

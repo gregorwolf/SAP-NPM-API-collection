@@ -4,9 +4,10 @@ This package contains the OData VDM for the Inbound Delivery Service of SAP S/4H
 
 ## Usage Example
 ```
-import { InbDeliveryItem } from '@sap/cloud-sdk-vdm-inbound-delivery-service';
+import { inboundDeliveryService } from '@sap/cloud-sdk-vdm-inbound-delivery-service';
 
-const resultPromise = InbDeliveryItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { inbDeliveryItemApi } = inboundDeliveryService()
+const resultPromise = inbDeliveryItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Customer Returns Delivery Service.
 
 ## Usage Example
 ```
-import { ReturnsDeliveryItem } from '@sap/cloud-sdk-op-vdm-customer-returns-delivery-service';
+import { customerReturnsDeliveryService } from '@sap/cloud-sdk-op-vdm-customer-returns-delivery-service';
 
-const resultPromise = ReturnsDeliveryItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { returnsDeliveryItemApi } = customerReturnsDeliveryService()
+const resultPromise = returnsDeliveryItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

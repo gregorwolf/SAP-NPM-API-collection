@@ -4,9 +4,10 @@ This package contains the OData VDM for the Access Sequence For Pricing In Sales
 
 ## Usage Example
 ```
-import { SalesPricingAccess } from '@sap/cloud-sdk-op-vdm-access-sequence-for-pricing-in-sales-service';
+import { accessSequenceForPricingInSalesService } from '@sap/cloud-sdk-op-vdm-access-sequence-for-pricing-in-sales-service';
 
-const resultPromise = SalesPricingAccess.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesPricingAccessApi } = accessSequenceForPricingInSalesService()
+const resultPromise = salesPricingAccessApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

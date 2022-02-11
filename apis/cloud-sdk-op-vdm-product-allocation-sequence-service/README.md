@@ -4,9 +4,10 @@ This package contains the OData VDM for the Product Allocation Sequence Service.
 
 ## Usage Example
 ```
-import { ProdAllocSequenceT } from '@sap/cloud-sdk-op-vdm-product-allocation-sequence-service';
+import { productAllocationSequenceService } from '@sap/cloud-sdk-op-vdm-product-allocation-sequence-service';
 
-const resultPromise = ProdAllocSequenceT.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { prodAllocSequenceTApi } = productAllocationSequenceService()
+const resultPromise = prodAllocSequenceTApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

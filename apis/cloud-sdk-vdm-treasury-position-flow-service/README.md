@@ -4,9 +4,10 @@ This package contains the OData VDM for the Treasury Position Flow Service of SA
 
 ## Usage Example
 ```
-import { TrsyPosFlow } from '@sap/cloud-sdk-vdm-treasury-position-flow-service';
+import { treasuryPositionFlowService } from '@sap/cloud-sdk-vdm-treasury-position-flow-service';
 
-const resultPromise = TrsyPosFlow.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { trsyPosFlowApi } = treasuryPositionFlowService()
+const resultPromise = trsyPosFlowApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

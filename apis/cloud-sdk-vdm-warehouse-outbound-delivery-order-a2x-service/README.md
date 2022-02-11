@@ -4,9 +4,10 @@ This package contains the OData VDM for the Warehouse Outbound Delivery Order A2
 
 ## Usage Example
 ```
-import { WhseDeliveryDocumentAddress } from '@sap/cloud-sdk-vdm-warehouse-outbound-delivery-order-a2x-service';
+import { warehouseOutboundDeliveryOrderA2XService } from '@sap/cloud-sdk-vdm-warehouse-outbound-delivery-order-a2x-service';
 
-const resultPromise = WhseDeliveryDocumentAddress.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { whseDeliveryDocumentAddressApi } = warehouseOutboundDeliveryOrderA2XService()
+const resultPromise = whseDeliveryDocumentAddressApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

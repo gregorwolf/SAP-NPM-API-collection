@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supplier Quotation Service.
 
 ## Usage Example
 ```
-import { SupplierQuotation } from '@sap/cloud-sdk-op-vdm-supplier-quotation-service';
+import { supplierQuotationService } from '@sap/cloud-sdk-op-vdm-supplier-quotation-service';
 
-const resultPromise = SupplierQuotation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { supplierQuotationApi } = supplierQuotationService()
+const resultPromise = supplierQuotationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Condition Contract Type Service of S
 
 ## Usage Example
 ```
-import { CndnContrType } from '@sap/cloud-sdk-vdm-condition-contract-type-service';
+import { conditionContractTypeService } from '@sap/cloud-sdk-vdm-condition-contract-type-service';
 
-const resultPromise = CndnContrType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { cndnContrTypeApi } = conditionContractTypeService()
+const resultPromise = cndnContrTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

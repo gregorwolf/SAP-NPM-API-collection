@@ -4,9 +4,10 @@ This package contains the OData VDM for the Treasury Posting Journal Entry Line 
 
 ## Usage Example
 ```
-import { TrsyPostgJrnlEntrItm } from '@sap/cloud-sdk-vdm-treasury-posting-journal-entry-line-item-service';
+import { treasuryPostingJournalEntryLineItemService } from '@sap/cloud-sdk-vdm-treasury-posting-journal-entry-line-item-service';
 
-const resultPromise = TrsyPostgJrnlEntrItm.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { trsyPostgJrnlEntrItmApi } = treasuryPostingJournalEntryLineItemService()
+const resultPromise = trsyPostgJrnlEntrItmApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

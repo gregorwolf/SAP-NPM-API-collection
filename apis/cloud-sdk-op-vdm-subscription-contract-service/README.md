@@ -4,9 +4,10 @@ This package contains the OData VDM for the Subscription Contract Service.
 
 ## Usage Example
 ```
-import { SubscrpnContrItmText } from '@sap/cloud-sdk-op-vdm-subscription-contract-service';
+import { subscriptionContractService } from '@sap/cloud-sdk-op-vdm-subscription-contract-service';
 
-const resultPromise = SubscrpnContrItmText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { subscrpnContrItmTextApi } = subscriptionContractService()
+const resultPromise = subscrpnContrItmTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

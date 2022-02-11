@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Pricing Condition Type Service
 
 ## Usage Example
 ```
-import { SlsPrcgCndnTypeText } from '@sap/cloud-sdk-vdm-sales-pricing-condition-type-service';
+import { salesPricingConditionTypeService } from '@sap/cloud-sdk-vdm-sales-pricing-condition-type-service';
 
-const resultPromise = SlsPrcgCndnTypeText.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { slsPrcgCndnTypeTextApi } = salesPricingConditionTypeService()
+const resultPromise = slsPrcgCndnTypeTextApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

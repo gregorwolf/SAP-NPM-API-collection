@@ -4,9 +4,10 @@ This package contains the OData VDM for the Country Service of SAP S/4HANA Cloud
 
 ## Usage Example
 ```
-import { Country } from '@sap/cloud-sdk-vdm-country-service';
+import { countryService } from '@sap/cloud-sdk-vdm-country-service';
 
-const resultPromise = Country.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { countryApi } = countryService()
+const resultPromise = countryApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

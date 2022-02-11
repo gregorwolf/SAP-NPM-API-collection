@@ -4,9 +4,10 @@ This package contains the OData VDM for the Credit Management Master Data Servic
 
 ## Usage Example
 ```
-import { CreditManagementAccount } from '@sap/cloud-sdk-vdm-credit-management-master-data-service';
+import { creditManagementMasterDataService } from '@sap/cloud-sdk-vdm-credit-management-master-data-service';
 
-const resultPromise = CreditManagementAccount.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { creditManagementAccountApi } = creditManagementMasterDataService()
+const resultPromise = creditManagementAccountApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Contract Accounting Creditworthiness
 
 ## Usage Example
 ```
-import { CreditWorthiness } from '@sap/cloud-sdk-vdm-contract-accounting-creditworthiness-service';
+import { contractAccountingCreditworthinessService } from '@sap/cloud-sdk-vdm-contract-accounting-creditworthiness-service';
 
-const resultPromise = CreditWorthiness.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { creditWorthinessApi } = contractAccountingCreditworthinessService()
+const resultPromise = creditWorthinessApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the In House Repair Service.
 
 ## Usage Example
 ```
-import { InHouseRepair } from '@sap/cloud-sdk-op-vdm-in-house-repair-service';
+import { inHouseRepairService } from '@sap/cloud-sdk-op-vdm-in-house-repair-service';
 
-const resultPromise = InHouseRepair.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { inHouseRepairApi } = inHouseRepairService()
+const resultPromise = inHouseRepairApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

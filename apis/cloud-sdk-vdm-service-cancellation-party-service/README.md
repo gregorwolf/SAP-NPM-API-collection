@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Cancellation Party Service o
 
 ## Usage Example
 ```
-import { ServiceCancellationParty } from '@sap/cloud-sdk-vdm-service-cancellation-party-service';
+import { serviceCancellationPartyService } from '@sap/cloud-sdk-vdm-service-cancellation-party-service';
 
-const resultPromise = ServiceCancellationParty.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { serviceCancellationPartyApi } = serviceCancellationPartyService()
+const resultPromise = serviceCancellationPartyApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

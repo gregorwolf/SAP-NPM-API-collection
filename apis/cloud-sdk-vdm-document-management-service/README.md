@@ -4,9 +4,10 @@ This package contains the OData VDM for the Document Management Service of SAP S
 
 ## Usage Example
 ```
-import { DocumentInfoRecord } from '@sap/cloud-sdk-vdm-document-management-service';
+import { documentManagementService } from '@sap/cloud-sdk-vdm-document-management-service';
 
-const resultPromise = DocumentInfoRecord.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { documentInfoRecordApi } = documentManagementService()
+const resultPromise = documentInfoRecordApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

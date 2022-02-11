@@ -4,9 +4,10 @@ This package contains the OData VDM for the Convergent Invoicing Billable Item S
 
 ## Usage Example
 ```
-import { CaBllbleItmMain } from '@sap/cloud-sdk-vdm-convergent-invoicing-billable-item-service';
+import { convergentInvoicingBillableItemService } from '@sap/cloud-sdk-vdm-convergent-invoicing-billable-item-service';
 
-const resultPromise = CaBllbleItmMain.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { caBllbleItmMainApi } = convergentInvoicingBillableItemService()
+const resultPromise = caBllbleItmMainApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

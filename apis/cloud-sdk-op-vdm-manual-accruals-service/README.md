@@ -4,9 +4,10 @@ This package contains the OData VDM for the Manual Accruals Service.
 
 ## Usage Example
 ```
-import { MnlAccrsAccrSubobjItem } from '@sap/cloud-sdk-op-vdm-manual-accruals-service';
+import { manualAccrualsService } from '@sap/cloud-sdk-op-vdm-manual-accruals-service';
 
-const resultPromise = MnlAccrsAccrSubobjItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { mnlAccrsAccrSubobjItemApi } = manualAccrualsService()
+const resultPromise = mnlAccrsAccrSubobjItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

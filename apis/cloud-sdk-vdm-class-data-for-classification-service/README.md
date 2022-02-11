@@ -4,9 +4,10 @@ This package contains the OData VDM for the Class Data For Classification Servic
 
 ## Usage Example
 ```
-import { ClfnClassForKeyDate } from '@sap/cloud-sdk-vdm-class-data-for-classification-service';
+import { classDataForClassificationService } from '@sap/cloud-sdk-vdm-class-data-for-classification-service';
 
-const resultPromise = ClfnClassForKeyDate.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { clfnClassForKeyDateApi } = classDataForClassificationService()
+const resultPromise = clfnClassForKeyDateApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

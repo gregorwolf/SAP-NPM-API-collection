@@ -4,9 +4,10 @@ This package contains the OData VDM for the Supplier Invoice Process Service of 
 
 ## Usage Example
 ```
-import { SupplierInvoice } from '@sap/cloud-sdk-vdm-supplier-invoice-process-service';
+import { supplierInvoiceProcessService } from '@sap/cloud-sdk-vdm-supplier-invoice-process-service';
 
-const resultPromise = SupplierInvoice.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { supplierInvoiceApi } = supplierInvoiceProcessService()
+const resultPromise = supplierInvoiceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

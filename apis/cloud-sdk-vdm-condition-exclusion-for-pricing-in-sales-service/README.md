@@ -4,9 +4,10 @@ This package contains the OData VDM for the Condition Exclusion For Pricing In S
 
 ## Usage Example
 ```
-import { SlsPrcgCndnExclusionGroup } from '@sap/cloud-sdk-vdm-condition-exclusion-for-pricing-in-sales-service';
+import { conditionExclusionForPricingInSalesService } from '@sap/cloud-sdk-vdm-condition-exclusion-for-pricing-in-sales-service';
 
-const resultPromise = SlsPrcgCndnExclusionGroup.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { slsPrcgCndnExclusionGroupApi } = conditionExclusionForPricingInSalesService()
+const resultPromise = slsPrcgCndnExclusionGroupApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

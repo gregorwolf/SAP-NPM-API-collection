@@ -4,9 +4,10 @@ This package contains the OData VDM for the Quality Info Record Service.
 
 ## Usage Example
 ```
-import { QualityInProcurement } from '@sap/cloud-sdk-op-vdm-quality-info-record-service';
+import { qualityInfoRecordService } from '@sap/cloud-sdk-op-vdm-quality-info-record-service';
 
-const resultPromise = QualityInProcurement.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { qualityInProcurementApi } = qualityInfoRecordService()
+const resultPromise = qualityInProcurementApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

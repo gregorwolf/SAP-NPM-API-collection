@@ -4,9 +4,10 @@ This package contains the OData VDM for the Manage User Defined Criteria Service
 
 ## Usage Example
 ```
-import { SuplrEvalUserDefinedCriterion } from '@sap/cloud-sdk-vdm-manage-user-defined-criteria-service';
+import { manageUserDefinedCriteriaService } from '@sap/cloud-sdk-vdm-manage-user-defined-criteria-service';
 
-const resultPromise = SuplrEvalUserDefinedCriterion.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { suplrEvalUserDefinedCriterionApi } = manageUserDefinedCriteriaService()
+const resultPromise = suplrEvalUserDefinedCriterionApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

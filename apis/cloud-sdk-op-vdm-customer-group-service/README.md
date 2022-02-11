@@ -4,9 +4,10 @@ This package contains the OData VDM for the Customer Group Service.
 
 ## Usage Example
 ```
-import { CustomerGroup } from '@sap/cloud-sdk-op-vdm-customer-group-service';
+import { customerGroupService } from '@sap/cloud-sdk-op-vdm-customer-group-service';
 
-const resultPromise = CustomerGroup.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { customerGroupApi } = customerGroupService()
+const resultPromise = customerGroupApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

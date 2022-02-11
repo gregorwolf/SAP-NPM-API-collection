@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchasing Category Service of SAP S
 
 ## Usage Example
 ```
-import { PurgCat } from '@sap/cloud-sdk-vdm-purchasing-category-service';
+import { purchasingCategoryService } from '@sap/cloud-sdk-vdm-purchasing-category-service';
 
-const resultPromise = PurgCat.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purgCatApi } = purchasingCategoryService()
+const resultPromise = purgCatApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Transaction Type Service of 
 
 ## Usage Example
 ```
-import { ServiceDocumentType } from '@sap/cloud-sdk-vdm-service-transaction-type-service';
+import { serviceTransactionTypeService } from '@sap/cloud-sdk-vdm-service-transaction-type-service';
 
-const resultPromise = ServiceDocumentType.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { serviceDocumentTypeApi } = serviceTransactionTypeService()
+const resultPromise = serviceDocumentTypeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { DistributionChannel } from '@sap/cloud-sdk-vdm-distribution-channel-service';
+import { distributionChannelService } from '@sap/cloud-sdk-vdm-distribution-channel-service';
 
-const resultPromise = DistributionChannel.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { distributionChannelApi } = distributionChannelService()
+const resultPromise = distributionChannelApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

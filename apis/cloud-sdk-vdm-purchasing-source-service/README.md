@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchasing Source Service of SAP S/4
 
 ## Usage Example
 ```
-import { PurchasingSource } from '@sap/cloud-sdk-vdm-purchasing-source-service';
+import { purchasingSourceService } from '@sap/cloud-sdk-vdm-purchasing-source-service';
 
-const resultPromise = PurchasingSource.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purchasingSourceApi } = purchasingSourceService()
+const resultPromise = purchasingSourceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

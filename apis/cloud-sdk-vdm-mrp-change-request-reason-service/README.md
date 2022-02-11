@@ -4,9 +4,10 @@ This package contains the OData VDM for the Mrp Change Request Reason Service of
 
 ## Usage Example
 ```
-import { MrpChangeRequestReason } from '@sap/cloud-sdk-vdm-mrp-change-request-reason-service';
+import { mrpChangeRequestReasonService } from '@sap/cloud-sdk-vdm-mrp-change-request-reason-service';
 
-const resultPromise = MrpChangeRequestReason.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { mrpChangeRequestReasonApi } = mrpChangeRequestReasonService()
+const resultPromise = mrpChangeRequestReasonApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

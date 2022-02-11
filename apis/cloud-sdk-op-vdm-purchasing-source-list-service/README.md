@@ -4,9 +4,10 @@ This package contains the OData VDM for the Purchasing Source List Service.
 
 ## Usage Example
 ```
-import { PurchasingSource } from '@sap/cloud-sdk-op-vdm-purchasing-source-list-service';
+import { purchasingSourceListService } from '@sap/cloud-sdk-op-vdm-purchasing-source-list-service';
 
-const resultPromise = PurchasingSource.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { purchasingSourceApi } = purchasingSourceListService()
+const resultPromise = purchasingSourceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

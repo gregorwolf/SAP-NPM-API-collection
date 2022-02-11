@@ -4,9 +4,10 @@ This package contains the OData VDM for the Statistical Key Figure Service of SA
 
 ## Usage Example
 ```
-import { StatisticalKeyFigure } from '@sap/cloud-sdk-vdm-statistical-key-figure-service';
+import { statisticalKeyFigureService } from '@sap/cloud-sdk-vdm-statistical-key-figure-service';
 
-const resultPromise = StatisticalKeyFigure.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { statisticalKeyFigureApi } = statisticalKeyFigureService()
+const resultPromise = statisticalKeyFigureApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

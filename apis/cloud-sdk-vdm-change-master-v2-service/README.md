@@ -4,9 +4,10 @@ This package contains the OData VDM for the Change Master V2 Service of SAP S/4H
 
 ## Usage Example
 ```
-import { ChangeMaster } from '@sap/cloud-sdk-vdm-change-master-v2-service';
+import { changeMasterV2Service } from '@sap/cloud-sdk-vdm-change-master-v2-service';
 
-const resultPromise = ChangeMaster.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { changeMasterApi } = changeMasterV2Service()
+const resultPromise = changeMasterApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

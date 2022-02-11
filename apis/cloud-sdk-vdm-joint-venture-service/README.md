@@ -4,9 +4,10 @@ This package contains the OData VDM for the Joint Venture Service of SAP S/4HANA
 
 ## Usage Example
 ```
-import { JointVenture } from '@sap/cloud-sdk-vdm-joint-venture-service';
+import { jointVentureService } from '@sap/cloud-sdk-vdm-joint-venture-service';
 
-const resultPromise = JointVenture.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { jointVentureApi } = jointVentureService()
+const resultPromise = jointVentureApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

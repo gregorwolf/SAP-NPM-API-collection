@@ -5,9 +5,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { FuncImpReturn } from '@sap/cloud-sdk-vdm-external-job-scheduler-service';
+import { externalJobSchedulerService } from '@sap/cloud-sdk-vdm-external-job-scheduler-service';
 
-const resultPromise = FuncImpReturn.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { funcImpReturnApi } = externalJobSchedulerService()
+const resultPromise = funcImpReturnApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

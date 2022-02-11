@@ -6,9 +6,10 @@ You can find additional documentation for this service on [help.sap.com](https:/
 
 ## Usage Example
 ```
-import { GlAccountLineItem } from '@sap/cloud-sdk-vdm-glaccount-line-item-service';
+import { glaccountLineItemService } from '@sap/cloud-sdk-vdm-glaccount-line-item-service';
 
-const resultPromise = GlAccountLineItem.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { glAccountLineItemApi } = glaccountLineItemService()
+const resultPromise = glAccountLineItemApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

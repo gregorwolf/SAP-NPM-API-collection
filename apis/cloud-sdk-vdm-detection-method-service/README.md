@@ -4,9 +4,10 @@ This package contains the OData VDM for the Detection Method Service of SAP S/4H
 
 ## Usage Example
 ```
-import { MaintNotifDetCode } from '@sap/cloud-sdk-vdm-detection-method-service';
+import { detectionMethodService } from '@sap/cloud-sdk-vdm-detection-method-service';
 
-const resultPromise = MaintNotifDetCode.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { maintNotifDetCodeApi } = detectionMethodService()
+const resultPromise = maintNotifDetCodeApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

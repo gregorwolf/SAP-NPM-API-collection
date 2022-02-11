@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Scheduling Agreement Service.
 
 ## Usage Example
 ```
-import { SalesSchedgAgrmt } from '@sap/cloud-sdk-op-vdm-sales-scheduling-agreement-service';
+import { salesSchedulingAgreementService } from '@sap/cloud-sdk-op-vdm-sales-scheduling-agreement-service';
 
-const resultPromise = SalesSchedgAgrmt.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesSchedgAgrmtApi } = salesSchedulingAgreementService()
+const resultPromise = salesSchedgAgrmtApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

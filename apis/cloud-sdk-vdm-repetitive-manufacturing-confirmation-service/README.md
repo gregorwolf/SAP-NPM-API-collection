@@ -4,9 +4,10 @@ This package contains the OData VDM for the Repetitive Manufacturing Confirmatio
 
 ## Usage Example
 ```
-import { RepetitiveMfgConfirmation } from '@sap/cloud-sdk-vdm-repetitive-manufacturing-confirmation-service';
+import { repetitiveManufacturingConfirmationService } from '@sap/cloud-sdk-vdm-repetitive-manufacturing-confirmation-service';
 
-const resultPromise = RepetitiveMfgConfirmation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { repetitiveMfgConfirmationApi } = repetitiveManufacturingConfirmationService()
+const resultPromise = repetitiveMfgConfirmationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

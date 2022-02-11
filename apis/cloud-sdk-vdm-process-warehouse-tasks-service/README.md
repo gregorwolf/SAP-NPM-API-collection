@@ -4,9 +4,10 @@ This package contains the OData VDM for the Process Warehouse Tasks Service of S
 
 ## Usage Example
 ```
-import { WarehouseOrder } from '@sap/cloud-sdk-vdm-process-warehouse-tasks-service';
+import { processWarehouseTasksService } from '@sap/cloud-sdk-vdm-process-warehouse-tasks-service';
 
-const resultPromise = WarehouseOrder.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { warehouseOrderApi } = processWarehouseTasksService()
+const resultPromise = warehouseOrderApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

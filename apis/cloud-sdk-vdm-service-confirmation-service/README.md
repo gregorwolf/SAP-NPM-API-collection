@@ -4,9 +4,10 @@ This package contains the OData VDM for the Service Confirmation Service of SAP 
 
 ## Usage Example
 ```
-import { ServiceConfirmation } from '@sap/cloud-sdk-vdm-service-confirmation-service';
+import { serviceConfirmationService } from '@sap/cloud-sdk-vdm-service-confirmation-service';
 
-const resultPromise = ServiceConfirmation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { serviceConfirmationApi } = serviceConfirmationService()
+const resultPromise = serviceConfirmationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Condition Table For Pricing In Sales
 
 ## Usage Example
 ```
-import { SalesPricingConditionTable } from '@sap/cloud-sdk-vdm-condition-table-for-pricing-in-sales-service';
+import { conditionTableForPricingInSalesService } from '@sap/cloud-sdk-vdm-condition-table-for-pricing-in-sales-service';
 
-const resultPromise = SalesPricingConditionTable.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesPricingConditionTableApi } = conditionTableForPricingInSalesService()
+const resultPromise = salesPricingConditionTableApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Vms Vehicle Campaign Service.
 
 ## Usage Example
 ```
-import { VmsVehicleCampaign } from '@sap/cloud-sdk-op-vdm-vms-vehicle-campaign-service';
+import { vmsVehicleCampaignService } from '@sap/cloud-sdk-op-vdm-vms-vehicle-campaign-service';
 
-const resultPromise = VmsVehicleCampaign.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { vmsVehicleCampaignApi } = vmsVehicleCampaignService()
+const resultPromise = vmsVehicleCampaignApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

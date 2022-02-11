@@ -4,9 +4,10 @@ This package contains the OData VDM for the Sales Order Simulation Service of SA
 
 ## Usage Example
 ```
-import { SalesOrderSimulation } from '@sap/cloud-sdk-vdm-sales-order-simulation-service';
+import { salesOrderSimulationService } from '@sap/cloud-sdk-vdm-sales-order-simulation-service';
 
-const resultPromise = SalesOrderSimulation.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { salesOrderSimulationApi } = salesOrderSimulationService()
+const resultPromise = salesOrderSimulationApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 

@@ -4,9 +4,10 @@ This package contains the OData VDM for the Incoming Vat Invoice China Service o
 
 ## Usage Example
 ```
-import { Cn_TaxInputInvoice } from '@sap/cloud-sdk-vdm-incoming-vat-invoice-china-service';
+import { incomingVatInvoiceChinaService } from '@sap/cloud-sdk-vdm-incoming-vat-invoice-china-service';
 
-const resultPromise = Cn_TaxInputInvoice.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
+const { cn_TaxInputInvoiceApi } = incomingVatInvoiceChinaService()
+const resultPromise = cn_TaxInputInvoiceApi.requestBuilder().getAll().top(5).execute({ destinationName:'myDestinationName' });
 
 ```
 
