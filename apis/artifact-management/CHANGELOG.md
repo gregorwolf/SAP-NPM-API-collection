@@ -1,3 +1,8 @@
+## 1.6.1 - 17 February, 2022
+### Fixed
+* Fixed issue where new roles were not generated on cf for subsequent deployments.
+* Fixed deployment issue related to changes in generation of xs-security.json by cds.
+
 ## 1.6.0 - 10 February, 2022
 ### Added
 * Added immutability/read-only view to Project-API result object data structures.

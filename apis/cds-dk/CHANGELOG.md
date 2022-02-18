@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.8.1 - 2022-02-15
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version `1.22.0` for creating Java projects.
+
+### Fixed
+
+- Bump `follow-redirects` package to 1.14.8 (CVE-2022-0536)
+- `cds bind --exec` no command output (STDOUT) displayed on Windows.
+
 ## Version 4.8.0 - 2022-01-28
 
 ### Added

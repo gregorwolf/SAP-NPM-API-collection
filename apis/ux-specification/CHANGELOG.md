@@ -4,14 +4,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.96.3] - 2022-01-26
+## [1.96.4] - 2022-02-10
 
 ### Added
 
 - OData V2:
-  - `exportType` property can now be configured to specify the type of export to be used in the SmartTable control
-  - OP: `statePreservationMode` property can now be configured to allowing applications to configure persistence mode in an object page
-  - OP: `draftDiscardConfirmationSettings` property can now be configured allowing applications to turn off the discard draft confirmation popup in various scenarios
+  - Support default date range `defaultValue` property on filter fields
+  - LR/ALP: Support column and footer action properties
+
+- OData V4:
+  - Support of custom columns  
 
 ### Changed
 
@@ -20,6 +22,23 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Deprecated
 
 ### Fixed
+
+- OData V2:
+  - OP: Fix generation of flexChanges for sections with or without ID in annotations
+  - Fix issues with sync logic in case of sub object page
+
+### Quality
+
+- Unnecessary js files removed from bundle
+
+## [1.96.3] - 2022-01-26
+
+### Added
+
+- OData V2:
+  - `exportType` property can now be configured to specify the type of export to be used in the SmartTable control
+  - OP: `statePreservationMode` property can now be configured to allowing applications to configure persistence mode in an object page
+  - OP: `draftDiscardConfirmationSettings` property can now be configured allowing applications to turn off the discard draft confirmation popup in various scenarios
 
 ### Quality
 

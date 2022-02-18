@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.0] - 2022-02-17
+#### Added
+- Added support for editing saved SAP systems in VSCode by selecting the saved system from the SAP Systems list and updating as needed.  Users must test the connection to validate it connects before saving.
+- Added support for matching the suggested minimum SAPUI5 version with the backend ABAP system, where applicable.  The SAPUI5 version dropdown will now default to the same version of SAPUI5 if the data source provided is an ABAP backend and the SAPUI5 version can be determined. 
+
+#### Changed
+- Removed the `Latest` label from the list of minimum SAPUI5 versions.  The version of SAPUI5 choosen during generation will now be a fixed version from that selected.
+- Generated applications with a OData V2 data source now use an external mockserver for mock support, rather than the SAPUI5 client side mock.
+
+### Fixed
+- The generated `README.md` file now correctly details if the application was generated with the Fiori elements or Fiori freestlye generator.
+
 ## [1.4.7] - 2022-02-03
 #### Changed
 - Updated the `Analytical List Page` floorplan, when used with an V4 OData service, to now only support version 1.90 and above of SAPUI5.  This enables the generated project to adhere to the latest recommended configuration.

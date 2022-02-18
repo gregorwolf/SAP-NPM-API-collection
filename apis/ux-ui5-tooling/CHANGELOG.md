@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.0] - 2022-02-10
+### Fixed
+- Fixed an issue with reading and comparing UI5 versions
+- Fixed an issue with previewing applications using project based destination
+
+### Changed
+- Requests are not forwarded anymore to next available middleware if UI5 proxy returns 404
+
 ## [1.4.7] - 2022-01-27
 ### Changed
 - Forward request to next available middleware if UI5 proxy response returns 404

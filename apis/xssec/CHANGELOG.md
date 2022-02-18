@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.2.13 - 2022-02-15
+- hofix in keycache implementation if you turn off to use the cache
+- upgrade to newer axios library
 
 ## 3.2.12 - 2022-01-19
 - add support for UAA system plan 

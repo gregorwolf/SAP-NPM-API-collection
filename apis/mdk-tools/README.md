@@ -52,7 +52,7 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
 
     - filters
 
-        Project folders/files need to be filtered in bundle procees. The builtin filters are:
+        Project folders/files need to be filtered in bundle procees. The built-in filters are:
         - /Web/
 
         ```bash
