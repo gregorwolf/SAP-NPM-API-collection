@@ -1,3 +1,9 @@
+## 4.3.0
+Features:
+- allow passing arbitrary parameters to @sap/hana-client
+- use @sap/hdi@4.2.0
+- use @sap/hana-client@2.10.20
+
 ## 4.2.3
 Features:
 - allow pattern negations in the undeploy.json file

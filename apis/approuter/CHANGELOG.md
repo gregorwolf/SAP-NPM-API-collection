@@ -5,6 +5,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.13.1 - 2022-03-01
+
+### Fixed
+- Add check for correlationId header existence in getCorrelationId
+
+## 10.13.0 -  2022-02-27
+
+### Added 
+- Support multiple zoneIds in same IAS tenant
+
+### Fixed
+- Avoid reading uaa property from a null object
+- Improve error handling in exchange token
+
+### Updated dependencies
+- deps: urijs@1.19.8
+- deps: axios@0.26.0
+
 ## 10.12.0 - 2022-01-30
 
 ### Added 

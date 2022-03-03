@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 3.3.1 - 2022-02-16
+
+### Updated
+- Updated xssec to v3.2.13
+
 ## 3.3.0 - 2022-02-04
 
 ### Added
@@ -15,9 +20,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Updated debug package to v4.3.3
 
 ## 3.2.1 - 2022-01-20
-
-### Added
-- **Service Manager.** Added token caching.
 
 ### Updated
 - `node-fetch` version updated to v2.6.7.

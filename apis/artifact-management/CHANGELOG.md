@@ -1,7 +1,9 @@
-## 1.6.1 - 17 February, 2022
+## 1.7.0 - 24 February, 2022
+### Added
+* Added support for Personal Data Manager.
 ### Fixed
-* Fixed issue where new roles were not generated on cf for subsequent deployments.
-* Fixed deployment issue related to changes in generation of xs-security.json by cds.
+* Fixed Deploy failure issue due to missing xsappname from xs-security.json.
+* Fixed issue with generating new role on Cloud Foundry if the project is already deployed.
 
 ## 1.6.0 - 10 February, 2022
 ### Added
