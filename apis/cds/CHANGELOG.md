@@ -4,6 +4,45 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.8.3 - 2022-03-01
+
+### Fixed
+
+- `queries` property for application defined destinations of remote services
+- `cds serve --watch` no longer fails if `@sap/cds-dk` is installed only globally
+- `cds serve` during development longer redirects URLs with similar path segments from different services, like `/service/one` and `/service`
+- `cds deploy --to sqlite` now ignores a `_texts.csv` file again if there is a language-specific file like `_texts_en.csv` present
+- Using logical blocks (surrounded with `(` and `)`) in ON-conditions of unmanaged associations and compositions
+- Skip "with parameters" clause if no order by clause or all columns in the order by clause are not strings when using parametrized views on hana
+- Limited support for binary data in OData
+  + Using of `base64` string values in `WHERE IN` on hana
+  + `base64url` values in `@odata.context` annotation
+- `cds.context` is set in GraphQL adapter
+- Using payloads with `@odata.type` annotating primitive properties no longer crashes the application. `#` in type value may be ommitted. Example:
+  ```json
+  {
+    "ID": 201,
+    "title@odata.type": "#String",
+    "title": "Wuthering Heights",
+    "stock@odata.type": "Int32",
+    "stock": 12
+  }
+  ```
+- Unicode support for i18n bundles
+
+## Version 5.8.2 - 2022-02-22
+
+### Fixed
+
+- Crash if error does not have a stack in kibana logging
+- Allow short names for bound operations in odata-server
+- Performance issue during deep operations
+- Resolving views with parameters
+- Expanding association-to-many within draft union scenario
+- Erroneous invalidation of deep `INSERT|UPDATE|DELETE` operations if root entity has managed to-one association to non-writable view
+- Handling of falsy results when sending requests to remote services
+- Resolving foreign key propagations for views with union
+
 ## Version 5.8.1 - 2022-02-11
 
 ### Fixed
@@ -23,7 +62,7 @@
 
 ### Added
 
-- Custom `server.js` don't have to export `cds.server` anymore -> we use that by default now. 
+- Custom `server.js` don't have to export `cds.server` anymore -> we use that by default now.
 - In `cds.requires`: Support to replace primitive values with objects
 - Support filter functions on renamed properties from external service
 - Results of database queries use `big.js` for values of type `cds.Decimal` and `cds.Integer64` if enabled via `cds.env.features.bigjs`
@@ -36,9 +75,6 @@
 - Restrict access to all services via `cds.env.requires.auth.restrict_all_services = true`
   + That is, all unrestricted services (i.e., w/o own `@requires`) are treated as having `@requires: 'authenticated-user'`
 - Threshold for automatically sending GET requests as `$batch` (beta, cf. @sap/cds@5.6.0) can be configured per remote service via `cds.env.requires.<srv>.max_get_url_length` (if not configured on service, the global config applies)
-- Alpha out-of-the-box support for DwC
-  + Authentication based on headers set by Jupiter router via `cds.env.requires.auth.kind = 'dwc-auth'`
-  + All DwC headers are forwarded to remote service via `cds.env.requires.<srv>.forward_dwc_headers = true`
 - Limited support for binary data in OData
   + In payloads, the binary data must be a base64 encoded string
   + In URLs, the binary data must have the following format: `binary'<url-safe base64 encoded>'`, e.g., `$filter=ID eq binary'Q0FQIE5vZGUuanM='`
@@ -90,6 +126,12 @@
 - OData V2 Remote Service (`"kind": "odata-v2"`):
   + Request data properties of types `cds.Date`, `cds.DateTime` and `cds.Timestamp` are converted accordingly to OData V2 specification
   + Response data properties of types `cds.Decimal`, `cds.DecimalFloat` (deprecated) and `cds.Integer64` are handled properly when using `Accept` header with `IEEE754Compatible=true/false` and `ExponentialDecimals=true/false` format parameters
+
+## Version 5.7.6 - 2022-02-23
+
+### Fixed
+
+- `draftActivate` action does not return children if not requested
 
 ## Version 5.7.5 - 2022-01-14
 
