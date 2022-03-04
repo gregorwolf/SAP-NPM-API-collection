@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.2.1 - 2022-02-28
+
+### Added
+- Reading K8s services now caches the results to decrease file system calls.
+- Documentation on how to disable caching for K8s Services if needed.
+
 ## 3.2.0 - 2022-01-24
 
 ### Added

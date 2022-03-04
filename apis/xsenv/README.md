@@ -347,9 +347,10 @@ Returns all bound services that match the given criteria. Works in Cloud Foundry
 * `filter` - Service lookup criteria as described in [Service Query](#service-query)
 * _returns_ - An array of credentials objects of matching services. Empty array, if no matches found.
 
-### readServices([path])
+### readServices([path], [options])
 
 * `path` - (optional) A string containing the mount path where the secrets are located in Kubernetes. By default is "/etc/secrets/sapcp".
+* `options` - (optional) An object with options to customize behavior. Only supports field `disableCache` to disable K8s secrets caching.
 * _returns_ Returns an object where each service instance is mapped to its name. Works in Kubernetes and Cloud Foundry.
 
 For example, given this VCAP_SERVICES:

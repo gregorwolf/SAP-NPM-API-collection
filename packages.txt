@@ -1,2 +1,15 @@
-@sap/cloud-sdk-op-vdm-process-order-v2-service
-@sap/cloud-sdk-op-vdm-purchase-requisition-service
+@sap/cds-dk
+@sap/cds-lsp
+@sap/cloud-sdk-op-vdm-activity-appointment-service
+@sap/cloud-sdk-op-vdm-kanban-control-cycle-v2-service
+@sap/cloud-sdk-op-vdm-nutrient-service
+@sap/cloud-sdk-op-vdm-product-service
+@sap/cloud-sdk-vdm-characteristic-data-for-classification-service
+@sap/cloud-sdk-vdm-convergent-invoicing-billing-request-service
+@sap/cloud-sdk-vdm-service-cancellation-party-service
+@sap/generator-fiori
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-ui5-fe-mockserver-middleware
+@sap/ux-ui5-tooling
+@sap/vscode-cds
+@sap/xsenv
