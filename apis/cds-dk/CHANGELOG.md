@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.8.2 - 2022-03-07
+
+### Fixed
+- `cds import` can now capture the data for any given `EntityContainer Name` for OData V4. Earlier it only worked when the name was `EntityContainer`.
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 1.22.1 for creating Java projects.
+
 ## Version 4.8.1 - 2022-02-15
 
 ### Changed

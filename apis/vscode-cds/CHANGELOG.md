@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.5.2 - 2022-03-03
+
+### Added
+
+- new code-formatting options for `action`s and `function`s:
+  + `alignActionNames` (aligns names)
+  + `alignActionReturns` (aligns `returns` keywords)
+
+### Changed
+
+- removed obsolete code-formatting option `alignAsInElements` (calculated fields use `=` now)
+
+### Fixed
+
+- saving a `cds` file now automatically refreshes all open previews for this file
+- _Show Formatting Options Configuration_
+  + showed empty samples editor
+  + editor no longer switches to typescript
+  + no longer _save changes_ popup when closing samples editor
+  + when not opened on existing file (CDS source or .cdsprettier.json) and workspace
+    has multiple workspace folders, user has now to pick the workspace folder
+- code formatting:
+  + separate post-annotation with blank
+  + remove erroneous newlines around cardinality and filter in `select`
+  + separate projection items with newlines
+- code completion for annotations now correctly handle e.g: @aaa.| entity
+
+### Components
+- @sap/cds-lsp 5.5.5
+
+
 ## Version 4.5.1 - 2022-02-04
 
 ### Fixed

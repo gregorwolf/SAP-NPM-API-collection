@@ -6,6 +6,38 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.5.5 - 2022-03-03
+
+### Added
+
+- schema file for `cds` section in `package.json`, `.cdsrc.json` and `.cdsrc-private.json`
+
+### Fixed
+
+- code completion for annotations no longer propose `@` if inside an annotation
+
+## 5.5.4 - 2022-02-28
+
+### Added
+
+- new code-formatting options for `action`s and `function`s:
+  + `alignActionNames` (aligns names)
+  + `alignActionReturns` (aligns `returns` keywords)
+
+### Changed
+
+- removed obsolete code-formatting option `alignAsInElements` (calculated fields use `=` now)
+- textmate grammar additionally compatible with Ruby regex engine
+
+### Fixed
+
+- code formatting:
+  + separate post-annotation with blank
+  + remove erroneous newlines around cardinality and filter in `select`
+  + separate projection items with newlines
+- code completion for annotations now correctly handle e.g: @aaa.| entity
+- references for annotations: plugins now get all file indexes
+
 ## 5.5.3 - 2022-02-04
 
 ### Added
