@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.1] - 2022-02-24
+### Fixed
+- Fixed an issue with reading and comparing UI5 versions
+- Fixed an issue with previewing applications using services behind a corporate proxy
+
+### Changed
+- Build is no longer executed automatically before starting the application in an external Fiori Launchpad to accomodate custom build procedures
+
 ## [1.5.0] - 2022-02-10
 ### Fixed
 - Fixed an issue with reading and comparing UI5 versions
