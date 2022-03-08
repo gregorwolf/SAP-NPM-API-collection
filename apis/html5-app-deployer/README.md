@@ -18,9 +18,9 @@
 ## Overview
 HTML5 application deployer handles the upload of the HTML5 applications content to the HTML5 application repository.
 
-The @sap/html5-app-deployer module is consumed as a dependency in a node.js CF application.
+The @sap/html5-app-deployer module can be consumed as a dependency in a node.js CF application or as a base image in the HTML5 application image.
 
-For example:
+Here is an example of the node.js dependency:
  ```
  {
    "name": "myAppDeployer",
@@ -36,32 +36,59 @@ For example:
  }
  ```
 
+Here is an example of a Dockerfile of a base image:
+  ```
+  FROM build-milestones.common.repositories.cloud.sap/com.sap.html5.deployer/html5-app-deployer-3.1:3.1.1 
+
+  RUN sed -i -E 's/(CipherString\s*=\s*DEFAULT@SECLEVEL=)2/\11/' /etc/ssl/openssl.cnf && \
+  mkdir -p /app && \
+  chown node.node /app
+
+  # Create app directory
+  WORKDIR /app
+
+  # Bundle app source
+  COPY . .
+
+  EXPOSE 5000
+  CMD [ "npm", "start" ]
+  ```
+To login to SAP Artifactory you can use the following statement:
+  ```
+  docker login --username=<techical user> --password=<apiKey> build-milestones.common.repositories.cloud.sap
+  ```
 
 Below the root folder, the HTML5 applications deployer app can contain a "resources" folder for the static files of the HTML5 application.
-
-For example:
-```
-cf create-service html5-apps-repo app-host myApps-app-host
-```
 
 If no "resources=" tag is provided HTML5 application deployer will still try to upload files from resources folder. If no resources folder is found,the upload will fail. In the resources folder there should be one folder or one zip archive for each application that should be uploaded. 
 In each application folder/zip archive there should be two files at root level: `manifest.json` and `xs-app.json`. 
 
-For example:   
+Here is an example of the HTML5 application deployer application:   
+  ```
+  myAppsDeployer
+    + node_modules
+    - resources
+      - app1
+        index.html
+        manifest.json
+        xs-app.json
+      - app2
+        ...
+    package.json
+    manifest.yaml
    ```
-   myAppsDeployer
-     + node_modules
-     - resources
-       - app1
-         index.html
-         manifest.json
-         xs-app.json
-       - app2
-         ...
-     package.json
-     manifest.yaml
-       
-   ```
+Here is an example of the HTML5 application deployer image:
+  ```
+  myApp
+    - resources
+      - app1
+        index.html
+        manifest.json
+        xs-app.json
+      - app2
+        ...
+    Dockerfile
+  ```
 
 The manifest.json file should contain at least `sap.app.id` and `sap.app.applicationVersion.version`. 
 
@@ -71,7 +98,7 @@ The version format must be xx.xx.xx, whereas x is a digit. For example: 1.0.10
 Note that different app-host service instances cannot be used to upload applications with the same application id/name.
 
 For example (`manifest.json`):
-   ```
+```
    {
      "_version": "1.7.0",
      "sap.app": {
@@ -83,7 +110,7 @@ For example (`manifest.json`):
        }
      }
    }
-   ```
+```
 
 The `xs-app.json` file that can be used by the application router to support application routing. 
 For example:

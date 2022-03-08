@@ -4,6 +4,32 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.96.5] - 2022-02-23
+
+### Added
+
+- Metadata information `dataType` added to various places in V2 and V4 schemas
+- OData V2:
+  - display selection fields, and support date settings properties on LR/ALP
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- SonarQube code smells
+
+- OData V2:
+  - 
+
+### Quality
+
+- Unnecessary js files removed from bundle
+- Unit test enhancement to run on all platforms
+
 ## [1.96.4] - 2022-02-10
 
 ### Added

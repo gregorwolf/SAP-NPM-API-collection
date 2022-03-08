@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.0.0 - 2022-03-07
+
+### Updated dependencies
+- deps: xsenv@3.1.1
+- deps: xssec@3.2.13
+- deps: axios@0.26.0
+
+### Added
+- Switched from Request to Axios, used by request-utils
+- nodejs versions ^6.0.0 and ^8.0.0 support removed
+- nodejs version ^16.0.0 support added
+
+### Fixed
+- increased request options content and body length
+
 ## 3.2.0 - 2021-10-24
 
 ### Added
