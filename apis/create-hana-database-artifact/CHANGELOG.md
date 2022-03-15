@@ -1,3 +1,9 @@
+## 1.9.0
+
+### Fixes
+- Fixed a typo in the settings description
+- Adjustments for the changed publisher of the SAP HANA Database Explorer extension
+
 ## 1.8.0
 
 ### New Features

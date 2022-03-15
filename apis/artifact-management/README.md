@@ -475,6 +475,78 @@ resources:
 
 ```
 
+---
+
+## Capability to generate MTA yaml and MTAD yaml
+###### Method
+`buildV2(options? : MtaGeneratorSettings, logger? : IChildLogger) : Promise<void>;`
+###### Description
+Generate manifest for the project and the modules specified in .status_tracker file and create a `mta.yaml` and `mtad.yaml` file.
+###### Parameters
+- options: (Optional) `MtaGeneratorSettings` build options.
+- logger: (Optional) An instance of IChildLogger which can be implemented by consumers of this library.
+###### returns
+- `Promise<void>`
+###### Example
+```
+const api = new ProjectImpl(projectPath);
+await api.buildV2();
+```
+###### CLI
+```
+dev-project buildV2  <my-application-folder-root absolute path> 
+```
+###### Sample Output
+```
+_schema-version: '3.1'
+ID: DemoProject
+version: 1.0.0
+description: A simple CAP project.
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - bash -c "cds compile srv --to xsuaa > xs-security.json"
+    - builder: custom
+      commands:
+        - npm install --production
+        - >-
+          bash -c "cds -v 2>/dev/null >/dev/null || npm install --no-save
+          @sap/cds-dk"
+        - npx cds build --production
+modules:
+  - name: DemoProject-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm
+      ignore:
+        - node_modules
+    requires:
+      - name: DemoProject-service-uaa
+      - name: DemoProject-service-db
+    ...
+    ...
+    ...
+
+resources:
+  - type: org.cloudfoundry.managed-service
+    name: DemoProject-service-uaa
+    parameters:
+      service: xsuaa
+      service-plan: application
+      service-name: DemoProject-uaa
+      path: xs-security.json
+    ...
+    ...
+    ...
+
+```
+
 #### Get MTA Manifest content
 ###### Method
 `getManifest(logger? : IChildLogger) : Promise<any>;`
@@ -539,6 +611,28 @@ await api.deploy();
 Build and deploy in one step
 ```
 dev-project deploy  <my-application-folder-root absolute path> 
+```
+
+---
+
+## Deployment of MTAR to Cloud Foundry
+###### Method
+`deployV2(logger? : IChildLogger) : Promise<void>;`
+###### Description
+Generate the `<app-name>.mtar` file based on contents of .status_tracker file and deploy to currently targeted CF space.
+###### Parameters
+- logger: (Optional) An instance of IChildLogger which can be implemented by consumers of this library.
+###### returns
+- `Promise<void>`
+###### Example
+```
+const api = new ProjectImpl(projectPath);
+await api.deployV2();
+```
+###### CLI
+Build and deploy in one step
+```
+dev-project deployV2  <my-application-folder-root absolute path> 
 ```
 
 ---

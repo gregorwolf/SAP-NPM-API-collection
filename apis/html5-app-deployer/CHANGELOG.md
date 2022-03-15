@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.0.1 - 2022-03-08
+
+### Fixed
+- Vulnerability issues
+
 ## 4.0.0 - 2022-03-07
 
 ### Updated dependencies

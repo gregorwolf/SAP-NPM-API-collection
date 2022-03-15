@@ -1,3 +1,11 @@
+## 1.8.0
+
+### New Features
+- Parameter mappings can be managed when replacing a data source
+
+### Fixes
+- Object types are displayed consistently in the "Add Data Source" dialog
+
 ## 1.7.1
 
 ### Fixes

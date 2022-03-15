@@ -5,12 +5,36 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.14.0 - 2022-03-15
+
+### Added
+- Auto-Pipeline for ioredis support
+
+### Fixed
+- web sockets fixed status code
+- IAS logout page redirect
+- convert environment variable EXTERNAL_REVERSE_PROXY to boolean type
+
+### Updated dependencies
+- bluebird removed
+
+## 10.13.2 - 2022-03-08
+
+### Fixed
+- Change log level to info for missing host destination
+- Null object error for user property
+
+### Updated dependencies
+- deps: urijs@1.19.10
+- deps: @sap/audit-logging@5.5.1
+- deps: @sap/xsenv@3.2.1
+
 ## 10.13.1 - 2022-03-01
 
 ### Fixed
 - Add check for correlationId header existence in getCorrelationId
 
-## 10.13.0 -  2022-02-27
+## 10.13.0 - 2022-02-27
 
 ### Added 
 - Support multiple zoneIds in same IAS tenant

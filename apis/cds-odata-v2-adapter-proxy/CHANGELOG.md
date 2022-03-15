@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.8.11 - 2002-03-11
+
+### Fixed
+
+- Fix for `falsy` values during data type conversion for functions and actions
+- Add OData V2 links via link providers to HTML index page
+
 ## Version 1.8.10 - 2022-03-01
 
 ### Fixed

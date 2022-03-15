@@ -12,10 +12,10 @@ The SAP Graph Command Line Tool allows users with the role of _SAP_Graph_Key_Use
 npm install -g @sap/graph-toolkit
 ```
 
-or for a specific version (e.g. 3.0.3)
+or for a specific version (e.g. 3.0.5)
 
 ```sh
-npm install -g @sap/graph-toolkit@3.0.3
+npm install -g @sap/graph-toolkit@3.0.5
 ```
 
 Test your installation with
@@ -27,7 +27,7 @@ graphctl --version
 For this example, you should see the output
 
 ```sh
-3.0.3
+3.0.5
 ```
 
 ## Usage

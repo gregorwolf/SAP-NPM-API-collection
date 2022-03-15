@@ -1,3 +1,17 @@
+## 1.6.0
+
+### New Features
+- JSON artifacts provide tag descriptions
+- JSON syntax validation for hdbtabledata and hdblogicalschemaconfig files
+
+### Fixes
+- Adjustments for the changed publisher of the SAP HANA Database Explorer extension
+
+## 1.5.0
+
+### Fixes
+- Add global object privileges to hdbrole JSON validation
+
 ## 1.4.0
 
 ### Fixes

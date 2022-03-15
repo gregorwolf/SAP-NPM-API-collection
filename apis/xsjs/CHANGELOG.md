@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.5.4"></a>
+## 6.5.4 - 2022-03-11
+
+### Added
+- Added support for WebEntityRequest creation via .create() on $.web.WebRequest.entities.
+
+<a name="6.5.3"></a>
+## 6.5.3 - 2022-03-08
+
+### Fixed
+- Update _@sap/audit-logging_ to v5.0.0
+- Update _@sap/xssec_ to v3.2.13
+
 <a name="6.5.2"></a>
 ## 6.5.2 - 2022-02-25
 

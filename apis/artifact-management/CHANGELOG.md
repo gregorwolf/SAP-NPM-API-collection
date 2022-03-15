@@ -1,3 +1,13 @@
+## 1.8.0 - 10 March, 2022
+### Added
+* Added support for Delta-build.
+* Added support for Delta-deploy.
+### Fixed
+* Fixed Deploy failure issue when MDK Task UI app uses Document FormCell control.
+* Fixed issue where wrong MDK display name was returned to homepage.
+* Fixed issue where incorrect description of role is added to mta.yaml.
+* Fixed Deploy failure issue if Role Collection already exists in this subaccount.
+
 ## 1.7.0 - 24 February, 2022
 ### Added
 * Added support for Personal Data Manager.

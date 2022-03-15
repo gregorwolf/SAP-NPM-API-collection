@@ -6,10 +6,34 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+
+
+## [1.6.4] - 2022-03-08
+
+### Fixed
+
+- Add new `FsUtil` api methods.
+
+## [1.6.3] - 2022-02-28
+
+- Technical release.
+
+## [1.6.2] - 2022-02-28
+
+### Changed
+- Update `yeoman-generator` dependency.
+
+## [1.6.1] - 2022-02-04
+
+### Fixed
+- Various bug fixes
+
 ## [1.6.0] - 2021-09-20
+
 ### Changed
 - Consume latest version of `@sap-devx/yeoman-ui-types`.
-- Consume latest version of `yeomand-generator`.
+- Consume latest version of `yeoman-generator`.
 
 ### Added
 - New log label `[cds]` for log output.

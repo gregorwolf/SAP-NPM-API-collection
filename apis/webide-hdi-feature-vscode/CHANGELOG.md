@@ -1,3 +1,16 @@
+## 1.9.0
+
+### New Features
+- The data preview can show hierarchies
+- Parameter mappings can be managed when replacing a data source
+
+### Fixes
+- The replace data source dialog contained unexpected steps
+- A user-friendly message is shown if a connection to Cloud Foundry cannot be established
+- The data type of count columns is displayed correctly
+- The synonym editor did not fill-in schema name when using target container service
+- The calculation view editor details pane shows content when more than 3 editors are open
+
 ## 1.8.2
 
 ### Fixes

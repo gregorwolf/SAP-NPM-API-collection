@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.5.3 - 2022-03-14
+
+### Fixed
+- Provisioning parameters for the container creation can now also be set exclusively for the `__META__` container via cds environment `mtx.provisioning.metadatacontainer` or environment variable `CDS_MTX_PROVISIONING_METADATACONTAINER`. Tenant containers are not affected by that cds environment.
+- Configuration parameters for the `@sap/instance-manager` module can now be passes using cds environment `mtx.provisioning.instancemanageroptions` or environment variable `CDS_MTX_PROVISIONING_INSTANCEMANAGEROPTIONS`. See also [@sap/instance-manager](https://www.npmjs.com/package/@sap/instance-manager).
+- Upgrade calls for non-existing tenants do no longer create orphan HDI containers
+- More robust handling of inconsistent HDI container having no tenant id (error "TypeError: Cannot read property 'toLowerCase' of undefined")
+
 ## Version 2.5.2 - 2022-01-26
 
 ### Added
