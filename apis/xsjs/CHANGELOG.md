@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.5.5"></a>
+## 6.5.5 - 2022-03-17
+
+### Added
+- Support for multipart request handling in Client.
+
 <a name="6.5.4"></a>
 ## 6.5.4 - 2022-03-11
 

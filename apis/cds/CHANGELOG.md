@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.8.4 - 2022-03-17
+
+### Fixed
+
+- `UPDATE` singleton entity does not require to provide singleton keys in a payload
+- CQN queries with operator expressions (`xpr`) in ON-conditions of unmanaged associations and compositions
+
 ## Version 5.8.3 - 2022-03-01
 
 ### Fixed
