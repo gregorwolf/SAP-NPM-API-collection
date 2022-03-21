@@ -68,8 +68,7 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
 
 - Deployer
 
-    You can deploy MDK metadata project directly to SAP Business Technology Platform (BTP) Cloud Foundry environment.
-
+    You can deploy MDK metadata project directly to SAP Business Technology Platform (BTP) Cloud Foundry and NEO environment.
     - Deploy to Mobile Services on Cloud Foundry to run it as a mobile application
 
         It bundles MDK metadata project, uploads to Mobile Services and publishes it.
@@ -92,6 +91,20 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         mdk deploy --target mobile --name "com.mdk.myapp" --zip Your-MDK-bundle-zip-file
         ```
 
+    - Deploy to Mobile Services on NEO to run it as a mobile application    
+        - Prerequisites
+            - NEO Mobile Services Admin API URL
+            - Admin user name and password
+        ```bash
+            mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --neo 
+        ```
+        The above example prompts user password input, reads adminApi and user from .project.json, if can't find them, then prompts user input. 
+
+        ```bash
+            mdk deploy --target mobile --name "com.mdk.myapp" --neo --adminApi YourAdminAPI --user YourUserName --pwd YourPassword
+        ```
+        The above example starts deploy without prompts.
+
     - Deploy to HTML5 repository on Cloud Foundry to run it as web application
 
         It bundles MDK metadata project, builds it to MTA project and deploys to HTML5 repository.
@@ -103,9 +116,10 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         mdk deploy --target cf --name "MyWebApplication"
         mdk deploy --target cf --name "MyWebApplication" --project /path/to/Your-MDK-metadata-project 
         ```
+        
 - Migrator
 
-    Migrate the MDK project to the latest schema version including metadata files and script files.
+    Migrate the MDK project to the latest schema version.
 
     The option '--preview' is only used to list all files that need to be migrated but not to do a real migration.
     ```bash
@@ -113,27 +127,7 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
     mdk migrate --project /path/to/Your-MDK-metadata-project --preview
     ```
 
-    If you want to migrate metadata files only (not include script files), use '--uncheck-script' option:
-    ```bash
-    mdk migrate --project /path/to/Your-MDK-metadata-project --uncheck-script
-    ```
-
     Use 'log-file' option output the logs to a file (no need to create the log file firstly, it will be generated automatically):
     ```bash
     mdk migrate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt
     ```
-
-    - Migrate script files
-    
-        Only migrate script files (file extension is .ts, .js, or .json), and not include the metadata files:
-        ```bash
-        mdk migrate-script -s /path/to/Your-MDK-metadata-project
-        ```
-        You can also use '--help' option to check all supported options:
-        ```bash
-        mdk migrate-script --help
-        ```
-        Or
-        ```bash
-        mdk migrate-script -h
-        ```

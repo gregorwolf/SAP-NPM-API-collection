@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.2] - 2022-03-17
+### Fixed
+- Fixed invalid xs-security.json file location when using generator in non-interactive mode for CAP projects.
+- Fixed launch configurations in VSCode when the Fiori project is generated inside an MTA subfolder.
+- Fixed bug where App Router configuration needed to be added to an MTA.yaml file before Fiori deployment configuration.
+- Fixed issue with deployment errors containing longtext messages that did not have the associated URL clickable.
+
 ## [1.5.1] - 2022-03-03
 #### Added
 - Added warning during deployment if deploying to an ABAP system that uses a lower version of SAPUI5 than that specified as the minimum SAPUI5 version in the SAP Fiori project being deployed.

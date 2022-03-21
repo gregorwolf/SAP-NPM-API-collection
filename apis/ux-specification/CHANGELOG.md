@@ -4,6 +4,35 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.96.6] - 2022-02-09
+
+### Added
+
+- OData V2:
+  - visible property is now also available for facets without annotation Id
+
+- OData V4:
+  - Support of progress, rating and microchart header facets
+  - Version increase for "fe-fpm-writer" from "0.4.0" to "0.5.0"
+  - Return "fpmWriter" API version - current version "1"
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V2:
+  - Creation of new flexChanges now considers resolved Id from pom.xml
+- OData V4:
+  - Fix overwriting of manifest page id in case of different page key
+
+### Quality
+
+- removed unused dev dependency to `http-server`
+
 ## [1.96.5] - 2022-02-23
 
 ### Added
@@ -21,9 +50,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Fixed
 
 - SonarQube code smells
-
-- OData V2:
-  - 
 
 ### Quality
 

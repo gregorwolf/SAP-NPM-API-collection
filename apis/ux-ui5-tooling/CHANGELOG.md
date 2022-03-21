@@ -2,6 +2,12 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.5.2] - 2022-03-10
+### Fixed
+- Fixed an issue with the validation of SAPUI5 snapshot versions when starting developer variant creation
+
+### Changed
+- If a port is explictly defined when previewing the application, then this port is not automatically changed, if it is occupied
 
 ## [1.5.1] - 2022-02-24
 ### Fixed

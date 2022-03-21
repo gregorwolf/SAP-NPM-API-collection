@@ -1,3 +1,6 @@
+## 1.8.1 - 17 March, 2022
+### Fixed
+* Duplicate MDK UI apps fixed.
 ## 1.8.0 - 10 March, 2022
 ### Added
 * Added support for Delta-build.

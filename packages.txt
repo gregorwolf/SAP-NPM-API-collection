@@ -1,5 +1,12 @@
-@sap/cds
-@sap/cloud-sdk-vdm-business-area-service
-@sap/cloud-sdk-vdm-product-master-data-including-classification-service
-@sap/cloud-sdk-vdm-product-substitution-control-service
-@sap/xsjs
+@sap/artifact-management
+@sap/artifact-management-base
+@sap/artifact-management-base-types
+@sap/artifact-management-types
+@sap/cloud-sdk-vdm-external-job-scheduler-service
+@sap/generator-fiori
+@sap/hana-client
+@sap/mdk-tools
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-fe-mockserver-middleware
+@sap/ux-ui5-tooling
