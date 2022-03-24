@@ -25,7 +25,6 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
 - [Usage](#usage)
   * [Create a simple service broker](#create-a-simple-service-broker)
     + [Prerequisites](#prerequisites)
-    + [Configure npm registry](#configure-npm-registry)
     + [Create a Node.js application](#create-a-nodejs-application)
     + [Add the Service Broker Framework](#add-the-service-broker-framework)
     + [Add the start command](#add-the-start-command)
@@ -132,12 +131,6 @@ You need the following:
 - [Node.js](https://nodejs.org) v10 or later
 - Cloud Foundry [CLI](https://github.com/cloudfoundry/cli#downloads)
 - Access to a Cloud Foundry installation where you can log in via CLI and push applications
-
-#### Configure npm registry
-```sh
-npm config set @sap:registry https://npm.sap.com
-```
-You need to do this only once.
 
 #### Create a Node.js application
 Create a new directory and run the following command in it:
@@ -1687,6 +1680,7 @@ SBF performs no additional processing for this operation.
 
 **Note:** Implementing `onFetchInstanceParams` is not mandatory, but we recommend that you implement it together with the [onProvision hook](#onprovisionparams-callback),which is used to store parameters (SBF doesn't handle parameters' storage). If this hook isn't implemented, SBF returns status 501 (Not Implemented).
 
+**Note:** The OSB specification defines the expected response body for this request. Please review it [here](https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#fetching-a-service-instance). For instance, the response body expects a `parameters` object, which is what CF is looking for as an OSB platform.
 
 #### `onBind(params, callback)`
 Called when the broker receives a *bind* request.

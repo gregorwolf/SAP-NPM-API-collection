@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.14.2 -  2022-03-23
+
+### Updated dependencies
+- deps: node-forge@1.3.0
+
+## 10.14.1 -  2022-03-23
+
+### Fixed
+- Cookie addition in decrypt cookies and check in merge cookies
+- Improve destination service resilience in SaaS Approuter
+
 ## 10.14.0 - 2022-03-15
 
 ### Added

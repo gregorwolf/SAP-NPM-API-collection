@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.5.2 - 2022-03-22
+
+### Updated
+- Remove certificate forwarding to Auditlog service.
+
 ## 5.5.1 - 2022-03-01
 
 ### Fixed
