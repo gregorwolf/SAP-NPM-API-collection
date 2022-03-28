@@ -1,3 +1,6 @@
+## 1.9.0 - 24 March, 2022
+### Added
+* Added support to create destination to workflow instance on deploy.
 ## 1.8.1 - 17 March, 2022
 ### Fixed
 * Duplicate MDK UI apps fixed.

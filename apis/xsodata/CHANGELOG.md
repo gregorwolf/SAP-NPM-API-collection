@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.5.0] - 2022-03-22
+
+* Support of node version 16
+* Update module dependencies
+* Update of system query options and xsodata-settings help text
+* Minor changes: Error reporting
+
 ## [7.4.5] - 2021-12-15
 
 * Suppress $metadata annotation <code>sap:aggregation-role="dimension"</code> on calculation view property if it is used as description property referenced by annotation <code>sap:text</code> by another property of the calulation view. The annotation is only supressed if the corresponding xsodata-file has <code>settings</code> containing this: <code>noDimensionAnnoOnTextProperty true;</code>

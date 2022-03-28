@@ -1,6 +1,10 @@
-@sap/approuter
-@sap/audit-logging
-@sap/cloud-sdk-vdm-business-event-queue-service
-@sap/dwc-cli
-@sap/generator-cds
-@sap/sbf
+@sap/artifact-management
+@sap/artifact-management-base
+@sap/artifact-management-base-types
+@sap/artifact-management-types
+@sap/cds
+@sap/cds-compiler
+@sap/cds-foss
+@sap/eslint-plugin-cds
+@sap/hana-client
+@sap/xsodata
