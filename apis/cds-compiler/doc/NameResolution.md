@@ -22,22 +22,27 @@ others might want to [skip the introduction](#design-principles).
 
 ## Table of Contents
 
- 1. [Introduction](#introduction)
-    <br/>  –  [Background: SQL](#background-sql)
-    <br/>  –  [Background: modern programming languages](#background-modern-programming-languages)
- 2. [Design Principles](#design-principles)
- 3. [Name Resolution - the Basics](#name-resolution---the-basics)
-    <br/>  –  [Common rules](#common-rules)
-    <br/>  –  [Resolving paths](#resolving-paths)
-    <br/>  –  [Navigation environment](#navigation-environment)
- 4. [References to main artifacts](#references-to-main-artifacts)
- 5. [Values and references to elements](#values-and-references-to-elements)
-    <br/>  –  [References in queries](#references-in-queries)
-    <br/>  –  [References to sibling elements](#references-to-sibling-elements)
-    <br/>  –  [Other element references](#other-element-references)
- 6. [Paths as Annotation Values](#paths-as-annotation-values)
- 7. [Differences to HANA-CDS](#differences-to-hana-cds)
- 8. [Summary](#summary)
+<!-- toc: start -->
+
+1. [Table of Contents](#table-of-contents)
+2. [Introduction](#introduction)
+   1. [Background: SQL](#background-sql)
+   2. [Background: modern programming languages](#background-modern-programming-languages)
+3. [Design Principles](#design-principles)
+4. [Name Resolution - the Basics](#name-resolution---the-basics)
+   1. [Common rules](#common-rules)
+   2. [Resolving paths](#resolving-paths)
+   3. [Navigation environment](#navigation-environment)
+5. [References to main artifacts](#references-to-main-artifacts)
+6. [Values and references to elements](#values-and-references-to-elements)
+   1. [References in queries](#references-in-queries)
+   2. [References to sibling elements](#references-to-sibling-elements)
+   3. [Other element references](#other-element-references)
+7. [Paths as annotation values](#paths-as-annotation-values)
+8. [Differences to HANA-CDS](#differences-to-hana-cds)
+9. [Summary](#summary)
+
+<!-- toc: end -->
 
 
 ## Introduction

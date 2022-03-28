@@ -30,3 +30,29 @@ Furthermore:
   If users open the message in a terminal, it is often 80 characters wide.
   Even if that was not the case, longer lines are harder to read, so keep them
   short.
+
+## Example Structure
+
+```markdown
+# ‹message-id›
+
+Longer message text.  Some background info.
+Usually mentions the severity.
+
+## Example
+
+Code which also lead to the current message,
+with an explanation why it is problematic.
+
+## How to Fix
+
+Description of options how the issue can be fixed, using the example.
+
+## Notes on …
+
+Optional: more background info.
+
+## Related messages
+
+ - Optional: message ids for similar issues.
+```

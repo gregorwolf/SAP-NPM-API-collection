@@ -7,6 +7,101 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.13.6 - 2022-25-03
+
+### Fixed
+
+- to.hdbcds/hdi/sql: Correctly handle `localized` in conjunction with `@cds.persistence.exists`
+
+## Version 2.13.4 - 2022-22-03
+
+No changes compared to Version 2.13.0; fixes latest NPM tag
+
+## Version 2.13.2 - 2022-22-03
+
+No changes compared to Version 2.13.0; fixes latest NPM tag
+
+## Version 2.13.0 - 2022-22-03
+
+### Added
+
+- CDL syntax:
+  + Allow to `extend E:elem` and `annotate E:elem` instead of having to write deeply nested statements.
+  + Enable `default` values as part of scalar type definitions.
+  + The following `extend` syntax variants are now possible:
+    ```cds
+    extend … with elements { … }
+    extend … with definitions { … }
+    extend … with columns { … }
+    extend … with enum { … }
+    extend … with actions { … }
+    ```
+    This syntax expresses _how_ an artifact is extended instead of _what_ is extended.
+  + Using `ORDER BY` in generic functions such as SAP HANA's `first_value` is now possible.
+- Make API function `compileSources` accept CSN objects as file content
+- to.edm(x): Annotate view parameters with `@sap.parameter: mandatory` (V2) and `@Common.FieldControl: #Mandatory` (V4).
+- to.sql/hdi/hdbcds: Introduce the annotations `@sql.prepend` and `@sql.append` that allow inserting user-written SQL
+  snippets into the compiler generated content. Changes in annotations `@sql.prepend` and `@sql.append` are now reflected
+  in the output of `to.hdi.migration`. This enables CDS Build to produce `.hdbmigrationtable` files translating such model
+  changes into schema changes.
+- API: Lists of keywords for various backends are available as `to.<backend>[.<config>].keywords`, e.g. `to.sql.sqlite.keywords`.
+- for.odata/to.edm(x): The draft composition hull is now also taking into account compositions in subelements.
+
+### Changed
+
+- In query entities inside services, only auto-redirect associations and compositions
+  in the main query of the entity.
+- An element now inherits the property `notNull` from its query source (as
+  before) or its type (like it does for most other properties);
+  `notNull` is then not further propagated to its sub elements anymore.
+- A structure element inherits the property `virtual` from its query source (as
+  before), but does not further propagate `virtual` to its sub elements
+  (semantically of course, but the CSN is not cluttered with it);
+  there is a new warning if a previously `virtual` query entity
+  element is now considered to be non-virtual.
+- Do not propagate annotation value `null`.
+  The value `null` of an annotation (and `doc`) is used to stop the inheritance
+  of an annotation value.  This means than other than that, a value `null` should
+  not be handled differently to not having set that annotation.
+- In the effective CSN, the structure type is only expanded if something has changed
+  for associations: the `target` (`keys` does not change if the `target` does not change)
+  unmanaged associations as sub elements are not supported anyway.
+- In the effective CSN, “simple” type properties like `length`, `precision`,
+  `scale` and `srid` are propagated even for a propagation via type.
+- Update OData Vocabularies: 'Capabilities', 'Common', 'Core', 'UI'.
+- to.sql:
+  + For SQL dialect `hana` referential constraints are now appended
+    as `ALTER TABLE ADD CONSTRAINT` clause to the end of `schema.sql`.
+    With option `constraintsInCreateTable` constraints are rendered into the
+    `CREATE TABLE` statement.
+  + Referential constraint names are now prefixed with `c__`.
+
+### Fixed
+
+- Properly resolve references inside anonymous aspects:
+  + references starting with `$self.` made the compiler dump.
+  + a simple `$self` did  not always work as expected (it represents the entity created via the anonymous aspect).
+  + other references inside deeply nested anonymous aspects induced a compilation error.
+- compiler: `()` inside `ORDER BY` clause was not correctly set.
+- parse.cdl: References in `ORDER BY` and filters are now correctly resolved.
+- Issue error when trying to introduce managed compositions of aspects in `mixin`s
+- Issue error in all cases for type references to unmanaged associations.
+- Avoid dump when extending an illegal definition with a name starting with `cds.`.
+- to.sql/to.cdl/to.hdbcds/to.hdi: Render `cast()` inside `ORDER BY`, `GROUP BY` and `HAVING` properly.
+- to.sql/hdi/hdbcds:
+  + `$self` was incorrectly treated as a structured path step.
+  + Correctly handle table alias in on-condition of mixin in `exists` expansion.
+  + Correctly handle table `$self` references to aliased fields in on-condition of mixin association
+    during `exists` expansion.
+- to.edm: Don't escape `&` as `&amp;`.
+- to.edmx: Escaping compliant to XML specification:
+  + `&` and `<` are always escaped.
+  + `>` is not escaped, unless it appears in text values as `]]>`.
+  + `"` is escaped in attribute values only.
+  + Control characters are always escaped.
+- Ellipsis (`...`) in annotations in different layers but without base annotation now produces an error.
+  The old but incorrect behavior can be re-enabled with option `anno-unexpected-ellipsis-layers`.
+
 ## Version 2.12.0 - 2022-01-25
 
 ### Added
@@ -18,16 +113,16 @@ The compiler behavior concerning `beta` features can change at any time without 
   for syntax highlighting, similar to markdown.  In difference to the former, text blocks require the
   opening and closing backticks to be on separate lines.
   Example:
+  ````
+  @annotation: `Multi
+   line\u{0020}strings`
 
-      @annotation: `Multi
-       line\u{0020}strings`
-  
-      @textblock: ```xml
-                  <summary>
-                    <detail>The root tag has no indentation in this example</detail>
-                  </summary>
-                  ```
-      ...
+  @textblock: ```xml
+              <summary>
+                <detail>The root tag has no indentation in this example</detail>
+              </summary>
+              ```
+  ````
 
 - Enhance the ellipsis operator `...` for array annotations by an `up to ‹val›`:
   only values in the array of the base annotation up to (including) the first match
@@ -38,12 +133,12 @@ The compiler behavior concerning `beta` features can change at any time without 
   values in `‹val›` are equal to the corresponding property value in the array value;
   it is not necessary to specify all properties of the array value items in `‹val›`.
   Example
-
-      @Anno: [{name: one, val: 1}, {name: two, val: 2}, {name: four, val: 4}]
-      type T: Integer;
-      @Anno: [{name: zero, val: 0}, ... up to {name: two}, {name: three, val: 3}, ...]
-      annotate T;
-
+  ```
+  @Anno: [{name: one, val: 1}, {name: two, val: 2}, {name: four, val: 4}]
+  type T: Integer;
+  @Anno: [{name: zero, val: 0}, ... up to {name: two}, {name: three, val: 3}, ...]
+  annotate T;
+  ```
 - for.odata: Support `@cds.on {update|insert}` as replacement for deprecated `@odata.on { update|insert }` to
   set `@Core.Computed`.
 

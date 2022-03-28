@@ -8,23 +8,30 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 2.XX.YY
+
+### Removed `assocsWithParams`
+
+Instead, of using the beta flag `assocsWithParams`, you can change the severity of the messages
+`def-unexpected-paramview-assoc` and `def-unexpected-calcview-assoc`.
+
 ## Version 2.12.0 - 2022-01-25
 
 ### Added `sqlSnippets`
 
 - to.sql/hdi/hdbcds: Introduce the annotations `@sql.prepend` and `@sql.append` that allow inserting user-written SQL snippets into the compiler generated content.
 
-## Version 2.11.0
+## Version 2.11.0 - 2021-12-02
 
 ### Removed `foreignKeyConstraints`
 
-## Version 2.10.4
+## Version 2.10.4 - 2021-11-05
 
 ### Fixed `nestedProjections`
 
 - to.sql/hdi/hdbcds: Correctly handle a `*` at the not-first place in the query
 
-## Version 2.6.0
+## Version 2.6.0 - 2021-08-23
 
 ### Removed `pretransformedCSN`
 
@@ -48,7 +55,7 @@ This is now the default - see CHANGELOG entry for 2.6.0
 - Composition of one w/o backlink will result in a constraint in
   the entity where the composition is defined
 
-## Version 2.4.4
+## Version 2.4.4 - 2021-07-02
 
 ### Added `nestedProjections`
 
@@ -59,7 +66,7 @@ This is now the default - see CHANGELOG entry for 2.6.0
 - _Some checks are missing and will be added! Minor changes might occur._
 - **The SQL backends might not work properly yet if nested projections are used!**
 
-## Version 2.4.2
+## Version 2.4.2 - 2021-07-01
 
 ### Added `keylessManagedAssoc`
 
@@ -71,7 +78,7 @@ This is now the default - see CHANGELOG entry for 2.6.0
   Consequently, these associations are not added to the `WITH ASSOCIATIONS` clause or forwarded to HANA CDS.
   Managed Associations without foreign keys must be enabled with `--beta: keylessManagedAssoc`
 
-## Version 2.4.0
+## Version 2.4.0 - 2021-06-28
 
 ### Changed `foreignKeyConstraints`
 
