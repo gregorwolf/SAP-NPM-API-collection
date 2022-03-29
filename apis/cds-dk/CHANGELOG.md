@@ -6,9 +6,45 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.9.0 - 2022-03-28
+
+### Added
+
+- `cds parse` as convenient shortcut to `cds compile --flavor parsed`.
+- `cds compile --to openapi` uses value of annotation `@Common.Label` on entities, actions, and functions for operation tags, diagram includes non-primitive action and function import parameters.
+- `cds add` now accepts `--for <profile>` argument to create Node,js project configuration for a given profile
+- `cds add approuter` allows for serving your application’s UI using SAP approuter.
+- `cds add kibana-logging` adds Kibana-friendly logging in a more convenient way than having to manually alter the package.json.
+
+### Changed
+
+- `cds init` does not create `VS Code` file exclusions anymore, so that `.vscode/` and `.gitignore` are visible by default, allowing easier editing of these files.
+- `cds init` reports Maven archetype version in console if called with `--add java`.
+- `cds init` uses latest Maven Java archetype version 1.22.2 for creating Java projects.
+- `cds import` modified documentation for namespace option.
+- `cds import` does not create bound function imports key parameters in CSN for OData V2.
+- `cds import` now when `--keep-namespace` option is not given validates the file name and then converts it to complier supported format as service name .
+- add new methods from `FsUtil` to typescript interface.
+
+### Fixed
+- `cds compile --to openapi` now correctly treats `null` and the empty string as function parameters.
+- `cds bind --exec` no command output (STDOUT) displayed on Windows.
+- `cds watch` now gracefully shuts down the live reload server before exiting
+- `cds import` now generates correct csn for both OData V2 and V4 EDMX files where the EntityType has a BaseType entry.
+- `cds import` now throws an error in case of missing Association Sets.
+- `cds import` bug fixed for `--force` flag. Now overwrites the correct file content.
+- `cds import` fix will no longer capture unwanted annotations in the CSN for OData V4.
+- `cds import` now support annotations for properties of type `Type Definition`
+- `cds import` fix for supporting valid datatypes in unbounded function imports for OData V4.
+- `cds import` bug fixed for missing data imports for parameters with entity type not mapped to an entity set.
+- `cds import` now supports properties with complex type for OData V4.
+- `cds import` fix will now throw error if the key property of an entity is of type `Collection` for both OData V2 and V4 edmx.
+- `cds bind --to hana` provides more comprehensive error message in case Cloud Foundry `org` or `space` are not set.
+
 ## Version 4.8.2 - 2022-03-07
 
 ### Fixed
+
 - `cds import` can now capture the data for any given `EntityContainer Name` for OData V4. Earlier it only worked when the name was `EntityContainer`.
 
 ### Changed
@@ -37,6 +73,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - The forked package `@mendix/sqlite3` is now used instead of `sqlite3` to overcome CVE-2021-32804.  No code changes in applications are needed, as the new package installed by `npm` with the same name `sqlite3`.
 - [beta] The templating for `cds init` and `cds add` has been rewritten from scratch. This will allow for some new, more complex commands, such as `cds add mtx` or `cds add xsuaa`.
+- Use `cds bind` during `cds deploy` to store connection information in file `.cdsrc-private.json`.
 
 ### Fixed
 
