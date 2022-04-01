@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.3.4] - 2022-03-31
+
+### Changed
+
+- Only deduplicate model error messages when working within VS Code Editor
+- Hide `no-dollar-prefixed-names` compiler warning message in VS Code Editor (already passed by lsp)
+
 ## [2.3.3] - 2022-03-24
 
 ### Added

@@ -4,6 +4,18 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.9.1 - 2022-03-31
+
+### Fixed
+
+- Function arguments might be escaped too often
+- URL encoding for remote services for CQN queries
+- `cds serve` during development again redirects URLs with for UI apps in a folder with the same name as a service, so `/foo/webapp` would redirect to `/foo`.  This got broken in 5.8.3.
+- Endless loop in localization handling
+- Ensure service impl while extending entity from the service
+- Post-processing of custom draft queries
+- No minifying of CSN artifacts for Java build
+
 ## Version 5.9.0 - 2022-03-25
 
 ### Added

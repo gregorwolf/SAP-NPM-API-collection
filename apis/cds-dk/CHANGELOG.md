@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.9.1 - 2022-04-01
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 1.23.0 for creating Java projects.
+- Include `@sap/cds` 5.9.1
+- Include `@sap/cds-compiler` 2.13.8
+- Include `@sap/eslint-plugin` 2.3.4
+
 ## Version 4.9.0 - 2022-03-28
 
 ### Added

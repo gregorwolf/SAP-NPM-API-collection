@@ -1,1 +1,5 @@
+@sap/cds
+@sap/cds-compiler
 @sap/cds-dk
+@sap/cloud-sdk-vdm-inspection-plan-service
+@sap/eslint-plugin-cds

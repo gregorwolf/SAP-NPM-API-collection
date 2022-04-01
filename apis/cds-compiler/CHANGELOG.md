@@ -7,6 +7,12 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.13.8 - 2022-03-29
+
+### Fixed
+
+- to.hdbcds/hdi/sql: Correctly handle `localized` in conjunction with `@cds.persistence.exists` and `@cds.persistence.skip`
+
 ## Version 2.13.6 - 2022-25-03
 
 ### Fixed
