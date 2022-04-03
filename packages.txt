@@ -1,5 +1,12 @@
-@sap/cds
-@sap/cds-compiler
-@sap/cds-dk
-@sap/cloud-sdk-vdm-inspection-plan-service
-@sap/eslint-plugin-cds
+@sap/approuter
+@sap/cds-lsp
+@sap/cloud-sdk-vdm-company-code-service
+@sap/cloud-sdk-vdm-profit-center-service
+@sap/generator-fiori
+@sap/open.fe
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-fe-mockserver-middleware
+@sap/ux-ui5-tooling
+@sap/vscode-cds
+@sap/xsjs

@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.15.0 -  2022-04-03
+
+### Added
+- External session management support in service2approuter flow
+- Return auditLog, if has multi-tenant plan oauth2, as a dependency during subscription creation
+- Write auditLog error message into subscription tenant, when approuter runs in multi-tenant mode
+- Private-link proxy type support
+- Error stack in error-handler
+
+### Updated dependencies
+- deps: body-parser@1.2.0
+
+### Fixed
+- Type error in case of missing app.services
+
 ## 10.14.2 -  2022-03-23
 
 ### Updated dependencies

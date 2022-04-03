@@ -2,6 +2,14 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.5.3] - 2022-03-24
+### Added
+- Added support of new run configuration UI options
+
+### Fixed
+- Fixed an issue where developer variant creation is not starting with SAPUI5 version 1.100.0 and higher
+- Fixed an issue where an exception was thrown for SAPUI5 versions <= 1.65 when starting the application preview
+
 ## [1.5.2] - 2022-03-10
 ### Fixed
 - Fixed an issue with the validation of SAPUI5 snapshot versions when starting developer variant creation

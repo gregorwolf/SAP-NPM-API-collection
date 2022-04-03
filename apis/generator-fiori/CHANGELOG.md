@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.3] - 2022-03-31
+### Added
+- Added support for creating new saved SAP systems in VSCode.  Users can click on the '+' icon and select to create an ABAP on Premise or ABAP Environment on SAP Business Technology Platform saved system.  Users must test the connection to validate it connects before saving.
+
+#### Changed
+- Determining if telemetry data is to be captured during generation is now determined from the global SAP Fiori tools setting in the command palette: `Fiori: Change Telemetry Settings`.
+
+### Fixed
+- Fixed bug where message longtexts were not displayed in the console for ABAP deployment errors.  These can be copied and pasted into the browser for more details.
+- Fixed bug where the SAP Fiori generator could crash if the project folder location was read-only.
+- Fixed error where SAP Fiori freestyle projects with an uploaded metadata file were not being validated correctly.
+
 ## [1.5.2] - 2022-03-17
 ### Fixed
 - Fixed invalid xs-security.json file location when using generator in non-interactive mode for CAP projects.

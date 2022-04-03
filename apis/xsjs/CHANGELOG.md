@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+<a name="6.6.0"></a>
+## 6.6.0 - 2022-04-01
+
+### Update
+- Updated the way multipart/related WebRequests are handled.
+
+### Fixed
+- Update _@sap/xsodata_ to v7.5.0
+- Update _body-parser_ to v1.19.2
+
 <a name="6.5.5"></a>
 ## 6.5.5 - 2022-03-17
 

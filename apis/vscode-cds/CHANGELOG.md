@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+
+## Version 4.5.3 - 2022-03-31
+
+### Changed
+- consume `package.json` and `.cdsrc.json` schemas from `@sap/cds-lsp`
+- better error message in case `cds preview` could not compile a source file
+
+### Fixed
+- no loner set NODE_ENV to production which resulted in `npm i` only installing prod dependencies
+
+### Components
+- @sap/cds-lsp 5.5.6
+- @sap/cds-compiler 2.13.6
+
 ## Version 4.5.2 - 2022-03-03
 
 ### Added
@@ -18,7 +32,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - removed obsolete code-formatting option `alignAsInElements` (calculated fields use `=` now)
 
 ### Fixed
-
 - saving a `cds` file now automatically refreshes all open previews for this file
 - _Show Formatting Options Configuration_
   + showed empty samples editor
@@ -63,7 +76,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Fixed
 
 - `cds preview` is now refreshing the preview correctly when called after the underlying cds file has been changed
-- `enum` was not indexed 
+- `enum` was not indexed
 - `composition` of aspect was not indexed
 - symbols contained localized entries with recent compiler versions
 - workspaces with _many_ workspace folders could lead to stop lsp

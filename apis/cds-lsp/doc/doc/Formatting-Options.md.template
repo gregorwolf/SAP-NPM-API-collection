@@ -1,0 +1,28 @@
+## Code Formatting
+
+CDS-LSP provides a functionality called _code formatting,_ also known as _beautify._
+Code formatting alters whitespaces and line breaks in existing CDS code to follow
+a unified code style and to aid the eye reading the code.
+
+Code formatting can be triggered by means of the `textDocument/formatting` LSP request or, when using CDS-LSP via editors such as VSCode, through
+the corresponding commands such as _format document_ or _format highlighted section._
+
+### Formatting Options
+
+CDS-LSP provides a comprehensive set of options to adjust fine details of code formatting.
+The options are classified in several categories.
+
+#### Parent options and child options
+
+Some formatting options are assigned a _parent option_ that allows to enable or disable a subset of semantically related _child options_ at once.
+
+_Disabling_ a parent option also disables the child options.
+
+_Enabling_ a parent option restores the previous state of all its child options.
+When a parent option is enabled, its child option can be either enabled or disabled.
+
+#### Available options
+
+An overview of available options is given in what follows.
+
+`<insert #1>`

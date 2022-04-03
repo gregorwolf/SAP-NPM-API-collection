@@ -290,7 +290,7 @@ Property  | Additional Property | Description
 -------- |:--------:| -----------
 Type | |only `HTTP` supported.
 Authentication |  | All authentication types are supported. <br>**Note:** `User` and `Password` are mandatory if the authentication type is `basic authentication`.<br>**Note:** if the authentication type set to `principal propagation` the ProxyType have to be `on-premise`.<br>**Note:** if the authentication type set to `OAuth2SAMLBearerAssertion`, `uaa.user` scope in xs-security.json is required.
-ProxyType |   | Supported proxy type : `on-premise`, `internet`.<br> **Note:** if ProxyType set to `on-premise`, binding to SAP Cloud Platform connectivity service is required.
+ProxyType |   | Supported proxy type : `on-premise`, `internet`, `private-link`.<br> **Note:** if ProxyType set to `on-premise`, binding to SAP Cloud Platform connectivity service is required.<br> **Note:** The `private-link` proxy type is a beta feature and is not meant for productive use. It is only available in Azure landscapes.
 
 
 ##### Optional additional properties:
@@ -2074,6 +2074,9 @@ The application router can receive a consumer service xsuaa JWT or IAS OIDC toke
 
 Cookie Handling:
 In this flow client cookies are merged to backend cookies in case a backend cookie with the same key does not exist.
+
+If you have configured [external session management](#external-session-management), an external session is created for each token in the external session management service (for example, in Redis). Such an external session has the same expiration time as the token for which it was created. 
+The application router uses the external session to store cached data, such as the exchanged tokens and destination configurations, to improve the performance by reducing roundtrips to the authentication and destination services.
 
 **Note**: The xsuaa JWT or IAS OIDC token is generated with the same xsuaa service or identity instance that is bound to the application router. 
 

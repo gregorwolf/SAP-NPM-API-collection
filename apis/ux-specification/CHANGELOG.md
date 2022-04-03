@@ -4,7 +4,50 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.96.6] - 2022-02-09
+## [1.96.9] - 2022-03-31
+
+### Quality
+
+- upgrade `minimist` resolution
+
+## [1.96.8] - 2022-03-31
+
+### Quality
+
+- upgrade `minimist` version
+
+## [1.96.7] - 2022-03-24
+
+### Added
+
+- OData V4:
+  - support of `flexEnabled` property
+  - ALP flavor, support of ALP views
+  - List report: multiple views, with the right properties
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V2:
+  - duplicated fragment columns were written if table namespace was not found, and unknown custom data in fragment was not considered.
+- OData V4
+  - custom columns had not been considered when having a 'Before' reference against other custom columns
+  - fix overwriting of manifest page content, if page key is changed
+
+### Quality
+
+- Switch to Whitesource Universal Agent
+- piper lib upgrade
+- Upgrade eslint
+- Switch to import type for TS
+- Refactoring to resolve sonarQube code smells
+
+## [1.96.6] - 2022-03-09
 
 ### Added
 

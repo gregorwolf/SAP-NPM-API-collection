@@ -481,5 +481,4 @@ In addition internal Node.js traces can be enabled via `NODE_DEBUG` environment 
 ## Differences with HANA XS Classic
 
 See the differences [here](differences.md).
-
 <br/>
