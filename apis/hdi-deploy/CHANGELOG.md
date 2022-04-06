@@ -1,3 +1,17 @@
+## 4.3.2
+Fixes:
+- maintain shrinkwrap with minimist@1.2.6
+
+## 4.3.1
+Features:
+- added support for retrieving credentials from kubernetes
+- use @sap/hdi@4.3.0
+- use @sap/hana-client@2.11.20
+
+Fixes:
+- log long lists without truncation
+- fixed passing arbitrary parameters to @sap/hana-client
+
 ## 4.3.0
 Features:
 - allow passing arbitrary parameters to @sap/hana-client

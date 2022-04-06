@@ -1,3 +1,16 @@
+## 1.5.0
+
+### New Features
+- The extension can now be used with local database connections on ARM platforms. Note that the limitations of the SAP HANA "hdb" Node.js client apply, i.e. SAP HANA User Store connections are not available
+
+### Fixes
+- Queries that return multiple result sets are displayed correctly
+- The SQL console asks whether to save the current content before opening a file
+- The SQL console auto-save behavior can be controlled via the Visual Studio Code setting "files.autoSave". Supported modes are "off" and "afterDelay". All other values default to "afterDelay".
+- The list of SAP HANA Database Explorer connections more closely reflects the list shown in SAP HANA Database Explorer
+- Removed a superflous button in the file overwrite confirmation dialog
+- The SQL console respects the setting "SAP HANA Database Explorer" > "Max Sql Result Size" for local connections
+
 ## 1.4.0
 
 ### New Features

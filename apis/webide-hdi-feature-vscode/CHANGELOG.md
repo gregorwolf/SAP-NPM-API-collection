@@ -1,3 +1,16 @@
+## 1.10.0
+
+### New Features
+- Prune data sources that do not contribute to requested measures in a union
+- Objects referecing an input parameter, variable, calculated column, or restricted column can be displayed
+
+### Fixes
+- Show errors if virtual table parameters cannot be retrieved
+- Fixed an error that could lead to an empty parameter pane
+- Fixed an error that could lead to an empty details pane
+- Data preview could fail if multiple views with the same name exist
+- Usability improvements
+
 ## 1.9.0
 
 ### New Features

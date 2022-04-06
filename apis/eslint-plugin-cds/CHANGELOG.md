@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.3.5] - 2022-04-05
+
+### Changed
+
+- Catch root model compilation errors and do not try again on every file (-> long lint times for broken models)
+- Add to lint reports with rules marked with '!'
+
 ## [2.3.4] - 2022-03-31
 
 ### Changed

@@ -1,3 +1,9 @@
+## 4.3.0
+Features:
+- Choice of using either hana-client or hdb
+- hana-client ^2 >= 2.5 support
+- hdb ^0 support
+
 ## 4.2.0
 Features:
 - hana-client 2.10.x support

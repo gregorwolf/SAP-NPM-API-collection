@@ -1,3 +1,11 @@
+# 2.3.4
+Features:
+- use @sap/hdi-deploy@4.3.2
+- use body-parser@1.19.2
+- use express@4.17.3
+- use express-basic-auth@1.2.1
+- use @sap/audit-logging@5.5.2
+
 # 2.3.3
 Features:
 - use @sap/audit-logging@5.4.1

@@ -13,10 +13,14 @@
 
 ## General things
 
-Note: @sap/hana-client must be installed by yourself. Version 2.7.x, 2.8.x, 2.9.x and 2.10.x are currently supported by @sap/hdi 4.2.0.
+Note: Either [@sap/hana-client](https://www.npmjs.com/package/@sap/hana-client) or [hdb](https://www.npmjs.com/package/hdb) must be installed by yourself. 
+@sap/hana-client versions ^2 >= 2.5 are currently supported by @sap/hdi 4.3.0.
 To install the latest @sap/hana-client simply run `npm install @sap/hana-client`.
 
-Assuming that your **npm registry** is correctly configured and has access to SAP packages, simply running `npm install --save @sap/hdi` will install the package and add it as a dependency to your **package.json**.
+hdb version ^0 is currently supported by @sap/hdi 4.3.0.
+To install the latest hdb simply run `npm install hdb`.
+
+Running `npm install --save @sap/hdi` will install the package and add it as a dependency to your **package.json**.
 
 We recommend using version 2.0.0 or higher. >=2.0.0 of the API brings access to the Container Group API, major refactoring of the HDI and Container API into separate components and lots of pre-defined classes to make working with the API easier.
 
@@ -57,7 +61,7 @@ Access to the _SYS_DI API is provided by the `HDI` class. Access to this API req
 'use strict';
 const { HDI } = require('@sap/hdi');
 
-// This credentials object will be directly passed to the @sap/hana-client client. Any options accepted by the @sap/hana-client client can be passed.
+// This credentials object will be directly passed to the @sap/hana-client or hdb client. Any options accepted by the @sap/hana-client or hdb clients can be passed.
 const credentials = {
     host : <host>,
     port : <port>,
@@ -65,7 +69,7 @@ const credentials = {
     password: <password>
 };
 
-const hdi = new HDI(credentials, parameterSchema);
+const hdi = new HDI(credentials, parameterSchema, usehdb);
 
 hdi.connect((error,result) => {
   if(error){
@@ -105,7 +109,7 @@ const path = require('path');
 
 const {Container, HDI, FileWithContent, FolderWithContent, File, Parameter} = require('@sap/hdi');
 
-// This credentials object will be directly passed to the @sap/hana-client client. Any options accepted by the @sap/hana-client client can be passed.
+// This credentials object will be directly passed to the @sap/hana-client or hdb client. Any options accepted by the @sap/hana-client or hdb clients can be passed.
 const credentials = {
   host: 'host',
   port: 'port',
@@ -195,7 +199,7 @@ If your version of xsjs is up to date in that regard, simply add `sync` before y
 ```javascript
 const { HDI } = require('@sap/hdi');
 
-// This credentials object will be directly passed to the @sap/hana-client client. Any options accepted by the @sap/hana-client client can be passed.
+// This credentials object will be directly passed to the @sap/hana-client or hdb client. Any options accepted by the @sap/hana-client or hdb clients can be passed.
 const credentials = {
     host : <host>,
     port : <port>,
@@ -203,7 +207,7 @@ const credentials = {
     password: <password>
 };
 
-const hdi = new HDI(credentials, parameterSchema);
+const hdi = new HDI(credentials, parameterSchema, usehdb);
 
 hdi.connect((error,result) => {
   if(error){
@@ -223,7 +227,7 @@ turns into this:
 ```javascript
 var { HDI } = $.require('@sap/hdi');
 
-// This credentials object will be directly passed to the @sap/hana-client client. Any options accepted by the @sap/hana-client client can be passed.
+// This credentials object will be directly passed to the @sap/hana-client or hdb client. Any options accepted by the @sap/hana-client or hdb clients can be passed.
 var credentials = {
     host : <host>,
     port : <port>,
@@ -231,7 +235,7 @@ var credentials = {
     password: <password>
 };
 
-var hdi = new HDI(credentials, parameterSchema);
+var hdi = new HDI(credentials, parameterSchema, usehdb);
 
 hdi.sync.connect();
 var libraries = hdi.sync.listLibraries(null);

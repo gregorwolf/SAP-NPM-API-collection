@@ -1,3 +1,8 @@
+## 1.4.0
+
+### Fixes
+- Generation could fail because the Cloud Foundry space was not set correctly
+
 ## 1.3.0
 
 ### New Features

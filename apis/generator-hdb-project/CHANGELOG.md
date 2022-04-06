@@ -1,3 +1,9 @@
+## 1.4.0
+
+### Fixes
+- Allow periods ('.') in project names
+- Update @sap/generator-add-hdb-module to version 1.4.0
+
 ## 1.3.0
 
 ### Fixes

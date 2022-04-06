@@ -1,3 +1,9 @@
+## 1.9.0
+
+### Fixes
+- The "create synonym" dialog could hang when adding a data source if external objects are referenced
+- The synonym editor added the schema name for target objects that are in the same container
+
 ## 1.8.0
 
 ### New Features

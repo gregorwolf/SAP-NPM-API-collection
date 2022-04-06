@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.2.3"
+    "@sap/hdi-deploy": "4.3.2"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -111,6 +111,8 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 ## Database Connection Details
 
 Connection details for the database, e.g. host, port, credentials, certificates, hostname_in_certificate, encrypt and validate_certificate, are looked up by the HDI Deployer from the standard CF/XSA `VCAP_SERVICES` environment variable which contains the bound services.
+
+Since version 4.3.1 of hdi-deploy supports reading credentials from a secret volume for Kubernetes.
 
 In order to use mutual authentication, `client_authentication_private_key` and `client_authentication_certificate` can be supplied via the service binding.
 
@@ -541,7 +543,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.2.3",
+    "@sap/hdi-deploy": "4.3.2",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1072,7 +1074,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "4.2.3",
+        "version": "4.3.2",
         "features": {
             "info": 2,
             "verbose": 1,
