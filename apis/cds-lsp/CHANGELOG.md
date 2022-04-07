@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.5.7 - 2022-04-05
+
+### Fixed
+
+- syntax highlighting in BAS
+
+### Changed
+
+- consume cds-compiler 2.13.8
+
+
 ## 5.5.6 - 2022-03-31
 
 ### Added

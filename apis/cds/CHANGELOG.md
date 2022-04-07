@@ -4,6 +4,18 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.9.2 - 2022-04-07
+
+### Fixed
+
+- i18n translation for errors did not work correctly in some cases
+- Normalization in custom `getRestrictions`
+- Throw exception by `INSERT` into HANA queries if number of provided rows deviates from number of affected rows returned by hdb to prevent data losses
+- Handler detection for extended services
+- Speed-up in localization handling
+- Draft: navigation via an association to many from a non-draft enabled entity to a draft-enabled entity
+- Limited support of `SELECT` queries with operator expressions (`xpr`)
+
 ## Version 5.9.1 - 2022-03-31
 
 ### Fixed

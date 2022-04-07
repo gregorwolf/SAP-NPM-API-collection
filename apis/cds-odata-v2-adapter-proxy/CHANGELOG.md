@@ -7,7 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
-## Version 1.8.11 - 2002-03-11
+## Version 1.8.13 - 2022-04-07
+
+### Fixed
+
+- Remove peer dependency to prevent workspace failures
+
+## Version 1.8.12 - 2022-04-01
+
+### Fixed
+
+- Refactorings to support universal CSN
+- Refactorings to support metadata prototype layering
+- Include `search` in `$apply` aggregations
+
+## Version 1.8.11 - 2022-03-11
 
 ### Fixed
 

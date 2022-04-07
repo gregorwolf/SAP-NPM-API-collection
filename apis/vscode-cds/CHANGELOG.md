@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 
+## Version 4.5.4 - 2022-04-05
+
+### Changed
+- `CAP Release Notes` page now persists its state
+
+### Fixed
+- syntax highlighting in Business Application Studio
+
+### Components
+- @sap/cds-lsp 5.5.7
+- @sap/cds-compiler 2.13.8
+
+
 ## Version 4.5.3 - 2022-03-31
 
 ### Changed
