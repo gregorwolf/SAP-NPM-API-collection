@@ -54,6 +54,11 @@ The following features are NOT impleneted yet:
 
 Here is the brief history of releases.
 
+### 1.3.6
+* Support SQL Plan execution monitor
+* Improve planGraph layout
+* Enable skipping timeline in configuration
+
 ### 1.3.4
 * Support real-time analysis
 * Support plan comparison report
