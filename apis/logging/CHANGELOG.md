@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.1.1 - 2022-04-08
+
+### Updated
+- Update moment to version 2.29.2
+
+### Removed
+- Node.js 8.x support
+
+### Changed
+- Changed istanbul test framework with c8
+
 ## 6.1.0 - 2022-01-24
 
 ### Added

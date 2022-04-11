@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 5.5.3- 2022-04-06
+
+### Changed
+- changed istanbul test framework with c8
+
 ## 5.5.2 - 2022-03-22
 
 ### Updated

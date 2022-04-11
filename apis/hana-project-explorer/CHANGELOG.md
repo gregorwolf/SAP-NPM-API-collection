@@ -1,3 +1,10 @@
+## 1.2.0
+
+### New Features
+
+- Multiple services can be bound or unbound via a single button
+- A warning is displayed if .env files are not included in a module's .gitignore file
+
 ## 1.1.0
 
 ### New Features

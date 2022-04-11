@@ -1,3 +1,9 @@
+## 1.10.0 - 7 April, 2022
+### Changed
+* Changed logic to identify PDM entities and service.
+### Fixed
+* Fixed Delta Deployment failure on first deploy issue.
+* Fixed the error thrown in getProjectInfo API when result is undefined.
 ## 1.9.0 - 24 March, 2022
 ### Added
 * Added support to create destination to workflow instance on deploy.

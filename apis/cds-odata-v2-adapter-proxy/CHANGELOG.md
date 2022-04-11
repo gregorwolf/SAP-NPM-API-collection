@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.8.14 - 2022-04-08
+
+### Fixed
+
+- Upgrade @sap/logging to fix vulnerability
+
 ## Version 1.8.13 - 2022-04-07
 
 ### Fixed

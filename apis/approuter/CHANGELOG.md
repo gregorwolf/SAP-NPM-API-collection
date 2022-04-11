@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.15.1 - 2022-04-07
+
+### Updated dependencies
+- should-send-same-site-none removed
+- request.js removed
+- moment removed
+- deps: urijs@1.19.11
+- deps: @sap/logging@6.1.0
+
 ## 10.15.0 -  2022-04-03
 
 ### Added

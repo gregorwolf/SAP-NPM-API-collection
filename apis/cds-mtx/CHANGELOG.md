@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.5.4 - 2022-04-04
+
+### Changed
+- If enabled via `cds.env.mtx.security.metadata-scope-checks`, the v2 CSN and EDMX APIs, as well as all metadata APIs are now scope-checked for `mtdeployment`.
+- Tokens sent to the command-line client are now reduced in scope for security reasons.
+
+### Fixed
+- `MT_LIB_TENANT-`-prefixed tenants used by the Java runtime are now correctly ignored by the `cds-mtx` sidecar.
+
 ## Version 2.5.3 - 2022-03-14
 
 ### Fixed
@@ -19,8 +28,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 - It is now checked if CDS annotations `@sql.append` and `@sql.prepend` are used in extensions. Using these annotations in extensions is currently not allowed.
 
+
 ### Fixed
-- API `/mtx/v1/provisioning/tenant` does no longer return duplicate tenants in case of concurrent API calls. 
+- API `/mtx/v1/provisioning/tenant` does no longer return duplicate tenants in case of concurrent API calls.
 - Dependencies to `VCAP_SERVICES` environment have been removed. Service dependencies can now be fully defined via `cds.env`, except for databases shared between tenants.
 
 ## Version 2.5.1 - 2021-12-09

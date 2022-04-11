@@ -259,7 +259,7 @@ Sample content of the destinations environment variable:
 [
   {
     "name" : "ui5",
-    "url" : "https://sapui5.netweaver.ondemand.com",
+    "url" : "https://ui5.sap.com",
     "proxyHost" : "proxy",
     "proxyPort" : "8080",
     "forwardAuthToken" : false,
@@ -277,7 +277,7 @@ It is also possible to include the destinations in the *manifest.yml* and *manif
   env:
     destinations: >
                   [
-                    {"name":"ui5", "url":"https://sapui5.netweaver.ondemand.com"}
+                    {"name":"ui5", "url":"https://ui5.sap.com"}
                   ]
 ```
 
