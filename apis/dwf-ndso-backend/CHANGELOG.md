@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 nothing yet
 
+## [2.3.2] - 2022-04-09
+### Changed
+- Add LICENSE file
+
 ## [2.2.0] - 2018-08-15
 ### Changed
 - addSubscriber and resetSubscriber operations now fail if there is no change

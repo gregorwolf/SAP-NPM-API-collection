@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.6.4] - 2022-04-08
+Added:
+- LICENSE file
+- BOM.json
+
+Fixed:
+- For release on NPMJS via MoMa pipeline
+## [2.6.1] - 2021-08-20
+Added:
+- Logs the nodejs version
+
+Fixed:
+- Supports node 14
+
+## [2.6.0] - 2021-01-29
+Added:
+- To be used with DWF 2.0 SP06
+
+Fixed:
+- Updates the used node dependencies
+- Supports node 12
+
+## [2.5.0] - 2020-12-15
+Added:
+-
+
+Fixed:
+- Updates the used node dependencies
+- Requires engine ^10.0.0 || ^12.0.0
+
+## [2.4.1] - 2020-03-19
+Added:
+-
+
+Fixed:
+- Updates the used node dependencies
+- Requires engine ^8.0.0 || ^10.0.0
+
 ## [2.4.0] - 2018-09-13
 Added:
 - .dwfdlmtablegroup - the design time artifact for modeling text, where the content of the file can be any valid text
