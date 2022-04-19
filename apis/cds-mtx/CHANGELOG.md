@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.5.5 - 2022-04-14
+
+### Changed
+- Improved logging in the context of requesting tokens.
+
+
 ## Version 2.5.4 - 2022-04-04
 
 ### Changed

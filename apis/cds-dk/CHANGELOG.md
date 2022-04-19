@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.9.2 - 2022-04-11
+
+### Changed
+
+- Include `moment` 2.29.2, fixing CVE-2022-24785
+- Include `@sap/cds` 5.9.2
+- Include `@sap/eslint-plugin` 2.3.5
+
 ## Version 4.9.1 - 2022-04-01
 
 ### Changed
