@@ -1,3 +1,7 @@
+## 4.3.1
+Features:
+- Use async 3.2.3
+
 ## 4.3.0
 Features:
 - Choice of using either hana-client or hdb

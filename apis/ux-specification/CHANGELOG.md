@@ -4,26 +4,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.96.9] - 2022-03-31
-
-### Quality
-
-- upgrade `minimist` resolution
-
-## [1.96.8] - 2022-03-31
-
-### Quality
-
-- upgrade `minimist` version
-
-## [1.96.7] - 2022-03-24
+## [1.100.0] - 2022-04-07
 
 ### Added
 
+- OData V2:
+  - LR: Added support for `multiEdit` property to enable mass edit feature
 - OData V4:
-  - support of `flexEnabled` property
-  - ALP flavor, support of ALP views
-  - List report: multiple views, with the right properties
+  - LR: Added support for property `hideFilterBar`
+  - Support of defaultTemplateAnnotationPath as property; consider defaultTemplateAnnotationPath when retrieving the relevant table settings and while switching to ALP flavour.
 
 ### Changed
 
@@ -34,163 +23,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Fixed
 
 - OData V2:
-  - duplicated fragment columns were written if table namespace was not found, and unknown custom data in fragment was not considered.
-- OData V4
-  - custom columns had not been considered when having a 'Before' reference against other custom columns
-  - fix overwriting of manifest page content, if page key is changed
+  - Extensions - empty "extensions" object was created in "sap.ui5/"extends"/"extensions"/"sap.ui.viewExtensions"/"sap.suite.ui.generic.template.ListReport.view.ListReport"
 
 ### Quality
 
-- Switch to Whitesource Universal Agent
-- piper lib upgrade
-- Upgrade eslint
-- Switch to import type for TS
-- Refactoring to resolve sonarQube code smells
-
-## [1.96.6] - 2022-03-09
-
-### Added
-
-- OData V2:
-  - visible property is now also available for facets without annotation Id
-
-- OData V4:
-  - Support of progress, rating and microchart header facets
-  - Version increase for "fe-fpm-writer" from "0.4.0" to "0.5.0"
-  - Return "fpmWriter" API version - current version "1"
-
-### Changed
-
-### Removed
-
-### Deprecated
-
-### Fixed
-
-- OData V2:
-  - Creation of new flexChanges now considers resolved Id from pom.xml
-- OData V4:
-  - Fix overwriting of manifest page id in case of different page key
-
-### Quality
-
-- removed unused dev dependency to `http-server`
-
-## [1.96.5] - 2022-02-23
-
-### Added
-
-- Metadata information `dataType` added to various places in V2 and V4 schemas
-- OData V2:
-  - display selection fields, and support date settings properties on LR/ALP
-
-### Changed
-
-### Removed
-
-### Deprecated
-
-### Fixed
-
-- SonarQube code smells
-
-### Quality
-
-- Unnecessary js files removed from bundle
-- Unit test enhancement to run on all platforms
-
-## [1.96.4] - 2022-02-10
-
-### Added
-
-- OData V2:
-  - Support default date range `defaultValue` property on filter fields
-  - LR/ALP: Support column and footer action properties
-
-- OData V4:
-  - Support of custom columns  
-
-### Changed
-
-### Removed
-
-### Deprecated
-
-### Fixed
-
-- OData V2:
-  - OP: Fix generation of flexChanges for sections with or without ID in annotations
-  - Fix issues with sync logic in case of sub object page
-
-### Quality
-
-- Unnecessary js files removed from bundle
-
-## [1.96.3] - 2022-01-26
-
-### Added
-
-- OData V2:
-  - `exportType` property can now be configured to specify the type of export to be used in the SmartTable control
-  - OP: `statePreservationMode` property can now be configured to allowing applications to configure persistence mode in an object page
-  - OP: `draftDiscardConfirmationSettings` property can now be configured allowing applications to turn off the discard draft confirmation popup in various scenarios
-
-### Quality
-
-- Upgrade of node-fetch
-
-## [1.96.2] - 2022-01-12
-
-### Added
-
-- OData V2:
-  - OP: properties of footer actions are displayed and supported in side panel
-  - properties of toolbar actions are displayed and supported in side panel
-  - OVP: The property `showLineItemDetail` is now supported for List and Table cards
-  - OP: Schema now supports column extensions for TreeTable
-
-### Changed
-
-- OData V2:
-  - property `filterDefaultsFromSelectionVariant` is now only supported for AnalyticalListPage floorplan
-  - OVP: The property `tabs` and `addOdataSelect` can now be confirued for all cards
-- OData V4:
-  - property `afterExecution` of table columns now is only visible for actions but not for other record types
-  - deprecated `name` property and support new `template` property for custom sections in manifest
-  
-### Removed
-
-- OData V2:
-  - OVP: removed `tabs` property from card level
-
-### Fixed
-
-- OData V2:
-  - correct schema generation in case multiple facets are referring to lineitem annotation of same entity
-  - Facet Id is considered for import and export of manifest settings
-  - Fixed sync issues in case no text is provided for custom columns
-- OData V4:
-  - Avoid exporting empty arrays to manifest.json
-
-### Quality
-
-- Upgrade of trim-off-newlines
-- Upgrade of yarn classic
-- New whitesource endpoint
-- Upgrade of follow-redirects
-
-## [1.96.1] - 2021-12-06
-
-### Quality
-
-- Update of pipeline configuration
-
-## [1.96.0] - 2021-12-02
-
-### Added
-
-In comparison to release 1.90, this release also comprises an API generateCustomExtension, refer to the README.
-
-### Changed
-
-The api version (getApiVersion) is increased to 2 to reflect the presence of the new generateCustomExtension API.
+- Replace type object for schemas by Definition from 'typescript-json-schema'
+- upgrade of async

@@ -2,6 +2,10 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.5.4] - 2022-04-07
+### Fixed
+- Fixed an issue with escaping runtime arguments on Windows with Node.js version 16
+
 ## [1.5.3] - 2022-03-24
 ### Added
 - Added support of new run configuration UI options

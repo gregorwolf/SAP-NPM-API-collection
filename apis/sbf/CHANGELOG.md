@@ -8,23 +8,30 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+<a name="6.4.6"></a>
+## 6.4.5 - 2022-04-17
+
+### Fixed
+- Updates to dependency versions 
+
 <a name="6.4.5"></a>
-## 6.4.5 - 2021-03-21
+## 6.4.5 - 2022-03-21
 
 ### Added
-- - Updates to dependency versions 
+- Updates to dependency versions 
 
 <a name="6.4.4"></a>
-## 6.4.4 - 2021-01-24
+## 6.4.4 - 2022-01-24
 
 ### Added
-- - Updates to dependency versions 
+- Updates to dependency versions 
 
 <a name="6.4.3"></a>
-## 6.4.3 - 2021-01-19
+## 6.4.3 - 2022-01-19
 
 ### Added
-- - Updates to dependency versions 
+- Updates to dependency versions 
 
 <a name="6.4.2"></a>
 ## 6.4.2 - 2021-11-25

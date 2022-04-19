@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.3.1 - 2022-04-11
+
+### Removed
+- Removed node 8.x support and tests
+ 
+### Changed
+- Changed istanbul test framework with c8
+ 
 ## 5.3.0 - 2022-01-30
 
 ### Fixed

@@ -1,3 +1,12 @@
+## 4.3.3
+Features:
+- use @sap/hdi@4.3.1
+- use @sap/hana-client@2.12.20
+- use async@3.2.3
+
+Fixes :
+- handle empty user-provided services
+
 ## 4.3.2
 Fixes:
 - maintain shrinkwrap with minimist@1.2.6

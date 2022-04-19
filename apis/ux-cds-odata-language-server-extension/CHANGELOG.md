@@ -3,6 +3,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.4] - 2022-04-14
+### Fixed
+- Unjustified error for `LocalDataProperty` in `Common.ValueList` when the property is defined in the service using a `many` clause.
+- Unjustified error for `Action` in `UI.DataFieldForAction` if it contains the signatures (i.e. the parts in () ) . 
+- Unjustified warning for CAP CDS native annotation `@mandatory` when applied to a parameter.
+
 ## [1.3.5] - 2021-09-30
 ### Fixed
 - Unjustified error "path does not exist" for paths pointing to entity elements defined as structured type. 

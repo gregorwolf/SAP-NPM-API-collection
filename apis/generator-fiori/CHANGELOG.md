@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.4] - 2022-04-14
+### Added
+- Added support for instance based destinations in deployment configuration for local Node.js CAP projects in SAP Business Application Studio.
+
+#### Changed
+- Fiori generator for application type `SAP Fiori elements` now consumes the open source SAP Fiori elements templates published [here](https://github.com/SAP/open-ux-tools).
+
+### Fixed
+- Fixed bug where VSCode launch configuration would not start the project correctly in certain situations.
+- Fixed issue where the Fiori generator would allow the user to continue if the mandatory navigation entity was not selected.
+
 ## [1.5.3] - 2022-03-31
 ### Added
 - Added support for creating new saved SAP systems in VSCode.  Users can click on the '+' icon and select to create an ABAP on Premise or ABAP Environment on SAP Business Technology Platform saved system.  Users must test the connection to validate it connects before saving.
