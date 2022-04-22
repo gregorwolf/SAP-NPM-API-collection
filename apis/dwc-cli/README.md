@@ -4,14 +4,26 @@ Command-Line Interface (CLI) for SAP Data Warehouse Cloud.
 
 ## Content
 
-1. [Installation](#installation)
-2. [Update the CLI](#update-the-cli)
-3. [Versioning](#versioning)
-4. [Authentication](#authentication)
-5. [Usage](#usage)
-6. [Help & Documentation](#help-documentation)
-7. [Community & Feedback](#community--feedback)
-8. [License](#license)
+1. [Release Notes](#release-notes)
+2. [Installation](#installation)
+3. [Update the CLI](#update-the-cli)
+4. [Versioning](#versioning)
+5. [Authentication](#authentication)
+6. [Usage](#usage)
+   1. [From the command line](#from-the-command-line)
+   2. [As a Node.js module dependency](#as-a-nodejs-module-dependency)
+7. [Help & Documentation](#help-documentation)
+8. [Community & Feedback](#community--feedback)
+9. [License](#license)
+
+## Release Notes
+
+Find all information about changes, enhancements, differents to previous versions and bug fixes here.
+
+### Version 2022.9.0
+
+- **Respect HTTP protocol of tenant entered by user**: No matter what the protocol of the tenant (`https` or `http`), the HTTP request send to the backend service of the respective tenant was always using `https`. This can cause issues if the client using the CLI is hidden behind a HTTP proxy which only allows for `http` requests. This addresses cases where commands failed with errors like _"self signed certificate in certificate chain"_.
+- **The CLI could not be used as a regular Node.js dependency** using the `requires` or `import` syntax within a Node.js project. Users of the CLI always had to use Node.js' `exec` functionality to work with the CLI. For more information, see [_Using the CLI from the command line_](#from-the-command-line).
 
 ## Installation
 
@@ -71,7 +83,11 @@ https://mytenant.authentication.eu10.hana.ondemand.com/passcode
 
 ## Usage
 
-### Initialize the CLI
+You can either use the CLI from the terminal or command line, or use the module as a regular dependency in your code of your Node.js project.
+
+### From the command line
+
+#### Initialize the CLI
 
 Before you can list and run commands against your SAP Data Warehouse Cloud tenant you need to initialize the CLI first. When initializing the CLI a service document is downloaded from your SAP Data Warehouse Cloud tenant which describes the commands your tenant is able to understand. To initialize the CLI run
 
@@ -88,7 +104,7 @@ $ dwc <command>
 Your local CLI cache is outdated. Run 'dwc cache-init' to update
 ```
 
-### List available commands
+#### List available commands
 
 To list available commands and required or optional options attach the `-h, --help` to the top-level `dwc` command or any subcommand of `dwc`:
 
@@ -165,6 +181,116 @@ Options:
 ```
 
 The list of available commands differs based on the content of the service document you downloaded when running `cache-init`.
+
+### As a Node.js module dependency
+
+Require the module as usual. You can also use it in your TypeScript project using the `import` syntax.
+
+```javascript
+const dwc = require("@sap/dwc-cli");
+```
+
+#### Work with commands
+
+The module exports a `getCommands` function which returns a map of available commands. Make sure to always specify the `host` to receive `host`-specific commands. Otherwise, when omitting the `host` information, you will only get the list of general commands like `cache-clean`, `cache-init`, ...
+
+```javascript
+const MY_HOST = "https://mytenant.eu10.hcs.cloud.sap/";
+
+const commands = await dwc.getCommands(MY_HOST);
+
+console.log(commands);
+// {
+//   dwc: [AsyncFunction],
+//   'cache-clean': [AsyncFunction],
+//   'cache-init': [AsyncFunction],
+//   'passcode-url': [AsyncFunction],
+//   'cache-show': [AsyncFunction]
+//   'spaces create': [AsyncFunction]
+//   'spaces read': [AsyncFunction]
+//   'spaces delete': [AsyncFunction]
+// }
+```
+
+You can call any available command and provide required options as follows:
+
+```javascript
+const MY_HOST = "https://mytenant.eu10.hcs.cloud.sap/";
+
+const options = {
+  "--host": MY_HOST,
+  "--passcode": "somepasscode",
+};
+
+await commands["cache-init"](options);
+```
+
+`options` is a map of available options for the respective command. You have to supply either the short flag or long name of the option, including `-` or `--` for the short flag or long name.
+
+#### Handle errors during command execution
+
+If the command fails, an error is thrown you can catch and process as usual:
+
+```javascript
+try {
+  await commands["cache-show"]();
+} catch (err) {
+  // ops, the command failed!
+  console.log(err);
+}
+```
+
+#### Provide custom logger function
+
+Any output of a command you execute is forwarded to the `logger.output` function. To handle the result yourself, you can provide a custom `logger.output` function implementation:
+
+```javascript
+let result = [];
+const output = (...args) => result.push(args);
+dwc.configure({ customLogger: { output } });
+
+await commands["spaces read"]({
+  "--space": "MYSPACE",
+  "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+  "--passcode": "mypasscode",
+});
+
+console.log(result);
+// [
+//   [
+//     '{\n' +
+//       '  "MYSPACE": {\n' +
+//       '    "spaceDefinition": {\n' +
+//       '      "version": "1.0.4",\n' +
+// ...
+//       '    }\n' +
+//       '  }\n' +
+//       '}'
+//   ]
+// ]
+```
+
+#### Provide custom passcode retrieval function
+
+You can also provide a custom passcode retrieval function which is called every time before a command is executed. The function is expected to return a promise resolving into a string, the passcode. This way you can, for example, make use of programmatic passcode retrieval as described in [this blog](https://blogs.sap.com/2021/09/27/automatically-add-members-to-spaces-in-sap-data-warehouse-cloud-using-sap-dwc-cli/) using a headless browser and can omit the `--passcode` option when executing commands. The function needs to be configured only once before executing the first command.
+
+```javascript
+const customLogger = {
+  customLogger: { output: console.log },
+};
+
+const passcodeFunction = () => {
+  // instantiate headless browser, retrieve passcode, return it
+};
+
+dwc.configure(logger, passcodeFunction);
+
+// no --passcode option required
+await commands["spaces read"]({
+  "--space": "MYSPACE",
+  "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+});
+```
 
 ## Help Documentation
 
