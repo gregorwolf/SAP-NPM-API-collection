@@ -385,7 +385,8 @@ name | String | | The name of this plugin
 source | String/Object | | Describes a regular expression that matches the incoming [request URL](https://nodejs.org/api/http.html#http_message_url).</br> **Note:** A request matches a particular route if its path __contains__  the given pattern. To ensure the RegExp matches the complete path, use the following form: ^<path>$`. </br> **Note:** Be aware that the RegExp is applied to on the full URL including query parameters.
 target | String | x | Defines how the incoming request path will be rewritten for the corresponding destination.
 destination | String | | An alphanumeric name of the destination to which the incoming request should be forwarded.
-authenticationType | String | x | The value can be `ias`, `xsuaa`, `basic` or `none`. The default authenticationType depends on the authentication service binding: if the application router is bound to `ias (identity service)`, the default authenticationType is `ias`, else it is `xsuaa`. If `xsuaa` or `ias` are used the specified authentication server (IAS/UAA) handles the authentication (the user is redirected to the IAS's or the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used, then no authentication is needed for this route.</br>.
+authenticationType | String | x | The value can be ias, xsuaa, basic, or none. The default authenticationType depends on the authentication service binding: If the application router is bound to the Identity Authentication service, the default authenticationType is ias. Otherwise, the default value is xsuaa. If xsuaa or ias are used, the specified authentication server (Identity Authentication or User Account and Authentication) handles the authentication (the user is redirected to the login form of Identity Authentication or User Account and Authentication). The basic authenticationType works with SAP S/4HANA users, SAP ID service, and Identity Authentication service. For more information, see the SAP Note 3015211 - BASIC authentication options for SAP BTP Cloud Foundry applications. If the value none is used, no authentication is required for this route.
+</br>.
 csrfProtection | Boolean | x | Enable [CSRF protection](#csrf-protection) for this route. The default value is `true`.
 scope | Array/String/Object | x | Scopes are related to the permissions a user needs to access a resource. This property holds the required scopes to access the target path. Access is granted if the user has at least one of the listed scopes. **Note:** Scopes are defined as part of the xsuaa service instance configuration. You can use `ias` as authenticationType and xsuaa scopes for authorization if the application router is bound to both (`ias` and `xsuaa`)."
 
@@ -568,7 +569,7 @@ endpoint | String | x | The name of the endpoint within the service to which the
 localDir | String | x | Folder in the [working directory](#working-directory) from which the application router will serve static content **Note:** localDir routes support only HEAD and GET requests; requests with any other method receive a 405 Method Not Allowed.
 preferLocal | Boolean | x | Defines from which subaccount the destination is retrieved. If preferLocal is true, the destination is retrieved from the provider subaccount. If preferLocal is false or undefined, the destination is retrieved from the subscriber subaccount.
 replace | Object | x | An object that contains the configuration for replacing placeholders with values from the environment. *It is only relevant for static resources*. Its structure is described in [Replacements](#replacements).
-authenticationType | String | x | The value can be `xsuaa`, `basic` or `none`. The default one is `xsuaa`. When `xsuaa` is used the specified UAA server will handle the authentication (the user is redirected to the UAA's login form). The `basic` mechanism works with SAP HANA users. If `none` is used then no authentication is needed for this route.
+authenticationType | String | x | The value can be `xsuaa`,`ias`, `basic` or `none`. The default one is `ias`, if subaccount trusts an ias tenant, else `xsuaa`. When `xsuaa` or `ias` are used the specified authentication server will handle the authentication (the user is redirected to the authentication service login form). The `basic` mechanism works with SAP HANA users, SAP ID Service and SAP Identity Authentication service. Find more details in SAP Note 3015211 - BASIC authentication options for SAP BTP Cloud Foundry applications. If `none` is used then no authentication is needed for this route.
 csrfProtection | Boolean | x | Enable [CSRF protection](#csrf-protection) for this route. The default value is `true`.
 scope | Array/String/Object | x | Scopes are related to the permissions a user needs to access a resource. This property holds the required scopes to access the target path.
 cacheControl | String | x | String representing the value of the `Cache-Control` header, which is set on the response when serving static resources. By default the `Cache-Control` header is not set. *It is only relevant for static resources.*
@@ -1607,7 +1608,7 @@ In a multi-tenancy landscape, the application router will calculate the tenant i
  - x-forwarded-host header or host if EXTERNAL_REVERSE_PROXY is false or not specified
 
 ### Authorization Header
-* x-approuter-authorization: Contains the JWT or OIDC token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
+* x-approuter-authorization: Contains the JWT or OIDC access token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
 
 ## CSRF Protection
 
@@ -2070,7 +2071,7 @@ For information about the configuration of a custom storage driver, see [Configu
 
 ## Service to Application Router
 
-The application router can receive a consumer service xsuaa JWT or IAS OIDC token and use it to access the UI and the data. The token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
+The application router can receive a consumer service xsuaa JWT or IAS OIDC access token and use it to access the UI and the data. The token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
 
 Cookie Handling:
 In this flow client cookies are merged to backend cookies in case a backend cookie with the same key does not exist.

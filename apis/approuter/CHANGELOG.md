@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 10.15.3 - 2022-04-26
+
+### Fixed
+- Request contains an invalid x-csrf-token
+
+## 10.15.2 - 2022-04-24
+
+### Fixed
+- Improve readme documentation
+- Token xsrf undefined, when approuter bound to external session storage 
+
+### Updated dependencies
+- deps: @sap/logging@6.1.1
+- deps: async@3.2.3
+
 ## 10.15.1 - 2022-04-07
 
 ### Updated dependencies
