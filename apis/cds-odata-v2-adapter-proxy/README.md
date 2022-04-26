@@ -21,7 +21,7 @@ using CDS Node.js module [@sap/cds](https://www.npmjs.com/package/@sap/cds) or C
 
 ## Usage
 
-### CDS Combined Backend (CAP Node.js) - Integrated
+### CDS Combined Backend (CAP Node.js) - Integrated (preferred)
 
 In your existing `@sap/cds` project:
 
@@ -257,6 +257,7 @@ The following CDS OData V2 Adapter Proxy specific annotations are supported:
 CDS project configuration `cds.odata.version` shall be set to `v4`, as OData proxy maps to OData V4.
 CDS supports modelling features that are not compatible with OData V2 standard:
 
+- **Singletons:** Usage of annotation `@odata.singleton` is not supported in combination with OData V2
 - **Structured Types:** Usage of `cds.odata.format: 'structured'` is not supported in combination with OData V2
 - **Arrayed Types:** Usages of `array of` or `many` in entity element definitions lead to CDS compilation error: `Element must not be an "array of" for OData V2`
 

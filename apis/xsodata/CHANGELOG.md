@@ -8,6 +8,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [7.5.5] - 2022-04-21
+
+* On calc view: Stable sort order with $skip and $top usage for subsequent requests via "order by" of key fields in SQL statement
+
+## [7.5.4] - 2022-04-21
+
+Build infrastructure fix
+
+## [7.5.1] - [7.5.3] - 2022-04-20
+
+Build infrastructure fixes
+
 ## [7.5.0] - 2022-03-22
 
 * Support of node version 16
