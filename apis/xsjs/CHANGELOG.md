@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+<a name="6.6.2"></a>
+## 6.6.2 - 2022-04-26
+
+### Update
+- Update _moment_ to v2.29.2
+- Update _async_ to v3.2.2
+
+<a name="6.6.1"></a>
+## 6.6.1 - 2022-04-26
+
+### Update
+- Update _@sap/xsodata_ to v7.5.5
+
 <a name="6.6.0"></a>
 ## 6.6.0 - 2022-04-01
 
