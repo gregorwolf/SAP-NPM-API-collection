@@ -4,6 +4,17 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.9.3 - 2022-04-25
+
+### Fixed
+
+- Since 5.8.2 `req.target` for requests like `srv.put('/MyService.entity')` is defined, but `req.query` undefined (before `req.target` was also undefined). This was leading to accessing undefined, which has been fixed. 
+- Custom actions with names conflicting with methods from service base classes, e.g. `run()`, could lead to hard-to-detect errors. This is now detected and avoided with a warning. 
+- Typed methods for custom actions were erroneously applied to `cds.db` service, which led to server crashes, e.g. when the action was named `deploy()`. 
+- Invalid batch requests were further processed after error response was already sent to client, leading to an InternalServerError
+- Full support of `SELECT` queries with operator expressions (`xpr`)
+
+
 ## Version 5.9.2 - 2022-04-07
 
 ### Fixed

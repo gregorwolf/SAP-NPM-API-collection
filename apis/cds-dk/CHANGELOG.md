@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.9.3 - 2022-04-27
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 1.23.1 for creating Java projects.
+- Include `@sap/cds` 5.9.3
+
+### Fixed
+
+- `cds add cf-manifest` now uses the correct `application` plan for the `xsuaa` service
+- `cds login`, `cds activate`: correctly include response in auth errors
+- The SAP HANA and MTA options in the project wizard in BAS now work again
+
 ## Version 4.9.2 - 2022-04-11
 
 ### Changed
