@@ -245,9 +245,10 @@ server:
           src: "Path/To/libs"
 ```
 
-### Configuration options
+### [Configuration options](#configuration-options-1)
+Additionaly you can specify any of the configuration options (excluding `setHeaders`!) of the [serve-static](https://www.npmjs.com/package/serve-static) middleware.
 
-- **`fallthrough`** (default: true) - client errors fall-through as just unhandled requests, otherwise forward a client error. E.g. If set to true, then the `fiori-tools-servestatic` middleware will not return 404 error, when it can't find a file on the local system, but it will simply pass the request to the next available middleware. Otherwise 404 error will be returned.
+E.g. you can set `fallthrough: false`, which will cause the middleware to return 404 error, when it can't find a file on the local system:
 
 ```
 server:
@@ -256,9 +257,27 @@ server:
     afterMiddleware: compression
     configuration:
       paths:
-        - path: /libs
-          src: "Path/To/libs"
+        - path: /resources
+          src: "Path/To/SAPUI5-SDK"
+        - path: /test-resources
+          src: "Path/To/SAPUI5-SDK"
+      fallthrough: false
+```
+
+Alternatively you can set e.g. `fallthrough: false` only for specific requests:
+
+```
+server:
+  customMiddleware:
+  - name: fiori-tools-servestatic
+    afterMiddleware: compression
+    configuration:
+      paths:
+        - path: /resources
+          src: "Path/To/SAPUI5-SDK"
           fallthrough: false
+        - path: /test-resources
+          src: "Path/To/SAPUI5-SDK"
 ```
 
 ### [**4. Preview**](#4-preview)

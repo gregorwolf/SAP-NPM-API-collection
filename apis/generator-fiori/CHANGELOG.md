@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.5.5] - 2022-04-28
+### Added
+- Added support for the SAP Fiori elements Worklist floorplan with an OData V4 data source.
+
+#### Changed
+- Adding a new system during generation will now display the username of the user after authentication to the system.
+- The deployment name is no longer automatically populated from the module name when adding deployment configuration.
+
+### Fixed
+- Fixed CAP services retrieval to support services defined in nested folders in CAP projects.
+
 ## [1.5.4] - 2022-04-14
 ### Added
 - Added support for instance based destinations in deployment configuration for local Node.js CAP projects in SAP Business Application Studio.

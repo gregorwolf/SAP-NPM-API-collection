@@ -2,6 +2,10 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.5.5] - 2022-04-21
+### Fixed
+- Fixed an issue with the `fiori-tools-servestatic` middleware not serving files starting with a dot
+
 ## [1.5.4] - 2022-04-07
 ### Fixed
 - Fixed an issue with escaping runtime arguments on Windows with Node.js version 16
