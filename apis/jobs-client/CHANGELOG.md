@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 1.7.0 - 2022-04-26
+
+### Added
+- Support for node.js versions 12, 14 and 16
+
+## 1.6.3 - 2021-10-19
+
+### Added
+- Support for token fetching via mTLS if certificates are present in the jobscheduler binding credentials
+- Dependency update
+
 ## 1.6.1 - 2020-10-29
 
 ### Added

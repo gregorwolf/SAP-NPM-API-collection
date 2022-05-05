@@ -4,13 +4,38 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.9.4 - 2022-05-02
+
+### Fixed
+
+- Error messages are improved if no `passport` module was found or if no `xsuaa` service binding is available
+- Issue fixed for `srv.get()`. It was returning `TypeError` in plain REST usage for external services, e.g. `srv.get('/some/arbitrary/path/111')`
+- Allow unrestricted services to run unauthenticated, removing the `Unable to require required package/file "passport"` error. Totally not recommended in production.  Note that though this restores pre 5.9.0 behavior, this will come again starting in 6.0.
+- Audit logging of sensitive data in a composition child if its parent is annotated with `@PersonalData.EntitySemantics: 'Other'` and has no data privacy annotations other than `@PersonalData.FieldSemantics: 'DataSubjectID'` annotating a corresponding composition, for example:
+  ```js
+    annotate Customers with @PersonalData : {
+      DataSubjectRole : 'Address',
+      EntitySemantics : 'Other'
+    } {
+      addresses @PersonalData.FieldSemantics: 'DataSubjectID';
+    }
+    annotate CustomerPostalAddress with @PersonalData : {
+      DataSubjectRole : 'Address',
+      EntitySemantics : 'DataSubject'
+    } {
+      ID @PersonalData.FieldSemantics : 'DataSubjectID';
+      street @PersonalData.IsPotentiallyPersonal;
+      town @PersonalData.IsPotentiallySensitive;
+    }
+  ```
+
 ## Version 5.9.3 - 2022-04-25
 
 ### Fixed
 
-- Since 5.8.2 `req.target` for requests like `srv.put('/MyService.entity')` is defined, but `req.query` undefined (before `req.target` was also undefined). This was leading to accessing undefined, which has been fixed. 
-- Custom actions with names conflicting with methods from service base classes, e.g. `run()`, could lead to hard-to-detect errors. This is now detected and avoided with a warning. 
-- Typed methods for custom actions were erroneously applied to `cds.db` service, which led to server crashes, e.g. when the action was named `deploy()`. 
+- Since 5.8.2 `req.target` for requests like `srv.put('/MyService.entity')` is defined, but `req.query` undefined (before `req.target` was also undefined). This was leading to accessing undefined, which has been fixed.
+- Custom actions with names conflicting with methods from service base classes, e.g. `run()`, could lead to hard-to-detect errors. This is now detected and avoided with a warning.
+- Typed methods for custom actions were erroneously applied to `cds.db` service, which led to server crashes, e.g. when the action was named `deploy()`.
 - Invalid batch requests were further processed after error response was already sent to client, leading to an InternalServerError
 - Full support of `SELECT` queries with operator expressions (`xpr`)
 
