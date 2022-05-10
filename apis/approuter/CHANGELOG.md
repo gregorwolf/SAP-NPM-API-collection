@@ -5,6 +5,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.0.0 - 2022-05-09
+
+### Added
+- Support node version 14 and node version 16 instead of node version 12 and node version 14
+
+### Updated dependencies
+- async removed
+
+## 10.15.4 - 2022-05-08
+
+### Fixed
+- Instance level destination handling
+- Error handling when calling svc2Approuter middleware
+
+### Updated dependencies
+- deps: @sap/xssec@3.2.13
+- Caret (^) added to: @sap/audit-logging,@sap/e2e-trace,@sap/logging,@sap/xssec,async,node-forge,urijs
+
+
 ## 10.15.3 - 2022-04-26
 
 ### Fixed

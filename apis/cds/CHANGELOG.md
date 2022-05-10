@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.9.5 - 2022-05-09
+
+### Fixed
+
+- `HDB_TCP_KEEP_ALIVE_IDLE` config
+- A combination of `!=` operator and `or` in `where` clauses of `@restrict` annotations or when adjusting `req.query` in custom handlers (OData services only)
+- Programmatic calls to bound actions/functions do have keys in `req.data` again if compat flag `cds.env.features.keys_in_data_compat` is set
+
 ## Version 5.9.4 - 2022-05-02
 
 ### Fixed

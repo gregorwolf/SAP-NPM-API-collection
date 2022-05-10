@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.9.4 - 2022-05-09
+
+### Changed
+
+- Include `@sap/cds` 5.9.4
+- Bump `axios` to latest (CVE-2022-1214)
+
 ## Version 4.9.3 - 2022-04-27
 
 ### Changed

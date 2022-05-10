@@ -9,6 +9,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+
+
+## [1.6.6] - 2022-05-09
+
+### Fixed
+
+- Call `pathGetter` function using correct `this` context.
+- Using `cds env get` to get cds environment entry.
+
+## [1.6.5] - 2022-04-26
+
+### Fixed
+
+- Removed `Package Manager` error message when running generator.
+- `FsUtil.getTouchedFiles` now uses Yeoman store to print added/changed files.
+
 ## [1.6.4] - 2022-03-08
 
 ### Fixed

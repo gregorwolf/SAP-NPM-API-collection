@@ -1608,7 +1608,7 @@ In a multi-tenancy landscape, the application router will calculate the tenant i
  - x-forwarded-host header or host if EXTERNAL_REVERSE_PROXY is false or not specified
 
 ### Authorization Header
-* x-approuter-authorization: Contains the JWT or OIDC access token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
+* x-approuter-authorization: Contains the JSON Web Token (JWT) or Open ID Connect (OIDC) access token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
 
 ## CSRF Protection
 
@@ -2071,7 +2071,7 @@ For information about the configuration of a custom storage driver, see [Configu
 
 ## Service to Application Router
 
-The application router can receive a consumer service xsuaa JWT or IAS OIDC access token and use it to access the UI and the data. The token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
+The application router can receive a consumer service JWT token created by the SAP Authorization and Trust Management (xsuaa) service or an OIDC access token created by Identity Authentication service and use it to access the UI and the data. The token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
 
 Cookie Handling:
 In this flow client cookies are merged to backend cookies in case a backend cookie with the same key does not exist.
@@ -2079,7 +2079,7 @@ In this flow client cookies are merged to backend cookies in case a backend cook
 If you have configured [external session management](#external-session-management), an external session is created for each token in the external session management service (for example, in Redis). Such an external session has the same expiration time as the token for which it was created. 
 The application router uses the external session to store cached data, such as the exchanged tokens and destination configurations, to improve the performance by reducing roundtrips to the authentication and destination services.
 
-**Note**: The xsuaa JWT or IAS OIDC token is generated with the same xsuaa service or identity instance that is bound to the application router. 
+**Note**: The XSUAA JWT token or the OIDC token are generated with the same XSUAA service instance or the same Identity service instance that is bound to the application router. 
 
 
 ## Central Logout

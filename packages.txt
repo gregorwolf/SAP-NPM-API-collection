@@ -1,11 +1,6 @@
-@sap/bas-sdk
+@sap/approuter
 @sap/cds
-@sap/cloud-sdk-op-vdm-business-event-queue-service
-@sap/cloud-sdk-op-vdm-customer-material-service
-@sap/cloud-sdk-op-vdm-distribution-channel-service
-@sap/cloud-sdk-op-vdm-production-supply-area-service
-@sap/cloud-sdk-vdm-grant-service
-@sap/graph-toolkit
-@sap/hdbext
+@sap/cds-dk
+@sap/cloud-sdk-op-vdm-division-service
+@sap/generator-cap-project
 @sap/jobs-client
-@sap/open.fe
