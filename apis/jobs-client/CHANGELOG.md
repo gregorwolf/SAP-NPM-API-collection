@@ -6,15 +6,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 1.7.10 - 2022-05-02
+## 1.7.30 - 2022-05-11
 
 ### Added
+
+- Resolve issue with request dependency
+
+## 1.7.20 - 2022-05-06
+
+### Added
+
 - Removed deprecated npm module request
 - Dependency updates
 
 ## 1.7.0 - 2022-04-26
 
 ### Added
+
 - Support for node.js versions 12, 14 and 16
 
 ## 1.6.3 - 2021-10-19
