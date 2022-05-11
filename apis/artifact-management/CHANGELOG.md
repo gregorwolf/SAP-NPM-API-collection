@@ -1,3 +1,6 @@
+## 1.11.0 - 26 April, 2022
+### Added
+* Enable application logs service.
 ## 1.10.0 - 7 April, 2022
 ### Changed
 * Changed logic to identify PDM entities and service.

@@ -1,3 +1,8 @@
+## 1.10.0
+
+### Fixes
+- The column metadata is not read when creating synonym in the "Add Data Source" dialog
+
 ## 1.9.0
 
 ### Fixes

@@ -50,11 +50,11 @@ This API retrieves the annotations of a specific service.
 &nbsp;&nbsp;&nbsp;&nbsp; *credentials (this is optional)*: for services that require authentication.  
 **throws ServiceProviderError**: If there is an error, this throws a "ServiceProviderError" error message.   
 
-### __getJsonEntityData__  
+### __getJsonLiveData__  
 
 This API retrieves data for a specific service's entity.  
 
-  `getJsonEntityData(service: Service, entity: string, options?: Record<string, any>): Promise<ServiceCommon>`  
+  `getJsonLiveData(service: Service, entity: string, options?: Record<string, any>): Promise<ServiceCommon>`  
   
 **service**: The service for which to return the entity's data.</br> 
 **entity**:  The name of the entity for which we are retrieving the data.  

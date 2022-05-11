@@ -1,3 +1,14 @@
+## 1.11.0
+
+### Fixes
+- Remove superfluous Input ID in properties of data sources in Union nodes
+- The option "Mass Import of Synonyms" filters out schemas
+- Improve the filter selection in data preview
+- Relax fiscal calendar variant type format for more tolerance towards whitespaces
+- Auto Parameter Mapping Issue
+- Change default hierarchy type to SQL
+- "Maintain Time Tables" not working in Business Application Studio
+
 ## 1.10.0
 
 ### New Features

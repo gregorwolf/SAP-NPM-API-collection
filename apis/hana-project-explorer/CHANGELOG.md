@@ -1,3 +1,13 @@
+## 1.3.0
+
+### New Features
+
+- The bind operation considers the schema name of the service to be bound to determine whether to show the confirmation dialogs
+
+### Fixes
+
+- An error message is shown if a service can't be bound because of an invalid MTA configuration
+
 ## 1.2.0
 
 ### New Features

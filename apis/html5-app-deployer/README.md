@@ -259,6 +259,7 @@ To following types of destination configurations can be created:
 - A destination pointing to an xsuaa service instance (optional)
 - A destination pointing to an Identity Authentication service instance (optional)
 - A destination pointing to an html5-apps-repo/app-host service instance (mandatory)
+- A destinations pointing to a business  service instance (optional)
 - One or more backend destinations that point to a Cloud or an on- premise backend application. These destinations are modeled using the environment variable BACKEND_DESTINATIONS
 
 If the creation of a destination pointing to an xsuaa or an Identity Authentication service instance is required, the xsuaa or the Identity Authentication instances should be bound to the HTML5 application deployer.

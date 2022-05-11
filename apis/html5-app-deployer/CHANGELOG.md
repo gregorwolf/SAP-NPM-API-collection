@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.1.0 - 2022-05-10
+
+### Added
+- Create business services destinations
+
+### Updated dependencies
+- deps: async@3.2.3
+
 ## 4.0.1 - 2022-03-08
 
 ### Fixed
