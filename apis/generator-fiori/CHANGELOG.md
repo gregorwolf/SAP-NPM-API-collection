@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.6.0] - 2022-05-12
+### Added
+- Added support for the SAP Fiori elements Overview Page floorplan with an OData V4 data source.
+- Added Ability to generate Cloud Foundry deployment configuration for an existing SAP Fiori project in a non-interactive mode.
+
+#### Changed
+- Updated the launch targets generated for a SAP Fiori application in VSCode to remove those allowing you to specify an SAPUI5 version at runtime.  Please use the Fiori Run Configurations tool to change the version of SAPUI5 needed.
+ 
+### Fixed
+- Fixed issue where adding an SAP Fiori application to a JAVA Cap Project may fail to start if the relevant plugins and configuration were not already present in the project. These updates are now added as part of generation if needed.
+- Fixed the Form Entry Object Page floorplan to only accept OData V4 services.
+
 ## [1.5.5] - 2022-04-28
 ### Added
 - Added support for the SAP Fiori elements Worklist floorplan with an OData V4 data source.

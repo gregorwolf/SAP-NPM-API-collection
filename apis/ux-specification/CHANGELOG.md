@@ -4,6 +4,33 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.100.2] - 2022-05-05
+
+### Added
+
+- OData V4: 
+  - The title of ALP or List Report views is now following the same criteria as the UI5 run-time.
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+- OData V4:  
+  - Problems with deletion of ListReport table views.
+  - Unknown properties removed from custom section definition in 'manifest.json'.
+  - delete 'table/personalization' object property in 'manifest.json' if last property was removed.
+  - Export. Delete of entries from `table/views` - views were not deleted during export if entries in annotation file were deleted as first.
+  - When changing the table type in the page editor for LRP (V4), the respective manifest setting is not updated as long as this page is configured with the primary and secondary views
+- OData V2:
+  - Sections and subsections with a reference to Communication.Contact or Communication.Address had not been shown, support of flexibility changes for them.
+  - Facet or section references with multi-level navigation had not been handled correctly.
+
+### Quality
+- Switch consumption of "@sapui5/ts-types" to "@sapui5/ts-types-esm".
+
 ## [1.100.1] - 2022-04-21
 
 ### Added
@@ -16,12 +43,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 - Documentation actualized with regards to the new release version 1.100.
 
-### Changed
-
-### Removed
-
-### Deprecated
-
 ### Fixed
 - OData V4: 
   - Exception in case of multi-tab views in manifest that referred to a SelectionVariant.
@@ -32,7 +53,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
   - Sections of subordinate object pages had not been added correctly to the app schema in all cases.
 
 ### Quality
-
+- upgrade ejs to 3.1.7
 - SonarQube: issued solved with regards to cognitive complexity
 - upgrade ejs to 3.1.7
 
@@ -45,12 +66,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - OData V4:
   - LR: Added support for property `hideFilterBar`
   - Support of defaultTemplateAnnotationPath as property; consider defaultTemplateAnnotationPath when retrieving the relevant table settings and while switching to ALP flavour.
-
-### Changed
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 

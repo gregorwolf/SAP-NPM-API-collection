@@ -204,6 +204,21 @@ By using the `version` parameter one can choose the SAPUI5 version which will us
       directLoad: true
 ```
 
+Starting with version `1.6.0` one can use the following syntax for proxying different UI5 requests to different URLs, e.g.
+
+```
+- name: fiori-tools-proxy
+  afterMiddleware: compression
+  configuration:
+    ui5:
+      paths:
+        - path: /resources
+          url: https://ui5.sap.com
+        - path: /test-resources
+          src: https://sapui5.hana.ondemand.com
+      version: '1.100.1'
+```
+
 ### [**3. Serve Static**](#3-serve-static)
 
 The serve static middleware provides the capability to serve any static resources locally from your machine. E.g. you can serve SAPUI5 locally or any other resources.

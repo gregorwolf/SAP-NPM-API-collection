@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.8.17 - 2022-05-12
+
+### Fixed
+
+- Filter out annotation elements in response data starting with `odata.` or including `@odata.`.
+- Elements starting with `@` are excluded as before.
+- Propagate special headers to forwarded calls (i.e. starting with `dwc`).
+
 ## Version 1.8.16 - 2022-04-28
 
 ### Fixed
