@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.0.1 - 2022-05-15
+
+### Fixed
+- ARBE cookie size issue
+
 ## 11.0.0 - 2022-05-09
 
 ### Added

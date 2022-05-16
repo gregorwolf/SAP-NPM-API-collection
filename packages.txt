@@ -1,8 +1,8 @@
+@sap/approuter
 @sap/cds-odata-v2-adapter-proxy
-@sap/cloud-sdk-op-vdm-activity-phone-call-service
-@sap/generator-fiori
-@sap/hana-client
-@sap/ux-cds-odata-language-server-extension
-@sap/ux-specification
-@sap/ux-ui5-fe-mockserver-middleware
-@sap/ux-ui5-tooling
+@sap/cloud-sdk-op-vdm-bank-detail-service
+@sap/cloud-sdk-op-vdm-lead-service
+@sap/cloud-sdk-op-vdm-legal-transaction-service
+@sap/cloud-sdk-op-vdm-scheduling-agreement-service
+@sap/cloud-sdk-op-vdm-vms-vehicle-sharing-level-service
+@sap/cloud-sdk-vdm-defect-2-service
