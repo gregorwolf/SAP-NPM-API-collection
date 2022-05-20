@@ -8,9 +8,15 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.4.7"></a>
+## 6.4.7 - 2022-05-18
+
+### Added
+- Switch from deprecated Request package to Axios 
+- Remove npm-shrinkwrap.json
 
 <a name="6.4.6"></a>
-## 6.4.5 - 2022-04-17
+## 6.4.6 - 2022-04-17
 
 ### Fixed
 - Updates to dependency versions 

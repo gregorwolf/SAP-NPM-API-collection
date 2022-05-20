@@ -7,27 +7,132 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+
+## Version 2.15.2 - 2022-05-12
+
+### Fixed
+
+- Option `cdsHome` can be used instead of `global.cds.home` to specify the path to `@sap/cds/`.
+- to.edm(x):
+  + Set anonymous nested proxy key elements to `Nullable:false` until first named type is reached.
+  + Enforce `odata-spec-violation-key-null` on explicit foreign keys of managed primary key associations.
+  + Proxies/service cross references are no longer created for associations with arbitrary ON conditions.
+    Only managed or `$self` backlink association targets are proxy/service cross reference candidates.
+  + Explicit foreign keys of a managed association that are not a primary key in the target are exposed in the the proxy.
+  + If an association is primary key, the resulting navigation property is set to `Nullable:false` in structured mode.
+
+## Version 2.15.0 - 2022-05-06
+
+### Added
+
+- A new warning is emitted if `excluding` is used without a wildcard, since this does
+  not have any effect.
+- All scalar types can now take named arguments, e.g. `MyString(length: 10)`.
+  For custom scalar types, one unnamed arguments is interpreted as length, two arguments are interpreted
+  as precision and scale, e.g. `MyDecimal(3,3)`.
+- If the type `sap.common.Locale` exists, it will be used as type for the `locale` element
+  of generated texts entities.  The type must be a `cds.String`.
+- to.cdl: Extend statements (from `extensions`) can now be rendered.
+- Add OData vocabulary 'Hierarchy'.
+- CDL: New associations can be published in queries, e.g. `assoc : Association to Target on assoc.id = id`
+
+### Changed
+
+- to.edm(x):
+  + perform inbound qualification and spec violation checks as well as most/feasible EDM preprocessing steps
+    on requested services only.
+  + Open up `@odata { Type, MaxLength, Precision, Scale, SRID }` annotation.  
+    The annotations behavior is defined as follows:
+    + The element/parameter must have a scalar CDS type. The annotation is not applied on named types
+      (With the V2 exception where derived type chains terminating in a scalar type are resolved).
+    + The value of `@odata.Type` must be a valid `EDM` type for the rendered protocol version.
+    + If `@odata.Type` can be applied, all canonic type facets (`MaxLength`, `Precision`, `Scale`, `SRID`) are
+      removed from the Edm Node and the new facets `@odata { MaxLength, Precision, Scale, SRID }` are applied.
+      Non Edm type conformant facets are ignored (eg. `@odata { Type: 'Edm.Decimal', MaxLength: 10, SRID: 0 }`).
+    + Type facet values are not evaluated.
+  + V2: Propagate `@Core.MediaType` annotation from stream element to entity type if not set.
+- to.edm: Render constant expressions in short notation.
+- Update OData Vocabularies: 'Common', 'Graph', 'Validation'.
+
+### Fixed
+
+- to.cdl:
+  + Annotations of elements of action `returns` are now rendered as `annotate` statements.
+  + Annotations on columns (query sub-elements) were not always rendered.
+  + Doc comments on bound actions were rendered twice.
+  + Unapplied annotations for action parameters were not rendered.
+  + Unions and joins are correctly put into parentheses.
+  + Add parentheses around certain expressions in function bodies that require it, such as `fct((1=1))`.
+- to.edm(x):
+  + Fix a bug in top level and derived type `items` exposure leading to undefined type rendering.
+  + Fix a naming bug in type exposure leading to false reuse types, disguising invididual type
+    modifications (such as annotations, (auto-)redirections, element extensions).
+  + Ignore `@Aggregation.default`.
+  + Consolidate message texts and formatting.
+  + Fix navigation property binding in cross service rendering mode.
+  + Remove partner attribute in proxy/cross service navigations.
+- Core engine (function `compile`):
+  + Annotations for new columns inside `extend projection` blocks were not used.
+  + Extending an unknown select item resulted in a crash.
+  + Extending a context/service with columns now correctly emits an error.
+  + Unmanaged `redirected to` in queries did not check whether the source is an association.
+- parseCdl: `extend <art> with enum {...}` incorrectly threw a compiler error.
+- API: `compile()` used a synchronous call `fs.realpathSync()` on the input filename array.  
+  Now the asynchronous `fs.realpath()` is used.
+- On-conditions in localized convenience views may be incorrectly rewritten if an element
+  has the same as a localized entity.
+- to.sql/hdi/hdbcds:
+  + No referential constraint is generated for an association if its parent
+  or target entity are annotated with `@cds.persistence.exists: true`.
+  + Fix rendering of virtual elements in subqueries
+  + Correctly process subqueries in JOINs
+- to.sql/hdi: Queries with `UNION`, `INTERSECT` and similar in expressions are now enclosed in parentheses.
+
+## Version 2.14.0 - 2022-04-08
+
+### Added
+
+- cdsc:
+  + `--quiet` can now be used to suppress compiler output, including messages.
+  + `--options <file.json>` can be used to load compiler options. A JSON file is expected. Is compatible to CDS `package.json`
+    and `.cdsrc.json` by first looking for `cdsc` key in `cds`, then for a `cdsc` key and otherwise uses the full JSON file.
+  + `--[error|warn|info|debug] id1,id2` can be used to reclassify specific messages.
+- Add OData Vocabularies: 'DataIntegration', 'JSON'.
+  
+### Changed
+
+- Update OData Vocabularies: 'UI'.
+
+### Fixed
+
+- to.cdl:
+  + Delimited identifiers as the last elements of arrays in annotation values are now
+    rendered with spaces in between, to avoid accidentally escaping `]`.
+  + Identifiers in includes and redirection targets were not quoted if they are reserved keywords.
+- to.edm(x): Correctly rewrite `@Capabilities.ReadRestrictions.ReadByKeyRestrictions` into
+  `@Capabilities.NavigationPropertyRestriction` in containment mode.
+
 ## Version 2.13.8 - 2022-03-29
 
 ### Fixed
 
 - to.hdbcds/hdi/sql: Correctly handle `localized` in conjunction with `@cds.persistence.exists` and `@cds.persistence.skip`
 
-## Version 2.13.6 - 2022-25-03
+## Version 2.13.6 - 2022-03-25
 
 ### Fixed
 
 - to.hdbcds/hdi/sql: Correctly handle `localized` in conjunction with `@cds.persistence.exists`
 
-## Version 2.13.4 - 2022-22-03
+## Version 2.13.4 - 2022-03-22
 
 No changes compared to Version 2.13.0; fixes latest NPM tag
 
-## Version 2.13.2 - 2022-22-03
+## Version 2.13.2 - 2022-03-22
 
 No changes compared to Version 2.13.0; fixes latest NPM tag
 
-## Version 2.13.0 - 2022-22-03
+## Version 2.13.0 - 2022-03-22
 
 ### Added
 

@@ -6,11 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.5.6 - 2022-05-18
+
+### Added
+- Tenant upgrades can now scale beyond a single database.
+- The tenant IDs are now exposed in the provisioning service (`/mtx/v1/provisioning/tenantIds`).
+- The SaaS Provisioning Service `UPDATE` event type is now also supported.
+- By setting cds environment `mtx.provisioning.lazymetadatacontainercreation: true`, the creation of the `__META__` container can be postponed to the first onboarding again. In case the onboarding request contains additional parameters for the container creation, these parameters will also be used for the creation of the `__META__` tenant, except if the parameters are also set via cds environment `mtx.provisioning.metadatacontainer`.
+
+### Fixed
+- When using a custom folder setup for native artifacts for HDI, the `cfg` folder is now correctly included for the HDI deployment
+
 ## Version 2.5.5 - 2022-04-14
 
 ### Changed
 - Improved logging in the context of requesting tokens.
-
 
 ## Version 2.5.4 - 2022-04-04
 

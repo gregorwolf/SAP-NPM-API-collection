@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.8.19 - 2022-05-18
+
+### Fixed
+
+- Don't propagate `host` header to forwarded calls.
+
 ## Version 1.8.18 - 2022-05-13
 
 ### Fixed

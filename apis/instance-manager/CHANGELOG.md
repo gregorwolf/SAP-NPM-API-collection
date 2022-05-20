@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 3.3.3 - 2022-05-17
+
+### Fixed
+- **Migration Manager.** Fixed typo in cache_item_expire_seconds.
+
+### Changed
+- Changed istanbul test framework with c8.
+
 ## 3.3.2 - 2022-03-14
 
 ### Fixed

@@ -1,3 +1,6 @@
+## 1.11.1 - 17 May, 2022
+### Fixed
+* Reference ui5 with specific version for preview & launchpad.
 ## 1.11.0 - 26 April, 2022
 ### Added
 * Enable application logs service.
