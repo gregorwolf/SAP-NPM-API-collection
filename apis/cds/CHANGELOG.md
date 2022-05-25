@@ -4,6 +4,20 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## Version 5.9.6 - 2022-05-24
+
+### Fixed
+
+- Ignored requests in batch requests
+- `pool` module for logger facade is separated from `hana` database logger. Timeout error by acquiring client from pool is now enhanced with `_poolState` providing current pool attibutes.
+- Multiple errors did not have correct HTTP response status code
+- `POST|PUT|PATCH` requests with `charset` directive in `Content-Type` header (e.g. `Content-Type: application/json; charset=utf-8`) no longer issues an error "Invalid content type" in REST adapters
+- Call hana procedure:
+  + accepted are any symbols in a procedure name if it is delimited with a double quotation (`"`)
+  + fixed results for table output parameters when using `@sap/hana-client`; **limitation**: output parameters in a `CALL` statement must follow the same order used in a stored procedure definition
+- `@odata.context` considers `cds.env.odata.contextAbsoluteUrl` when requesting an OData Service
+
 ## Version 5.9.5 - 2022-05-09
 
 ### Fixed
