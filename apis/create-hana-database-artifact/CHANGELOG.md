@@ -1,3 +1,12 @@
+## 1.10.0
+
+### New Features
+- Artifacts can be generated into CAP projects
+
+### Fixes
+- The default hierarchy type for calculation views is set to "SQL"
+- The content of the analytical privilege "AP1" from the getting started scenario contained wrong data
+
 ## 1.9.0
 
 ### Fixes

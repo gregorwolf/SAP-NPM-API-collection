@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.6.1] - 2022-05-26
+### Added
+- Added unique non-identifable `toolsId` identifer to the manifest.json file for generated projects to support telemetry.
+
+#### Changed
+- Updated validation of Node.js CAP data sources to detail if the compilation of the services failed.
+- Improved the error message when an OData service URL provided does not reference an OData service.
+
+### Fixed
+- Fixed issue when using API Business Hub in SAP Business Application Studio with local preview.
+- Fixed issue where the Generator would not follow http redirects for an OData service URL.
+
 ## [1.6.0] - 2022-05-12
 ### Added
 - Added support for the SAP Fiori elements Overview Page floorplan with an OData V4 data source.

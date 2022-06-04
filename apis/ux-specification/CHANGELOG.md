@@ -4,18 +4,38 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.100.2] - 2022-05-05
+## [1.100.3] - 2022-05-19
 
 ### Added
 
-- OData V4: 
-  - The title of ALP or List Report views is now following the same criteria as the UI5 run-time.
-
 ### Changed
+- OData V4: 
+    - For list report views, the content of title and description in the schema got exchanged.
+    - Custom columns having an invalid anchor are not filtered out anymore but added to the schema (at the end of the columns' list). This better supports fixing the situation and is ncescessary so that the import fills the properties correctly.
+    - LR: If views are enabled, generic table columns won't be used/filled.
 
 ### Removed
 
 ### Deprecated
+
+### Fixed
+- OData V4: 
+    - If the table setting creationMode existed in the outdated string format, the export just had overwritten the string. Now, an implicit conversion to the new object format takes place.
+    - In case of multiple custom columns with an invalid anchor the app schema generation ran into an endless loop.
+    - No import of property annotationPath was happening at chart views of List Report.
+    - In the app specific schema, the description was missing for charts in sections.
+    - Tag 'hidden' was added to the property annotationPath of the ALP chart view in app schema.
+    - If defaultTemplateAnnotationPath is maintained and refers to an annotation other than UI.LineItem, the table settings and columns of the referred definition are now imported correctly.
+    
+### Quality
+- Code smells fixed, as reported by sonarQube.
+- Upgrade of annotation vocabularies tools.
+
+## [1.100.2] - 2022-05-05
+
+### Added
+- OData V4: 
+  - The title of ALP or List Report views is now following the same criteria as the UI5 run-time.
 
 ### Fixed
 - OData V4:  

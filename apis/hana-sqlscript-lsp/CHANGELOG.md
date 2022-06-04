@@ -1,3 +1,8 @@
+## 1.7.0
+
+### Fixes
+- Validation for hdbgrants files allows multiple grantor services
+
 ## 1.6.0
 
 ### New Features

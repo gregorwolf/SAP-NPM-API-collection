@@ -1,3 +1,11 @@
+## 1.11.0
+
+### Fixes
+- Schema filter on "Add Data Source" dialog
+- "Add data source" dialog does not display objects with same name as calculation view without any warning
+- Table function nodes should also allow searching for synonyms
+- Table function in another hdi-container is not found in the "Add Data Source" dialog if only a container service is selected
+
 ## 1.10.0
 
 ### Fixes

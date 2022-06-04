@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.6.4"></a>
+## 6.6.4 - 2022-06-03
+
+### Fixed
+- Creats new set of connections when using followUp functionality
+
+### Added
+- Added maxpoolsize to default DB options. 
+
 <a name="6.6.3"></a>
 ## 6.6.3 - 2022-05-03
 

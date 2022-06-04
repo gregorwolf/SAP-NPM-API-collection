@@ -558,6 +558,10 @@ The whole *parameters.json* file is accessible via `params.parameters` in [`onPr
 
 **Note**: Custom parameters can be defined as root-level properties. If `xs-security` is not defined, the SBF generates a default value, where `xsappname` is set to the service instance id.
 
+**Note**: During reuse instance create/update, an `authorities` array can be passed to XSUAA. It is recommended to provide `extend_xssecurity` from the [Additional Service Configuration](#additional-service-configuration) and set `authorities` explicitly, to control the scopes exposed for the reuse instance. If no `authorities` section was provided in [Additional service configuration](#additional-service-configuration) (`extend_xssecurity`), by default SBF will pass an empty `authorities` array in create/update requests to XSUAA, and`authorities` provided by consumers are ignored. <br/>
+Set the secureUAAScopes option (or environment variable `SBF_SECURE_UAA_SCOPES`) **explicitly** to `false`, in order to pass the authorities array provided by the consumer as is.<br/>
+**This behavior and environment variable form an incompatible change from release v6.4.9**.
+
 Generated credentials example:
 ```json
 {
@@ -1090,6 +1094,7 @@ Creates a new ServiceBroker instance.
   * [`secureIncomingConnections`](#mtls-authentication) *Boolean* If set to *true*, secure connection is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate's subject, you also have to configure the `serviceManagerCertificateSubject`. Default value is **false**.
   * [`serviceManagerCertificateSubject`](#out-of-the-box-mtls) *String* If `secureIncomingConnections` is set to true and `serviceManagerCertificateSubject` is configured to the Service Manager certificate's subject in the broker's landscape, the Service Manager [client certificate](#out-of-the-box-mtls) is verified in each public landscape.
   * [`clientCertificateKey`](#authentication-using-x509-client-certificates) *String* the private key corresponding to the client certificate used for authentication with XSUAA.
+  * [`secureUAAScopes`](#xsuaa) *Boolean* Relevant for [XSUAA as a credentials provider](#xsuaa). When set to `true` and no `authorities` section was provided in [Additional service configuration](#additional-service-configuration) (`extend_xssecurity`), SBF will pass an empty `authorities` array in create/update requests to XSUAA, regardless of the `authorities` provided by the consumer. Default: `true`.<br/> **Note: This behavior and environment variable form an incompatible change from release v6.4.9**.
   * [`k8sSecretsPath`](#credentials-providers) *String* the path to the mounted volume containing service secrets when running on K8S. Default is '/etc/secrets/sapcp/'.
 
 #### ServiceBroker.start()
@@ -1774,6 +1779,7 @@ Otherwise the broker will return HTTP status code 500 with a generic error messa
 - `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` - the Service Manager client certificate's subject. This variable has to be configured so that the Service Manager [client certificate](#out-of-the-box-mtls) is verified. Also, set `SBF_SECURE_INCOMING_CONNECTIONS` to true. You can retrieve the Service Manager certificate's subject at `https://service-manager.cfapps.<landscape domain>/v1/info` from the `service_manager_certificate_subject` field. The URL changes depending on your landscape domains. For example, https://service-manager.cfapps.eu10.hana.ondemand.com/v1/info.
 - `SBF_ENABLE_AUDITLOG` - if `false` disable audit logging, otherwise it is enabled.
 - `SBF_TENANT_ID` - Mandatory if the broker application is running on Cloud Foundry and audit logging is *enabled*.
+- `SBF_SECURE_UAA_SCOPES` - Relevant for [XSUAA as a credentials provider](#xsuaa). When set to `true` and no `authorities` section was provided in [Additional service configuration](#additional-service-configuration) (`extend_xssecurity`), SBF will pass an empty `authorities` array in create/update requests to XSUAA, regardless of the `authorities` provided by the consumer. Default: `true`.<br/> **Note: This behavior and environment variable form an incompatible change from release v6.4.9**.
 - `PORT` - the port on which the service broker will listen for requests, default is 8080.
 
 ### `gen-catalog-ids`

@@ -1,3 +1,22 @@
+## 1.12.0
+### New Features
+- Median as aggregation function
+- Session variables can be mapped into data sources
+
+### Fixes
+- Performance Analysis shows incorrect info about the datasource
+- Auto Parameter Mapping does not propagate parameter's type
+- Error message is not clear for time table creation when is not logged-in to Cloud Foundry
+- Mass synonym creation requires at least one external service to work
+- Variable extraction from underlying view does not work
+- "Red X" is shown when XML modified by GUI for dimensions having column with dot sign in star join
+- Creation of Pruning configuration table fails with no content in ".hdbtable" file
+- Currency conversion semantics of a measure goes off when calculation view is closed and re-opened in BAS
+- Copying multi-join node loses copied data information that results into inconsistent XML
+- ComboBox list becomes uneditable after selecting median aggregation
+- Incorrect alias proposal causes build failure
+- Auto mapping parameter hangs on redoing the auto mapping
+
 ## 1.11.0
 
 ### Fixes

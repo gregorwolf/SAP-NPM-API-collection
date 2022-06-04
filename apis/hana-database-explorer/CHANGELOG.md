@@ -1,3 +1,18 @@
+## 1.6.0
+
+### New Features
+- The SQL console can execute statements with parameters. When a statement with parameters is encountered, a new tab is shown that allows the user to enter the parameter values and then execute the parameterized statement.
+- The current connection's auto-commit state can be set from the SQL console via an icon in the menu bar.
+- The name and full name (schema + object name) of database objects can be copied to the clipboard via the context menu of the database objects in the catalog browser.
+- A CREATE statement can be generated for database objects via the context menu of the database objects in the catalog browser. By default the CREATE statement will be opened in a new SQL console. As an additional option the CREATE statement can also be copied to the clipboard.
+
+### Fixes
+- The font size of the SQL console can be set via the setting "editor.fontSize"
+- Scalar results were not displayed if a statement returned additional result sets
+- The database list displays folders defined for SAP HANA Database Explorer connections
+- The database list displays SAP HANA Data Lake connections in the SAP HANA Database Explorer connection list
+- Performance optimizations for creating database connections
+
 ## 1.5.0
 
 ### New Features

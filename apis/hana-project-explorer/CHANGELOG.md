@@ -1,3 +1,15 @@
+## 1.4.0
+
+### New Features
+
+- Support Mode Export: for troubleshooting purposes database artifacts can be selectively exported to be analyzed individually
+- Create an hdbgrants file when adding a user provided service as a new database connection
+
+### Fixes
+
+- Show more information in the warning message when binding a module to a service
+- Fix an issue where the SAP HANA Database Explorer could not be opened
+
 ## 1.3.0
 
 ### New Features

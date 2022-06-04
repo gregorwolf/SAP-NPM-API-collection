@@ -8,11 +8,29 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.4.9"></a>
+## 6.4.9 - 2022-06-02
+
+### Changed
+- Relevant for XSUAA scenarios: `authorities` provided by the consumer are ignored and overriden by `extend_xssecurity`. If `extend_xssecurity` is not provided, SBF will pass an empty `authorities` array. <br/>Set the new `secureUAAScopes` option (or environment variable `SBF_SECURE_UAA_SCOPES`) **explicitly** to `false`, in order to pass the authorities array provided by the consumer as is. **This behavior and environment variable form an incompatible change**.
+
+### Fixed
+- Fixed leaking of headers in logged messages in XSUAA scenarios.
+- Fixed support for clientx509enabled for K8S apps, where XSUAA credentials are mounted as files.
+
+<a name="6.4.8"></a>
+## 6.4.8 - 2022-05-24
+
+### Fixed
+- support error response with different struct   
+ 
 <a name="6.4.7"></a>
 ## 6.4.7 - 2022-05-18
 
-### Added
-- Switch from deprecated Request package to Axios 
+### Changed
+- Switch from deprecated Request package to Axios Package
+
+### Removed
 - Remove npm-shrinkwrap.json
 
 <a name="6.4.6"></a>
