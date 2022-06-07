@@ -752,3 +752,99 @@ dev-project get-detail-info  <my-application-folder-root absolute path> <type> <
 ```
 
 ---
+
+## Get Information from Data File
+###### Method
+`getInfoFromDataFile(filePath: string, logger? : IChildLogger) :Promise<any>;`
+###### Description
+Read and parse Excel data file (CSV or XML format).
+###### Parameters
+- filePath: Path of the data file.
+- logger: (Optional) An instance of IChildLogger which can be implemented by consumers of this library.
+###### returns
+- `Promise<any>`
+
+###### Example
+```
+const api = new ProjectImpl(projectPath);
+const data = await api.getInfoFromDataFile(filePath)
+```
+###### CLI
+```
+dev-project get-data-info  <data file absolute path>
+```
+###### Sample Output
+```
+[
+  {
+    "entity": "entity",
+    "values": [
+      [
+        "9a8a4cad-19c1-46b2-a599-4b735e82374f",
+        "1",
+        "1000000",
+        "Technology"
+      ],
+      [
+        "c84a8e54-ce5a-423b-923e-dab637d298c1",
+        "2",
+        "1500000",
+        "Products"
+      ],
+      [
+        "939be63d-7175-4b53-b593-aa0dde74a04e",
+        "3",
+        "2000000",
+        "Technology"
+      ]
+    ],
+    "labels": [
+      {
+        "label": "ID",
+        "value": "ID"
+      },
+      {
+        "label": "Capex Request",
+        "value": "capex_request"
+      },
+      {
+        "label": "Total Cost",
+        "value": "total_cost"
+      },
+      {
+        "label": "Department",
+        "value": "department"
+      }
+    ],
+    "props": [
+      {
+        "name": "ID",
+        "kind": "dataType",
+        "type": "UUID"
+      },
+      {
+        "name": "capex_request",
+        "kind": "dataType",
+        "type": "String"
+      },
+      {
+        "name": "total_cost",
+        "kind": "dataType",
+        "type": "String"
+      },
+      {
+        "name": "department",
+        "kind": "dataType",
+        "type": "String"
+      }
+    ],
+    "dbProps": [
+      "ID",
+      "capex_request",
+      "total_cost",
+      "department"
+    ]
+  }
+]
+```
+---

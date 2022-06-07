@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.1.0 - 2022-06-06
+
+### Added
+- Enhance user-api: both endpoints with user scopes, "attributes" endpoint with user attributes (including custom attributes)
+
+### Fixed
+- ARBE cookie: null while working with multiple backends.
+
 ## 11.0.1 - 2022-05-15
 
 ### Fixed

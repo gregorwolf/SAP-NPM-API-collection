@@ -2162,6 +2162,10 @@ The application router exposes a user API that returns the details of the user w
 The /currentUser endpoint returns all details of logged in users, while the /attributes endpoint returns the main user properties.
 The user API can be implemented by modelling an xs-app.json route using service sap-approuter-userapi.
 
+Note: The following applies if the route has the authentication type “xsuaa”:
+*	User scopes from the xsuaa access token will be added to the response of both endpoints.
+*	User attributes from the identity provider (IdP) chosen for the authentication will be added to the response of the “/attributes” endpoint. If a custom IdP is configured for Identity Authentication Service (IAS), the custom user attributes are also added to the response of the “/attributes” endpoint. For more information about the definition of custom properties in IAS, see [Configure the Default Attributes Sent to the Application](https://help.sap.com/docs/IDENTITY_AUTHENTICATION/6d6d63354d1242d185ab4830fc04feb1/a2f1e4692e7d4379ab82144ab309e7b3.html) on the SAP Help Portal.
+
 Examples:
 
 Handle both endpoints
@@ -2188,7 +2192,8 @@ The /currentUser endpoint response has the following format:
    "lastname": "Doe",
    "email": "john.doe@sap.com",
    "name": "john.doe@sap.com",
-   "displayName": "John Doe (john.doe@sap.com)"
+   "displayName": "John Doe (john.doe@sap.com)",
+   "scopes": "openid,user_attributes,uaa.user" (See the note above about routes with authentication type “xsuaa”.)
 }
 ```
 The /attributes endpoint response has the following format:
@@ -2197,7 +2202,9 @@ The /attributes endpoint response has the following format:
    "firstname": "John",
    "lastname": "Doe",
    "email": "john.doe@sap.com",
-   "name": "john.doe@sap.com"
+   "name": "john.doe@sap.com",
+   "scopes": "openid,user_attributes,uaa.user", (See the note above about routes with authentication type “xsuaa”.)
+   <user attributes, including custom attributes> (See the note above about routes with authentication type “xsuaa”.)
 }
 ```
 Note that the "name" property is the user ID in the identity provider, which in many cases is also the email address.
