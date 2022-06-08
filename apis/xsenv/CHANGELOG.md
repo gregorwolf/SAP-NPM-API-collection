@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.3.1 - 2022-06-08
+
+### Fixed
+- change node plugin version for xmake to 10.15.0
+
+## 3.3.0 - 2022-06-06
+
+### Added
+- Service bindings for Kubernetes
+
 ## 3.2.2 - 2022-04-11
 
 ### Removed

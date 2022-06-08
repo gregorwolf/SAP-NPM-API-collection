@@ -1,7 +1,7 @@
-@sap/approuter
-@sap/artifact-management
-@sap/artifact-management-base
-@sap/artifact-management-base-types
-@sap/artifact-management-types
-@sap/cloud-sdk-op-vdm-profit-center-service
+@sap/cds-dk
+@sap/cf-tools
+@sap/cloud-sdk-op-vdm-bill-of-material-where-used-service
+@sap/cloud-sdk-op-vdm-business-situation-type-service
+@sap/cloud-sdk-op-vdm-customer-material-service
+@sap/cloud-sdk-op-vdm-pure-substance-component-type-service
 @sap/xsenv

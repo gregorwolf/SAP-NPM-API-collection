@@ -6,6 +6,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.9.7 - 2022-06-08
+
+### Changed
+
+- Update `@sap/xsenv` to 3.3.1
+
+## Version 4.9.6 - 2022-06-08
+
+### Changed
+
+- Include `@sap/cds` 5.9.6
+
+### Fixed
+
+- `cds login` (and `cds extend`, `cds activate` if previously logged in) now properly renew token URL
+- Improved logging during those commands
+
 ## Version 4.9.5 - 2022-05-17
 
 ### Changed
