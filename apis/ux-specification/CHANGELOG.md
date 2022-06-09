@@ -4,19 +4,36 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.100.3] - 2022-05-19
+## [1.100.4] - 2022-06-02
 
 ### Added
+OData V4:
+- In case of a default (without qualifier) Selection-/PresentationVariant, the table settings and columns are now considered on list report page.
 
 ### Changed
-- OData V4: 
-    - For list report views, the content of title and description in the schema got exchanged.
-    - Custom columns having an invalid anchor are not filtered out anymore but added to the schema (at the end of the columns' list). This better supports fixing the situation and is ncescessary so that the import fills the properties correctly.
-    - LR: If views are enabled, generic table columns won't be used/filled.
+OData V4:
+- Titles of charts in sections and header sections now correspond to the run-time.
+- Add "annotationPath" schema property to schema for "Table" definition in simple list report.
 
 ### Removed
 
 ### Deprecated
+
+### Fixed
+OData V4:
+- If `defaultAnnotationPath` is used, corresponding custom columns were not considered on list report page.
+
+### Quality
+Upgrade node & node-version to 14.x
+
+## [1.100.3] - 2022-05-19
+
+### Changed
+- OData V4: 
+    - For list report views, the content of title and description in the schema got exchanged.
+    - Custom columns having an invalid anchor are not filtered out anymore but added to the schema (at the end of the columns' list). This better supports fixing the situation and is necessary so that the import fills the properties correctly.
+    - LR: If views are enabled, generic table columns won't be used/filled.
+
 
 ### Fixed
 - OData V4: 

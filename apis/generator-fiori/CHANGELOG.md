@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.6.3] - 2022-06-09
+### Added
+- The list of minimum SAPUI5 versions available during project generation are now grouped into `maintained versions` and `out of maintenance versions` for easy reference.
+- Added a check when deploying to an existing SAPUI5 ABAP repository with a new SAP App ID.  Previously the deployment would overwrite the existing one, now the user is asked to confirm the overwrite.
+
+### Fixed
+- Fixed an issue where the CDS watch script for an SAP Fiori application in a Node.js CAP project was not getting created.
+- Fixed an issue where the previews are failing for a Fiori Freestyle application when created with Data Source as `None`.
+- Fixed an issue where the reuse library referenced in an existing project was not being loaded from the local workspace.
+
 ## [1.6.1] - 2022-05-26
 ### Added
 - Added unique non-identifable `toolsId` identifer to the manifest.json file for generated projects to support telemetry.

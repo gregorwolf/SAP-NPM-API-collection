@@ -1,8 +1,15 @@
+## 1.12.1 - 8 June, 2022
+### Fixed
+* Adjust the banner image for preview & launchpad.
+* Reference higher ui5 version for launchpad to enable latest features from FE app.
 ## 1.12.0 - 27 May, 2022
 ### Added
 * Added new CLI api `get-data-info` to support parsing data file (csv, xml)
 ### Changed
 * Refactor mta.yaml to support CI/CD service
+## 1.11.1 - 17 May, 2022
+### Fixed
+* Reference ui5 with specific version for preview & launchpad.
 ## 1.11.0 - 26 April, 2022
 ### Added
 * Enable application logs service.
