@@ -7,6 +7,19 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 2.15.4 - 2022-06-09
+
+### Fixed
+
+- for.odata:
+  + Fix derived type to scalar type resolution with intermediate `many`.
+- to.edm(x):
+  + (V4 structured) Fix key paths in combination with `--odata-foreign-keys`.
+  + Add `Edm.PrimitiveType` to `@odata.Type`.
+  + (V4 JSON) Render constant expressions for `Edm.Stream` and `Edm.Untyped`.
+  + Fix a bug in target path calculation for `NavigationPropertyBinding`s to external references.
+  + Render inner annotations even if `$value` is missing.
+- Update OData vocabularies 'Common', 'UI'.
 
 ## Version 2.15.2 - 2022-05-12
 

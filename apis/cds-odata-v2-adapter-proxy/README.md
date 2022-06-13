@@ -153,12 +153,17 @@ Make sure, that all i18n property files reside next to the `csn.json` in a `i18n
 
 The OData V2 service provided by the CDS OData V2 Adapter Proxy can be used to serve an SAP Fiori Elements V2 UI.
 
-A running example can be tested as follows:
+Fiori Elements examples:
+
+- **Basic Edit**: Basic editing app
+- **Draft Edit**: Draft supported editing app
+- **Hierarchy**: Hierarchical display of data in tree table
+
+Running examples can be tested as follows:
 
 - Clone repository
-- Start server: `npm run cds:run`
-- Open Fiori Launchpad:
-  http://localhost:4004/webapp/test/flpSandbox.html
+- Start server: `npm start`
+- Open Fiori Launchpad: http://localhost:4004/fiori.html
 
 > Code repository is only available SAP internal.
 
@@ -189,6 +194,11 @@ function shouldCompress(req, res) {
 
 The shown compression filter function enables compression including
 OData Batch (`$batch`) calls with content type `multipart/mixed`.
+
+### Approuter Compression
+
+`@sap/approuter` now support out-of-the-box compression for OData $batch calls with `multipart/mixed`.
+It's disabled by default, but can be enabled using option [compressResponseMixedTypeContent](https://www.npmjs.com/package/@sap/approuter#compression-property).
 
 ## Documentation
 

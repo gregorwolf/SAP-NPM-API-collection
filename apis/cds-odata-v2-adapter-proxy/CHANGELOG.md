@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.8.20 - 2022-06-13
+
+### Fixed
+
+- Change README on Approuter compression flag `compressResponseMixedTypeContent`
+- Fill and process surrogate key `ID__` correctly in case of analytical queries
+- Add an example Fiori Elements applications showcasing hierarchical `TreeTable` usage
+- Rework UI application examples (basic, draft and hierarchy apps)
+
 ## Version 1.8.19 - 2022-05-18
 
 ### Fixed

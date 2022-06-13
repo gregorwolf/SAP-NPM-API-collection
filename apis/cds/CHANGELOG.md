@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.9.7 - 2022-06-13
+
+### Fixed
+
+- Deleting a parent will delete all compositions, also texts
+- Views with aliased elements in `orderBy`
 
 ## Version 5.9.6 - 2022-05-24
 
