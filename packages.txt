@@ -1,8 +1,8 @@
-@sap/audit-logging
-@sap/cloud-sdk-op-vdm-activity-type-service
-@sap/cloud-sdk-op-vdm-bill-of-material-where-used-service
-@sap/cloud-sdk-op-vdm-buffer-sizing-service
-@sap/cloud-sdk-op-vdm-financial-planning-data-service
-@sap/cloud-sdk-op-vdm-segmentation-structure-service
-@sap/cloud-sdk-op-vdm-service-entry-sheet-service
-@sap/instance-manager
+@sap/cds
+@sap/cds-compiler
+@sap/cds-odata-v2-adapter-proxy
+@sap/cloud-sdk-op-vdm-bill-of-material-comparison-service
+@sap/cloud-sdk-op-vdm-condition-contract-type-service
+@sap/cloud-sdk-op-vdm-settlement-document-service
+@sap/cloud-sdk-vdm-pra-division-of-interest-service
+@sap/logging

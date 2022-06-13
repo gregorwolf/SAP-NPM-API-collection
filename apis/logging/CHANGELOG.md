@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.1.2 - 2022-06-10
+
+### Updated
+- Updated devDep async to 3.2.4
+
 ## 6.1.1 - 2022-04-08
 
 ### Updated
