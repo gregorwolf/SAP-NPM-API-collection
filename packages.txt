@@ -1,8 +1,7 @@
-@sap/cds
-@sap/cds-compiler
-@sap/cds-odata-v2-adapter-proxy
-@sap/cloud-sdk-op-vdm-bill-of-material-comparison-service
-@sap/cloud-sdk-op-vdm-condition-contract-type-service
-@sap/cloud-sdk-op-vdm-settlement-document-service
-@sap/cloud-sdk-vdm-pra-division-of-interest-service
-@sap/logging
+@sap/apihub-service-provider
+@sap/approuter
+@sap/cloud-sdk-op-vdm-bank-detail-service
+@sap/cloud-sdk-op-vdm-functional-area-service
+@sap/cloud-sdk-op-vdm-segmentation-structure-service
+@sap/html5-app-deployer
+@sap/subaccount-destination-service-provider
