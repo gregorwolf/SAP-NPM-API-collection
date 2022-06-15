@@ -2053,13 +2053,17 @@ The variable value must be defined in the JSON format and provide the following 
 * **instanceName (mandatory)** - the name of the service instance of the storage service.
 * **storageType (mandatory)** - the type of the storage, for example - "redis". Note that if no custom storage driver is used, only “redis” is allowed.
 * **sessionSecret (mandatory)** - a secret to be used to generate a session cookie. Please generate a unique string with at least 64 characters.
+* **defaultRetryTimeout** - the maximum duration for automatic retries of failed Redis operations in milliseconds. The default value is 2000 ms.
+* **backOffMultiplier** - a multiplier of the Redis-defined pause that determines the time between consecutive automatic retries of failed Redis operations. The default value is 50.
 
 For example: 
 ```json
 {
     "instanceName": "approuter-redis",
     "storageType": "redis",
-    "sessionSecret": "someuniquesessionsecret"
+    "sessionSecret": "someuniquesessionsecret",
+    "defaultRetryTimeout": 10000,
+    "backOffMultiplier": 10
 }
 ```
 

@@ -474,14 +474,19 @@ module.exports.getStore = () => {
 see [Redis store](../lib/utils/redis-store.js) for example
 
 In order for app router to use it, user shall set ```externalStoreFilePath``` property in the ```EXT_SESSION_MGT``` env variable with the path to the storage.  
-The application router will use this path to require your storage 
+The application router will use this path to require your storage.
+
+The application router uses the defaultRetryTimeout and the backOffMultiplier properties in the EXT_SESSION_MGT environment variable to determine the Redis pattern for automatic retries of failed operations.
+
 For example: 
 ```json
 {
     "instanceName": "approuter-redis",
     "storageType": "redis",
     "sessionSecret": "someuniquesessionsecret",
-    "externalStoreFilePath": "./src/storage/my-special-storage"
+    "externalStoreFilePath": "./src/storage/my-special-storage",
+    "defaultRetryTimeout": 10000,
+    "backOffMultiplier":  10
 }
 ``` 
 

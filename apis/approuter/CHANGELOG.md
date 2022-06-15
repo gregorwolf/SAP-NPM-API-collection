@@ -5,12 +5,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.2.1 - 2022-06-15
+
+### Fixed
+- When user-api/attributes fails to get user attributes, it returns the basic user details
+
+## 11.2.0 - 2022-06-14
+
+### Added
+- Expose the Redis retry strategy as an application router configuration.
+
+### Fixed
+- Support compressing multipart/mixed content type when compressResponseMixedTypeContent is configured in xs-app.json
+- Avoid token exchange in case of expired login token
+- Correct a null pointer exception issue in user-api-middleware
+
 ## 11.1.0 - 2022-06-06
 
 ### Added
 - Enhance user-api: both endpoints with user scopes, "attributes" endpoint with user attributes (including custom attributes)
+- Support TrustAll for Private-link proxy type
 
 ### Fixed
+- SAML Assertion via Cloud Connector issue
 - ARBE cookie: null while working with multiple backends.
 
 ## 11.0.1 - 2022-05-15
