@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.3.2 - 2022-06-17
+
+### Fixed
+- service bindings for Kubernetes: bindings were not read because of symlinks
+
 ## 3.3.1 - 2022-06-08
 
 ### Fixed

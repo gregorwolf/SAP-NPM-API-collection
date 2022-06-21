@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.1.2 - 2022-06-20
+
+### Updated dependencies
+- deps: xsenv@3.3.2
+
+
 ## 4.1.1 - 2022-06-14
 
 ### Updated dependencies

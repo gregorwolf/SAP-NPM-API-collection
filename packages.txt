@@ -1,7 +1,6 @@
-@sap/apihub-service-provider
-@sap/approuter
-@sap/cloud-sdk-op-vdm-bank-detail-service
-@sap/cloud-sdk-op-vdm-functional-area-service
-@sap/cloud-sdk-op-vdm-segmentation-structure-service
+@sap/cloud-sdk-op-vdm-condition-contract-type-service
+@sap/hana-client
 @sap/html5-app-deployer
-@sap/subaccount-destination-service-provider
+@sap/mdk-tools
+@sap/service-provider-apis
+@sap/xsenv
