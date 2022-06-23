@@ -6,12 +6,17 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+
+## [2.17.9] - 2022-06-20
+### Changed
+- Add `node 14` to generated `package.json` files.
+
 ## [2.17.8] - 2022-03-22
 
 ### Changed
 - Internal refactoring for integration tests.
 - Add `engines` node version `14` and remove `10` in generated project.
-- Update dependnecies
+- Update dependencies
 
 
 ## [2.17.7] - 2021-04-16

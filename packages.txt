@@ -1,6 +1,6 @@
-@sap/cloud-sdk-op-vdm-condition-contract-type-service
-@sap/hana-client
-@sap/html5-app-deployer
-@sap/mdk-tools
-@sap/service-provider-apis
-@sap/xsenv
+@sap/cds-odata-v2-adapter-proxy
+@sap/cloud-sdk-op-vdm-company-code-service
+@sap/cloud-sdk-op-vdm-product-group-data-service
+@sap/cloud-sdk-vdm-central-supplier-quotation-service
+@sap/cloud-sdk-vdm-grant-service
+@sap/generator-cds
