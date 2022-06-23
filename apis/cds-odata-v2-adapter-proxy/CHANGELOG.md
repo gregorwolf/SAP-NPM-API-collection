@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.8.21 - 2022-06-22
+
+### Fixed
+
+- Add `Type` suffix to fix `__metadata.type` for parameterized entities (datajs did skip date type conversion)
+- Fix parameterized entities navigation links
+- Enhance Fiori Elements example apps
+
 ## Version 1.8.20 - 2022-06-13
 
 ### Fixed
