@@ -173,7 +173,7 @@ By the default the `fiori-tools-proxy` will read the proxy configuration from th
 
 #### [UI5](#ui5)
 
-By using the proxy configuration one can also change the SAPUI5 version, which is used to preview the application. With the application generation also the initial ui5 configuration for the proxy is created. It looks e.g. like this.
+By using the proxy configuration one can also change the SAPUI5 version, which is used to preview the application. By using the `version` parameter one can change the SAPUI5 version as follows:
 
 ```
 - name: fiori-tools-proxy
@@ -187,7 +187,7 @@ By using the proxy configuration one can also change the SAPUI5 version, which i
       version: 1.78.0
 ```
 
-By using the `version` parameter one can choose the SAPUI5 version which will used when `npx fiori run` is executed.
+Starting with `ux-ui5-tooling` version `1.4.7`, if the `version` property is not set in the `ui5.yaml`, then the `minUI5Version` from `manifest.json` will be used for the application preview. If the `version` property is set, but it is empty, then the `latest` SAPUI5 version from https://ui5.sap.com will be used for the application preview. For any other case the value of the `version` property will be used for the application preview.
 
 **Note:** all UI5 requests are routed through the proxy. Sometimes this can cause performance issues. If you don't want route the UI5 requests through the proxy, then you can set parameter `directLoad: true`. This will inject the UI5 url in the HTML file of the application and thus the UI5 libs will be loaded directly.
 

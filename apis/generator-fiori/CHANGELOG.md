@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.6.4] - 2022-06-23
+### Added
+- Added a check when using a destination in SAP Business Application Studio with the Fiori generator to ensure that the destination catalog service(s) can be found.
+
+#### Changed
+- Changed deployment configuration with clear text and hints whilst enforcing transport request validation where applicable.
+
+### Fixed
+- Fixed issue where an invalid saved SAP System in Windows was not displaying the correct error message.
+- Fixed ABAP deployment issue where user could be asked to re-authenticate against backend even if they had already authenticated successfully.
+
 ## [1.6.3] - 2022-06-09
 ### Added
 - The list of minimum SAPUI5 versions available during project generation are now grouped into `maintained versions` and `out of maintenance versions` for easy reference.
