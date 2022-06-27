@@ -5,14 +5,47 @@ A node library for checking feature toggles. It gives you the option to create s
 
 ### Instantiation
 
-Create an instance managing your feature toggles. The first parameter is the absolute path from your current file to a JSON file defining your feature toggles. The second parameter is the name of your Visual Studio Code extension (optional) if you want to enable / disable Visual Studio Code commands. The third parameter is a Visual Studio Code API object (optional). 
+Create an instance managing your feature toggles. The first parameter has to be either a JSON object or a string. The second parameter is the name of your Visual Studio Code extension (optional) if you want to enable / disable Visual Studio Code commands. The third parameter is a Visual Studio Code API object (optional).
+Depending on the type of your first parameter the module will
+a) directly use the provided feature toggles.
+b) check if the string is stringified JSON.
+c) try to read the file at the provided path.
 
 Pure Node.js:
 
 ```javascript
+    // With JSON parameter.
+    import FeatureToggles = require("@sap/hana-tooling-feature-toggles");
+    const myFeatures = {
+        "featureToggles": [
+            {
+                "name": "helloworld",
+                "status": "released"
+            }
+        ]
+    };
+    const FeatureToggleInstance = new FeatureToggles(myFeatures);
+```
+```javascript
+    // With string parameter.
     import FeatureToggles = require("@sap/hana-tooling-feature-toggles");
     const FeatureToggleInstance = new FeatureToggles(__dirname + "/../features.json");
 ```
+```javascript
+    // With stringified JSON parameter.
+    import FeatureToggles = require("@sap/hana-tooling-feature-toggles");
+    const myFeatures = {
+        "featureToggles": [
+            {
+                "name": "helloworld",
+                "status": "released"
+            }
+        ]
+    };
+    const featureString = JSON.stringify(myFeatures);
+    const FeatureToggleInstance = new FeatureToggles(featureString);
+```
+
 
 Visual Studio Code:
 
@@ -22,9 +55,9 @@ Visual Studio Code:
     const FeatureToggleInstance = new FeatureToggles(__dirname + "/../features.json", "featuretoggletest", vscode);
 ```
 
-The structure of your .json file (first parameter) should be:
+The structure of your JSON object / file (first parameter) should be:
 
-```javascript
+```json
 {
     "featureToggles": [
         {

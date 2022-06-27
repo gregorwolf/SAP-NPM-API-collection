@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 5.9.8 - 2022-06-24
+
+### Fixed
+
+- Application model is now again properly updated after extension activation
+- Avoid crashes during `cds version` when `folders.db` or `folders.srv` are array-valued instead of strings
+- `cds build` correctly validates MTX extension allow lists and doesn't log false positive warning messages
+
 ## Version 5.9.7 - 2022-06-13
 
 ### Fixed
