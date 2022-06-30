@@ -1,7 +1,8 @@
-@sap/cds
-@sap/cloud-sdk-op-vdm-nutrient-statement-service
-@sap/cloud-sdk-op-vdm-pure-substance-service
-@sap/cloud-sdk-vdm-enterprise-project-service
-@sap/hana-tooling-feature-toggles
-@sap/low-code-event-handler
-@sap/sbf
+@sap/cloud-sdk-op-vdm-default-segment-value-maintenance-service
+@sap/cloud-sdk-op-vdm-product-group-service
+@sap/cloud-sdk-op-vdm-production-routing-service
+@sap/cloud-sdk-op-vdm-responsibility-management-team-configuration-service
+@sap/cloud-sdk-op-vdm-sales-order-service
+@sap/dwc-cli
+@sap/site-app-server
+@sap/site-content-deployer

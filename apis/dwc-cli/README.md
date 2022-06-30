@@ -14,7 +14,6 @@ Command-Line Interface (CLI) for SAP Data Warehouse Cloud.
 6. [Help & Documentation](#help-documentation)
 7. [Community & Feedback](#community--feedback)
 8. [License](#license)
-9. [Release Notes](#release-notes)
 
 ## Installation
 
@@ -266,7 +265,7 @@ console.log(result);
 You can also provide a custom passcode retrieval function which is called every time before a command is executed. The function is expected to return a promise resolving into a string, the passcode. This way you can, for example, make use of programmatic passcode retrieval as described in [this blog](https://blogs.sap.com/2021/09/27/automatically-add-members-to-spaces-in-sap-data-warehouse-cloud-using-sap-dwc-cli/) using a headless browser and can omit the `--passcode` option when executing commands. The function needs to be configured only once before executing the first command.
 
 ```javascript
-const customLogger = {
+const logger = {
   customLogger: { output: console.log },
 };
 
@@ -300,16 +299,3 @@ See [SAP Data Warehouse Cloud community](https://community.sap.com/topics/data-w
 ## License
 
 This package is provided under the terms of the [SAP Freeware License Agreement](https://tools.hana.ondemand.com/sap-freeware-license.txt).
-
-## Release Notes
-
-Find all information about changes, enhancements, differents to previous versions and bug fixes here.
-
-### Version 2022.9.1
-
-- **Fixed local cache issue**: After initializing the CLI using `cache-init`, no additional commands like `spaces` was available. The downloaded discovery document for the tenant in question was effectively ignored.
-
-### Version 2022.9.0
-
-- **Respect HTTP protocol of tenant entered by user**: No matter what the protocol of the tenant (`https` or `http`), the HTTP request send to the backend service of the respective tenant was always using `https`. This can cause issues if the client using the CLI is hidden behind a HTTP proxy which only allows for `http` requests. This addresses cases where commands failed with errors like _"self signed certificate in certificate chain"_.
-- **The CLI could not be used as a regular Node.js dependency** using the `requires` or `import` syntax within a Node.js project. Users of the CLI always had to use Node.js' `exec` functionality to work with the CLI. For more information, see [_Using the CLI from the command line_](#from-the-command-line).
