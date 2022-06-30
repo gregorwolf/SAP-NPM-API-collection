@@ -1,8 +1,4 @@
-@sap/cloud-sdk-op-vdm-default-segment-value-maintenance-service
-@sap/cloud-sdk-op-vdm-product-group-service
-@sap/cloud-sdk-op-vdm-production-routing-service
-@sap/cloud-sdk-op-vdm-responsibility-management-team-configuration-service
-@sap/cloud-sdk-op-vdm-sales-order-service
-@sap/dwc-cli
-@sap/site-app-server
-@sap/site-content-deployer
+@sap/bas-sdk
+@sap/cloud-sdk-op-vdm-change-master-v2-service
+@sap/cloud-sdk-op-vdm-nutrient-statement-service
+@sap/cloud-sdk-vdm-enterprise-project-processing-status-service
