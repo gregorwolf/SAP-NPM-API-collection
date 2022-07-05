@@ -98,10 +98,11 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
     + [`onUpdate(params, callback)`](#onupdateparams-callback)
     + [`onDeprovision(params, callback)`](#ondeprovisionparams-callback)
     + [`onLastOperation(params, callback)`](#onlastoperationparams-callback)
-    + [`onBindLastOperation(params, callback)`](#onbindlastoperationparams-callback)
     + [`onFetchInstanceParams(params, callback)`](#onfetchinstanceparamsparams-callback)
     + [`onBind(params, callback)`](#onbindparams-callback)
     + [`onUnbind(params, callback)`](#onunbindparams-callback)
+    + [`onBindLastOperation(params, callback)`](#onbindlastoperationparams-callback)
+    + [`onFetchBindingParams(params, callback)`](#onfetchbindingparamsparams-callback)
     + [`params` details](#params-details)
       - [`req`](#req)
       - [`XSUAA clone info`](#xsuaa-clone-info)
@@ -367,12 +368,12 @@ function onProvision(params, callback) {
   });
 }
 ```
-The same applies also to `onUpdate` and `onDeprovision` hooks.
+The same applies also to `onUpdate`, `onDeprovision`, `onBind` and `onUnbind` hooks.
 
 Next, the platform polls in regular intervals for the status of the operation.
 Each time it sends the same `operation` string to identify the operation.
 This is useful if multiple asynchronous operations are running in parallel, e.g. multiple service instances are created at the same time.
-To provide the current status of the operation, you implement the [`onLastOperation`](#onlastoperationparams-callback) hook:
+To provide the current status of the operation, you implement the [onLastOperation](#onlastoperationparams-callback) hook (or [onBindLastOperation](#onbindlastoperationparams-callback) in case of async binding operations):
 ```js
 function onLastOperation(params, callback) {
   let operationId = params.operation; // for which operation to return status
@@ -386,7 +387,7 @@ function onLastOperation(params, callback) {
 
 **Note:** With [IAS as a credentials provider](#ias) all requests are proxied to the IAS Broker, which manages the statuses of last operations. If you choose to implement a hook, do it with caution because you could override the original status received from the IAS Broker.  
 
-**Note:** If several instances of the service broker are running, it is very likely that the start of an asynchronous operation and subsequent polling via [onLastOperation](#onlastoperationparams-callback) will be handled by different broker instances.
+**Note:** If several instances of the service broker are running, it is very likely that the start of an asynchronous operation and subsequent polling via [onLastOperation](#onlastoperationparams-callback) / [onBindLastOperation](#onbindlastoperationparams-callback) will be handled by different broker instances.
 So make sure that all broker instances see the same state.
 
 ### Service broker as middleware
@@ -1613,7 +1614,7 @@ Called when the broker receives a *deprovision* request.
   * `error` *Object* See [Error handling](#error-handling).
   * `reply` *Object* An object returned as a response to the *deprovision* request.
     * `async` *Boolean* (Optional) Specifies whether the deprovision operation is started asynchronously. Default is `false`. It will not be included in the response.
-    * `operation` *String* (Optional) For asynchronous responses, service brokers MAY return an identifier representing the operation. The value of this field SHOULD be provided by the broker client with requests to the Last Operation endpoint in a URL encoded query parameter.
+    * `operation` *String* (Optional) For asynchronous responses, service brokers MAY return an identifier representing the operation. The value of this field SHOULD be provided by the broker client with requests to the Instance Last Operation endpoint in a URL encoded query parameter.
 
 **Note:** The default SBF operation is executed right _after_ this hook and before the HTTP response is returned.
 For example, if XSUAA is used, the OAuth client clone will be deleted right after this hook, even in case of an async operation (`reply.async == true`).
@@ -1643,31 +1644,8 @@ SBF performs no additional processing for this operation, except for [IAS as cre
 
 See [Asynchronous broker operations](#asynchronous-broker-operations) for more information.
 
-#### `onBindLastOperation(params, callback)`
-Called when the broker receives a *last operation* request for **binding**.
-
-* `params` *Object*
-  * `instance_id` *String* Service instance ID
-  * `binding_id` *String* Service binding ID
-  * `originating_identity` *Object* Only available if the `X-Broker-API-Originating-Identity` header is provided in the request.
-  Contains the parsed data from the header (You can find more information about the structure [here](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/profile.md#originating-identity-header)).
-  * `user_id` *String* The authenticated user that called the broker.
-  * `req` *Object* You can find the details [here](#req).
-  * The parameters described in the OSB API specification under [Polling Last Operation, Parameters](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md#parameters)
-* `callback` *function(error, reply)*
-  * `error` *Object* See [Error handling](#error-handling).
-  * `reply` *Object* An object returned as a response to the *last operation* request.
-    * `state` *String* Valid values are "in progress", "succeeded", and "failed". While "state": "in progress", the platform SHOULD continue polling. A response with "state": "succeeded" or "state": "failed" MUST cause the platform to cease polling.
-    * `description` *String* (Optional) A user-facing message displayed to the platform API client. Can be used to tell the user details about the status of the operation.
-
-SBF performs no additional processing for this operation, except for [IAS as credentials provider](#ias), where the request is proxied to the IAS Broker.
-
-**Note:** Implementing `onBindLastOperation` is mandatory, if any other binding operation hook returns `reply.async = true` (apart from IAS flow). If this hook is not implemented, SBF returns status 501 (Not Implemented). If IAS is the credentials provider, the hook is optional.
-
-See [Asynchronous broker operations](#asynchronous-broker-operations) for more information.
-
 #### `onFetchInstanceParams(params, callback)`
-Called when the broker receives an *instance parameters* request.
+Called when the broker receives a *fetch instance* request.
 
 * `params` *Object*
   * `instance_id` *String* Service instance ID
@@ -1679,7 +1657,7 @@ Called when the broker receives an *instance parameters* request.
   * `error` *Object* See [Error handling](#error-handling).
   * `reply` *Object* An object returned as a response to the *instance parameters* request.
 
-SBF performs no additional processing for this operation.
+SBF performs no additional processing for this operation, except for [IAS as credentials provider](#ias), where the request is proxied to the IAS Broker.
 
 **Note:** Make sure to set the `instances_retrievable` property in the broker catalog to `true`.
 
@@ -1717,6 +1695,9 @@ Here each object overwrites common properties in the next one.
 **Note:** Implementing `onBind` hook is mandatory, if `autoCredentials` option is `false`.
 In this case `onBind` must provide the necessary credentials in `reply.credentials`.
 
+**Note:** If the `onBind` hook returns a 202 status code for async operation (`reply.async = true`), you are required to also implement the [onBindLastOperation](#onbindlastoperationparams-callback) and [onFetchBindingParams](#onfetchbindingparamsparams-callback) hooks (not mandatory in IAS flow).<br/>
+This is defined in the OSB specification [async binding response handling](https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#response-6).
+
 #### `onUnbind(params, callback)`
 Called when the broker receives an *unbind* request.
 
@@ -1731,11 +1712,59 @@ Called when the broker receives an *unbind* request.
 * `callback` *function(error, reply)*
   * `error` *Object* See [Error handling](#error-handling).
   * `reply` *Object* An object returned as a response to the *unbind* request.
+    * `async` *Boolean* (Optional) Specifies whether the unbind operation is started asynchronously. Default is `false`. It will not be included in the response.
+    * `operation` *String* (Optional) For asynchronous responses, service brokers MAY return an identifier representing the operation. The value of this field SHOULD be provided by the broker client with requests to the Binding Last Operation endpoint in a URL encoded query parameter.
 
 **Note:** The default SBF operation is executed right _after_ this hook and before the HTTP response is returned.
-For example, if SBSS is used, the binding credentials will be deleted right after this hook.
+For example, if SBSS is used, the binding credentials will be deleted right after this hook, even in case of an async operation (`reply.async == true`).
 
 **Note:** This hook should be repeatable (idempotent), i.e. if it completes successfully once, any subsequent invocations with the same parameters should be successful too. This is necessary in case the default SBF operation fails. Then it should be possible to repeat the whole operation to complete the cleanup. Also the platform may execute _unbind_ after a failed _bind_ operation as part of [orphan mitigation](https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#orphans). So `onUnbind` hook may be called even when the service binding and associated resources do not exist.
+
+#### `onBindLastOperation(params, callback)`
+Called when the broker receives a *last operation* request for **binding**.
+
+* `params` *Object*
+  * `instance_id` *String* Service instance ID
+  * `binding_id` *String* Service binding ID
+  * `originating_identity` *Object* Only available if the `X-Broker-API-Originating-Identity` header is provided in the request.
+    Contains the parsed data from the header (You can find more information about the structure [here](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/profile.md#originating-identity-header)).
+  * `user_id` *String* The authenticated user that called the broker.
+  * `req` *Object* You can find the details [here](#req).
+  * The parameters described in the OSB API specification under [Polling Last Operation, Parameters](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md#parameters)
+* `callback` *function(error, reply)*
+  * `error` *Object* See [Error handling](#error-handling).
+  * `reply` *Object* An object returned as a response to the *last operation* request.
+    * `state` *String* Valid values are "in progress", "succeeded", and "failed". While "state": "in progress", the platform SHOULD continue polling. A response with "state": "succeeded" or "state": "failed" MUST cause the platform to cease polling.
+    * `description` *String* (Optional) A user-facing message displayed to the platform API client. Can be used to tell the user details about the status of the operation.
+
+SBF performs no additional processing for this operation, except for [IAS as credentials provider](#ias), where the request is proxied to the IAS Broker.
+
+**Note:** Implementing `onBindLastOperation` is mandatory, if any other binding operation hook returns `reply.async = true` (apart from IAS flow). If this hook is not implemented, SBF returns status 501 (Not Implemented). If IAS is the credentials provider, the hook is optional.
+
+See [Asynchronous broker operations](#asynchronous-broker-operations) for more information.
+
+#### `onFetchBindingParams(params, callback)`
+Called when the broker receives a *fetch binding* request. 
+
+* `params` *Object*
+  * `instance_id` *String* Service instance ID
+  * `binding_id` *String* Service binding ID
+  * `originating_identity` *Object* Only available if the `X-Broker-API-Originating-Identity` header is provided in the request.
+    Contains the parsed data from the header (you can find more information about the structure [here](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/profile.md#originating-identity-header)).
+  * `user_id` *String* The authenticated user that called the broker.
+  * `req` *Object* See [here](#req) for more details.
+* `callback` *function(error, reply)*
+  * `error` *Object* See [Error handling](#error-handling).
+  * `reply` *Object* An object returned as a response to the *instance parameters* request.
+
+SBF performs no additional processing for this operation, except for [IAS as credentials provider](#ias), where the request is proxied to the IAS Broker.
+
+**Note:** Make sure to set the `bindings_retrievable` property in the broker catalog to `true`.
+
+**Note:** Implementing `onFetchBindingParams` is not mandatory, except for when the [onBind hook](#onbindparams-callback) is implemented and returns an async response, as defined by the OSB specification. In this case, the bind operation will be asynchronous, and the platform will poll for its last operation status, and finally will send a fetch binding request. <br/> If this hook isn't implemented, SBF returns status 501 (Not Implemented).
+
+**Note:** The OSB specification defines the expected response body for this request. Please review it [here](https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#fetching-a-service-binding). For instance, the response body expects a `parameters` and `credentials` objects, which is what CF is looking for as an OSB platform.
+
 
 #### `params` details
 
