@@ -7,6 +7,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 
+
+## [2.18.1] - 2022-07-01
+### Fixed
+- Various bug fixes
+
+## [2.18.0] - 2022-06-24
+### Changed
+- Supports only `Node.js` 12, 14, 16
+- Removed `fs-extra` dependency
+
 ## [2.17.9] - 2022-06-20
 ### Changed
 - Add `node 14` to generated `package.json` files.

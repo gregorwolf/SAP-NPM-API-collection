@@ -4,6 +4,234 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.0.1 - 2022-07-05
+
+### Added
+- Config option `cds.env.server.port` allows to configure the port to use (in addition to `process.env.PORT` and CLI option `--port`)
+
+### Fixed
+
+- Removed debug log about shutdown from `cds serve`
+- Hiding timeout error in production mode
+
+### Changed
+
+- Plugins cannot be loaded as ES modules, but need to remain CommonJS modules
+
+## Version 6.0.0 - 2022-06-30
+
+### Added
+
+- Listeners for `commit` events on the request object are now awaited
+- Experimental support for ECMAScript modules (ESM): You can now write your custom code, i.e.,
+  service implementations, `server.js`, `db/init.js` using ES6 `import` statements.
+  **Note though** that this is _experimental_ for now. Known limitation: _jest_ doesn't
+  support dynamic imports, which are required for that.
+
+- Improved `cds.error` to allow these using variants:
+  ```js
+  cds.error `Message with formatted: ${{foo:'bar'}}`
+  cds.error ({ message, code, ... })
+  cds.error (message, { code, ... })
+  let e = new cds.error(...) //> will not throw
+  ```
+  > Calling `cds.error()` with `new` returns the newly created Error,
+  > while calling it without `new` it throws immediately. The latter is
+  > useful for usages like that:
+
+- Improved `req.error` to always turn each recorded error in to an instance of `Error` with own stack trace.
+  Multiple errors are finally thrown as an array of these errors with `.message = 'MULTIPLE_ERRORS'`
+  and `.details = this` (the latter is for compatibility to former releases).
+
+- Public API for `cds.User.roles`: For example, this allows to construct new instances of `cds.User` like so:
+  ```js
+  let user = new cds.User ({ id:'me', roles:['admin'] })
+  user.is('admin') //> true
+  ```
+
+- Public API for `cds.context.tx`: This provides access to the current global root `tx`, if any.
+  (This replaces the former undocumented `req._tx`)
+
+- Public API `cds.User.anonymous` and `cds.User.privileged` which are sealed instances you can use directly
+  instead of always passing `new cds.UserPrivileged`.
+
+- Public API `cds.context.http` to reliably access inbound http `req` and `res` objects.
+
+- Persistent outbox now contains last error and timestamp of last attempt
+- Enable PUT requests for UPDATE queries with CQN for remote services
+- Support for new major version 2 of SAP Cloud SDK
+- Support for the `@assert.target` annotation for managed-to-one associations
+- Support for `FOR SHARE LOCK` on SAP HANA to acquire shared locks on the queried records so that the locked records
+stay intact until the transaction is committed or rolled back.
+- Consistent error information for remote batch requests
+- `cds.env` now supports expanding scalar `cds.requires` entries from `cds.requires.kinds`as follows:
+  ```jsonc
+  { "cds": {
+    "requires": {
+      "mtx-sidecar": true,
+      "db": "sql",
+      "kinds": {
+        "sql": {/* detailed config for sql */},
+        "mtx-sidecar": {/* detailed config */},
+      }
+    }
+  }}
+  ```
+- Support for mTLS in `enterprise-messaging-shared` and `message-queuing`
+- Allow empty publish and subscribe prefixes for SAP Event Mesh when using the format `cloudevents`
+- Custom type `sap.common.Locale` in common.cds
+- Ordering by aggregated value for draft-enabled active entity
+- `cds build` support for model provider service-based resource deployment.
+- Remote service:
+  - Conversion of OData V2 (`"kind": "odata-v2"`) function and action results to OData V4 format
+  - Conversion of binary data in CQN queries to `base64url` in URL and payload
+  - Key predicate is omitted for single-key entities in resulting URL (e.g. `GET /Foo(1)` instead of `GET /Foo(ID=1)`)
+  - Support of views with parameters
+- Add `@odata.mediaContentType` if selecting stream property
+- Kubernetes service bindings: Support for servicebinding.io and SAP BTP Service Operator based bindings
+- `cds build` copies an existing `.npmrc` file located in the root or srv folder of your project into the deployment folder (usually `gen/srv`). This allows for dedicated npm configuration in cloud environments.  Can be switched off by cds build option `contentNpmrc`.
+- `cds build` copies an existing `.cdsrc.json` file located in the root or srv folder of your project into the deployment folder (usually `gen/srv`). The effective CDS configuration is created from the `.cdsrc.json` and CDS configuration defined in the `package.json` file. Can be switched off by cds build option `contentCdsrcJson`.
+- Beta OData URL to CQN parser (`cds.env.features.odata_new_parser = true`):
+  - `@odata.context` is derived without using okra, not yet supported:
+    - `$expand=*` query option
+  - Support for actions and functions
+  - Further `$apply` transformations supported
+    - (nested) `concat` transformations
+    - `orderBy` transformation
+    - `top` & `skip` transformation
+    - `identity` transformation
+- Log `BEGIN`/`COMMIT`/`ROLLBACK` commands when using SAP HANA as the underlying database
+- Binary data in payload is validated to be RFC-4648 and OData ABNF conformed
+- Support multiple media (streaming) properties in one entity
+- Support for annotation `@protocol:'none'` to mark services as internal
+- New build task aliases `java` and `nodejs` deprecating `java-cf`and `node-cf`, which are still supported for compatibility reasons.
+- New shutdown event sent by `cds serve` (beta)
+- $filter in $expand for remote services
+- Mapping of aliases in $expand for remote services
+
+
+### Changed
+
+- `@sap/cds` can now be loaded from different install locations like any other module, i.e. `@require('@sap/cds')` will no longer return the same singleton instance.
+- SAP Cloud SDK is now only an optional dependency and must be installed manually
+- Improved `cds.context` implementation to use `AsyncLocalStorage` instead of plain `async_hooks` (-> [see Node.js docs](https://nodejs.org/api/async_context.html)); APIs stay the same.
+- Improved `cds.tx(tx=>{ ... })`: The new `tx` will be set as `cds.context.tx` for the function body's continuation,
+  so all nested service or database operations will be executed within this transaction automatically.
+- Node.js 14.15 is now the minimum required Node.js version.  Version 12 is no longer supported.
+- Node.js 14.15 is now enforced on loading of `@sap/cds`, for example, on server startup.
+- Improve error messages in messaging management
+- `cds.env.requires` formerly inherited from `cds.env.requires.kinds`. This is not the case anymore; hence things like this worked before but don't anymore:
+  ```js
+  let sql = cds.requires.sql       //> is undefined now
+  let sql = cds.requires.kinds.sql //> use this instead
+  ```
+  Alternatively you can add this to your cds config:
+  ```json
+  { "cds": { "requires": { "sql": true } }}
+  ```
+- Details of errors from remote services are now in property `reason` (before it was `innererror`)
+- `innererror` is not removed from OData error response
+- The `file` option of file-based messaging is now on top level (before it was in `credentials`)
+- Optimized Search: `cds.env.features.optimized_search=true` is now the default behavior.
+- `cds build` no longer generates CF manifest files for Nodejs and HANA db deployer modules.
+- `cds build` no longer supports WebIDE Fullstack compatibility mode. Consequently HANA artifacts and service EDMX files for Fiori modules might no longer be correctly generated.
+- Remote services: Batched `GET` requests will not fetch CSRF tokens
+- CQN now uses `xpr` correctly instead of brackets in `where`
+- `process.exit` is called again by `cds run/serve` and `watch`, to gain a reliable `exit` event for cleanup tasks.  Before, this would be spoiled by apps that do not shut down the event loop properly.
+- `cds build` no longer filters `./` file dependencies from package.json in the build output.
+- Fiori preview no longer supports URL pattern with `service` and `entity` query parameters, e.g. `$fiori-preview?service=...&entity=...`.  These URLs were created back in `@sap/cds` 3.x.
+- `cds build` no longer copies the `node_modules` folder into the deployment folder (usually `gen/db/**` and `gen/srv/**`).
+- Set default tenant to `undefined` in single-tenant mode
+- Handle foreign keys of to-one associations which should be set to `null` on db layer
+- `cds build` uses the native `fs` functions instead of `fs-extra`.
+- `cds build` supports initial data in CSV files that are located in any 'csv' or 'data' subfolder of some CDS model file. This also implies CSV files stored in reuse modules. Now, this behaviour is consistent with SQLite deployment. If the location of some CSV file has changed, a deployment error might be returned. In that case previously deployed `hdbtabledata` files have to be undeployed.
+- `cds deploy` reads Cloud Foundry file `config.json` to get org and space information.
+- New REST adapter replaced old (limited) implementation
+- Default behaviour for runtime integrity checks. From now on no integrity checks will be done by default.
+Note that this is a breaking change for appliations that rely on automatic integrity checks by runtime. We recommend to use `cds.env.features.assert_integrity`: `db` to switch on database integrity constraints. The value `app` can be used as fallback to previous behaviour.
+- `cds build` no longer copies `.env` or `default-env.json` files into the deployment folder.
+- OData `POST`, `PATCH` and `PUT` requests as well as draft-related `draftEdit` and `draftActivate` actions are now followed by an additional `READ` request to the application service. Consequently affected functionality:
+  + It is now sufficient to have a custom `READ` handler in order to adjust the response (e.g. to handle virtual properties) of the modification request.
+  + A user is now required to be authorized to read updated data e.g. a user having a role restricted with "INSERT-only" annotation pattern will get empty results in response to `POST` request.
+  + For compatibility reasons, `req._` of the modification request is uplinked to `req._` of the follow-up `READ` request so that one still can access original `req._.req/res` request objects of the modification request within the corresponding `READ` handlers.
+  + Modification logs are now followed by corresponding access logs.
+  + More details can be found in cds v6.0.0 release notes.
+- Message for PreconditionFailedError is now configurable in messages.properties
+- Remove circular references in Kibana logging
+- Error sanitization in production is skipped for custom errors with HTTP code `5xx`. From now on, it's possible for an app developer to return any error message to the client.
+Note that this is a breaking change for appliations that rely on error sanitization for custom errors in production. The behaviour of errors thrown by CAP framework is unchanged.
+
+### Fixed
+
+- Improved shutdown for AMQP connections and file listeners
+- Using `CQL` with a tagged template string `SELECT from Foo { null as boo }` throwed an exception.
+- In case of `MULTIPLE_ERRORS` throw an `Error` instead of an object
+- `cds build` ensures correct precedence of feature annotations. Fixes `Duplicate assignment` compilation errors.
+- Compatibility with former support to find service `@impl: 'relative/to/cdw'`.
+- Views on views with parameters where erroneously inherited params through `cds.linked()`.
+- Authentication: Return HTTP `404 Not Found` rather than `204 No Content` status code for invalid requests.
+For example, given the following request `/ReqAdmin(1)/toIntermediate/toa` and assuming that the `toIntermediate` instance does not exist,
+the runtime returned an HTTP `204 No Content` success status response code indicating that the request has succeeded.
+In such scenarios, now the HTTP `404 Not Found` status code is returned rather than `204 No Content`.
+- Errors from HTTP requests sent via `cds.test.axios` now are the original Axios errors, i.e. including properties like `request` and `response`, with stack traces from caller.
+- Errors constructed and thrown by `req.reject()` now have a stack starting at the code calling `req.reject()`.
+- Auth annotations `@restrict` and `@requires` with empty array do not allow access anymore
+- Delete on restricted singleton caused request to fail
+- Add workaround of typescript not complete literal unions, specially when union strings.
+- Accidental handling of non-proxy entities as they would have been proxies (`cds.env.odata.proxies`) in expands
+- Boolean keys are properly parsed into JS boolean values
+- Navigation path segments with aliased keys in structured mode (OData flavors `w4` and `x4`) when using beta OData URL to CQN parser (`cds.env.features.odata_new_parser`)
+- All entities in `@sap/cds/common` have now proper CDS doc comments
+- `cds build` uses `package.json` and `package-lock.json` files located in `srv` folder for deployment if existing. Before, `package.json` and `package-lock.json` files of the project root folder have always been taken.
+- Pass options from `cds.parse.expr` to `cdsc.parse.expr`.
+- Avoid error that is caused e.g. in a streaming scenario when there is an issue while processing the stream. Trying to change/send the response object could cause a crash because the response was sent already.
+- Correct URL generation for `Integer64` and `Decimal` for remote services
+- Operation parameters from structured type and annotated with @open are not filtered from the input query
+- Services are secured by default in production. Can be disabled via feature flag `cds.env.auth.restrict_all_services: false` or by using `mocked-auth`.
+- Optimized Search: Exception when searching on views using built-in SQL SAP HANA functions
+- In some cases, custom error handlers were not called for rest
+- `cds build` adds newline at EOF for `hdbmigrationtable` files
+- Static values in on condition were ignored when inserting on navigation
+- Removed entity key validation by POST request in rest
+- `$count=false` returned count
+- `odata_new_parser`: `format=json` allowed as query parameter, other formats not supported and returning 501, trailing `?` allowed e.g. `/Employees?`
+- `odata_new_parser`: Piped use of same transformations is now supported, like `/Students?$apply=filter(BIRTHYEAR ge 2000)/groupby((UNIVERSITY),aggregate(SUBJECT with countdistinct as distinctSubjects))/filter(UNIVERSITY eq 'Hamburg')`
+- `odata_new_parser`: Behavior of piped transformations while using `topcount` or `bottomcount` is now correct
+- Better error message for missing `exists` predicate in `@restrict.where`
+- Reading raw Binary data provided as a `base64` (standard or url-safe) string by means of a `$value` query option
+- Selecting a navigation with `$select` ended up in database error
+- `cds.compile` no longer fails for cds sources that contain the `file:` pattern
+- $select=IsActiveEntity did not work on draft enabled entity, when requesting active data via navigation
+- not equal operator `<>` treated the same way as `!=`
+- `cds.localize` now respects custom i18n file names (which is not recommended though)
+- `cds version` now handles array-valued entries for `folders.db`and `folders.srv` gracefully when looking for MTX sidecar
+- OData access of entities named `get` and `set`
+- missing brackets for OR condition in `.where()` when requesting by navigation
+- `cds build` now correctly supports nodejs apps that do not have a service module defined. In these cases the build task's _src_ folder has to be configured as "."
+- `cds build <dir>` is now correctly executed if called by npm script or mta build.
+- `cds deploy` now shows a better error message on INSERT errors (on SQLite).
+
+### Removed
+
+- Deprecated option to send synchronous requests via `srv.emit()` -> use `srv.send()` for that
+- Deprecated feature flag `cds.env.features.implicit_sorting`
+- Deprecated feature flag `cds.env.features.update_managed_properties`
+- Deprecated feature flag `cds.env.features.resolve_views`
+- Deprecated feature flag `cds.env.features.spaced_columns`
+- Deprecated feature flag `cds.env.features.throw_diff_error`
+- Deprecated feature flag `cds.env.features.delay_assert_deep_assoc`
+- Deprecated feature flag `cds.env.features.auto_fetch_expand_keys`
+- Deprecation warning for query parameters `sap-valid-from` and `sap-valid-to`
+- Built-in graphql support &rarr; moved to new `@sap/cds-graphql`
+- Deprecated feature flag `cds.env.features.extract_vals`
+- Support for CQN `where in` syntax `{ val: [1, 2, 3] }` without `list`. Use `{ list: [{ val: 1 }, { val: 2 }, { val: 3 }] }` instead.
+- Support for selects in restrict entries, e.g. `where : 'exists (select 1 from MyTable where a = b)'` is not allowed anymore
+- Input validation for deep `INSERT`/`UPDATE` for associations in the service layer
+- Support for `@odata.contained` annotation. Use Compositions instead.
+- Support for `@odata.on.insert/update` annotation. Use `cds.on.insert/update` instead.
+- Support for expressions in references, for example: `ref: ['foo as bar']`).
+- Generic support of `$expand` and `$select` OData query options for custom actions and functions
+
 ## Version 5.9.8 - 2022-06-24
 
 ### Fixed
@@ -71,10 +299,9 @@
 
 - Since 5.8.2 `req.target` for requests like `srv.put('/MyService.entity')` is defined, but `req.query` undefined (before `req.target` was also undefined). This was leading to accessing undefined, which has been fixed.
 - Custom actions with names conflicting with methods from service base classes, e.g. `run()`, could lead to hard-to-detect errors. This is now detected and avoided with a warning.
-- Typed methods for custom actions were erroneously applied to `cds.db` service, which led to server crashes, e.g. when the action was named `deploy()`.
+- Typed methods for custom actions were erroneously applied to `cds.db` service, which led to server crashes, for example, when the action was named `deploy()`.
 - Invalid batch requests were further processed after error response was already sent to client, leading to an InternalServerError
 - Full support of `SELECT` queries with operator expressions (`xpr`)
-
 
 ## Version 5.9.2 - 2022-04-07
 
@@ -94,11 +321,11 @@
 
 - Function arguments might be escaped too often
 - URL encoding for remote services for CQN queries
-- `cds serve` during development again redirects URLs with for UI apps in a folder with the same name as a service, so `/foo/webapp` would redirect to `/foo`.  This got broken in 5.8.3.
+- `cds serve` during development again redirects URLs for UI apps in a folder with the same name as a service, so `/foo/webapp` would redirect to `/foo` again.  This got broken in 5.8.3.
 - Endless loop in localization handling
 - Ensure service impl while extending entity from the service
 - Post-processing of custom draft queries
-- No minifying of CSN artifacts for Java build
+- `cds build` no longer omits unused CDS type definitions, leading to Java compiler errors
 
 ## Version 5.9.0 - 2022-03-25
 
@@ -116,13 +343,14 @@
   + `[{ grant: '...', to: ['...'], where: '...' }, ...]`: applicable restrictions with grant normalized to strings
     + That is, `grant: ['CREATE', 'UPDATE']` in model becomes `[{ grant: 'CREATE' }, { grant: 'UPDATE' }]`
   + Promise resolving to any of the above (needed for CAS override)
-- Internal model provider service can be used for obtaining dynamic csn including features and key user extensions
+- Internal model provider service can be used for obtaining dynamic csn, including features and key user extensions
 - Support insert of SQL snippets for HANA migration tables using @sql.append and @sql.prepend annotations.
 - Support for the `@odata.draft.enclosed` annotation on associations targeted via navigation — previously only supported for `$expand`
 - Pseudo role `internal-user` for technical user tokens acquired from own XSUAA instance
 - Include globally-installed cds-dk version in output of `cds version`.
 - Include version of cds-mtx in output of `cds version`, if available.
 - Feature toggle support in `cds build` for cloud deployments. Create language bundles and parsed CSN for all features.
+- Support for `@Aggregation.default` in new OData parser (`cds.env.features.odata_new_parser = true`)
 
 ### Changed
 
@@ -155,7 +383,7 @@
 - 'Preview' links in generic index.html page no longer get the word _preview_ appended automatically, allowing for more flexible naming.  Link providers should make sure to add the _preview_ word if necessary.
 - Don't throw error in GraphQL adapter if update mutation filter does not match any entries (to be consistent with delete mutations)
 - Remote call of unbound action/function returns octet-stream instead of string by default
-- Default pool's behaviour has been changed from `FIFO` (queue) to `LIFO` (stack). Can be changed in pool configuration.
+- Default pool's behavior has been changed from `FIFO` (queue) to `LIFO` (stack). Can be changed in pool configuration.
 - `cds run/serve` now gracefully shuts down the HTTP server before exiting.  Custom handlers for signals like `SIGTERM` or `SIGINT` can now be processed.
 - `cds build` no longer creates `COMMENT` statements for HANA if doc comments are present in CDS models.  The statements caused superfluous table migrations during HANA deployments.
 
@@ -190,7 +418,8 @@
 - `cds.compile` correctly supports reserved namespaces like `cds.foundation`.
 - `cds.compile.to.serviceinfo` now uses the correct configuration for the base URL paths for Java services
 - `cds deploy --to sqlite` correctly localizes texts in deployed views. Before not all localized texts have been correctly resolved.
-- `cds deploy --to hana` reports missing org or space info with better message.
+- `cds deploy --to hana` reports missing org or space info with a better message.
+- Using combinations of `.` and `_` in CSN definition names
 
 ### Removed
 
@@ -207,17 +436,18 @@
 
 ### Fixed
 
-- `queries` property for application defined destinations of remote services
+- `queries` property for application-defined destinations of remote services
 - `cds serve --watch` no longer fails if `@sap/cds-dk` is installed only globally
 - `cds serve` during development longer redirects URLs with similar path segments from different services, like `/service/one` and `/service`
 - `cds deploy --to sqlite` now ignores a `_texts.csv` file again if there is a language-specific file like `_texts_en.csv` present
 - Using logical blocks (surrounded with `(` and `)`) in ON-conditions of unmanaged associations and compositions
-- Skip "with parameters" clause if no order by clause or all columns in the order by clause are not strings when using parametrized views on hana
+- Skip "with parameters" clause if no order by clause or all columns in the order by clause are not strings when using parametrized views on SAP HANA
 - Limited support for binary data in OData
-  + Using of `base64` string values in `WHERE IN` on hana
-  + `base64url` values in `@odata.context` annotation
+  - Using of `base64` encoded string values in `WHERE IN` on SAP HANA
+  - `base64url` values in `@odata.context` annotation
 - `cds.context` is set in GraphQL adapter
-- Using payloads with `@odata.type` annotating primitive properties no longer crashes the application. `#` in type value may be ommitted. Example:
+- Using payloads with `@odata.type` annotating primitive properties no longer crashes the application. `#` in type value may be omitted. Example:
+
   ```json
   {
     "ID": 201,
@@ -227,13 +457,14 @@
     "stock": 12
   }
   ```
+
 - Unicode support for i18n bundles
 
 ## Version 5.8.2 - 2022-02-22
 
 ### Fixed
 
-- Crash if error does not have a stack in kibana logging
+- Crash if error does not have a stack in Kibana logging
 - Allow short names for bound operations in odata-server
 - Performance issue during deep operations
 - Resolving views with parameters
@@ -273,17 +504,18 @@
 - Draft (Access control for bound actions): Only the user that is the owner of the draft can execute its bound actions.
 - Check that all keys are provided in REST adapter
 - Restrict access to all services via `cds.env.requires.auth.restrict_all_services = true`
-  + That is, all unrestricted services (i.e., w/o own `@requires`) are treated as having `@requires: 'authenticated-user'`
+  - That is, all unrestricted services (i.e., w/o own `@requires`) are treated as having `@requires: 'authenticated-user'`
 - Threshold for automatically sending GET requests as `$batch` (beta, cf. @sap/cds@5.6.0) can be configured per remote service via `cds.env.requires.<srv>.max_get_url_length` (if not configured on service, the global config applies)
 - Limited support for binary data in OData
-  + In payloads, the binary data must be a base64 encoded string
-  + In URLs, the binary data must have the following format: `binary'<url-safe base64 encoded>'`, e.g., `$filter=ID eq binary'Q0FQIE5vZGUuanM='`
-  + The use of binary data in some advanced constructs like `$apply` and `/any()` may be limited
-  + On SQLite, the base64 encoded string is stored in the database
-  + It’s strongly discouraged to use binary data as keys. See "Primary Keys — Best Practices" in the documentation.
+  - In payloads, the binary data must be a base64 encoded string
+  - In URLs, the binary data must have the following format: `binary'<url-safe base64 encoded>'`, e.g., `$filter=ID eq binary'Q0FQIE5vZGUuanM='`
+  - The use of binary data in some advanced constructs like `$apply` and `/any()` may be limited
+  - On SQLite, the base64 encoded string is stored in the database
+  - It’s strongly discouraged to use binary data as keys. See "Primary Keys — Best Practices" in the documentation.
 - Support for OData annotation `@Core.ContentDisposition.Type` with `attachment` as the default value
 - Support for returning custom stream objects in custom handlers (beta):
-  + Example:
+  - Example:
+
     ```js
     return {
       value: instanceof Readable || null,

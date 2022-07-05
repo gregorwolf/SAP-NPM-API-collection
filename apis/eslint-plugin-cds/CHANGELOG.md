@@ -6,6 +6,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.4.1] - 2022-06-17
+
+- Added authorization rules 'auth-*'.
+
+### Changed
+
+- Node.js 14 is now the minimum required Node.js version.  Version 12 is no longer supported.
+
+
+## [2.4.0] - 2022-04-14
+
+### Added
+
+- Rule report recycling ensures that rules are created/run only once for the root model
+### Changed
+
+- Rule `no-dollar-prefixed-names` no longer acts on compiler warning messages
+
+### Changed
 ## [2.3.5] - 2022-04-05
 
 ### Changed
