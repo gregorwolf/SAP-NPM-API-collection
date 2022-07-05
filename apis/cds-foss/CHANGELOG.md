@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.0.0 - 2022-06-14
+
+### Changed
+
+- Dependencies are no longer pinned and have open ranges, allowing more flexibility in reuse scenarios
+- `fs-extra` got removed
+- `yaml` got bumped to version 2
+
 ## Version 3.1.1 - 2022-03-24
 
 ### Changed

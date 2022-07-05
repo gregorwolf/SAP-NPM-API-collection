@@ -5,6 +5,17 @@ The cds-compiler uses [Semantic Versioning][SemVer] for its version numbers.
 This document clarifies how we use [SemVer] and what you can and what you can‘t
 expect from version updates.
 
+<!-- toc: start -->
+
+1. [Public API](#public-api)
+2. [Patch Versions](#patch-versions)
+3. [Minor Versions](#minor-versions)
+4. [Beta Flags](#beta-flags)
+5. [Deprecated Flags](#deprecated-flags)
+6. [Command Line Tool `cdsc`](#command-line-tool-cdsc)
+
+<!-- toc: end -->
+
 ## Public API
 
 According to [§1] of SemVer, a public API must be made available.  Our public
@@ -41,7 +52,7 @@ we detect invalid CDS code.
 
 ## Beta Flags
 
-The compiler provides so called “beta flags” that enable or disable certain
+The compiler provides so-called “beta flags” that enable or disable certain
 features.  We do not guarantee that any such flags stay consistent between
 patch versions!  Beta flags may change any time.
 
@@ -57,6 +68,14 @@ period.
 Refer to [CHANGELOG_DEPRECATED.md](./CHANGELOG_DEPRECATED.md) for changes
 to deprecated flags.
 
+## Command Line Tool `cdsc`
+
+`bin/cdsc.js` as well as all other command line tools do _not_ guarantee any
+stability.  It is considered a compiler internal tool that only serves for
+debugging.  The official command line tool `cds` of the `@sap/cds` and
+`@sap/cds-dk` packages are to be used by users.  That means commands and
+options may change any time without prior notice.  Changes may still be listed
+in [CHANGELOG.md](../CHANGELOG.md).
 
 [SemVer]: https://semver.org/
 [§1]: https://semver.org/#spec-item-1

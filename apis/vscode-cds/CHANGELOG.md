@@ -3,63 +3,114 @@
 All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/).
-The format is based on [Keep a Changelog](https://keepachangelog.com/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/
+
+
+## Version 6.0.0 - 2022-07-01
+
+### Added
+- using native `notebook` support for `cap-notebook`
+- support for new major cds-compiler 3.0.0
+- new user setting `cds.workspaceSymbols.caseInsensitive` (default off) to search case insensitive
+- new user setting `cds.outline.semantical` (default off) to show outline in a rather semantical structure as opposed to a flat list
+- analyze dependencies now supports coloring of layers for monorepos
+- env.cdsc is now also considered for code completion
+- custom requests to format given content with given options (e.g. for a _formatting options config UI_) and to get path of options file
+
+### Changed
+- now requires NodeJS `>=16.11` (included in recent VSCode)
+- now requires Visual Studio Code `>=1.66`
+- use `workspace.fs` for file IO during `cds preview`.
+
+## Fixed
+- fixed glitches in cds schema support for `package.json`, `.cdsrc.json` and `.cdsrc-private.json`
+- fixed highlighting for empty block comments `/**/`
+
+### Also see
+- `@sap/cds-lsp` 6.0.0
+- `@sap/cds-compiler` 3.0.0
+
+
+## Version 4.5.6 - 2022-05-09
+
+### Added
+- file icon for CDS files
+
+### Changed
+- updated included cpaire docs
+
+### Also see
+- `@sap/cds-lsp` 5.5.9
+
+
+## Version 4.5.5 - 2022-05-05
+
+### Added
+
+- support syntax highlighting for escape sequences in template strings
+
+### Fixed
+
+- find references could have shown wrong entries from localized context 
+
+### Also see
+- `@sap/cds-lsp` 5.5.8
 
 
 ## Version 4.5.4 - 2022-04-05
 
 ### Changed
 - `CAP Release Notes` page now persists its state
-
 ### Fixed
-- syntax highlighting in Business Application Studio
+- Syntax highlighting in Business Application Studio
 
-### Components
-- @sap/cds-lsp 5.5.7
-- @sap/cds-compiler 2.13.8
+### Also see
+- `@sap/cds-lsp` 5.5.7
+- `@sap/cds-compiler` 2.13.8
 
 
 ## Version 4.5.3 - 2022-03-31
 
 ### Changed
-- consume `package.json` and `.cdsrc.json` schemas from `@sap/cds-lsp`
-- better error message in case `cds preview` could not compile a source file
+- Consume `package.json` and `.cdsrc.json` schemas from `@sap/cds-lsp`
+- Better error message in case `cds preview` could not compile a source file
 
 ### Fixed
-- no loner set NODE_ENV to production which resulted in `npm i` only installing prod dependencies
+- No loner set NODE_ENV to production which resulted in `npm i` only installing prod dependencies
 
-### Components
-- @sap/cds-lsp 5.5.6
-- @sap/cds-compiler 2.13.6
+### Also see
+- `@sap/cds-lsp` 5.5.6
+- `@sap/cds-compiler` 2.13.6
+
 
 ## Version 4.5.2 - 2022-03-03
 
 ### Added
 
-- new code-formatting options for `action`s and `function`s:
+- New code-formatting options for `action`s and `function`s:
   + `alignActionNames` (aligns names)
   + `alignActionReturns` (aligns `returns` keywords)
 
 ### Changed
 
-- removed obsolete code-formatting option `alignAsInElements` (calculated fields use `=` now)
+- Removed obsolete code-formatting option `alignAsInElements` (calculated fields use `=` now)
 
 ### Fixed
-- saving a `cds` file now automatically refreshes all open previews for this file
+- Saving a `cds` file now automatically refreshes all open previews for this file
 - _Show Formatting Options Configuration_
-  + showed empty samples editor
-  + editor no longer switches to typescript
-  + no longer _save changes_ popup when closing samples editor
-  + when not opened on existing file (CDS source or .cdsprettier.json) and workspace
+  + Showed empty samples editor
+  + Editor no longer switches to typescript
+  + No longer _save changes_ popup when closing samples editor
+  + When not opened on existing file (CDS source or .cdsprettier.json) and workspace
     has multiple workspace folders, user has now to pick the workspace folder
-- code formatting:
-  + separate post-annotation with blank
-  + remove erroneous newlines around cardinality and filter in `select`
-  + separate projection items with newlines
-- code completion for annotations now correctly handle e.g: @aaa.| entity
+- Code formatting:
+  + Separate post-annotation with blank
+  + Remove erroneous newlines around cardinality and filter in `select`
+  + Separate projection items with newlines
+- Code completion for annotations now correctly handle e.g: @aaa.| entity
 
-### Components
-- @sap/cds-lsp 5.5.5
+### Also see
+- `@sap/cds-lsp` 5.5.5
 
 
 ## Version 4.5.1 - 2022-02-04

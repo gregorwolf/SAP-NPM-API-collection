@@ -204,17 +204,17 @@ It's disabled by default, but can be enabled using option [compressResponseMixed
 
 Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V4 Server:
 
-- **options:** CDS OData V2 Adapter Proxy options object
+- **options:** CDS OData V2 Adapter Proxy options object.
   - **base:** Base path under which the service is reachable. Default is `''`.
   - **path:** Path under which the proxy is reachable. Default is `'v2'`.
   - **model:** CDS service model (path(s) or CSN). Default is `'all'`.
-  - **port:** Target port, which points to OData V4 backend port. Default is process.env.PORT or `4004`.
-  - **target:** Target, which points to OData V4 backend host/port. Default is e.g. `'http://localhost:4004'`.
+  - **port:** Target port which points to OData V4 backend port. Default is process.env.PORT or `4004`.
+  - **target:** Target which points to OData V4 backend host:port. Use `'auto'` to infer the target from server url after listening. Default is e.g. `'http://localhost:4004'`.
   - **targetPath:** Target path to which is redirected. Default is `''`.
   - **services:** Service mapping object from url path name to service name. Default is `{}`.
   - **mtxRemote:** CDS model is retrieved remotely via MTX endpoint for multitenant scenario. Default is `false`.
   - **mtxEndpoint:** Endpoint to retrieve MTX metadata when option 'mtxRemote' is active. Default is `'/mtx/v1'`.
-  - **ieee754Compatible:** `Edm.Decimal` and `Edm.Int64` are serialized IEEE754 compatible. Default is `true`.
+  - **ieee754Compatible:** Edm.Decimal and Edm.Int64 are serialized IEEE754 compatible. Default is `true`.
   - **disableNetworkLog:** Disable networking logging. Default is `true`.
   - **fileUploadSizeLimit:** File upload file size limit (in bytes). Default is `10485760` (10 MB).
   - **continueOnError:** Indicates to OData V4 backend to continue on error. Default is `false`.
@@ -223,15 +223,15 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
   - **isoDateTime:** Use ISO 8601 format for type cds.DateTime (Edm.DateTimeOffset). Default is `false`.
   - **isoTimestamp:** Use ISO 8601 format for type cds.Timestamp (Edm.DateTimeOffset). Default is `false`.
   - **isoDateTimeOffset:** Use ISO 8601 format for type Edm.DateTimeOffset (cds.DateTime, cds.Timestamp). Default is `false`.
-  - **bodyParserLimit:** Request and response body parser size limit. Default is '100mb'.
-  - **returnCollectionNested**: Collection of entity type is returned nested into a `results` section. Default is `true`.
+  - **bodyParserLimit:** Request and response body parser size limit. Default is `'100mb'`.
+  - **returnCollectionNested**: Collection of entity type is returned nested into a results section. Default is `true`.
   - **returnComplexNested**: Function import return structure of complex type (non collection) is nested using function import name. Default is `true`.
   - **returnPrimitiveNested**: Function import return structure of primitive type (non collection) is nested using function import name. Default is `true`.
   - **returnPrimitivePlain**: Function import return value of primitive type is rendered as plain JSON value. Default is `true`.
-  - **messageTargetDefault**: Specifies the message target default, if target is undefined. Default is `/#TRANSIENT#`.
-  - **caseInsensitive**: Transforms search functions e.g. substringof to case insensitive variant. Default is `false`.
+  - **messageTargetDefault**: Specifies the message target default, if target is undefined. Default is `'/#TRANSIENT#'`.
+  - **caseInsensitive**: Transforms search functions i.e. substringof, startswith, endswith to case-insensitive variant. Default is `false`.
   - **propagateMessageToDetails**: Propagates root error or message always to details section. Default is `false`.
-  - **contentDisposition**: Default content disposition for media streams (inline, attachment), if not available or calculated. Default is `attachment`.
+  - **contentDisposition**: Default content disposition for media streams (inline, attachment), if not available or calculated. Default is `'attachment'`.
   - **calcContentDisposition**: Calculate content disposition for media streams even if already available. Default is `false`.
   - **quoteSearch**: Specifies if search expression is quoted automatically. Default is `true`.
   - **fixDraftRequests**: Specifies if unsupported draft requests are converted to a working version. Default is `false`.

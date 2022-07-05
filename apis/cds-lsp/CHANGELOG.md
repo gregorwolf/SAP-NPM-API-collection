@@ -6,6 +6,49 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+
+                                                                 
+## 6.0.0 - 2022-07-01
+
+### Added
+- support for new major cds-compiler 3.0.0
+- new user setting `cds.workspaceSymbols.caseInsensitive` (default off) to search case insensitive
+- new user setting `cds.outline.semantical` (default off) to show outline in a rather semantical structure as opposed to a flat list
+- analyze dependencies now supports coloring of layers for monorepos
+- env.cdsc is now also considered for code completion
+- custom requests to format given content with given options (e.g. for a _formatting options config UI_) and to get path of options file
+
+### Changed
+- minimum required NodeJS version is now 16.11.1
+- updated to Language Server Protocol v3.17.0
+  + definition request now returns both, name range and scope range
+
+## Fixed
+- fixed glitches in cds schema support for `package.json`, `.cdsrc.json` and `.cdsrc-private.json`
+- fixed highlighting for empty block comments `/**/`
+
+### Also see
+- `@sap/cds-compiler` 3.0.0
+
+
+## 5.5.9 - 2022-05-09
+
+### Added
+
+- support syntax highlighting for escape sequences in template strings
+- option to disable 'footprint' traces resulting in **no** overhead
+- code lens statistics
+
+### Fixed
+
+- completion proposals inside comments to turn on/off formatting
+- find references could have shown wrong entries from localized context
+
+### Changed
+
+- updated included capire docs
+
 ## 5.5.7 - 2022-04-05
 
 ### Fixed

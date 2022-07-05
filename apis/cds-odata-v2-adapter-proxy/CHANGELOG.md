@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.0 - 2022-07-04
+
+- CDS 6 compatible version
+- Enhance proxy option `target` with mode `auto` to handle dynamic target/port assignment (e.g. for unit-tests)
+- Represent time component of `cds.Date/Edm.DateTime` with second precision (i.e. `00:00:00`)
+
 ## Version 1.8.21 - 2022-06-22
 
 ### Fixed
@@ -225,7 +231,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Fix query options not part of action parameters
-- Proxy option `caseInsensitive` to transform search function e.g. `substringof` to case insensitive variant
+- Proxy option `caseInsensitive` to transform search function e.g. `substringof` to case-insensitive variant
 
 ## Version 1.7.9 - 2021-08-06
 
