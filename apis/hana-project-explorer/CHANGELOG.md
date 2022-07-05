@@ -1,3 +1,16 @@
+## 1.5.0
+
+### New Features
+
+- A database module can be bound to a user-provided service
+- A warning is displayed if services bound to a database modules do not match the current Cloud Foundry space. Users can choose to automatically unbind these services via a setting.
+
+### Fixes
+
+- Improved the UI for creating a new database connection
+- Improved validation of service instance names when creating a new database connection
+- Don't show services that are already bound when creating a new database connection
+
 ## 1.4.0
 
 ### New Features

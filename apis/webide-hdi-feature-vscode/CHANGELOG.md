@@ -1,4 +1,21 @@
+## 1.13.0
+
+### New Features
+- Calculation views can define a snapshop view for a specific query
+
+### Fixes
+- When executing the debug query, the error message is now selectable for copy/paste
+- The "add-table-function" item is displayed properly 
+- Restricted column that have been renamed can be copied
+- Variable extraction of shared dimension in star join retains reference column
+- Mapping of an input parameter to a table function is prevented
+- Currency conversion allows the selection of a calculated columns from dimensions
+- The detail column panel allows multiple column selection
+- Generated timetable has no content and leads to deployment failure when the namespace is not empty
+- Rename input parameter and adjust references causes build failure when the impacted objects are hdbroles
+
 ## 1.12.0
+
 ### New Features
 - Median as aggregation function
 - Session variables can be mapped into data sources

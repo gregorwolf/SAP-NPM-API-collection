@@ -1,3 +1,14 @@
+## 4.4.1
+Features:
+- use @sap/hana-client@2.13.13
+- use hdb@0.19.3
+- use @sap/xsenv@3.3.2
+
+## 4.4.0
+Features:
+- added option --use-hdb to enable using hdb client instead of @sap/hana-client for connecting to the database
+- use @sap/hana-client@2.12.25
+
 ## 4.3.3
 Features:
 - use @sap/hdi@4.3.1

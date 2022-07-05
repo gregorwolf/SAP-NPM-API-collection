@@ -753,13 +753,14 @@ dev-project get-detail-info  <my-application-folder-root absolute path> <type> <
 
 ---
 
-## Get Information from Data File
+## Get Data Information
 ###### Method
-`getInfoFromDataFile(filePath: string, logger? : IChildLogger) :Promise<any>;`
+`getDataInfo(data: any, mainEntityName?: string, logger? : IChildLogger): Promise<any>;`
 ###### Description
-Read and parse Excel data file (CSV or XML format).
+Read and parse an Excel data file (CSV or XML format), or generate the main entity for a data model.
 ###### Parameters
-- filePath: Path of the data file.
+- data: Path of the data file, or a data model parsed from an Excel file.
+- mainEntityName: (Optional) Name of the entity taken as the main entity.
 - logger: (Optional) An instance of IChildLogger which can be implemented by consumers of this library.
 ###### returns
 - `Promise<any>`
@@ -767,7 +768,8 @@ Read and parse Excel data file (CSV or XML format).
 ###### Example
 ```
 const api = new ProjectImpl(projectPath);
-const data = await api.getInfoFromDataFile(filePath)
+const data = await api.getDataInfo(filePath);
+const dataWithMainEntity = await api.getDataInfo(data, 'mainEntity');
 ```
 ###### CLI
 ```

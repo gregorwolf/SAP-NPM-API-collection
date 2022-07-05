@@ -1,3 +1,15 @@
+## 1.7.0
+
+### New Features
+- Database selection in the SQL console is now possible across database connection types (local connections, SAP HANA Database Explorer connections).
+- SQL files can be opened directly in the SQL console via "Open in SAP HANA SQL Console" from the context menu.
+
+### Fixes
+- Auto-save was not working correctly in the SQL console under certain circumstances.
+- When editing a local database connection the database information could be incomplete.
+- Connections to SAP HANA Database Explorer databases are kept open to reduce the number of reconnects.
+- SAP HANA Data Lake Files connections are displayed correctly in the database list.
+
 ## 1.6.0
 
 ### New Features

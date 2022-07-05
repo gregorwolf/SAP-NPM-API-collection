@@ -1,3 +1,8 @@
+## 1.13.0 - 21 June, 2022
+### Added
+* Support manual mta editing
+### Changed
+* Enhance CLI api 'get-data-info' for data first UI flow
 ## 1.12.1 - 8 June, 2022
 ### Fixed
 * Adjust the banner image for preview & launchpad.

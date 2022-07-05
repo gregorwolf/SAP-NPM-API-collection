@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.3.2"
+    "@sap/hdi-deploy": "4.4.1"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -543,7 +543,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.3.2",
+    "@sap/hdi-deploy": "4.4.1",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -766,8 +766,8 @@ If any non-container privileges are used, then the object owner (`#OO` user) wil
 
 The HDI Deployer supports the following types of granting-services:
 
-- `hdi`: an HDI container with access to the container's GRANT APIs
 - `sql`: a technical database user with GRANT privileges for the required object privileges, roles, system privileges, etc.
+- `hdi`: an HDI container with access to the container's GRANT APIs. An HDI container can only grant roles from the container, without admin option.
 - `procedure`: a technical database user with EXECUTE privileges on a stored procedure which has GRANT privileges for the required object privileges, roles, system privileges, etc.
 - `ignore`: grants were already given at the database-level and the HDI Deployer will ignore the content of the `.hdbgrants` file.
 
@@ -1015,6 +1015,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 
 - `--version`: print version and exit
 - `-t, --trace`: enable tracing
+- `--use-hdb`: enable the "hdb" client to connect to the database instead of "@sap/hana-client"; by default "@sap/hana-client" is used
 - `--hana-client-trace`: enable tracing for the SAP HANA client; All interactions with the SAP HANA server will be traced which can lead to a large amount of trace information to be written
 - `--hana-client-packet-trace`: enable PACKET tracing for the SAP HANA client; Must only be used in combination with --hana-client-trace
 - `--[no-]verbose`: [don't] print detailed log messages to the console
@@ -1074,7 +1075,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "4.3.2",
+        "version": "4.4.1",
         "features": {
             "info": 2,
             "verbose": 1,

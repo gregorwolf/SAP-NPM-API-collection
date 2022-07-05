@@ -1,3 +1,8 @@
+## 1.12.0
+
+### New Features
+- Calculation views can define a snapshop view for a specific query
+
 ## 1.11.0
 
 ### Fixes

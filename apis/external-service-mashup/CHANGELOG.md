@@ -1,4 +1,7 @@
 # Change Log
+## 1.1.1
+### Updated
+- Make handlers tenant agnostic and enable tenant extensions
 ## 1.1.0
 ### Added
 - Enhance association handling for draft enabled service entity
