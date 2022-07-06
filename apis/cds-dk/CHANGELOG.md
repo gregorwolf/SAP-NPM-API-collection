@@ -6,6 +6,62 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.0.1 - 2022-07-05
+
+### Changed
+
+- Deprecated the `--for <filterPattern>` parameter of `cds add data` in favor of the new `--data:for`.  The former is still supported, but will eventually be removed, as it collides with the general `--for <profile>` parameter of `cds add`.
+
+### Fixed
+
+- `cds bind` api endpoint regex for cli now ignores trailing version info in url
+
+## Version 6.0.0 - 2022-07-01
+
+### Added
+
+- `cds import` now supports importing external openapi specification file into CSN.
+- `cds import` now supports the `--from` option to specify the protocol for importing an external file.
+- `cds import` can be programmatically accessed using APIs `cds.import()`, `cds.import.from.edmx()` and `cds.import.from.openapi()`.
+- `cds compile --to openapi` allows describing custom headers and custom query options.
+- `cds import` now supports `HasStream="true"` for both OData V4 and V2.
+- `cds compile --to openapi` now adds properties with `@mandatory` to the required field.
+- Added a link to VS Code CAP Notebooks documentation to `cds init --add notebooks` and `cds add notebooks`.
+
+### Changed
+
+- `cds import` now uses `@odata.Type` and `@odata.Precision` for edm to cds type mapping.
+- `cds compile --to openapi` now has better description for `$expand` query option.
+- The original package `sqlite3` is now used again in its latest version.
+- `cds import` now deprecated `cds.DecimalFloat` type.
+- `cds import` now allows OData version 4.01 edmx files and supports `Scale="floating"`.
+- `cds import` now adds `@odata.Type` annotation for `Edm.Byte` and `Edm.SByte`.
+- `cds import` now has improved tests to check `--as`option with `force` flag file overwriting.
+- `cds init` uses latest Maven Java archetype version 1.25.0 for creating Java projects.
+- `cds import` now imports edmx file without any entities containing only unbounded action/function.
+- `cds import` API now supports includeNamespaces option.
+- `cds compile --to openapi` now adds `format`, `multipleOf`, `maximum` and `minimum` to anyOf.
+- `cds import` will now mark an association as a composition when `OnDelete Action="Cascade"` is present.
+- `cds import` has deprecated `--into` option.
+- `cds bind` reads Cloud Foundry file `config.json` to get org and space information.
+- `cds deploy` now stores connection information without credentials by default in `.cdsrc-private.json`.
+- `cds deploy` has a new option `--store-credentials` to enforce the former behavior of storing credentials in `default-env.json`.
+- If a `@sap/cds` is installed locally in a project, it must be version 4 or higher for CLI commands to run.
+- `cds import` now doesn't trim the bound action/function name in the csn if the format of the name is A_B.
+- `@sap/cds` version 6 is now required in new projects added by `cds init` and `cds add`.
+
+### Fixed
+
+- `cds compile --to openapi` fixes annotations on bound action overloads.
+- `cds add cf-manifest` now uses the correct `application` plan for the `xsuaa` service
+- A combination of `cds add approuter`, `cds add mtx`, and `cds add mta` will now use a safer approach to determine the subscription URL.
+- `cds init` and `cds add` output the feature names correctly in case the names contain a dash
+- `cds compile --to openapi` fix for type error when entity/action is not specified in the service definition.
+- `cds import` API fix for race condition issue.
+- `cds somecdsfile --profile ...` (without the `compile` command) no longer ignores the given profile
+- `cds watch` got more robust against unlucky timing and no longer runs into port conflicts
+
+
 ## Version 4.9.7 - 2022-06-08
 
 ### Changed

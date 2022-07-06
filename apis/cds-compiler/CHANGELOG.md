@@ -7,27 +7,46 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.0.2 - 2022-07-05
+
+### Fixed
+
+- to.sql: For `sqlDialect` `plain`, `$now` is replaced by `CURRENT_TIMESTAMP` again.
+- compiler:
+  + Don't crash if a USING filename is invalid on the operating system, e.g. if `\0` is used.
+  + Info messages for annotations on localized convenience views are only emitted for unknown ones.
+  + Improve error message for an `extend` statement which had added a new element
+    and tried to extend that element further.  Similarly for a new action.
+    (If you consider this really of any use, use two `extend` statements.)
+- for.odata: expand `@readonly`/`@insertonly` on aspects as for entities into `@Capabilities`.
+- to.edm(x):
+  + Exclude managed association as primary key on value list annotation preprocessing.
+  + Don't render annotations for aspects defined in a service.
+
 ## Version 3.0.0 - 2022-06-23
 
 ### Added
 
 - Instead of requiring all files on startup, they are required on an as-needed basis to reduce startup times.
-- Allow `*` as argument in SQL functions `count`, `min`, `max`, `sum`, `avg`, `stddev`, `var`.
+- CDL parser: support SQL functions `locate_regexpr`, `occurrences_regexpr`,
+  `replace_regexpr` and `substring_regexpr` with their special argument syntax.
+- CDL parser: the names `trim` and `extract` are not reserved anymore.
 
 ### Changed
 
 - cds-compiler now requires Node 14.
 - `compile()` and its derivates now use `fs.realpath.native()` instead of `fs.realpath()`.
-- Multi-line doc comments without leading `*` were inconsistently trimmed.
+- CDL parser:
+  + Multi-line doc comments without leading `*` were inconsistently trimmed.
+  + As before, a structure value for an annotation assignment in a CDL source is flattened,
+    i.e. `@Anno: { foo: 1, @bar: 2 }` becomes `@Anno.foo: 1 @Anno.@bar: 2`.
+    Now, the structure property name `$value` is basically ignored:
+    `@Anno: { $value: 1, @bar: 2 }` becomes `@Anno: 1 @Anno.@bar: 2`.
+    The advantage is that overwriting or appending the annotation value works as expected.
+  + Keywords `not null` is only valid after `many String enum {...}` and no longer after `String`.
 - `@cds.persistence.skip` and `@cds.persistence.exists` are both copied to generated child artifacts
   such as localized convenience views, texts entities and managed compositions.
-- As before, a structure value for an annotation assignment in a CDL source is flattened,
-  i.e. `@Anno: { foo: 1, @bar: 2 }` becomes `@Anno.foo: 1 @Anno.@bar: 2`.
-  Now, the structure property name `$value` is basically ignored:
-  `@Anno: { $value: 1, @bar: 2 }` becomes `@Anno: 1 @Anno.@bar: 2`.
-  The advantage is that overwriting or appending the annotation value works as expected.
 - Update OData vocabularies 'Common', 'UI'.
-- Keywords `not null` is only valid after `many String enum {...}` and no longer after `String`.
 - (Sub-)Elements of localized convenience views can now be annotated, e.g. `annotate localized.E:elem`.
 - `getArtifactCdsPersistenceName` now enforces the `csn` argument and can optionally have the `sqlDialect` passed in.
 - `getElementCdsPersistenceName` can optionally have the `sqlDialect` passed in.
@@ -36,7 +55,8 @@ The compiler behavior concerning `beta` features can change at any time without 
 
 - All v2 deprecated flags.
 - Keyword `masked`.
-- `*` as generic argument to SQL functions/expressions.
+- CDL parser: `*` is not parsed anymore as argument to all SQL functions;
+  it is now only allowed for `count`, `min`, `max`, `sum`, `avg`, `stddev`, `var`.
 - All non-SNAPI options.
 
 ## Version 2.15.4 - 2022-06-09
