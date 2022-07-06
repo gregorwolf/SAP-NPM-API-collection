@@ -1,1 +1,11 @@
-@sap/cds-mtxs
+@sap/cds-compiler
+@sap/cds-dk
+@sap/cds-graphql
+@sap/cloud-sdk-op-vdm-change-master-v2-service
+@sap/cloud-sdk-op-vdm-credit-memo-request-service
+@sap/cloud-sdk-op-vdm-equipment-hierarchy-service
+@sap/cloud-sdk-op-vdm-product-allocation-sequence-service
+@sap/cloud-sdk-op-vdm-responsibility-management-team-configuration-service
+@sap/cloud-sdk-vdm-defect-2-service
+@sap/cloud-sdk-vdm-fund-service
+@sap/hana-client

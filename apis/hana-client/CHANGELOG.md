@@ -1,3 +1,33 @@
+# Hana Client 2.13.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.13 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.13/en-US
+
+For the latest updates please see SAP Note 3210156 - SAP HANA Client 2.13 Release Notes
+
+https://launchpad.support.sap.com/#/notes/3210156
+
+# Hana Client 2.12.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.12 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.12/en-US
+
+For the latest updates please see SAP Note 3165198 - SAP HANA Client 2.12 Release Notes
+
+https://launchpad.support.sap.com/#/notes/3165198
+
+# Hana Client 2.11.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.11 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.11/en-US
+
+For the latest updates please see SAP Note 3119522 - SAP HANA Client 2.11 Release Notes
+
+https://launchpad.support.sap.com/#/notes/3119522
+
 # Hana Client 2.10.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.10 documentation:
