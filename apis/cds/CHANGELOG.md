@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.0.2 - 2022-07-06
+
+### Fixed
+
+- Jest tests do not fail any longer because of logs during app shutdown
+- `cds build` now uses correct `mtx/sidecar` context. This avoids redundant `cds-mtxs` npm dependency for Java projects.  
+
 ## Version 6.0.1 - 2022-07-05
 
 ### Added

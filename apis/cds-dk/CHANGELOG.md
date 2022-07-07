@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.0.2 - 2022-07-06
+
+### Changed
+
+- Use `@sap/cds` 6.0.2
+
 ## Version 6.0.1 - 2022-07-05
 
 ### Changed

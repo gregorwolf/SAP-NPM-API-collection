@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.0.1 - 2022-07-06
+
+### Added
+
+- peerDependency to `@sap/cds`
+
 ## Version 1.0.0 - 2022-07-05
 
 First external release
