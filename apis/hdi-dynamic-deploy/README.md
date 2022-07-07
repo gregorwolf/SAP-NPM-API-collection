@@ -27,7 +27,7 @@ Usually, `@sap/hdi-dynamic-deploy` gets installed via a `package.json`-based dep
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-dynamic-deploy": "2.3.2"
+    "@sap/hdi-dynamic-deploy": "2.4.1"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-dynamic-deploy/"
@@ -46,6 +46,7 @@ The dynamic deployer needs to be configured via the following environment variab
 - `hdi_dynamic_deploy_password`: password for HTTP basic authentication
 - `ENFORCE_AUDITING`: force usage of audit logging. If audit logging cannot be enabled, the server will throw an error and stop.
 - `ENFORCE_V2`: force usage of the V2 audit logging API. If audit logging V2 cannot be enabled, the server will throw an error and stop.
+- `STRUCTUREDLOGGING`: allows dynamic deployer logs to be in structured format when set to true.
 - `AUDIT_LOG_TENANT`: specifies the tenant to use for audit logging. Likely this will be the [subaccount-id](https://help.sap.com/viewer/cca91383641e40ffbe03bdc78f00f681/Cloud/en-US/b43eff2df3f84124995f6acbc9e5c55b.html) where your app is deployed. If this is not specified you may be unable to view the logs.
 
 Note: Any client that knows the `hdi_dynamic_deploy_user` and the corresponding password will indirectly be able to read the database artifacts contained in the dynamic deploy server.

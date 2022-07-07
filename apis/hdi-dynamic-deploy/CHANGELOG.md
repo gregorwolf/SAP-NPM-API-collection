@@ -1,3 +1,24 @@
+# 2.4.1
+Features
+- added environmental variable `STRUCTUREDLOGGING` to structure the dynamic deployer logs when set to true
+
+# 2.4.0
+Features:
+- use @sap/hdi-deploy@4.4.1
+- use @sap/xsenv@3.3.2
+- use @sap/audit-logging@5.5.4
+
+# 2.3.7
+Fixes:
+- revert structure the dynamic deployer logs
+
+# 2.3.6
+Features:
+- use @sap/hdi-deploy@4.4.0
+
+Fixes:
+- structure the dynamic deployer logs
+
 # 2.3.5
 Features:
 - use @sap/hdi-deploy@4.3.3
