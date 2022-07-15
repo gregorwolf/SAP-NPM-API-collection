@@ -81,7 +81,7 @@ Note that `@sap/cds` is a peer dependency and needs to be available as module as
 
 > For CAP Java projects prefer the Native OData V2 Adapter ([com.sap.cds/cds-adapter-odata-v2](https://mvnrepository.com/artifact/com.sap.cds/cds-adapter-odata-v2)).
 
-In a new Node.js express project:
+In a new Node.js Express project:
 
 - Run `npm install @sap/cds -s`
 - Run `npm install @sap/cds-odata-v2-adapter-proxy -s`
@@ -202,7 +202,7 @@ It's disabled by default, but can be enabled using option [compressResponseMixed
 
 ## Documentation
 
-Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V4 Server:
+Instantiates a CDS OData V2 Adapter Proxy Express router for a CDS-based OData V4 Server:
 
 - **options:** CDS OData V2 Adapter Proxy options object.
   - **base:** Base path under which the service is reachable. Default is `''`.
@@ -212,8 +212,8 @@ Instantiates a CDS OData V2 Adapter Proxy Express Router for a CDS-based OData V
   - **target:** Target which points to OData V4 backend host:port. Use `'auto'` to infer the target from server url after listening. Default is e.g. `'http://localhost:4004'`.
   - **targetPath:** Target path to which is redirected. Default is `''`.
   - **services:** Service mapping object from url path name to service name. Default is `{}`.
-  - **mtxRemote:** CDS model is retrieved remotely via MTX endpoint for multitenant scenario. Default is `false`.
-  - **mtxEndpoint:** Endpoint to retrieve MTX metadata when option 'mtxRemote' is active. Default is `'/mtx/v1'`.
+  - **mtxRemote:** CDS model is retrieved remotely via MTX endpoint for multitenant scenario (old MTX only). Default is `false`.
+  - **mtxEndpoint:** Endpoint to retrieve MTX metadata when option 'mtxRemote' is active (old MTX only). Default is `'/mtx/v1'`.
   - **ieee754Compatible:** Edm.Decimal and Edm.Int64 are serialized IEEE754 compatible. Default is `true`.
   - **disableNetworkLog:** Disable networking logging. Default is `true`.
   - **fileUploadSizeLimit:** File upload file size limit (in bytes). Default is `10485760` (10 MB).
@@ -274,6 +274,24 @@ CDS supports modelling features that are not compatible with OData V2 standard:
 To provide an OData V2 service based on the CDS OData V2 Adapter Proxy, those CDS modelling features must not be used.
 In general any CDS OData API flavor must not be used in combination with CDS OData V2 Adapter Proxy.
 
+### Multitenancy, Feature Toggles and Extensibility (MTX)
+
+CDS OData V2 Adapter Proxy supports multitenant scenarios. Basic extensibility is already supported in combination with the
+[CDS MTX](https://www.npmjs.com/package/@sap/cds-mtx) module. More advanced extensibility scenarios and feature toggles
+are supported in combination with the [CDS Streamlined MTX services](https://www.npmjs.com/package/@sap/cds-mtxs).
+
+In order to provide the feature toggle vector to be used to build-up the corresponding `CSN` and `EDMX` metadata documents,
+the Express request object `req` needs to enhanced by feature definitions.
+To add support for a specific feature toggles management you can add a simple Express middleware as follows, for example, in your `server.js`:
+
+```
+const cds = require("@sap/cds");
+cds.on("bootstrap", (app) => app.use((req, res, next) => {
+  req.features = req.features || ["advanced"];
+  next();
+}));
+```
+
 ## Logging
 
 Logging is controlled with environment variable `XS_APP_LOG_LEVEL`. Especially, proxy requests and proxy responses
@@ -328,7 +346,8 @@ Logging layers of CDS OData V2 Adapter Proxy start with `cov2ap`.
 - Stream Support (Octet and Url)
 - Content Disposition
 - Content-ID
-- Multi-Tenancy
+- Multitenancy
+- Feature Toggles
 - Extensibility
 - Draft Support
 - Search Support

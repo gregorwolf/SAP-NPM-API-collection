@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## Version 2.6.0 - 2022-07-07
+
+### Added
+ - Support for new build task aliases `java` and `nodejs`
+  
+### Fixed
+- @sap/cds-mtx is now compatible with @sap/cds@^6.
+- Kibana logs of asynchronous jobs now always have the correct correlation id.
+- Upgrade of tenants with no meta tenant (e. g. created by dynamic deployer) can now be upgraded again, including the creation of the missing meta tenant.
+- Upgrade of tenants now consistently updates the basemodel files per tenant again.
+
 ## Version 2.5.6 - 2022-05-18
 
 ### Added

@@ -4,12 +4,30 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.0.3 - 2022-07-14
+
+### Changed
+
+- On Business Application Studio, `@sap/cds` now rejects starting on Node 12, as it does locally.  This avoids cryptic follow-up errors.
+
+### Fixed
+
+- Generic handlers for draft-related operations will trigger a READ event afterwards
+- `file-based-messaging` only watches the file when at least one handler is registered
+- `--vap-file` parameter of `cds deploy` is available again
+- `cds build` no longer throws an error if `@sap/cds-mtx` library (classic MTX) isn't installed locally.
+- `cds.spawn` no longer tries to reuse a transaction
+- Custom query parameter caused bad request on certain characters in rest adapter
+- `cds-ts` no longer fails with an `ERR_UNKNOWN_FILE_EXTENSION` error
+- Timeouts when sending string payloads to remote services
+- `cds.context.http` for `$batch` using atomicity groups
+
 ## Version 6.0.2 - 2022-07-06
 
 ### Fixed
 
 - Jest tests do not fail any longer because of logs during app shutdown
-- `cds build` now uses correct `mtx/sidecar` context. This avoids redundant `cds-mtxs` npm dependency for Java projects.  
+- `cds build` now uses correct `mtx/sidecar` context. This avoids redundant `cds-mtxs` npm dependency for Java projects.
 
 ## Version 6.0.1 - 2022-07-05
 

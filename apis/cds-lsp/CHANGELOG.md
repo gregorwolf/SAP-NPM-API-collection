@@ -6,8 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.0.3 - 2022-07-08
 
+### Changed
+- added authentication and new build task names to cds schema
 
+## 6.0.2 - 2022-07-06
+
+### Fixed
+- fixed incompatibilities with compiler 3.0.2
+
+### Also see
+- `@sap/cds-compiler` 3.0.2
                                                                  
 ## 6.0.0 - 2022-07-01
 

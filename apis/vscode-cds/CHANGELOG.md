@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
+## Version 6.0.4 - 2022-07-13
+
+### Fixed
+- show not-supported warning when opening CAP Notebook page in SAP Business Application Studio
+
+## Version 6.0.3 - 2022-07-08
+
+### Changed
+- support latest release of cds-compiler 3.0.2
+- added authentication and new build task names to cds schema
+
+### Also see
+- `@sap/cds-lsp` 6.0.3
+- `@sap/cds-compiler` 3.0.2
 
 ## Version 6.0.0 - 2022-07-01
 

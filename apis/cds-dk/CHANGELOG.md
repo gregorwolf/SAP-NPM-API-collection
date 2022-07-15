@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.0.3 - 2022-07-14
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 1.26.0 for creating Java projects.
+- `cds init` now creates Node.js projects with version 6 of `@sap/cds`
+
+### Fixed
+
+- `--vcap-file` parameter of `cds deploy` is available again (removed in 6.0.0)
+- `cds add helm:connectivity`: `connectivity.configMapName` was not used for the `connectivity-proxy-info`.
+- `cds add helm:connectivity`: Environment variables added for connectivity service for Java.
+- `cds add helm`: Generation of `xs-security.json` file works on Windows now (`cds compile srv -2 xsuaa` command failed).
+
+
 ## Version 6.0.2 - 2022-07-06
 
 ### Changed
