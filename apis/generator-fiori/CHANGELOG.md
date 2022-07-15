@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.6.6] - 2022-07-07
+### Added
+- Added ability to import and export saved ABAP On-premise SAP Systems when using VSCode. Credential information is not exported and users therefore need to re-authenticate when importing.
+
+### Fixed
+- Fixed issue where saving an SAP System in VSCode would crash if the system name was not provided.
+- Fixed issue with back navigation when adding deployment configuration in SAP Business Application Studio.
+ 
 ## [1.6.4] - 2022-06-23
 ### Added
 - Added a check when using a destination in SAP Business Application Studio with the Fiori generator to ensure that the destination catalog service(s) can be found.

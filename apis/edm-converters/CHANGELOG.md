@@ -6,20 +6,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.42] - 2022-07-15
+
+### Changed
+
+- Opened `engines.node` restrictions, as this module is very likaly compatible with future Node.js versions
+
+### Added
+- support for node.js version 14
+
 ## [1.0.41] - 2021-03-30
 
-### Added 
+### Added
 - support for node.js version 14
 
 ## [1.0.40] - 2021-01-27
 
-### Fixed 
+### Fixed
 - Fixed Cardinality Issues for V2.
 
 ## [1.0.39] - 2020-11-19
 Bugfixes mentioned in GWTCDA-3192
 
-### Fixed 
+### Fixed
 - Reverted back ComplexType/EnumType Kind to Type for V4.
 ## [1.0.38] - 2020-10-13
 

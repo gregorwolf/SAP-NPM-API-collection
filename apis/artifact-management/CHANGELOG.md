@@ -1,3 +1,6 @@
+## 1.13.1 - 4 Jul, 2022
+### Added
+* DataFirst align the nav properties to the entities of CDS 
 ## 1.13.0 - 21 June, 2022
 ### Added
 * Support manual mta editing

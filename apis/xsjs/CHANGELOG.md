@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.6.6"></a>
+## 6.6.6 - 2022-07-11
+
+### Update
+- Update passport to v0.6.0
+
+
+<a name="6.6.5"></a>
+## 6.6.5 - 2022-07-11
+
+### Update
+- Update passport to v0.6.0
+
 <a name="6.6.4"></a>
 ## 6.6.4 - 2022-06-03
 
