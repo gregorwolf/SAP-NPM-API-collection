@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.2 - 2022-07-18
+
+### Fixed
+
+- Check on `cds.mtx.eventEmitter` before access
+- Restructure README
+
 ## Version 1.9.1 - 2022-07-15
 
 ### Fixed
