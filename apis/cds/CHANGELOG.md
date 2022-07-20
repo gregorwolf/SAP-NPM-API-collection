@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.0.4 - 2022-07-20
+
+### Fixed
+
+- Local mocking of external services using `cds watch`
+
 ## Version 6.0.3 - 2022-07-14
 
 ### Changed

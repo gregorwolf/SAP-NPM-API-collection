@@ -1,8 +1,5 @@
-@sap/cds-odata-v2-adapter-proxy
-@sap/cloud-sdk-op-vdm-credit-memo-request-service
-@sap/cloud-sdk-op-vdm-flexible-constraint-service
-@sap/cloud-sdk-op-vdm-planned-order-service
-@sap/cloud-sdk-op-vdm-pure-substance-component-type-service
-@sap/cloud-sdk-op-vdm-work-center-pooled-capacity-service
-@sap/cloud-sdk-vdm-profit-center-service
-@sap/hana-client
+@sap/cds
+@sap/cloud-sdk-op-vdm-nutrient-service
+@sap/cloud-sdk-op-vdm-product-allocation-sequence-service
+@sap/cloud-sdk-vdm-maintenance-notification-service
+@sap/hana-eim-sditools-vscode
