@@ -6,11 +6,12 @@ const fs = require('fs');
   var packagesTxt = "";
   let from = 0;
   let limit = 50;
+  let total = 0;
   let packagesSearchResult = [];
   let packages = {};
   do {
     packagesSearchResult = await search('@sap', { from: from, limit: limit });
-    // console.log(packagesSearchResult.length);
+    total += packagesSearchResult.length;
     for (let i in packagesSearchResult) {
       var package = packagesSearchResult[i]
       if(
@@ -26,6 +27,8 @@ const fs = require('fs');
     }
     from = from + limit;
   } while (packagesSearchResult.length > 0);
+  console.log(`Found ${total} package(s)`);
+  // console.log(packages);
   const ordered = {};
   Object.keys(packages).sort().forEach(function(key) {
     ordered[key] = packages[key];
