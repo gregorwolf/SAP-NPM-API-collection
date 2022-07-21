@@ -1,5 +1,5 @@
-@sap/cds
-@sap/cloud-sdk-op-vdm-nutrient-service
-@sap/cloud-sdk-op-vdm-product-allocation-sequence-service
-@sap/cloud-sdk-vdm-maintenance-notification-service
-@sap/hana-eim-sditools-vscode
+@sap/cds-odata-v2-adapter-proxy
+@sap/cloud-sdk-op-vdm-credit-memo-request-service
+@sap/cloud-sdk-op-vdm-default-segment-value-maintenance-service
+@sap/cloud-sdk-op-vdm-equipment-hierarchy-service
+@sap/cloud-sdk-op-vdm-flexible-constraint-service
