@@ -574,7 +574,7 @@ csrfProtection | Boolean | x | Enable [CSRF protection](#csrf-protection) for th
 scope | Array/String/Object | x | Scopes are related to the permissions a user needs to access a resource. This property holds the required scopes to access the target path.
 cacheControl | String | x | String representing the value of the `Cache-Control` header, which is set on the response when serving static resources. By default the `Cache-Control` header is not set. *It is only relevant for static resources.*
 identityProvider | String | x | The name of the identity provider to use if provided in route’s definition. If not provided, the route will be authenticated with the default identity provider. **Note:** If the authenticationType is set to Basic Authentication or None, do not define the identityProvider property.
-
+dynamicIdentityProvider | Boolean | x | If `dynamicIdentityProvider` is `true`, the end user can set the identity provider (IDP) for the application’s login process by filling the request query parameter `sap_idp` with the IDP Origin Key. If `IdentityProvider` property is defined in the route, its value will be overwritten by the `sap_idp` query parameter value. The default value for `dynamicIdentityProvider` is `false`.
 
 **Note:** The properties `destination`, `localDir` and `service` are optional, but exactly one of them must be defined. <br />
 **Note:** When using the property `replace` it is mandatory to define the `localDir` property. <br />
@@ -862,7 +862,7 @@ You can use the name of the business application directly instead of using the `
 }
 ```
 
-* Examples for Routes With `identityProvider`
+* Route with an `identityProvider`
 
 For example, we can define several identity providers for different types of users. In this example, there are 2 categories: hospital patients and hospital personnel: 
 1. patientsIDP – use for authenticating patients.
@@ -880,7 +880,7 @@ We can configure 2 routes with the following identityProvider properties:
 	"identityProvider": "patientsIDP"
     },
     {
-        "source": "^/hospital/sap/opu/odata/(.*)",
+	"source": "^/hospital/sap/opu/odata/(.*)",
 	"target": "/sap/opu/odata$1",
 	"destination": "backend", "authenticationType": "xsuaa",
 	"identityProvider": "hospitalIDP"
@@ -895,6 +895,22 @@ So, a patient who tries to log into the system will be authenticated by patientI
 
 **Note:** Identity provider configuration is only supported in the client side login redirect flow.
 
+* Route with a `dynamicIdentityProvider`
+
+For example, we can define a route where the value of `identityProvider` is `patientsIDP` and where dynamic identity provider provisioning is enabled by setting `dynamicIdentityProvider` to `true`:
+
+```json
+[
+    { 
+        "source": "^/patients/index.html",
+        "target": "/patients-index.html",
+        "service": "html5-apps-repo-rt",
+        "identityProvider": "patientsIDP",
+        "dynamicIdentityProvider": true
+    }
+]
+```
+In this example, the `patientsIDP` value for the `identityProvider` is replaced by `hospitalIDP` if a request with `sap_idp=hospitalIDP` is executed, for example, if the request is https://shiva.health-center-approuter.cfapps.hana.ondemand.com/healthreport/patients/index.html?sap_idp=hospitalIDP.
 
 ## Replacements
 

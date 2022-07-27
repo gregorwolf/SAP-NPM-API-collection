@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 1.9.39 - 2022-07-20
+### Updated dependencies
+ - deps: @sap/approuter@11.2.1
+ - deps: @sap/logging@6.1.3
+ - deps: async@3.2.4
+
 ## 1.9.38 - 2022-04-11
 ### Updated dependencies
  - deps: @sap/approuter@10.15.1

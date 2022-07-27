@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.3.0 - 2022-07-20
+
+### Added
+- Support for dynamic provisioning of identity providers
+- Support websocket in service2approuter flow
+
 ## 11.2.1 - 2022-06-15
 
 ### Fixed

@@ -1,5 +1,9 @@
 All notable changes to this project will be documented in this file.
 
+## 1.9.14 - 2022-07-24
+### Updated dependencies
+ - deps: @sap/logging@6.1.3
+
 ## 1.9.13 - 2022-06-14
 ### Updated dependencies
  - deps: commander@9.3.0

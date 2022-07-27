@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.6.7] - 2022-07-21
+### Changed
+- Generating an SAP Fiori application with Cloud Foundry deployment configuration into a NodeJS or JAVA CAP project will now add Cloud Foundry build and deploy commands to the root `package.json` if not already present.
+
 ## [1.6.6] - 2022-07-07
 ### Added
 - Added ability to import and export saved ABAP On-premise SAP Systems when using VSCode. Credential information is not exported and users therefore need to re-authenticate when importing.

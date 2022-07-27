@@ -48,7 +48,7 @@ Set this parameter to get more log information.
 
 ### [**2. Proxy**](#2-proxy)
 
-The proxy middleware provides you with the capabilities to connect to diffent back-end systems or to switch the SAPUI5 version of the application. The proxy is based on the [http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware).
+The proxy middleware provides you with the capabilities to connect to different back-end systems or to switch the SAPUI5 version of the application. The proxy is based on the [@sap-ux/ui5-proxy-middleware](https://www.npmjs.com/package/@sap-ux/ui5-proxy-middleware) for proxying the UI5 sources (starting with version `1.6.0`) and the [@sap-ux/backend-proxy-middleware](https://www.npmjs.com/package/@sap-ux/backend-proxy-middleware) for connecting to different back-end systems (starting with version `1.6.7`). Both `@sap-ux/ui5-proxy-middleware` and `@sap-ux/backend-proxy-middleware` are based on the [http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware).
 
 ### Configuration Examples
 
