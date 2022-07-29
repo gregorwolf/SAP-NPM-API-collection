@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.3.1 - 2022-07-28
+
+### Fixed
+- Missing destination instance credentials issue
+- Avoid token exchange, when the session user is n/a (grant_type=client_credentials)
+- Correct null pointer exception uaa missing  in subscription-utils
+- Dynamic provisioning of identity provider with welcome file
+
 ## 11.3.0 - 2022-07-20
 
 ### Added

@@ -19,6 +19,7 @@
   * [Cross-Origin Resource Sharing configuration](#cross-origin-resource-sharing-configuration)
   * [Direct Routing URI Patterns configuration](#direct-routing-uri-patterns-configuration)
   * [NodeJS Minimal Logging Level configuration](#nodejs-minimal-logging-level-configuration)
+  * [Dynamic Identity Provider configuration](#dynamic-identity-provider-configuration)
 - [Routes](#routes)
   * [Example routes](#example-routes)
 - [Replacements](#replacements)
@@ -218,7 +219,8 @@ Skip client credentials tokens load on start | `SKIP_CLIENT_CREDENTIALS_TOKENS_L
 [Cross-Origin Resource Sharing](#cross-origin-resource-sharing-configuration) | `CORS` | Configuration regarding CORS enablement.
 Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fragment part of the URL provided during first request of not logged-in user to protected route will be preserved, and after login flow user is redirected to original URL including fragment part. However, this may break programmatic access to Approuter (e.g. e2e tests), since it introduces change in login flow, which is incompatible with Approuter version 4.0.1 and earlier. Setting value to `false` makes login flow backward compatible, however will not take fragment part of the URL into account.
 [Direct Routing URI Patterns](#direct-routing-uri-patterns-configuration) | `DIRECT_ROUTING_URI_PATTERNS` | Configuration for direct routing URI patterns. 
-[NodeJS Minimal Logging Level](#nodejs-minimal-logging-level-configuration) | `CF_NODEJS_LOGGING_LEVEL` | Configuration for NodeJS minimal logging level. 
+[NodeJS Minimal Logging Level](#nodejs-minimal-logging-level-configuration) | `CF_NODEJS_LOGGING_LEVEL` | Configuration for NodeJS minimal logging level.
+[Dynamic Identity Provider](#dynamic-identity-provider-configuration) | `DYNAMIC_IDENTITY_PROVIDER` | Configuration for dynamic identity provider.
 Backend Cookies Secret | `BACKEND_COOKIES_SECRET` | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
 Service to Application Router | `SERVICE_2_APPROUTER` | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
 Client certificate header name | `CLIENT_CERTIFICATE_HEADER_NAME` | When set application router will use this header name to get the client certificate from the request header in subscription callback. If not provided the default header name `x-forwarded-client-cert` is used.
@@ -553,6 +555,18 @@ Here is a sample content for the NodeJS minimal logging level environment variab
 ```
 
 **Note** The application router also uses the *@sap/logging* library. To configure the log level for this library, you use the *XS_APP_LOG_LEVEL* environment variable.
+
+## Dynamic Identity Provider configuration
+
+If `dynamicIdentityProvider` is `true`, the end user can set the identity provider (IDP) for the application’s login process by filling the request query parameter `sap_idp` with the IDP Origin Key. If `IdentityProvider` property is defined in the route, its value will be overwritten by the `sap_idp` query parameter value. The default value for `dynamicIdentityProvider` is `false`.
+This configuration is relevant for a standalone approuter scenario and it is set for all routes.
+
+Here is a sample content for the dynamic identity provider environment variable:
+
+```json
+  env:
+    DYNAMIC_IDENTITY_PROVIDER: true
+```
 
 ## Routes
 

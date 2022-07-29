@@ -11,41 +11,7 @@ Note: `deprecated` features are listed in this ChangeLog just for information.
 **When the `deprecated` option is set, the `beta` option is ignored,
 and several new features are not available.**
 
-## Version 3.0.0 - 2022-XX-YY
-
-Version 3 of the cds-compiler removes all v2 deprecated flags.
-
-### Removed `createLocalizedViews`
-
-### Removed `downgradableErrors`
-
-### Removed `generatedEntityNameWithUnderscore`
-
-### Removed `longAutoexposed`
-
-### Removed `noElementsExpansion`
-
-### Removed `noInheritedAutoexposeViaComposition`
-
-### Removed `noScopedRedirections`
-
-### Removed `oldVirtualNotNullPropagation`
-
-### Removed `parensAsStrings`
-
-### Removed `projectionAsQuery`
-
-### Removed `redirectInSubQueries`
-
-### Removed `renderVirtualElements`
-
-### Removed `shortAutoexposed`
-
-### Removed `unmanagedUpInComponent`
-
-### Removed `v1KeysForTemporal`
-
-## Version 2.13.0 - 2022-03-22
+## Version 2.XX.YY - 2022-MM-DD
 
 ### Added `redirectInSubQueries`
 

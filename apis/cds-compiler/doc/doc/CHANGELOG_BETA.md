@@ -8,11 +8,12 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
-## Version 3.0.0 - 2022-XX-YY
+## Version 2.XX.YY
 
-### Removed `addTextsLanguageAssoc`
+### Removed `assocsWithParams`
 
-Instead, use the option `addTextsLanguageAssoc`, which is available since v2.8.0.
+Instead, of using the beta flag `assocsWithParams`, you can change the severity of the messages
+`def-unexpected-paramview-assoc` and `def-unexpected-calcview-assoc`.
 
 ## Version 2.12.0 - 2022-01-25
 
