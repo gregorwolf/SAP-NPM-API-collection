@@ -779,74 +779,47 @@ dev-project get-data-info  <data file absolute path>
 ```
 [
   {
-    "entity": "entity",
-    "values": [
-      [
-        "9a8a4cad-19c1-46b2-a599-4b735e82374f",
-        "1",
-        "1000000",
-        "Technology"
-      ],
-      [
-        "c84a8e54-ce5a-423b-923e-dab637d298c1",
-        "2",
-        "1500000",
-        "Products"
-      ],
-      [
-        "939be63d-7175-4b53-b593-aa0dde74a04e",
-        "3",
-        "2000000",
-        "Technology"
-      ]
+    entity: "test",
+    labels: [
+      { label: "ID", value: "ID" },
+      { label: "Capex Request", value: "capex_request" },
+      { label: "Total Cost", value: "total_cost" },
+      { label: "Department", value: "department" },
     ],
-    "labels": [
+    props: [
       {
-        "label": "ID",
-        "value": "ID"
+        name: "ID",
+        kind: "dataType",
+        type: "UUID",
+        key: "true",
+        isComputed: "true",
       },
       {
-        "label": "Capex Request",
-        "value": "capex_request"
+        name: "capex_request",
+        kind: "dataType",
+        type: "Integer",
+        key: "false",
+      },
+      { 
+        name: "total_cost",
+        kind: "dataType",
+        type: "Integer",
+        key: "false"
       },
       {
-        "label": "Total Cost",
-        "value": "total_cost"
+        name: "department",
+        kind: "dataType",
+        type: "String",
+        key: "false"
       },
-      {
-        "label": "Department",
-        "value": "department"
-      }
     ],
-    "props": [
-      {
-        "name": "ID",
-        "kind": "dataType",
-        "type": "UUID"
-      },
-      {
-        "name": "capex_request",
-        "kind": "dataType",
-        "type": "String"
-      },
-      {
-        "name": "total_cost",
-        "kind": "dataType",
-        "type": "String"
-      },
-      {
-        "name": "department",
-        "kind": "dataType",
-        "type": "String"
-      }
+    values: [
+      ["2d22e87a-4a74-43e3-8f0c-fa9de4c1d008", "1", "1000000", "Technology"],
+      ["d6a88765-b2a1-4c4a-916d-a10c5d286b53", "2", "1500000", "Products"],
+      ["66c76a6b-da32-41ff-89e8-bd38c787bd86", "3", "2000000", "Technology"],
     ],
-    "dbProps": [
-      "ID",
-      "capex_request",
-      "total_cost",
-      "department"
-    ]
-  }
+    dbProps: ["ID", "capex_request", "total_cost", "department"],
+  },
 ]
 ```
 ---
