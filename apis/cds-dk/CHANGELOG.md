@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.0.4 - 2022-08-02
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 1.26.1 for creating Java projects.
+- Use `@sap/cds` 6.0.4
+- `cds bind` handles orgs and spaces containing commas correctly.
+
+
 ## Version 6.0.3 - 2022-07-14
 
 ### Changed

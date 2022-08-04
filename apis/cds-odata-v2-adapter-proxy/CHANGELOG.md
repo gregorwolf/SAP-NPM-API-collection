@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.4 - 2022-08-01
+
+### Fixed
+
+- Remove logging library `@sap/logging`. Use `cds.log` instead.
+- Remove obsolete proxy option `disableNetworkLog`
+- Proxy option `fixDraftRequests` suppresses unsupported draft expand to `SiblingEntity` and injects `SiblingEntity: null`
+
 ## Version 1.9.3 - 2022-07-21
 
 ### Fixed
