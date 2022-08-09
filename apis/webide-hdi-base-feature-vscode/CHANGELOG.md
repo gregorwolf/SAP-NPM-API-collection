@@ -1,3 +1,9 @@
+## 1.13.0
+
+### Fixes
+- Table generation through "Maintain Time Tables" does not show table syntax and shows build error
+
+
 ## 1.12.0
 
 ### New Features

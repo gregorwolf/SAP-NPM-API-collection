@@ -1,3 +1,10 @@
+## 1.14.0
+
+### Fixes
+- Data preview on multi-join node
+- Snapshot interface - Parameter type should be static list
+- Renamed columns do not get updated in definition tab
+
 ## 1.13.0
 
 ### New Features

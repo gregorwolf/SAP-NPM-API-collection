@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [8.0.0] - 2022-08-04
+
+* HANA Cloud database support added
+* Public synonym support added
+* Update module dependencies
+
 ## [7.5.5] - 2022-04-21
 
 * On calc view: Stable sort order with $skip and $top usage for subsequent requests via "order by" of key fields in SQL statement

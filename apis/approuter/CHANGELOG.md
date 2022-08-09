@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.3.2 - 2022-08-04
+
+### Fixed
+- Destination token timeout calculation
+- UserId deleted from session
+- Query parameters with special characters in login callback 
+
 ## 11.3.1 - 2022-07-28
 
 ### Fixed
