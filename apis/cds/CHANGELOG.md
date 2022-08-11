@@ -4,6 +4,115 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.1.0 - 2022-08-10
+
+### Added
+
+- Detailed information about pool state: `borrowed`, `pending`, `size`, `available`, `max` to the timeout error
+- Odata v2 payloads for `cds.Time` are converted from hh:mm:ss to PThhHmmMssS e.g. 12:34:56 to PT12H34M56S if provided in hh:mm:ss format
+- Odata v2 payloads for `cds.Integer` are converted to String if not provided as String
+- New OData parser supports aliased parameters e.g. `...function(ID=@p)?@p=5`
+- Support for locale "en_US_x_saprigi"
+- Parameter `rows` in ql API function `limit` can be omitted for remote services, e.g. `SELECT.limit(undefined, 5)`
+- New OData parser supports $filter with "in" operator, e.g. `$filter=ID in (1,2,3)`
+- `cds build` copies `package.json` and `.cdsrc.json` into _main folder of MTX sidecar app.
+- New OData parser supports null parameter in function/action, e.g `/findBooks(author=1,title=null)`
+- New enviroment variable `schemas` contains locations for json schemas validating `package.json`, `.cdsrc.json` and `.cdsrc-private.json` in VS Code
+- `cds.test` can now listen on a fixed port by way of additional arguments '--port', '<PORT_NUMBER>
+- `cds.requires.db.kind = 'sql-mt'` is introduced as a shorthand for
+  ```js
+  "db": {
+    "kind": "sqlite",
+    "[production]": {
+      "kind": "hana-mt"
+    }
+  }
+  ```
+- `cds build` support for Streamlined MTX extension projects based on build task `mtx-extension`
+- TS definitions for `SELECT.forSharedLock` and `SELECT.forUpdate`
+- TS definitions for `log`
+- Support for new cds build task option `deploy-format`. Java apps may use this option instead of the corresponding global CDS config option.
+- The `ExtensibilityService` serves an endpoint to retrieve a subdomain-specific JWT, which is used by `cds login`
+- The endpoint `/-/cds/extensibility/push` now checks restrictions for new extensions. The configuration is added to the `cds.xt.ExtensibilityService`
+  ```js
+  "requires": {
+    "cds.xt.ExtensibilityService": {
+      "element-prefix": ["Z_", "ZZ_"],
+      "namespace-blocklist": ["com.sap.", "sap."],
+      "extension-allowlist": [
+        {
+          "for": ["my.bookshop"],
+          "kind": "entity",
+          "new-fields": 2
+        },
+        {
+          "for": ["CatalogService"],
+          "new-entities": 2
+        }
+      ]
+    }
+  }
+  ```
+- `cds build` validates required service models `@sap/**` for MTX sidecar app and logs an ERROR if some couldn't be resolved.
+- Configuration schema for many properties of the `cds` configuration block in `package.json` or `.cdsrc.json`, especially for `cds.requires...`
+
+### Changed
+
+- Streamlined calculation of the difference for `DELETE` queries using `req.diff()`
+- Improved error messages for rest / new odata parser
+- Adjust types for `SELECT.from` and `SELECT.one` to accept array classes as well
+- No `"` added around search values in OData v2 e.g. Foo?search=name is passed through as is
+- If an entity can not be read after write (e.g. insert only entity) no error is shown in the log
+- Throw not supported error for pagination in `$expand`
+
+### Fixed
+
+- Wrong context in `tx.run(query)` when `query` is an array
+- We now detect and ignore erroneous attempts to re-register framework-generated stubs as handlers for custom actions/functions.
+- Emits with `persistent-outbox` also work with manual transactions
+- You can now use `cds.ql` fluent API to query tables not in the model, but in database.
+  For example, within `cap/samples/bookshop` this works now:
+  ```sql
+  await SELECT.from('sqlite_master')
+  await cds.read('sqlite_master')
+  ```
+  Caveat: the following undocumented usage of unqualified names happened to work in the past.
+  But this was very fragile and caused lots of issues, and therefore was removed:
+  ```sql
+  await SELECT.from('Books')
+  await cds.read('Books')
+  ```
+  Always use qualified names, or reflected definitions instead:
+  ```sql
+  const Books = 'sap.capire.bookshop.Books'
+  await SELECT.from(Books)
+  await cds.read(Books)
+  ```
+  ```sql
+  const {Books} = cds.entities ('sap.capire.bookshop')
+  await SELECT.from(Books)
+  await cds.read(Books)
+  ```
+- Wrong results for expand to many without `orderBy`
+- `cds deploy` api endpoint regex for cli now ignores trailing version info in url
+- Default values no longer overwrite payload values on fields of new drafts
+- Unmanaged to-one navigation caused malformed SQL statement in draft
+- `cds.compile.to.serviceinfo` fix failure to detect Java services if `odataV4.endpoint.path` or `odataV2.endpoint.path` missing in `cds` configuration in `application.yaml`
+- Data type conversion did not work in some expand cases
+- Failed connection to SAP HANA with no or malformed credentials was leading to credentials being written to the log
+- `cds build` no longer fails with an error `no such file` if one of the following files has been defined in some `srv` subfolder - `package.json, package-lock.json, .cdsrc.json, .npmrc`
+- Tar issue on Windows: 'The command line is too long'.
+- `$search`: Lifecycle issue that causes an empty search result when the `$search` and `$expand` query options were combined
+- Operator `IN` with Tagged Template String Literals e.g.:
+  ```sql
+  SELECT.from(Object).where`userId IN ${aUserIDs}`
+  ```
+- `cds build` now uses a closed version range in the node engines version of the deployed application's `package.json`
+- `cds build` no longer generates EDMX files for services that aren't odata protocol enabled
+- `cds deploy` handles orgs and spaces containing commas correctly
+- Incorrect decoding of special characters when reading data of type `cds.LargeString` from SAP HANA using `hdb@^0.19.5` driver
+- The payload is added to the delete request in rest adapter as req.data
+
 ## Version 6.0.4 - 2022-07-20
 
 ### Fixed
@@ -38,16 +147,17 @@
 ## Version 6.0.1 - 2022-07-05
 
 ### Added
+
 - Config option `cds.env.server.port` allows to configure the port to use (in addition to `process.env.PORT` and CLI option `--port`)
+
+### Changed
+
+- Plugins cannot be loaded as ES modules, but need to remain CommonJS modules
 
 ### Fixed
 
 - Removed debug log about shutdown from `cds serve`
 - Hiding timeout error in production mode
-
-### Changed
-
-- Plugins cannot be loaded as ES modules, but need to remain CommonJS modules
 
 ## Version 6.0.0 - 2022-06-30
 
@@ -95,7 +205,7 @@
 - Support for `FOR SHARE LOCK` on SAP HANA to acquire shared locks on the queried records so that the locked records
 stay intact until the transaction is committed or rolled back.
 - Consistent error information for remote batch requests
-- `cds.env` now supports expanding scalar `cds.requires` entries from `cds.requires.kinds`as follows:
+- `cds.env` now supports expanding scalar `cds.requires` entries from `cds.requires.kinds` as follows:
   ```jsonc
   { "cds": {
     "requires": {
@@ -114,23 +224,23 @@ stay intact until the transaction is committed or rolled back.
 - Ordering by aggregated value for draft-enabled active entity
 - `cds build` support for model provider service-based resource deployment.
 - Remote service:
-  - Conversion of OData V2 (`"kind": "odata-v2"`) function and action results to OData V4 format
-  - Conversion of binary data in CQN queries to `base64url` in URL and payload
-  - Key predicate is omitted for single-key entities in resulting URL (e.g. `GET /Foo(1)` instead of `GET /Foo(ID=1)`)
-  - Support of views with parameters
+  + Conversion of OData V2 (`"kind": "odata-v2"`) function and action results to OData V4 format
+  + Conversion of binary data in CQN queries to `base64url` in URL and payload
+  + Key predicate is omitted for single-key entities in resulting URL (e.g. `GET /Foo(1)` instead of `GET /Foo(ID=1)`)
+  + Support of views with parameters
 - Add `@odata.mediaContentType` if selecting stream property
 - Kubernetes service bindings: Support for servicebinding.io and SAP BTP Service Operator based bindings
 - `cds build` copies an existing `.npmrc` file located in the root or srv folder of your project into the deployment folder (usually `gen/srv`). This allows for dedicated npm configuration in cloud environments.  Can be switched off by cds build option `contentNpmrc`.
 - `cds build` copies an existing `.cdsrc.json` file located in the root or srv folder of your project into the deployment folder (usually `gen/srv`). The effective CDS configuration is created from the `.cdsrc.json` and CDS configuration defined in the `package.json` file. Can be switched off by cds build option `contentCdsrcJson`.
 - Beta OData URL to CQN parser (`cds.env.features.odata_new_parser = true`):
-  - `@odata.context` is derived without using okra, not yet supported:
-    - `$expand=*` query option
-  - Support for actions and functions
-  - Further `$apply` transformations supported
-    - (nested) `concat` transformations
-    - `orderBy` transformation
-    - `top` & `skip` transformation
-    - `identity` transformation
+  + `@odata.context` is derived without using okra, not yet supported:
+    + `$expand=*` query option
+  + Support for actions and functions
+  + Further `$apply` transformations supported
+    + (nested) `concat` transformations
+    + `orderBy` transformation
+    + `top` & `skip` transformation
+    + `identity` transformation
 - Log `BEGIN`/`COMMIT`/`ROLLBACK` commands when using SAP HANA as the underlying database
 - Binary data in payload is validated to be RFC-4648 and OData ABNF conformed
 - Support multiple media (streaming) properties in one entity
@@ -139,7 +249,6 @@ stay intact until the transaction is committed or rolled back.
 - New shutdown event sent by `cds serve` (beta)
 - $filter in $expand for remote services
 - Mapping of aliases in $expand for remote services
-
 
 ### Changed
 
@@ -194,6 +303,7 @@ Note that this is a breaking change for appliations that rely on error sanitizat
 
 ### Fixed
 
+- We don't rely on `global.cds` anymore -> allows to load and correctly work with multiple versions of `cds`
 - Improved shutdown for AMQP connections and file listeners
 - Using `CQL` with a tagged template string `SELECT from Foo { null as boo }` throwed an exception.
 - In case of `MULTIPLE_ERRORS` throw an `Error` instead of an object

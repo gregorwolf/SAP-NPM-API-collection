@@ -8,7 +8,29 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
-## Version 3.0.0 - 2022-XX-YY
+## Version 3.1.0 - 2022-08-04
+
+### Added `optionalActionFunctionParameters`
+
+- to.edm(x): Annotate optional function/action parameters with `@Core.OptionalParameter` for OData V4.
+  An action/function parameter is optional if
+  1) it is already annotated with `@Core.OptionalParameter` regardless of its definition.
+  2) it has a default value (including null), regardless of it's nullability
+  3) it has NO default value but is nullable (the implicit default value is null)
+
+  If a mandatory parameter (not null and no default value) appears after an optional
+  parameter, a warning is raised, Core.OptionalParameter requires that all optional
+  parameters appear rightmost.
+
+### Added `odataOpenType`
+
+- to.edm(x): Support annotation `@open` on entity and structured type level to declare the corresponding entity/complex type to
+  be `OpenType=true`. If an open structured type is declared closed (with a falsy annotation value), the corresponding EDM type
+  is closed as well and suffixed with `_closed` (or `_open` vice versa).
+  No further checks are performed on possibly open foreign or primary key types nor on eventually bucket elements to store the
+  additional data.
+
+## Version 3.0.0 - 2022-06-23
 
 ### Removed `addTextsLanguageAssoc`
 
@@ -134,7 +156,7 @@ When the beta option `subElemRedirections` is set to true,
 _all_ array (new!) and structure types are expanded when referenced:
 managed associations (and compositions to entities) in that array are
 implicitly redirected when necessary.
-See [below for details](#version-1300---20200612).
+See [below for details](#version-1300---2020-06-12).
 
 Nested array types (without intermediate structure types) are not supported.
 

@@ -270,7 +270,7 @@ The compiler behaviour concerning `beta` features can change at any time without
 - to.sql/hdi/hdbcds:
   + Doc comments are translated into HANA comments (or into `@Comment` annotation for `to.hdbcds`).
   Such comments are possible on entities, views, elements of entities and `to.hdbcds` also supports comments on view columns.
-  Generation can be disabled via option `disableHanaComments`. Entites/views (and their elements/columns)
+  Generation can be disabled via option `disableHanaComments`. Entities/views (and their elements/columns)
   annotated with `@cds.persistence.journal` for `to.hdi`/`to.sql` will not have comments rendered.
   + Generation of temporal `WHERE` clause can be suppressed by annotating the `validFrom`/`validTo` elements of the projection with `false` or `null`.
 - to.sql/hdi/hdbcds/edm(x)/for.odata: Structure/managed association comparisons (tuple comparisons) are now

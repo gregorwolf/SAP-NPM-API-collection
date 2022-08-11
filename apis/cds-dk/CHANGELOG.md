@@ -1,3 +1,4 @@
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
@@ -6,6 +7,43 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.1.1 - 2022-08-11
+
+### Added
+
+- `cds import` now supports OData and SAP annotations for OData V4 imports.
+- `cds compile --to openapi` defines operation-specific HTTP error response status codes with descriptions via `ErrorResponses` property of certain annotations.
+- `cds compile --to openapi` now supports `--openapi:servers` option.
+- `cds add multitenancy` will add feature multitenancy-specific configuration, without extensibility.
+- `cds add toggles` will add feature toggle-specific configuration.
+- `cds add extensibility` will add configuration for project extensibility.
+- `cds add helm` now supports resource configuration for HANA deployment job and HTML5 app deployment job.
+- `cds add helm` added JSON Schema for values.yaml
+- `cds pull` will download the current CDS model of an extended SaaS app running with @sap/cds-mtxs.
+- `cds push` will upload an extension to a SaaS app running with @sap/cds-mtxs.
+
+### Changed
+
+- `cds add helm` updated default resource requirements for both `java` and `nodejs` projects.
+- `cds add helm` uses servicebinding.io bindings for CAP Java services, HANA and HTML5 app deployment jobs.
+- `cds compile --to openapi` creates only component schemas for schemas referenced in operations and in other schemas.
+- `cds import` switch from `@openapi.schema` to `@JSON.Schema`.
+- `cds add mtx` will now add configuration for streamlined MTX. It effectively acts as a shortcut for `cds add multitenancy,toggles,extensibility`
+- `cds add mtx` no longer includes `hana` and `xsuaa`.  To achieve the same effect as before, run `cds add mtx && cds add hana,xsuaa --for production`.
+- `cds bind -2 <xsuaa service instance>` binds the CDS `auth` service to the xsuaa instance. Previously `uaa` was used.  This requires `@sap/cds` 6 or higher.
+- `cds add lint:dev` updated to adjust to new api structure of `@sap/eslint-plugin-cds` v2.5.0
+- `cds init` uses latest Maven Java archetype version 1.27.0 for creating Java projects.
+- `cds login localhost:<port> -u <username>` now saves username (and empty password, if applicable) with project settings for convenience.
+
+### Fixed
+
+- `cds add helm:connectivity`: `connectivity.configMapName` was not used for the `connectivity-proxy-info`.
+- `cds import` replaced occurrences of `\\` with `/` in the `package.json` for Linux platforms.
+- `cds import` fixed `@Core.Description` and `doc` property duplication.
+- `cds extend` and `cds activate` no longer save any data (this is reserved to `cds login`).
+- Extensibility commands now add http (not https) to local app URLs without schema.
+- Extensibility commands don't query CF any longer when run against local apps.
+
 ## Version 6.0.4 - 2022-08-02
 
 ### Changed
@@ -13,7 +51,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - `cds init` uses latest Maven Java archetype version 1.26.1 for creating Java projects.
 - Use `@sap/cds` 6.0.4
 - `cds bind` handles orgs and spaces containing commas correctly.
-
 
 ## Version 6.0.3 - 2022-07-14
 
@@ -24,6 +61,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
+- `--vap-file` parameter of `cds deploy` is available again (removed in 6.0.0)
+- `cds add helm:connectivity`: `connectivity.configMapName` was not used for the `connectivity-proxy-info`.
 - `--vcap-file` parameter of `cds deploy` is available again (removed in 6.0.0)
 - `cds add helm:connectivity`: `connectivity.configMapName` was not used for the `connectivity-proxy-info`.
 - `cds add helm:connectivity`: Environment variables added for connectivity service for Java.

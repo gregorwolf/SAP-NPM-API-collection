@@ -6,14 +6,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.5.0] - 2022-08-04
+
+### Changed
+
+- Model Validation rules use `parsed` flavor by default (`meta.model` property)
+- Environment rules have { model: "none" }
+
+### Added
+
+- Flavor in `model` property on `meta` object of rule
+- Context function `getNode()` returns Node with proper location
+
 ## [2.4.1] - 2022-06-17
 
-- Added authorization rules 'auth-*'.
+### Added
+
+- Authorization rules 'auth-*'.
 
 ### Changed
 
 - Node.js 14 is now the minimum required Node.js version.  Version 12 is no longer supported.
-
+- Default CSN flavor in rules is `parsed`.
 
 ## [2.4.0] - 2022-04-14
 

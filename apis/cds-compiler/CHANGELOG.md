@@ -7,6 +7,55 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.1.0 - 2022-08-04
+
+### Added
+
+- Extending an artifact with multiple includes in one extend statement is now possible:
+  `extend SomeEntity with FirstInclude, SecondInclude;`
+- Aspects can now have actions and functions, similar to entities.  Aspects can be extended by actions as well.
+- `cdsc`:
+  - `toCsn` now supports `--with-locations` which adds a `$location` property to artifacts
+  - `toHana`/`toSql` now supports `--disable-hana-comments`, which disables rendering of doc-comments for HANA.
+- to.hdi/sql/hdbcds: Support FK-access in `ORDER BY` and `GROUP BY`
+- to.hdi.migration: Detect an implicit change from `not null` to `null` and render corresponding `ALTER`
+
+### Changed
+
+- compiler: If an unknown file extension is used but the file starts with
+  an opening curly brace (`{`), it will be parsed as CSN.
+- to.edm(x): In V4 containment mode, pull up `@Capabilities` annotations from the containees to the root container (set)
+  and translate them into corresponding `@Capabilities.NavigationRestrictions`. If a `NavigationRestriction` is already available
+  for that containment path, capabilities are merged into this path. Capability annotation value paths are prefixed with
+  the navigation restriction path.
+  The capability 'pull up' has an effect on entity annotations only. `@Capabilities` assignments on compositions are not pulled
+  up but rendered to the association type which is important to enable dynamic capabilities on 'to-many' relations and to avoid
+  ambiguities in entity set capabilities.
+- Update OData vocabularies 'Analytics', 'Capabilities', 'Common', 'Core', 'DataIntegration', 'Graph', 'PersonalData', 'UI', 'Validation'.
+
+### Fixed
+
+- Syntax of date/time literals are now checked against ISO 8601. If the format is invalid, a warning is emitted.
+- The code completion directly after the `(` for functions with special syntax
+  now suggests all valid keywords, like for `extract` or `locate_regexpr`.
+- compiler:
+  + `cast(elem as EnumType)` crashed the compiler.
+  + Annotations on sub-elements in query entities were lost during re-compilation.
+  + An association's cardinality was lost for associations published in projections.  
+  + Annotations on indirect action parameters were lost in CSN flavor `gensrc`.
+  + If a file's content starts with `{` and if neither file extension is known nor
+    `fallbackParser` is set, assume the source is CSN.
+- all backends: references in `order by` _expressions_ are correctly resolved.
+- to.edm(x):
+  + Allow cross service references for unmanaged associations and improve warning message for muted associations.
+  + Nested `@UI.TextArrangement` has precedence over `@TextArrangement` shortcut annotation for `@Common.Text`.
+- to.hdi.migration:
+  + Doc comments rendered the _full doc comment_ instead of only the first paragraph, as `to.hdi` does.
+  + Respect option `disableHanaComments` when rendering the `ALTER` statements
+- to.hdi/sql/hdbcds:
+  + Check for invalid usages of `$self` and give helpful errors
+  + Correctly resolve association-steps in the from-clause in conjunction with `exists`
+
 ## Version 3.0.2 - 2022-07-05
 
 ### Fixed
@@ -58,6 +107,22 @@ The compiler behavior concerning `beta` features can change at any time without 
 - CDL parser: `*` is not parsed anymore as argument to all SQL functions;
   it is now only allowed for `count`, `min`, `max`, `sum`, `avg`, `stddev`, `var`.
 - All non-SNAPI options.
+
+## Version 2.15.8 - 2022-08-02
+
+### Fixed
+
+- to.edm(x): Nested `@UI.TextArrangement` has precedence over `@TextArrangement` shortcut annotation for `@Common.Text`.
+- to.hdi.migration:
+  + Respect option `disableHanaComments` when rendering the `ALTER` statements
+  + Doc comments rendered the _full doc comment_ instead of only the first paragraph, as `to.hdi` does.
+- compiler: An association's cardinality was lost for associations published in projections.
+
+## Version 2.15.6 - 2022-07-26
+
+### Fixed
+
+- Annotations on sub-elements were lost during re-compilation.
 
 ## Version 2.15.4 - 2022-06-09
 

@@ -11,9 +11,27 @@ Note: `deprecated` features are listed in this ChangeLog just for information.
 **When the `deprecated` option is set, the `beta` option is ignored,
 and several new features are not available.**
 
-## Version 3.0.0 - 2022-XX-YY
+## Version 3.1.0 - 2022-08-04
+
+### Added `autoCorrectOrderBySourceRefs`
+
+When this option is set, calling `compile` auto-corrects direct `order by`
+source element references without table alias for SELECT queries by adding the
+table alias to the `ref`.
+
+Using this option might lead to surprising results when elements are added to
+existing models: `order by` specifications might change their semantics without
+any extra messages.
+
+## Version 3.0.0 - 2022-06-23
 
 Version 3 of the cds-compiler removes all v2 deprecated flags.
+
+### Add `eagerPersistenceForGeneratedEntities`
+
+If enabled, the old behavior regarding `@cds.persistence.skip` and `@cds.persistence.exists`
+is restored, i.e. these annotations are not copied from parent to generated child entities, nor
+is `@cds.persistence.exists` copied to localized convenience views.
 
 ### Removed `createLocalizedViews`
 
@@ -24,6 +42,8 @@ Version 3 of the cds-compiler removes all v2 deprecated flags.
 ### Removed `longAutoexposed`
 
 ### Removed `noElementsExpansion`
+
+<!-- fully removed with 3.1.0 -->
 
 ### Removed `noInheritedAutoexposeViaComposition`
 
