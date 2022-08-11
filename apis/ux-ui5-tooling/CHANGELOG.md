@@ -2,6 +2,13 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.7.0] - 2022-07-28
+### Changed
+- Improved error handling of the `fiori-tools-proxy`
+
+### Fixed
+- Fixed an issue where previewing an application using a full url destination was not working
+
 ## [1.6.7] - 2022-07-14
 ### Changed
 - The `fiori-tools-proxy` is now using the [@sap-ux/backend-proxy-middleware](https://www.npmjs.com/package/@sap-ux/backend-proxy-middleware) for proxying requests to the backend

@@ -1,4 +1,12 @@
-# @sap/ux-ui5-fe-mockserver-middleware
+# This package has been deprecated in favor of @sap-ux/ui5-middleware-fe-mockserver
+
+# Upgrade
+
+Please replace all reference of `@sap/ux-ui5-fe-mockserver-middleware` in your package.json with `@sap-ux/ui5-middleware-fe-mockserver`
+
+The mockserver is now open source and can be found here https://github.com/SAP/open-ux-odata
+
+Please file all issues and remarks there !
 
 ## Features
 

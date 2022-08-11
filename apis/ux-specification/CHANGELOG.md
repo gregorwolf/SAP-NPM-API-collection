@@ -4,19 +4,37 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.102.2] - 2022-07-14
+## [1.102.3] - 2022-07-28
 
 ### Added
+
+- OData V4:
+  - Added support for custom actions for tables in LR and OP
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V4:
+  - Fixed an issue with custom column export where it was not possible to restore a deleted column
+
+### Quality
+
+- Upgrade of webpack and dependent modules
+- Upgrade of terser
+- Upgrade of glob-parent, mem-fs-editor
+- Upgrade of lerna
+- Upgrade of fe-fpm-writer
+
+## [1.102.2] - 2022-07-14
 
 ### Changed
 
 - OData V4: In case of PresentationVariant definitions for charts or line items an intermediate node had originally been introduced in the Object Page schema that represents the PresentationVariant. This multi-level propagation of references caused issues in the consuming UI, thus the intermediate node got deleted again. The PresentationVariant must be determined by the consuming application if necessary.
-
-### Removed
-
-- OData V4:
-
-### Deprecated
 
 ### Fixed
 

@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.7.0] - 2022-07-27
+### Added
+- Added two new SAPUI5 themes - `Morning Horizon` and `Evening Horizon` with `Morning Horizon` as a default theme if Minimum SAPUI5 version selected is 1.102 and above.
+- Added links to Guided Answers for easier troubleshooting of generator issues arising due to misconfiguration of SAP BTP destinations.
+
+### Fixed
+- Fixed issue where generator crashed without internet connection.
+- Fixed issue where invalid input was allowed for SAPUI5 ABAP Repository field during deployment config generation.
+
 ## [1.6.7] - 2022-07-21
 ### Changed
 - Generating an SAP Fiori application with Cloud Foundry deployment configuration into a NodeJS or JAVA CAP project will now add Cloud Foundry build and deploy commands to the root `package.json` if not already present.
