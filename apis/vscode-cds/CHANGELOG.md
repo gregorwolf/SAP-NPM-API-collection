@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
+
+
+## Version 6.1.1 - 2022-08-08
+### Fixed
+- fixed error when text editor is not found in CAP notebook decoration
+
+## Version 6.1.0 - 2022-08-01
+### Added
+- load cds based json schemas for `package.json`, `.cdsrc.json` and `.cdsrc-private.json` dynamically based on project's cds version
+
 ## Version 6.0.4 - 2022-07-13
 
 ### Fixed
