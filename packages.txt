@@ -1,6 +1,6 @@
-@sap/artifact-management
-@sap/artifact-management-base
-@sap/artifact-management-base-types
-@sap/artifact-management-types
-@sap/bas-sdk
-@sap/vscode-cds
+@sap/audit-logging
+@sap/external-service-mashup
+@sap/generator-fiori
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-ui5-tooling
+@sap/xsjs

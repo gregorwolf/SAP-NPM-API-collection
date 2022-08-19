@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.6.9"></a>
+## 6.6.9 - 2022-08-09
+
+### Update
+- Update xsodata version to 8.0.0
+
 <a name="6.6.8"></a>
 ## 6.6.8 - 2022-07-22
 

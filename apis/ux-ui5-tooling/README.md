@@ -189,6 +189,8 @@ By using the proxy configuration one can also change the SAPUI5 version, which i
 
 Starting with `ux-ui5-tooling` version `1.4.7`, if the `version` property is not set in the `ui5.yaml`, then the `minUI5Version` from `manifest.json` will be used for the application preview. If the `version` property is set, but it is empty, then the `latest` SAPUI5 version from https://ui5.sap.com will be used for the application preview. For any other case the value of the `version` property will be used for the application preview.
 
+Starting with `ux-ui5-tooling` version `1.7.1` a check for the SAPUI5 version of the application was added, which checks if the version is availble on the SAPUI5 SDK. If not, then the nearest, highest patch, version is used instead.
+
 **Note:** all UI5 requests are routed through the proxy. Sometimes this can cause performance issues. If you don't want route the UI5 requests through the proxy, then you can set parameter `directLoad: true`. This will inject the UI5 url in the HTML file of the application and thus the UI5 libs will be loaded directly.
 
 ```

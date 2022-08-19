@@ -50,7 +50,12 @@ In general the events that are supposed to be audit logged can be grouped in 3 m
 - access to personal data (related to data privacy)
 - general security events (like starting/stopping a system, failed authorization checks etc.)
 
+---
+> **NOTE:** 
+> SAP customers can use this library to access (read) audit logs. They cannot write log messages for their applications.
+Writing audit log messages is only possible for SAP internal users.
 
+---
 ### General audit logging principles
 
 - All attempts to perform an action in a system should be audit logged no matter if they have been successful or not.

@@ -2,6 +2,10 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.7.1] - 2022-08-11
+### Added
+- Added a check if the SAPUI5 version is available on the SAPUI5 SDK when starting the application. If not, the nearest highest patch version is used instead.
+
 ## [1.7.0] - 2022-07-28
 ### Changed
 - Improved error handling of the `fiori-tools-proxy`

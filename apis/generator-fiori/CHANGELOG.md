@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.7.1] - 2022-08-10
+### Added
+- Added links to Guided Answers for easier troubleshooting of deployment issues arising due to unavailability of SAPUI5 ABAP Repository service.
+
+### Fixed
+- Fixed an issue where Form Entry Object Page (FEOP) could not be selected from a V4 service in the SAP Business Application Studio Service Centre.
+
 ## [1.7.0] - 2022-07-27
 ### Added
 - Added two new SAPUI5 themes - `Morning Horizon` and `Evening Horizon` with `Morning Horizon` as a default theme if Minimum SAPUI5 version selected is 1.102 and above.
