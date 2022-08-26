@@ -6,12 +6,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.6.1 - 2022-08-22
+
+### Fixed
+- Use of legacy APIs for scope checks has been removed
+- Better compatibility for environments without vcap-environment, especially DwC
+- Restored compatibility for Node.js 12.  In version 2.6.0, this failed with an error like `SyntaxError: Unexpected token`.
+- Extension linters now also check types and aspects
+- I18n file collection now works correctly with @sap/cds@6
+- Job status of asynchronous requests to scaled applications is now returned correctly again
+
+### Changed
+- Retries for container creation and deployment have been disabled. Retries can be configured using via cds env:
+  ```
+  "mtx": {
+     "provisioning": { "retries": 2 }
+  }
+  ```
+  retries two times after a failure.
 
 ## Version 2.6.0 - 2022-07-07
 
 ### Added
  - Support for new build task aliases `java` and `nodejs`
-  
+
 ### Fixed
 - @sap/cds-mtx is now compatible with @sap/cds@^6.
 - Kibana logs of asynchronous jobs now always have the correct correlation id.

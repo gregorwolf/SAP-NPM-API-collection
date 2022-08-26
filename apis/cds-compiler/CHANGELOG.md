@@ -7,6 +7,16 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.1.2 - 2022-08-19
+
+### Fixed
+
+- to.edm(x):
+  + `@Capabilities` 'pull up' for containment trees should not prefix the
+    dynamic annotation paths of the root container.
+  + Remove service namespace prefix of a parameter type for function/action annotation targets
+    in multi schema mode if the parameter type is defined in an alternative schema.
+
 ## Version 3.1.0 - 2022-08-04
 
 ### Added

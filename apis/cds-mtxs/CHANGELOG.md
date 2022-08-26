@@ -6,12 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.1.2 - 2022-08-25
+
+### Added
+
+- You can now register a `deploy` handler for the `DeploymentService`, right before the actual deployment is triggered.
 ## Version 1.1.1 - 2022-08-10
 
 ### Fixed
 
 - More debug and log output
-- DeployService can now also be called by users with role `cds.Subscriber`
+- `DeploymentService` can now also be called by users with role `cds.Subscriber`
 
 ## Version 1.1.0 - 2022-08-09
 

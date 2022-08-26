@@ -4,6 +4,37 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.1.1 - 2022-08-24
+
+### Added
+- The configuration schema now includes `cds.extends` and `new-fields` (in `cds.xt.ExtensibilityService`)
+
+- `srv.run(fn)` now accepts a function as first argument, which will be run in an active outer transaction, if any, or in a newly created one. This is in contrast to `srv.tx(fn)` which always creates a new tx.
+  ```js
+  cds.run (tx => { // nested operations are guaranteed to run in a tx
+    await INSERT.into (Foo, ...)
+    await INSERT.into (Bar, ...)
+  })
+  ```
+
+### Fixed
+
+- Erroneous checks for `join` in `SELECT.from(SELECT.from('xxx'))`
+- Virtual fields with default values in draft context
+- View resolving without model information doesn't crash
+- Unable to upload large attachments. Uploading a large attachment (base64 encoded) caused a runtime exception.
+- `cds.Query.then()` is using `AsyncResource.runInAsyncScope` from now on. &rarr; this avoids callstacks being cut off, e.g. in debuggers.
+- `cds.tx()` and `cds.context` have been fixed to avoid accidential fallbacks to auto-commit mode.
+- HDI configuration data (e.g. `./cfg`, `.hdiignore`) is now included in the `resources.tgz` file which is required for Streamlined MTX.
+- `cds deploy` accepts in addition to `VCAP_SERVICES` also `TARGET_CONTAINER` and `SERVICE_REPLACEMENTS` from vcap file when using `--vcap-file` parameter.
+- `cds build` doesn't duplicate CSV files that are contained in `db/src/**`.
+- Typescript issues in `apis/log.d.ts`
+- `cds build` adds OS agnostic base model path to generated feature CSN.
+- Unhandled promise rejection in `expand` handling
+- `cds.context.model` middleware is not mounted for not extensible services
+- `cds.context` continuation was sometimes not reset in REST adapter
+- Requests don't fail with `RangeError: Unable to get service from service map due to error: Invalid time value` anymore
+
 ## Version 6.1.0 - 2022-08-10
 
 ### Added

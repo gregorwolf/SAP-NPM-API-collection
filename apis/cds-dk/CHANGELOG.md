@@ -7,6 +7,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.1.2 - 2022-08-25
+
+### Changed
+- `cds init` uses latest Maven Java archetype version 1.27.1 for creating Java projects.
+
+### Fixed
+- `cds add helm` fixed JSON Schema for `srv` property in values.yaml
+- `cds add helm` fixed env property errors for `hana_deployer` and `html5_apps_deployer`
+- `cds add data` now creates proper data file names for entites in a `context`, i.e. `sap.common-Countries.csv` instead of `sap-common-Countries.csv`
+- `cds import` now captures the parameter/property of collection type differently and the associated annotations are pulled out of the `items` object of the parameter/property entry in the csn.
+- Remove redundant `console.log()` statement in `cds lint`
+- `cds push` now shows complete error messages from extension validation
+- `cds push` and related commands now show properly formatted error messages and also fail with a non-zero exit code in error situations
+
 ## Version 6.1.1 - 2022-08-11
 
 ### Added
