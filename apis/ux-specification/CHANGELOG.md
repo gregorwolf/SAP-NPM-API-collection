@@ -4,6 +4,38 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.102.4] - 2022-08-11
+
+### Added
+
+- OData V2:
+  - LR: Added enum with FieldGroup annotations to `annotationPath` property of tableSettings -> MultiEdit
+- OData V4: the schemas and configs of list report views now also show the visibility property and custom views.
+
+### Changed
+
+- OData V4: Wit API version 4 of specification - introduced with the given version - the way how routes are represented in the app.json changes: before the pattern was
+  `route: key`, now it follows the manifest syntax  
+  key: {
+      route: route
+  }
+  The switch to an object representation allows to also include other target information like "outbound".
+- OData V4: as long as no views are defined in manifest, the showCounts property is not part of the schema, except if it is already maintained.  
+- OData V2:
+  - Mark custom column 'columnIndex' property as hidden
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V4:
+  - LR: The export of property changes at the page editor led to a deletion of (custom) views in manifest; besides, outbound navigation entries could get deleted.
+  - Fixed an issue with missing custom action if an empty "press" is defined
+
+### Quality
+
 ## [1.102.3] - 2022-07-28
 
 ### Added

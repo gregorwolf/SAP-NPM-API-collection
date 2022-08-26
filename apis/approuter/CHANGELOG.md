@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.3.3 - 2022-08-25
+
+### Fixed
+- preferLocal destination
+- Modify url for userInfo, as part of user-api/attributes
+
 ## 11.3.2 - 2022-08-04
 
 ### Fixed

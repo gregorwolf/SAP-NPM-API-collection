@@ -1,6 +1,7 @@
-@sap/audit-logging
-@sap/external-service-mashup
-@sap/generator-fiori
-@sap/ux-cds-odata-language-server-extension
-@sap/ux-ui5-tooling
-@sap/xsjs
+@sap/approuter
+@sap/cds
+@sap/cds-compiler
+@sap/cds-dk
+@sap/cds-mtx
+@sap/cds-mtxs
+@sap/ux-specification
