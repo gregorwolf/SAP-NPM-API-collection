@@ -1,7 +1,2 @@
-@sap/approuter
-@sap/cds
-@sap/cds-compiler
-@sap/cds-dk
-@sap/cds-mtx
-@sap/cds-mtxs
-@sap/ux-specification
+@sap/low-code-event-handler
+@sap/open.fe
