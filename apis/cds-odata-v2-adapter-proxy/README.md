@@ -136,6 +136,23 @@ CDS supports modelling features that are not compatible with OData V2 standard:
 To provide an OData V2 service based on the CDS OData V2 Adapter Proxy, those CDS modelling features must not be used.
 In general any CDS OData API flavor must not be used in combination with CDS OData V2 Adapter Proxy.
 
+Per default, those modelling incompatibilities are reported as `Warning` and will not stop the compilation.
+The resulting EDMX V2 may be invalid and not processable by an OData V2 client. To prevent this situation and fail
+early to detect modelling incompatibilities, the severity for respective codes can be increased to `Error`,
+by setting the following environment variables:
+
+```
+"cdsc": {
+    "severities": {
+      "odata-spec-violation-array": "Error",
+      "odata-spec-violation-param": "Error",
+      "odata-spec-violation-returns": "Error",
+      "odata-spec-violation-assoc": "Error",
+      "odata-spec-violation-constraints": "Error"
+   }
+}
+```
+
 ### Cloud Foundry Deployment
 
 When deploying the CDS OData V2 Adapter Proxy to Cloud Foundry, make sure that it has access to the whole CDS model.
@@ -171,16 +188,23 @@ cds.on("bootstrap", (app) =>
 
 The OData V2 service provided by the CDS OData V2 Adapter Proxy can be used to serve an SAP Fiori Elements V2 UI.
 
-Fiori Elements examples:
+SAP Fiori Elements V2 examples:
 
-- **Basic Edit**: Basic editing app
-- **Draft Edit**: Draft supported editing app
-- **Hierarchy**: Hierarchical display of data in tree table
+- SQLite based:
+  - **Basic Edit**: Basic editing app
+  - **Draft Edit**: Draft supported editing app
+  - **Hierarchy**: Hierarchical display of data in tree table
+  - **Overview**: Overview Page app
+  - **Analytics**: Analytical List Page app
+- HANA based:
+  - **Parameters**: Parameterized Entity app
 
 Running examples can be tested as follows:
 
 - Clone repository
-- Start server: `npm start`
+- Start server:
+  - SQLite based: `npm start`
+  - HANA based: `npm run start:hana`
 - Open Fiori Launchpad: http://localhost:4004/fiori.html
 
 > Code repository is only available SAP internal.
