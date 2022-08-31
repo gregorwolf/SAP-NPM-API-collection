@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.3.4 - 2022-08-30
+
+### Fixed
+- Crash when missing key in backend cookie 
+
 ## 11.3.3 - 2022-08-25
 
 ### Fixed

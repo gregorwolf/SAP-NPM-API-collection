@@ -1,2 +1,3 @@
+@sap/approuter
+@sap/cds-odata-v2-adapter-proxy
 @sap/low-code-event-handler
-@sap/open.fe
