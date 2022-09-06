@@ -54,11 +54,12 @@ The CDS OData V2 Adapter Proxy instantiates an Express router. The following opt
 - **calcContentDisposition**: Calculate content disposition for media streams even if already available. Default is `false`.
 - **quoteSearch**: Specifies if search expression is quoted automatically. Default is `true`.
 - **fixDraftRequests**: Specifies if unsupported draft requests are converted to a working version. Default is `false`.
+- **changesetDeviationLogLevel**: Log level of batch changeset content-id deviation logs (none, debug, info, warn, error). Default is `'info'`.
 
 > All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
-> under section `cds.cov2ap` and accessed via `cds.env.cov2ap`.
+> under section `cds.cov2ap` and accessed during runtime via `cds.env.cov2ap`.
 
-> Option `cds.env.odata.v2proxy.urlpath` is available to specify an OData V2 proxy url path
+> Option `cds.odata.v2proxy.urlpath` is available to specify an OData V2 proxy url path
 > different from default `/v2` for CDS core.
 
 ## Advanced
@@ -79,30 +80,38 @@ Debug log level can be defined via command line environment variable as follows:
 
 Details on how to set CDS environment can be found at [cds.env](https://cap.cloud.sap/docs/node.js/cds-env).
 
+##### Kibana Logging
+
+In order to enable Kibana friendly logging for `cds.log`, the feature toggle `cds.features.kibana_formatter: true`
+needs to be set.
+
 #### cds.log.levels.cov2ap: "error"
 
-- `[cov2ap] - Authorization` : Error during authorization header parsing
-- `[cov2ap] - MetadataRequest` : Error during metadata request processing
-- `[cov2ap] - Request` : Error during request processing
-- `[cov2ap] - Response` : Error during response processing
-- `[cov2ap] - Batch` : Error during batch processing
-- `[cov2ap] - AggregationKey` : Error during aggregation key determination
-- `[cov2ap] - MediaStream` : Error during media stream processing
-- `[cov2ap] - ContentDisposition` : Error during content disposition determination
-- `[cov2ap] - FileUpload` : Error during file upload processing
+- `[cov2ap] - Authorization`: Authorization header parsing error
+- `[cov2ap] - MetadataRequest`: Metadata request processing error
+- `[cov2ap] - Request`: Request processing error
+- `[cov2ap] - Response`: Response processing error
+- `[cov2ap] - Batch`: Batch processing error
+- `[cov2ap] - AggregationKey`: Aggregation key error
+- `[cov2ap] - MediaStream`: Media stream processing error
+- `[cov2ap] - FileUpload`: File upload processing error
 
 #### cds.log.levels.cov2ap: "warn"
 
-- `[cov2ap] - Service` : Service definition not found for request path
-- `[cov2ap] - Context` : Definition not found in CDS metamodel
-- `[cov2ap] - Batch` : Response changeset order does not match request changeset order
+- `[cov2ap] - Service`: Invalid service definition (name, path)
+- `[cov2ap] - Context`: Invalid (sub-)definition (name, path)
+- `[cov2ap] - ContentDisposition`: Content disposition warning
+
+#### cds.log.levels.cov2ap: "info"
+
+- `[cov2ap] - Batch`: Changeset order deviation (req, res)
 
 #### cds.log.levels.cov2ap: "debug"
 
-- `[cov2ap] - Request`: Log of OData V2 client request (url, body, headers)
-- `[cov2ap] - ProxyRequest`: Log of OData V4 proxy request (url, body, headers)
-- `[cov2ap] - ProxyResponse`: Log of OData V4 proxy response (status code/message, body, headers)
-- `[cov2ap] - Response`: Log of OData V2 client response (status code/message, body, headers)
+- `[cov2ap] - Request`: Log OData V2 client request (url, headers, body)
+- `[cov2ap] - ProxyRequest`: Log OData V4 proxy request (url, headers, body)
+- `[cov2ap] - ProxyResponse`: Log OData V4 proxy response (status code/message, headers, body)
+- `[cov2ap] - Response`: Log OData V2 client response (status code/message, headers, body)
 
 ### CDS Annotations
 
@@ -121,8 +130,8 @@ The following CDS OData V2 Adapter Proxy specific annotations are supported:
 **Entity Element Level**:
 
 - `@Core.ContentDisposition.Filename: <element>`: Specifies entity element, representing the filename during file upload/download.
-- `@Core.ContentDisposition.Type: <value>`: Controls the content disposition behavior in client/browser (`inline` or `attachment`).
-- `@cov2ap.headerDecode`: Array of sequential decoding procedures ('uri', 'uriComponent', 'base64') used for media entity upload header.
+- `@Core.ContentDisposition.Type: '<value>'`: Controls the content disposition behavior in client/browser (`inline` or `attachment`).
+- `@cov2ap.headerDecode: [...]`: Array of sequential decoding procedures ('uri', 'uriComponent', 'base64') used for media entity upload header.
 
 ### CDS Modelling Restrictions
 
@@ -141,7 +150,7 @@ The resulting EDMX V2 may be invalid and not processable by an OData V2 client. 
 early to detect modelling incompatibilities, the severity for respective codes can be increased to `Error`,
 by setting the following environment variables:
 
-```
+```json
 "cdsc": {
     "severities": {
       "odata-spec-violation-array": "Error",

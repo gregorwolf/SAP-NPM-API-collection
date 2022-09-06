@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.6 - 2022-09-01
+
+### Fixed
+
+- Improve Kibana logging
+- Improve error and warning logging messages
+- Make log level of `Changeset order deviation` configurable via `changesetDeviationLogLevel`. Default is now `'info'`.
+
 ## Version 1.9.5 - 2022-08-30
 
 ### Fixed

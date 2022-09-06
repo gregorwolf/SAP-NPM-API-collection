@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.7.3] - 2022-08-25
+### Fixed
+- Fixed an issue where some CAP Java projects were not being correctly identified as Java projects in the Fiori generator.
+
 ## [1.7.1] - 2022-08-10
 ### Added
 - Added links to Guided Answers for easier troubleshooting of deployment issues arising due to unavailability of SAPUI5 ABAP Repository service.

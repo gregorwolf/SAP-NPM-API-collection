@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.2.0 - 2022-09-04
+
+### Fixed
+- Version sync with DockerHub
+
+## 4.1.3 - 2022-09-01
+
+### Fixed
+- Convert shouldExitProcess value to boolean
+- Axios request error handling 
+
 ## 4.1.2 - 2022-06-20
 
 ### Updated dependencies

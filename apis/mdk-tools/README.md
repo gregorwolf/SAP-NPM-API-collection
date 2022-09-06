@@ -79,6 +79,7 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         ```bash
         mdk deploy --target mobile --name "com.mdk.myapp" 
         mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project
+        mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --externals "@nativescript/geolocation" "external2"
         mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --showqr
         ```
 

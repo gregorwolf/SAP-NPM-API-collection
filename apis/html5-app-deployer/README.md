@@ -328,7 +328,7 @@ spec:
 
 ```
 ## Enable Process Exit After Upload
-In case it is required to automatically exit the html5 application deployer process, you can set the EXIT_PROCESS_AFTER_UPLOAD environment variable.
+In case it is required to automatically exit the html5 application deployer process, you can set the EXIT_PROCESS_AFTER_UPLOAD environment variable to "true".
 If this environment variable is set, after a successful upload the html5 application deployer application will be stopped. 
 Note that when using deploy service this is no required because deploy service stops the html5 application deployer application automatically.
 If you use native deployment mechanisms such as Cloud Foundry cf push or Kubernetes deployment, you may need to use this capability.

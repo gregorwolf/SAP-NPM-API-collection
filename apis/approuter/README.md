@@ -1638,7 +1638,9 @@ In a multi-tenancy landscape, the application router will calculate the tenant i
  - x-forwarded-host header or host if EXTERNAL_REVERSE_PROXY is false or not specified
 
 ### Authorization Header
-* x-approuter-authorization: Contains the JSON Web Token (JWT) or Open ID Connect (OIDC) access token to support the [Service to Application Router](#service-to-application-router-beta-version) scenario.
+* x-approuter-authorization - to be used in [Service to Application Router](#service-to-application-router) scenario - two token types are supported:
+ - Bearer: contains the JSON Web Token (JWT) or Open ID Connect (OIDC) access token.
+ - Basic: contains a Base64 encoded set of user/password. Note that Application Router uses these credentials to create a Bearer token using the password grant flow.
 
 ## CSRF Protection
 

@@ -4,6 +4,49 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.102.5] - 2022-08-24
+
+### Added
+
+- API enhanced by a wrapper function for the creation of custom views (that delegates to the FPM writer of open-ux-tools)
+- OData V4:
+  - Added custom pages using FPM library to pages view in Application Modeler Panel
+
+### Changed
+
+- The specification module is now build with esbuild instead of webpack.
+The new build generates all type information into a types folder, which makes it easier to consume (but the consumption must be adapted). Examples:
+
+````
+import { PageType } from '@sap/ux-specification/dist/src/specification/common/'; 
+==>  import { PageType } from '@sap/ux-specification/types';
+
+import type { TableCustomColumns, TableCustomColumn } from '@sap/ux-specification/dist/src/v2';
+==> import type { TableCustomColumns, TableCustomColumn } from '@sap/ux-specification/types/v2';
+
+import { SectionPosition as SectionPositionV4 } from '@sap/ux-specification/dist/src/v4';
+==> import { SectionPosition as SectionPositionV4 } from '@sap/ux-specification/types/v4';
+````
+
+- OData V4:
+  - LR: Mark view properties `key`, `index` as hidden in schema
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V2:
+  - OP: Fixed incorrect generation of flexChanges in case of Form, Form Fields and Form Fields referenced from a navigation entity
+
+- OData V4:
+  - In some cases sections defined with PresentationVariants did not appear on the object page
+  - The resolution of alias definitions using the @SAP__ prefix was not correct, leading also to gaps in the elements that were considered
+  - LR: Schema now considers default visualation `UI.LineItem` if not defined in `SelectionPresentationVariant`
+
+### Quality
+
 ## [1.102.4] - 2022-08-11
 
 ### Added
@@ -14,11 +57,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 ### Changed
 
-- OData V4: Wit API version 4 of specification - introduced with the given version - the way how routes are represented in the app.json changes: before the pattern was
+- OData V4: With API version 4 of specification - introduced with the given version - the way how routes are represented in the app.json changes: before the pattern was
   `route: key`, now it follows the manifest syntax  
+
+  ````
   key: {
       route: route
   }
+  ````
+
   The switch to an object representation allows to also include other target information like "outbound".
 - OData V4: as long as no views are defined in manifest, the showCounts property is not part of the schema, except if it is already maintained.  
 - OData V2:

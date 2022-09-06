@@ -4,11 +4,32 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.1.2 - 2022-09-05
+
+### Fixed
+
+- Missing key insertion from where clauses in references for deep update statements
+- Prevent duplicate entries for some `INSERT` statements
+- Log details were not properly displayed in Kibana
+- getCsn in model-provider if `cds.requires.toggles` is false
+- HTTP calls in messaging have the correct content length
+- Performance issue for OData <entity>/$count requests
+- Typescript definition for SQL-native variant of `srv.run`, like `srv.run('SELECT * from Authors where name like ?',['%Poe%'])`
+- Typescript definitions for `srv.run( [query] )` and `srv.send( {query, headers} )`
+- Typescript definitions for `cds.log` are improved, level indicators like `cds.log()._debug` added
+- Typescript definitions for `tx` now carry additional service methods
+- `cds login` now returns errors with a better root cause messages
+- `$expand` requests for to-one associations that do not select the foreign key
+- `UPDATE` statement accepts empty objects: `UPDATE('Foo').with({ bar: {} })`
+- URI encoding of parameters in remote service calls
+
+### Removed
+
 ## Version 6.1.1 - 2022-08-24
 
 ### Added
-- The configuration schema now includes `cds.extends` and `new-fields` (in `cds.xt.ExtensibilityService`)
 
+- The configuration schema now includes `cds.extends` and `new-fields` (in `cds.xt.ExtensibilityService`)
 - `srv.run(fn)` now accepts a function as first argument, which will be run in an active outer transaction, if any, or in a newly created one. This is in contrast to `srv.tx(fn)` which always creates a new tx.
   ```js
   cds.run (tx => { // nested operations are guaranteed to run in a tx

@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.1.3 - 2022-09-06
+
+### Fixed
+
+- `cds extend` and other commands no longer fail with `TypeError: Class constructor CliError cannot be invoked without 'new'`
+
 ## Version 6.1.2 - 2022-08-25
 
 ### Changed

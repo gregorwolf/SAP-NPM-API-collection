@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.4.0 - 2022-09-05
+
+### Added
+- Dynamic log level support
+- x-approuter-authorization with Basic authentication token
+
 ## 11.3.4 - 2022-08-30
 
 ### Fixed
