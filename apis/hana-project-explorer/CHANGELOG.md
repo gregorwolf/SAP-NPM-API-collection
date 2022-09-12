@@ -1,3 +1,13 @@
+## 1.6.0
+
+### New Features
+
+- A warning is displayed if services bound to a database modules do not match the database ID defined in the mta.yaml file.
+- Artifacts can be reverse-engineered into the workspace from the deployed artifacts of an HDI container.
+- Multiple files can be deployed at the same time.
+- The deployment state of a database module can be synchronized with the deployment state from the database
+- The database artifact creation and guided development are now part of the project explorer extension.
+
 ## 1.5.0
 
 ### New Features

@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.4.1 - 2022-09-11
+
+### Fixed
+- Correct a failure with error code 400 during login callback when using dynamic identity provider
+- Correct scopes handling when running user-api
+- Error handling in password token creation
+
 ## 11.4.0 - 2022-09-05
 
 ### Added

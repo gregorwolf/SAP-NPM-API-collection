@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.1.4 - 2022-09-09
+
+### Fixed
+
+- `cds build` now works again with `@sap/cds` version 4.  Previously, this silently failed with no output.  However, a warning is now emitted that strongly recommends an upgrade to version 6.
+
 ## Version 6.1.3 - 2022-09-06
 
 ### Fixed

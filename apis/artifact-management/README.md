@@ -17,7 +17,6 @@ bundles the module into one single deployment artifact and supports one click de
 * Plugins for SAP technologies such as 
 [MDK](https://developers.sap.com/topics/mobile-development-kit.html),
 [FioriElement](https://sapui5.hana.ondemand.com/sdk/#/topic/03265b0408e2432c9571d6b3feb6b1fd),
-[Workflow](https://developers.sap.com/group.cp-workflow-cf.html),
 [CAP](https://cap.cloud.sap/docs/), 
 [XSUAA](https://blogs.sap.com/2019/01/07/uaa-xsuaa-platform-uaa-cfuaa-what-is-it-all-about/)
 

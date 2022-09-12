@@ -1,9 +1,37 @@
+## 1.15.0
+
+### Fixes
+- Node deletion combined with mapping leads to an inconsistent XML
+- Clear the previous query result set for a new query in snapshot
+- Multi-join node connection to more than one nodes causes invalid view and broken relationships
+- Renaming of Calculation view design-time artifact shows invalid snapshot procedure during deployment
+- Table icon disappears on entering performance analysis mode when consuming partitioned tables.
+- For snapshot interface use run-time snapshot table
+- A join node having more than 2 input can not save note text
+- Incorrect icon for .hdbviews when consumed in a Calculation View
+- No warning is shown when apply filter column is not populated
+- Union configuration table can not edited
+- In filter expression renaming an input parameter changes take place after re-opening the view and filter expression language is changed to "Column Engine"
+
 ## 1.14.0
 
 ### Fixes
 - Data preview on multi-join node
 - Snapshot interface - Parameter type should be static list
 - Renamed columns do not get updated in definition tab
+- Virtual table icon is missing for virtual tables created via Non-HANA remote sources
+- Rename/adjust references of input parameter does not work when input is provided via find and replace option
+- Rename of input parameter in a Calculation View does not reflect changes in the filter expression editor tab
+- "defaultExpressionLanguage" is missing when multiple expressions for input parameter default value is defined
+- Analytic Privilege editor does not allow adding more than six rows
+- Renamed calculated column not updated in expressions of filters, and other calculated columns
+- "Value Help" of input parameter leads to metadata call failure when defined on a synonym
+- Analytic Privilege deployment in "SAP Business Application Studio" is unstable
+- Window functions are not in the alphabetic order
+- Client column is not visible for some data sources
+- Non-equal join does not reflect renaming
+- Rank node of type "Sum" requires "Sort Column" and it is not marked as mandatory
+- Join reordering leads to inconsistency in join definition
 
 ## 1.13.0
 

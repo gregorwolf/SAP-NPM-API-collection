@@ -1,3 +1,8 @@
+## 1.8.0
+
+### Fixes
+- Quoted values in .env files are parsed correctly
+
 ## 1.7.0
 
 ### Fixes
