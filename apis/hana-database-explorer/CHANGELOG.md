@@ -1,3 +1,14 @@
+## 1.8.0
+
+### New Features
+- A SQL console can be opened in administrator mode for SAP HANA Database Explorer HDI container connections.
+
+### Fixes
+- Icons in the database tree could be displayed incorrectly.
+- Database switching was not possible when not logged in to Cloud Foundry.
+- Database objects are now grouped by schema in the catalog browser.
+- The list of schemas in the catalog browser's schema filter is now sorted.
+
 ## 1.7.0
 
 ### New Features

@@ -8,11 +8,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [8.0.1] - 2022-09-13
+
+* remove node 12 support
+
 ## [8.0.0] - 2022-08-04
 
 * HANA Cloud database support added
 * Public synonym support added
-* Update module dependencies
+* Update node module dependencies
 
 ## [7.5.5] - 2022-04-21
 

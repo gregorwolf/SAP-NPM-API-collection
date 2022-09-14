@@ -4,6 +4,21 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.1.3 - 2022-09-13
+
+### Added
+
+- Configuration to change maximum body size in bytes for remote requests: `cds.env.remote.max_body_length: 1000` sets it to 1 MB
+
+### Changed
+
+- For structured input, foreign keys are generated as non-enumerable properties on application-service layer
+
+### Fixed
+
+- Deep insert/update/upsert requests where the key of an association is provided in a structured format will not be rejected anymore if the target has default or mandatory fields
+- For some configurations, mtxs services were bootstrapped twice
+
 ## Version 6.1.2 - 2022-09-05
 
 ### Fixed
