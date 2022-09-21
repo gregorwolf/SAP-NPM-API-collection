@@ -3,7 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.7.3] - 2022-08-25
+## [1.7.4] - 2022-09-08
+## Added
+- Introduced the _Add a filter bar building block_ guide to implement filter bars in custom pages using the SAP Fiori elements Flexible Programming Model (XML Annotation for OData V4 and CDS Annotation variants available).
+- Introduced the _Add a chart building block_ guide to implement charts in custom pages using the SAP Fiori elements Flexible Programming Model (XML Annotation for OData V4 and CDS Annotation variants available).
+- Added an ABAP CDS code snippet variant to the _Add a new column as a contact view_ guide.
+
+
+
+## [1.7.2] - 2022-08-25
 ## Added
 - Introduced the ability to add multiple table columns at once to a table card in the _Add a table card to an overview page_ guide.
 - Introduced the ability to add multiple list items at once to a list card in the _Add a list card to an overview page_ guide.

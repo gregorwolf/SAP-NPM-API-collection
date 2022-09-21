@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 1.9.40 - 2022-09-12
+### Fixed
+ - Node.js 16 support
+### Updated dependencies
+ - deps: @sap/approuter@11.4.0
 
 ## 1.9.39 - 2022-07-20
 ### Updated dependencies

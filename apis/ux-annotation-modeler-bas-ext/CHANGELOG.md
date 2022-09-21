@@ -2,6 +2,9 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.7.2] - 2022-08-25
+### Added
+  - Added a code action to transform self-closing tag in `Common.Text` annotation to simplify annotating it e.g. with `Common.TextArrangement`.
 ## [1.2.3] - 2021-06-24
 ### Added
 - Code completion, diagnostic and go to definition for string properties `CollectionPath` and `ValueListProperty` in `Common.ValueList` annotation.

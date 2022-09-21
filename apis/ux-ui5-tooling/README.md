@@ -170,10 +170,18 @@ By the default the `fiori-tools-proxy` will read the proxy configuration from th
       url: https://my.backend.com:1234
 
 ```
+#### [Providing Credentials](#providing-credentials)
+Starting with version `1.6.7` it is now possible to provide the credentials for the backend service upfront in a `.env` file.
+
+```
+FIORI_TOOLS_USER=YOUR_USER
+FIORI_TOOLS_PASSWORD=YOUR_PASSWORD
+```
+When the two environment variables `FIORI_TOOLS_USER` and `FIORI_TOOLS_PASSWORD` are defined, then they will be used as credentials when connecting to the backend service.
 
 #### [UI5](#ui5)
 
-By using the proxy configuration one can also change the SAPUI5 version, which is used to preview the application. By using the `version` parameter one can change the SAPUI5 version as follows:
+The proxy configuration contains also the configuration for loading the SAPUI5 resources when previewing the application, e.g.
 
 ```
 - name: fiori-tools-proxy
@@ -183,8 +191,21 @@ By using the proxy configuration one can also change the SAPUI5 version, which i
       path:
       - /resources
       - /test-resources
-      url: https://sapui5.hana.ondemand.com
-      version: 1.78.0
+      url: https://ui5.sap.com
+```
+
+By using the proxy configuration one can also change the SAPUI5 version, which is used to preview the application. You can use the `version` parameter to change the SAPUI5 version as follows:
+
+```
+- name: fiori-tools-proxy
+  afterMiddleware: compression
+  configuration:
+    ui5:
+      path:
+      - /resources
+      - /test-resources
+      url: https://ui5.sap.com
+      version: 1.102.7
 ```
 
 Starting with `ux-ui5-tooling` version `1.4.7`, if the `version` property is not set in the `ui5.yaml`, then the `minUI5Version` from `manifest.json` will be used for the application preview. If the `version` property is set, but it is empty, then the `latest` SAPUI5 version from https://ui5.sap.com will be used for the application preview. For any other case the value of the `version` property will be used for the application preview.
@@ -201,8 +222,7 @@ Starting with `ux-ui5-tooling` version `1.7.1` a check for the SAPUI5 version of
       path:
       - /resources
       - /test-resources
-      url: https://sapui5.hana.ondemand.com
-      version: 1.78.0
+      url: https://ui5.sap.com
       directLoad: true
 ```
 

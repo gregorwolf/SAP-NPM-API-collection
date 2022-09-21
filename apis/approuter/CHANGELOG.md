@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.5.0 - 2022-09-18
+
+### Added
+- Support of state parameters during authorization
+
+### Updated dependencies
+- deps: @sap/passport@0.6.0
+
 ## 11.4.1 - 2022-09-11
 
 ### Fixed

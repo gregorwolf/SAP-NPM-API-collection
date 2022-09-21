@@ -5,7 +5,20 @@ Items marked as [experimental] are not yet released.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.7.3] - 2022-08-25
+## [1.7.4] - 2022-09-08
+### Added
+- Added tooltips for some of the the disabled context menu items (experimental)
+- Added a new command `Fiori: Change the Minimum SAPUI5 Version` to modify the app's required version and to update the `@sap/ux-specification` node module version accordingly
+
+### Changed
+- Updated dialogs for generating bullet micro chart columns and header sections to prompt for the fixed maximum value rather than property (path). Maximum value can still be changed to property (path) in the Properties pane once the chart is generated (experimental)
+
+### Fixed
+- Fixed an issue with wrong preview html file path generated for run configurations on some applications
+- Fixed an issue with Application Modeler tree not refreshing on project or parent folder renames
+- Fixed an issue with some Reuse libraries being detected for migration after they have already been migrated
+
+## [1.7.2] - 2022-08-25
 ### Added
 - Added ability to use the properties from 1:many associations in basic table columns to display multiple values per cell (experimental)
 - Added support for custom pages in Application Modeler tree view when using `@sap/ux-specification` versions 1.96.20, 1.102.5 or higher

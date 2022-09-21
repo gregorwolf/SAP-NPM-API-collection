@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.7.4] - 2022-09-08
+### Added
+- Added option to choose your transport request during ABAP deployment configuration from a list of available requests when applicable.
+
+### Fixed
+- Fixed issue with ABAP deployment where the deployment description could not include special characters.
+
+### Changed
+- Updated floorplan icons in SAP Fiori generator to reflect latest Horizon theme.
+
 ## [1.7.3] - 2022-08-25
 ### Fixed
 - Fixed an issue where some CAP Java projects were not being correctly identified as Java projects in the Fiori generator.
