@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.1.5 - tbd
+
+### Fixed
+
+- `cds build` no longer erroneously warns about old `@sap/cds` versions.  Previously, it warned about `@sap/cds` 4 although a newer version was installed.
+
 ## Version 6.1.4 - 2022-09-09
 
 ### Fixed

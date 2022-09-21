@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.8 - 2022-09-20
+
+### Fixed
+
+- Fix data type conversion for single attribute value responses (incl. $value)
+- Fix response mapping of parameters for `Parameters` entity
+- Respect `$format=json` for service root document
+- Introduce proxy options to specify OData default format (default is `json`)
+- `Atom (XML)` format support
+
+## Version 1.9.7 - 2022-09-14
+
+### Fixed
+
+- Respect `$select` filter for `deferreds` structure
+- Fix definition lookup for service entities with scoped name
+- Fix definition lookup for unbound service operations (actions, functions) with scoped name
+- Improve Kibana logging even more
+- Use project specific logger
+- Document that option `fileUploadSizeLimit` only applies to uploads via `POST` using `multipart/form-data` requests
+
 ## Version 1.9.6 - 2022-09-01
 
 ### Fixed

@@ -35,7 +35,7 @@ The CDS OData V2 Adapter Proxy instantiates an Express router. The following opt
 - **mtxRemote:** CDS model is retrieved remotely via MTX endpoint for multitenant scenario (old MTX only). Default is `false`.
 - **mtxEndpoint:** Endpoint to retrieve MTX metadata when option 'mtxRemote' is active (old MTX only). Default is `'/mtx/v1'`.
 - **ieee754Compatible:** Edm.Decimal and Edm.Int64 are serialized IEEE754 compatible. Default is `true`.
-- **fileUploadSizeLimit:** File upload file size limit (in bytes). Default is `10485760` (10 MB).
+- **fileUploadSizeLimit:** File upload file size limit (in bytes) for multipart/form-data requests. Default is `10485760` (10 MB).
 - **continueOnError:** Indicates to OData V4 backend to continue on error. Default is `false`.
 - **isoTime:** Use ISO 8601 format for type cds.Time (Edm.Time). Default is `false`.
 - **isoDate:** Use ISO 8601 format for type cds.Date (Edm.DateTime). Default is `false`.
@@ -55,6 +55,7 @@ The CDS OData V2 Adapter Proxy instantiates an Express router. The following opt
 - **quoteSearch**: Specifies if search expression is quoted automatically. Default is `true`.
 - **fixDraftRequests**: Specifies if unsupported draft requests are converted to a working version. Default is `false`.
 - **changesetDeviationLogLevel**: Log level of batch changeset content-id deviation logs (none, debug, info, warn, error). Default is `'info'`.
+- **defaultFormat**: Specifies the default entity response format (json, atom). Default is `'json'`.
 
 > All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
 > under section `cds.cov2ap` and accessed during runtime via `cds.env.cov2ap`.
@@ -87,31 +88,32 @@ needs to be set.
 
 #### cds.log.levels.cov2ap: "error"
 
-- `[cov2ap] - Authorization`: Authorization header parsing error
-- `[cov2ap] - MetadataRequest`: Metadata request processing error
-- `[cov2ap] - Request`: Request processing error
-- `[cov2ap] - Response`: Response processing error
-- `[cov2ap] - Batch`: Batch processing error
-- `[cov2ap] - AggregationKey`: Aggregation key error
-- `[cov2ap] - MediaStream`: Media stream processing error
-- `[cov2ap] - FileUpload`: File upload processing error
+- `cov2ap/Proxy`: Proxy processing error
+- `cov2ap/Authorization`: Authorization header parsing error
+- `cov2ap/MetadataRequest`: Metadata request processing error
+- `cov2ap/Request`: Request processing error
+- `cov2ap/Response`: Response processing error
+- `cov2ap/Batch`: Batch processing error
+- `cov2ap/AggregationKey`: Aggregation key error
+- `cov2ap/MediaStream`: Media stream processing error
+- `cov2ap/FileUpload`: File upload processing error
 
 #### cds.log.levels.cov2ap: "warn"
 
-- `[cov2ap] - Service`: Invalid service definition (name, path)
-- `[cov2ap] - Context`: Invalid (sub-)definition (name, path)
-- `[cov2ap] - ContentDisposition`: Content disposition warning
+- `cov2ap/Service`: Invalid service definition (name, path)
+- `cov2ap/Context`: Invalid (sub-)definition (name, path)
+- `cov2ap/ContentDisposition`: Content disposition warning
 
 #### cds.log.levels.cov2ap: "info"
 
-- `[cov2ap] - Batch`: Changeset order deviation (req, res)
+- `cov2ap/Batch`: Changeset order deviation (req, res)
 
 #### cds.log.levels.cov2ap: "debug"
 
-- `[cov2ap] - Request`: Log OData V2 client request (url, headers, body)
-- `[cov2ap] - ProxyRequest`: Log OData V4 proxy request (url, headers, body)
-- `[cov2ap] - ProxyResponse`: Log OData V4 proxy response (status code/message, headers, body)
-- `[cov2ap] - Response`: Log OData V2 client response (status code/message, headers, body)
+- `cov2ap/Request`: Log OData V2 client request (url, headers, body)
+- `cov2ap/ProxyRequest`: Log OData V4 proxy request (url, headers, body)
+- `cov2ap/ProxyResponse`: Log OData V4 proxy response (status code/message, headers, body)
+- `cov2ap/Response`: Log OData V2 client response (status code/message, headers, body)
 
 ### CDS Annotations
 
@@ -200,11 +202,12 @@ The OData V2 service provided by the CDS OData V2 Adapter Proxy can be used to s
 SAP Fiori Elements V2 examples:
 
 - SQLite based:
+  - **Analytics**: Analytical List Page app
   - **Basic Edit**: Basic editing app
   - **Draft Edit**: Draft supported editing app
   - **Hierarchy**: Hierarchical display of data in tree table
   - **Overview**: Overview Page app
-  - **Analytics**: Analytical List Page app
+  - **XML**: Basic app (Atom format)
 - HANA based:
   - **Parameters**: Parameterized Entity app
 
@@ -362,7 +365,7 @@ For more details see [CONTRIBUTION](CONTRIBUTING.md) guide.
 - Actions, Functions
 - Analytical Annotations
 - Deep Expands/Selects
-- JSON format
+- JSON, Atom (XML) format
 - Deep Structures
 - Data Type Mapping
 - IEEE754Compatible
