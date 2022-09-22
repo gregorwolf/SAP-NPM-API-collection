@@ -2,15 +2,20 @@
 
 Command-Line Interface (CLI) for SAP Data Warehouse Cloud.
 
+[![Node Version](https://img.shields.io/badge/node-16.xx.x-brightgreen)](https://nodejs.org/dist/latest-v16.x/docs/api/#) [![npm version](https://badge.fury.io/js/@sap%2Fdwc-cli.svg)](https://badge.fury.io/js/@sap%2Fdwc-cli) [![Documentation](https://img.shields.io/badge/docs-online-ff69b4.svg)](https://help.sap.com/viewer/9f804b8efa8043539289f42f372c4862/cloud/en-US/5eac5b71e2d34c32b63f3d8d47a0b1d0.html) [![Command help pages](https://img.shields.io/badge/command-help-lightgrey.svg)](#usage) ![NPM](https://img.shields.io/npm/l/@sap/dwc-cli?color=%23FFFF00)
+
 ## Content
 
 1. [Installation](#installation)
 2. [Update the CLI](#update-the-cli)
 3. [Versioning](#versioning)
 4. [Authentication](#authentication)
+   1. [OAuth Interactive Usage](#oauth-interactive-usage)
+   2. [Passcodes](#passcodes)
 5. [Usage](#usage)
    1. [From the command line](#from-the-command-line)
    2. [As a Node.js module dependency](#as-a-nodejs-module-dependency)
+   3. [Options Handling](#options-handling)
 6. [Help & Documentation](#help-documentation)
 7. [Community & Feedback](#community--feedback)
 8. [License](#license)
@@ -51,12 +56,76 @@ For an in-depth explanation see the blog post on [blogs.sap.com](https://blogs.s
 
 ## Authentication
 
+### OAuth Interactive Usage
+
+You can create an [OAuth Client for Interactive Usage](https://help.sap.com/docs/SAP_DATA_WAREHOUSE_CLOUD/c8a54ee704e94e15926551293243fd1d/3f92b46fe0314e8ba60720e409c219fc.html) and authenticate using the provided _Client ID_ and _Client Secret_. After you created an OAuth Client for Interactive Usage, you can log in once and run multiple commands without the need to authenticate again for the next 720 hours.
+
+To log in, run the `login` command and provide the _Client ID_, _Client Secret_, _Authentication URL_, and _Token URL_, available from your SAP Data Warehouse Cloud tenant ([SAP Help](https://help.sap.com/docs/SAP_DATA_WAREHOUSE_CLOUD/c8a54ee704e94e15926551293243fd1d/3f92b46fe0314e8ba60720e409c219fc.html)).
+
+```bash
+$ dwc login
+✔ Please enter your client ID: … <Client ID>
+✔ Please enter your client secret: … ****
+✔ Please enter your authorization URL: … <Authorization URL>
+✔ Please enter your token URL: … <Token URL>
+```
+
+To remove any data stored by running the `login` command, log out again:
+
+```bash
+$ dwc logout
+```
+
+To display the locally stored secrets, run the `secrets show` command:
+
+```bash
+$ dwc secrets show
+{
+  "client_id": "...",
+  "client_secret": "...",
+  "authorization_url": "...",
+  "token_url": "...",
+  "access_token": "...",
+  "token_type": "...",
+  "id_token": "...",
+  "refresh_token": "...",
+  "expires_in": ...,
+  "scope": "...",
+  "jti": "...",
+  "expires_after": ...
+}
+```
+
+If you do not want to log in and have the CLI store the secrets in the CLI cache locally, you can also provide the _access_token_ directly on the command line:
+
+```bash
+$ dwc cache init --host <my host> --access-token <access token>
+```
+
+Alternatively, you can provide the _access_token_ through a `secrets.json` file:
+
+```bash
+$ dwc cache init --host <my host> -secrets-file /path/to/secrets.json
+```
+
+The `secrets.json` file must at least contain a property called `access_token`:
+
+```json
+// secrets.json
+
+{
+  "access_token": "<access token>"
+}
+```
+
+### Passcodes
+
 Passcodes are used for authenticating commands sent from the CLI to your SAP Data Warehouse Cloud tenant. Passcodes can be provided explicitly using the `-p, --passcode` option in case the URL to retrieve a passcode is known, or implictly using an interactive session by omitting the `-p, --passcode` option.
 
 When omitting the `-p, --passcode` option the CLI prompts you to provide a passcode by navigating to the passcode authentication URL for your tenant. The URL is calculated based on the provided `-H, --host` value.
 
 ```bash
-$ dwc cache-init -H https://mytenant.eu10.hcs.cloud.sap/
+$ dwc cache init -H https://mytenant.eu10.hcs.cloud.sap/
 ✔ Do you want to retrieve a passcode from https://mytenant.authentication.eu10.hana.ondemand.com/passcode? … yes
 ✔ Enter your temporary authentication code: … **********
 ...
@@ -82,16 +151,16 @@ You can either use the CLI from the terminal or command line, or use the module 
 Before you can list and run commands against your SAP Data Warehouse Cloud tenant you need to initialize the CLI first. When initializing the CLI a service document is downloaded from your SAP Data Warehouse Cloud tenant which describes the commands your tenant is able to understand. To initialize the CLI run
 
 ```bash
-$ dwc cache-init -H https://mytenant.eu10.hcs.cloud.sap/ -p somepasscode
+$ dwc cache init -H https://mytenant.eu10.hcs.cloud.sap/ -p somepasscode
 ```
 
-You can refresh the local copy of the service document by running the `cache-init` command again.
+You can refresh the local copy of the service document by running the `cache init` command again.
 
-After you executed a command the CLI issues a warning in case the local version of the service document is outdated. In that case, run the `cache-init` command again.
+After you executed a command the CLI issues a warning in case the local version of the service document is outdated. In that case, run the `cache init` command again.
 
 ```bash
 $ dwc <command>
-Your local CLI cache is outdated. Run 'dwc cache-init' to update
+Your local CLI cache is outdated. Run 'dwc cache init' to update
 ```
 
 #### List available commands
@@ -106,12 +175,12 @@ Command-Line Interface for SAP Data Warehouse Cloud.
 
 Options:
   -v, --version           output the current version
-  -H, --host <host>       specifies the url host where the tenant is hosted
+  -H, --host <host>       specifies the urlspecifies the url host where the tenant is hosted where the tenant is hosted
   -h, --help              display help for command
 
 Commands:
-  cache-clean             clean the local CLI cache
-  cache-init [options]    initialize the local CLI cache
+  cache clean             clean the local CLI cache
+  cache init [options]    initialize the local CLI cache
   passcode-url [options]  print the passcode url
   help [command]          display help for command
 ```
@@ -126,12 +195,12 @@ Command-Line Interface for SAP Data Warehouse Cloud.
 
 Options:
   -v, --version           output the current version
-  -H, --host <host>       specifies the url host where the tenant is hosted
+  -H, --host <host>       specifies the url where the tenant is hosted
   -h, --help              display help for command
 
 Commands:
-  cache-clean             clean the local CLI cache
-  cache-init [options]    initialize the local CLI cache
+  cache clean             clean the local CLI cache
+  cache init [options]    initialize the local CLI cache
   spaces                  manage and orchestrate spaces
   passcode-url [options]  print the passcode url
   help [command]          display help for command
@@ -146,7 +215,7 @@ Usage: dwc spaces [options] [command]
 manage and orchestrate spaces
 
 Options:
-  -H, --host <host> specifies the url host where the tenant is hosted
+  -H, --host <host> specifies the url where the tenant is hosted
   -h, --help        display help for command
 
 Commands:
@@ -165,12 +234,12 @@ creates or updates space details based on an import file
 Options:
   -f, --filePath <filePath>  specifies the file to use as input for the command
   -V, --verbose              print detailed log information to console (optional)
-  -H, --host <host>          specifies the url host where the tenant is hosted
+  -H, --host <host>          specifies the url where the tenant is hosted
   -p, --passcode <passcode>  passcode for interactive session authentication (optional)
   -h, --help                 display help for command
 ```
 
-The list of available commands differs based on the content of the service document you downloaded when running `cache-init`.
+The list of available commands differs based on the content of the service document you downloaded when running `cache init`.
 
 ### As a Node.js module dependency
 
@@ -182,7 +251,7 @@ const dwc = require("@sap/dwc-cli");
 
 #### Work with commands
 
-The module exports a `getCommands` function which returns a map of available commands. Make sure to always specify the `host` to receive `host`-specific commands. Otherwise, when omitting the `host` information, you will only get the list of general commands like `cache-clean`, `cache-init`, ...
+The module exports a `getCommands` function which returns a map of available commands. Make sure to always specify the `host` to receive `host`-specific commands. Otherwise, when omitting the `host` information, you will only get the list of general commands like `cache clean`, `cache init`, ...
 
 ```javascript
 const MY_HOST = "https://mytenant.eu10.hcs.cloud.sap/";
@@ -192,10 +261,10 @@ const commands = await dwc.getCommands(MY_HOST);
 console.log(commands);
 // {
 //   dwc: [AsyncFunction],
-//   'cache-clean': [AsyncFunction],
-//   'cache-init': [AsyncFunction],
+//   'cache clean': [AsyncFunction],
+//   'cache init': [AsyncFunction],
 //   'passcode-url': [AsyncFunction],
-//   'cache-show': [AsyncFunction]
+//   'cache show': [AsyncFunction]
 //   'spaces create': [AsyncFunction]
 //   'spaces read': [AsyncFunction]
 //   'spaces delete': [AsyncFunction]
@@ -212,7 +281,7 @@ const options = {
   "--passcode": "somepasscode",
 };
 
-await commands["cache-init"](options);
+await commands["cache init"](options);
 ```
 
 `options` is a map of available options for the respective command. You have to supply either the short flag or long name of the option, including `-` or `--` for the short flag or long name.
@@ -223,7 +292,7 @@ If the command fails, an error is thrown you can catch and process as usual:
 
 ```javascript
 try {
-  await commands["cache-show"]();
+  await commands["cache show"]();
 } catch (err) {
   // ops, the command failed!
   console.log(err);
@@ -280,6 +349,68 @@ await commands["spaces read"]({
   "--space": "MYSPACE",
   "--host": "https://mytenant.eu10.hcs.cloud.sap/",
 });
+```
+
+### Options Handling
+
+No matter how you use the CLI ([from the command-line](#from-the-command-line) or [as a Node.js module dependency](#as-a-nodejs-module-dependency)), you can supply values for options in different ways. To get an overview of the existing options per command, run `dwc <command> --help`:
+
+```bash
+$ dwc cache init --help
+
+Usage: dwc cache init [options]
+
+initialize the local CLI cache
+
+Options:
+  -V, --verbose                  print detailed log information to console (optional)
+  -O, --options-file <file>      path to options file (optional)
+  -H, --host <host>              specifies the url where the tenant is hosted (optional)
+  -p, --passcode <passcode>      passcode for interactive session authentication (optional)
+  -s, --secrets-file <file>      path to secrets file (optional)
+  -c, --client-id <id>           client id for interactive oauth session authentication (optional)
+  -C, --client-secret <secret>   client secret for interactive oauth session authentication (optional)
+  -a, --authorization-url <url>  authorization url for interactive oauth session authentication (optional)
+  -t, --token-url <url>          token url for interactive oauth session authentication (optional)
+  -A, --access-token <token>     access token for interactive oauth session authentication (optional)
+  -r, --refresh-token <token>    refresh token for interactive oauth session authentication (optional)
+  -e, --expires-in <expires>     expires in information for interactive oauth session authentication (optional)
+  -h, --help                     display help for command
+```
+
+#### On the command-line
+
+You can use the short flag or long name to supply an option value on the command-line:
+
+```bash
+$ dwc cache init --host <host>
+```
+
+#### Using environment variables
+
+To provide an option value, the option's long name is translated to CONSTANT_CASE. For example, the option `client-id` can also be provided as follows:
+
+```bash
+$ CLIENT_ID='<my client id>' HOST='my-host' dwc cache init
+```
+
+#### Provide options file
+
+You can provide a JSON file with a map of options, using the option's long names, and point the CLI to it using the [On the command-line](#on-the-command-line) or [Using environment variables](#using-environment-variables) way. Define the file as follows:
+
+```json
+// options-file.json
+
+{
+  "host": "my-host",
+  "client-id": "my client id"
+}
+```
+
+Then, supply it to the CLI:
+
+```bash
+$ dwc cache init --options-file /path/to/options-file.json
 ```
 
 ## Help Documentation

@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022.21.0
+
+### Added
+
+- **OAuth Interactive Usage Authentication**: Besides using passcodes, you can now use OAuth-based authentication for interactive usage using OAuth clients created in your SAP Data Warehouse Cloud tenant to authenticate any command executed through the CLI. See the [README](README.md#oauth-interactive-usage) for details.
+
+- **Options can be supplied through options, environment variables, options file**: See the [README](README.md#options-handling) for details.
+
+### Changed
+
+- **Option` -s, --space` replaced by `-S, --space`**: The short flag for option `--space` changed from `-s` to `-S`.
+
+- **Option` -d, --definitions` replaced by `-D, --definitions`**: The short flag for option `--definitions` changed from `-d` to `-D`.
+
+- **Correlation ID handling**: Correlation IDs are always logged in verbose mode. Before, correlation IDs were only logged in verbose mode in case an error occurred.
+
+- **dwc cache-... commands**: Commands to work with the local CLI cache like `cache-init`, `cache-clean` and `cache-show` have been renamed to `cache init`, `cache clean` and `cache show`.
+
+## 2022.16.0
+
+### Added
+
+- **New command 'host <set|get|remove> <host>'**: You can now set the host (SAP Data Warehouse Cloud tenant) to connect to globally. By calling `dwc host set yourhost` (replace `yourhost` with the URL of your SAP Data Warehouse Cloud tenant) you can omit option `--host, -H` when running any other command afterwards, for example `dwc spaces read -s <space>` (without option `--host, -H`). You can show the currently maintained global host by running `dwc host show`. To update the global host, run `dwc host set yourhost` again. To remove the global setting, run `dwc host remove`.
+
 ## 2022.13.0
 
 ### Added

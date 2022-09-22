@@ -75,45 +75,71 @@ Logging is based on [cds.log](https://cap.cloud.sap/docs/node.js/cds-log), there
 | -------------------------- | -------------- |
 | CDS OData V2 Adapter Proxy | cov2ap         |
 
-##### Debug Mode
+#### Kibana Logging
 
-Debug log level can be defined via command line environment variable as follows: `CDS_LOG_LEVELS_COV2AP=debug`
+In order to enable Kibana friendly logging for `cds.log`
+feature toggle `cds.features.kibana_formatter: true` needs to be set.
+
+#### Debug Mode
+
+Debug mode can be activated to log requests and responses processed (V2) and initiated (V4)
+by CDS OData V2 Adapter Proxy. The following information can be retrieved for analysis:
+
+- **Request:** url, headers, body
+- **Response:** status code/message, headers, body
+
+Debug log level can be activated
+
+- via command line environment variable: `CDS_LOG_LEVELS_COV2AP=debug`
+- via `cds.env` in code: `cds.env.log.levels.cov2ap = "debug"`
 
 Details on how to set CDS environment can be found at [cds.env](https://cap.cloud.sap/docs/node.js/cds-env).
 
-##### Kibana Logging
+#### Log Levels
 
-In order to enable Kibana friendly logging for `cds.log`, the feature toggle `cds.features.kibana_formatter: true`
-needs to be set.
+Logging can be configured to respect the following log levels:
 
-#### cds.log.levels.cov2ap: "error"
+- **error**: Error logs are written (includes **warn**)
+- **warn**: Warning logs are written (includes **info**)
+- **info**: Info logs are written (includes **debug**)
+- **debug**: Debug logs are written
+- **trace**: Same as **debug**
+- **silent**: No logs are written
 
-- `cov2ap/Proxy`: Proxy processing error
-- `cov2ap/Authorization`: Authorization header parsing error
-- `cov2ap/MetadataRequest`: Metadata request processing error
-- `cov2ap/Request`: Request processing error
-- `cov2ap/Response`: Response processing error
-- `cov2ap/Batch`: Batch processing error
-- `cov2ap/AggregationKey`: Aggregation key error
-- `cov2ap/MediaStream`: Media stream processing error
-- `cov2ap/FileUpload`: File upload processing error
+#### Logging Components
 
-#### cds.log.levels.cov2ap: "warn"
+##### cds.log.levels.cov2ap: "error"
 
-- `cov2ap/Service`: Invalid service definition (name, path)
-- `cov2ap/Context`: Invalid (sub-)definition (name, path)
-- `cov2ap/ContentDisposition`: Content disposition warning
+- `[cov2ap] - Proxy:` Proxy processing error
+- `[cov2ap] - Authorization:` Authorization header parsing error
+- `[cov2ap] - MetadataRequest:` Metadata request processing error
+- `[cov2ap] - Request:` Request processing error
+- `[cov2ap] - Response:` Response processing error
+- `[cov2ap] - Batch:` Batch processing error
+- `[cov2ap] - AggregationKey:` Aggregation key error
+- `[cov2ap] - MediaStream:` Media stream processing error
+- `[cov2ap] - FileUpload:` File upload processing error
 
-#### cds.log.levels.cov2ap: "info"
+##### cds.log.levels.cov2ap: "warn"
 
-- `cov2ap/Batch`: Changeset order deviation (req, res)
+- `[cov2ap] - Service:` Invalid service definition (name, path)
+- `[cov2ap] - Context:` Invalid (sub-)definition (name, path)
+- `[cov2ap] - ContentDisposition:` Content disposition warning
 
-#### cds.log.levels.cov2ap: "debug"
+##### cds.log.levels.cov2ap: "info"
 
-- `cov2ap/Request`: Log OData V2 client request (url, headers, body)
-- `cov2ap/ProxyRequest`: Log OData V4 proxy request (url, headers, body)
-- `cov2ap/ProxyResponse`: Log OData V4 proxy response (status code/message, headers, body)
-- `cov2ap/Response`: Log OData V2 client response (status code/message, headers, body)
+- `[cov2ap] - Batch:` Changeset order deviation (req, res)
+
+##### cds.log.levels.cov2ap: "debug"
+
+- `[cov2ap] - Request:` Log OData V2 client request (url, headers, body)
+- `[cov2ap] - ProxyRequest:` Log OData V4 proxy request (url, headers, body)
+- `[cov2ap] - ProxyResponse:` Log OData V4 proxy response (status code/message, headers, body)
+- `[cov2ap] - Response:` Log OData V2 client response (status code/message, headers, body)
+
+#### http-proxy-middleware
+
+- `[cov2ap] - [HPM]`: Proxy middleware processing logs
 
 ### CDS Annotations
 

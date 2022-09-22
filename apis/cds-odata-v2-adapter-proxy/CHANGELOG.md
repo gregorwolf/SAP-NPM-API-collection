@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.9 - 2022-09-21
+
+### Fixed
+
+- Fix logging layers and debug trace activation
+- Connect `cds.log` with `http-proxy-middleware`
+
 ## Version 1.9.8 - 2022-09-20
 
 ### Fixed
