@@ -213,7 +213,7 @@ dev-project show  <my-application-folder-root absolute path>
 
 ### Get Project information
 ###### Description
-Reads only Project level information without reading its modules and items.
+Reads only Project level information without reading its modules and items. If there are MTA extension files in the project, the file list of MTA extension will be added to the info property in the returned PorjectData object.
 ###### Method
 `getProjectInfo(logger? : IChildLogger): Promise<ProjectData | undefined>;`
 ###### Parameters
@@ -240,7 +240,13 @@ dev-project get-project-info  <my-application-folder-root absolute path>
   "tags": [
     "project",
     "cap"
-  ]
+  ],
+  "info": {
+    "mtaExtensions": [
+      "extension1.mtaext",
+      "extension2.mtaext"
+    ]
+  }
 }
 ```
 ---

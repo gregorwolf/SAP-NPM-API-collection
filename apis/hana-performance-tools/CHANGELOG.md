@@ -1,4 +1,16 @@
-## 1.3.8
+## 1.3.10
+
+### New Features
+- A progress bar has been added for post-processing.
+- All tabs are now shown on the property pane by default.
+- A new SQL analyzer view is shown when a PLV file is opened through the file menu or by dragging.
+- More information is provided for inner plans of SQLScript (for example, compilation summary, peak memory, and so on).
+
+### Fixes
+- Logical inner plan of column search did not open.
+- Several PLV files were hanging and did not open.
+
+## 1.3.9
 
 ### Fixes
 

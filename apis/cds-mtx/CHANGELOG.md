@@ -6,6 +6,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.6.2 - 2022-09-21
+
+### Fixed
+- Debug logs do no longer contain any authentication details
+### Added
+- Retries can now be configured with a delay (in ms)
+  ```
+  "mtx": {
+     "provisioning": { "retryDelay": 1000 }
+  }
+  ```
+- Clustering of upgrade jobs by database id can be disabled to reduce service-manager workload
+  ```
+  "mtx": {
+      "jobs": {
+        "clusterbydb": false
+      },
+      ...
+  }
+  ```
+
+
 ## Version 2.6.1 - 2022-08-22
 
 ### Fixed

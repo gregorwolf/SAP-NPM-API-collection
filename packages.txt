@@ -1,2 +1,13 @@
-@sap/cds-odata-v2-adapter-proxy
-@sap/dwc-cli
+@sap/artifact-management
+@sap/artifact-management-base
+@sap/artifact-management-base-types
+@sap/artifact-management-types
+@sap/cds-mtx
+@sap/generator-add-hdb-module
+@sap/generator-hdb-project
+@sap/hana-performance-tools
+@sap/hana-project-explorer
+@sap/hdbext
+@sap/hrtt-core-vscode
+@sap/webide-hdi-base-feature-vscode
+@sap/webide-hdi-feature-vscode

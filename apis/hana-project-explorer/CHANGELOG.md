@@ -1,3 +1,16 @@
+## 1.7.0
+
+### New Features
+
+- Artifacts can be reverse-engineered into the workspace from the deployed artifacts of an HDI container exposed as a user-provided service.
+- New editor for virtual tables
+- A procedure grantor can be created when adding a new database connection
+
+### Fixes
+
+- The extension description was not shown correctly
+- The database ID can be entered manually when running a support-mode import
+
 ## 1.6.0
 
 ### New Features

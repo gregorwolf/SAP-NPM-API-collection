@@ -1,3 +1,27 @@
+## 1.16.0
+
+### Fixes
+- Optimize join column flag goes off when set in join dialog
+- Manage joins wizard is blank on replacing dimension in star join
+- Cannot remove apply filter column from variable if column comes from dimension view
+- Join information is lost in the new copied node after swapping the table
+- Create Constant dialog in Union node offers VARCHAR per default which should be replaced by NVARCHAR
+- Value help does not work for input parameters under certain circumstances
+- Input parameter should not have single quotes in SVT expressions
+- Union pruning configuration table not created in same folder like calculation view
+- The search function does not work in value help under certain circumstances
+- The data type could be missing in details columns pane
+- One node can connect to join node multiple times
+- Cannot search name in Add Execution Hints dialog
+- Don't delete all filters in Apply Filter for Variable
+- Renamed calculated column not updated in expressions of e.g., filters and other calculated columns
+- Undo after adding a node does not work completely
+- NonEquiJoin show red error marker if you add its source node after NonEquiJoin node
+- Input parameter mapping dialog maps wrong views and mappings cannot be removed
+- Check for allowed years in generate time data is too strict
+- Rank not copied correctly
+- The Rank Partition Column can not be replaced after renaming the column
+
 ## 1.15.0
 
 ### Fixes

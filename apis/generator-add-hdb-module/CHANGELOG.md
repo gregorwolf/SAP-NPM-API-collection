@@ -1,3 +1,9 @@
+## 1.5.0
+
+### Fixes
+- The HDI namespace validation has been relaxed
+- Parsing of .env files has been improved
+
 ## 1.4.0
 
 ### Fixes
