@@ -1,6 +1,4 @@
-@sap/artifact-management
-@sap/artifact-management-base
-@sap/artifact-management-base-types
-@sap/artifact-management-mdkplugin
-@sap/artifact-management-mdkplugin-types
-@sap/artifact-management-types
+@sap/bas-sdk
+@sap/generator-add-hdb-module
+@sap/generator-hdb-project
+@sap/open.fe
