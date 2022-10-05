@@ -16,7 +16,7 @@ The message's severity is `Error`.
 Erroneous code example:
 
 <!-- cds-mode: ignore -->
-```cdl
+```cds
 type LengthIsUnsafe : String(9007199254740992);
 type NotAnInteger : String(42.1);
 ```
@@ -27,9 +27,9 @@ Likewise, the string length for the type `NotAnInteger` is a decimal.
 
 ## How to Fix
 
-To fix the issue, you have to provide a safe integer:
+You have to provide a safe integer:
 
-```cdl
+```cds
 type LengthIsSafe : String(9007199254740991);
 type AnInteger : String(42);
 ```

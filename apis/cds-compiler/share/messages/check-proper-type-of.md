@@ -4,13 +4,13 @@ An element in a `type of` expression doesn’t have proper type information.
 
 The message's severity is `Info` but may be raised to `Error` in the SQL,
 SAP HANA, and OData backends.  These backends require elements to have a type.
-Otherwise they aren’t able to render elements (for example, to SQL columns).
+Otherwise, they aren’t able to render elements (for example, to SQL columns).
 
 ## Example
 
 Erroneous code example:
 
-```cdl
+```cds
 entity Foo {
   key id : Integer;
 };
@@ -33,9 +33,9 @@ properties but won’t have a proper type, which is required by some backends.
 
 ## How to Fix
 
-To fix the issue, assign an explicit type to `ViewFoo:calculatedField`.
+Assign an explicit type to `ViewFoo:calculatedField`.
 
-```cdl
+```cds
 view ViewFoo as select from Foo {
   1+1 as calculatedField @(anno) : Integer
 };

@@ -11,7 +11,7 @@ your model.
 
 Erroneous code example:
 
-```cdl
+```cds
 entity Main {
       key id : Integer;
     toTarget : Association to Target;
@@ -42,11 +42,11 @@ to trigger this error.
 
 ## How to Fix
 
-To fix the issue, you must have the original target only once in your direct
-and indirect sources.  The previous example can be fixed by removing
-`Duplicate` from the select clause.
+You must have the original target only once in your direct and indirect
+sources.  The previous example can be fixed by removing `Duplicate` from
+the select clause.
 
-```cdl
+```cds
 view View as select from Main, Target {
     Main.toTarget : redirected to View
 };
@@ -55,7 +55,7 @@ view View as select from Main, Target {
 If this isn’t feasible then you have to redefine the association using a mixin
 clause.
 
-```cdl
+```cds
 view View as select from Main, Target mixin {
     toMain : Association to View on Main.id = Target.id;
 } into {
@@ -68,3 +68,4 @@ view View as select from Main, Target mixin {
 ## Related Messages
 
 - `redirected-to-unrelated`
+- `redirected-to-complex`

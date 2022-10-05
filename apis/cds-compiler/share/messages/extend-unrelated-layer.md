@@ -11,7 +11,7 @@ They form a cyclic connection through their dependencies
 
 Erroneous code example using four CDS files:
 
-```cdl
+```cds
 // (1) Base.cds: Contains the artifact that should be extended
 entity FooBar {  }
 
@@ -38,13 +38,13 @@ represents one layer.
 
 ## How to Fix
 
-To fix the issue, move extensions for the same artifact into the same layer,
-that is, the same file.
+Move extensions for the same artifact into the same layer, that is, the same
+file.
 
 For the erroneous example above, remove the extension from (3) and move
 it to (2):
 
-```cdl
+```cds
 // (2) FooExtend.cds
 using from './Base';
 extend FooBar {

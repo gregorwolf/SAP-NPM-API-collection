@@ -60,6 +60,14 @@ The CDS OData V2 Adapter Proxy instantiates an Express router. The following opt
 > All CDS OData V2 Adapter Proxy options can also be specified as part of CDS project-specific configuration
 > under section `cds.cov2ap` and accessed during runtime via `cds.env.cov2ap`.
 
+> Options can also be passed as command line environment variable, by converting the camel-cased option name to snake-case.
+> Underscores (`_`) need then to be escaped as double underscore (`__`) when provided via command line environment variable.
+>
+> Example:
+>
+> - path => CDS_COV2AP_PATH=odatav2
+> - quoteSearch => quote_search => CDS_COV2AP_QUOTE\_\_SEARCH=false
+
 > Option `cds.odata.v2proxy.urlpath` is available to specify an OData V2 proxy url path
 > different from default `/v2` for CDS core.
 

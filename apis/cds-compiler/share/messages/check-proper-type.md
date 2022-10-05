@@ -27,8 +27,8 @@ Erroneous code example:
 
 ## How to Fix
 
-To fix the issue, add explicit type information to `MainType`, for example, add
-an `elements` property to make a structured type.
+Add explicit type information to `MainType`, for example, add an `elements`
+property to make a structured type.
 
 ```json
 {

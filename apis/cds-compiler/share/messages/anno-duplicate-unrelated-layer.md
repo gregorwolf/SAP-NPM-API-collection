@@ -11,7 +11,7 @@ CDL file is equivalent to a layer.
 
 Erroneous code example using four CDS files:
 
-```cdl
+```cds
 // (1) Base.cds: Contains the artifact that should be annotated
 entity FooBar {  }
 
@@ -41,15 +41,15 @@ represents one layer.
 
 ## How to Fix
 
-To fix the issue, remove one of the duplicate annotations.  Chances are, that
-only one was intended to begin with.  For the erroneous example above, remove
-the annotation from (3).
+Remove one of the duplicate annotations.  Chances are, that only one was
+intended to begin with.  For the erroneous example above, remove the annotation
+from (3).
 
 Alternatively, add an annotation assignment to (4).  This annotation has
 precedence and the error will vanish.  For the example above, (4) will look
 like this:
 
-```cdl
+```cds
 // (4) All.cds: Combine all files
 using from './FooAnnotate';
 using from './BarAnnotate';
@@ -60,7 +60,7 @@ annotate FooBar with @Anno: 'Bar';
 You can also make (3) depend on (2) so that they are no longer in unrelated
 layers and the compiler can determine which annotation to apply.
 
-```cdl
+```cds
 // (3) BarAnnotate.cds: Now depends on (2)
 using from './FooAnnotate';
 annotate FooBar with @Anno: 'Bar';

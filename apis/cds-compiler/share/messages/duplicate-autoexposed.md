@@ -15,7 +15,7 @@ adapt your model to fix the error.
 
 Erroneous code example:
 
-```cdl
+```cds
 // (1)
 entity ns.first.Foo {
   key parent : Association to one ns.Base;
@@ -46,13 +46,13 @@ of (2) and (3) are ignored, a name collision happens.
 
 ## How to Fix
 
-To fix the issue, you need to explicitly expose one or more entities under
-a name that does not exist in the service, yet.
+You need to explicitly expose one or more entities under a name that does not
+exist in the service, yet.
 
 For the erroneous example above, you could add these two lines to the service
 `ns.MyService`:
 
-```cdl
+```cds
   entity first.Foo as projection on ns.first.Foo;   // (5)
   entity second.Foo as projection on ns.second.Foo; // (6)
 ```

@@ -9,7 +9,7 @@ The message's severity is `Error`.
 
 Erroneous code example:
 
-```cdl
+```cds
 entity Base {
   key id     : Integer;
   primary    : Association to Primary on primary.id = primary_id;
@@ -39,10 +39,10 @@ compiler can’t determine how to properly rewrite them for `View`.
 
 ## How to Fix
 
-To fix the issue, you have to provide an explicit ON condition.  This can be
-achieved by using the `redirected to` statement:
+You have to provide an explicit ON condition.  This can be achieved by using
+the `redirected to` statement:
 
-```cdl
+```cds
 entity View as select from Base {
   id,
   primary.secondary_id,

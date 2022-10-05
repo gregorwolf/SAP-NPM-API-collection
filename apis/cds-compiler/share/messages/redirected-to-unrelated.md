@@ -10,7 +10,7 @@ your model.
 
 Erroneous code example:
 
-```cdl
+```cds
 entity Main {
     key id : Integer;
     // self association for example purpose only
@@ -35,7 +35,7 @@ that make the error not as obvious.
 
 Erroneous code example with multiple redirections:
 
-```cdl
+```cds
 entity Main {
     key id : Integer;
     toMain : Association to Main;
@@ -58,12 +58,12 @@ originate from `FirstRedirect` but only vice versa.
 
 ## How to Fix
 
-To fix the issue, you must redirect the association to an entity that originates
-from the original target.  In the first example above you could redirect
+You must redirect the association to an entity that originates from the
+original target.  In the first example above you could redirect
 `SecondRedirect:toMain` to `SecondRedirect`.  However, if that isn’t feasible
 then you have to redefine the association using a mixin clause.
 
-```cdl
+```cds
 view SecondRedirect as select from FirstRedirect mixin {
     toMain : Association to Main on id = $self.id;
 } into {
@@ -75,3 +75,4 @@ view SecondRedirect as select from FirstRedirect mixin {
 ## Related Messages
 
 - `redirected-to-ambiguous`
+- `redirected-to-complex`

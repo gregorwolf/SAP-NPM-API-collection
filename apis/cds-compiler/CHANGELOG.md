@@ -7,6 +7,81 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.3.2 - 2022-09-30
+
+### Fixed
+
+- to.edm(x): Set `Scale` (V4) or `@sap:variable-scale` (V2) attributes correctly when overwriting `cds.Decimal`
+  with `@odata.Scale`.
+- to.sql: For dialect `postgres`, add braces around `$now`, `$at.from` and `$at.to`.
+
+## Version 3.3.0 - 2022-09-29
+
+### Added
+
+- Nested projections can be used without `beta` option:
+  + Support `expand`: columns can look like `assoc_or_struct_or_tabalias { col_expression1, … }`,
+    `longer.ref as name { *, … } excluding { … }`, `{ col_expression1 as sub1, … } as name`, etc.
+  + Support `inline`: columns can look like `assoc_or_struct_or_tabalias.{ col_expression1, … }`,
+    `longer.ref[filter = condition].{ *, … } excluding { … }`, `assoc_or_struct_or_tabalias.*`, etc.
+- to.sql/hdi/hdbcds/edm(x)/for.odata: Allow to structure comparison against `is [not] null`.
+- to.sql: Support dialect `postgres` - generates SQL intended for PostgreSQL. Not supported are `cds.hana` data types and views with parameters.
+
+### Changed
+
+- A valid redirection target does not depend on parameters anymore.  This
+  change could induce a redirection error, which could easily solved by assigning
+  `@cds.redirection.target: false` to the entity with “non-matching” parameters.
+- Properly issue an error when projecting associations with parameter
+  references in the `on` condition.  Before this change, the compiler dumped
+  when projecting such an association in a view on top.
+- Update OData vocabularies 'Capabilities', 'Common', 'UI'.
+- to.cdl:
+  + Extensions are now always put into property `model` of `to.cdl()`s result.
+  + Actions on views and projections are now rendered as part of the definition, instead of an extension.
+- to.edm(x): `@Capabilities` 'pull up' supports all counterpart properties of `@Capabilities.NavigationPropertyRestriction`
+  except for properties `NavigationProperty` and `Navigability`.
+- to.hdi: Updated list of `keywords` which must be quoted in naming mode `plain`.
+- to.sql/hdi/hdbcds/edm(x)/for.odata: Reject structure comparison with operators `<,>,<=,>=`. Message id `expr-unexpected-operator`
+  is downgradable to a warning.
+
+### Fixed
+
+- Do not issue a warning anymore when adding elements via multiple `extend` statements in the same file.
+- An info message for annotating builtins through `extend` statements is now reported, similar to `annotate`.
+- Fix auto-redirection for target of new assoc in query entity
+- for.odata: `@readonly/insertonly/mandatory: false` are not expanded.
+
+## Version 3.2.0 - 2022-08-30
+
+### Added
+
+- New Integer types with these mappings:
+
+  | CDS       | OData     | SQL      | HANA CDS      |
+  | --------- | --------- | -------- | ------------- |
+  | cds.UInt8 | Edm.Byte  | TINYINT  | hana.TINYINT  |
+  | cds.Int16 | Edm.Int16 | SMALLINT | hana.SMALLINT |
+  | cds.Int32 | Edm.Int32 | INTEGER  | cds.Integer   |
+  | cds.Int64 | Edm.Int64 | BIGINT   | cds.Integer64 |
+
+- Properties of type definitions and types of direct elements can now be extended,
+  e.g. `extend T with (length: 10);`
+
+- CDL parser: support SQL function `substr_regexpr` with its special argument syntax.
+
+### Fixed
+
+- An internal dump could have occurred in certain situations
+  for models with cyclic type definitions.
+- Annotations on inferred enum elements of views were lost during recompilation.
+- to.cdl: Annotations on enum value in query elements were lost.
+- for.odata: Allow dynamic shortcut annotation values (`$edmJson`).
+- to.edm(x):
+  + Don't overwrite annotations of input model.
+  + Ignore `null` values in `$edmJson` strings.
+- to.hdi.migration: Don't interpret bound action changes as element changes.
+
 ## Version 3.1.2 - 2022-08-19
 
 ### Fixed
@@ -25,8 +100,8 @@ The compiler behavior concerning `beta` features can change at any time without 
   `extend SomeEntity with FirstInclude, SecondInclude;`
 - Aspects can now have actions and functions, similar to entities.  Aspects can be extended by actions as well.
 - `cdsc`:
-  - `toCsn` now supports `--with-locations` which adds a `$location` property to artifacts
-  - `toHana`/`toSql` now supports `--disable-hana-comments`, which disables rendering of doc-comments for HANA.
+  + `toCsn` now supports `--with-locations` which adds a `$location` property to artifacts
+  + `toHana`/`toSql` now supports `--disable-hana-comments`, which disables rendering of doc-comments for HANA.
 - to.hdi/sql/hdbcds: Support FK-access in `ORDER BY` and `GROUP BY`
 - to.hdi.migration: Detect an implicit change from `not null` to `null` and render corresponding `ALTER`
 
@@ -51,8 +126,10 @@ The compiler behavior concerning `beta` features can change at any time without 
 - compiler:
   + `cast(elem as EnumType)` crashed the compiler.
   + Annotations on sub-elements in query entities were lost during re-compilation.
-  + An association's cardinality was lost for associations published in projections.  
+  + An association's cardinality was lost for new associations published in projections.
   + Annotations on indirect action parameters were lost in CSN flavor `gensrc`.
+  + Re-allow `annotate` statements referring to the same element twice,
+    even if there are annotation assignments for sub elements.
   + If a file's content starts with `{` and if neither file extension is known nor
     `fallbackParser` is set, assume the source is CSN.
 - all backends: references in `order by` _expressions_ are correctly resolved.

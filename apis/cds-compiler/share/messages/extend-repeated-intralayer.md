@@ -11,7 +11,7 @@ They form a cyclic connection through their dependencies
 
 Erroneous code example with a single CDL file:
 
-```cdl
+```cds
 entity FooBar { }
 
 extend FooBar { foo : Integer; }
@@ -24,7 +24,7 @@ inside `FooBar` may not be stable.  You therefore can’t depend on it.
 It's also possible to trigger this warning with multiple files.
 Look at the following example:
 
-```cdl
+```cds
 // (1) Definition.cds
 using from './Extension.cds';
 entity FooBar { };
@@ -40,10 +40,9 @@ layer with multiple extensions.  Again, the element order isn’t stable.
 
 ## How to Fix
 
-To fix the issue, move extensions for the same artifact into the same extension
-block:
+Move extensions for the same artifact into the same extension block:
 
-```cdl
+```cds
 // (1) Definition.cds : No extension block
 using from './Extension.cds';
 entity FooBar { }

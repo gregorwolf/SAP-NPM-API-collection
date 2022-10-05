@@ -8,6 +8,24 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 3.3.0 - 2022-09-29
+
+### Removed `nestedProjections`
+
+- This is now the default - see CHANGELOG entry for 3.3.0.
+
+### Fixed `nestedProjections`
+
+- Issue an error for an unexpected `as ‹alias›` for references with `inline`;
+  people likely have confused `inline` with `expand`.
+- Resolving references in the user-provided `on` condition of projected or newly-defined
+  associations inside `expand` and `inline` now works correctly.
+- Correct `key` propagation for references with `expand` or `inline`.
+- If an element is projected with sibling `expand`, the original data structure is usually
+  _not preserved_ (why use an `expand` if it is?).  Therefore, the compiler cannot auto-rewrite
+  the `on` condition of unmanaged associations if such an element is referred to in the original
+  `on` condition.  In that case, provide your own via `…: redirected to … on ‹condition›`.
+
 ## Version 3.1.0 - 2022-08-04
 
 ### Added `optionalActionFunctionParameters`
