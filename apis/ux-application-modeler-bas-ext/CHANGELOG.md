@@ -1,9 +1,23 @@
 # Change Log
 All notable changes to this project are documented in this file.
 
-Items marked as [experimental] are not yet released.
+Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.7.5] - 2022-09-22
+### Added
+- Added the Page Map ability to create and manage controller extensions for the page types list report and object page using OData V4, in conjunction with `@sap/ux-specification` versions 1.96.24, 1.102.9 or higher
+- Added support for SAP Fiori elements applications based on the flexible programming model approach, in conjunction with `@sap/ux-specification` versions 1.96.24, 1.102.9 or higher
+- Added support for `@sap-ux/ui5-middleware-fe-mockserver` to Application Info Page
+- Added the ability to show and hide individual properties displayed in the table in Data Editor; certain property groups are hidden by default and can be shown using the new 'Show Properties' functionality
+
+### Changed
+- Enhanced the usability for the Text Arrangement property: it's now always visible and is automatically preset once you choose the same Text property as defined for the value help (experimental)
+- Enhanced the Page Map to be able to handle applications based on OData V4 without defined pages and to assist with creating the first page, in conjunction with `@sap/ux-specification` versions 1.96.24, 1.102.9 or higher
+
+### Fixed
+- Fixed an issue that potentially resulted in the migration tool getting stuck during the migration of SAP Fiori projects
 
 ## [1.7.4] - 2022-09-08
 ### Added

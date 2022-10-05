@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.7.5] - 2022-09-22
+## Added
+- Added a CAP CDS code snippet variant to the _Add a new visual filter_ guide.
+
+## Fixed
+- Fixed an issue in the _Add an analytical card to an overview page_ guide where an extra line of code not featured in the guide code snippet would be inserted into the project's annotation file after clicking `Insert Snippet`. 
+
 ## [1.7.4] - 2022-09-08
 ## Added
 - Introduced the _Add a filter bar building block_ guide to implement filter bars in custom pages using the SAP Fiori elements Flexible Programming Model (XML Annotation for OData V4 and CDS Annotation variants available).

@@ -318,7 +318,7 @@ It might have side effects in case the xsjslib keeps state. It also leads to ext
 
 #### Multitenant usage
 
-In multitenant scenarios, the `hana` and `secureStore` properties can contain an object with the credentials of a _managed-hana_ (Instance Manager) service (created with the appropriate service plan)
+In multitenant scenarios, the `hana` and `secureStore` properties can contain an object with the credentials of a _managed-hana_ (Instance Manager) or _service-manager-instance_ (of Service Manager) service (created with the appropriate service plan)
 instead of the credentials of a _hana_ service. In this case the application will connect to a HANA system depending on the tenant (identity zone) of the incoming request.
 A managed service instance for the particular tenant should be created in advance and the corresponding database artefacts should be deployed prior to requesting the application with this tenant.
 Otherwise the processing of the request will be terminated with an error.

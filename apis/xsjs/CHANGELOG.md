@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.7.0"></a>
+## 6.7.0 - 2022-10-04
+
+### Added
+- Service Manager support in multitenancy scenario
+
+### Update
+- Update _@sap/xsodata_ to v8.0.1
+
 <a name="6.6.9"></a>
 ## 6.6.9 - 2022-08-09
 

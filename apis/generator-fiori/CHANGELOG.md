@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.7.5] - 2022-09-22
+### Added
+- Added an option to create an SAP Fiori elements application based on the flexible programming model approach.
+- Added support for generating and deploying SAP Fiori applications from the API Business Hub Enterprise in SAP Business Application Studio.
+
+### Changed
+- Updated the local preview of an application to use latest released SAPUI5 version if the choosen version in the project is not available on NPM.
+
+### Fixed
+- Fixed an issue that potentially resulted in the migration tool getting stuck during the migration of SAP Fiori projects.
+- Fixed issue causing the SAP Fiori generator to crash when choosing the Form Entry Object Page floorplan with a data source from a project-specific destination in SAP Business Application Studio.
+
 ## [1.7.4] - 2022-09-08
 ### Added
 - Added option to choose your transport request during ABAP deployment configuration from a list of available requests when applicable.
