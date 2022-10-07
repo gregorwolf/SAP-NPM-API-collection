@@ -1,12 +1,1 @@
-@sap/cds-compiler
-@sap/cds-odata-v2-adapter-proxy
-@sap/generator-fiori
-@sap/hana-eim-sditools-vscode
-@sap/ux-annotation-modeler-bas-ext
-@sap/ux-application-modeler-bas-ext
-@sap/ux-cds-odata-language-server-extension
-@sap/ux-help-bas-ext
-@sap/ux-service-modeler-bas-ext
-@sap/ux-specification
-@sap/ux-ui5-tooling
-@sap/xsjs
+@sap/dwc-cli

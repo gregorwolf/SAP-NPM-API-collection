@@ -1,15 +1,23 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project SAP Data Warehouse Cloud Command-Line Interface (DWC CLI) will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 2022.21.0
 
+### Fixed
+
+- **Option value decoding:** Option values were not properly decoded. For example, when passing an encoded option value including the string _%24_ (_\$_ in decoded form), the value was not decoded to _\$_, but kept as _%24_. This causes issues when, for example, passing the client ID and client secret in encoded form to the DWC CLI using the respective options _--client-id_ and _--client-secret_.
+
+- **Tenant URLs including upper case letters not recognized:** When providing a value for option _--host_ including capital letters, for example *https://mytenant.eu10.cloud.sap/dwaas-ui/index.html#/databuilder&/db/MYSPACE*, the DWC CLI failed to strip off the correct host *https://mytenant.eu10.cloud.sap*.
+
+## 2022.20.0
+
 ### Added
 
-- **OAuth Interactive Usage Authentication**: Besides using passcodes, you can now use OAuth-based authentication for interactive usage using OAuth clients created in your SAP Data Warehouse Cloud tenant to authenticate any command executed through the CLI. See the [README](README.md#oauth-interactive-usage) for details.
+- **OAuth Interactive Usage Authentication**: Besides using passcodes, you can now use OAuth-based authentication for interactive usage using OAuth clients created in your SAP Data Warehouse Cloud tenant to authenticate any command executed through the DWC CLI. See the [README](README.md#oauth-interactive-usage) for details.
 
 - **Options can be supplied through options, environment variables, options file**: See the [README](README.md#options-handling) for details.
 
@@ -21,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Correlation ID handling**: Correlation IDs are always logged in verbose mode. Before, correlation IDs were only logged in verbose mode in case an error occurred.
 
-- **dwc cache-... commands**: Commands to work with the local CLI cache like `cache-init`, `cache-clean` and `cache-show` have been renamed to `cache init`, `cache clean` and `cache show`.
+- **dwc cache-... commands**: Commands to work with the local DWC CLI cache like `cache-init`, `cache-clean` and `cache-show` have been renamed to `cache init`, `cache clean` and `cache show`.
 
 ## 2022.16.0
 
@@ -39,11 +47,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- **Local cache issue**: After initializing the CLI using `cache-init`, no additional commands like `spaces` was available. The downloaded discovery document for the tenant in question was effectively ignored.
+- **Local cache issue**: After initializing the DWC CLI using `cache-init`, no additional commands like `spaces` was available. The downloaded discovery document for the tenant in question was effectively ignored.
 
 ## 2022.9.0
 
 ### Fixed
 
-- **Respect HTTP protocol of tenant entered by user**: No matter what the protocol of the tenant (`https` or `http`), the HTTP request send to the backend service of the respective tenant was always using `https`. This can cause issues if the client using the CLI is hidden behind a HTTP proxy which only allows for `http` requests. This addresses cases where commands failed with errors like _"self signed certificate in certificate chain"_.
-- **The CLI could not be used as a regular Node.js dependency** using the `requires` or `import` syntax within a Node.js project. Users of the CLI always had to use Node.js' `exec` functionality to work with the CLI. For more information, see [_As a Node.js module dependency_](README.md#as-a-nodejs-module-dependency).
+- **Respect HTTP protocol of tenant entered by user**: No matter what the protocol of the tenant (`https` or `http`), the HTTP request send to the backend service of the respective tenant was always using `https`. This can cause issues if the client using the DWC CLI is hidden behind a HTTP proxy which only allows for `http` requests. This addresses cases where commands failed with errors like _"self signed certificate in certificate chain"_.
+- **The DWC CLI could not be used as a regular Node.js dependency** using the `requires` or `import` syntax within a Node.js project. Users of the DWC CLI always had to use Node.js' `exec` functionality to work with the DWC CLI. For more information, see [_As a Node.js module dependency_](README.md#as-a-nodejs-module-dependency).

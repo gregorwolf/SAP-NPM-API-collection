@@ -673,7 +673,7 @@
     "@sap/di.code-validation.js": "2.0.0",
     "@sap/di.code-validation.json": "1.0.13",
     "@sap/di.code-validation.xml": "1.1.28",
-    "@sap/dwc-cli": "2022.20.0",
+    "@sap/dwc-cli": "2022.21.0",
     "@sap/dwf-core": "2.2.7",
     "@sap/dwf-deploy": "2.6.6",
     "@sap/dwf-dlm-backend": "2.5.8",
