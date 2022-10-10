@@ -7,7 +7,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 6.1.5 - tbd
+## Version 6.2.0 - 2022-10-07
+
+### Added
+
+- `cds import` now imports Singleton entities for OData V4 files.
+- `cds deploy` now supports the new default`.sqlite` file ending
+- `cds add mta` no longer creates a `before-all` custom build command for Java single and multi tenant applications. Custom build commands are defined for `db-deployer` and `mtx/sidecar` modules instead.
+- `cds import` now supports enum types for OData V4
+- `cds add enterprise-messaging` can be now be used to set up configuration and deployment descriptors for SAP Event Mesh.
+- `cds add` now throws an error if no facet is passed.
+- `cds watch` now also considers more files from SAP Fiori (`change,variant,ctrl_variant,ctrl_variant_change,ctrl_variant_management_change`)
+
+### Changed
+
+- `cds add data` no longer creates CSV headers in UPPERCASE, but keeps the original case of the declared element.  Both styles work, but the latter is preferred.
+- `cds pull` requires `@sap/cds` 6.2 or higher
+
+### Fixed
+
+- `cds import` now imports csn for OData V2 file even if the `association set` is missing and throws error if the corresponding `association` is missing.
+- `cds import` now adds the annotation `@odata.Precision` entry only if precision > 0 for Edm.DateTime and Edm.DateTimeOffset.
+- `cds compile --to openapi` now has schema Objects for `-create` and `-update` to only advertise "deep" insert/update for _containment_ navigation properties. Non-containment navigation properties are no longer mentioned.
+- `.sqlite` files are now git-ignored in new projects created with `cds init`
+- `cds compile --to openapi` now fixes the issue of failing range assertions for an element having undefined maximum and minimum range values.
+- `cds import` now for OData V2 files doesn't throw warning for `EntityType` being referred as type in complex types, functions and actions, provided it is present in the file.
+
+## Version 6.1.5 - 2022-09-13
 
 ### Fixed
 
@@ -23,6 +49,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
+- `cds import` now gives higher precedence to complex type in case of name collision with actions or functions.
 - `cds extend` and other commands no longer fail with `TypeError: Class constructor CliError cannot be invoked without 'new'`
 
 ## Version 6.1.2 - 2022-08-25
@@ -33,7 +60,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 - `cds add helm` fixed JSON Schema for `srv` property in values.yaml
 - `cds add helm` fixed env property errors for `hana_deployer` and `html5_apps_deployer`
-- `cds add data` now creates proper data file names for entites in a `context`, i.e. `sap.common-Countries.csv` instead of `sap-common-Countries.csv`
+- `cds add data` now creates proper data file names for entities in a `context`, i.e. `sap.common-Countries.csv` instead of `sap-common-Countries.csv`
 - `cds import` now captures the parameter/property of collection type differently and the associated annotations are pulled out of the `items` object of the parameter/property entry in the csn.
 - Remove redundant `console.log()` statement in `cds lint`
 - `cds push` now shows complete error messages from extension validation
@@ -66,6 +93,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - `cds add lint:dev` updated to adjust to new api structure of `@sap/eslint-plugin-cds` v2.5.0
 - `cds init` uses latest Maven Java archetype version 1.27.0 for creating Java projects.
 - `cds login localhost:<port> -u <username>` now saves username (and empty password, if applicable) with project settings for convenience.
+- `cds add` error handling is improved and will give suggestions if you make a typo.
 
 ### Fixed
 

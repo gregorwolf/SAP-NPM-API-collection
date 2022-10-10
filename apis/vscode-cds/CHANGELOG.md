@@ -7,6 +7,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 
 
+
+## Version 6.2.0 - 2022-09-30
+
+### Added
+- document link resolution of 'folder' using paths to csn index files
+- new formatting options `keepPreAnnotationsInOriginalLine` and `keepPostAnnotationsInOriginalLine`
+- auto-exposed entities are now included in semantic Outline (user setting)
+- code completion for annotations on auto-exposed entities
+
+### Removed
+- removed `cds watch` snippet
+- removed formatting option `keepAnnotationsInOriginalLine` (will be migrated to the new options when set in .cdsrc.json)
+
+### Changed
+- improved Java compatibility of TextMate grammar
+
+### Fixed
+- fixed syntax highlighting for `extend`, attribute names, type structs, and some keywords
+- fixed formatting of bracketed expressions and annotations standing in their own lines
+- fixed alignment of multiple annotations per line
+
+### Also see
+- `@sap/cds-lsp` 6.2.0
+- `@sap/cds-compiler` 3.3.2
+
+
 ## Version 6.1.1 - 2022-08-08
 ### Fixed
 - fixed error when text editor is not found in CAP notebook decoration

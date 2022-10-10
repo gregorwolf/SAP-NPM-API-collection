@@ -6,8 +6,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 6.0.3 - 2022-07-08
+## 6.2.0 - 2022-09-30
 
+### Added
+- document link resolution of 'folder' using paths to csn index files
+- new formatting options `keepPreAnnotationsInOriginalLine` and `keepPostAnnotationsInOriginalLine`
+- auto-exposed entities are now included in semantic Outline (user setting)
+- code completion for annotations on auto-exposed entities
+
+### Removed
+- removed formatting option `keepAnnotationsInOriginalLine` (will be migrated to the new options when set in .cdsrc.json)
+
+### Changed
+- improved Java compatibility of TextMate grammar
+
+### Fixed
+- fixed syntax highlighting for `extend`, attribute names, type structs, and some keywords
+- fixed formatting of bracketed expressions and annotations standing in their own lines
+- fixed alignment of multiple annotations per line
+
+### Also see
+- `@sap/cds-compiler` 3.3.2
+
+## 6.0.3 - 2022-07-08
 ### Changed
 - added authentication and new build task names to cds schema
 

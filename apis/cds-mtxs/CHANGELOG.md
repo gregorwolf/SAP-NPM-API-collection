@@ -6,70 +6,121 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.2.0 - 2022-10-06
+
+### Added
+
+- `cds.xt.DeploymentService`: Additional parameters for HDI deployment (`@sap/hdi-deploy`) can now be added via the subscription request or the `cds` environment.
+
+Via additional parameter in the subscription payload:
+
+```
+{
+  "tenant": "tenant",
+  "_": {
+    "hdi": {
+      "deploy": {
+        "auto_undeploy": "true"
+      }
+    }
+  }
+}
+```
+
+Via `cds` environment:
+```
+...
+"cds": {
+  "requires": {
+    "cds.xt.DeploymentService": {
+      "hdi": {
+        "deploy": {
+          "auto_undeploy": "true"
+        }
+      }
+    }
+  }
+}
+```
+- `PUT /-/cds/saas-provisioning/tenant/<tenantId>` saves subscription metadata.
+- `GET /-/cds/saas-provisioning/tenant/<tenantId>` returns the saved tenant metadata for `<tenantId>`.
+- `GET /-/cds/saas-provisioning/tenant` returns the saved tenant metadata for all tenants.
+- `GET /-/cds/deployment/getTables(tenant='<tenantId>)` returns all deployed tables for a tenant.
+- Command line tool `cds-mtx` allows to run `subscribe and unsubscribe` in an application environment, e. g. `npx cds-mtx subscribe tenant1` or `cds-mtx subscribe tenant1` if you have installed `@sap/cds-mtxs` globally
+### Changed
+
+- `@sap/cds-mtxs@1.2.0` requires `@sap/cds@6.2`
+- `POST /-/cds/saas-provisioning/upgrade` accepts a list of tenants like `upgrade(['t1', 't2'])`.
+  - `upgrade(['*'])` upgrades all tenants.
+- `POST /-/cds/saas-provisioning/upgrade` gets its tenants from the `t0` cache instead of the `saas-registry` service.
+- `POST /-/cds/saas-provisioning/upgradeAll` has been deprecated and will be removed.
+- `POST /-/cds/deployment/unsubscribe` is now idempotent for HANA as well.
+- Polling interval to service-manager in `@sap/instance-manager` options has been increased to reduce rate-limiting problems.
+
 ## Version 1.1.2 - 2022-08-25
 
 ### Added
 
-- You can now register a `deploy` handler for the `DeploymentService`, right before the actual deployment is triggered.
+- `cds.xt.DeploymentService` now lets you register a `deploy` handler, invoked right before the HDI deployment is triggered.
+
 ## Version 1.1.1 - 2022-08-10
 
 ### Fixed
 
-- More debug and log output
-- `DeploymentService` can now also be called by users with role `cds.Subscriber`
+- `cds.xt.DeploymentService` can now also be called by users with role `cds.Subscriber`.
+
+### Changed
+
+- Log and debug output is improved.
 
 ## Version 1.1.0 - 2022-08-09
 
 ### Added
 
-- Additional parameters for deployment (e. g. HANA via service-manager) can now be added via the subscription request or cds environment.
+- `cds.xt.DeploymentService` can now be added via the subscription request or `cds` environment (e. g. HANA via service-manager).
 
-Via additional parameter in the subscription payload:
-```
-{
+  Via an additional parameter in the subscription payload:
+  ```json
+  {
     "subscribedTenantId": "tenant",
     "eventType": "CREATE",
     "_": {
-        "hdi": {
-            "create": {
-                "provisioning_parameters": { "database_id" : "DB_ID" }
-            }
+      "hdi": {
+        "create": {
+          "provisioning_parameters": { "database_id" : "DB_ID" }
         }
+      }
     }
-}
-```
-
-Via cds environment:
-```
-...
-"cds": {
+  }
+  ```
+  Via the `cds` environment:
+  ```json
+  "cds": {
     "requires": {
-        "cds.xt.DeploymentService": {
-            "model": "@sap/cds-mtxs/srv/deployment-service",
-            "hdi": {
-                "create": {
-                        "provisioning_parameters": { "database_id" : "12345" }
-                }
-            }
+    "cds.xt.DeploymentService": {
+      "hdi": {
+        "create": {
+          "provisioning_parameters": { "database_id" : "DB_ID" }
         }
+      }
     }
-}
-```
+  }
+  ```
 
 ## Version 1.0.1 - 2022-07-06
 
 ### Added
 
-- peerDependency to `@sap/cds`
+- `@sap/cds-mtxs` now has a `peerDependency` to `@sap/cds`.
 
 ## Version 1.0.0 - 2022-07-05
 
-First external release
+First external release.
 
 ## Version 0.1.0 - 2022-06-30
 
-Initial release
+Initial release.
 
 ## Version 0.0.1
 
-Initial milestone version
+Initial milestone version.

@@ -4,6 +4,76 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.2.1 - 2022-10-05
+
+### Fixed
+
+- In the CDS configuration, custom profiles now have precedence over the (implicit) default `[development]` profile, irrespective of insertion order.
+- `cds test` is now compatible with new `axios` 1.x
+
+## Version 6.2.0 - 2022-10-04
+
+### Added
+
+- Types for using tagged template variants of several CQL constructs
+- Types for calling shortcut versions of CQL constructs (`SELECT(...)` in addition to `SELECT.from(...)`, etc.)
+- Types for `cds.test`
+- Types for `cds.log().setFormat()`
+- Support for `redis-messaging` (beta)
+- Log the cds version when starting the server
+- Support for non-root entities as the main draft entity
+- Support for IAS authentication using kind `ias-auth`
+- Warning if multiple installations of `@sap/cds` were found when serving requests
+- Wildcard expansion `('*')` of properties in QL is now typed
+- Support for extended models in custom transactions and background processes
+- `cds build` logs detailed error messages if required service models cannot be resolved or aren't defined in custom build tasks.
+- Support for additional data types `cds.UInt8`, `cds.Int16`, `cds.Int32`, `cds.Int64`
+- Typings for `cds.utils`, `req.entity`
+- Optimized server startup for projects with large models and high numbers of services.
+  Can be switched off by setting config `cds.features.precompile_edms = false` in case of problems.
+- Set default header to `application/octet-stream` while sending binary to remote
+- OData temporal query params `$at`, `$from`, `$to`, `$toInclusive` can be used in custom handlers
+- Reserved keywords from compiler api available at `cds.compile.to.[cdl, sql.sqlite]`
+- Improved `winston` integration in `cds.log`
+
+### Changed
+
+- `cds.debug()` now returns undefined instead of falsy if debug is switched off. This allows usages like that:
+  ```js
+  const DEBUG = cds.debug('whatever')
+  DEBUG?.(...)
+  ```
+- All MTX-related modules have been refactored and moved to `@sap/cds-mtxs`.
+  Ensure to also upgrade to latest version of `@sap/cds-mtxs` when upgrading `@sap/cds` to avoid any breaking change effects.
+- SQLite database file endings have been changed to `.sqlite`, so third-party tools (e.g. VS Code extensions) can deduce the file type.
+- Method `disconnect()` in db services empties db pool w/o removing db services. In special cases (like tests) cleaning-up db service should be done manually while deleting `cds.services.db` and `cds.db`.
+- Prefer HANA driver that is required in package.json of project root
+
+### Fixed
+
+- Queries like `SELECT.from(Foo).where({a:1}).or({b:2}).and({c:3})` erroneously resulted in `SELECT from Foo where (a=1 or b=2) and c=3`
+- Signatures for QN `order_by` expressions are now in line with the capire doc
+- Signatures for QL operations are now more specific
+- `basic-auth` does not inherit users of `mocked-auth`
+- `cds.localize` now ignores i18n files defined outside project scope.
+- Allow `@Capabilities.NavigationRestrictions.RestrictedProperties` to be specified in the format `{ InsertRestrictions.Insertable: false }`
+- Bound actions/functions while calling remote service
+- `$search`: Search on localized projections/views does not always return the localized data
+- `cds push` now shows better output for failed extension validations
+- Aliased parameters in REST parser
+- `cds.deploy` now logs the correct filename for multitenant SQLite
+- HDI configuration data (e.g. `./cfg`, `.hdiignore`) and HANA native artifacts have not always been copied into the `sdc` folder of a MTX sidecar module
+- OData URL to CQN parser (`cds.env.features.odata_new_parser`) now supports functions with no arguments
+- Runtime exception for `PATCH` HTTP request with an empty payload body and read-only field
+- Streams in draft caused SQL error
+- Better response state handling during `cds deploy` to Cloud Foundry.
+- Draft: patch on draft enabled entity with a composition of one
+- Maximum stack trace exceeded in generic audit logging implementation
+- The protocol adapter logs the decoded URI or the original one, if it is invalid
+- REST: reject action calls with round brackets (parentheses). For example, the request `/Books(1)/bookShelf.CatalogService.rate()` is now rejected.
+- `cds deploy` and `cds run/serve/watch` no longer print terminal escape sequences (`x1b...`) if they run non-interactively.
+- Some fields in entities like `path` generated invalid sql
+
 ## Version 6.1.3 - 2022-09-13
 
 ### Added
@@ -38,13 +108,12 @@
 - `UPDATE` statement accepts empty objects: `UPDATE('Foo').with({ bar: {} })`
 - URI encoding of parameters in remote service calls
 
-### Removed
-
 ## Version 6.1.1 - 2022-08-24
 
 ### Added
-
 - The configuration schema now includes `cds.extends` and `new-fields` (in `cds.xt.ExtensibilityService`)
+- Ability to run extension validations as part of `cds lint`
+- The `/-/cds/login` endpoint now also supports client credentials authentication
 - `srv.run(fn)` now accepts a function as first argument, which will be run in an active outer transaction, if any, or in a newly created one. This is in contrast to `srv.tx(fn)` which always creates a new tx.
   ```js
   cds.run (tx => { // nested operations are guaranteed to run in a tx
@@ -60,7 +129,7 @@
 - View resolving without model information doesn't crash
 - Unable to upload large attachments. Uploading a large attachment (base64 encoded) caused a runtime exception.
 - `cds.Query.then()` is using `AsyncResource.runInAsyncScope` from now on. &rarr; this avoids callstacks being cut off, e.g. in debuggers.
-- `cds.tx()` and `cds.context` have been fixed to avoid accidential fallbacks to auto-commit mode.
+- `cds.tx()` and `cds.context` have been fixed to avoid accidental fallbacks to auto-commit mode.
 - HDI configuration data (e.g. `./cfg`, `.hdiignore`) is now included in the `resources.tgz` file which is required for Streamlined MTX.
 - `cds deploy` accepts in addition to `VCAP_SERVICES` also `TARGET_CONTAINER` and `SERVICE_REPLACEMENTS` from vcap file when using `--vcap-file` parameter.
 - `cds build` doesn't duplicate CSV files that are contained in `db/src/**`.
@@ -69,12 +138,12 @@
 - Unhandled promise rejection in `expand` handling
 - `cds.context.model` middleware is not mounted for not extensible services
 - `cds.context` continuation was sometimes not reset in REST adapter
-- Requests don't fail with `RangeError: Unable to get service from service map due to error: Invalid time value` anymore
 
 ## Version 6.1.0 - 2022-08-10
 
 ### Added
 
+- Support for `@sap/cds-mtxs` in `enterprise-messaging`
 - Detailed information about pool state: `borrowed`, `pending`, `size`, `available`, `max` to the timeout error
 - Odata v2 payloads for `cds.Time` are converted from hh:mm:ss to PThhHmmMssS e.g. 12:34:56 to PT12H34M56S if provided in hh:mm:ss format
 - Odata v2 payloads for `cds.Integer` are converted to String if not provided as String
@@ -84,7 +153,7 @@
 - New OData parser supports $filter with "in" operator, e.g. `$filter=ID in (1,2,3)`
 - `cds build` copies `package.json` and `.cdsrc.json` into _main folder of MTX sidecar app.
 - New OData parser supports null parameter in function/action, e.g `/findBooks(author=1,title=null)`
-- New enviroment variable `schemas` contains locations for json schemas validating `package.json`, `.cdsrc.json` and `.cdsrc-private.json` in VS Code
+- New environment variable `schemas` contains locations for json schemas validating `package.json`, `.cdsrc.json` and `.cdsrc-private.json` in VS Code
 - `cds.test` can now listen on a fixed port by way of additional arguments '--port', '<PORT_NUMBER>
 - `cds.requires.db.kind = 'sql-mt'` is introduced as a shorthand for
   ```js
@@ -372,7 +441,7 @@ Note that this is a breaking change for appliations that rely on error sanitizat
 
 - We don't rely on `global.cds` anymore -> allows to load and correctly work with multiple versions of `cds`
 - Improved shutdown for AMQP connections and file listeners
-- Using `CQL` with a tagged template string `SELECT from Foo { null as boo }` throwed an exception.
+- Using `CQL` with a tagged template string `SELECT from Foo { null as boo }` threw an exception.
 - In case of `MULTIPLE_ERRORS` throw an `Error` instead of an object
 - `cds build` ensures correct precedence of feature annotations. Fixes `Duplicate assignment` compilation errors.
 - Compatibility with former support to find service `@impl: 'relative/to/cdw'`.
@@ -754,7 +823,7 @@ In such scenarios, now the HTTP `404 Not Found` status code is returned rather t
 - `cds version` now always prints the version of `@sap/cds-dk`, especially if `cds version` was called from within an npm script, i.e. not from `cds-dk`'s CLI.
 - Better error message in case destination of Remote Service isn’t found
 - Differentiate between draft already exists and entity locked
-- OData adapter: roll back transaction before rethrowing standard error in case of atomicity group
+- OData adapter: roll back transaction before re-throwing standard error in case of atomicity group
 - Results of actions/functions do not ignore custom data when using `$expand` query option
 - `req.data` is available in custom error handler in case of deserialization error thrown by legacy OData server
 - Joining entities with renamed foreign keys (limited to single-level projections)
