@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.2.1 - 2022-10-10
+
+### Fixed
+
+- Installation errors with unresolvable `@sap/hdi` 4.4.0 are fixed.
+
 ## Version 6.2.0 - 2022-10-07
 
 ### Added

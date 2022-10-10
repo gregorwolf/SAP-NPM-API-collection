@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 5.5.6- 2022-10-10
+
+### Updated
+- Add middleware.js into package.json
+
 ## 5.5.5- 2022-08-15
 
 ### Updated

@@ -1,7 +1,2 @@
-@sap/cds
+@sap/audit-logging
 @sap/cds-dk
-@sap/cds-lsp
-@sap/cds-mtxs
-@sap/eslint-plugin-cds
-@sap/jobs-client
-@sap/vscode-cds
