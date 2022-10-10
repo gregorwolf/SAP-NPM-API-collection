@@ -1,1 +1,7 @@
-@sap/dwc-cli
+@sap/cds
+@sap/cds-dk
+@sap/cds-lsp
+@sap/cds-mtxs
+@sap/eslint-plugin-cds
+@sap/jobs-client
+@sap/vscode-cds

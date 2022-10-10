@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.6.0] - 2022-09-29
+
+### Changed
+
+- Renamed rule `no-join-on-draft-enabled-entities` to `no-join-on-draft`.
+- Expanded list of reserved keywords to check for in rule `no-db-keywords`.
+
+### Added
+
+- New `extension-restrictions` rule that validates extension projects' models against restrictions set by the extended SaaS app.
+
+### Fixed
+
+- Errors from rules are shown again in the console output
+
 ## [2.5.0] - 2022-08-04
 
 ### Changed
