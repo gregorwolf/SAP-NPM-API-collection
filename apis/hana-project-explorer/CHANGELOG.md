@@ -1,3 +1,16 @@
+## 1.8.0
+
+### New Features
+
+- Resources of type "org.cloudfoundry.managed-service" are supported as database modules
+- The SAP HANA Cloud, SAP HANA Database Deployment Infrastructure (HDI) Reference guide can be opened from each HDI artifact editor
+
+### Fixes
+
+- The getting started wizard creates the calculation view of the correct type
+- The new virtual table editor can edit virtual table files specifying advanced options
+- The images of the getting started wizard are shown correctly
+
 ## 1.7.0
 
 ### New Features

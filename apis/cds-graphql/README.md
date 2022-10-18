@@ -15,11 +15,6 @@ _**WARNING:** The `@sap/cds-graphql` package is in an early general availability
 
 - **Authentication** and authorization &rarr; will be added soon
 - **Actions** and functions such as found in OData are unsupported
-- Not all CDS types are properly converted to GraphQL types
-  - Binary &rarr; are mapped to strings
-  - All Date and Time types &rarr; String
-  - Decimal &rarr; Float
-  - **... these mappings may change in future**
 - **CDS annotations** like `@readonly` aren’t considered during schema generation
 - **Cursor-based Pagination** &ndash; we currently support offset-based pagination, and will add cursor-based pagination going forward. While we intend to support both variants then, it is not guaranteed that we can do so without breaking changes to current behaviour.
 

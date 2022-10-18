@@ -2108,7 +2108,7 @@ For information about the configuration of a custom storage driver, see [Configu
 
 ## Service to Application Router
 
-The application router can receive a consumer service JWT token created by the SAP Authorization and Trust Management (xsuaa) service or an OIDC access token created by Identity Authentication service and use it to access the UI and the data. The token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header-beta-version).
+The application router can receive a consumer service JWT token created by the SAP Authorization and Trust Management (xsuaa) service or an OIDC access token created by Identity Authentication service and use it to access the UI and the data. The token is passed to the application router in the "x-approuter-authorization" header of the request. For more information, see [Authorization Header](#authorization-header).
 
 Cookie Handling:
 In this flow client cookies are merged to backend cookies in case a backend cookie with the same key does not exist.

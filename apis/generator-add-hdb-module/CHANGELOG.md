@@ -1,3 +1,14 @@
+## 1.5.2
+
+### Fixes
+- The correct CF API endpoint is selected in extension landscapes
+
+## 1.5.1
+
+### Fixes
+- Support CF CLI version 8
+- Improved database selection in trial accounts
+
 ## 1.5.0
 
 ### Fixes

@@ -1,2 +1,15 @@
-@sap/audit-logging
+@sap/approuter
+@sap/cds
 @sap/cds-dk
+@sap/cds-graphql
+@sap/generator-adaptation-project
+@sap/generator-add-hdb-module
+@sap/generator-hdb-project
+@sap/hana-database-explorer
+@sap/hana-project-explorer
+@sap/hrtt-core-vscode
+@sap/instance-manager
+@sap/webide-hdi-base-feature-vscode
+@sap/webide-hdi-feature-vscode
+@sap/xsjs
+@sap/xssec

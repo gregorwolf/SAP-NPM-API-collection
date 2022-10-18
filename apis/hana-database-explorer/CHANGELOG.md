@@ -1,3 +1,11 @@
+## 1.9.0
+
+### New Features
+- A SELECT or CALL statement can be generated for database objects via the context menu of the database objects in the catalog browser. By default the statement will be opened in a new SQL console. As an additional option the statement can be immediately executed via the "Open Data" option.
+
+### Fixes
+- CREATE statements are generated correctly for objects with lower-case or mixed-case names.
+
 ## 1.8.0
 
 ### New Features

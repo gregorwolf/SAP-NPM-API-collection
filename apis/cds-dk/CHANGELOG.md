@@ -7,6 +7,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.2.2 - 2022-10-13
+
+### Added
+
+- `cds deploy --to postgres --dry` to create drop/create DDL for PostgreSQL. Full deployment (w/o `--dry`) is not yet supported, though.
+
+### Fixed
+
+- `cds deploy --to sql` now honors the `cds.sql.dialect` configuration to specify SQL dialects like `postgres`.
+
 ## Version 6.2.1 - 2022-10-10
 
 ### Fixed

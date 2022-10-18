@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.2.2 - 2022-10-13
+
+### Fixed
+
+- Fix environment variable `OLD_MTX`, allowing `cds build` to create artifacts for classic `@sap/cds-mtx` library
+
 ## Version 6.2.1 - 2022-10-05
 
 ### Fixed

@@ -1,3 +1,23 @@
+## 1.17.0
+
+### New Features
+- Pruning option "Greedy Pruning"
+- Enhanced execution hints with greedy pruning options
+- System versioning and application time tables as data sources
+- Lineage and impact analysis are shown across HDI container boundaries
+
+### Fixes
+- Opening a calculation view or analytic privilege was not possible when the database module was not bound
+- The calculation view editor could hang while opening a calculation view
+- A warning message was displayed when opening the semantics "Advanced" tab
+- All temporal fields are kept after replacing data source
+- The calculation view editor could hang while executing a debug query
+- Removed option to map variable to parameter of function that is used in an input parameter derived by function
+- Opening the value help on dimensional calculation view columns in a calculated column of a star calculation view could hang the whole model
+- Rename and refactor of calculation views works in read only mode
+- Variable warning message has null as table name
+- Input parameters could not be shown
+
 ## 1.16.0
 
 ### Fixes

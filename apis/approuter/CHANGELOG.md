@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 11.5.1 - 2022-10-13
+
+### Fixed
+- Correct using sap_idp query parameter also in other sessions
+- Avoid deleting sap_idp query parameter from the backend url, since there are use cases in which it is needed
+
 ## 11.5.0 - 2022-09-18
 
 ### Added

@@ -1,3 +1,14 @@
+## 1.15.0
+
+### Fixes
+- Adaptations for running in VS Code
+
+## 1.14.0
+
+### Fixes
+- Manage joins wizard is blank on replacing dimension in star join
+- Unexpected warning message when creating synonym to the object in an HDI container
+
 ## 1.13.0
 
 ### Fixes

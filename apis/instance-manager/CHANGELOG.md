@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 3.3.5 - 2022-10-10
+
+### Added
+- Added allowBinding options to Service Manager parameters
+
 ## 3.3.4 - 2022-06-10
 
 ### Updated

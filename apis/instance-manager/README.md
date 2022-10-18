@@ -151,6 +151,7 @@ certificate (only for mTLS) | x | Used when retrieving a token.
 certurl (only for mTLS) | x | Used when retrieving a token.
 service |  | Defaults to 'hana'. Name of the service of which to manage instances.
 plan |  | Defaults to 'hdi-shared'. Name of a plan from the selected service of which to manage instances.
+allowBinding | | Defaults to true. It allow binding to be created during get() and getAll(). In order to prevent creation, set to 'false'.
 
 **Note**: A _service-manager_ binding contains all the mandatory properties mentioned above. For non-mTLS authentication *clientsecret* is required, where *certificate* and *certurl* are required for mTLS authentication.
 
