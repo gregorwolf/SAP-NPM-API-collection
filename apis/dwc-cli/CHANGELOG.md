@@ -5,6 +5,20 @@ All notable changes to this project SAP Data Warehouse Cloud Command-Line Interf
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022.22.0
+
+### Added
+
+- Option `--options-file` has been added to the root `dwc` and `login` commands.
+
+### Fixed
+
+- If an options file was used using option `--options-file`, an error was written to the command output for all options which are required, but which are not mentioned in the options file. This error message has been converted into a trace message since it's not required to show to the user.
+- Tenant URLs not ending with `.sap`, were not treated correctly, leading to a wrongly calculated host to sent requests to.
+- Access token hasn't been refreshed if the first HTTP request returns with `401 Unauthorized` and OAuth-based authentication is used.
+- Access tokens provided through an options file weren't considered.
+- Values for option `--file-path` weren't considered if provided through an options file.
+
 ## 2022.21.0
 
 ### Fixed

@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.2.2 - 2022-10-17
+### Added
+- cds-lsp bin script for easier integration into custom editors/IDEs
+
+### Fixed
+- syntax highlighting of comments
+
+### Removed
+- legacy custom ParseTreeCommand
+
 ## 6.2.0 - 2022-09-30
 
 ### Added

@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.7.6] - 2022-10-06
+### Added
+- Added a check to determine if the OData source provided during generation uses a self-signed certificate and, if so, we display a more meaningful error message.
+
+### Changed
+- Removed the `generateManifestBundle` task from build scripts created with the SAP Fiori generator, since it's no longer needed.
+- Updated SAP Fiori applications generated using the flexible programming model to incorporate the `sap.fe.macros` namespace. 
+
 ## [1.7.5] - 2022-09-22
 ### Added
 - Added an option to create an SAP Fiori elements application based on the flexible programming model approach.

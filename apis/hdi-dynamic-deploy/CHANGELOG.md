@@ -1,3 +1,9 @@
+# 2.5.0
+Features
+- use @sap/hdi-deploy@4.5.0
+- added a new route `/v1/deploy/async` that implements an asynchronous deployment for VCAP_SERVICES style
+- Node 18 support
+
 # 2.4.1
 Features
 - added environmental variable `STRUCTUREDLOGGING` to structure the dynamic deployer logs when set to true

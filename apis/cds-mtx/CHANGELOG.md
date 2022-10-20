@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.6.3 - 2022-10-18
+
+### Fixed
+- .hdinamespace files provided as native HANA content are now included for deployment
+- Edmx files are only generated for the default language if ad-hoc edmx compilation is enabled (`mtx.edmx.compile: true`)
+
+### Changed
+- `polling_interval_millis` set for `@sap/instance-manager` has been increased to `3000`
+
 ## Version 2.6.2 - 2022-09-21
 
 ### Fixed

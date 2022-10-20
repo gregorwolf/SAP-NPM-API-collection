@@ -27,7 +27,7 @@ Usually, `@sap/hdi-dynamic-deploy` gets installed via a `package.json`-based dep
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-dynamic-deploy": "2.4.1"
+    "@sap/hdi-dynamic-deploy": "2.5.0"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-dynamic-deploy/"
@@ -217,6 +217,7 @@ Since version 2.3.2 of the dynamic deployer the request body can be a managed se
 
 This GUID can be used to query the status of the deployment by sending a GET request to `http(s)://<hostname>:<port>/v1/status/:guid` - if the deployment is still running, the response just contains a `status` property. If the deployment is finished, the usual response is returned - in conjunction with the `status` property.
 
+Since version 2.5.0 of the dynamic deployer there is a forth way to trigger a deployment by sending a HTTP POST request to the url `http(s)://<hostname>:<port>/v1/deploy/async`.  The request body is same as for `http(s)://<hostname>:<port>/v1/deploy/`. But instead of waiting until the deployment is done and then returning the results, a GUID is returned.
 
 ## How to use it in a multi-target application
 

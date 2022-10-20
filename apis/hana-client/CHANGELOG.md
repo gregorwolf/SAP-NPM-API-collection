@@ -1,3 +1,52 @@
+# Hana Client 2.14.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.14 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.14/en-US
+
+For the latest updates please see SAP Note 3236425 - SAP HANA Client 2.14 Release Notes
+
+https://launchpad.support.sap.com/#/notes/3236425
+
+## Version 2.14.22
+
+### Changes:
+
+ - Issue Number 295471: Node.js trace callback messages could have contained null characters.
+ - Issue Number 294990: Node.js could have crashed if API tracing was enabled.
+ - Issue Number 294918: A concurrent disconnect and prepare on same connection could have crashed Node.js.
+ - Issue Number 294720: Calling Connection.connect could have caused a Node.js app to crash.
+ - Issue Number 293757: Using explicit connection pools with the pingCheck property set to true could have performed poorly.
+ - Issue Number 285504: Statement.getParameterValue could have returned incorrect results for INOUT LOB parameters.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 295290: The Linux ARM64 client could not have been run on amazonlinux images.
+ - Issue Number 294430: The database name in a user key when using the AddFromDir command could have been incorrect.
+ - Issue Number 292659: Automatic reconnect was allowed after the user was switched.
+ - Issue Number 292357: Certain socket trace messages could have been missing from tracing.
+
+## Version 2.14.18
+
+### Changes:
+
+ - Issue Number 285695: Providing a non-integer value to an integer parameter could have thrown an error.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 292909: The client could have thrown an unhandled exception in some out-of-memory scenarios.
+ - Issue Number 292804: Memory may have been leaked if the SQLDBC prepared statement nextParameterByIndex function had failed.
+ - Issue Number 292659: Automatic reconnect was allowed after the user was switched.
+ - Issue Number 292355: Connecting multiple times with an x509 key from the user store could have failed to authenticate.
+ - Issue Number 292319: GetData of an NCLOB value with 0 size buffer could have returned an incorrect indicator value.
+ - Issue Number 291547: Statement may not have been routed to the expected node.
+ - Issue Number 291292: Enhanced DISTRIBUTION=WARNING tracing.
+ - Issue Number 291228: SQLDBC might have reported the error "Connection failed".
+ - Issue Number 291123: SQLDBC might have incorrectly reconnected when it received a bad packet.
+ - Issue Number 290096: The connection ID was not shown in the network error message.
+ - Issue Number 288540: There were several issues fetching NCLOB and BLOB values depending on the destination type used.
+ - Issue Number 234063: Connection property values starting with ' or " were interpreted incorrectly.
+
 # Hana Client 2.13.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.13 documentation:

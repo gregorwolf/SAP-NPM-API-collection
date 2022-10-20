@@ -5,6 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.6.8"></a>
+## 7.6.8 - 2022-10-19
+
+### Fixed
+- `hdbext.createConnectionPromise` now returns connection
+
+<a name="7.6.7"></a>
+## 7.6.7 - 2022-10-17
+
+### Added
+- `hdbext.createConnectionPromise` promise-based behavior which supports async / await syntax.
+
+### Updated
+- Update *@sap/hana-client* to v2.14.22
 
 <a name="7.6.6"></a>
 ## 7.6.6 - 2022-09-23

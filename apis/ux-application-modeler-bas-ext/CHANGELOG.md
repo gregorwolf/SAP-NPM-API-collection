@@ -5,6 +5,14 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.7.6] - 2022-10-06
+### Added
+- Added an indicator for properties with unsuitable data types in Page Editor, that means a warning is shown if a Boolean is used where a numeric value is expected, for example (experimental)
+- Added support for the command `Fiori: Open Environment Check` when using VS Code so that users can retrieve details on their development environment for support cases
+
+### Fixed
+- Fixed an issue with wrong routing information generated in manifest by Page Map for 3rd level pages
+
 ## [1.7.5] - 2022-09-22
 ### Added
 - Added the Page Map ability to create and manage controller extensions for the page types list report and object page using OData V4, in conjunction with `@sap/ux-specification` versions 1.96.24, 1.102.9 or higher

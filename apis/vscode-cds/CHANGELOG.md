@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 
+## Version 6.2.1 - 2022-10-17
+
+### Fixed
+- syntax highlighting of comments
+
+### Also see
+- `@sap/cds-lsp` 6.2.2
 
 
 ## Version 6.2.0 - 2022-09-30

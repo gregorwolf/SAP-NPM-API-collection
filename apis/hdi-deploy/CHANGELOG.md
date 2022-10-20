@@ -1,3 +1,9 @@
+## 4.5.0
+Features:
+- use @sap/hana-client@2.13.22
+- added option --optimise-file-upload to perform delta detection via local SHA256 calculation instead of DELETE and WRITE calls
+- Node 18.x support
+
 ## 4.4.1
 Features:
 - use @sap/hana-client@2.13.13

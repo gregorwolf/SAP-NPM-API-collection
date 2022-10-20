@@ -1,3 +1,7 @@
+## 4.4.0
+Features:
+- Node 18.x support
+
 ## 4.3.1
 Features:
 - Use async 3.2.3

@@ -3,6 +3,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.7.6] - 2022-10-06
+## Fixed
+- Fixed an issue in the ABAP CDS variant of the _Add a new section to a page_ guide where the `Position` and `Parent ID` parameters were not cleared after clicking the Reset button.
+- Fixed an issue in the _Add a table card to an overview page_ guide where characters entered in the `Label` parameter were unexpectedly deleted.
+
+
 ## [1.7.5] - 2022-09-22
 ## Added
 - Added a CAP CDS code snippet variant to the _Add a new visual filter_ guide.
