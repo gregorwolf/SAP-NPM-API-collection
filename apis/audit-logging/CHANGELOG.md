@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.5.7- 2022-10-21
+- Set deprecated tag for V1 API methods.
+
+### Updated
+- Updated error handling for 404 HTML error.
 
 ## 5.5.6- 2022-10-10
 

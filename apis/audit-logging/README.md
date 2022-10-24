@@ -178,6 +178,14 @@ For further information how to create the appropriate credential type, visit [Au
 
 ## API - v1
 
+
+---
+> **NOTE:** 
+> API v1 will be deprecated by March 2023. We strongly recommend that you switch to API v2 as soon as possible.
+
+
+---
+
 The library provides an API for writing audit messages of type configuration changes, data modifications, data accesses and security events.
 
 ### Importing the library
