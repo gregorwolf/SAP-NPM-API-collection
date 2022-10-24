@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 11.6.0 - 2022-10-24
+
+### Added
+- http2 support
+
 ## 11.5.1 - 2022-10-13
 
 ### Fixed

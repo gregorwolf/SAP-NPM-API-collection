@@ -227,7 +227,7 @@ Client certificate header name | `CLIENT_CERTIFICATE_HEADER_NAME` | When set app
 Server Keep Alive | `SERVER_KEEP_ALIVE` | server keep alive timeout (positive integer in milliseconds).
 Minimum Token Validity | `MINIMUM_TOKEN_VALIDITY` | positive integer in seconds. When set, approuter will check that the token returned from the authorization service has an expiration time higher than the minimum token validity value.
 State Parameter Secret | `STATE_PARAMETER_SECRET` | enables the use of state parameters to prevent CRFS attacks. If this environment  variable is set, the application router creates a state parameter for each initial authorization request. By validating that the authentication server returns the same state parameter in its response, the application server can verify that the response did not originate from a third party. **Note**: this feature is only available in Cloud Foundry runtime
-
+HTTP2 Support | `HTTP2_SUPPORT` | Enables the application router to start as an HTTP/2 server. Note: To configure HTTP/2 support, you must use Cloud Foundry routes with an HTTP/2 destination protocol. See [Configuring HTTP/2 Support](https://docs.cloudfoundry.org/adminguide/supporting-http2.html#application) in the Cloud Foundry Documentation.
 
 **Note:** all those environment variables are optional.
 
