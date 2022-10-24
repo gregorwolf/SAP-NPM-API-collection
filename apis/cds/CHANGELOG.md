@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.2.3 - 2022-10-21
+
+### Fixed
+
+- New continuation for incoming messages
+- `cds.test` no longer fails if used in ESM modules with `mocha` (`ERR_REQUIRE_ESM` error)
+- Collection-bound actions/functions don't need draft ownership check
+
 ## Version 6.2.2 - 2022-10-13
 
 ### Fixed

@@ -7,6 +7,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.2.3 - 2022-10-21
+
+### Changed
+
+- Use `@sap/cds` 6.2.3
+- Use `@sap/hdi-deploy` 4.5.0, which brings support for Node 18
+
+### Fixed
+
+- `cds mock` now prefers a local `@sap/cds` installation, like other `cds` commands as well.
+
 ## Version 6.2.2 - 2022-10-13
 
 ### Added
