@@ -151,7 +151,7 @@ certificate (only for mTLS) | x | Used when retrieving a token.
 certurl (only for mTLS) | x | Used when retrieving a token.
 service |  | Defaults to 'hana'. Name of the service of which to manage instances.
 plan |  | Defaults to 'hdi-shared'. Name of a plan from the selected service of which to manage instances.
-allowBinding | | Defaults to true. It allow binding to be created during get() and getAll(). In order to prevent creation, set to 'false'.
+allowBinding | | Defaults to 'true'. It allows binding to be created during get() and getAll(). To prevent creation, set to 'false'.
 
 **Note**: A _service-manager_ binding contains all the mandatory properties mentioned above. For non-mTLS authentication *clientsecret* is required, where *certificate* and *certurl* are required for mTLS authentication.
 
@@ -214,7 +214,7 @@ also caches the created instances. Cache options can also be provided by develop
 
 Property | Details
 -------- | -------
-polling_interval_millis | Defaults to 300. States how many milliseconds to wait between requests in the polling phase.
+polling_interval_millis | Defaults to 300 and gets increased by 500 for every next request. States how many milliseconds to wait between requests in the polling phase.
 polling_timeout_seconds | Defaults to 120. Sets a limit for time (in seconds) that can be spent in polling.
 cache_max_items | Defaults to 500. States the capacity of the cache.
 cache_item_expire_seconds | Defaults to 600 (10 minutes). Number of seconds after which a cache entry expires.

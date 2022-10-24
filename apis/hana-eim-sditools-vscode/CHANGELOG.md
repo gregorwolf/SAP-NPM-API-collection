@@ -2,6 +2,7 @@
 
 ### Fixes
 - Adaptations for running in VS Code
+- Disable Reorder columns in Realtime Flowgraph Data Source
 
 ## 1.0.7
 

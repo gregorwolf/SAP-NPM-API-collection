@@ -50,6 +50,18 @@ Please provide your feedbacks thru "SAP HANA SQL Analyzer <hana_sql_analyzer@sap
 
 # CHANGELOG
 
+## 1.3.12
+
+### New Features
+- The design of the plan graph side panel has been enhanced.
+- The property of an operator is now displayed in the side panel.
+- The color used for CPU time has changed.
+- The operator color used for real-time running statements has changed.
+- The HANA DB Connections extension has been deprecated. The SQL Analyzer now integrates with the SAP HANA Database Explorer extension (https://marketplace.visualstudio.com/items?itemName=SAPSE.hana-database-explorer).
+
+### Fixes
+- The SQL Analyzer was not activated on M1 MacBook.
+
 ## 1.3.10
 
 ### New Features
