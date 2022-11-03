@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.7.0"></a>
+## 7.7.0 - 2022-11-01
+
+### Added
+- Node.js 18.x support.
+
+<a name="7.6.9"></a>
+## 7.6.9 - 2022-10-28
+
+### Added
+- `hdbext.loadProcedurePromise` promise-based behavior which supports async / await syntax. 
+
 <a name="7.6.8"></a>
 ## 7.6.8 - 2022-10-19
 

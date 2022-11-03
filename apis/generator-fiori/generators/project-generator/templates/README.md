@@ -5,7 +5,7 @@
 |**App Generator**<br><%= genId %>|
 |**App Generator Version**<br><%= genVersion %>|
 |**Generation Platform**<br><%= genPlatform %>|
-|**Floorplan Used**<br><%= templateLabel %>|
+|**Template Used**<br><%= templateLabel %>|
 |**Service Type**<br><%= dataSourceLabel %>|<% if(metadataFilename) { %>
 |**Metadata File**<br><%= metadataFilename %><% } else { %>
 |**Service URL**<br><%= serviceUrl %><%}%>

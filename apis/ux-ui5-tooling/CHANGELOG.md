@@ -2,6 +2,13 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.8.0] - 2022-10-20
+### Fixed
+- Fixed an issue with previewing applications when the user is behind a corporate proxy.
+
+### Added
+- The `fiori-tools-appreload` middleware now watches also for changes in typescript files.
+
 ## [1.7.4] - 2022-09-08
 ### Fixed
 - Fixed an issue where the use of the `pathPrefix` property was not working.

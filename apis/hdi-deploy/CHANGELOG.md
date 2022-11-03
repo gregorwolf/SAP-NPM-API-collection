@@ -1,3 +1,7 @@
+## 4.5.1
+Features:
+- use @sap/hana-client@2.14.22
+
 ## 4.5.0
 Features:
 - use @sap/hana-client@2.13.22

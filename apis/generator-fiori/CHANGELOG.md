@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.8.0] - 2022-10-20
+### Added
+- Added an option `Enable TypeScript` under `Advanced Configuration` to create an SAPUI5 application with TypeScript support.
+- Added ability to choose a saved system in VSCode when selecting a deployment target environment.
+
+### Changed
+- Updated the name and description of templates to improve the presentation of respective project types being generated.
+
+### Fixed
+- Fixed an issue where `$tmp` instead of blank is displayed as default deployment package name for SAP BTP ABAP Environment.
+
 ## [1.7.6] - 2022-10-06
 ### Added
 - Added a check to determine if the OData source provided during generation uses a self-signed certificate and, if so, we display a more meaningful error message.

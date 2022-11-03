@@ -5,6 +5,17 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.8.0] - 2022-10-20
+### Added
+- Added support of controller artefacts using typescript, if an application is enabled for it
+- Added support of custom actions in object page form sections
+
+### Changed
+- Added tooltips to icons for page types in Page Map; introduced a new icon for custom pages which are enabled for the flexible programming model approach
+
+### Fixed
+- Fixed toast message on add/delete custom page
+
 ## [1.7.6] - 2022-10-06
 ### Added
 - Added an indicator for properties with unsuitable data types in Page Editor, that means a warning is shown if a Boolean is used where a numeric value is expected, for example (experimental)

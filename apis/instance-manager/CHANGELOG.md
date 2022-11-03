@@ -5,11 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.4.0 - 2022-10-27
+
+### Added
+- Added caching for Service offering and Service plan
+- Support for Node.js v18.x
 
 ## 3.3.6 - 2022-10-21
 
 ### Changed
 - Polling_interval_millis is now increased by 500 milliseconds for every next request 
+
 
 ## 3.3.5 - 2022-10-10
 

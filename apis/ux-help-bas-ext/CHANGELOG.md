@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.8.0] - 2022-10-20
+## Added
+- Introduced the ability to add multiple dimensions and measures at once in the _Add a chart building block_ guide.
+
+## Fixed
+- Fixed an issue where opening the _Enable draft toggle buttons_ guide without a project in the workspace would open a blank Guided Development window instead.
+- Resolved an issue in the _Enable semantic date range on smart filter bar_ guide where the `Exclude` parameter would be disabled when the `Date Range` parameter was set to `True`.
+
+
 ## [1.7.6] - 2022-10-06
 ## Fixed
 - Fixed an issue in the ABAP CDS variant of the _Add a new section to a page_ guide where the `Position` and `Parent ID` parameters were not cleared after clicking the Reset button.

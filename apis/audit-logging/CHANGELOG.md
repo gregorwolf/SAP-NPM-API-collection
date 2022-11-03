@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.6.2 - 2022-11-01
+
+### Added
+- Node.js 18.x support
+
 ## 5.5.7- 2022-10-21
 - Set deprecated tag for V1 API methods.
 
