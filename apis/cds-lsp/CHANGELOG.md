@@ -6,7 +6,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.3.0 - 2022-11-01
+
+### Added
+
+- formatting of artifact and type extensions
+- syntax highlighting of element extensions
+- syntax highlighting of numbers and some known types
+
+### Fixed
+- formatting of extensions with selectItems
+- format-cds script didn't find .cdsprettier.json
+
+### Also see
+- `@sap/cds-compiler` 3.4.0
+
 ## 6.2.2 - 2022-10-17
+
 ### Added
 - cds-lsp bin script for easier integration into custom editors/IDEs
 
@@ -31,8 +47,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - improved Java compatibility of TextMate grammar
 
 ### Fixed
-- fixed syntax highlighting for `extend`, attribute names, type structs, and some keywords
+- fixed syntax highlighting for `extend`, attribute names, type structs, new integer types, and some keywords
 - fixed formatting of bracketed expressions and annotations standing in their own lines
+- fixed formatting of actions and functions inside aspects
 - fixed alignment of multiple annotations per line
 
 ### Also see

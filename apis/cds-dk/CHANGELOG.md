@@ -7,6 +7,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.3.0 - 2022-11-02
+
+### Added
+
+- `cds deploy --to h2 --dry` to create drop/create DDL for H2. Full deployment (w/o `--dry`) is not yet supported, though.
+- `cds push <file>|<URL>` to specify a custom extension archive by local path or download URL.
+
+### Changed
+
+- `cds add` support for classic Java projects is now removed.
+- `cds import` now adds the annotation `@cds.external` for all the definitions in the CSN along with the service.
+- `cds import` now adds `notNull` entry for all the parameters and properties in the CSN.
+- MTX Client now trims a passcode entered via prompt for convenience when pasting
+
+### Fixed
+
+- MTX Client now ignores a username potentially saved for the current project, if a passcode is given
+- MTX Client now treats keytar as optional unless explicitly running `cds login`
+- `cds import` now caputres the documentation properly for all the EntitySet referring to same EntityType.
+- `cds deploy --to sql` now produces 'plain' SQL again, suitable for e.g. H2.  In 6.2 it produced 'sqlite' dialect, erroneously.
+- `cds compile --to openapi` now fixes the duplication of fields in `required` section.
+- `cds lint` now recognizes ESLint configurations from _package.json_.
+
+
 ## Version 6.2.3 - 2022-10-21
 
 ### Changed
@@ -27,6 +51,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - `cds deploy --to sql` now honors the `cds.sql.dialect` configuration to specify SQL dialects like `postgres`.
+
+### Removed
+- `cds add notebook` removed in favor of custom notebooks in VS Code (now part of the CDS Editor)
 
 ## Version 6.2.1 - 2022-10-10
 

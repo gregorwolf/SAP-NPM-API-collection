@@ -7,6 +7,27 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.4.0 - 2022-10-26
+
+### Added
+
+- to.sql: Add support for sql dialect `h2`, which renders SQL for H2 2.x
+
+### Fixed
+
+- Properly report an error for bare `$self` references,
+  except in the `on` condition of unmanaged associations.
+- Do not dump with references to CDS variables like `$now` in `expand`/`inline`.
+- Properly report an error when trying to `cast` a column to an association.
+- to.cdl: Identifiers that are always keywords in special functions are now escaped.
+- to.edm(x):
+  + Nested annotation was not applied if outer annotation has value zero.
+  + Fix `AppliesTo=ComplexType, TypeDefinition` term definition directive.
+- to.sql/hdi/hdbcds:
+  + Properly report an error for `exists` with `$self.managed-association`
+  + For sql dialect `hana`, add an implicit alias when using `:param` in the select list
+  + Handle `$self` and magic variables during expansion of nested projections
+
 ## Version 3.3.2 - 2022-09-30
 
 ### Fixed

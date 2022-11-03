@@ -4,6 +4,52 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.3.0 - 2022-10-28
+
+### Added
+
+- Additional type signatures for service methods in the query API
+- In case of error in a batch request, the @Core.ContentID is added to the details of the error message
+- Extensibility: Use i18n files from extensions in edmx calculation
+- In messaging, you can listen to all messages in a queue by subscribing to `'*'`
+- Improved Log formatting for Cloud Foundry
+- In remote services: Correct OData type conversion when using an imported csn
+- Types for `SELECT.forUpdate({wait})`
+
+- `cds.ql` now provides a dedicated method `.alias()` to choose table aliases, e.g.:
+  ```js
+  SELECT.from(Authors).alias(a)
+  ```
+  > Note: unfortunately we can't use method `.as()` instead of `.alias()` for compatibility reasons
+
+- `cds.ql` now supports constructing queries with `where exists` clauses, e.g.:
+  ```js
+  SELECT.from(Authors).where({exists:'books'})
+  SELECT.from(Authors).where({'not exists':'books'})
+  SELECT.from(Authors).alias('a').where({ exists: // or 'not exists'
+    SELECT.from(Books).where({author_ID:{ref:['a','ID']}})
+  })
+  ```
+  > Note: last query is equivalent to first
+- `cds compile` and `cds deploy` now also support dialect `h2`
+- New (easier) `jwt` and `xsuaa` authentication middleware for pluggable middlewares
+
+### Changed
+
+- In `enterprise-messaging`, emitting CloudEvents messages sets the HTTP header `Content-Type: application/cloudevents+json`
+
+### Fixed
+
+- Change signature of cqn `SELECT.limit.offset` and `SELECT.limit.rows` to `val` instead of `number`
+- Parsing of store procedure SQL calls including the schema name. For example, `CALL "SCHEMA"."PROC"(?)` and `CALL SCHEMA.PROC(?)`
+- Add property name in the error message on validation of the value
+- Kibana and Cloud Foundry formatter: do not log cookie header value
+- Missing SQL aliases for `$search` queries combined with `$orderBy` query option
+- The return value of `cds.connect` is now correctly typed as a `Promise`
+- `req.data` is no longer modified for remote services in the case of `odata-v2` inserts
+- `cds.localize` no longer ignores i18n files defined within CDS model scope and outside project scope
+- Don't modify query in `fioriGenericRead` handler
+
 ## Version 6.2.3 - 2022-10-21
 
 ### Fixed
@@ -87,6 +133,8 @@
 - REST: reject action calls with round brackets (parentheses). For example, the request `/Books(1)/bookShelf.CatalogService.rate()` is now rejected.
 - `cds deploy` and `cds run/serve/watch` no longer print terminal escape sequences (`x1b...`) if they run non-interactively.
 - Some fields in entities like `path` generated invalid sql
+
+### Removed
 
 ## Version 6.1.3 - 2022-09-13
 

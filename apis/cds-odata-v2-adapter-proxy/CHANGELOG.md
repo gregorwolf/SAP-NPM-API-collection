@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.12 - 2022-11-02
+
+### Fixed
+
+- Fix `$metadata` lookup with query options
+
+## Version 1.9.11 - 2022-11-02
+
+### Fixed
+
+- Support new CDS integer types
+- Fallback target `auto` to `default` target until dynamic `target/port` assignment is available
+- Prevent loading OData V4 `$metadata` when OData V2 `$metadata` is requested
+- Fix draft requests re-write for `$filter`
+- Proxy option to disable `x-forwarded` header processing (`processForwardedHeaders: false`)
+
 ## Version 1.9.10 - 2022-10-04
 
 ### Fixed

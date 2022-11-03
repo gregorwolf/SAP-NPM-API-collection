@@ -8,6 +8,23 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 3.4.0 - 2022-MM-DD
+
+### Added `aspectWithoutElements`
+
+- Aspects can now be defined without elements, e.g. `aspect A;`. This allows the definition of annotation-only aspects.
+ Views can be extended by such an aspect. For example:
+  ```cds
+  entity V as projection on SomeEntity;
+  @anno aspect A;
+  extend V with A;
+  ```
+
+### Added `sqlMigration`
+
+- to.sql.migration: Offer something similar to to.hdi.migration, but for general SQL. Don't offer a complete out-of-the-box schema evolution, instead only
+allow lossless, easy to revert actions like adding a column or extending a string length.
+
 ## Version 3.3.0 - 2022-09-29
 
 ### Removed `nestedProjections`

@@ -6,6 +6,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.3.0 - 2022-10-28
+
+### Added
+
+- `cds.requires.multitenancy.for` lets you define tenant-specific creation and deployment configuration.
+- `cds.xt.DeploymentService`: The `t0` tenant is now onboarded on startup.
+- `POST /-/cds/deployment/subscribe` saves onboarding metadata in `t0`.
+- `POST /-/cds/deployment/unsubscribe` removes onboarding metadata for `t0`.
+- Parameters for `t0` tenant onboarding can now be specified via `cds.requires.multitenancy.for.t0`. Analogous to the configuraiton in `cds.xt.DeploymentService` you can specify options for `hdi` and `create`.
+
+### Changed
+
+- `@sap/instance-manager` has been replaced by a custom Service Manager client, which is now the default. You can switch back to the `@sap/instance-manager`-based client by setting `cds.requires['cds.xt.DeploymentService']['old-instance-manager']` to `true`.
+
+## Version 1.2.1 - tbd
+
+### Added
+- [BETA] Command line tool `cds-mtx` now also allows to run `upgrade` in an application environment, e. g. `npx cds-mtx upgrade tenant1` or `cds-mtx upgrade tenant1` if you have installed `@sap/cds-mtxs` globally. This redeploys the current application model. Potential service handlers can be registered in `cli.js` (`server.js` is not loaded)
+
+### Fixed
+
+- `/-/cds/saas-provisioning/upgrade` now also runs with DwC
+
 ## Version 1.2.0 - 2022-10-06
 
 ### Added
@@ -46,12 +69,13 @@ Via `cds` environment:
 - `GET /-/cds/saas-provisioning/tenant/<tenantId>` returns the saved tenant metadata for `<tenantId>`.
 - `GET /-/cds/saas-provisioning/tenant` returns the saved tenant metadata for all tenants.
 - `GET /-/cds/deployment/getTables(tenant='<tenantId>)` returns all deployed tables for a tenant.
-- Command line tool `cds-mtx` allows to run `subscribe and unsubscribe` in an application environment, e. g. `npx cds-mtx subscribe tenant1` or `cds-mtx subscribe tenant1` if you have installed `@sap/cds-mtxs` globally
+- [BETA] Command line tool `cds-mtx` allows to run `subscribe and unsubscribe` in an application environment, e. g. `npx cds-mtx subscribe tenant1` or `cds-mtx subscribe tenant1` if you have installed `@sap/cds-mtxs` globally
+
 ### Changed
 
 - `@sap/cds-mtxs@1.2.0` requires `@sap/cds@6.2`
 - `POST /-/cds/saas-provisioning/upgrade` accepts a list of tenants like `upgrade(['t1', 't2'])`.
-  - `upgrade(['*'])` upgrades all tenants.
+  + `upgrade(['*'])` upgrades all tenants.
 - `POST /-/cds/saas-provisioning/upgrade` gets its tenants from the `t0` cache instead of the `saas-registry` service.
 - `POST /-/cds/saas-provisioning/upgradeAll` has been deprecated and will be removed.
 - `POST /-/cds/deployment/unsubscribe` is now idempotent for HANA as well.

@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
+## Version 6.3.0 - 2022-11-01
+
+### Added
+- CAP notebook magic command '%%extendjson' can be used to extend and overwrite existing JSON files
+- CAP notebook now supports working directory for terminal cells
+- formatting of artifact and type extensions
+- syntax highlighting of element extensions
+- syntax highlighting of numbers and some known types
+
+## Fixed
+- fix various axios related bugs
+- formatting of extensions with selectItems
+- format-cds script didn't find .cdsprettier.json
+
+### Also see
+- `@sap/cds-lsp` 6.3.0
+- `@sap/cds-compiler` 3.4.0
+
 
 ## Version 6.2.1 - 2022-10-17
 
@@ -108,7 +126,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 ### Fixed
 
-- find references could have shown wrong entries from localized context 
+- find references could have shown wrong entries from localized context
 
 ### Also see
 - `@sap/cds-lsp` 5.5.8
