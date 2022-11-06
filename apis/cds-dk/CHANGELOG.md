@@ -7,6 +7,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.3.1 - 2022-11-04
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 1.29.0 for creating Java projects.
+- Use `@sap/cds` 6.3.1
+- Use `@sap/cds-mtxs` 1.3.1
+
+### Fixed
+
+- MTX Client no longer reports 'Request failed with status code 401' when sending a passcode to old MTX server.
+
 ## Version 6.3.0 - 2022-11-02
 
 ### Added

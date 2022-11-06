@@ -6,24 +6,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## Version 1.3.1 - 2022-11-04
+
+### Changed
+
+- `cds.requires.multitenancy.for` settings have been moved to `cds.requires['cds.xt.DeploymentService'].for`.
+
+
 ## Version 1.3.0 - 2022-10-28
 
 ### Added
 
-- `cds.requires.multitenancy.for` lets you define tenant-specific creation and deployment configuration.
+- `cds.requires['cds.xt.DeploymentService'].for` lets you define tenant-specific creation and deployment configuration.
+  + For example: parameters for `t0` onboarding can be specified via `cds.requires['cds.xt.DeploymentService'].for.t0`. Analogous to the configuration in `cds.xt.DeploymentService` you can specify options for `create` and `deploy`.
 - `cds.xt.DeploymentService`: The `t0` tenant is now onboarded on startup.
 - `POST /-/cds/deployment/subscribe` saves onboarding metadata in `t0`.
 - `POST /-/cds/deployment/unsubscribe` removes onboarding metadata for `t0`.
-- Parameters for `t0` tenant onboarding can now be specified via `cds.requires.multitenancy.for.t0`. Analogous to the configuraiton in `cds.xt.DeploymentService` you can specify options for `hdi` and `create`.
+- [BETA] Command line tool `cds-mtx` now also allows to run `upgrade` in an application environment, e. g. `npx cds-mtx upgrade tenant1` or `cds-mtx upgrade tenant1` if you have installed `@sap/cds-mtxs` globally. This redeploys the current application model. Potential service handlers can be registered in `cli.js` (`server.js` is not loaded)
 
 ### Changed
 
 - `@sap/instance-manager` has been replaced by a custom Service Manager client, which is now the default. You can switch back to the `@sap/instance-manager`-based client by setting `cds.requires['cds.xt.DeploymentService']['old-instance-manager']` to `true`.
-
-## Version 1.2.1 - tbd
-
-### Added
-- [BETA] Command line tool `cds-mtx` now also allows to run `upgrade` in an application environment, e. g. `npx cds-mtx upgrade tenant1` or `cds-mtx upgrade tenant1` if you have installed `@sap/cds-mtxs` globally. This redeploys the current application model. Potential service handlers can be registered in `cli.js` (`server.js` is not loaded)
 
 ### Fixed
 

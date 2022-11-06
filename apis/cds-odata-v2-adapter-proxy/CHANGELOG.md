@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.13 - 2022-11-03
+
+### Fixed
+
+- Escape entity key value for bound action key parameter mapping
+- Support action parameters that overload bound entity key names
+- Support action/function on analytical entities via `ID__` aggregation key
+
 ## Version 1.9.12 - 2022-11-02
 
 ### Fixed

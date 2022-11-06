@@ -4,6 +4,15 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.3.1 - 2022-11-04
+
+### Fixed
+- `cds build` no longer reports false positive validation errors for built-in MTX models like `@sap/cds/srv/mtx` or `@sap/cds-mtxs/srv/bootstrap`
+- `cds deploy` handles empty result from `cf` call correctly
+- `$search` fails on columns composed by a CQL expression that uses the SAP HANA `coalesce` predicate
+- Draft ownership was erroneously checked for bound actions on active instances
+- `cds watch/run/serve --with-mocks` no longer start randomly with missing mocked services.  This could happen if previous runs crashed with errors and left bad state in the local service registry.
+
 ## Version 6.3.0 - 2022-10-28
 
 ### Added
