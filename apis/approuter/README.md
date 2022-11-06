@@ -228,6 +228,7 @@ Server Keep Alive | `SERVER_KEEP_ALIVE` | server keep alive timeout (positive in
 Minimum Token Validity | `MINIMUM_TOKEN_VALIDITY` | positive integer in seconds. When set, approuter will check that the token returned from the authorization service has an expiration time higher than the minimum token validity value.
 State Parameter Secret | `STATE_PARAMETER_SECRET` | enables the use of state parameters to prevent CRFS attacks. If this environment  variable is set, the application router creates a state parameter for each initial authorization request. By validating that the authentication server returns the same state parameter in its response, the application server can verify that the response did not originate from a third party. **Note**: this feature is only available in Cloud Foundry runtime
 HTTP2 Support | `HTTP2_SUPPORT` | Enables the application router to start as an HTTP/2 server. Note: To configure HTTP/2 support, you must use Cloud Foundry routes with an HTTP/2 destination protocol. See [Configuring HTTP/2 Support](https://docs.cloudfoundry.org/adminguide/supporting-http2.html#application) in the Cloud Foundry Documentation.
+Full Certificate Chain | `FULL_CERTIFICATE_CHAIN` | If `true`, the application router will send the entire chain of certificates provided by authorization service.
 
 **Note:** all those environment variables are optional.
 
@@ -1789,6 +1790,8 @@ In case certificates and private key exists, application router fetches XSUAA/IA
 When forwarding request to business services, application router also uses certificates to create a client_credentials token or exchange the login token.
 
 If certificates available, HTTP connection to backend is created using private key and a concatenation of intermediate and client certificates, enabling mTLS handshake.
+
+If FULL_CERTIFICATE_CHAIN environment variable is specified, the application router will send the entire chain of certificates provided in the corresponding authentication service (XSUAA or IAS) binding.
 
 Cloud Foundry: client certificate is propagated via the x-forwarded-client-cert header. In order to enable that the backend url should contain a .cert segment in its domain.
 
