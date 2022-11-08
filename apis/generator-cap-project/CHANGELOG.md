@@ -11,6 +11,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+
+
+## [1.6.8] - 2022-10-26
+### Changed
+- Removing `fs-extra` internally, requiring now node >= `14`
+
+## [1.6.7] - 2022-08-03
+
+### Changed
+- Updated some dependencies.
+
 ## [1.6.6] - 2022-05-09
 
 ### Fixed

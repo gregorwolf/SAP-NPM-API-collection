@@ -1,7 +1,2 @@
-@sap/approuter
-@sap/cds
-@sap/cds-dk
-@sap/cds-mtxs
 @sap/cds-odata-v2-adapter-proxy
-@sap/html5-repo-mock
-@sap/ui5-visual-editor
+@sap/generator-cap-project
