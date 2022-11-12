@@ -7,11 +7,23 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.4.2 - 2022-11-11
+
+### Fixed
+
+- Don't propagate `@cds.external` (The CDS Importer adds `@cds.external` for all
+  imported definitions beginning with cds-dk@6.3.0, see CAP release log).
+- for.odata: Ignore all `@cds.external` definitions.
+- to.sql: For sql dialect `h2`, don't turn a Decimal with length 0 into a Decfloat.
+- Extending a projection with an aspect could result in incorrect auto-redirection.
+- Annotations of aspects were not properly propagated to projections under some order-specific circumstances.
+
 ## Version 3.4.0 - 2022-10-26
 
 ### Added
 
-- to.sql: Add support for sql dialect `h2`, which renders SQL for H2 2.x
+- to.sql: Add support for sql dialect `h2`, which renders SQL for H2 2.x.
+- Projections can now be extended by annotation-only aspects, e.g. `extend P with MyAspect;`.
 
 ### Fixed
 

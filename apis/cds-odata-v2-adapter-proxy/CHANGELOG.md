@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.15 - 2022-11-11
+
+### Fixed
+
+- Keep `ID__` parameter as query option for bound action/function on analytical entities
+- Remove introduced query option `select` for bound action calls on analytical entities again
+
 ## Version 1.9.14 - 2022-11-07
 
 ### Fixed
@@ -17,7 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Only a single aggregation reference element is supported, specified as array with single element, e.g. `['element']`
 - Cast aggregation values of `#COUNT_DISTINCT` to `Integer` type to be represented as number (not as string), if typed accordingly
 - Map default aggregation `#COUNT` to virtual property `$count` of `$apply`
-- Remove unneeded temporary aggregation `$COUNT`
+- Remove unneeded temporary aggregation `$COUNT`. Use `#COUNT` instead.
 
 ## Version 1.9.13 - 2022-11-03
 
