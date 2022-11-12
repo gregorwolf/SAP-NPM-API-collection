@@ -2,6 +2,11 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.8.1] - 2022-11-03
+### Fixed
+- Improved Regex for determining if host is a trusted host, when using developer variant creation.
+- Fixed an issue where the SAPUI5 version check breaks the starting of the preview.
+
 ## [1.8.0] - 2022-10-20
 ### Fixed
 - Fixed an issue with previewing applications when the user is behind a corporate proxy.

@@ -1,2 +1,11 @@
+@sap/bas-sdk
+@sap/cds-compiler
 @sap/cds-odata-v2-adapter-proxy
-@sap/generator-cap-project
+@sap/generator-fiori
+@sap/hrtt-core-vscode
+@sap/ui5-visual-editor
+@sap/ux-cds-odata-language-server-extension
+@sap/ux-specification
+@sap/ux-ui5-tooling
+@sap/webide-hdi-base-feature-vscode
+@sap/webide-hdi-feature-vscode

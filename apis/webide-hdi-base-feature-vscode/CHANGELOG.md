@@ -1,3 +1,9 @@
+## 1.16.0
+
+### Fixes
+- The calculation view editor could hang when running in VS Code
+- Creating a synonym for a synonym in the Add Data Source dialog could lead to a deployment error
+
 ## 1.15.0
 
 ### Fixes

@@ -1,3 +1,29 @@
+## 1.18.0
+
+### New Features
+- The calculation view editor allows undo and redo of actions with history
+
+### Fixes
+- Impact analysis doesn't work after refactoring
+- Could not able to unselect selected 'Client Column' in Properties Section of a data source
+- Optimized the memory consumption of modeling objects
+- Order by in Window function node changes to other column when it is not available
+- Fix "SAP HANA Modeling: Maintain Time Tables" command for VS Code
+- Data Preview Doesn't Work in VS Code
+- Input parameter used in rank node goes off
+- Window function node can't work for copy/paste
+- Don't include applicationTime1 for hdbsystemversioning
+- Error while creating Raw view in BAS
+- Fix SQL hierarchies for value help on HANA Cloud
+- Shortcuts don't work in VS Code
+- Can't save mapping after replace with data source in new BAS with VS Code
+- Cannot remove output columns used as order attributes in window function or rank nodes
+- Replace node changes properties of join
+- Refactor page is blank when rename one calculation file name in VS Code
+- Maintain Time Table doesn't work on VS Code
+- Able to add more than two data sources in non equi join node
+- Propagate to Semantics option does not work after renaming of column
+
 ## 1.17.0
 
 ### New Features

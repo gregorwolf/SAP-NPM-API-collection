@@ -142,6 +142,7 @@ If you want the proxy to handle also WebSockets, then you need to set the option
       url: https://my.backend.com:1234
       ws: true
 ```
+**Note: proxying WebSockets is currently not supported in SAP Business Application Studio.**
 
 #### [Changing the path to which a request is proxied](#changing-the-path-to-which-a-request-is-proxied)
 Let's that you want to configure the proxy to send requests from a certain path `/services/odata` to a destination with a specified entry path `/my/entry/path`. Then you need to do the following:

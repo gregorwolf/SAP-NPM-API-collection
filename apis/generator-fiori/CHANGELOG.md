@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.8.1] - 2022-11-03
+### Added
+- Added ability to directly launch SAP Guided Answers and display the relevant guide for some errors that occur during generation.
+
+### Fixed
+- Fixed an issue where adding deployment configuration to an existing SAP Fiori application from the command line would fail in VS Code.
+
 ## [1.8.0] - 2022-10-20
 ### Added
 - Added an option `Enable TypeScript` under `Advanced Configuration` to create an SAPUI5 application with TypeScript support.
