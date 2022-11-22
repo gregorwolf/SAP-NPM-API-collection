@@ -5,6 +5,19 @@ All notable changes to this project SAP Data Warehouse Cloud Command-Line Interf
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022.24.0
+
+### Added
+
+- The CLI requires only a refresh token, authorization URL, and token URL, to retrieve a new access token when using OAuth Interactive Usage.
+
+## 2022.23.0
+
+### Fixed
+
+- A globally set host using the `dwc host set` command was ignored when executing commands.
+- When initializing the local CLI cache using the `dwc cache init` command for multiple SAP Data Warehouse Cloud tenants in the same landscape, for example EU10, the local cache contained only one single discovery file. The local CLI cache failed to handle multiple tenants in the same landscape.
+
 ## 2022.22.0
 
 ### Added

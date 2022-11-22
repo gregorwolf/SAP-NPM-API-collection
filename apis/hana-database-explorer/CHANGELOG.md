@@ -1,3 +1,10 @@
+## 1.10.0
+
+### Fixes
+- An error could occur when browsing database objects without a schema filter.
+- Large CREATE statements are displayed correctly.
+- The SAP HANA SQL Analyzer extension wasn't found in some circumstances.
+
 ## 1.9.0
 
 ### New Features

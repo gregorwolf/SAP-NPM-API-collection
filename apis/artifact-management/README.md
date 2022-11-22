@@ -65,7 +65,16 @@ const project = new ProjectImpl(path ,readModuleAsProject);
 To initialise Workspace API, instance of WorkspaceImpl has to be created.
 ```
 import { WorkspaceImpl } from '@sap/artifact-management';
-const workspace = new WorkspaceImpl();
+
+const path = '<my-workspace-root-path>';
+const workspace = new WorkspaceImpl(path);
+```
+or
+```
+import * as vscode from 'vscode';
+import { WorkspaceImpl } from '@sap/artifact-management';
+
+const workspace = new WorkspaceImpl(vscode);
 ```
 
 The library also provides CLI `dev-project` which can be used to visualise the outputs of APIs as shown in the following section.
@@ -88,7 +97,7 @@ Get all the projects in the workspace. Get the project based on tag if provided 
 ###### Example
 ```
 import {Tag} from @sap/artifact-management'  //Optional
-const ws = new WorkspaceImpl();
+const ws = new WorkspaceImpl(workspacePath);
 const projects = await ws.getProjects();
 ```
 
@@ -97,14 +106,14 @@ const projects = await ws.getProjects();
 ###### Description
 Get all project Uris in the workspace.
 ###### Method
-`getProjectUris(): Promise<Uri[]>`
+`getProjectUris(): Promise<string[]>`
 
 ###### returns
-- array of `Uri` or `undefined`
+- array of `string` or `undefined`
 
 ###### Example
 ```
-const ws = new WorkspaceImpl();
+const ws = new WorkspaceImpl(workspacePath);
 const projectUris = await ws.getProjectUris();
 ```
 
@@ -120,7 +129,7 @@ it detects File addition or deletions in workspace and triggers the updated even
 
 ###### Example
 ```
-const ws = new WorkspaceImpl();
+const ws = new WorkspaceImpl(workspacePath);
 await ws.startWatch();
 ```
 
@@ -136,7 +145,7 @@ it stops the watch event
 
 ###### Example
 ```
-const ws = new WorkspaceImpl();
+const ws = new WorkspaceImpl(workspacePath);
 await ws.stopWatch();
 ```
 
@@ -144,18 +153,18 @@ await ws.stopWatch();
 ###### Description
 it captures the add/remove events for the folders in the Workspace 
 ###### Method
-`onWorkspaceChanged(handler: (event: string, folders: WorkspaceFolder[]) => void) : void`
+`onWorkspaceChanged(handler: (event: string, folders: string[]) => void) : void`
 
 ###### Parameters
-- a `function` which takes a string `event` ("add" | "remove") and array of `WorkspaceFolder` as arguments
+- a `function` which takes a string `event` ("add" | "remove") and array of `string` as arguments
 
 ###### returns
 - `void`
 
 ###### Example
 ```
-import { WorkspaceFolder } from 'vscode';
-const ws = new WorkspaceImpl();
+import * as vscode from 'vscode';
+const ws = new WorkspaceImpl(vscode);
 ws.onWorkspaceChanged((event: string, folders: WorkspaceFolder[]) => {
   // add implementation 
 });

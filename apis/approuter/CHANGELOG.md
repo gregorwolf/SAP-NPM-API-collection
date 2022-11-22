@@ -5,12 +5,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 12.0.0 - 2022-11-13
+
+### Added
+- Consume credentials from html5 repo
+- Use server ca certificates with Hyperscaler Redis
+
+### Fixed
+- HTML5 Repo service name in client credentials token middleware
+
+
 ## 11.6.1 - 2022-11-3 
 
 ### Fixed
 - Type error in websockets flow when url does not contain application key
 - Mask 'x-forwarded-client-cert' header
 - Send all certificates chain if exist FULL_CERTIFICATE_CHAIN = 'true'
+
 
 ## 11.6.0 - 2022-10-24
 

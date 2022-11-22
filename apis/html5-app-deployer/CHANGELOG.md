@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.2.2 - 2022-11-16
+
+### Updated dependencies
+- deps: uuid@8.3.2
+
+## 4.2.1 - 2022-11-15
+
+### Updated dependencies
+- deps: archiver@5.3.1
+- deps: cf-nodejs-logging-support@6.13.2
+- deps: file-type@12.4.2
+
 ## 4.2.0 - 2022-09-04
 
 ### Fixed

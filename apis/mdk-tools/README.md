@@ -116,8 +116,14 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         ```bash
         mdk deploy --target cf --name "MyWebApplication"
         mdk deploy --target cf --name "MyWebApplication" --project /path/to/Your-MDK-metadata-project 
+        mdk deploy --target cf --name "MyWebApplication" --externals "@nativescript/geolocation" "external2"
         ```
         
+        If you want to use preview web runtime or dev web runtime starts with https://, you can add *--runtime* option.
+        ```bash
+        mdk deploy --target cf --name "MyWebApplication" --runtime preview
+        mdk deploy --target cf --name "MyWebApplication" --runtime "https://RuntimeUrl"
+        ```
 - Migrator
 
     Migrate the MDK project to the latest schema version.

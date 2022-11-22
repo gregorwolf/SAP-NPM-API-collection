@@ -1,3 +1,15 @@
+## 1.9.0
+
+### New Features
+
+- When working with migration tables the project explorer can automatically set the development mode
+
+### Fixes
+
+- Files from tree are opened in text the graphical editor in VS Code
+- Adjustments for the Cloud Foundry CLI version 8
+- The advanced virtual table editor did not show the data correctly in some scenarios
+
 ## 1.8.0
 
 ### New Features

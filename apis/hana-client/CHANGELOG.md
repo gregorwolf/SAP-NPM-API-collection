@@ -8,6 +8,21 @@ For the latest updates please see SAP Note 3236425 - SAP HANA Client 2.14 Releas
 
 https://launchpad.support.sap.com/#/notes/3236425
 
+## Version 2.14.23
+
+### Changes:
+
+ - Issue Number 296580: Using execQuery and then exec on same statement could have left that result set in a bad state.
+ - Issue Number 296574: Calling a Statement method while doing an execute could have crashed.
+ - Issue Number 295880: Simultaneously connecting, disconnecting, or other operations could have crashed.
+ - Issue Number 295530: Asynchronous calls to Statement methods could have incorrectly thrown an exception.
+ - Issue Number 295528: Node.js could have crashed if the statement was accessed after/while it was dropped.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 297231: Executing a VALIDATE USER statement could have disabled reconnect.
+ - Issue Number 295472: The abort or cancel APIs could have crashed in rare cases.
+
 ## Version 2.14.22
 
 ### Changes:
