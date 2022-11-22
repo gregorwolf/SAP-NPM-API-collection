@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.6.4 - 2022-11-17
+
+### Fixed
+- Full tenant metadata is stored again when running the subscription from CAP java
+- APIs can now be run without express app
+- Improved filter for technical tenants when getting all tenant ids
+
 ## Version 2.6.3 - 2022-10-18
 
 ### Fixed

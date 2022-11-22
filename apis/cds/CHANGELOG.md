@@ -4,9 +4,20 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.3.2 - 2022-11-21
+
+### Fixed
+
+- `cds deploy` reports errors correctly
+- Reference resolution in QL API
+- `cds.parse.path` to correctly handle special characters
+- `cds build` issues on Windows: build with large number of files and build on Git Bash.
+- `odata` as default protocol for enabled middlewares feature
+
 ## Version 6.3.1 - 2022-11-04
 
 ### Fixed
+
 - `cds build` no longer reports false positive validation errors for built-in MTX models like `@sap/cds/srv/mtx` or `@sap/cds-mtxs/srv/bootstrap`
 - `cds deploy` handles empty result from `cf` call correctly
 - `$search` fails on columns composed by a CQL expression that uses the SAP HANA `coalesce` predicate

@@ -6,13 +6,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.3.2 - 2022-11-17
+
+### Fixed
+
+- `cds-mtx` commands now exit the process correctly.
+
+### Added
+
+- `cds.requires['cds.xt.SaasProvisioningService'].jobs.clusterPoolSize` allows you to specify the number of concurrent HANA Cloud cluster tenant upgrades.
+- `cds.requires['cds.xt.DeploymentService'].hdi.create.binding_parameters` now also works with the built-in Service Manager client.
+
+### Changed
+
+- Error handling for the built-in Service Manager client is improved.
 
 ## Version 1.3.1 - 2022-11-04
 
 ### Changed
 
 - `cds.requires.multitenancy.for` settings have been moved to `cds.requires['cds.xt.DeploymentService'].for`.
-
 
 ## Version 1.3.0 - 2022-10-28
 
