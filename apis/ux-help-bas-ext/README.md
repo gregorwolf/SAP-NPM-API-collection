@@ -7,16 +7,16 @@ The **SAP Fiori Tools - Guided Development** provides access to How-To guides an
 ## Features
 
 - Guided development allows the user to walk through the steps required to implement a specific functionality in the Fiori element application.
-- User can choose to insert the code snippet or copy the code snippet to the clipboard and make the relevant changes in the project 
+- User can choose to insert the code snippet or copy the code snippet to the clipboard and make the relevant changes in the project
 
 ## Usage
 
-### How to launch Guided Development 
+### How to launch Guided Development
 
 - Use Command Palette -> `CMD/CTRL + Shift + P`
 - Type command -> `Fiori: Open Guided Development` or `Fiori: Open Guided Development to the Side`
 
-OR 
+OR
 
 - From the File Explorer in your project, right click on project folder and Choose `SAP Fiori tools: Open Guided Development`
 
@@ -43,13 +43,15 @@ The generated application requires the following software to be installed:
 - [NodeJS](https://nodejs.org/en/download/) Version 14.16 or higher
 
 ## Support
+
 Join the [SAP Fiori Tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.
 Please assign tag: *SAP Fiori Tools*
 
 To log an issue with SAP Fiori Tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).
 
 ## Documentation
-- Visit **SAP Help Portal** for [SAP Fiori Tools](https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US) documentation. 
+
+- Visit **SAP Help Portal** for [SAP Fiori Tools](https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US) documentation.
 
 ## License
 

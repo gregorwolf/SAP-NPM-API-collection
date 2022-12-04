@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.0.43] - 2022-12-02
+
+### Changed
+
+- Updated dependencies in `npm-shrinkwrap.json`
+
+
 ## [1.0.42] - 2022-07-15
 
 ### Changed
