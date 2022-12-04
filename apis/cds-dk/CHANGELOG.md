@@ -7,13 +7,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.3.2 - 2022-11-28
+
+### Changed
+
+- Include `@sap/cds` 6.3.2
+- Include `@sap/cds-compiler` 3.4.4
+- Include `@sap/cds-mtxs` 1.3.2
+
 ## Version 6.3.1 - 2022-11-04
 
 ### Changed
 
 - `cds init` uses latest Maven Java archetype version 1.29.0 for creating Java projects.
-- Use `@sap/cds` 6.3.1
-- Use `@sap/cds-mtxs` 1.3.1
+- Include `@sap/cds` 6.3.1
+- Include `@sap/cds-mtxs` 1.3.1
 
 ### Fixed
 

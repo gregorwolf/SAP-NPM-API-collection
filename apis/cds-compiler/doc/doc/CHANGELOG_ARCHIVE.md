@@ -154,7 +154,7 @@ The compiler behaviour concerning `beta` features can change at any time without
 - When the option `addTextsLanguageAssoc` is set to true and
   the model contains an entity `sap.common.Languages` with an element `code`,
   all generated texts entities additionally contain an element `language`
-  which is an association to `sap.common.Languages` using element `local`.
+  which is an association to `sap.common.Languages` using element `locale`.
 - for.odata:
   + In `--odata-format=flat`, structured view parameters are flattened like elements.
 - to.hdbcds

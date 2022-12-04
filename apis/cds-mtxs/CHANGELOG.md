@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.3.3 - 2022-12-01
+
+### Changed
+
+- The built-in Service Manager client now supports pagination tokens. This allows for more than 1250 tenants.
+
+### Added
+
+- The built-in Service Manager client now supports X.509 (mTLS) certificates in addition to the client-credentials authentication flow.
+- `cds-mtx` commands now exit the process correctly on HANA when there's an error in the command.
+
+### Fixed
+
+- Improved error handling for the built-in Service Manager client.
+- Tenant metadata can now be retrieved programmatically for all tenants via
+    ```js
+    const sps = await cds.connect.to('cds.xt.SaasProvisioningService')
+    const tenants = await sps.get('/tenant')
+    ```
+- `UPDATE`, `DELETE` and `upgrade` APIs of `cds.xt.SaasProvisioningService` can now also be called programmatically.
+
 ## Version 1.3.2 - 2022-11-17
 
 ### Fixed

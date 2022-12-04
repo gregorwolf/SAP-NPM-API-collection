@@ -7,6 +7,14 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+
+## Version 3.4.4 - 2022-11-25
+
+### Fixed
+
+- compiler: CSN flavor `gensrc` (known as `xtended` in `@sap/cds`) lost annotations
+  on enum values and projection columns.
+
 ## Version 3.4.2 - 2022-11-11
 
 ### Fixed
