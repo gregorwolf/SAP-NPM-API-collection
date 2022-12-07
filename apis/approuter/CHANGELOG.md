@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 12.0.2 - 2022-12-06
+
+### Fixed
+- feature flag to disable html5 repo credentials consumption fix
+
+### Updated dependencies
+- deps: query-string@7.1.2
+
 ## 12.0.1 - 2022-11-31
 
 ### Fixed

@@ -8,6 +8,12 @@ For the latest updates please see SAP Note 3236425 - SAP HANA Client 2.14 Releas
 
 https://launchpad.support.sap.com/#/notes/3236425
 
+## Version 2.14.24
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 297398: hdbuserstore List command could have run slowly, new Compact command added.
+
 ## Version 2.14.23
 
 ### Changes:

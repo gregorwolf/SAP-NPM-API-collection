@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.5.1 - 2022-12-02
+
+### Changed
+- Fixing Errors responses from Instance Manager
+
+## 3.5.0 - 2022-12-01
+
+### Changed
+- Fixing Errors responses from Service Manager
+
 ## 3.4.0 - 2022-10-27
 
 ### Added
