@@ -1,3 +1,10 @@
+## 1.17.0
+
+### Fixes
+- Internal hierarchy views are listed for modelling
+- Unable to add the table while creating a calculation view when the table name is of only one character
+- Service name is blank in find and add dialog of nodes
+
 ## 1.16.0
 
 ### Fixes

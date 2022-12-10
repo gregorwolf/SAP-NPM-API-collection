@@ -1,3 +1,16 @@
+## 1.10.0
+
+### New Features
+
+- The virtual table editor was renamed from "Advanced Virtual Table Editor" to "Virtual Table Editor"
+
+### Fixes
+
+- Fixed a typo in the guided development scenario
+- The virtual table editor did not work correctly with the SDI HanaAdapter
+- The virtual table editor did not escape identifiers correctly
+- The virtual table editor did not use the correct database connection in some scenarios
+
 ## 1.9.0
 
 ### New Features

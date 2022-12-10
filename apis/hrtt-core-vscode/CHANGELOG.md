@@ -1,3 +1,8 @@
+## 1.19.0
+
+### Fixes
+- Updated HRTT to version 221110-1668542133-5d879c0
+
 ## 1.18.0
 
 ### Fixes

@@ -33,9 +33,9 @@ The **SAP Fiori Tools - Page Map** provides a visual representation of the appli
 
 The Page Map extension reads and updates the `app.json` file containing the navigation and pages information in a compact and technology independent notation. The file also serves as a simple text-based interface. It is generated on demand and can be accessed from the Application Modeler tree view from SAP Fiori sidebar view by selecting the `Show Source Code` option from the `Map` node's right-click context menu. The application descriptor (`webapp/manifest.json`) of the application will be updated automatically when the `app.json` is saved, and changes to the `webapp/manifest.json` will be converted to `app.json`. The `app.json` is virtual and will not be written to the project folder.
 
-#### Supported Floorplans of SAP Fiori Elements
+#### Supported Templates of SAP Fiori Elements
 
-* List Report Object Page with OData V2 and OData V4
+* List Report Page with OData V2 and OData V4
 * Overview Page with OData V2 (including OData V4 based cards)
 * Analytical List Page with OData V2 and OData V4
 * From entry page with OData V4
@@ -78,9 +78,9 @@ With version 1.4.1 of Application modeler and [`@sap/ux-specification`](https://
 
 Recognizing the complexity of this addition, this feature is considered experimental but enabled per default. If you wish to disable experimental features, you can do so in VSCode and SAP Business Application Studio preferences settings under `SAP > UX > Application Modeler: Enable Experimental Features`.
 
-#### Supported Floorplans of SAP Fiori Elements
+#### Supported Templates of SAP Fiori Elements
 
-* List Report Object Page with OData V2 and OData V4
+* List Report Page with OData V2 and OData V4
 * Overview Page with OData V2 (including OData V4 based cards)
 * Analytical List Page with OData V2 and OData V4
 * From entry page with OData V4
@@ -147,13 +147,11 @@ The manifest and UI5 flexibility properties of the respective SAP UI5 version sh
 
 Installing the **Application Modeler** extension adds support for the Application Generator tool. The Application Generator allows the user to generate an application based on a number of different templates.
 
-Once the application modeler has been successfully installed, it will check to see if the latest version of the Application generator templates have been installed from npmjs.com, and will install them if necessary.
-
 ### How to use Application Generator
 
 From the Command Palette execute the command `Fiori: Open Application Generator`
 
-This will launch the Application Generator tool once installed.
+This will launch the Application Generator tool if installed.  If the Application Generator is not yet installed, it will install it the first time this command is executed.
 
 ### Prerequisites
 

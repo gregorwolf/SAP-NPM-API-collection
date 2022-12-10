@@ -1,3 +1,9 @@
+## 1.11.0
+
+### Fixes
+- Generating SELECT statements for tables with ARRAY type columns could fail in some circumstances
+- The option of generating CREATE statements has been removed from database artifact types that do not support generating CREATE statements
+
 ## 1.10.0
 
 ### Fixes

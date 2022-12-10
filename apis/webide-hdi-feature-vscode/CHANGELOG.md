@@ -1,3 +1,27 @@
+## 1.19.0
+
+### New Features
+- Search functionality for columns in the "Columns" tab
+- The impact editor displays a dedicated icon for synonyms
+
+### Fixes
+- Switching from column to expression in non equi join doesn't work if one of the data source is an alias
+- Display folder dialog doesn't list all the attributes
+- Error when changing output column used as window function partition
+- Can't copy/paste NonEquiJoin node
+- Join node in Cal View corrupted after removing incorrect mapping
+- Fixed an issue with undo renaming view node
+- Able to add operators in filter expression in read only mode
+- Replace node option does not appear for nodes that are used more than once
+- No Validation is set for Variant Table and Variant field while creating FISCAL calendar Table
+- Calculation views could become corrupted
+- The suffix name displayed on the object definition tab is incorrect
+- Inline data preview failed on a function data source
+- Rank node: input parameters cannot be selected as option to provide value for field Offset
+- Consuming table function via synonyms doesn't give expected result
+- Only one value comes up for Hierarchy value help for variable
+- Offset is not copied while copying rank node
+
 ## 1.18.0
 
 ### New Features

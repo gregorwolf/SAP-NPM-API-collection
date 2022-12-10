@@ -283,6 +283,34 @@ server:
           src: "Path/To/libs"
 ```
 
+#### [Example configuration for mocking the User API Service from @sap/approuter](#example-configuration-for-mocking-the-user-api-service-from-sapapprouter)
+If you are using the [User API Service](https://www.npmjs.com/package/@sap/approuter#user-api-service) from `@sap/approuter` in your application, then you can mock by providing the following configuration.
+
+```
+server:
+  customMiddleware:
+  - name: fiori-tools-servestatic
+    afterMiddleware: compression
+    configuration:
+      paths:
+        - path: /userapi/currentUser
+          src: "Path/To/UserJson"
+          index: "user.json"
+          fallthrough: false
+```
+whereas the `user.json` can look like this e.g.
+
+```
+{
+   "firstname": "John",
+   "lastname": "Doe",
+   "email": "john.doe@example.com",
+   "name": "john.doe@example.com",
+   "displayName": "John Doe (john.doe@example.com)",
+   "scopes": "openid,user_attributes,uaa.user"
+}
+```
+
 ### [Configuration options](#configuration-options-1)
 Additionaly you can specify any of the configuration options (excluding `setHeaders`!) of the [serve-static](https://www.npmjs.com/package/serve-static) middleware.
 
