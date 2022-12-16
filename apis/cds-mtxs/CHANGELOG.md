@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.4.0 - 2022-12-15
+
+### Changed
+
+- Async API calls now have a `x-job-id` header.
+- Improved error handling for the Service Manager client.
+- When doing asynchronous updates for multiple tenants, you can now poll the status for each individual tenant. Please continue using the `Location` response header to poll the status for all tenants.
+  + This is what a sample response body for an asynchronous request to `/-/cds/saas-provisioning/upgrade` looks like:
+  ```json
+  {
+    "ID": "<jobID>",
+    "createdAt": "2022-12-12T13:07:15.817Z",
+    "op": "upgrade",
+    "tenants": {
+        "t1": {
+            "ID": "<taskID>"
+        }
+    }
+  }
+  ```
+
 ## Version 1.3.3 - 2022-12-01
 
 ### Changed
@@ -15,7 +36,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 - The built-in Service Manager client now supports X.509 (mTLS) certificates in addition to the client-credentials authentication flow.
-- `cds-mtx` commands now exit the process correctly on HANA when there's an error in the command.
+- `cds-mtx` commands now exit the process correctly on SAP HANA when there's an error in the command.
+- SAP HANA encryption parameters are now correctly forwarded to the service-manager on subscription
 
 ### Fixed
 

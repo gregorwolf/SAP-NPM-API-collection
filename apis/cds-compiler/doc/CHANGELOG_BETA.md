@@ -8,7 +8,15 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
-## Version 3.4.0 - 2022-MM-DD
+## Version 3.5.0 - 2022-12-07
+
+### Added `odataTerms`
+
+Allows to introduce and use new `Edm.Term`s in an OData API
+based on CDS annotations. Annotations must be service members,
+they can't be autoexposed.
+
+## Version 3.4.0 - 2022-10-26
 
 ### Added `aspectWithoutElements`
 

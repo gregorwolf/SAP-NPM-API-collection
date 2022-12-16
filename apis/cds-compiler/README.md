@@ -24,6 +24,7 @@ Or maintain your package.json dependencies as follows:
   }
 ```
 
+
 ## Documentation
 
 Please refer to the [official CDS documentation](https://cap.cloud.sap/docs/cds/).

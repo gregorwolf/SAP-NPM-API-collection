@@ -7,6 +7,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.4.0 - 2022-12-15
+
+### Added
+
+- `cds add helm` now supports approuter.
+- `cds subscribe --local` starts @sap/cds-mtxs locally instead of contacting a running instance via URL.
+- `cds unsubscribe` removes the subscription of a tenant from a SaaS app.
+
+### Changed
+
+- `cds add multitenancy` will not compile internal roles into the `xs-security.json` any more.
+- `cds add hana` does not create a `hdi-service-name: ${service-name}` for the database resource properties any more.
+- MTX-related commands now print usage help in case of known errors.
+- `cds import` now adds the annotation `@open` for all the Entities and ComplexTypes with attribute `Abstract` or `OpenType` and adds the same for those referred by the attribute `BaseType`.
+- `cds import` now adds default value in the CSN for the optional parameters in action/function for OData V4 files.
+- `cds init` uses latest Maven Java archetype version 1.30.0 for creating Java projects.
+
+### Fixed
+
+- `cds init` no longer creates `engines` entry in package.json to avoid `unsupported engine` warnings.
+- `cds subscribe` correctly exits the process after deploying to a HANA database.
+- `cds add multitenancy` doesn't create a duplicate `saas-registry` resource if there's one with `service-plan: service` any more.
+- `cds bind` now correctly maps the `hana-mt` and `sql-mt` shortcuts to the `cds.requires.db` entry.
+- `cds add mtx` no longer fails if the `mtx/sidecar` folder doesn't exist.
+- `cds compile --to xsuaa` now rejects expressions leading to invalid XSUAA attributes like `$user.foo-bar`, `$user.foo/bar`, `$user.foo.bar`
+- `cds compile --to xsuaa -o <file>` now sets `.json` as file ending instead of `.xsuaa`
+
 ## Version 6.3.2 - 2022-11-28
 
 ### Changed
@@ -20,12 +47,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Changed
 
 - `cds init` uses latest Maven Java archetype version 1.29.0 for creating Java projects.
-- Include `@sap/cds` 6.3.1
-- Include `@sap/cds-mtxs` 1.3.1
-
-### Fixed
-
-- MTX Client no longer reports 'Request failed with status code 401' when sending a passcode to old MTX server.
+- Use `@sap/cds` 6.3.1
+- Use `@sap/cds-mtxs` 1.3.1
 
 ## Version 6.3.0 - 2022-11-02
 
@@ -45,7 +68,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - MTX Client now ignores a username potentially saved for the current project, if a passcode is given
 - MTX Client now treats keytar as optional unless explicitly running `cds login`
-- `cds import` now caputres the documentation properly for all the EntitySet referring to same EntityType.
+- `cds import` now captures the documentation properly for all the EntitySet referring to same EntityType.
 - `cds deploy --to sql` now produces 'plain' SQL again, suitable for e.g. H2.  In 6.2 it produced 'sqlite' dialect, erroneously.
 - `cds compile --to openapi` now fixes the duplication of fields in `required` section.
 - `cds lint` now recognizes ESLint configurations from _package.json_.
@@ -255,6 +278,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
+- `cds add html5-repo` and `cds add destinations` throw an error if applied for MTA deployments, for which they are currently unsupported.
 - `cds compile --to openapi` fixes annotations on bound action overloads.
 - `cds add cf-manifest` now uses the correct `application` plan for the `xsuaa` service
 - A combination of `cds add approuter`, `cds add mtx`, and `cds add mta` will now use a safer approach to determine the subscription URL.

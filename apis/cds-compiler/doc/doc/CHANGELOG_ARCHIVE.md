@@ -2870,7 +2870,7 @@ Features
 
 Fixes
 * Issue an error, if an association element that is defined in a mixin of the
-  same view is explicitly redirected. Up to now this modelling error was not
+  same view is explicitly redirected. Up to now this modeling error was not
   recognized and led to the generation of incorrect HANA CDS models.
 * We now also allow query entities and their elements to use as type, relaxing
   a check introduces with v1.0.26.

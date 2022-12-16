@@ -4,6 +4,81 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.4.0 - 2022-12-15
+
+### Added
+
+- Signatures for `ql.UPSERT`
+- Runtime support for flat database UPSERTs
+- `enterprise-messaging`: Support for `@sap/cds-mtxs`
+- `persistent-outbox`: Support for parallel processing with option `parallel: true` as well as pluggable processor functions through `service.outbox.process` (beta)
+- `cds version` now also lists packages with `@cap-js/` prefix from dependencies
+- `cds.context.http` is now available for webhook-based requests
+- `cds build` for HANA migration tables now only saves model entities annotated with `@cds.persistence.journal` as `last-dev` version.
+- `cds deploy` now uses the `VCAP_SERVICES` environment variable (if set), and skips `cf` operations in this case
+
+### Changed
+
+- `.columns(…)` of both `cql.SELECT` and `cql.INSERT` give improved code completion when paired when appropriate type definitions are present
+- Status code of error messages caused by empty `not null` fields is changed from `400` to `500` on database layer. Note, that as result the error message `Value is required` in production will be replaced by `Internal server error` in the HTTP response.
+- Underscores in environment variables can now be escaped by two `__` to set keys in `cds.env`.  For example, use `CDS_FEATURES_WITH__MOCKS=...` to set `features.with_mocks`.  Note that previously, this ended up as  `features: { with_: { mocks:... }}`, so in rare cases, it might yield unexpected results.
+- `persistent-outbox`: Only programming errors lead to `process.exit()`, unrecoverable ones are only logged and their `attempts` are updated to `options.maxAttempts`
+- Global configuration of CSRF-token handling for remote services `cds.env.features.fetch_csrf` is deprecated. Instead, please use `csrf: true/false` and `csrfInBatch: true/false` in the configuration of your remote services. These options will allow to configure CSRF-token handling for each remote service separately.
+- `cds build` no longer creates `engines` entry in package.json in case none has been defined. The Node.js version matched the minimal supported version of the CDS runtime and might therefore already be outdated.
+- For streamlined MTX, `@sap/cds` now uses the custom SAP Service Manager client built into `@sap/cds-mtxs`
+- Require new package `@cap-js/graphql` for `cds compile -2 graphql`
+
+### Fixed
+
+- Type `expr` of CQN can now describe function calls
+- Added missing optional `options` parameter in signature of `cds.serve`
+- `cds deploy` handles empty result from `cf` call correctly
+- When using CQL projections with array types, the type of the projection variable will now be correctly inferred as a single element of that array
+- `cds deploy` logs without label
+- Localized draft requests with nested expand in the case of `to many` now return localized data
+- Protected service root for REST adapter
+- `cds build` logs tar error message
+- Resolve view only with renamed fields in orderBy case
+- In case of `$apply` no default values for `top` or `skip` are set in subselects
+- Environment variables like `cds.requires.<service>.kind...` now consistently override services set in e.g. `package.json`
+- Expand of composition backlink now accesses draft instance instead of active
+- Performance of server bootstrap for services with lots of entities
+- Error with virtual properties in expand combined with draft
+- req.tenant is properly propagated by custom authentication in odata and rest
+- Error with `SiblingEntity` in draft
+- Quoting of keys typed as `cds.String` in error targets. Error targets are a relative resource path to correlate error
+messages with the corresponding text input filed in the UI in an OData HTTP error response body for errors, warnings,
+and info messages. For example:
+
+```diff
+HTTP/1.1 400 Bad Request
+OData-Version: 4.0
+content-type: application/json;odata.metadata=minimal
+Connection: close
+Content-Length: 145
+
+{
+  "error": {
+    "code": "400",
+    "message": "Value is required",
+-    "target": "items(ID=string-key-1)/text",
++    "target": "items(ID='string-key-1')/text",
+    "@Common.numericSeverity": 4
+  }
+}
+```
+
+- Application crash if batched Uri uses invalid percent encoding
+- `cds build` for HANA no longer produces `hdbtabledata` for csv files that refer to non-existing entities. This can be the case for imported content packages that bring csv files for entities that are not used in the application model.
+- `cds build` for HANA now gives precedence for csv files from application layer. This is important for imported content packages that bring csv files that shall be overwritten in the application layer.
+- `cds build` for Java no longer adds the service `cds.xt.MTXServices` to the application model.
+- `cds build` no longer fails when creating large resource TAR archives for MTXS projects.
+
+### Removed
+
+- Removed `PreconditionFailedError` when sending a request with an `if-match` header on an entity without an etag
+- Check for forbidden deep operations for associations on database layer. All non key fields for associations provided by request are ignored. Please check https://cap.cloud.sap/docs/guides/providing-services#associations-vs-compositions for more information. Note that this is a breaking change for applications that rely on checks for forbidden deep operations by runtime.
+
 ## Version 6.3.2 - 2022-11-21
 
 ### Fixed
@@ -57,6 +132,7 @@
 ### Changed
 
 - In `enterprise-messaging`, emitting CloudEvents messages sets the HTTP header `Content-Type: application/cloudevents+json`
+- Added type definition for `cds.User`
 
 ### Fixed
 

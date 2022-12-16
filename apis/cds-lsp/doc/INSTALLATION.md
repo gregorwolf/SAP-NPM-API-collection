@@ -35,32 +35,32 @@ For other connection channels see [below](#connection-channels)
 ##### TL;DR 
 1. install `@sap/cds-lsp` from _npmjs.org_ into subfolder `cds-lsp`
 
-```
-#!/bin/bash
-componentName=cds-lsp
-fullName="@sap/$componentName"
-
-echo '=== Getting latest download URL'
-url=$(npm view $fullName | sed -n 's/.tarball.*\(https.*\)$/\1/p')
-echo "=== Downloading $url"
-curl -O $url
-filename=$(echo $url | sed -n 's/.*\/\(.*\)$/\1/p')
-echo "=== Extracting $filename"
-tar xfv $filename
-mv package $componentName
-echo "=== Removing $filename"
-rm $filename
-cd $componentName
-echo "=== Installing dependencies"
-npm i
-```
+   ```
+   #!/bin/bash
+   componentName=cds-lsp
+   fullName="@sap/$componentName"
+   
+   echo '=== Getting latest download URL'
+   url=$(npm view $fullName | sed -n 's/.tarball.*\(https.*\)$/\1/p')
+   echo "=== Downloading $url"
+   curl -O $url
+   filename=$(echo $url | sed -n 's/.*\/\(.*\)$/\1/p')
+   echo "=== Extracting $filename"
+   tar xfv $filename
+   mv package $componentName
+   echo "=== Removing $filename"
+   rm $filename
+   cd $componentName
+   echo "=== Installing dependencies"
+   npm i
+   ```
 
 2. start the server using _stdio_
-```
-#!/bin/bash
-main=$(cat cds-lsp/package.json | sed -n 's/.*"main".*"\(.*\)".*/\1/p')
-node "cds-lsp/$main" --stdio 
-```
+   ```
+   #!/bin/bash
+   main=$(cat cds-lsp/package.json | sed -n 's/.*"main".*"\(.*\)".*/\1/p')
+   node "cds-lsp/$main" --stdio 
+   ```
 
 
 ----

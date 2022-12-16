@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
+## Version 6.4.0 - 2022-12-15
+
+### Added
+- CAP notebooks:
+  + possibility to declare variables and use them in magic commands, shell cells and terminal cells
+  + magic command `%%systeminfo` to render system information into the notebook
+  + magic command `%%writefile` with append option `-a`
+- formatter: new options `whitespaceBeforeColonInAnnotation` and `whitespaceAfterColonInAnnotation` for specific configuration in annotations
+
+### Changed
+- minimum VSCode version is now 1.72.0
+- uses classic `cds-lsp` for compiler versions < 3
+- formatter: non-inline pre-annotations are now prefixed with an empty line to separate them from preceding elements
+
+### Removed
+- OS specific CAP notebook cell types `Windows Bat (bat)`, `PowerShell`, `Shell Script (Bash)` are now replaced by cross-platform `Native Shell (shell)`
+
+### Also see
+- `@sap/cds-lsp` 6.4.0
+- `@sap/cds-compiler` 3.5.0
+
 ## Version 6.3.0 - 2022-11-01
 
 ### Added

@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.4.0 - 2022-12-15
+
+### Added
+- new formatting options `whitespaceBeforeColonInAnnotation` and `whitespaceAfterColonInAnnotation` for specific configuration in annotations
+
+### Changed
+- non-inline pre-annotations are now prefixed with an empty line to separate them from preceding elements
+
+### Also see
+- `@sap/cds-compiler` 3.5.0
+
 ## 6.3.0 - 2022-11-01
 
 ### Added
@@ -71,7 +82,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 - support for new major cds-compiler 3.0.0
-- new user setting `cds.workspaceSymbols.caseInsensitive` (default off) to search case insensitive
+- new user setting `cds.workspaceSymbols.caseInsensitive` (default off) to search case-insensitive
 - new user setting `cds.outline.semantical` (default off) to show outline in a rather semantical structure as opposed to a flat list
 - analyze dependencies now supports coloring of layers for monorepos
 - env.cdsc is now also considered for code completion
@@ -218,13 +229,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 - progress indication for initialization, configuration changed, references and workspace symbols
-- support for protocol:selectionRange (though, VSCode has a bug and does not considers it currently)
+- support for protocol:selectionRange (though, VSCode has a bug and does not consider it currently)
 
 ### Fixed
 
 - goto definition of certain references was wrong
 - symlinks were not followed when scanning workspace
-- (speedup) indexes might got stale even model file hasn't changed
+- (speedup) indexes could've gone stale even model file hasn't changed
 
 ### Changed
 
@@ -301,9 +312,9 @@ Best performance is achieved with default settings,
 except `cds.contributions.enablement.odata` which should be switched `off` to speed up compilation, unless feature is needed.
 
 Additonal hints to increase performance:
-- Within _SAP Business Application Studio_: close `CAP Data Models and Services` view. Otherwise it will ask for all workspace symbols at every change.
+- Within _SAP Business Application Studio_: close `CAP Data Models and Services` view, otherwise it will ask for all workspace symbols at every change.
 - Settings: `Cds � Contributions � Enablement: Odata`: switch off as already mentioned above
-- Settings: `Editor � Goto Location: Alternative Definition Command`: do not select `goToReferences`. Otherwise being already on a definition will trigger find references which requires all dirty models to be recompiled.
+- Settings: `Editor � Goto Location: Alternative Definition Command`: do not select `goToReferences`, otherwise being already on a definition will trigger find references which requires all dirty models to be recompiled.
 - Settings: `Workbench � Editor � Limit: Enabled`: switch on
 - Settings: `Workbench � Editor � Limit: Value`: lower the number. If open editors have `using` dependencies, a change in one editor will lead to a recompile of releated editors.
 - Commands `Go to References` / `Find All References` will recompile all models that might have changed due to a change in a depending model. If there are index models it often means the complete workspace is being recompiled. 
@@ -605,7 +616,7 @@ From version 4.0.0 on, @sap/cds-lsp requires NodeJS 12.8+ (was 10.16+)
 ### Fixed
 
 - formatting failed (seen in Eclipse, VSCode works) due to off-by-one error
-- global npm root for Business App Studio was not found with compiler.location option ProjectThenGlobalThenBuiltIn
+- global npm root for Business App Studio was not found with `compiler.location` option `ProjectThenGlobalThenBuiltIn`
 
 ## 3.1.4 - 2020-03-04
 
@@ -805,7 +816,7 @@ Official support for code formatting
 
 ## [2.1.1]
 * consume cds-compiler 1.13.1
-* performance improvements (less compilations and reduced memory footprint)
+* performance improvements (fewer compilations and reduced memory footprint)
 * Links to folders in using statement are now resolved
 
 ## [2.1.0]
@@ -873,6 +884,6 @@ Official support for code formatting
     * if turned on it only reinstalls if dependency definitions exist and have changed since last install. Other changes in package.json files are ignored
     * package.json files are no longer reformatted when installing dependencies
     * .cdsignore can be used to exclude paths from installation e.g. test folders with package.json files
-* In internal landscape within WebIDE it is now possible to use git-git-URLs to internal github in addition to https-git-URLs
+* In internal landscape within WebIDE it is now possible to use git-git-URLs to internal GitHub in addition to https-git-URLs
 * Compiler 1.3.0
 * Trace now measures durations with high precision, includes compilation footprint (number of files and size of compiled sources) and shows memory changes

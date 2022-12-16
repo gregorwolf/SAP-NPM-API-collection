@@ -53,6 +53,8 @@ is `@cds.persistence.exists` copied to localized convenience views.
 
 ### Removed `parensAsStrings`
 
+<!-- fully removed with 3.5.0 -->
+
 ### Removed `projectionAsQuery`
 
 ### Removed `redirectInSubQueries`

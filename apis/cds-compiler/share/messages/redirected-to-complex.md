@@ -3,7 +3,7 @@
 The redirected target is a complex view, for example, contains a JOIN or UNION.
 
 The message's severity is `Info` and is raised by the compiler.
-It is emitted to help developers identify possible modelling issues.
+It is emitted to help developers identify possible modeling issues.
 
 ## Example
 
@@ -33,7 +33,7 @@ The cross join in the view `CrossJoin` results in multiple rows with the same
 `id`.  Following the redirected view now returns multiple results, effectively
 making the to-one association a to-many association.
 
-Visualizing the tables with a bit of data, this issues becomes obvious:
+Visualizing the tables with a bit of data, this issue becomes obvious:
 
 ```markdown
 Main                        Secondary
@@ -54,8 +54,8 @@ CrossJoin
 ## How to Fix
 
 Ensure that the redirected association points to an entity that is a reasonable
-redirection target.  You must ensure that the redirection does not accidentally
-result in a to-one association becoming a to-many association.
+redirection target.  That means, the redirection target shouldn't accidentally
+make it a to-many association.
 
 ## Related Messages
 

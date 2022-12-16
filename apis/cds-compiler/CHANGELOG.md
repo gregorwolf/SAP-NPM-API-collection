@@ -7,6 +7,78 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.5.0 - 2022-12-07
+
+### Added
+
+- grammar: `localized` is now allowed in select items as well, to force the creation of convenience views.
+- to.edm(x):
+  + Validate annotation values of OASIS/SAP vocabulary term definitions against `@Validation.AllowedValues`.
+  + Reveal dangling type references in produced EDM.
+  + `@Capabilities` 'pull up' introduced with [3.3.0](#version-330---2022-09-29) must now be switched
+    on with option `odataCapabilitiesPullup`.
+- If option `addTextsLanguageAssoc` is set but ignored by the compiler, an info message is emitted.
+  This can happen if, e.g., the `sap.common.Languages` entity is missing.
+- Add OData vocabularies 'Offline' and 'PDF'.
+- Two new aspects in the `sap.common` context get special meaning:
+  `sap.common.TextsAspect` and `sap.common.FioriTextsAspect`.  
+  If these aspects exist, the former will be included in all `.texts`
+  entities without `@fiori.draft.enabled` annotation.  The latter will be
+  included in all `.texts` aspects that are `@fiori.draft.enabled`.  
+  They allow to extend `.texts` entities by simply extending these aspects.  
+  Example:
+  ```
+  entity E {
+    key id : Integer;
+    content: localized String;
+  }
+  extend sap.common.TextsAspect with {
+    elem: String;
+  };
+  // from @sap/cds common.cds
+  aspect sap.common.TextsAspect {
+    key locale: String;
+  }
+  ```
+
+### Changed
+
+- to.edm(x):
+  + Vocabulary references to `Common` and `Core` are added to the generated EDM by default to allow
+    usage of these vocabularies in http messages even if the terms are not being used in the EDM itself.
+  + API representation of enum types as `@Validation.AllowedValues` has been shifted from `for.odata` to
+    `to.edm(x)`. This allows to reuse imported enum types in new APIs.
+  + Messages raised from the EDM annotation renderer have been reworked with message id and enhanced message
+    position including the annotation under investigation.
+  + `@Validation.AllowedValues` annotation as introduced for enum elements with
+    [1.44.2](./doc/CHANGELOG_ARCHIVE.md#version-1442---2020-10-09)
+    are now always rendered into the API regardless of `@assert.range`.
+- to.cdl: The input CSN is no longer cloned for client-CSN and parseCdl-CSN,
+  as the renderer does not modify it.
+- A new warning is emitted if compositions of anonymous aspects are used with the `Association`
+  keyword instead of `Composition`. Replace the former with the latter to fix the warning.
+
+### Removed
+
+- to.edm(x): 'Empty Schema' warning has been removed.
+
+### Fixed
+
+- Enums with a structured base type were accidentally not warned about if used in annotation definitions.
+- for.odata/for.hana: Instead of parenthesising tuple expansion with `()`, put
+  newly created expression in a `xpr` expression, if the term has more than one expansion.
+- Annotation on indirect or inferred enum values were sometimes lost
+- to.cdl:
+  + Certain keywords of special functions no longer add superfluous parentheses.
+  + Extension rendering now supports type extensions as well as `key` for elements.
+  + Builtins that clashed names with implicit contexts were not rendered with `cds.` prefix.
+  + Unknown artifacts (as can happen in parseCdl-style CSN) are now rendered as `USING` statements.
+  + Type extensions in `csn.extensions` (e.g. for `length`) are now rendered.
+- to.edm(x):
+  + Fix a bug in type exposure when using `@cds.external` complex types.
+  + Don't remove empty `Edm.EntityContainer`.
+  + Aspects with actions outside of services are no longer warned about.
+- for.hana: Fix a foreign key replacement bug during association to join translation.
 
 ## Version 3.4.4 - 2022-11-25
 
