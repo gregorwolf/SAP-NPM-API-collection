@@ -1,3 +1,25 @@
+# Hana Client 2.15.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.15 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.15/en-US
+
+For the latest updates please see SAP Note 3279537 - SAP HANA Client 2.15 Release Notes
+
+https://launchpad.support.sap.com/#/notes/3279537
+
+## Version 2.15.17
+
+### Changes:
+
+ - Issue Number 296621: Calling ResultSet.isNull() before next() could have crashed.
+ - Issue Number 295974: Using connections obtained from a garbage-collected connection pool could have caused the application to crash.
+ - Issue Number 298260: Calling setAutoCommit or setClientInfo could have caused the application to block temporarily.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 294772: SQLDBC could have crashed due to isolated memory allocation failures.
+
 # Hana Client 2.14.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.14 documentation:

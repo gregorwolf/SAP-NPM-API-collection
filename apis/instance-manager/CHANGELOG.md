@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 3.5.2 - 2022-12-08
+
+### Changed
+- SM and IM Errors optimization
+
 ## 3.5.1 - 2022-12-02
 
 ### Changed

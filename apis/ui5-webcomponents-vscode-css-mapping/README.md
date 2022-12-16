@@ -16,7 +16,7 @@ The CSS Variable Mapping from [UI5 Web Components](https://sap.github.io/ui5-web
 ## Installation
 
 If you're using modern bundlers with components like css-loader to build your app, it's quite easy for you to introduce this mapping in 2 steps.
-1. In your project, run `npm install file:path/to/sap-ui5-webcomponents-vscode-css-mapping.tgz`
+1. In your project, run `npm install @sap/ui5-webcomponents-vscode-css-mapping`
 1. In the index.ts or app.ts:
     ```TypeScript
     import "@sap/ui5-webcomponents-vscode-css-mapping/dist/vscode-to-ui5-webcomponents.css";
@@ -25,7 +25,7 @@ If you're using modern bundlers with components like css-loader to build your ap
 1. Start enjoying the seamless theme switching in VSCode/BAS.
 
 If you're not using any bundling tools, it's also workable (but not recommended):
-1. In your project, run `npm install file:path/to/sap-ui5-webcomponents-vscode-css-mapping.tgz`
+1. In your project, run `npm install @sap/ui5-webcomponents-vscode-css-mapping`
 1. Copy these files to your preferred location, e.g., into `assets/styles/` folder.
     - `node_modules/@sap/ui5-webcomponents-vscode-css-mapping/dist/vscode-to-ui5-webcomponents.css` => `assets/styles/vscode-to-ui5-webcomponents.css`
     - `node_modules/@sap/ui5-webcomponents-vscode-css-mapping/dist/quartz-legends.css` => `assets/styles/quartz-legends.css`
@@ -46,27 +46,3 @@ To consume styles with fallback, just add the type of fallback as suffix of file
         <link rel="stylesheet" href="styles/vscode-to-ui5-webcomponents-light.css">
    </head>
 ```
-
-## Try example
-1. In the root folder on this repo, install and build
-    ```bash
-    npm install
-    npm pack
-    npm run install:examples
-    npm run build:examples
-    ```
-1. Press F5 if this root repo has been opened in VSCode as its first workspace folder.
-1. Input VSCode Command `Webview Consumer: Show Webview` in Command Pallette
-1. Switch among different themes and observe the styles.
-
-## Development
-
-- Clone
-    ```bash
-    git clone https://github.wdf.sap.corp/devx-wing/ui5-webcomponents-vscode-css-mapping;
-    ```
-- Install dependencies and generate an npm package
-    ```bash
-    npm install
-    npm pack
-    ```

@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 12.0.3 - 2022-12-11
+
+### Fixed
+- html5 repo creds performance issues 
+
 ## 12.0.2 - 2022-12-06
 
 ### Fixed
