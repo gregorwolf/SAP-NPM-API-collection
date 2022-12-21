@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.4.2 - 2022-12-19
+
+### Fixed
+
+- `/-/cds/jobs/pollTask` now correctly fetches the task status.
+- Jobs now have the correct default `RUNNING` status.
+
+## Version 1.4.1 - 2022-12-16
+
+### Fixed
+
+- Fixed an error with when parsing the tenant metadata when it is empty
+- Async upgrade parallelization via database clustering now works correctly with the new jobs service
+- Improved `tenant_id` correlation for Kibana logging
+
 ## Version 1.4.0 - 2022-12-15
 
 ### Changed

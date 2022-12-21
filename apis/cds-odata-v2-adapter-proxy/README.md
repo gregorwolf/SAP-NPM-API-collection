@@ -170,7 +170,7 @@ The following CDS OData V2 Adapter Proxy specific annotations are supported:
 - `@Core.ContentDisposition.Type: '<value>'`: Controls the content disposition behavior in client/browser (`inline` or `attachment`).
 - `@cov2ap.headerDecode: [...]`: Array of sequential decoding procedures ('uri', 'uriComponent', 'base64') used for media entity upload header.
 
-### CDS Modelling Restrictions
+### CDS Modeling Restrictions
 
 CDS project configuration `cds.odata.version` shall be set to `v4`, as OData proxy maps to OData V4.
 CDS supports modelling features that are not compatible with OData V2 standard:
@@ -178,6 +178,7 @@ CDS supports modelling features that are not compatible with OData V2 standard:
 - **Singletons:** Usage of annotation `@odata.singleton` is not supported in combination with OData V2
 - **Structured Types:** Usage of `cds.odata.format: 'structured'` is not supported in combination with OData V2
 - **Arrayed Types:** Usages of `array of` or `many` in entity element definitions lead to CDS compilation error: `Element must not be an "array of" for OData V2`
+- **Managed Compositions:** The usage of managed composition (currently) produces Format Exception in Fiori Elements V2 for Date/Time data types
 
 To provide an OData V2 service based on the CDS OData V2 Adapter Proxy, those CDS modelling features must not be used.
 In general any CDS OData API flavor must not be used in combination with CDS OData V2 Adapter Proxy.

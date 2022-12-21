@@ -7,6 +7,12 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.5.2 - 2022-12-20
+
+### Fixed
+
+- to.sql/hdi/hdbcds: Don't process references in actions, as they have no impact on the database - avoids internal errors
+
 ## Version 3.5.0 - 2022-12-07
 
 ### Added
@@ -20,26 +26,6 @@ The compiler behavior concerning `beta` features can change at any time without 
 - If option `addTextsLanguageAssoc` is set but ignored by the compiler, an info message is emitted.
   This can happen if, e.g., the `sap.common.Languages` entity is missing.
 - Add OData vocabularies 'Offline' and 'PDF'.
-- Two new aspects in the `sap.common` context get special meaning:
-  `sap.common.TextsAspect` and `sap.common.FioriTextsAspect`.  
-  If these aspects exist, the former will be included in all `.texts`
-  entities without `@fiori.draft.enabled` annotation.  The latter will be
-  included in all `.texts` aspects that are `@fiori.draft.enabled`.  
-  They allow to extend `.texts` entities by simply extending these aspects.  
-  Example:
-  ```
-  entity E {
-    key id : Integer;
-    content: localized String;
-  }
-  extend sap.common.TextsAspect with {
-    elem: String;
-  };
-  // from @sap/cds common.cds
-  aspect sap.common.TextsAspect {
-    key locale: String;
-  }
-  ```
 
 ### Changed
 
