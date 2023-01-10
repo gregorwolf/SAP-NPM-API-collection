@@ -1,10 +1,12 @@
 npm config rm @sap:registry
-rm -rf node_modules 
-mkdir node_modules
-npm install libnpmsearch
+# rm -rf node_modules 
+# mkdir node_modules
+npm install
+cp package.json package-original.json
+cp new-package.json package.json
 node update-package-json.js
 jq '.' new-package.json > package.json
-rm new-package.json
+cp package.json new-package.json
 # npm install
 # Reduce list of packages to update by using diff on package.json
 git diff package.json | grep + | grep "@sap" | sed 's/[^"]*"\([^"]*\).*/\1/' > packages.txt
@@ -18,3 +20,4 @@ while read package; do
   cp -r node_modules/$package/doc apis$packageNoPrefix/doc
 done <packages.txt
 #mkdocs build -f mkdocs.yml
+cp package-original.json package.json
