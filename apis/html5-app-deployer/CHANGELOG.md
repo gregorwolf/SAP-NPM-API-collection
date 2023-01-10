@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.2.3 - 2023-01-08
+
+### Updated dependencies
+- deps: cf-nodejs-logging-support@^6.14.0
+
 ## 4.2.2 - 2022-11-16
 
 ### Updated dependencies

@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
+## 3.2.15 - 2023-01-09
+- hotfix: upgrade to newest jsonwebtoken version ^9.0.0 because of security issue complainings. But the library was never affected
+
+## 3.2.14 - 2022-10-11
+- allow IAS issuer without https protocol prefix
+- fix for additionalAttributes
+- allow setting timeout without having credentials object provided
+
 ## 3.2.13 - 2022-02-15
 - hofix in keycache implementation if you turn off to use the cache
 - upgrade to newer axios library

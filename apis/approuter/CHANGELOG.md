@@ -5,6 +5,31 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 13.0.1 - 2023-01-03
+
+### Fixed
+- Correct locating html5 repository runtime service by its label
+- When connectivity service is bound to the approuter, load its credentials token in case it expired
+- Query parameter in SAP Managed Approuter runtime url 
+- IAS in single tenant flow
+
+### Updated dependencies
+- deps: cf-nodejs-logging-support@^6.14.0
+
+## 13.0.0 - 2022-12-25
+
+### Added
+- IAS custom domains support
+- Create SMS subscribed application url with subscriber subdomain instead of zoneId -- IAS TenantId
+- Certificates forwarding in service2approuter flow
+
+### Fixed
+- html5 repo creds performance fix correction
+- Destination cache key changed from destination name to destinationId plus 
+  destination name in case of instance level destination
+- Remove connection specific headers from http2 response
+- Scopes retrieval with IAS login in user-api
+
 ## 12.0.3 - 2022-12-11
 
 ### Fixed

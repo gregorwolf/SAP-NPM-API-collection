@@ -17,7 +17,7 @@ Extending Application Router
     + [`first`](#first)
     + [`beforeRequestHandler`](#beforerequesthandler)
     + [`afterRequestHandler`](#afterrequesthandler)
-      [`backendTimeout`](#backendtimeout)
+    + [`backendTimeout`](#backendtimeout)
     + [`beforeErrorHandler`](#beforeerrorhandler)
     + [`start(options, callback)`](#startoptions-callback)
     + [`close(callback)`](#closecallback)

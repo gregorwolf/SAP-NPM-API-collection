@@ -8,6 +8,20 @@ For the latest updates please see SAP Note 3279537 - SAP HANA Client 2.15 Releas
 
 https://launchpad.support.sap.com/#/notes/3279537
 
+## Version 2.15.19
+
+### Changes:
+
+ - Issue Number 297250: Fetched NVARCHAR values containing UTF-8 data could have been truncated.
+ - Issue Number 295532: A sporadic crash could have occurred when execQuery() and execute() were run concurrently on the same Statement object.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 298152: An application server on AIX may have failed to read a user key.
+ - Issue Number 299139: The hdbuserstore list command may have reported incorrect database names.
+ - Issue Number 298872: Errors related to the user store did not include the invalid path in the message.
+ - Issue Number 298823: Key list did not provide AUTHENTICATIONX509 details.
+
 ## Version 2.15.17
 
 ### Changes:

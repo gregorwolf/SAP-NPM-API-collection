@@ -5,8 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.7.2"></a>
+## 6.7.2 - 2022-12-23
+
+### Update
+- Update express to v4.18.2
+  
 <a name="6.7.1"></a>
-## 6.7.0 - 2022-10-10
+## 6.7.1 - 2022-10-10
 
 ### Update
 - Update _@sap/jobs-client to v1.7.42

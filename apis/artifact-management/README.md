@@ -79,6 +79,8 @@ const workspace = new WorkspaceImpl(vscode);
 
 The library also provides CLI `dev-project` which can be used to visualise the outputs of APIs as shown in the following section.
 
+The library also provides the object CommandExecutor to help create customized CLI tools. On BAS, for example, use the basctl tool to call Project API which resides on an BAS extenison.
+
 ---
 # APIs & Examples
 
