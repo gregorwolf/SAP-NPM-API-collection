@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.4.3 - 2022-12-28
+
+### Fixed
+
+- Asynchronous jobs now return a directly-consumable URL for Cloud Foundry deployments in the `Location` header.
+- Some incorrect status reports for the job and task polling have been fixed.
+- Stability improvements for HANA tenant lifecycle operations, most notably unhandled promise rejections exiting the process have been fixed.
+
 ## Version 1.4.2 - 2022-12-19
 
 ### Fixed
