@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.2.4 - 2023-01-17
+
+### Updated dependencies
+- deps: @sap/xsenv: ^3.4.0
+- deps: @sap/xssec: ^3.2.15
+
 ## 4.2.3 - 2023-01-08
 
 ### Updated dependencies

@@ -1,3 +1,12 @@
+## 1.11.0
+
+### Fixes
+
+- Disable tracking via SAP Web Analytics
+- Resolve placeholders in .env files
+- Virtual Table Editor with setting Auto save: afterDalay - causes text to be deleted while typing
+- Support Mode Export hits an error "NO REMOTE DATA option"
+
 ## 1.10.0
 
 ### New Features

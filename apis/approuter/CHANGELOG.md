@@ -5,6 +5,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 13.1.0 - 2023-01-24
+
+### Fixed
+- IAS credentials from HTML5 Repo handling
+- Use warning log level in handleBackendError
+- Debug logs for backend response
+
+### Added
+- IAS token sharing support
+
+### Updated dependencies
+- deps: @sap/xssec@^3.2.17
+- deps: @sap/xsenv@^3.4.0
+
+## 13.0.2 - 2023-01-15
+
+### Fixed
+- Fix logout issue, when html5repo returns 503 error approuter still will use logout path from the central xs-app.json
+
+### Updated dependencies
+- deps: @sap/xssec@^3.2.15
+
 ## 13.0.1 - 2023-01-03
 
 ### Fixed

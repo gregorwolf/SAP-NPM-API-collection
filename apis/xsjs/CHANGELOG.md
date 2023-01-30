@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.7.3"></a>
+## 6.7.3 - 2023-01-11
+
+### Update
+- Update audit-logging to v5.6.3
+- Update instance manager to 3.5.3
+- Update xssec to 3.2.15
+
 <a name="6.7.2"></a>
 ## 6.7.2 - 2022-12-23
 

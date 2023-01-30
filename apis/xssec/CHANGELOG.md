@@ -1,6 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.2.17 - 2023-01-09
+- obfuscate credentials in debug output, when xssec:request debug variable is set
 
 ## 3.2.15 - 2023-01-09
 - hotfix: upgrade to newest jsonwebtoken version ^9.0.0 because of security issue complainings. But the library was never affected
