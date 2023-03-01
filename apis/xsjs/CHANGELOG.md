@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.7.5"></a>
+## 6.7.5 - 2023-02-10
+
+### Update
+- Update xsodata to v8.0.2
+
+### Fix
+- Way to require method isString from lodash
+
+<a name="6.7.4"></a>
+## 6.7.4 - 2023-01-30
+
+### Update
+- Update hana-client to v2.15.19
+- Update hdbext to v7.7.2
+
 <a name="6.7.3"></a>
 ## 6.7.3 - 2023-01-11
 

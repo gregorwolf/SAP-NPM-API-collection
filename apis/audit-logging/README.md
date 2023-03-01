@@ -510,6 +510,9 @@ message.log(function (err, id) {
 
 ## API - v2
 
+> **NOTE:** 
+> The API v2 is dual - it supports both the traditional callbacks and promises.
+
 ### Importing the library
 
 `credentials` object with credentials for the Audit log service.
@@ -535,6 +538,18 @@ auditLogging.v2(credentials, function(err, auditLog) {
 });
 ```
 
+Promise based
+```js
+var credentials = {
+  "user": "user",
+  "password": "password",
+  "url": "https://host:port"
+};
+
+var auditLogging = require('@sap/audit-logging');
+var auditLog = await auditLogging.v2(credentials);
+```
+
 #### OAuth2 Plan
 
 ```js
@@ -555,6 +570,20 @@ auditLogging.v2(credentials, securityContext, function(err, auditLog) {
     return console.log(err);
   }
 });
+```
+Promise based
+```js
+var credentials = {
+  "uaa": {
+    "clientid": "clientid",
+    "clientsecret": "clientsecret",
+    "url": "https://host:port"
+  }
+  "url": "https://host:port"
+};
+
+var auditLogging = require('@sap/audit-logging');
+var auditlog = await auditLogging.v2(credentials, securityContext);
 ```
 
 * `credentials` - Retrieved from the environment.
@@ -583,6 +612,26 @@ auditLog.read({ type: 'online system', id: { name: 'Students info system', modul
 
   });
 ```
+
+Promise based
+
+```js
+await auditLog.read({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
+  .attribute({ name: 'status' })
+  .attribute({ name: 'date-of-birth', successful: true })
+  .attachment({ id: 'exam-results-9537' })
+  .attachment({ id: 'recommendations-4381', name: 'file.doc' })
+  .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
+  // multiple data subjects can also be provided in array format as following:
+  //  .dataSubjects([{ type: 'student', id: { student_id: 'st_913' }, role: 'foreign student' },
+  //                 { type: 'student', id: { student_id: 'st_619' }, role: 'foreign student' }])
+  .accessChannel('UI')
+  .tenant('tenantId')
+  .by('John Doe')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
+  .log();
+```
+
 
 * `read` - takes a JavaScript object which identifies the object which contains the data being accessed. Should have `type` and `id` properties.
 * `attribute(attribute)` - takes an object which describes an attribute. Should have a `name` property and optionally a `successful` property. It is **mandatory** to provide at least one attribute.
@@ -614,6 +663,24 @@ auditLog.read({ type: 'online system', id: { name: 'Students info system', modul
   .log(function (err) {
 
   });
+```
+
+Promise based
+```js
+await auditLog.read({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
+  .attribute({ name: 'status' })
+  .attribute({ name: 'date-of-birth', successful: true })
+  .attachment({ id: 'exam-results-9537' })
+  .attachment({ id: 'recommendations-4381', name: 'file.doc' })
+  .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
+  // multiple data subjects can also be provided in array format as following:
+  //  .dataSubjects([{ type: 'student', id: { student_id: 'st_913' }, role: 'foreign student' },
+  //                 { type: 'student', id: { student_id: 'st_619' }, role: 'foreign student' }])
+  .accessChannel('UI')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
+  .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
+  .log();
 ```
 
 * `read` - takes a JavaScript object which identifies the object which contains the data being accessed. Should have `type` and `id` properties.
@@ -647,6 +714,22 @@ message.logPrepare(function (err) {
 });
 ```
 
+Promise based
+```js
+var message = await auditLog.update({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
+  .attribute({ name: 'status' })
+  .attribute({ name: 'town', old: 'Birmingham', new: 'London' })
+  .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
+  .tenant('tenantId')
+  .by('John Doe')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z');
+
+await message.logPrepare();
+await message.logSuccess();
+// or
+await message.logFailure();
+```
+
 * `update` - takes a JavaScript object which identifies the object which contains the data being updated. Should have `type` and `id` properties.
 * `attribute(attribute)` - takes an object which describes an attribute. Should have a `name` property and optionally - `old` and `new` properties. It is **mandatory** to provide at least one attribute.
 * `dataSubject` - takes an object describing the owner of the personal data. Should have `type` and `id` properties. The `role` property is optional. `dataSubject` is **mandatory**.
@@ -673,6 +756,22 @@ message.logPrepare(function (err) {
   // or
   message.logFailure(function(err) { });
 });
+```
+
+Promise based
+```js
+var message = await auditLog.update({ type: 'online system', id: { name: 'Students info system', module: 'Foreign students' } })
+  .attribute({ name: 'status' })
+  .attribute({ name: 'town', old: 'Birmingham', new: 'London' })
+  .dataSubject({ type: 'student', id: { student_id: 'st_123' }, role: 'foreign student' })
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
+  .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z');
+
+await message.logPrepare();
+await message.logSuccess();
+// or
+await message.logFailure();
 ```
 
 * `update` - takes a JavaScript object which identifies the object which contains the data being updated. Should have `type` and `id` properties.
@@ -703,6 +802,21 @@ message.logPrepare(function (err) {
 });
 ```
 
+Promise based
+
+```js
+var message = await auditLog.configurationChange({ type: 'online system', id: { name: 'Students info system', configuration: 'global-config' } })
+  .attribute({ name: 'session timeout', old: '5', new: '25' })
+  .tenant('tenantId')
+  .by('Application Admin')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z');
+
+await message.logPrepare();
+await message.logSuccess();
+// or
+await message.logFailure();
+```
+
 * `configurationChange` - takes a JavaScript object which identifies the object which contains the data being configured. Should have `type` and `id` properties.
 * `attribute(attribute)` - takes an object which describes an attribute. Should have a `name`, `old` and `new` properties. It is **mandatory** to provide at least one attribute.
 * `tenant` - takes a string which specifies the tenant id.
@@ -727,7 +841,19 @@ message.logPrepare(function (err) {
   message.logFailure(function(err) { });
 });
 ```
+Promise based
+```js
+var message = await auditLog.configurationChange({ type: 'online system', id: { name: 'Students info system', configuration: 'global-config' } })
+  .attribute({ name: 'session timeout', old: '5', new: '25' })
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
+  .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z');
 
+await message.logPrepare();
+await message.logSuccess();
+// or
+await message.logFailure();
+```
 * `configurationChange` - takes a JavaScript object which identifies the object which contains the data being configured. Should have `type` and `id` properties.
 * `attribute(attribute)` - takes an object which describes an attribute. Should have a `name`, `old` and `new` properties. It is **mandatory** to provide at least one attribute.
 * `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
@@ -748,8 +874,16 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
   .by('John Doe')
   .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
   .log(function (err) {
-
   });
+```
+Promise based
+```js
+await auditLog.securityMessage('%d unsuccessful login attempts', 3)
+  .externalIP('127.0.0.1')
+  .tenant('tenantId')
+  .by('John Doe')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
+  .log();
 ```
 
 * `securityMessage` - takes a formatted string as in [util.format()](https://nodejs.org/api/util.html#util_util_format_format_args).
@@ -770,6 +904,15 @@ auditLog.securityMessage('%d unsuccessful login attempts', 3)
   .log(function (err) {
 
   });
+```
+Promise based
+```js
+await auditLog.securityMessage('%d unsuccessful login attempts', 3)
+  .externalIP('127.0.0.1')
+  .tenant('$PROVIDER') // or .tenant('$SUBSCRIBER', subdomain)
+  .by('$USER')
+  .at(42 || new Date() || '1970-01-01T00:00:00.042Z')
+  .log();
 ```
 
 * `securityMessage` - takes a formatted string as in [util.format()](https://nodejs.org/api/util.html#util_util_format_format_args).

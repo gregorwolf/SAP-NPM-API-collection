@@ -8,6 +8,16 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.5.4"></a>
+## 6.5.4 - 2023-02-28
+### Changed
+- improve UAA error handling. 
+
+<a name="6.5.3"></a>
+## 6.5.3 - 2023-01-11
+### Changed
+- dependencies version update.
+
 <a name="6.5.2"></a>
 ## 6.5.2 - 2022-07-12
 ### Changed
@@ -49,7 +59,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ## 6.4.7 - 2022-05-18
 
 ### Changed
-- Switch from deprecated Request package to Axios Package
+- Switch from deprecated Request package to Axios Package. <br/>
+Note: If you are using exported functions such as callXsuaa, you would need to adapt to the Axios syntax - `request.body` is replaced with `request.data`.
 
 ### Removed
 - Remove npm-shrinkwrap.json

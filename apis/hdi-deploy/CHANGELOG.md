@@ -1,3 +1,12 @@
+## 4.5.3
+Features:
+- use @sap/hana-client@2.15.19
+
+## 4.5.2
+Features:
+- use @sap/hana-client@2.15.17
+- use @sap/xsenv@3.4.0
+
 ## 4.5.1
 Features:
 - use @sap/hana-client@2.14.22

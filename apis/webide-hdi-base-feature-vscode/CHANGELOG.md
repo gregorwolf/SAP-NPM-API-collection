@@ -1,3 +1,9 @@
+## 1.18.0
+
+### Fixes
+- Fetching roles while creating synonym throws service error
+- Mass generation of synonyms creates synonyms also in unselected schemas
+
 ## 1.17.0
 
 ### Fixes

@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 3.5.3 - 2023-01-10
+
+### Updated
+- Updated xssec to 3.2.15
 
 ## 3.5.2 - 2022-12-08
 

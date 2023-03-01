@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.0.0 - 2023-02-12
+
+### Updated dependencies
+- deps: xssec@^3.2.17
+- deps: axios@0.27.2
+
+### Added
+- nodejs version ^10.0.0 support removed
+- nodejs version ^18.0.0 support added
+
 ## 4.2.4 - 2023-01-17
 
 ### Updated dependencies

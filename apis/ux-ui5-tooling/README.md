@@ -180,6 +180,35 @@ FIORI_TOOLS_PASSWORD=YOUR_PASSWORD
 ```
 When the two environment variables `FIORI_TOOLS_USER` and `FIORI_TOOLS_PASSWORD` are defined, then they will be used as credentials when connecting to the backend service.
 
+#### [Backend configuration options](#backend-configuration-options)
+
+Here is the full list of the available configuration options for the backend proxy.
+- `forward` (available with version 1.8.5): url string to be parsed with the url module
+- `ws` (available with version 1.1.5): true/false: if you want to proxy websockets
+- `xfwd` (available with version 1.1.9): true/false, adds x-forward headers
+- `toProxy` (available with version 1.8.5): true/false, passes the absolute URL as the path (useful for proxying to proxies)
+- `prependPath` (available with version 1.8.5): true/false, Default: true - specify whether you want to prepend the target's path to the proxy path
+- `ignorePath` (available with version 1.8.5): true/false, Default: false - specify whether you want to ignore the proxy path of the incoming request (note: you will have to append / manually if required)
+- `localAddress` (available with version 1.8.5): Local interface string to bind for outgoing connections
+- `changeOrigin` (available with version 1.8.5): true/false, Default: true - changes the origin of the host header to the target URL
+- `preserveHeaderKeyCase` (available with version 1.8.5): true/false, Default: false - specify whether you want to keep letter case of response header key
+- `auth` (available with version 1.8.5): Basic authentication i.e. 'user:password' to compute an Authorization header
+- `hostRewrite` (available with version 1.8.5): rewrites the location hostname on (301/302/307/308) redirects
+- `autoRewrite` (available with version 1.8.5): rewrites the location host/port on (301/302/307/308) redirects based on requested host/port. Default: false
+- `protocolRewrite` (available with version 1.8.5): rewrites the location protocol on (301/302/307/308) redirects to 'http' or 'https'. Default: null
+- `cookieDomainRewrite` (available with version 1.8.5): rewrites domain of set-cookie headers. Possible values:
+  - false (default): disables cookie rewriting
+  - String: new domain, for example cookieDomainRewrite: "new.domain". To   remove the domain, use cookieDomainRewrite: ""
+  - Object: mapping of domains to new domains, use "*" to match all domains
+- `cookiePathRewrite` (available with version 1.8.5): rewrites path of set-cookie headers. Possible values:
+  - false (default): disable cookie rewriting
+  - String: new path, for example cookiePathRewrite: "/newPath/". To remove the path, use cookiePathRewrite: "". To set path to root use cookiePathRewrite: "/"
+  - Object: mapping of paths to new paths, use "*" to match all paths.
+- `headers` (available with version 1.8.5): object, adds request headers
+- `proxyTimeout` (available with version 1.8.5): timeout (in millis) when proxy receives no response from target
+- `timeout` (available with version 1.8.5): timeout (in millis) for incoming requests
+- `followRedirects` (available with version 1.8.5): true/false, Default: false - specify whether you want to follow redirects
+
 #### [UI5](#ui5)
 
 The proxy configuration contains also the configuration for loading the SAPUI5 resources when previewing the application, e.g.

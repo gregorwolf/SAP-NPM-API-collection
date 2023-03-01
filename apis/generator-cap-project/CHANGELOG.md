@@ -9,9 +9,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+## [1.7.1] - 2023-01-31
+### Fixed
+- remove circular call stack from Application Wizard logging
 
+### Changed
+- project creation logging is less talkative
 
-
+## [1.7.0] - 2023-01-13
+### Changed
+- Removing file system util - using native fs now
+- logger overrides console log methods for logging of cds-dk inside Application Wizard
 
 ## [1.6.8] - 2022-10-26
 ### Changed

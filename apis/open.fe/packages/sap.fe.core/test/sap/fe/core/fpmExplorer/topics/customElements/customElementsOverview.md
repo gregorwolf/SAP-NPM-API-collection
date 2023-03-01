@@ -1,8 +1,23 @@
+<style>
+@media screen and (max-width: 600px) {
+    .phone {
+          font-size: small;
+          padding-left: 1em !important;
+    }
+}
+@media screen and (max-width: 370px) {
+    .phone {
+          font-size: x-small;
+          padding-left: 1em !important;
+    }
+}
+</style>
+
 # Overview of Extension Points
 
 The manifest-based extension points provided by SAP Fiori elements are:
 
-<ul style="columns: 2; max-width: 28rem">
+<ul class="phone" style="columns: 2; max-width: 28rem; width: max-content">
 	<li>Custom Section</li>
 	<li>Custom Subsection</li>
     <li>Custom Action</li>

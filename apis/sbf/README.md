@@ -22,6 +22,7 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
 
 <!-- toc -->
 
+
 - [Usage](#usage)
   * [Create a simple service broker](#create-a-simple-service-broker)
     + [Prerequisites](#prerequisites)
@@ -503,7 +504,7 @@ SBSS on PostgreSQL credentials provider requires 2 services to be bound to the s
 
 Create SBSS service instance (example):
 ```sh
-cf create-service postgresql v9.4-dev pg-sbss -t sbss
+cf cs postgresql-db development pg-sbss -t sbss
 ```
 Here `pg-sbss` is an arbitrary service instance name. Notice that the command attaches the tag `sbss` to the service instance. **This tag is mandatory.** It can also be set after the service instance has been created like this:
 ```sh
@@ -1121,9 +1122,9 @@ Utility function to easily make HTTP calls to XSUAA. Authentication to XSUAA is 
 * `options` *Object* Parameter containing the following properties:
   * `baseUrlProperty` *String* Name of a property from the XSUAA credentials to be used as base URL. Defaults to `url`.
   * `path` *String* XSUAA REST API endpoint. This path will be appended to the XSUAA base URL internally.
-  * The [options](https://github.com/request/request#requestoptions-callback) described in the documentation of the [request](https://www.npmjs.com/package/request) package.
+  * The [options](https://github.com/request/request#requestoptions-callback) described in the documentation of the [axios request](https://www.npmjs.com/package/axios) package.
 * `callback` *function(error, res, body)*
-  * The [parameters](https://github.com/request/request#requestoptions-callback) described in the documentation of the [request](https://www.npmjs.com/package/request) package.
+  * The [parameters](https://github.com/request/request#requestoptions-callback) described in the documentation of the [axios request](https://www.npmjs.com/package/axios) package.
 
 Example:
 ```js

@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 14.0.0 - 2023-02-09
+
+### Added
+- Support node version 16 and node version 18 instead of node version 14 and node version 16
+
+### Updated dependencies
+- deps: @sap/logging@^6.2.0
+
+## 13.1.1 - 2023-01-30
+
+### Fixed
+- Destination key calculation in headers sending
+
+### Updated dependencies
+- deps: @sap/audit-logging@5.6.3
+
 ## 13.1.0 - 2023-01-24
 
 ### Fixed

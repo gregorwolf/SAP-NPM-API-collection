@@ -1,8 +1,23 @@
-# Controller Extensions overview
+<style>
+@media screen and (max-width: 600px) {
+    .phone {
+          font-size: small;
+          padding-left: 1em !important;
+    }
+}
+@media screen and (max-width: 370px) {
+    .phone {
+          font-size: x-small;
+          padding-left: 1em !important;
+    }
+}
+</style>
+
+# Overview of Controller Extensions
 
 Collection of controller extensions used internally in SAP Fiori elements exposing a method that you can override to allow more flexibility:
 
-<ul style="columns: 2; max-width: 28rem">
+<ul class="phone" style="columns: 2; max-width: 28rem; width: max-content">
 	<li>Edit Flow</li>
     <li>Custom State Handling</li>
     <li>"Share" Functionality</li>

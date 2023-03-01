@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 1.7.43 - 2023-01-13
+
+### Added
+
+- Dependency updates
+
+
 ## 1.7.42 - 2022-10-10
 
 ### Added

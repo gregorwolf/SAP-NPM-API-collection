@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.2.0 - 2023-02-22
+
+### Added
+- Node.js 18.x support.
+
+### Updated
+- filter-node-package to 3.1.1
+
+
 ## 4.1.0 - 2022-01-12
 
 ### Added

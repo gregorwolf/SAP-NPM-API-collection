@@ -1,3 +1,8 @@
+## 1.6.0
+
+### Fixes
+- User-provided services are not shown as binding services
+
 ## 1.5.2
 
 ### Fixes

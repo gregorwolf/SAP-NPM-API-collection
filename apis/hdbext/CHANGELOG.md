@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.7.2"></a>
+## 7.7.2 - 2023-01-24
+
+### Fixed
+- Fixed `hdbext.createConnectionPromise` add connection as first param
+
+<a name="7.7.1"></a>
+## 7.7.1 - 2023-01-10
+
+### Updated
+- Update *@sap/hana-client* to v2.15.19
+
+### Fixed
+- `checkSynonymsPromise` now returns in case result is not a synonym
+
 <a name="7.7.0"></a>
 ## 7.7.0 - 2022-11-01
 

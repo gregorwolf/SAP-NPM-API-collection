@@ -1,3 +1,11 @@
+## 1.12.0
+
+### New Features
+- Data from a result set can be viewed in detail by double-clicking a cell in the result set view.
+
+### Fixes
+- When executing a parameterized statement the value input box could stay enabled even if the NULL value checkbox was checked.
+
 ## 1.11.0
 
 ### Fixes

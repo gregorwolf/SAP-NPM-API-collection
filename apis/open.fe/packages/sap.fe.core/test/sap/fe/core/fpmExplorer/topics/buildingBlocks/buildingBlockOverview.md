@@ -1,3 +1,18 @@
+<style>
+@media screen and (max-width: 600px) {
+    .phone {
+          font-size: small;
+          padding-left: 1em !important;
+    }
+}
+@media screen and (max-width: 370px) {
+    .phone {
+          font-size: x-small;
+          padding-left: 1em !important;
+    }
+}
+</style>
+
 # Overview of Building Blocks
 
 While extension points provide you with containers where you can implement your own UI, SAP Fiori elements exposes a set of building blocks that are used during templating to build your app.\
@@ -5,7 +20,7 @@ Building blocks are reusable artifacts that are consistently orchestrated by the
 Using our building blocks to extend your app results in low-maintenance and timeless software.
 The building blocks provided by SAP Fiori elements are:
 
-<ul style="columns: 2; max-width: 28rem">
+<ul class="phone" style="columns: 2; max-width: 28rem; width: max-content">
 	<li>Field</li>
     <li>Form</li>
     <li>Form Element</li>

@@ -7,18 +7,19 @@ Command-Line Interface (CLI) for SAP Data Warehouse Cloud.
 ## Content
 
 1. [Installation](#installation)
-2. [Update the CLI](#update-the-cli)
-3. [Versioning](#versioning)
-4. [Authentication](#authentication)
+1. [Update the CLI](#update-the-cli)
+1. [Versioning](#versioning)
+1. [Authentication](#authentication)
    1. [OAuth Interactive Usage](#oauth-interactive-usage)
-   2. [Passcodes](#passcodes)
-5. [Usage](#usage)
+   1. [Passcodes](#passcodes)
+1. [Usage](#usage)
    1. [From the command line](#from-the-command-line)
-   2. [As a Node.js module dependency](#as-a-nodejs-module-dependency)
-   3. [Options Handling](#options-handling)
-6. [Help & Documentation](#help-documentation)
-7. [Community & Feedback](#community--feedback)
-8. [License](#license)
+   1. [As a Node.js module dependency](#as-a-nodejs-module-dependency)
+   1. [Options Handling](#options-handling)
+   1. [Environment Variables](#environment-variables)
+1. [Help & Documentation](#help-documentation)
+1. [Community & Feedback](#community--feedback)
+1. [License](#license)
 
 ## Installation
 
@@ -412,6 +413,18 @@ Then, supply it to the CLI:
 ```bash
 $ dwc cache init --options-file /path/to/options-file.json
 ```
+
+### Environment Variables
+
+The CLI supports the following environment variables. You can set the environment variables when calling the CLI according to the local environment. In addition, the CLI supports the [`dotenv`](https://www.npmjs.com/package/dotenv#usage) module, allowing you to place a `.env` file in the CLI working directory.
+
+#### `DWC_CLI_PORT`
+
+Defines the port the CLI starts the HTTP server at when logging in when using OAuth clients for authentication.
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| number | no       | 8080    |
 
 ## Help Documentation
 

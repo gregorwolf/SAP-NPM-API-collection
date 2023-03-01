@@ -337,7 +337,64 @@ dev-project list-items  <my-application-folder-root absolute path>
     ...
 ]
 ```
+### Read Detail Items
+###### Description
+Read the entire project and return the information about all the detail items/entities in the project.
+###### Method
+`readDetailItems(filter? : ItemFilter, logger? : IChildLogger) : Promise<Item[]>;`
+###### Parameters
+- filter: (Optional) `ItemFilter` which can be used to filter items in the project.
+- logger: (Optional) An instance of IChildLogger which can be implemented by consumers of this library.
+###### returns
+- An array of `Item`
+###### Example
+```
+import {ItemFilter} from @sap/artifact-management'  //Optional
+const api = new ProjectImpl(projectPath);
+const project = await api.readDetailItems();
+```
 
+###### CLI
+
+Read all items with detail information
+
+```
+dev-project list-detail-items  <my-application-folder-root absolute path> 
+```
+###### Sample Output
+
+```
+[
+    {
+      "external": false,
+      "name": "fioriApp",
+      "namespace": "sap.ui.demoproject",
+      "path": "db/schema.cds",
+      "ref": "sap.ui.demoproject.fioriApp",
+      "tags": [
+          "item",
+          "cap"
+      ],
+      "type": "com.sap.cds/Entity",
+      "info": {
+        "attributes": {
+          "ID": {
+            "@Core.Computed": true,
+            "key": true,
+            "type": "cds.UUID"
+          },
+          "name": {
+            "type": "cds.String",
+            "length": 100
+          }
+        }
+      }
+    },
+    ...
+    ...
+    ...
+]
+```
 ---
 
 

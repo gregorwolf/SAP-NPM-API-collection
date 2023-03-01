@@ -5,6 +5,40 @@ All notable changes to this project SAP Data Warehouse Cloud Command-Line Interf
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2023.3.0
+
+### Added
+
+- [`dotenv`](https://www.npmjs.com/package/dotenv) module support.
+
+### Changed
+
+- Previously, when using OAuth Client authentication, the CLI expected the _Redirect URI_ entered when creating the OAuth Client to end with port `8080`. The CLI starts a HTTP server on this port. This can lead to errors in environments where port `8080` is already used. Users can now set the environment variable `DWC_CLI_PORT` to, for example, `8081`, or any other port.
+
+### Fixed
+
+- Running `dwc cache clean` logs out any previously logged in user. Also, if you set the host globally using `dwc host set`, the host was reset.
+
+## 2023.2.0
+
+### Added
+
+- Multi-service support.
+
+### Changed
+
+- Command `dwc host clear` changed to `dwc host clean`.
+
+### Fixed
+
+- When being asked whether to delete an entity, the CLI effectively ignored the answer _No_.
+
+## 2022.25.0
+
+### Fixed
+
+- When running a command, the CLI issues a warning in case the local cache is outdated. The instructions to update the cache as part of the warning message mentioned a wrong command.
+
 ## 2022.24.0
 
 ### Added

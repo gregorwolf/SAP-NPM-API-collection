@@ -1,3 +1,14 @@
+## 1.3.14
+
+- The Plan Graph remains accessible for files that are too large to open because of an excessive number of operators. However, the critical path and timeline information will not be displayed.
+- "Not Started" operators are now displayed in the Plan Graph and offer more visibility into the execution plan.
+- The exclusive time in the Plan Graph now precisely reflects the execution plan’s time values with no recalculation.
+- This release features the following enhancements and bug fixes for the Timeline view:
+  - The Timeline view now shows a yellow-highlighted line to easily distinguish the selected row/operator.
+  - Fixed an issue where the operator tree table and the timeline chart were not properly displayed.
+  - Fixed an issue with expanding and scrolling through the operator tree table.
+  - Fixed an issue with navigating to an operator in the Plan Graph from the Timeline view.
+
 ## 1.3.12
 
 ### New Features
@@ -13,18 +24,21 @@
 ## 1.3.10
 
 ### New Features
+
 - A progress bar has been added for post-processing.
 - All tabs are now shown on the property pane by default.
 - A new SQL Analyzer view is shown when a PLV file is opened through the file menu or by dragging.
 - More information is provided for inner plans of SQLScript (for example, compilation summary, peak memory, and so on).
 
 ### Fixes
+
 - Logical inner plan of column search did not open.
 - Several PLV files were hanging and did not open.
 
 ## 1.3.10
 
 ### Fixes
+
 - Fixed a SQL Comparison issue of Plan Comparison Report
 - Stop/Start automatic data refresh works depends on the status of tab(select/hide/close)
 

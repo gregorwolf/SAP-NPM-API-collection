@@ -1,3 +1,24 @@
+## 1.20.0
+
+### New Features
+- Deploy/undeploy interface calculation view for snapshots
+- Allow changing the sequence of mapped columns in the mapping pane
+- Added an option to apply filters to both partners of a join
+
+### Fixes
+- Fixed a Javascript error reported in performance mode
+- The limit for start and end year is not correct in Maintain Time Tables
+- Undo/Redo not synchronized with display for temporal table entries
+- Navigation Tab bottom border changed to 2 bold lines
+- Add a reload button when not logged in to Cloud Foundry
+- Fixed a console error "menubutton cannot be child of sap.ui.common.toolbar"
+- Restricted column editors offer wrong types of input parameters
+- Removed the modeling commands from the command palette
+- Red error indicator of Static list parameters doesn't go off in calculation view
+- Wrong expression type for graphically modeled restricted columns
+- Mass generation of synonyms creates synonyms also in unselected schemas
+- Deployment of Calculation view with HDI_REQUIRES_1 Execution Hint fails.
+
 ## 1.19.0
 
 ### New Features

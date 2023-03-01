@@ -5,6 +5,54 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
+## Version 6.5.1 - 2023-02-20
+
+### Added
+- The special `up_` element is now supported in navigation
+- support of upcoming cds-compiler (3.6.3 `main` branch as of today)
+
+### Changed
+- `mixin` is now mapped to `LSP.SymbolKind.Operator` (was default `String`)
+- a commit hash of the last commit is now included in release under _dist/state_
+- target platform back to `es2020` for compatibility in China cloud (still Theia on Node14)
+
+### Fixed
+- Closing a CDS file led to 'forgetting' the content in the index. This resulted in:
+  + `workspace/symbols` not showing all definitions
+  + error messages of symbols not found
+  + navigation broken for 'closed' definitions
+- formatting and highlighting of nested element and enum extensions
+- code completion for keywords and identifiers may have used wrong compiler messages, thus not working as expected
+
+### Also see
+- `@sap/cds-lsp` 6.5.1
+- `@sap/cds-compiler` 3.6.2
+
+## Version 6.5.0 - 2023-01-30
+
+### Added
+
+- **Experimental** user setting `cds.typeGenerator.enabled` to trigger a globally installed cds type generator when saving a model file.
+
+### Changed
+- CAP notebooks: code cells (`terminal` and `shell`) have now their own working directory
+- minimum VSCode version is now 1.73.0
+
+### Fixed
+
+- _workspace/symbols_ request didn't include definitions of a file after it was closed. 
+
+### Removed
+
+- `@cds.doc` annotation, which was marked as deprecated for a long time, is no longer considered in requests like _document/hover_.
+   Please use doc comments (`/** ... */`) instead. The quick fix to migrate from _@cds.doc_ to _doc comments_ is still in place, 
+   but is likely to be removed in near future. 
+
+### Also see
+- `@sap/cds-lsp` 6.5.0
+- `@sap/cds-compiler` 3.6.0
+
+
 ## Version 6.4.0 - 2022-12-15
 
 ### Added
@@ -95,7 +143,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 ## Version 6.0.3 - 2022-07-08
 
 ### Changed
-- support latest release of cds-compiler 3.0.2
+- support the latest release of cds-compiler 3.0.2
 - added authentication and new build task names to cds schema
 
 ### Also see
@@ -107,8 +155,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 ### Added
 - using native `notebook` support for `cap-notebook`
 - support for new major cds-compiler 3.0.0
-- new user setting `cds.workspaceSymbols.caseInsensitive` (default off) to search case insensitive
-- new user setting `cds.outline.semantical` (default off) to show outline in a rather semantical structure as opposed to a flat list
+- new user setting `cds.workspaceSymbols.caseInsensitive` (default off) to search case-insensitive
+- new user setting `cds.outline.semantical` (default off) to show outline in a rather semantic structure as opposed to a flat list
 - analyze dependencies now supports coloring of layers for monorepos
 - env.cdsc is now also considered for code completion
 - custom requests to format given content with given options (e.g. for a _formatting options config UI_) and to get path of options file
@@ -332,9 +380,9 @@ Best performance is achieved with default settings,
 except `cds.contributions.enablement.odata` which should be switched `off` to speed up compilation, unless feature is needed.
 
 Additonal hints to increase performance:
-- Within _SAP Business Application Studio_: close `CAP Data Models and Services` view. Otherwise it will ask for all workspace symbols at every change.
+- Within _SAP Business Application Studio_: close `CAP Data Models and Services` view. Otherwise, it will ask for all workspace symbols at every change.
 - Settings: `Cds › Contributions › Enablement: Odata`: switch off as already mentioned above
-- Settings: `Editor › Goto Location: Alternative Definition Command`: do not select `goToReferences`. Otherwise being already on a definition will trigger find references which requires all dirty models to be recompiled.
+- Settings: `Editor › Goto Location: Alternative Definition Command`: do not select `goToReferences`. Otherwise, being already on a definition will trigger find references which requires all dirty models to be recompiled.
 - Settings: `Workbench › Editor › Limit: Enabled`: switch on
 - Settings: `Workbench › Editor › Limit: Value`: lower the number. If open editors have `using` dependencies, a change in one editor will lead to a recompile of releated editors.
 - Commands `Go to References` / `Find All References` will recompile all models that might have changed due to a change in a depending model. If there are index models it often means the complete workspace is being recompiled.

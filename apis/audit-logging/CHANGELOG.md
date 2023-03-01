@@ -5,6 +5,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.7.0 - 2023-01-26
+
+### Added
+- Promisified functionality
+- README file added promise based examples 
+
+### Updated
+- Updated xssec to v3.2.17
+- Updated hdbext to v7.7.2
+- README file changed with a clarifying note for clients
+
+## 5.6.3 - 2023-01-10
+
+### Updated
+- Updated xssec to v3.2.15
+- Updated hdbext to v7.7.1
+  
+
 ## 5.6.2 - 2022-11-01
 
 ### Added

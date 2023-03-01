@@ -8,6 +8,14 @@ For the latest updates please see SAP Note 3279537 - SAP HANA Client 2.15 Releas
 
 https://launchpad.support.sap.com/#/notes/3279537
 
+## Version 2.15.22
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 301023: SQLDBC could have sent an invalid request when closing a connection.
+ - Issue Number 300738: The client could have sent an incorrect request after a send or receive error.
+ - Issue Number 300067: Concurrent Compact or ChangeKey operations may have affected the result of user store key reads.
+
 ## Version 2.15.19
 
 ### Changes:

@@ -2,7 +2,7 @@
 
 The Application Modeler extension allows you to visualize and change the pages structure of SAP Fiori elements applications (Page Map), and to configure individual pages via manifest settings and UI flexibility changes (Page Editor).
 
-Since version 1.4.1, the Page Editor also allows adding and maintaining common annotation-based UI elements, such as object page sections, fields, columns and their properties for OData V4 based applications (experimental).
+Since version 1.4.1, the Page Editor also allows adding and maintaining common annotation-based UI elements, such as object page sections, fields, columns and their properties for OData V4 based applications.
 
 ## Migration
 
@@ -72,11 +72,9 @@ The **SAP Fiori Tools - Page Editor** provides an outline view of the configurab
 
 The Page editor reads and writes `pages/*.json` files containing the applicable manifest and UI5 flexibility based settings in a compact and technology independent notation. The files also serve as a simple text-based interface. They are generated on demand and can be accessed from the Application Modeler tree view from SAP Fiori sidebar view by selecting the `Show Source Code` option from the respective page's node's right-click context menu. Each page in your app has its own `json` file. The virtual files will be automatically synchronized with the `webapp/manifest.json` and UI5 flex changes in the `webapp/changes` folder.
 
-##### Experimental Annotation Support
+##### Annotation Support
 
 With version 1.4.1 of Application modeler and [`@sap/ux-specification`](https://www.npmjs.com/package/@sap/ux-specification) versions 1.84.25 and 1.90.14 the Page editor will allow the creation and maintenance of annotation-based UI elements for OData V4 based List report Object page and Form entry page applications. Supported are common filter fields, tables, (sub)sections, header sections, actions, and their properties, including full `i18n` support. With this addition the Application modeler further strengthens the goal of SAP Fiori Tools to ease and speed up the application development.
-
-Recognizing the complexity of this addition, this feature is considered experimental but enabled per default. If you wish to disable experimental features, you can do so in VSCode and SAP Business Application Studio preferences settings under `SAP > UX > Application Modeler: Enable Experimental Features`.
 
 #### Supported Templates of SAP Fiori Elements
 
