@@ -6,6 +6,64 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.5.1 - 2023-02-20
+
+### Added
+- The special `up_` element is now supported in navigation
+- support of upcoming cds-compiler (3.6.3 `main` branch as of today)
+
+### Changed
+- `mixin` is now mapped to `LSP.SymbolKind.Operator` (was default `String`)
+- a commit hash of the last commit is now included in release under _dist/state_
+- target platform back to `es2020` for compatibility in China cloud (still Theia on Node14)
+
+### Fixed
+- Closing a CDS file led to 'forgetting' the content in the index. This resulted in:
+  + `workspace/symbols` not showing all definitions
+  + error messages of symbols not found
+  + navigation broken for 'closed' definitions
+- formatting and highlighting of nested element and enum extensions
+- code completion for keywords and identifiers may have used wrong compiler messages, thus not working as expected
+
+### Removed
+- Legacy code to support cds-compiler v1 and v2 (vscode-cds contains cds-lsp 6.0.3 to continue support of those)
+
+### Also see
+- `@sap/cds-compiler` 3.6.2
+
+
+## 6.5.0 - 2023-01-30
+
+### Added
+
+- _@sap/cds-lsp_ can now trigger a globally installed cds type generator when saving a model file.
+  <br/>This feature is still **experimental** and must be enabled via user setting `cds.typeGenerator.enabled`. 
+
+- The annotation contribution API has a new optional callback. 
+  Now a contribution can add where-used relationships inside annotations to the global where-used index.
+  (A complete index is a prerequisite for refactoring.)
+  <br/> The feature is still **experimental** and might change in future.
+
+### Fixed
+
+- _workspace/symbols_ request didn't include definitions of a file after it was closed. 
+
+### Removed
+
+- `@sap/cds-lsp@6.5.0` no longer supports working with a `@sap/cds-compiler` <= 3.
+   <br/>Please use `@sap/cds-lsp@6.0.3` when having an older compiler in your project.
+   <br/>**Note:** our extension for _Visual Studio Code_ (`@sap/vscode-cds`) contains
+   both mentioned versions of _@sap/cds-lsp_ to continue supporting all major compiler
+   versions. 
+
+- `@cds.doc` annotation, which was marked as deprecated for a long time, is no longer considered in requests like _document/hover_.
+   Please use doc comments (`/** ... */`) instead. The quick fix to migrate from _@cds.doc_ to _doc comments_ is still in place, 
+   but is likely to be removed in near future. 
+
+### Also see
+- `@sap/cds-compiler` 3.6.0
+
+
 ## 6.4.0 - 2022-12-15
 
 ### Added

@@ -15,7 +15,7 @@ and several new features are not available.**
 
 ### Added `autoCorrectOrderBySourceRefs`
 
-When this option is set, calling `compile` auto-corrects direct `order by`
+When this option is set, calling `compile` autocorrects direct `order by`
 source element references without table alias for SELECT queries by adding the
 table alias to the `ref`.
 
@@ -115,12 +115,12 @@ behavior (without v1 options `dependentAutoexposed` and `longAutoexposed`).
 ### Added `longAutoexposed`
 
 When this option is set (and `generatedEntityNameWithUnderscore`),
-the names of autoexposed entities are calculated according to the
+the names of auto-exposed entities are calculated according to the
 compiler v1 option `longAutoexposed`.
 
 ### Added `generatedEntityNameWithUnderscore`
 
-Keep using `_` is separator for generated autoexposed entities and for entities
+Keep using `_` is separator for generated auto-exposed entities and for entities
 created for managed compositions.  It also disables a definition `A.B.C` if `A`
 or `A.B` is a definition other than a context or service (v1 behavior).
 
@@ -153,7 +153,7 @@ Render old and broken temporal EDM API.
 ### Added `noElementsExpansion`
 
 When setting it, association in sub elements are not automatically redirected,
-and the sub elements cannot be annotated indivually.
+and the sub elements cannot be annotated individually.
 
 Do not use this.  Setting it might avoid some compile errors,
 but in most cases the reported errors are rightly reported.

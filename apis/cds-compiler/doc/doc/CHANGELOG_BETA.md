@@ -8,6 +8,24 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+
+## Version 3.7.0 - 2023-02-22
+
+### Added `calculatedElements`
+
+Allows to define calculated elements in entities and aspects.  When used in views, they
+are replaced by their value, for example:
+
+```cds
+entity E { one: Integer; two = one + 1; };
+entity P as projection on E { two };
+// P is the same as:
+entity P as projection on E { one + 1 as two };
+```
+
+This allows to define calculations centrally at the entity, which can be used by
+other views.
+
 ## Version 3.5.0 - 2022-12-07
 
 ### Added `odataTerms`
@@ -250,7 +268,7 @@ Render JOIN cardinality in native HANA association if provided. If no cardinalit
 
 ### Removed `aspectCompositions`
 
-Aspect compositions aka managed compositions are now avaible without beta option.
+Aspect compositions aka managed compositions are now available without beta option.
 _Warning_: the CSN representation can still change.
 
 ## Version 1.31.0 - 2020-06-26
@@ -286,5 +304,5 @@ This option does not enable:
 ### Added `keyRefError`
 
 Always signal an error (instead of just a warning in some cases),
-if not all references in the `keys` of an managed associations
+if not all references in the `keys` of a managed associations
 are projected in the new target.

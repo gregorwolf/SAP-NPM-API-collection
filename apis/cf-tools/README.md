@@ -6,10 +6,12 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/cloud-foundry-tools-api)](https://api.reuse.software/info/github.com/SAP/cloud-foundry-tools-api)
 [![dependentbot](https://api.dependabot.com/badges/status?host=github&repo=SAP/cloud-foundry-tools-api)](https://dependabot.com/)
 
-# Overview 
-This package provides a set of APIs to help you develop applications in Cloud Foundry. You can use these APIs to manage apps, service instances, orgs, spaces, and users in your environment. Mostly, this is a wrapper of the CF command line client, which runs a particular command and parses the output to the suitable JSON file. If an error or failure occurs,  the runtime exception throws with relevant problem information.
+# Overview
+
+This package provides a set of APIs to help you develop applications in Cloud Foundry. You can use these APIs to manage apps, service instances, orgs, spaces, and users in your environment. Mostly, this is a wrapper of the CF command line client, which runs a particular command and parses the output to the suitable JSON file. If an error or failure occurs, the runtime exception throws with relevant problem information.
 
 ## API Reference Guide
+
 [API guide](https://sap.github.io/cloud-foundry-tools-api)
 
 ## Prerequisite
@@ -51,4 +53,5 @@ try {
 ```
 
 ## Contributing
+
 Contributing information can be found in the [CONTRIBUTING.md](CONTRIBUTING.md) file.

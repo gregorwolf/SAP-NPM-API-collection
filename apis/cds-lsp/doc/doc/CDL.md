@@ -245,6 +245,8 @@ entity ![Entity] {
 }
 ```
 
+>You can escape `]` by `]]`, for example `![L[C]]R]` which will be parsed as `L[C]R`. 
+
 ### Calculated Fields
 {: .impl.concept}
 
@@ -296,8 +298,8 @@ Element references with `:` don't require `type of` in front of them.
 
 ```swift
 entity Employees {
-  firstname: type of Author:firstname;
-   lastname: Author:firstname; // optional 'type of'
+  firstname: Author:firstname;
+  lastname: Author:lastname;
 }
 ```
 
@@ -962,7 +964,7 @@ The rules are:
 ### The `annotate` Directive
 {:#annotate}
 
-The `annotate` directive allows to annotate already existing definitions, that may have been [imported](#imports) from other files or projects.
+The `annotate` directive allows to annotate already existing definitions that may have been [imported](#imports) from other files or projects.
 
 ```swift
 annotate Foo with @title:'Foo' {
@@ -976,6 +978,24 @@ annotate Bar with @title:'Bar';
 You can also directly annotate a single element:
 ```swift
 annotate Foo:nestedStructField.existingField @title:'Nested Field';
+```
+
+Actions and functions and even their parameters can be annotated:
+
+```swift
+service SomeService {
+  entity SomeEntity { key id: Integer } actions
+  {
+    action boundAction(P: Integer);
+  };
+  action unboundAction(P: Integer);
+};
+
+annotate SomeService.unboundAction with @label: 'Action Label' (@label: 'First Parameter' P);
+annotate SomeService.SomeEntity with actions {
+     @label: 'Action label'
+     boundAction(@label: 'firstParameter' P);
+}
 ```
 
 The `annotate` directive is a variant of the [`extend` directive](#extend).
@@ -1007,7 +1027,7 @@ annotate Foo with @anArray: [1, 2, ..., 5, 6]; //> prepend and append
 
 It's also possible to insert new entries at **arbitrary positions**. For this, use `... up to` with a *comparator* value that identifies the insertion point.
 
-<!-- cds-mode: ignore -->
+<!-- cds-mode: ignore, because it is not an actual snippet, but grammar definition -->
 ```swift
 [... up to <comparator>, newEntry, ...]
 ```
@@ -1553,7 +1573,7 @@ Using directives allows to import definitions from other CDS models. As shown in
 
 {% include _code sample='using-from.cds' %}
 
-Multiple named imports through es6-like deconstructors:
+Multiple named imports through ES6-like deconstructors:
 
 ```swift
 using { Foo as Moo, sub.Bar } from './base-model';
@@ -1575,7 +1595,7 @@ Imported names can omit the target's namespace prefix:
 import {Foo} from './base-model';
 ```
 
-Multiple named imports through es6-like deconstructors:
+Multiple named imports through ES6-like deconstructors:
 
 ```swift
 import { Foo as Moo, scoped.Bar } from './base-model';

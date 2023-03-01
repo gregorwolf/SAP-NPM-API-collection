@@ -4,6 +4,96 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.6.0 - 2023-02-27
+
+### Added
+
+- Improved error handling for `cds build` if the SaaS base model is missing in an extension project.
+- Support for reliable paging using `$skiptoken`. Can be activated via `cds.query.limit.reliablePaging = true`
+
+### Changed
+
+- `cds.serve(ServiceName)` (and `cds serve -s ServiceName`) now exactly serve services with the given names. Previously, all services that ended with the given name were served as well, e.g. `MyServiceName` and `ServiceName`, which might be problematic for applications that bootstrap services one by one.
+- Optimize `@cds.persistence.journal` filtering for `last-dev` CSN file.
+- `process.exit()` is no longer called during server shutdown, so that other/custom exit handlers get a chance to execute.
+
+### Fixed
+
+- `cds deploy --to hana` no longer calls `cds bind` when `VCAP_SERVICES` is provided, e.g via `default-env.json`.
+- `$search` on an entity without String elements
+- Only elements from type `cds.String` are searchable when combining `$apply` and `$search`
+- Error message for missing database connection in draft case
+- Extensibility with in-memory Sqlite
+- OData adapter error messages
+- Columns in navigation path are now added to the SELECT.columns in new parser
+- Application service calls on draft enabled entities using aliases
+- Custom mtxs build tasks now use the correct default `src` folder value.
+- `cds build` adds a `.hdiconfig` file when creating HANA migration tables if none is existing.
+- UPSERTs using reserved keywords
+- Fix outbound-streaming error handling
+- Rollback transaction if inbound streaming fails
+- Custom database initialization in `db/init.js` now skips the `t0` tenant for multitenant apps.
+- Concurrent etag calculation for UPDATE and DELETE
+- Typings for `cds.delete()`
+- CQN for `not` operator with OData functions
+- Expand on composition of aspect for draft enabled entities
+- Better error messages are provided for errors with HTTP status code `400`, `500` and `501`
+
+## Version 6.5.0 - 2023-01-27
+
+### Added
+
+- New aspect `sap.common.TextsAspect` in common.cds
+- New syntax for collection bound entities
+
+### Changed
+
+- Successive calls to `SELECT.where()` wraps existing clause in brackets if it contains `or`. E.g.
+   ```js
+   SELECT.from `X` .where `x` .or `y` .where `z`
+   //> SELECT from X where (x or y) and z`
+   ```
+- `cds build` for HANA now adds an `engines.node` version to the generated `db/package.json`. This will help in the future when runtime environments change their default to some version higher than the one supported by `@sap/hdi-deploy`.
+- `cds build` checks the consistency of built-in models for java projects. An error is logged if some model files could not successfully be resolved indicating that a required npm module might be missing.
+- Status code of draft actions are set in respective handler instead of protocol adapter
+- `cds deploy --dry` no longer loads the `sqlite3` module by mistake. This fixes a regression when building Java projects. As a side effect a file with the name `undefined` was created in the project root folder.
+- Internal representation of pseudo roles `internal-user` and `system-user`
+
+### Fixed
+
+- Resolve i18n folders from the root directory
+- Types for `cds.test`
+- Types for `srv.send`
+- Optimized Search: Search queries for localized entities will now use default values, if no localized data is found in the corresponding localized tables on SAP HANA. Correct aliasing by search queries with navigation.
+- Resolution of `type of` references during minify in bootstrap
+- Generation of odata-v2 URL in case of select=* in `urlify()`
+- Build resets changed `cds.env` and `cds.root` when finished
+- Expand error when using infix filters
+- CDS configuration schema validation for `@sap/cds-mtxs`
+- Typings for QL API
+- Return types of asynchronous service API
+
+## Version 6.4.1 - 2022-01-16
+
+### Fixed
+
+- `cds build` correctly creates a `resources.tgz` file for MTXS projects on Windows
+- `cds.deploy` for HANA now doesn't try to search for a globally installed `@sap/hdi-deploy` if there's no `npm` installed, e.g. on a Node.js server without `npm`
+- Signature for `cds.ql.UPSERT`
+- Signature for `<srv>.delete().where()`
+- Signature for `SELECT.alias`
+- `UPSERT` requests for SQLite if only keys are provided
+- `cds.test` doesn't log database resets with `autoReset` enabled any more
+- The `cds.deploy` output for HANA is now correctly formatted in Kibana
+- SAP HANA stored procedures containing implicit selects
+- Shorthand configuration for `graphql` in `cds.env.protocols`
+- If `cds.env.protocols` is set, `cds.requires.middlewares` is automatically turned on
+- `cds.context` middleware is split to initial handling of request correlation and user propagation
+- fix view resolving and managed data for UPSERT
+- `cds.linked` supports polymorphic self links like in: `action foo( self: [many] $self, ...)`
+- Error with `@odata.draft.enabled` and `@restrict`
+- Skip mandatory check on navigation properties for write requests
+
 ## Version 6.4.0 - 2022-12-15
 
 ### Added
@@ -14,11 +104,12 @@
 - `persistent-outbox`: Support for parallel processing with option `parallel: true` as well as pluggable processor functions through `service.outbox.process` (beta)
 - `cds version` now also lists packages with `@cap-js/` prefix from dependencies
 - `cds.context.http` is now available for webhook-based requests
-- `cds build` for HANA migration tables now only saves model entities annotated with `@cds.persistence.journal` as `last-dev` version.
+- `cds build` for SAP HANA migration tables now only saves model entities annotated with `@cds.persistence.journal` as `last-dev` version.
 - `cds deploy` now uses the `VCAP_SERVICES` environment variable (if set), and skips `cf` operations in this case
 
 ### Changed
 
+- Added several missing signatures in CQN types that are now in accordance with the current documentation.
 - `.columns(…)` of both `cql.SELECT` and `cql.INSERT` give improved code completion when paired when appropriate type definitions are present
 - Status code of error messages caused by empty `not null` fields is changed from `400` to `500` on database layer. Note, that as result the error message `Value is required` in production will be replaced by `Internal server error` in the HTTP response.
 - Underscores in environment variables can now be escaped by two `__` to set keys in `cds.env`.  For example, use `CDS_FEATURES_WITH__MOCKS=...` to set `features.with_mocks`.  Note that previously, this ended up as  `features: { with_: { mocks:... }}`, so in rare cases, it might yield unexpected results.
@@ -49,6 +140,7 @@
 - Quoting of keys typed as `cds.String` in error targets. Error targets are a relative resource path to correlate error
 messages with the corresponding text input filed in the UI in an OData HTTP error response body for errors, warnings,
 and info messages. For example:
+- Error with `GET` on `actions`
 
 ```diff
 HTTP/1.1 400 Bad Request
@@ -69,8 +161,8 @@ Content-Length: 145
 ```
 
 - Application crash if batched Uri uses invalid percent encoding
-- `cds build` for HANA no longer produces `hdbtabledata` for csv files that refer to non-existing entities. This can be the case for imported content packages that bring csv files for entities that are not used in the application model.
-- `cds build` for HANA now gives precedence for csv files from application layer. This is important for imported content packages that bring csv files that shall be overwritten in the application layer.
+- `cds build` for SAP HANA no longer produces `hdbtabledata` for csv files that refer to non-existing entities. This can be the case for imported content packages that bring csv files for entities that are not used in the application model.
+- `cds build` for SAP HANA now gives precedence for csv files from application layer. This is important for imported content packages that bring csv files that shall be overwritten in the application layer.
 - `cds build` for Java no longer adds the service `cds.xt.MTXServices` to the application model.
 - `cds build` no longer fails when creating large resource TAR archives for MTXS projects.
 

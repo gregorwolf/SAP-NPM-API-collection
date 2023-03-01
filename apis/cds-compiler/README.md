@@ -29,6 +29,9 @@ Or maintain your package.json dependencies as follows:
 
 Please refer to the [official CDS documentation](https://cap.cloud.sap/docs/cds/).
 
+## How to Obtain Support
+
+In case you find a bug, please report an [incident](https://cap.cloud.sap/docs/resources/#reporting-incidents) on SAP Support Portal.
 
 ## License
 

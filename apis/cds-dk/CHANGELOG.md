@@ -7,12 +7,84 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.6.0 - 2023-02-28
+
+### Added
+
+- `cds compile` added a new target format `asyncapi` to convert CDS models to AsyncAPI documents.
+- `cds pull` now hints at base-model name for `using` statement.
+
+### Changed
+
+- `cds env` now allows inspecting entries with optional `get` command. E.g. `cds env requires.db`.
+- `cds add multitenancy` now uses async SaaS Provisioning Service onboarding by default.
+- `cds add multitenancy` for Java will now add  `sqlite3` to `devDependencies` in the sidecar `package.json`.
+- `cds add extensibility` now works for Java projects out-of-the-box.
+- `cds import` now captures the Edm Primitive types without [CDS mapping](https://github.tools.sap/cap/cds-dk/blob/main/edm2cdsTypeMapping.md) with annotation `@odata.Type` and marks the type as `cds.String`.
+- `cds add helm` connectivity service instance is no longer created.
+- `cds init` uses latest Maven Java archetype version 1.32.0 for creating Java projects.
+
+### Fixed
+
+- `cds unsubscribe --from` flag now recognized
+- `cds import` now adds `cds.Boolean` as dummy return type if `ReturnType` for `FunctionImport` is missing in the OData V2 edmx.
+- `cds import` resolves the `$Cast` construct in the CSN for OData V4 files.
+- `cds lint` now reports like ESLint in case of missing plugin `@sap/eslint-plugin-cds`
+
+## Version 6.5.2 - 2023-02-10
+
+### Changed
+
+- New versions of `@sap/cds-mtxs` and `@sap/cds-compiler`
+- `cds init` uses latest Maven Java archetype version 1.31.1 for creating Java projects.
+
+### Fixed
+
+- `cds migrate` no longer fails because of authorization error
+
+## Version 6.5.1 - 2023-02-06
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 1.31.0 for creating Java projects.
+
+### Fixed
+
+- `cds deploy` no longer fails to write to a `package.json` file that has no `cds` section
+
+## Version 6.5.0 - 2023-01-27
+
+### Added
+
+- `cds run/serve/migrate --resolve-bindings` now pulls required service credentials if bound via `cds bind`. (beta)
+- `cds add helm` now supports multitenancy.
+- `cds bind` now supports binding of `user-provided service instances` from Cloud Foundry.
+
+### Changed
+
+- `cds push` now runs a build of the extension project to update the pushed extension archive (unless custom archive given).
+- `cds init` and `cds bind` no longer use a spinner when performing long running operations.
+
+### Fixed
+
+- `cds import` now generates flattened value for `@Common.FieldControl` annotation in the CSN for OData V4 files.
+- `cds import` now treates `CollectionKind` property attribute in OData V2 similar to `Collection(<data_type>)` in OData V4.
+
+## Version 6.4.1 - 2022-01-17
+
+### Fixed
+
+- `cds deploy -2 sqlite` now preserves the `schema_evolution` setting in the `package.json`.
+- `cds import` bug fix for OData V4 import crash.
+
+### Changed
+
 ## Version 6.4.0 - 2022-12-15
 
 ### Added
 
 - `cds add helm` now supports approuter.
-- `cds subscribe --local` starts @sap/cds-mtxs locally instead of contacting a running instance via URL.
+- `cds subscribe --local` starts `@sap/cds-mtxs` locally instead of contacting a running instance via URL.
 - `cds unsubscribe` removes the subscription of a tenant from a SaaS app.
 
 ### Changed

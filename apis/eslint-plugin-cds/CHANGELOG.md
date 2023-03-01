@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.6.3] - 2023-02-13
+
+### Changed
+
+- Filter rule reports using *inferred* models on $location.
+
+## [2.6.2] - 2023-02-13
+
+### Changed
+
+- Fixed rule reports using *inferred* models to always receive valid _file_ $locations.
+
+## [2.6.1] - 2023-01-26
+
+### Changed
+
+- Fixed rule name in ESLint config:all to `@sap/cds/start-elements-lowercase`.
+- Allow expensive rules to be reported when running from ESLint Cli.
+- In _auth-valid-restrict-grant_, only suggest closely related user roles.
+- In _auth-valid-restrict-to_, only suggest `*` if other entries apart from `*` exist.
+
 ## [2.6.0] - 2022-09-29
 
 ### Changed
