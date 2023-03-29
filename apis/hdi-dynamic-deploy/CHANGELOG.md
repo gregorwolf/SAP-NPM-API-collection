@@ -1,3 +1,7 @@
+# 2.5.3
+Features:
+- use @sap/hdi-deploy@4.6.0
+
 # 2.5.2
 Features
 - use @sap/hdi-deploy@4.5.3

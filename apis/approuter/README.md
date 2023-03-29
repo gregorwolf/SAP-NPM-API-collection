@@ -229,7 +229,7 @@ Minimum Token Validity | `MINIMUM_TOKEN_VALIDITY` | positive integer in seconds.
 State Parameter Secret | `STATE_PARAMETER_SECRET` | enables the use of state parameters to prevent CRFS attacks. If this environment  variable is set, the application router creates a state parameter for each initial authorization request. By validating that the authentication server returns the same state parameter in its response, the application server can verify that the response did not originate from a third party. **Note**: this feature is only available in Cloud Foundry runtime
 HTTP2 Support | `HTTP2_SUPPORT` | Enables the application router to start as an HTTP/2 server. Note: To configure HTTP/2 support, you must use Cloud Foundry routes with an HTTP/2 destination protocol. See [Configuring HTTP/2 Support](https://docs.cloudfoundry.org/adminguide/supporting-http2.html#application) in the Cloud Foundry Documentation. As connection-specific header fields aren't supported by the HTTP/2 protocol, see [rfc9113](https://datatracker.ietf.org/doc/html/rfc9113), the application router removes such headers automatically when they are returned from a backend to prevent a failure of the HTTP/2 response.
 Full Certificate Chain | `FULL_CERTIFICATE_CHAIN` | If `true`, the application router will send the entire chain of certificates provided by authorization service.
-
+Store CSRF token in external session | SVC2AR_STORE_CSRF_IN_EXTERNAL_SESSION | If `true` and have enabled [external session management](#external-session-management), the application router can generate and validate CSRF tokens in service-to-application-router flows by storing the token in an external session.
 **Note:** all those environment variables are optional.
 
 
@@ -1657,6 +1657,9 @@ If a CSRF protected route is requested with any of the above mentioned methods,
 This request must use the same session as the fetch token request.
 If the `x-csrf-token` header is not present or invalid, the application router will return status code *403 Forbidden* and a response header `x-csrf-token: Required`.
 
+Note that CSRF protection is not enabled by default in the service-to-application-router flow because the CSRF token must be stored in a user session. 
+However, you can enable CSRF protection in the service-to-application-router flow by configuring both external session management and the environment variable SVC2AR_STORE_CSRF_IN_EXTERNAL_SESSION.
+
 ## Support of SAP Statistics
 
 The application router provides performance statistics in an HTTP response header in the following cases:
@@ -2235,7 +2238,7 @@ The /currentUser endpoint response has the following format:
    "email": "john.doe@sap.com",
    "name": "john.doe@sap.com",
    "displayName": "John Doe (john.doe@sap.com)",
-   "scopes": "openid,user_attributes,uaa.user" (See the note above about routes with authentication type “xsuaa”.)
+   "scopes": ["openid","user_attributes","uaa.user"] (See the note above about routes with authentication type “xsuaa”.)
 }
 ```
 The /attributes endpoint response has the following format:
@@ -2245,7 +2248,7 @@ The /attributes endpoint response has the following format:
    "lastname": "Doe",
    "email": "john.doe@sap.com",
    "name": "john.doe@sap.com",
-   "scopes": "openid,user_attributes,uaa.user", (See the note above about routes with authentication type “xsuaa”.)
+   "scopes": ["openid","user_attributes","uaa.user"], (See the note above about routes with authentication type “xsuaa”.)
    <user attributes, including custom attributes> (See the note above about routes with authentication type “xsuaa”.)
 }
 ```

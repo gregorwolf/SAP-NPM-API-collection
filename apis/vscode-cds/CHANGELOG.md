@@ -5,16 +5,39 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
+
+## Version 6.6.0 - 2023-03-02
+
+### Added
+- CAP notebooks: Uri handler to open notebooks coming from Capire in local VS Code workspaces.
+- CAP notebooks: All notebook features now have a brief description with examples, available on the CAP Notebooks Welcome page.
+- type generation now detects project root
+
+### Fixed
+- highlighting of the last of a number of element names in a projection
+- formatting of query `from A:B`: removed colon padding
+- type generation stopped working after failure until next LSP restart
+
+### Changed
+- extension now uses vscode-languageclient 8.x
+  + API consumers may need to adapt access. See [changes](https://github.com/microsoft/vscode-languageserver-node#3170-protocol-800-json-rpc-800-client-and-800-server). Especially `onReady` is no longer needed and was removed.
+- minimum VSCode version is now 1.74.0
+- updated capire CDL docs - used in code completion details
+
+### Also see
+- `@sap/cds-lsp` 6.6.0
+- `@sap/cds-compiler` 3.7.2
+
+
 ## Version 6.5.1 - 2023-02-20
 
 ### Added
 - The special `up_` element is now supported in navigation
-- support of upcoming cds-compiler (3.6.3 `main` branch as of today)
 
 ### Changed
 - `mixin` is now mapped to `LSP.SymbolKind.Operator` (was default `String`)
 - a commit hash of the last commit is now included in release under _dist/state_
-- target platform back to `es2020` for compatibility in China cloud (still Theia on Node14)
+- target platform back to `es2020`
 
 ### Fixed
 - Closing a CDS file led to 'forgetting' the content in the index. This resulted in:
@@ -28,6 +51,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 - `@sap/cds-lsp` 6.5.1
 - `@sap/cds-compiler` 3.6.2
 
+
 ## Version 6.5.0 - 2023-01-30
 
 ### Added
@@ -40,13 +64,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 ### Fixed
 
-- _workspace/symbols_ request didn't include definitions of a file after it was closed. 
+- _workspace/symbols_ request didn't include definitions of a file after it was closed.
 
 ### Removed
 
 - `@cds.doc` annotation, which was marked as deprecated for a long time, is no longer considered in requests like _document/hover_.
-   Please use doc comments (`/** ... */`) instead. The quick fix to migrate from _@cds.doc_ to _doc comments_ is still in place, 
-   but is likely to be removed in near future. 
+   Please use doc comments (`/** ... */`) instead. The quick fix to migrate from _@cds.doc_ to _doc comments_ is still in place,
+   but is likely to be removed in near future.
 
 ### Also see
 - `@sap/cds-lsp` 6.5.0

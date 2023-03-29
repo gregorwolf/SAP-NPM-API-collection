@@ -49,10 +49,15 @@ var options = xsenv.getServices({
     secureStore: 'secureStore',
     auditLog: 'audit-log'
 });
-var xsjs_server = await async_xsjs(options);
-await xsjs_server.listen(port);
-
-console.log('Node XS server listening on port %d', port);
+async_xsjs(options).then((async_xsjs_server)=>{
+  async_xsjs_server.listen(port, (err)=>{
+    if(!err) {
+      console.log('Node XS server listening on port %d', port);
+    }else{
+      console.log('Node XS server failed to start on port %d', port);
+    }
+  });
+});
 ```
 
 The starting function takes an object that contains service credentials and application options.

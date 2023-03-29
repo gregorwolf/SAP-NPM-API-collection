@@ -1,10 +1,10 @@
-# @sap/sbf
+# @sap/sbf.
 A Node.js framework to create a service broker in SAP Business Technology Platform (SAP BTP)
 
 The Service Broker Framework (SBF) implements the [Open Service Broker API](https://www.openservicebrokerapi.org/).
 It can be used in the Cloud Foundry environment of SAP Cloud Platform or on-premise in SAP HANA XS advanced model.
 
-**Note**: SBF rejects requests for which the `X-Broker-API-Version` header is not set or its value is outside the supported interval [2.4, 3).
+**Note**: SBF Rejects requests for which the `X-Broker-API-Version` header is not set or its value is outside the supported interval [2.4, 3).
 
 SBF can generate service credentials for the following authentication mechanisms:
 * Basic authentication for technical users (via SBSS)

@@ -8,6 +8,11 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.5.6"></a>
+## 6.5.6 - 2023-03-29
+### Added
+- Support Node v18. 
+
 <a name="6.5.4"></a>
 ## 6.5.4 - 2023-02-28
 ### Changed

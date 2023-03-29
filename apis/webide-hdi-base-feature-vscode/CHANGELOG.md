@@ -1,3 +1,9 @@
+## 1.19.0
+
+### Fixes
+- Able to add same data source multiple times in projection node
+- Create synonym button does not work in add data source dialog
+
 ## 1.18.0
 
 ### Fixes

@@ -1,3 +1,12 @@
+## 1.12.0
+
+### Fixes
+
+- An error could occur if a virtual table file was opened after it was created via the artifact creation wizard
+- Artifact creation wizard doesn't detect project if hidden folders are present
+- The getting started scenario doesn't open
+- The .env file variable expansion incorrectly expands simple variables
+
 ## 1.11.0
 
 ### Fixes

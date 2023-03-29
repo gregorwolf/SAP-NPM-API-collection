@@ -1,3 +1,14 @@
+## 1.13.0
+
+### New Features
+- The SQL console is now a custom editor.
+
+### Fixes
+- A hint was added to the catalog browser to indicate if a schema filter is active.
+- Virtual tables are shown with a dedicated icon in the catalog browser to distinguish them from standard tables.
+- When adding a new database connection the "schema" parameter is supported in addition to "currentSchema" as an advanced option to set the connection's default schema.
+- The SQL console considers the auto save delay.
+
 ## 1.12.0
 
 ### New Features

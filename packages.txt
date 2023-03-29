@@ -12,7 +12,9 @@
 @sap/artifact-management-types
 @sap/async-xsjs
 @sap/audit-logging
+@sap/bas-sdk
 @sap/cds
+@sap/cds-common-content
 @sap/cds-compiler
 @sap/cds-dk
 @sap/cds-lsp
@@ -32,6 +34,7 @@
 @sap/hana-database-explorer
 @sap/hana-performance-tools
 @sap/hana-project-explorer
+@sap/hana-sqlscript-lsp
 @sap/hdbext
 @sap/hdi-deploy
 @sap/hdi-dynamic-deploy
@@ -41,6 +44,7 @@
 @sap/jobs-client
 @sap/logging
 @sap/low-code-event-handler
+@sap/mdk-tools
 @sap/node-jwt
 @sap/node-vsi
 @sap/open.fe

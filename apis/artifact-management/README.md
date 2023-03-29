@@ -103,6 +103,23 @@ const ws = new WorkspaceImpl(workspacePath);
 const projects = await ws.getProjects();
 ```
 
+### Get Project 
+###### Description
+Get the project with specific path.Return the ProjectAPI object based on the path.
+###### Method
+`getProject(path: string) : Promise<ProjectApi>`
+
+###### Parameters
+- path: the path of a project. It could be absolute or relative.
+###### returns
+- `ProjectApi` instance or `undefined`
+
+###### Example
+```
+const ws = new WorkspaceImpl(workspacePath);
+const path = '/Users/me/projects/lcap-project';
+const project = await ws.getProject(path);
+```
 
 ### Get Project URIs
 ###### Description

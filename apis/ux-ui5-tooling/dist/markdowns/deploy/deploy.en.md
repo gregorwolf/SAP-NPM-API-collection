@@ -23,7 +23,7 @@ OPTIONS:
 |----------------|-----|-------------|
 | --config       | -c  | Path to deployment config yaml file, default ui5-deploy.yaml |
 | --destination  | -d  | Destination of BTP system |
-| --failfast     | -f  | Terminate deploy and throw error when encoutering first error (y/N) |
+| --failfast     | -f  | Terminate deploy and throw error when encountering first error (y/N) |
 | --yes          | -y  | Generate index.html file (y/n) |
 | --url          | -u  | URL of deploy target ABAP system |
 | --client       | -l  | Client number of deploy target ABAP system |

@@ -12,6 +12,8 @@ Supported project types:
 - SAP Fiori elements for V2
 - SAP Fiori elements for V4
 - SAPUI5 freestyle
+- SAPUI5 Adaptation Project (only on SAP Business Application Studio)
+- Extension Project (only on SAP Business Application Studio)
 
 ### Usage
 
@@ -36,9 +38,11 @@ The Page Map extension reads and updates the `app.json` file containing the navi
 #### Supported Templates of SAP Fiori Elements
 
 * List Report Page with OData V2 and OData V4
-* Overview Page with OData V2 (including OData V4 based cards)
+* Worklist Page with OData V2 and OData V4
 * Analytical List Page with OData V2 and OData V4
-* From entry page with OData V4
+* Overview Page with OData V2 and OData V4
+* From Entry Object Page with OData V4
+* Custom Page with OData V4
 
 ### How to use Page Map
 
@@ -62,7 +66,7 @@ From the Command Palette execute the command `Fiori: Show Page Map`
 
 ### Prerequisites
 
-* [NodeJS](https://nodejs.org/en/download/) Version 14.16 or higher
+* [NodeJS](https://nodejs.org/en/download/) Version 16.18 or higher
 
 ## Page Editor
 
@@ -79,9 +83,10 @@ With version 1.4.1 of Application modeler and [`@sap/ux-specification`](https://
 #### Supported Templates of SAP Fiori Elements
 
 * List Report Page with OData V2 and OData V4
-* Overview Page with OData V2 (including OData V4 based cards)
+* Worklist Page with OData V2 and OData V4
 * Analytical List Page with OData V2 and OData V4
-* From entry page with OData V4
+* Overview Page with OData V2 and OData V4
+* From Entry Object Page with OData V4
 
 ### How to use Page Editor
 
@@ -153,7 +158,7 @@ This will launch the Application Generator tool if installed.  If the Applicatio
 
 ### Prerequisites
 
-* [NodeJS](https://nodejs.org/en/download/) Version 14.16 or higher
+* [NodeJS](https://nodejs.org/en/download/) Version 16.18 or higher
 
 ## Application Information Page
 

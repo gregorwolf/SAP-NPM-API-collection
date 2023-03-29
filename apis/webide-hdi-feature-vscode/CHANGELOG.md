@@ -1,3 +1,22 @@
+## 1.21.0
+
+### Fixes
+- Output columns could show incorrect error status.
+- A message is displayed if a dynamic join is used in a calculation view
+- Unrelated files could get corrupted when refactoring calculation views
+- SQL views were shown as calculation views in the data lineage view
+- The Data Preview Button was not displayed for window functions
+- Added missing up/down buttons
+- Expression in non-equi join is not flushed after data source replacement
+- The value help for Currency does not show any value.
+- Graphical changes to join columns in non-equi-joins are not persisted
+- Join node definition drag issue when a join node got more than two inputs
+- Add missing space between list box and label
+- Fixed tooltip for remove button in synonym editor
+- Removing columns that feed into join nodes with filter mapping leads to an inconsistent XML
+- Improve dialog messages for filter mapping
+- SQL comment is not removed correctly when validating an expression
+
 ## 1.20.0
 
 ### New Features

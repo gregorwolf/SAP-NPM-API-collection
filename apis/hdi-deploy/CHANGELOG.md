@@ -1,3 +1,14 @@
+## 4.6.0
+Features:
+- use @sap/hana-client@2.16.21
+- log cloud version when server is hana cloud
+- added support for granting/revoking service in kyma
+
+Fixes :
+- log grantor/revoker type used when throwing unknown grantor type error
+- log detailed error messages when write call fails
+- ensure that the complete VCAP_SERVICES are logged without `--trace`
+
 ## 4.5.3
 Features:
 - use @sap/hana-client@2.15.19

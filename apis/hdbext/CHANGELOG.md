@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.7.3"></a>
+## 7.7.3 - 2023-03-27
+
+### Updated
+- Update *@sap/hana-client* to v2.16.21
+
+### Removed 
+- Removed support node.js 8 & node.js 10 
+
 <a name="7.7.2"></a>
 ## 7.7.2 - 2023-01-24
 

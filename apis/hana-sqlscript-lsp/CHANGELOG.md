@@ -1,3 +1,8 @@
+## 1.9.0
+
+### Fixes
+- Update language server and client libraries
+
 ## 1.8.0
 
 ### Fixes

@@ -1,3 +1,38 @@
+# Hana Client 2.16.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.16 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.16/en-US
+
+For the latest updates please see SAP Note 3304880 - SAP HANA Client 2.16 Release Notes
+
+https://launchpad.support.sap.com/#/notes/3304880
+
+## Version 2.16.21
+
+### Changes:
+
+ - Issue Number 303589: The Node.js driver could have crashed with a "Cannot create a handle without a HandleScope" error.
+ - Issue Number 303504: Calling Connection's setAutoCommit and setClientInfo methods leaked a small amount of memory with every invocation.
+
+## Version 2.16.19
+
+### Changes:
+
+ - Issue Number 300270: Error text was unclear when mixing implicit and explicit API connection pooling.
+ - Issue Number 298102: The driver would have crashed when used with Node.js version 14.x (x <= 16).
+ - Issue Number 298057: Concurrent ResultSet methods could have crashed Node.js or caused wrong results.
+ - Issue Number 297706: Node.js could have crashed if dropping a statement while disconnecting its connection.
+ - Issue Number 294362: The value returned by Connection.getOpenConnectionCount could have been wrong when using explicit connection pooling.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 301841: A connection failed receive timeout could have given a misleading error message.
+ - Issue Number 299587: An NCLOB to BLOB conversion could have omitted some non-ASCII characters.
+ - Issue Number 298056: Getting a LOB data value after fetching past the end of a result set could have crashed.
+ - Issue Number 266106: NCLOB to BLOB conversion could have caused a heap buffer overflow.
+ - Issue Number 196676: Errors could have occurred when using very large ClientInfos.
+
 # Hana Client 2.15.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.15 documentation:

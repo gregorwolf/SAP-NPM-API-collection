@@ -5,6 +5,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 14.1.1 - 2023-03-21
+
+### Fixed
+- Connectivity token exchange in WS flow (env. ENABLE_CONNECTIVITY_TOKEN_EXCHANGE_WS)
+
+## 14.1.0 - 2023-03-20
+
+### Added
+- Support CSRF token in service2approuter with external session management
+
+### Fixed
+- Set dynamic log level without x-subscriber-tenant
+- IAS logout after session timeout
+- user-api documentation
+- Concatenating encrypted session cookies with non-sessions, in the case when  both received from a backend
+- Backend error handling when statusCode is null
+
+### Updated dependencies
+- deps: cookie-parser@1.4.6
+
 ## 14.0.0 - 2023-02-09
 
 ### Added
