@@ -6,6 +6,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.6.1 - 2023-03-03
+
+### Fixed
+- `@sap/cds-lsp` could not be installed manually
+
+
+## 6.6.0 - 2023-02-28
+
+### Added
+- type generation now detects project root
+- contribution api with new `indexAndValidate` callback
+
+### Fixed
+- highlighting of the last of a number of element names in a projection
+- formatting of query `from A:B`: removed colon padding
+- type generation stopped working after failure until next LSP restart
+
+### Changed
+- updated capire CDL docs - used in code completion details
+
+### Also see
+- `@sap/cds-compiler` 3.7.2
+
+
 ## 6.5.1 - 2023-02-20
 
 ### Added

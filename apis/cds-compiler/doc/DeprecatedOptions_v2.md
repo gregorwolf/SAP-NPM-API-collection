@@ -51,7 +51,7 @@ The compiled model contains the following generated entities:
 * the auto-exposed projection `our.Service.Proj.texts`
   which is a composition target of `our.Service.Proj:texts`
 
-For the following sub sections (and in general), is is important to understand that
+For the following subsections (and in general), it is important to understand that
 you can define all auto-exposed entities yourself (well, they are not
 _auto_-exposed anymore)
 _without_ any difference in the compiled model

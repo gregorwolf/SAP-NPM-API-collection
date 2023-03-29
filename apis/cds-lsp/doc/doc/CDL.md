@@ -245,7 +245,7 @@ entity ![Entity] {
 }
 ```
 
->You can escape `]` by `]]`, for example `![L[C]]R]` which will be parsed as `L[C]R`. 
+>You can escape `]` by `]]`, for example `![L[C]]R]` which will be parsed as `L[C]R`.
 
 ### Calculated Fields
 {: .impl.concept}
@@ -432,7 +432,7 @@ entity SomeView as SELECT from Employees {
 };
 ```
 
-By using a cast, neither annotations nor other properties are propagated, see [Annotation Propagation](#annotation-propagation)
+By using a cast, annotations and other properties are inherited from the provided type and not the base element, see [Annotation Propagation](#annotation-propagation)
 {:.tip}
 
 ### Views with Declared Signatures
@@ -1400,6 +1400,10 @@ service Sue {
 }
 ```
 
+Composition targets are auto-exposed in service interfaces.
+{:.tip}
+
+[Learn more about **Compositions**.]({{guides}}/domain-models#compositions--document-oriented-modeling){:.learn-more}
 [Learn more about **CodeLists in `@sap/cds/common`**.]({{cap}}/cds/common#code-lists){:.learn-more}
 
 ### Custom Actions and Functions
@@ -1444,6 +1448,24 @@ service CatalogService {
     }
 }
 ```
+
+Bound actions and functions have a binding parameter that is usually implicit.
+It can also be modeled explicitly: the first parameter of a bound action or function is treated as binding parameter,
+if it's typed by `[many] $self`. Use Explicit Binding to control the naming of the binding parameter. Use the
+keyword `many` to indicate that the action or function is bound to a collection of instances rather than to a single one.
+
+```swift
+service CatalogService {
+  entity Products as projection on data.Products { ... }
+    actions {
+      // bound actions/functions with explicit binding parameter
+      action A1 (prod: $self, stars: Integer);
+      action A2 (in: many $self);  // bound to collection of Products
+    }
+}
+```
+
+Explicitly modelled binding parameters are ignored for OData V2.
 
 
 ### Custom-Defined Events
@@ -1708,4 +1730,3 @@ cds compile foo.cds --docs
 // in JavaScript:
 cds.compile(..., { docs: true })
 ```
-

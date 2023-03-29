@@ -7,6 +7,12 @@
 > using CDS Node.js module [@sap/cds](https://www.npmjs.com/package/@sap/cds) or CDS Java modules
 > [com.sap.cds](https://mvnrepository.com/artifact/com.sap.cds).
 
+## Open Source / Deprecation
+
+- :exclamation: Proxy is open source at https://github.com/cap-js-community/odata-v2-adapter
+- :exclamation: The new proxy library is fully compatible and can be used as drop-in replacement
+- :exclamation: This library is now deprecated and will no longer receive updates
+
 ## Getting Started
 
 - Run `npm install @sap/cds-odata-v2-adapter-proxy -s` in `@sap/cds` project
@@ -189,14 +195,16 @@ early to detect modelling incompatibilities, the severity for respective codes c
 by setting the following environment variables:
 
 ```json
-"cdsc": {
+{
+  "cdsc": {
     "severities": {
       "odata-spec-violation-array": "Error",
       "odata-spec-violation-param": "Error",
       "odata-spec-violation-returns": "Error",
       "odata-spec-violation-assoc": "Error",
       "odata-spec-violation-constraints": "Error"
-   }
+    }
+  }
 }
 ```
 
@@ -413,7 +421,7 @@ For more details see [CONTRIBUTION](CONTRIBUTING.md) guide.
 - Stream Support (Octet and Url)
 - Content Disposition
 - Content-ID
-- Multitenancy
+- Multitenancy (mtx, mtxs)
 - Feature Toggles
 - Extensibility
 - Draft Support

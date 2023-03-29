@@ -777,7 +777,7 @@ synchronously.
 
 - Introduce annotation `@cds.redirection.target`.
   With value `false`, the projection is not considered an implicit redirection target;
-  with value `true`, is is considered a “preferred” redirection target.
+  with value `true`, is considered a “preferred” redirection target.
 
 ## Version 1.49.2 - 2021-02-16
 
@@ -1313,7 +1313,7 @@ synchronously.
 
 - HANA/SQL: Validate ON conditions of mixin association definitions in all subqueries
 
-- OData V2: Assign various `@sap` annotations to the `<edmx:EnitySet>` and `<edmx:AssociationSet>`
+- OData V2: Assign various `@sap` annotations to the `<edmx:entitySet>` and `<edmx:AssociationSet>`
   if such annotations are assigned to CDS entities or associations.
 
 - OData V4 Structured: Omit foreign keys of managed associations that establish the containment relationship to
@@ -1445,7 +1445,7 @@ synchronously.
 
 ### Fixed
 
-- Compiler: `type of <unmanaged assocation>` is now handled correctly by raising an error.
+- Compiler: `type of <unmanaged association>` is now handled correctly by raising an error.
 
 ## Version 1.25.0 - 2020-04-09
 
@@ -1629,7 +1629,7 @@ Fixes
 * In the Hana/Sql backend, correctly resolve forward `on` condition when using
   mixin association that backlinks to an unrelated 3rd party entity and association.
 * Raise a warning if the element of the forward association and the element of
-  the query source do not not originate from the same defining entity. Raise an
+  the query source do not originate from the same defining entity. Raise an
   error if the element of the forward association cannot be found in the query
   source or is ambiguous.
 * Correctly create localization views with compiled model as input;
@@ -2267,7 +2267,7 @@ Changes
   _Update to v1.12.1_ if you experience problems – an inherited `@cds.autoexpose` had not been considered.
 * In `toSql` and `toHana` errors are raised
   + for duplicate definitions of elements that differ only in spelling,
-  + if the the entity is not `abstract` or annotated with any `@cds.persistence` set to true and
+  + if the entity is not `abstract` or annotated with any `@cds.persistence` set to true and
     - an element is typed to be an `array of` a `type`,
     - an implicit managed composition has cardinality to many.
 * Raise a warning if an element is to be `localized` which is not of type `cds.String`.
@@ -2489,7 +2489,7 @@ Fixes
   while rewriting the `on` conditition of a projected association.
 * Apply OData specific checks (e.g. that all elements of an entity must have a type)
   applied only to objects that are exposed in a service.
-* When generating SQL for SQLite, replace the the special variables `$now`, `$user.id`
+* When generating SQL for SQLite, replace the special variables `$now`, `$user.id`
   and `$user.locale` by `CURRENT_TIMESTAMP`, `'$user.id'`, and `'EN'`, respectively.
 * Issue a warning for conflicting cardinality declarations (e.g. `association[1] to many ...`).
 * Handle filters with cardinality correctly when translating associations to joins.

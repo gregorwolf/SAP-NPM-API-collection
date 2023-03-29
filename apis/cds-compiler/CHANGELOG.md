@@ -7,6 +7,67 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.8.0 - 2023-03-27
+
+### Added
+
+- compiler:
+  + Table aliases for sub-queries are no longer required.
+  + A time zone designator can now be used in time literals, e.g. `time'16:41:01+01:30'`or `time'16:41:01Z'`.
+- Calculated elements ("on-read") are now enabled per default.  
+  When used in views, they are replaced by their value, for example:
+  ```cds
+  entity E { one: Integer; two = one + 1; };
+  entity P as projection on E { two };
+  // P is the same as:
+  entity P as projection on E { one + 1 as two };
+  ```
+  This allows to define calculations centrally at the entity, which can be used by
+  other views.
+- In CDL, a ternary operator was added as a shortcut for `CASE` expressions:  
+  `a ? b : c` is a shortcut for `CASE WHEN a THEN b ELSE c END`.  There is no CSN
+  representation. The ternary operator is rendered as a `CASE` expression in CSN.
+- In CDL and CSN, `not null` can now also be used in type definitions.
+- In CDL (and CSN as before), elements can be defined without specifying a type.
+
+### Changed
+
+- API: We now report an error for most backends, if the input CSN has
+  `meta.flavor == 'xtended'`, because only client/inferred CSN is supported.
+- Update OData vocabularies 'PersonalData', 'UI'
+- for.odata: Shortcut annotations `@label`, `@title`, `@description`, `@readonly` are no longer
+  removed from the OData processed CSN.
+- to.cdl:
+  + Annotation arrays are split into multiple lines, if a single line would be too long.
+  + Nested `SELECT`s are put into separate lines to make them more readable.
+  + (Annotation) paths are quoted less often.
+- to.sql: The list of reserved SAP HANA identifiers was updated (for smart quoting).
+
+### Fixed
+
+- The CSN parser now accepts bare `list`s in `columns[]`, similar to the CDL parser.
+- to.cdl:
+  + Delimited identifiers in filters are now surrounded by spaces if necessary, to avoid `]]`
+    being interpreted as an escaped bracket.
+- to.edm(x):
+  + Remove empty `Edm.EntityContainer` again. Removal of an empty entity container has been
+    revoked with [3.5.0](#fixed-7) which was wrong. An empty container must not be rendered
+    as it is not spec compliant.
+  + Correctly resolve chained enum symbols.
+  + Fix a program abort during structured rendering in combination with `--odata-foreign-keys`
+    and foreign keys in structured types.
+  + Correctly render paths to nested foreign keys as primary key in structured mode with
+    `--odata-foreign-keys`.
+- to.hdi/to.sql/to.edm(x):
+  + Reject unmanaged associations as ON-condition path end points.
+  + Fix bug in message rendering for tuple expansion.
+  + Correctly detect invalid @sql.append/prepend in projections.
+- to.hdi/to.sql: The list of SAP HANA keywords was updated to the latest version.
+
+### Removed
+
+- for.odata: Undocumented shortcut annotation `@important` has been removed.
+
 
 ## Version 3.7.2 - 2023-02-24
 
@@ -14,6 +75,7 @@ The compiler behavior concerning `beta` features can change at any time without 
 
 - CSN parser: Structured annotations containing `=` were accidentally interpreted as expressions,
   even though the corresponding beta flag was not set.
+
 
 ## Version 3.7.0 - 2023-02-22
 
@@ -44,9 +106,6 @@ The compiler behavior concerning `beta` features can change at any time without 
     explicit redirection.
 - to.edm(x): Process value help list convenience annotations on unbound action parameters.
 
-### Removed
-
-- tbd
 
 ## Version 3.6.2 - 2023-02-06
 
@@ -455,7 +514,7 @@ The compiler behavior concerning `beta` features can change at any time without 
   + Enforce `odata-spec-violation-key-null` on explicit foreign keys of managed primary key associations.
   + Proxies/service cross references are no longer created for associations with arbitrary ON conditions.
     Only managed or `$self` backlink association targets are proxy/service cross reference candidates.
-  + Explicit foreign keys of a managed association that are not a primary key in the target are exposed in the the proxy.
+  + Explicit foreign keys of a managed association that are not a primary key in the target are exposed in the proxy.
   + If an association is primary key, the resulting navigation property is set to `Nullable:false` in structured mode.
 
 ## Version 2.15.0 - 2022-05-06

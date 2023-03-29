@@ -4,18 +4,97 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Version 6.6.0 - 2023-02-27
+## Version 6.7.0 - 2023-03-28
 
 ### Added
 
+- Config `cds.ql.quirks_mode` as a compatibility flag to still support behaviours which are undocumented, or even against the specifications, for example CQN:
+   ```js
+   let q = INSERT.into('Books') 
+   //> According to CQN spec should return:
+   {SELECT:{from:{ref:['Books']}}}
+   //> But today returns:
+   {SELECT:{from:'Books'}}
+   ```
+   The default in cds6 is `true` → to be changed to `false` with cds7.
+- `cds build` now checks extension point restrictions defined by the SaaS app provider. `cds build` fails if any restrictions are violated.
+- Typings for `cds.spawn()`
+- Typings for `entity.drafts`
+- Typings for winston logger
+- Typings for `service.on`, `service.before`, and `service.after` for actions and CRUD events
+- CLI command `cds env` now allows property paths with `/` instead of `.`, which allows usages like that:
+```sh
+cds env requires/cds.xt.ModelProviderService
+```
+- `cds.env` now allows to statically set/add profiles via `cds.profile` and `cds.profiles` in package.json.
+- `cds.env` now also supports using profiles in definitions of presets, i.e., in `cds.requires.kinds`.
+- `cds deploy` prints a warning when using Cloud Foundry client version less than 8.
+- `req.subject` to conveniently operate on the subjects targeted by the request. Example usage:
+  SELECT.one.from(req.subject)   //> returns single
+  SELECT.from(req.subject)      //> returns array
+  UPDATE(req.subject)          //> updates one or many
+  DELETE(req.subject)         //> deletes one or many
+- `cds-serve` as a future replacement for `cds serve` in npm scripts. Applications can adopt this now to ease the transition to the next major version.
+
+### Changed
+
+- `cds.log().trace()` now logs stack traces in `DEBUG` level, before that was on `TRACE`/`SILLY` level only
+- Plain SQL queries now have `req.event === undefined`, formerly this had non-deterministic values.
+- Plain SQL queries don't allow to register custom handlers, other than for event `'*'`.
+- Plain SQL queries are only supported on database services, not on application services.
+- CQN representation of `columns=*` is not allowed anymore, instead `columns=['*']` should be used. This also applies to expand.
+- Only draft roots can be created via direct, non-navigation OData `POST` requests.
+- Flag `cds.features.fiori_preview` changed to `cds.fiori.preview`. The old flag still works as well.
+- Flag `cds.features.fiori_routes` changed to `cds.fiori.routes`. The old flag still works as well.
+
+### Fixed
+
+- Proper handling of `IsActiveEntity` in error paths
+- For cloudevents using AMQP, the type is set to `application/cloudevents+json`
+- Use `message` property in typings.
+- Typings for `cds.on('bootstrap', app => {app.use(...)`
+- Return types for `User` and `delete` in typescript
+- Typings for connect options
+- Typings for `req.error`
+- Deployment in sidecar
+- Error with restricting an entity and request it with $apply in combination with aggregate
+- Combined usage of `$skiptoken` and `$skip`
+- Error `package.json file is missing` in mtx extension builds
+- CLI commands w/ unknown arguments (`cds --foo`) clearly fail again with a proper error message
+
+## Version 6.6.2 - 2023-03-17
+
+### Fixed
+
+- Exception during `cds deploy` without mtx
+- Service name specified with `cds deploy --to hana:serviceName` takes precedence over environment variables.
+
+## Version 6.6.1 - 2023-03-09
+
+### Added
+
+- `cds.xt.TENANT_UPDATED` event is emitted once a tenant was extended
+
+### Fixed
+
+- `TypeError` when using the query API with an unknown target in x4 flavor
+- The setting for `cds.requires['cds.xt.DeploymentService'].lazyT0` is now recognized in the VS Code schema validation.
+- The HDI deployment `stdout` logs are now only visible for `DEBUG` level if triggered via `cds-mtxs`. They are also streamed to `logs/<tenant>.log` in case you need the full deployment output, even without `DEBUG` enabled.
+- `.forUpdate` when used for etags
+- Prevent `TypeError` if an existing draft does not have admin data
+- Outbound-streaming error handling
+
+## Version 6.6.0 - 2023-02-27
+
+### Added
 - Improved error handling for `cds build` if the SaaS base model is missing in an extension project.
 - Support for reliable paging using `$skiptoken`. Can be activated via `cds.query.limit.reliablePaging = true`
+- Built-in models are now added to existing model options of custom build tasks.
 
 ### Changed
 
 - `cds.serve(ServiceName)` (and `cds serve -s ServiceName`) now exactly serve services with the given names. Previously, all services that ended with the given name were served as well, e.g. `MyServiceName` and `ServiceName`, which might be problematic for applications that bootstrap services one by one.
 - Optimize `@cds.persistence.journal` filtering for `last-dev` CSN file.
-- `process.exit()` is no longer called during server shutdown, so that other/custom exit handlers get a chance to execute.
 
 ### Fixed
 

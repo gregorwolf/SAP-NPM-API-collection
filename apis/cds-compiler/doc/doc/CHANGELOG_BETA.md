@@ -8,6 +8,21 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 3.8.0 - 2023-03-27
+
+### Added `v4preview`
+
+This beta flags tries to imitate cds-compiler v4 behavior.
+This includes new compiler messages as well as potentially breaking changes.
+
+Enable this beta flag to ease upgrading to cds-compiler v4.
+
+This flag does not guarantee full compatibility with v4, but only
+helps to identify potential issues as soon as possible.
+
+### Removed `calculatedElements`
+
+Now enabled per default.
 
 ## Version 3.7.0 - 2023-02-22
 

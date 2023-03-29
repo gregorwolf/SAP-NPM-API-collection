@@ -600,7 +600,7 @@ The list of search environments is created as follows:
 
 The above mentioned `:`-escape mechanism leads to the following name resolution:
 
-* The first lexical search environment is the the environment containing all parameter names of the current view.
+* The first lexical search environment is the environment containing all parameter names of the current view.
 * The following search environments are the usual ones from the "main artifact name resolution";
   constant values can be accessed this way (_TODO_: probably not now).
 

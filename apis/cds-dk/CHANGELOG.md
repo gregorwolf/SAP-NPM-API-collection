@@ -7,6 +7,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.6.2 - 2023-03-22
+
+### Fixed
+
+- Bump `sqlite3` to 5.1.6
+- Bump `@sap/cds` to 6.2.2
+- `cds init` creates project sample files correctly.
+
+## Version 6.6.1 - 2023-03-09
+
+### Added
+
+- `cds compile --to openapi` now adds extension validation keywords `x-sap-precision` and `x-sap-scale` for decimal values.
+
+### Fixed
+
+- `cds add helm` fixed html5 cloud service is now read properly.
+- `cds import` now flattens the `@Capabilities` anotation in the CSN for OData V4 files.
+- `cds import` for OData V4 files now captures the `EnumTypes` information in the CSN according to `UnderlyingType`.
+- `cds import` now captures the `@Common.Text` annotation value properly in the CSN for OData V4 files.
+- `cds init --add java` now uses local Java version when creating new Java project.
+- `cds watch` terminates properly in case livereload websocket clients are connected
+- `cds watch`'s livereload feature works again on Node.js >= 17, where local IPv6 addresses are the default (`::1` instead of `127.0.0.1`)
+
 ## Version 6.6.0 - 2023-02-28
 
 ### Added

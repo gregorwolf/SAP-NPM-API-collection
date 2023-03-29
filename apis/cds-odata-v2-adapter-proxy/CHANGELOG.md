@@ -7,13 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.9.21 - 2023-04-24
+
+### Fixed
+
+- Proxy is open source at https://github.com/cap-js-community/odata-v2-adapter
+- The new proxy library is fully compatible and can be used as drop-in replacement
+- This library is now deprecated and will no longer receive updates
+
+## Version 1.9.20 - 2023-03-09
+
+### Fixed
+
+- Cache invalidation for Streamlined MTX (extensibility enabled) with CDS 6.6.1
+- Use named parameters for mtxs actions to protect against incompatible changes
+- Allow status code 304 (not modified) when reading OData V4 metadata (as success)
+
 ## Version 1.9.19 - 2023-02-15
 
 ### Fixed
 
 - Provide subdomain information to logs
 - Use correct correlation-id for logging (setup CDS context correctly)
-- React to incompatible change of MTXS getEdmx, to provide (internal) model parameter
+- React to incompatible change of mtxs getEdmx, to provide (internal) model parameter
 - Enhance example app to show usage of bound/unbound OData V2 actions in Fiori UI via annotation
 
 ## Version 1.9.18 - 2023-01-18
