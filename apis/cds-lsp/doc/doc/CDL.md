@@ -683,11 +683,10 @@ entity Orders.Items {
 
 > Essentially, Compositions are the same as _[associations]_, just with the additional information that this association represents a contained-in relationship so the same syntax and rules apply in their base form.
 
-
 ### Managed Compositions of Aspects
 {:#managed-compositions}
 
-Use managed compositions variant to nicely reflect document structures in your domain models, without the need for separate entities, reverse associations, and unmanaged `on` conditions.
+Use the managed compositions variant to nicely reflect document structures in your domain models, without the need for separate entities, reverse associations, and unmanaged `on` conditions.
 
 
 #### With Inline Targets
@@ -729,6 +728,10 @@ aspect OrderItems {
   quantity : Integer;
 }
 ```
+
+#### Default Target Cardinality
+
+If not otherwise specified, a managed composition of an aspect has the default target cardinality *to many*.
 
 #### For Many-to-many Relationships
 

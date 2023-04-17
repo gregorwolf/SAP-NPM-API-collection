@@ -7,6 +7,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.7.0 - 2023-03-29
+
+### Added
+
+- `cds upgrade` enables upgrading a tenant subscribed to a multitenant SaaS app to the latest base model.
+
+### Fixed
+
+- `cds watch`'s livereload feature may now use a local IPv6 address (`::1`) instead of always `localhost`. This is usually the case on Node.js 17 or higher.
+- In all but `cds compile` errors where not handled correctly, especially compiler errors not displayed in human readable format.
+- `cds init` creates project sample files correctly.
+- CLI commands w/ unknown arguments (`cds --foo`) clearly fail again with a proper error message
+- Reduce console output in case of multitenancy-related command failures.
+
+### Changed
+
+- `cds env --for` is now used to specify profiles; before it specified project paths, but never worked correctly.
+- `cds add data` now uses comma as CSV separator by default instead of semicolon. This allows using GitHub tabular display.
+- `cds add approuter` doesn't create entries for `authenticationMethod` and `authenticationType` any more, but uses the equivalent `@sap/approuter` defaults.
+- `cds add multitenancy` will now create a sidecar MTX project for Node.js as well.
+- `cds subscribe` and `cds unsubscribe` no longer require a username in case @sap/cds-mtxs is configured with dummy auth.
+- `cds subscribe` and `cds unsubscribe` now rely on @sap/cds-mtxs (version 1.7.0 or higher).
+
 ## Version 6.6.2 - 2023-03-22
 
 ### Fixed
@@ -24,7 +47,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - `cds add helm` fixed html5 cloud service is now read properly.
-- `cds import` now flattens the `@Capabilities` anotation in the CSN for OData V4 files.
+- `cds import` now flattens the `@Capabilities` annotation in the CSN for OData V4 files.
 - `cds import` for OData V4 files now captures the `EnumTypes` information in the CSN according to `UnderlyingType`.
 - `cds import` now captures the `@Common.Text` annotation value properly in the CSN for OData V4 files.
 - `cds init --add java` now uses local Java version when creating new Java project.

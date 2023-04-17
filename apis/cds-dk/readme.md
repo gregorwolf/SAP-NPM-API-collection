@@ -4,7 +4,7 @@ The command line client and development toolkit for the [SAP Cloud Application P
 
 See the [documentation](https://cap.cloud.sap/docs/get-started/) for more details.
 
-## How to Obtain Support**
+## How to Obtain Support
 
 In case you find a bug, please report an [incident](https://cap.cloud.sap/docs/resources/#reporting-incidents) on SAP Support Portal.
 

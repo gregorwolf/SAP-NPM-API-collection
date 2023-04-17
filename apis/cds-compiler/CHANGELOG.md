@@ -7,6 +7,14 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.8.2 - 2023-03-30
+
+### Fixed
+
+- parser: Identifiers that are keywords were not allowed in annotation values inside arrays
+- compiler: Compatibility against cds-lsp was restored.
+- to.sql/hdbcds/hdi/edm(x): Fix a crash for sub-queries inside nested expressions of on-conditions of JOINs.
+
 ## Version 3.8.0 - 2023-03-27
 
 ### Added

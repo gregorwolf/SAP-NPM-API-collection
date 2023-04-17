@@ -4,6 +4,19 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.7.1 - 2023-04-14
+
+### Changed
+
+- Calling a parameterized view without params error now results in the status code 400 with an improved error message.
+
+### Fixed
+
+- cds build error CreateListFromArrayLike
+- Disabling of arbitrary user config in mock auth config using `"users": { "*": false }`
+- Various fixes for `cds.fiori.lean_draft`
+- User attributes that look like numbers are quoted in SQL clause for `@restrict`
+
 ## Version 6.7.0 - 2023-03-28
 
 ### Added

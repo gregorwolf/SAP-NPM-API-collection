@@ -47,7 +47,7 @@ It provides many useful features for working with and enjoying CDS sources.
 
 - Hover information based on
     - doc comments
-    - `@title`, `@description` and ~~`@cds.doc`~~ (deprecated) annotations
+    - `@title` and `@description` annotations
     - translations
 
 - Code formatting

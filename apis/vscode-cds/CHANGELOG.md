@@ -6,6 +6,34 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 
+## Version 6.7.0 - 2023-03-31
+### Added
+- code completion for `using` paths now
+  + supports mono repos
+  + for _npm package_ proposals show details of `description` property of `package.json` unless `README.md` exists
+  + improved ordering
+- **Experimental** user setting `cds.typeGenerator.binary` to specify the path to the type generator binary
+- CAP notebooks: new cell type `Java` is now executable. Requires `JDK` version `9` or higher.
+
+### Fixed
+- `format-cds` command-line tool failed to run
+- _Analyze Dependencies_
+  + some clusters (folders) with same parent cluster were rendered outside
+
+### Changed
+- _Analyze Dependencies_
+  + folders which are npm package roots are rendered with their package name, in brown color
+  + enhance contrast - use white font color for dark background colors
+  + improved UX when installing required Graphviz extension
+
+### Removed
+- Quickfix to migrate (long-time removed) `cds.doc` annotation to doc comment
+
+### Also see
+- `@sap/cds-lsp` 6.7.0
+- `@sap/cds-compiler` 3.8.2
+
+
 ## Version 6.6.0 - 2023-03-02
 
 ### Added
