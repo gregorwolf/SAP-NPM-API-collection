@@ -188,7 +188,23 @@ ws.onWorkspaceChanged((event: string, folders: WorkspaceFolder[]) => {
   // add implementation 
 });
 ```
+### getPluginManager
+###### Description
+it returns an IPluginManager instance which can be used to register the custom plugin.
+###### Method
+`getPluginManager() : IPluginManager`
 
+###### returns
+- an `IPluginManager` instance
+
+###### Example
+```
+import * as vscode from 'vscode';
+
+const ws = new WorkspaceImpl(vscode);
+const pluginManager = ws.getPluginManager();
+pluginManager.register(customPlugin);
+```
 ---
 
 ## Access to project properties

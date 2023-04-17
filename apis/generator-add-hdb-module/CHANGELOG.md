@@ -1,3 +1,8 @@
+## 1.7.0
+
+### New Features
+- The configuration of new projects now includes a mapping for hdbschedulerjob
+
 ## 1.6.0
 
 ### Fixes

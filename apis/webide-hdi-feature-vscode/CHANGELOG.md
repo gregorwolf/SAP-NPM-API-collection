@@ -1,3 +1,22 @@
+## 1.22.0
+
+### New Features
+- Support modify (drag/drop) link symbol in join editor
+- Allow reordering of sources in each node
+- User-defined functions support in SQL Expressions (filter & calculated attributes)
+- Allow selecting the direction of filter mappings
+- Offer exception aggregation for (calculated) measures that is written to BIMC
+
+### Fixes
+- The variant could be missing in the generated data for fiscal time tables
+- No option to change the column type of the result_column of a window function
+- The deployment could fail after replace with data source
+- Rename column and adjust reference doesnt work if the column is used in variable
+- Renaming analytic privilege adds a namespace
+- Input parameter mapping to multiple table functions doesn't work correctly
+- Text joins only allow 1:1 cardinalities but N:1 should also be supported
+- Validation procedure wrongly called for column engine expressions
+
 ## 1.21.0
 
 ### Fixes

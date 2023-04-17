@@ -1,3 +1,16 @@
+## 1.13.0
+
+### New Features
+
+- Deployment traces can be configured via a setting
+- Scheduler jobs (hdbschedulerjob) can be created by the artifact creation wizard
+- Schema service instances can be bound to non-target modules
+
+### Fixes
+
+- Supported file suffixes are considered case-insensitive
+- Unable to create virtual table using virtual table editor in BAS for RMS remote source
+
 ## 1.12.0
 
 ### Fixes

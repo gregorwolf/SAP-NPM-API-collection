@@ -1,3 +1,8 @@
+## 1.20.0
+
+### New Features
+- User-defined functions support in SQL Expressions (filter & calculated attributes)
+
 ## 1.19.0
 
 ### Fixes

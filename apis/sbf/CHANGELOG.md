@@ -8,6 +8,14 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.5.7"></a>
+## 6.5.6 - 2023-04-03
+### Changed
+- Dependencies version update.
+
+### Removed
+- Support for node.js v10 is removed.
+
 <a name="6.5.6"></a>
 ## 6.5.6 - 2023-03-29
 ### Added

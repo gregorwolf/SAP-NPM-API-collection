@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+## [1.7.2] - 2023-04-13
+### Changed
+- generator is now bundled into one file
 
 ## [1.7.1] - 2023-01-31
 ### Fixed

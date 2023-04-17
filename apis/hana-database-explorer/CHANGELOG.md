@@ -1,3 +1,10 @@
+## 1.14.0
+
+### Fixes
+- The database list in the SQL console does not show connections in subfolders.
+- Application-managed database connections were not shown in the database tree.
+- Opening a SQL console with an admin connection did not work correctly.
+
 ## 1.13.0
 
 ### New Features

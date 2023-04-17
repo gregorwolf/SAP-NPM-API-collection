@@ -4,6 +4,11 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;The ucl-provider is an npm package that provides the APIs necessary for exposing UCL systems, packages and services.
 
+The UCL is working with cert and key. In BAS this is transperent to the user as it happens behind the scenes
+
+[UCL Docs](https://help.sap.com/docs/bas/sap-business-application-studio/unified-customer-landscape-service-provider)   
+
+
 ## Usage
 
 &nbsp;&nbsp;&nbsp;&nbsp;To add this package as a dependency in your **package.json** file, under the "dependencies" section, add the following dependency: `"@sap/ucl-provider": [Version]`
@@ -97,6 +102,9 @@
 **Output:** An object that contains a JSON string with live data from the service. 
 
 ## More Resources
-&nbsp;&nbsp;&nbsp;&nbsp;1. To create a key and certificate, see this [wiki.](https://github.wdf.sap.corp/devx-wing/ucl-provider/wiki)
+&nbsp;&nbsp;&nbsp;&nbsp;1. To create a key and certificate in **UCL Canary**, see this [wiki.](https://github.wdf.sap.corp/devx-wing/ucl-provider/wiki). 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that the WS_BASE_URL in the lunch.json should be directed to UCL canary for the test flow to work.
 
 &nbsp;&nbsp;&nbsp;&nbsp;2. See a sample flow of ucl-provider APIs [here.](/test/flow/testFlow.ts)
+

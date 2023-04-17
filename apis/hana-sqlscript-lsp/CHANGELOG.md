@@ -1,3 +1,8 @@
+## 1.10.0
+
+### Fixes
+- Add syntax highlighting for Scheduler Jobs (hdbschedulerjob)
+
 ## 1.9.0
 
 ### Fixes
