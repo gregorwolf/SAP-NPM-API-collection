@@ -20,17 +20,24 @@ env:
       name: my-configmap-{{ .Release.Name }}
       key: my-key
 envFrom:
-- configMapRef:
-    name: my-configmap1-{{ .Release.Name }}
-- secretRef:
+  - configMapRef:
+      name: my-configmap1-{{ .Release.Name }}
+  - secretRef:
     name: my-secret-ref1-{{ .Release.Name }}
 additionalVolumes:
-- name: my-volume
-  secret:
-    secretName: my-secret-{{ .Release.Name }}
-  volumeMount:
-    mountPath: /etc/mysecret
-    readOnly: true
+  - name: my-volume
+    secret:
+      secretName: my-secret-{{ .Release.Name }}
+    volumeMount:
+      mountPath: /etc/mysecret
+      readOnly: true
+expose:
+  host: "{{ .Release.Name }}-app"
+networkSecurity:
+  ingress:
+    - namespace: "{{ .Release.Namespace }}"
+      podLabelsSelector:
+        app: "{{ .Release.Name }}-my-app"
 bindings:
   hana:
     serviceInstanceName: hana-{{ .Release.Name }}

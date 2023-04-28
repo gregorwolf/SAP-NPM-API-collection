@@ -5,48 +5,54 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.7.7"></a>
+## 6.7.7 - 2023-04-25
+
+### Fixed
+- Replace deprecated _request_ with _axios_ v1.3.6
+
 <a name="6.7.6"></a>
 ## 6.7.6 - 2023-03-27
 
 ### Update
-- Update hana-client to v2.16.21
-- Update hdbext to v7.7.3
+- Update _@sap/hana-client_ to v2.16.21
+- Update _@sap/hdbext_ to v7.7.3
 
 <a name="6.7.5"></a>
 ## 6.7.5 - 2023-02-10
 
 ### Update
-- Update xsodata to v8.0.2
+- Update _@sap/xsodata_ to v8.0.2
 
 ### Fix
-- Way to require method isString from lodash
+- Way to require method isString from _lodash_
 
 <a name="6.7.4"></a>
 ## 6.7.4 - 2023-01-30
 
 ### Update
-- Update hana-client to v2.15.19
-- Update hdbext to v7.7.2
+- Update _@sap/hana-client_ to v2.15.19
+- Update _@sap/hdbext_ to v7.7.2
 
 <a name="6.7.3"></a>
 ## 6.7.3 - 2023-01-11
 
 ### Update
-- Update audit-logging to v5.6.3
-- Update instance manager to 3.5.3
-- Update xssec to 3.2.15
+- Update _@sap/audit-logging_ to v5.6.3
+- Update _@sap/instance-manager_ to 3.5.3
+- Update _@sap/xssec_ to 3.2.15
 
 <a name="6.7.2"></a>
 ## 6.7.2 - 2022-12-23
 
 ### Update
-- Update express to v4.18.2
+- Update _express_ to v4.18.2
   
 <a name="6.7.1"></a>
 ## 6.7.1 - 2022-10-10
 
 ### Update
-- Update _@sap/jobs-client to v1.7.42
+- Update _@sap/jobs-client_ to v1.7.42
 
 <a name="6.7.0"></a>
 ## 6.7.0 - 2022-10-04
@@ -61,33 +67,33 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ## 6.6.9 - 2022-08-09
 
 ### Update
-- Update xsodata version to 8.0.0
+- Update _@sap/xsodata_ version to 8.0.0
 
 <a name="6.6.8"></a>
 ## 6.6.8 - 2022-07-22
 
 ### Update
-- Update hana-client version to v2.13.22
-- Update hdbext version to 7.6.5
+- Update _@sap/hana-client_ version to v2.13.22
+- Update _@sap/hdbext_ version to 7.6.5
 
 <a name="6.6.7"></a>
 ## 6.6.7 - 2022-07-20
 
 ### Update
-- Update hana-client version to v2.13.22
+- Update _@sap/hana-client_ version to v2.13.22
 
 <a name="6.6.6"></a>
 ## 6.6.6 - 2022-07-11
 
 ### Update
-- Update passport to v0.6.0
+- Update _passport_ to v0.6.0
 
 
 <a name="6.6.5"></a>
 ## 6.6.5 - 2022-07-11
 
 ### Update
-- Update passport to v0.6.0
+- Update _passport_ to v0.6.0
 
 <a name="6.6.4"></a>
 ## 6.6.4 - 2022-06-03
@@ -102,7 +108,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ## 6.6.3 - 2022-05-03
 
 ### Update
-- Update @sap/hana-client to v2.12.20
+- Update _@sap/hana-client_ to v2.12.20
 
 <a name="6.6.2"></a>
 ## 6.6.2 - 2022-04-26

@@ -4,6 +4,15 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.7.2 - 2023-04-24
+
+### Fixed
+
+- Try to destroy nonexistant socket in case of custom streaming implementation
+- Draft: Missing field `IsActiveEntity` in target path of error messages during `draftActivate`
+- Minor fixes for `cds.fiori.lean_draft`
+- Error in media type check when no `Content-Type` header is found
+
 ## Version 6.7.1 - 2023-04-14
 
 ### Changed

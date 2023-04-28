@@ -7,19 +7,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 6.7.0 - 2023-03-29
+## Version 6.7.2 - 2023-04-27
+
+### Added
+
+- Added option `--skip-verification` to command `cds migrate`. It skips the extension verification to save memory. Requires `@sap/cds-mtxs@1.7.3`.
+
+### Fixed
+
+- Swagger UI no longer fails with an error `Value of 'namespaceAndName' parameter must be in the following format: <namespace>.<name>`
+
+## Version 6.7.1 - 2023-04-19
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 1.33.1 for creating Java projects.
+- Bump `@sap/cds` to 6.7.1
+- Bump `@sap/cds-mtxs` to 1.7.2
+
+### Fixed
+
+- Compatibility with @sap/cds versions >= 4.5 and < 6.2: avoid runtime errors with debugging disabled.
+
+## Version 6.7.0 - 2023-03-28
 
 ### Added
 
 - `cds upgrade` enables upgrading a tenant subscribed to a multitenant SaaS app to the latest base model.
-
-### Fixed
-
-- `cds watch`'s livereload feature may now use a local IPv6 address (`::1`) instead of always `localhost`. This is usually the case on Node.js 17 or higher.
-- In all but `cds compile` errors where not handled correctly, especially compiler errors not displayed in human readable format.
-- `cds init` creates project sample files correctly.
-- CLI commands w/ unknown arguments (`cds --foo`) clearly fail again with a proper error message
-- Reduce console output in case of multitenancy-related command failures.
 
 ### Changed
 
@@ -29,6 +43,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - `cds add multitenancy` will now create a sidecar MTX project for Node.js as well.
 - `cds subscribe` and `cds unsubscribe` no longer require a username in case @sap/cds-mtxs is configured with dummy auth.
 - `cds subscribe` and `cds unsubscribe` now rely on @sap/cds-mtxs (version 1.7.0 or higher).
+
+### Fixed
+
+- `cds watch`'s livereload feature may now use a local IPv6 address (`::1`) instead of always `localhost`. This is usually the case on Node.js 17 or higher.
+- In all but `cds compile` errors where not handled correctly, especially compiler errors not displayed in human readable format.
+- `cds init` creates project sample files correctly.
+- CLI commands w/ unknown arguments (`cds --foo`) clearly fail again with a proper error message
+- Reduce console output in case of multitenancy-related command failures.
 
 ## Version 6.6.2 - 2023-03-22
 
