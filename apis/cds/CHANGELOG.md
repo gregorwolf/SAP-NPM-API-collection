@@ -4,6 +4,43 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.8.1 - 2023-05-04
+
+### Fixed
+
+- DROP statements for SQLite and PostgreSQL no longer miss a comma at the end
+
+## Version 6.8.0 - 2023-05-02
+
+### Added
+
+- Global cds-dk version is now included in tabular output of `cds v -i`.
+- Audit logging support for OAuth2 Plan
+- Feature flag to limit the max number of requests in a Odata batch request. The max number can be specified with a number in `cds.odata.batch_limit`.
+- Custom authentication in `enterprise-messaging`
+- Requests with lambda expressions are rejected by remote services of kind `odata-v2`
+- `cds build` ignores invalid entries in `undeploy.json`
+- New `minorUnit` element in `sap.common.Currencies` for how many fractions the minor unit takes (e.g. `0`, or `2`).  See https://www.npmjs.com/package/@sap/cds-common-content for matching content.
+- Support for `$user.<attr> is null` and `$user.<attr> is not null` in `@restrict.where`. `is null` matches `null` and `[]`, `is not null` matches arrays with at least one entry as well as `!= null` if no array.
+
+### Changed
+
+- Texts for _Country_ are changed to _Country/Region_ in `@sap.common.Countries`
+- Resolved issue where selection strategies of destination options in multitenant applications were not working correctly, resulting in runtime errors.
+The fix relies on the `@sap-cloud-sdk/connectivity` npm package to be installed.
+- Precision of timestamp used in outbox message increased to 100 nanoseconds (`YYYY-MM-DD hh:mm:ss.nnnnnnn`)
+- When a draft is locked by another user, the error message now includes the username of that user
+
+### Fixed
+
+- fix exported types of the `cds` core API
+- cds build uses the correct path if no project dir is given
+- Read after write for updates on to-one navigation
+- Error in $orderBy in combination with @Core.MediaType property
+- Fixes in lean-draft
+- Fixed an issue where the combined `$search` and `$expand` query and localized data was returning empty results on SAP HANA
+- Tests using `cds.test` no longer crash with a segmentation fault if `injectGlobals: false` is set in the Jest configuration.
+
 ## Version 6.7.2 - 2023-04-24
 
 ### Fixed
@@ -32,7 +69,7 @@
 
 - Config `cds.ql.quirks_mode` as a compatibility flag to still support behaviours which are undocumented, or even against the specifications, for example CQN:
    ```js
-   let q = INSERT.into('Books') 
+   let q = INSERT.into('Books')
    //> According to CQN spec should return:
    {SELECT:{from:{ref:['Books']}}}
    //> But today returns:
@@ -43,6 +80,7 @@
 - Typings for `cds.spawn()`
 - Typings for `entity.drafts`
 - Typings for winston logger
+- Typings for `cds.context`
 - Typings for `service.on`, `service.before`, and `service.after` for actions and CRUD events
 - CLI command `cds env` now allows property paths with `/` instead of `.`, which allows usages like that:
 ```sh
@@ -60,6 +98,7 @@ cds env requires/cds.xt.ModelProviderService
 
 ### Changed
 
+- CQL types now attach additional functionality to entities where appropriate
 - `cds.log().trace()` now logs stack traces in `DEBUG` level, before that was on `TRACE`/`SILLY` level only
 - Plain SQL queries now have `req.event === undefined`, formerly this had non-deterministic values.
 - Plain SQL queries don't allow to register custom handlers, other than for event `'*'`.
@@ -71,6 +110,7 @@ cds env requires/cds.xt.ModelProviderService
 
 ### Fixed
 
+- Specifying a key in `SELECT.from(...)` is now typed to produce a single result, instead of an array of results
 - Proper handling of `IsActiveEntity` in error paths
 - For cloudevents using AMQP, the type is set to `application/cloudevents+json`
 - Use `message` property in typings.

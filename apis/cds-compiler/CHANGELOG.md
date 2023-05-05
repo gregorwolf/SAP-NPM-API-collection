@@ -7,6 +7,59 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.9.2 - 2023-04-27
+
+### Fixed
+
+- Fix crash in core compiler which occurred when CAP was used in a node environments
+  where an enumerable property was added to `Array.prototype`.
+- to.edm(x):
+  + Publicly release `@open`.
+  + No `DefaultValue` for `Edm.NavigationProperty`.
+
+## Version 3.9.0 - 2023-04-20
+
+### Added
+
+- Variables `$valid.from` and `$valid.to` have been added to the compiler.
+  They behave the same as `$at.from` and `$at.to`.
+- to.edm(x):
+  + Add `--odata-vocabularies` to pass a dictionary `{ <prefix>: { Alias, Namespace, Uri } }`
+    into the EDM generation. `<prefix>` must match the value of `Alias`. Entries are ignored
+    if they are incomplete, malformed, redefine an official OASIS/SAP vocabulary or match the name
+    of the current service. Annotations of the form `@<prefix>.<annotation>` are added to the API
+    without evaluation including an `edm:Reference`. It is in the users responsibility to provide
+    a URI that a client can resolve against a valid vocabulary document.
+  + Support annotation `@open` on entity and structured type level to declare the corresponding
+    entity/complex type to be `OpenType=true`. If an open structured type is declared closed
+    (with a falsy annotation value), the corresponding EDM type is closed as well and suffixed
+    with `_closed` (or `_open` vice versa).
+    No further checks are performed on possibly open foreign or primary key types nor on eventually
+    bucket elements to store the additional data.
+
+### Changed
+
+- compiler: Parameter references in filters such as `assoc[field < :Param]` are now allowed.
+- In the compiled CSN, sort the non-enumerable `$sources` property
+  according to the reversed layered extension order.
+- Update OData vocabulary 'Common', 'ODM', 'UI'.
+- to.cdl: If an identifier contains illegal characters (e.g. newline), we no longer produces
+  invalid CDL, but emit an error instead.
+
+### Fixed
+
+- to.edm(x):
+  + Fix spec requirement: "Navigation properties of complex types MUST NOT specify a partner".
+  + Set default target cardinality for unspecified `composition of {}` to `[0..1]`.
+  + Correct referential constraint calculation for `[0..1]` backlink associations.
+- for.hana/for.odata: Reject final unmanaged assoc path step in ON Condition if preceded with `$self`.
+- to.cdl: Parentheses around expressions containing conditions were sometimes missing.
+- to.sql/hdi/hdbcds:
+  + Detect and process calculated elements in functions like `upper`.
+  + Better detection of calculated elements in `.expand`/`.inline`.
+  + Entities with calculated elements sometimes had incorrect types. This happened, for example,
+    if they were marked with `@odata.draft.enabled`
+
 ## Version 3.8.2 - 2023-03-30
 
 ### Fixed

@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.0.1 - 2023-04-27
+
+### Fixed
+
+- Typos in README.md
+
 ## Version 4.0.0 - 2022-06-14
 
 ### Changed

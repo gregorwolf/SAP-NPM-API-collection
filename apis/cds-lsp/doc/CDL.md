@@ -44,7 +44,7 @@ Refer also to [_The Nature of Models_](models) and the [_CSN specification_][CSN
 - [Virtual Elements](#virtual-elements)
 - [Literals](#literals)
 - [Delimited Identifiers](#delimited-identifiers) {% if jekyll.environment != "external" %}
-- [Calculated Fields](#calculated-fields) {% endif %}
+- [Calculated Elements](#calculated-elements) {% endif %}
 - [Default Values](#default-values)
 - [Type References](#typereferences)
 - [Constraints](#constraints)
@@ -247,10 +247,121 @@ entity ![Entity] {
 
 >You can escape `]` by `]]`, for example `![L[C]]R]` which will be parsed as `L[C]R`.
 
-### Calculated Fields
+
+### Calculated Elements (beta)
+{:#calculated-elements}
+
+This is a beta feature. Beta features aren't part of the officially delivered scope that SAP guarantees for future releases.
+For more information, see [Important Disclaimers and Legal Information](https://help.sap.com/viewer/disclaimer).
+{:.warning}
+
+Elements of entities and aspects can be specified with a calculation expression, in which you can
+refer to other elements of the same entity/aspect.
+
+{% if jekyll.environment != "external" %}
+For calculated elements with a value expression, you can differentiate two variants: "on-read" and "on-write". For those variants, the difference is the point in time when the expression is evaluated.
+In addition, there are calculated elements that evaluate to an association.
+{% else %}
+Today CAP CDS only supports calculated elements with a value expression
+with "on-read" semantics.
+{% endif %}
+
+#### On-read (beta)
+
+```swift
+entity Employees {
+  firstName : String;
+  lastName : String;
+  name : String = firstName || ' ' || lastName;
+  name_upper = upper(name);
+  addresses : Association to many Addresses;
+  city = addresses[kind='home'].city;
+}
+```
+
+For a calculated element with "on-read" semantics, the calculation expression is evaluated when reading an entry from the entity.
+The calculated element is read-only, no value must be provided for it in a WRITE operation.
+Using such a calculated element in a query or view definition is equivalent to
+writing the expression directly into the query, both with respect to semantics and to performance.
+In CAP, it is implemented by replacing each occurrence of a calculated element in a query by the respective expression.
+
+Entity using calculated elements:
+```swift
+entity EmployeeView as select from Employees {
+  name,
+  city
+};
+```
+Equivalent entity:
+```swift
+entity EmployeeView as select from Employees {
+  firstName || ' ' || lastName as name : String,
+  addresses[kind='home'].city as city
+};
+```
+
+Calculated elements "on-read" are a pure convenience feature. Instead of having to write
+the same expression several times in queries, you can define a calculated element **once** and then
+simply refer to it.
+
+In the _definition_ of a calculated element "on-read", you can use almost all expressions that are allowed
+in queries. Some restrictions apply:
+* Subqueries are not allowed.
+* Nested projections (inline/expand) are not allowed.
+* A calculated element can't be key.
+
+A calculated element can be _used_ in every location where an expression can occur, with these
+exceptions:
+* A calculated element can't be used in the ON condition of an unmanaged association.
+* A calculated element can't be used as the foreign key of a managed association.
+
+
+There are some temporary restrictions:
+* Currently, a calculated element must always be accessed using a view/projection. An OData request or custom code can't access the calculated element in the entity where it is defined.
+* A calculated element can't be used in a query together with nested projections (inline/expand).
+
+#### On-write
 {: .impl.concept}
 
-Elements can be specified with a calculation expression in which you can refer to other elements of the same entity.
+Calculated elements "on-write" are defined by adding the keyword `stored`.
+They are also referred to as "stored" calculated elements. A type specification is mandatory,
+and the expression must be enclosed in parentheses.
+
+```swift
+entity Employees {
+  firstName : String;
+  lastName : String;
+  name : String = (firstName || ' ' || lastName) stored;
+}
+```
+
+For a calculated element "on-write", the expression is already evaluated when an entry is written into
+the entity (the calculated element itself is read-only, so no value must be provided for it).
+The resulting value is then stored/persisted like for a regular field. When reading from the entity,
+the calculated element behaves like a regular field. Using a stored calculated element can improve performance,
+in particular when it is used for ordering or filtering. This is paid for by higher memory consumption.
+
+While calculated elements "on-read" are handled in the CAP layer, the "on-write" variant is implemented by using
+the corresponding database feature for tables.
+The entity definition above results in the following table definition:
+
+```sql
+-- SAP HANA syntax --
+CREATE TABLE Employees (
+  firstName NVARCHAR,
+  lastName NVARCHAR,
+  name NVARCHAR ALWAYS GENERATED AS (firstName || ' ' || lastName)
+)
+```
+
+There are restrictions on such calculated fields, which depend on the particular database used. But all databases
+currently supported by CAP have a common restriction: the calculation expression may only refer to fields of the same
+table row. Thus such an expression must not contain subqueries, aggregate functions, or paths with associations.
+
+#### Association-like calculated elements
+{: .impl.concept}
+
+A calculated element can also define a refined association, like in this example:
 
 ```swift
 entity Employees {

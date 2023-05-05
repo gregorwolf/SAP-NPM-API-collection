@@ -19,4 +19,4 @@ Commits follow the [conventional commits](https://www.conventionalcommits.org/en
 ### External contributors
 
 #### Annotation handler
-Annotation handlers for specific annotation domains can be contributed. See [how to contribute an annotation handler](/annotationHandler.md) for details.
+Annotation handlers for specific annotation domains can be contributed. See [how to contribute an annotation handler](./annotationHandler.md) for details.

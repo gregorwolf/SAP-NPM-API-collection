@@ -6,9 +6,34 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 
+
+## Version 6.8.0 - 2023-05-03
+
+### Added
+- User setting `cds.typeGenerator.localInstallationOnly` has been added to allow more finely grained control for the user over the resolution of the type generation package
+- New command `Record Traces for Support Ticket` to assist creation of support tickets for CDS editor issues 
+- CAP notebooks: new cell type `CDS Server`, which is also executable for CDS background processes.
+
+### Changed
+- Welcome page will be shown based on page's hash code
+- CDS type generation will now be enabled by default
+- Improved CAP Notebooks Welcome page (better layout, responsive icons, fixed buttons).
+- Changing some CDS user settings required a manual restart of the IDE. This is no longer necessary
+- Minimum VSCode version is now 1.76.0
+
+### Fixed
+- Where-used index could be incomplete with latest OData annotation plugin
+- Formatting of quoted identifiers enclosed in square brackets
+- Extension will no longer crash when using unknown compiler versions, though, compatibility is not guaranteed 
+
+### Also see
+- `@sap/cds-lsp` 6.8.0
+- `@sap/cds-compiler` 3.9.2
+
+
 ## Version 6.7.0 - 2023-03-31
 ### Added
-- code completion for `using` paths now
+- Code completion for `using` paths now
   + supports mono repos
   + for _npm package_ proposals show details of `description` property of `package.json` unless `README.md` exists
   + improved ordering
@@ -18,13 +43,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 ### Fixed
 - `format-cds` command-line tool failed to run
 - _Analyze Dependencies_
-  + some clusters (folders) with same parent cluster were rendered outside
+  + Some clusters (folders) with same parent cluster were rendered outside
 
 ### Changed
 - _Analyze Dependencies_
-  + folders which are npm package roots are rendered with their package name, in brown color
-  + enhance contrast - use white font color for dark background colors
-  + improved UX when installing required Graphviz extension
+  + Folders which are npm package roots are rendered with their package name, in brown color
+  + Enhance contrast - use white font color for dark background colors
+  + Improved UX when installing required Graphviz extension
 
 ### Removed
 - Quickfix to migrate (long-time removed) `cds.doc` annotation to doc comment
@@ -39,18 +64,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 ### Added
 - CAP notebooks: Uri handler to open notebooks coming from Capire in local VS Code workspaces.
 - CAP notebooks: All notebook features now have a brief description with examples, available on the CAP Notebooks Welcome page.
-- type generation now detects project root
+- Type generation now detects project root
 
 ### Fixed
-- highlighting of the last of a number of element names in a projection
-- formatting of query `from A:B`: removed colon padding
-- type generation stopped working after failure until next LSP restart
+- Highlighting of the last of a number of element names in a projection
+- Formatting of query `from A:B`: removed colon padding
+- Type generation stopped working after failure until next LSP restart
 
 ### Changed
-- extension now uses vscode-languageclient 8.x
+- Extension now uses vscode-languageclient 8.x
   + API consumers may need to adapt access. See [changes](https://github.com/microsoft/vscode-languageserver-node#3170-protocol-800-json-rpc-800-client-and-800-server). Especially `onReady` is no longer needed and was removed.
-- minimum VSCode version is now 1.74.0
-- updated capire CDL docs - used in code completion details
+- Minimum VSCode version is now 1.74.0
+- Updated capire CDL docs - used in code completion details
 
 ### Also see
 - `@sap/cds-lsp` 6.6.0

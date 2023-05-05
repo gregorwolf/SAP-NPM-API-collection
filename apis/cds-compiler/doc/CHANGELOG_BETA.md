@@ -8,6 +8,26 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 3.9.2 - 2023-04-27
+
+### Removed `odataOpenType`
+
+This feature is now set to production mode.
+
+## Version 3.9.0 - 2023-04-XX
+
+### Added `calculatedElementsOnWrite`
+
+Allows to define calculated elements "on-write" in entities and aspects.
+For example:
+
+```cds
+entity E { one: Integer; two = one + 1 stored; };
+```
+
+When a row is added to `E`, column `two` will be set automatically
+in databases supporting generated columns.
+
 ## Version 3.8.0 - 2023-03-27
 
 ### Added `v4preview`
@@ -100,11 +120,12 @@ allow lossless, easy to revert actions like adding a column or extending a strin
 
 ### Added `odataOpenType`
 
-- to.edm(x): Support annotation `@open` on entity and structured type level to declare the corresponding entity/complex type to
-  be `OpenType=true`. If an open structured type is declared closed (with a falsy annotation value), the corresponding EDM type
-  is closed as well and suffixed with `_closed` (or `_open` vice versa).
-  No further checks are performed on possibly open foreign or primary key types nor on eventually bucket elements to store the
-  additional data.
+- to.edm(x): Support annotation `@open` on entity and structured type level to declare the
+  corresponding entity/complex type to be `OpenType=true`. If an open structured type is declared
+  closed (with a falsy annotation value), the corresponding EDM type is closed as well and suffixed
+  with `_closed` (or `_open` vice versa).
+  No further checks are performed on possibly open foreign or primary key types nor on eventually
+  bucket elements to store the additional data.
 
 ## Version 3.0.0 - 2022-06-23
 

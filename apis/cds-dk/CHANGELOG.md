@@ -7,6 +7,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.8.0 - 2023-05-04
+
+### Added
+
+- `cds add file-based-messaging` adds configuration for file-based messaging (Node.js).
+- `cds add redis-messaging` adds configuration for Redis messaging (Node.js).
+- `cds add enterprise-messaging-shared` adds configuration for Event Mesh support with `kind = 'enterprise-messaging-shared'` (Node.js).
+- `cds import` now supports OData V4 EDMX file containing multiple `Schemas` with single `EntityContainer`.
+- `cds import` now supports importing of AsyncAPI documents.
+- `cds login -m <clientid>[:<key>]` now supports X.509 (mTLS) credential-type in XSUAA binding of @sap/cds-mtxs.
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 1.34.0 for creating Java projects.
+
+
+### Fixed
+
+- `cds-ts watch` now honors a `tsconfig.json` in the project
+- launch script for `CAP projects` in VS Code fixed
+
 ## Version 6.7.2 - 2023-04-27
 
 ### Added

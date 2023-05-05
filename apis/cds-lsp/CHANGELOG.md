@@ -6,8 +6,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.8.0 - tbd
 
-## 6.7.0 - tbd
+### Fixed
+- where-used index could be incomplete with latest OData annotation plugin
+- formatting of quoted identifiers enclosed in square brackets
+
+### Added
+- custom request to get lsp properties
+
+### Changed
+- now using Typescript 5.0
+
+### Also see
+- `@sap/cds-compiler` 3.9.2
+
+## 6.7.0 - 2023-03-31
 
 ### Added
 - code completion for `using` paths now
