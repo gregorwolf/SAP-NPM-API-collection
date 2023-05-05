@@ -2,6 +2,10 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.9.4] - 2023-04-17
+### Added
+  - The **Show All References** option for metadata elements such as entity types, properties, and actions displays now also the references to these elements in annotation values.
+
 ## [1.7.2] - 2022-08-25
 ### Added
   - Added a code action to transform self-closing tag in `Common.Text` annotation to simplify annotating it e.g. with `Common.TextArrangement`.

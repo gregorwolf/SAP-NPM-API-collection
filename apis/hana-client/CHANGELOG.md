@@ -8,6 +8,18 @@ For the latest updates please see SAP Note 3304880 - SAP HANA Client 2.16 Releas
 
 https://launchpad.support.sap.com/#/notes/3304880
 
+## Version 2.16.26
+
+### Changes:
+
+ - Issue Number 296115: getParameterValue() could have returned a string value when a numeric value was expected.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 302885: Statement routed queries could have decreased performance if system replication was enabled.
+ - Issue Number 303662: Data fetched from ALPHANUM columns could have been truncated.
+ - Issue Number 305945: A spurious -10821 (Session not connected) error could have been traced when a connection was closed.
+
 ## Version 2.16.21
 
 ### Changes:

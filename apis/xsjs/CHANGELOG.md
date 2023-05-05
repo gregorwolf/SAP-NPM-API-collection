@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.7.8"></a>
+## 6.7.8 - 2023-05-03
+
+### Update
+- Update _@sap/hana-client_ to v2.16.26
+- Update _@sap/hdbext_ to v7.7.4
+
+### Fixed
+- Pin _@sap/jobs-client_ to  v1.7.42
+- Pin _@sap/node-jwt_ to  v1.6.18
+
 <a name="6.7.7"></a>
 ## 6.7.7 - 2023-04-25
 

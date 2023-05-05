@@ -3,7 +3,26 @@ All notable changes to this project are documented in this file.
 ​
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.7.3] - 2022-08-25
+## [1.9.2] - 2023-03-09
+### Added
+- Added annotation copy and annotation file handling support for freestyle applications
+- Added missing tooltips for action icons in Service Manager and Annotation File Manager
+- Added a messsage that destination changes in Service Manager will only take effect on (re)start of preview
+- Added support for adding a fist service in Service Manager if none is bound to the project
+
+### Fixed
+- Fixed an issue in Service Manager with service metadata refresh when multiple backend entries exist in the yaml file
+- Fixed various servive source compatibility issues
+- Fixed minor usability issues
+
+## [1.8.6] - 2023-01-26
+### Changed
+- Changed the presented order of annotation files in Annotation File Manager to be the same as in `manifest.json`
+
+### Fixed
+- Fixed an issue with a change of the service destination within Service Manager not being reflected in `ui5.yaml` and therefore not being considered during preview
+
+## [1.7.2] - 2022-08-25
 ### Fixed
 - Fixed an issue with metadata refresh not working in Service Manager on SAP Business Application Studio when using service destinations 
 - Fixed various accessibility, usability and UI issues in Service Manager and Annotation Manager

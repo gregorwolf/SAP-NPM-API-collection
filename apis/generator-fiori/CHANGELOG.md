@@ -3,6 +3,106 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.9.5] - 2023-04-19
+### Changed
+- When selecting a CAP project using the SAP Fiori generator, if multiple CAP projects with the same name exist in the workspace, these projects will be prefixed with their folder path for easier identification.
+- Deployment long text console output that are clickable links will now have a message to say that the link can be clicked for more information.
+
+### Fixed
+- Fixed an issue with generated SAP Fiori projects having eslint errors.
+- Fixed support for the managed application router with SAP Fiori applications generated using the API Business Hub Enterprise on SAP Business Application Studio.
+
+## [1.9.4] - 2023-04-05
+### Added
+- Adding ABAP deployment configuration can now optionally retrieve the list of packages from the backend ABAP system.  Users can still manually provide a package if the list cannot be fetched from the ABAP system.  Note: This feature requires version 1.10.9 or higher of the Application Wizard, lower versions will require the user to manually provide the package name as currently.
+
+### Changed
+- The `locate-reuse-lib.js` file, used to find any custom reuse libraries referenced in the manifest file, has been moved to the `webapp\test` folder.
+
+### Fixed
+- Fixed identified security vulnerabilities in the generated `locate-reuse-lib.js` file.
+- Fixed issue when adding Cloud Foundry deployment configuration to a generated project where the destination option of `None` was incorrectly displayed.
+
+## [1.9.3] - 2023-03-23
+### Changed
+- The SAP Fiori freestyle templates `SAP Fiori Worklist Application` and `SAP Fiori List-Detail Application` have been deprecated and are now reorganised into a `Deprecated Templates` section when choosing your template type.  The Basic `SAPUI5 Application` template has been renamed to `Basic` and is the first template available within the SAP Fiori templates.
+
+### Fixed
+- Fixed an issue where adding Cloud Foundry deployment configuration in VS Code to an existing SAP Fiori application could incorrectly display the service URL as the deployment target.
+
+## [1.9.2] - 2023-03-09
+### Added
+- Adding deployment configuration for ABAP targets using the `npm run deploy-config` command line option will now allow you to select the package from the backend instead of having to type it manually.
+
+### Changed
+- Changed deployment configuration for extension projects to only support ABAP targets.
+- Updated the version of `@ui5/cli` to version 3.  Generated projects now require Node.js version 16.18 or higher.
+
+### Fixed
+- Fixed issue with local preview for the SAP Fiori freestyle List-Detail application when generating with TypeScript support.
+
+## [1.9.1] - 2023-02-23
+### Added
+- Added answers to the side panel of the Fiori generator so users can easily see the already answered questions.
+- Added Cloud Foundry support for instance based destinations defined locally in the project `mta.yaml` file.
+
+### Changed
+- Filtered services from the catalog request that are not suitable for generating a Fiori application. 
+
+### Fixed
+- Fixed an issue with previewing Fiori freestyle applications that were generated using TypeScript.
+- Fixed Fiori generator crash when handling an OData source with invalid metadata.
+
+## [1.9.0] - 2023-02-09
+### Added
+- Added option to generate SAP Fiori freestyle applications with TypeScript support (experimental).
+
+### Changed
+- Updated the Fiori deployment configuration wizard to support editing existing deployment configuration.
+- Improved the error message for CAP project compilation failure using the generator.
+
+### Fixed
+- Fixed an issue where users could generate their SAP Fiori application with a manifest ID greater than the permitted 70 characters.
+ 
+## [1.8.6] - 2023-01-26
+### Added
+- Added option to generate SAP Fiori elements applications with TypeScript support (experimental).
+
+### Changed
+- Updated ABAP deployment to support displaying debug log messages when either archiving the project for deployment, or from the backend service during deployment.
+- Updated error message if undeployment of an application fails.  The new message mentions that the application may have already been undeployed.
+- Removed the unneeded `annotation.xml` file generated as part of a Fiori application in a CAP project.
+
+### Fixed
+- Fixed an issue with using the deployment configuration generator for projects previously generated with the API Business Enterprise Hub in Business Application Studio.
+
+## [1.8.5] - 2023-01-12
+### Added
+- Added ability to automatically detect local CAP projects in your workspace when choosing CAP as the data source during Fiori generation.
+- Added an option to create deployment configuration for an existing Fiori application using a wizard style approach rather than needing to use the command line.  Users can use the command palette option `Fiori: Add Deployment Configuration` to launch the wizard.
+- Added links to launch SAP Guided Answers for common issues found during generation to help customers troubleshoot issues.
+
+## [1.8.4] - 2022-12-16
+### Fixed
+- Fixed an issue where project path was incorrectly added to telemetry data.
+
+## [1.8.3] - 2022-12-01
+### Added
+- Generator will now show its name and version at the header level of YUI wizard for easy access of information.
+
+### Fixed
+- Fixed an issue where creation of deployment configuration was incorrectly allowed for steampunk system not configured as Extensibility Development system.
+
+## [1.8.2] - 2022-11-17
+### Added
+- Added an option to create a transport request when adding ABAP deployment configuration to an SAP Fiori project.
+
+### Fixed
+- Fixed an issue where adding a saved system was not available when adding deployment configuration during generation.
+- Adding TypeScript support and Javascript Code Assist support in the same project no longer causes the preview to fail.
+- Fixed issue with launch configuration not being created when adding an SAP Fiori project to a workspace with an existing MTA project.
+- Fixed issue where SAPUI5 ABAP Repository name was being reset when the package name was provided during deployment configuration.
+
 ## [1.8.1] - 2022-11-03
 ### Added
 - Added ability to directly launch SAP Guided Answers and display the relevant guide for some errors that occur during generation.

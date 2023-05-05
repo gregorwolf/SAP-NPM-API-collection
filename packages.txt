@@ -17,6 +17,7 @@
 @sap/cds-common-content
 @sap/cds-compiler
 @sap/cds-dk
+@sap/cds-foss
 @sap/cds-lsp
 @sap/cds-mtxs
 @sap/cds-odata-v2-adapter-proxy

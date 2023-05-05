@@ -2,25 +2,51 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.9.5] - 2023-04-19
+### Fixed
+- Fixed an issue with not finding the preview helper library `locate-reuse-libs.js` in older apps after its default location was changed
+
+## [1.9.2] - 2023-03-09
+### Fixed
+- Fixed an issue which prevented starting the fiori-tools-appreload middleware with default setting
+- Fixed an issue with FLP embedded preview failing to load when encountering unknown encodings
+
+## [1.9.1] - 2023-02-23
+### Fixed
+- Fixed an issue where checking the UI5 version fails when the user is behind a corporate proxy
+
+## [1.8.5] - 2023-01-12
+### Added
+- The `fiori-tools-proxy` now supports more configuration properties. Please see README for more details
+
+## [1.8.4] - 2022-12-16
+### Fixed
+- Fixed an issue where project path was incorrectly added to telemetry data
+
+## [1.8.2] - 2022-11-17
+### Changed
+- Minor improvements in `WorkspaceConnector.js` when using developer variant creation
+
 ## [1.8.1] - 2022-11-03
 ### Fixed
-- Improved Regex for determining if host is a trusted host, when using developer variant creation.
-- Fixed an issue where the SAPUI5 version check breaks the starting of the preview.
+- Improved Regex for determining if host is a trusted host, when using developer variant creation
+- Fixed an issue where the SAPUI5 version check breaks the starting of the preview
 
 ## [1.8.0] - 2022-10-20
 ### Fixed
-- Fixed an issue with previewing applications when the user is behind a corporate proxy.
+- Fixed an issue with previewing applications when the user is behind a corporate proxy
 
 ### Added
-- The `fiori-tools-appreload` middleware now watches also for changes in typescript files.
+- The `fiori-tools-appreload` middleware now watches also for changes in typescript files
 
 ## [1.7.4] - 2022-09-08
 ### Fixed
-- Fixed an issue where the use of the `pathPrefix` property was not working.
+- Fixed an issue where the use of the `pathPrefix` property was not working
   
 ## [1.7.1] - 2022-08-11
 ### Added
-- Added a check if the SAPUI5 version is available on the SAPUI5 SDK when starting the application. If not, the nearest highest patch version is used instead.
+- Added a check if the SAPUI5 version is available on the SAPUI5 SDK when starting the application. If not, the nearest highest patch version is used instead
 
 ## [1.7.0] - 2022-07-28
 ### Changed

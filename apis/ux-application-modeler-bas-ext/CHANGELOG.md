@@ -5,6 +5,142 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.9.5] - 2023-04-19
+### Fixed
+- Fixed an issue with the detection of missing node modules in the Application Info Page
+- Fixed an issue with the error message not being displayed on "Test Connection" when incomplete data is entered for a new "ABAP On Premise" system
+
+## [1.9.4] - 2023-04-05
+### Changed
+- Changed the entries of the context menu for the features of SAP Fiori tools to be context-sensitive and grouped. Only entries that are relevant for the project, folder, or file will be shown
+
+### Fixed
+- Fixed an issue where the migration of SAP Fiori projects would fail if the manifest file did not contain a `sap.ui5` section
+
+## [1.9.3] - 2023-03-23
+### Added
+- Enabled defining fields from associated entities in the result list of the value help
+- Enabled defining dependent fields in the result list of the value help
+
+### Fixed
+- Fixed an issue with the search function not finding properties by their display name
+- Fixed an issue with newly created local annotation files missing the xmlns reference
+- Fixed an issue with run configurations in SAP Business Application Studio wrongly showing the "Configure Environment" context action
+- Fixed placeholder texts for several dropdown boxes to reflect that they don't allow custom values
+
+## [1.9.2] - 2023-03-09
+### Changed
+- Changed the behaviour of dropdown menus, they now close also on click outside of the modal dialog, and the focus is restored to the input field
+
+### Fixed
+- Fixed an issue with incorrect manifest entries, for a new custom action on a multiple entity sets table
+- Fixed an issue with erroneous code being created when creating a new controller extension for an object page
+- Fixed an issue with some SAP Fiori projects not been correctly identified for migration to support SAP Fiori tools
+
+## [1.9.1] - 2023-02-23
+### Added
+- Enabled adding, maintaining, and deleting visual filters based on the line chart for properties of types `Edm.Date`, `Edm.Time`, `Edm.DateTime`, and `Edm.DateTimeOffset`
+- Enabled adding a custom view as first additional view, thus converting a table into multiple views mode
+- Added more tooltips for Page Map tiles
+
+### Changed
+- Removed the copy of the app descriptor (manifest) schema in favor of using the one dynamically provided by the UI5 language assistant
+
+### Fixed
+- Fixed an issue with the `Fiori: Archive Project` command downloading the wrong file when executed on a project located at the root of a workspace in SAP Business Application Studio
+- Fixed an issue with Application Info Page status section showing node modules as missing if the modules are loaded from monorepo
+- Fixed an issue with the search input field on Page editor not being cleared when switching pages 
+
+## [1.9.0] - 2023-02-09
+### Added
+- Enabled setting the display type (value help, text area) for table column values
+- Enabled setting the restrictions (mandatory, optional, read only) for table column values
+- Added text and text arrangement for chart and visual filter dimensions
+- Added page names from manifest to the Page Map tiles
+- Added ability to copy the environment check results to clipboard using the command `Fiori: View and Copy results` 
+
+### Changed
+- Renamed the "Project Type" property in Application Info Page to "CAP Project Type" and only display it for CAP projects to better fit its intended meaning
+
+### Fixed
+- Fixed an issue with cleanup feature not available when an empty extensions section exists in manifest
+- Added a missing input check for an already existing handler file if `Create New File` is choosen for a new custom action
+- Added a missing input check for duplicate IDs when creating a new custom action
+- Fixed the mouse over icon of draggable controller extension entries in Page Map 
+
+## [1.8.6] - 2023-01-26
+### Added
+- Enabled defining unit of measure or currency, scaling factor and number of fractional digits for the visual filters
+- Added support for the creation of multiple outgoing navigations from list reports in Page Map
+
+### Changed
+- Lifted the experimental state of annotation support for OData V4 based applications in Application Modeler
+
+### Fixed
+- Fixed an issue with reordering of contact column addresses not being reflected correctly in Page Editor
+- Fixed an issue with the error message for missing property on create contact column not disappearing after value was set
+
+## [1.8.5] - 2023-01-12
+### Added
+- Enabled adding, deleting and modifying basic visual filters for analytical apps in conjunction with `@sap/ux-specification` versions 1.96.30, 1.102.15 or higher (experimental)
+- Enabled sorting charts and visual filters by measures based on transformation aggregations (experimental)
+- Added new action "Add Mockserver Config" (using command `npx @sap-ux/create add mockserver-config`) to Application Info Page
+- Added support of custom actions in list report page header
+- Added ability to migrate an Extension project so that SAP Fiori tools could be used
+- Enabled Environment Check for saved systems in the SAP Systems panel in VSCode
+- Added links to SAP Guided Answers to help troubleshoot when using saved systems in the SAP Systems panel
+
+### Changed
+- Changed default folder location of controller files for custom actions to `webapp/ext` to be consistent with other generated extension code
+- Harmonized the "Add Chart" and "Add Chart View" creation UIs
+- Increased screen content stability when toggling descriptions on/off and when using search
+
+### Fixed
+- Fixed issues with deletion or reordering of custom actions that could lead to an inconsistent application
+- Fixed an issue with keyboard command like ctrl/cmd+c not working for texts in input fields
+- Fixed an issue with combo boxes not opening on click in input field content area
+- Fixed an issue with tree dropdown input fields select and search
+
+## [1.8.3] - 2022-12-01
+### Added
+- Added support for creation and maintenance of custom views in list report using OData V4 in conjunction with `@sap/ux-specification` versions 1.96.29, 1.102.14 or higher
+- Migration view will now allow adding project(s) manually via `Add Project` button, if the project is not shown in current migration list
+
+### Changed
+- Changed label text "Module Name"  to "Application Identifier" in order to be in sync with the content from `manifest.json` being displayed
+- Changed outline so that the "Add Chart View" action is now immediately available when the service fulfills the pre-requisites like with the "Add Chart" action on top level
+- Improved robustness of run configuration command handling other entries in `launch.json`
+
+### Fixed
+- Fixed an issue with the only one available aggregate method not being selectable for virtual measure properties (experimental)
+- Fixed various issues, where scroll positions in property panel and outline were not updated or preserved correctly after actions
+- Fixed an issue which allowed a developer to use a space character as part of the ID of new custom actions
+- Fixed an issue where `dist` folders containing manifest were incorrectly shortlisted for migration
+- Fixed an issue where `rootIntent` value was lost from respective FLP html file(s) post migration
+- Fixed an issue where adding new SAP systems in VSCode showed warning to test connection even if it was performed earlier
+
+## [1.8.2] - 2022-11-17
+### Added
+- Added support for charts with measures based on transformation aggregations (experimental)
+- Added tooltips to disabled context menu items (experimental)
+- Added support of custom actions in object page header and footer
+- Added a new icon in Application Modeler tree view indicating the project/application type
+- Added ability to migrate SAP Fiori projects that do not have a `webapp` folder to support SAP Fiori tools
+
+### Changed
+- Updated SAP saved systems so that users do not need to validate the system connection before saving
+- Updated the text for the `Fiori: Open Environment Check` options to better reflect their meaning
+
+### Fixed
+- Fixed an issue that allowed the creation of subsequent object pages from an overview page application within Application Modeler tree view
+- Fixed an issue with a new fragment file for a custom element overwriting an existing one; the first character of the filename has to be always uppercase now as required by the `@sap-ux/fe-fpm-writer`
+- Fixed an issue where migrating an SAP Fiori project more than once would overwrite the original scripts on the second and subsequent time
+
+## [1.8.1] - 2022-11-03
+### Changed
+- Updated SAP Fiori migration tool to show a loading indicator when looking for projects to migrate and display a message if no suitable projects were found.
+- Enhanced the update feature for `@sap/ux-specification` node module in the Application Info Page "Application Status" section to consider the app's minimum SAPUI5 version, and to offer a reload to bring the change into effect
+
 ## [1.8.0] - 2022-10-20
 ### Added
 - Added support of controller artefacts using typescript, if an application is enabled for it
