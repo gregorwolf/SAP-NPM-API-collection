@@ -7,6 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 
 
+## Version 6.8.1 - 2023-05-12
+### Changed
+- CAP notebooks: improved Java cell example notebook
+### Fixed
+- CAP notebooks: sample notebook `Shell` now uses a cross platform example
+- CAP notebooks: shellscript syntax highlighting for `Shell` cell
+- CAP notebooks: cells `CDS`, `Java` and `Javascript` now show error message if needed executable is not found
+- Fix CDS Welcome Page
+
 ## Version 6.8.0 - 2023-05-03
 
 ### Added

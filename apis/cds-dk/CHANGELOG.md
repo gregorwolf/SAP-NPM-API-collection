@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.8.1 - 2023-05-10
+
+### Fixed
+
+- `cds-ts watch` no longer fails with strange compilation errors if called in combination w/ `ts-node`
+
 ## Version 6.8.0 - 2023-05-04
 
 ### Added
