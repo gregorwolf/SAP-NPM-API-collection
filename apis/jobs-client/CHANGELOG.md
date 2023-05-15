@@ -6,7 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 1.7.46 - 2023-04-14
+
+## 1.7.47 - 2023-05-03
+
+### Changed
+
+- Fixed shrinkwrap.json
+
+## 1.7.46 - 2023-04-14 [YANKED]
 
 ### Changed
 

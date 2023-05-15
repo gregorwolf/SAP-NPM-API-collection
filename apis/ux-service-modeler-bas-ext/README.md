@@ -53,11 +53,13 @@ OR
   the Service Modeler
 - From extension settings, Users can change the preferences of the tool e.g. change the default view mode from List to Compact
 
+Note: Expanded and Compact views are being deprecated
+
 ## Pre Requisites for using this extension
 
 The generated application requires the following software to be installed
 
-- [NodeJS](https://nodejs.org/en/download/) Version 14.16 or higher
+- [NodeJS](https://nodejs.org/en/download/) Version 16.18 or higher
 
 ## Support
 Join the [SAP Fiori Tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.

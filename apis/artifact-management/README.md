@@ -652,6 +652,30 @@ resources:
     ...
 
 ```
+---
+
+#### Build MTA Manifest content
+###### Method
+`buildManifest(options? : MtaGeneratorSettings, logger? : IChildLogger) : Promise<void>;`
+###### Description
+Generate manifest for the project and all the modules and create a `mta.yaml`
+###### Parameters
+- logger: (Optional) An instance of IChildLogger which can be implemented by consumers of Project API.
+###### returns
+- `Promise<void>`
+###### Example
+```
+const api = new ProjectImpl(projectPath);
+await api.buildManifest();
+```
+or 
+
+```
+const api = new ProjectImpl(projectPath);
+await api.buildManifest({ui5version: '1.1112.3', ui5theme: 'sap_belize'});
+```
+---
+
 
 #### Get MTA Manifest content
 ###### Method

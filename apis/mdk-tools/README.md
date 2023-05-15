@@ -134,6 +134,10 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
     mdk migrate --project /path/to/Your-MDK-metadata-project --preview
     ```
 
+    If you want to migrate files to the specific schema version, use '--target-version' option (right now, we support only one target-version option 6.3):
+    ```bash
+    mdk migrate --project /path/to/Your-MDK-metadata-project --target-version 6.3
+    ```
     Use 'log-file' option output the logs to a file (no need to create the log file firstly, it will be generated automatically):
     ```bash
     mdk migrate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt

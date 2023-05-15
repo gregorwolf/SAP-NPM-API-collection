@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 ​
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.9.6] - 2023-05-03
+### Added
+- Added deprecation message for Compact and Expanded views; these views will be deprecated in future
+
+### Changed
+- Updated the tab name of the webview, it now displays the name of the project and service
+
+### Fixed
+- Fixed an issue in the Service Manager, the "Refresh & Save" option for metadata doesn't overwrite manifest model entries anymore
+- Fixed an issue in the Service Manager, adding a new service as the data source is now possible also in case a corresponding model entry already exists in manifest
+- Fixed an issue where the Service manager threw an error even if "Refresh & Save" was successful because the same data source was used in multiple models
+
 ## [1.9.2] - 2023-03-09
 ### Added
 - Added annotation copy and annotation file handling support for freestyle applications

@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.9.6] - 2023-05-03
+### Added
+- Added the description of the transport request alongside the transport request number when configuring your application for ABAP deployment.
+- Added warning message when choosing to generate an application with TypeScript support (requires version 1.11.1 or higher of the Application Wizard).
+
+### Fixed
+- Fixed an issue where applications deployed using a service from the API Business Hub Enterprise would not be found in the BTP cockpit.
+- Fixed an issue where SAP Fiori freestyle projects being generated for CAP applications were being incorrectly identified as SAP Fiori elements projects.
+
 ## [1.9.5] - 2023-04-19
 ### Changed
 - When selecting a CAP project using the SAP Fiori generator, if multiple CAP projects with the same name exist in the workspace, these projects will be prefixed with their folder path for easier identification.

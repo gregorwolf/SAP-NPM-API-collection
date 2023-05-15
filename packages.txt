@@ -41,6 +41,7 @@
 @sap/hdi-dynamic-deploy
 @sap/hrtt-core-vscode
 @sap/html5-app-deployer
+@sap/html5-repo-mock
 @sap/instance-manager
 @sap/jobs-client
 @sap/logging

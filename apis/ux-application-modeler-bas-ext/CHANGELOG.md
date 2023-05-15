@@ -5,6 +5,17 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.9.6] - 2023-05-03
+### Added
+- Enabled setting default sorting for the Result List table in the value help dialog
+
+### Changed
+- Changed the wording in the Application Modeler tree view in case no suitable applications could be found to be in line with other tools
+
+### Fixed
+- Fixed an issue with the Application Modeler tree view loading infinitely in case there is a project in the workspace with erroneous files
+- Fixed an issue with the `Fiori: Archive Project` command, that an empty `node_modules` folder is not included in the archive anymore
+
 ## [1.9.5] - 2023-04-19
 ### Fixed
 - Fixed an issue with the detection of missing node modules in the Application Info Page

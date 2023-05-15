@@ -4,6 +4,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.9.6] - 2023-05-04
+### Added
+- Introduced the _Add a value help to a field_ guide for XML annotations.
+- Added a warning message for adaptation projects as they are not currently supported in SAP Fiori tools Guided Development.
+
 ## [1.9.5] - 2023-04-20
 ### Added
 - Added a CAP CDS variant to the _Create annotations for Key Performance Indicator (KPI) Tags_ guide. 
