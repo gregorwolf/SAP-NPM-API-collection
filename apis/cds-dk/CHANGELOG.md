@@ -7,6 +7,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 6.8.2 - 2023-05-31
+
+### Changed
+
+- `cds compile` to `openapi` now uses `@Common.Label` annotation to generate `x-sap-shortText`.
+- `cds import` now removes `x-` from elements in the `@AsyncAPI.Extensions` annotation while importing AsyncAPI documents.
+- `cds compile` to `openapi` now sorts the `tags` and `paths` in alphabetical order.
+- The livereload feature of `cds watch` can be disabled through `cds.livereload: false` in `package.json`.
+
+### Fixed
+
+- `@sap/cds-dk` 6.8.2
+- `@sap/cds-mtxs` 1.8.2
+- `cds add mta` adds configuration `enterprise-messaging-shared` if necessary
+
 ## Version 6.8.1 - 2023-05-10
 
 ### Fixed

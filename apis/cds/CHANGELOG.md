@@ -4,6 +4,18 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.8.2 - 2023-05-26
+
+### Fixed
+
+- EDMX texts for extended tenants based on `@sap/cds-mtx` now appear correctly again.
+- `@assert.range` for DateTime/Date/Time/Timestamp
+- Nested `$expand` OData query to the `texts` compiler-generated composition for entities with localized elements.
+For example, similar OData requests `Entity?$expand=items($expand=item($expand=texts))` now should work as expected.
+- `req.subject` would occasionally be incorrect when a query had been executed prior to it.
+- cds plugins are also fetched from `devDependencies`
+- `cds build` now correctly resolves complex models of mtx extension projects
+
 ## Version 6.8.1 - 2023-05-04
 
 ### Fixed

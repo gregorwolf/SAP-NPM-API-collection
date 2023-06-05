@@ -11,3 +11,4 @@ In case you find a bug, please report an [incident](https://cap.cloud.sap/docs/r
 ## License
 
 This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3.1.txt).
+
