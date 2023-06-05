@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.9.7] - 2023-05-18
+### Changed
+- Updated All Guides view to feature a warning when a project's UI5 version is too low or too high for a given guide variant.
+
+### Fixed
+- Fixed an issue where selecting the CAP CDS version of _Add a custom action to a page using extensions_ from the guide list opens a blank tab.
+- Fixed an issue where translations created in Guided Development were not compatible with Page Editor.
+
 ## [1.9.6] - 2023-05-04
 ### Added
 - Introduced the _Add a value help to a field_ guide for XML annotations.

@@ -1,3 +1,5 @@
+@sap/adp-abap
+@sap/adp-cf
 @sap/adp-cli
 @sap/adp-common
 @sap/apihub-enterprise-service-provider
@@ -43,6 +45,7 @@
 @sap/html5-app-deployer
 @sap/html5-repo-mock
 @sap/instance-manager
+@sap/iq-client
 @sap/jobs-client
 @sap/logging
 @sap/low-code-event-handler

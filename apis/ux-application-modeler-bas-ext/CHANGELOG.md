@@ -5,6 +5,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.9.7] - 2023-05-17
+### Added
+- Enabled the ability to add external navigation actions to tables and sections. This assumes launchpad configuration for app-to-app navigation and inbound configuration in the target app are provided.
+- Added support for migrating extension projects that were generated with the personal edition of WebIDE
+
+### Changed
+- Enhanced the process for choosing properties from drop-down lists by enabling the ability to search for path segments. Type `/` to start searching for the next segment. Searching by property name remains supported.
+- Migrating reuse libraries no longer launches the SAP Fiori application information page, as this was invalid for these types of applications
+
+### Fixed
+- Fixed an issue with the display of Page Map tiles when using Light and Dark Modern color themes
+- Fixed an issue with Page Editor not working with multiple views on the list report in OData V2-based applications
+
 ## [1.9.6] - 2023-05-03
 ### Added
 - Enabled setting default sorting for the Result List table in the value help dialog

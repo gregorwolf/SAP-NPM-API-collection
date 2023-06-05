@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 
 
+
+## Version 6.8.2 - 2023-05-31
+
+### Added
+- CAP notebooks: magic command can also be written inside of line- and block-comments
+### Changed
+- Changed default output directory for generated CDS types from `@types` to a `node_modules` subfolder
+### Fixed
+- Links on CDS Welcome Page are now pointing to correct locations in Capire.
+
 ## Version 6.8.1 - 2023-05-12
 ### Changed
 - CAP notebooks: improved Java cell example notebook
@@ -15,6 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 - CAP notebooks: shellscript syntax highlighting for `Shell` cell
 - CAP notebooks: cells `CDS`, `Java` and `Javascript` now show error message if needed executable is not found
 - Fix CDS Welcome Page
+- `Report issues` url now points to correct SAP Answers location
 
 ## Version 6.8.0 - 2023-05-03
 

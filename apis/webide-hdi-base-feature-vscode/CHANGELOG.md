@@ -1,3 +1,8 @@
+## 1.21.0
+
+### Fixes
+- More than two data sources can be added to a non-equi join node
+
 ## 1.20.0
 
 ### New Features

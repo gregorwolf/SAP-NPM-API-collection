@@ -1,3 +1,17 @@
+## 1.15.0
+
+### New Features
+- Database connections can be filtered by name via a dedicated filter functionality in the database list.
+- Database objects can be filtered by name via a dedicated filter functionality in the catalog browser.
+- The database list and the catalog browser support SAP HANA job scheduler objects.
+
+### Fixes
+- SQL plan graphs can directly be opened in the SAP HANA SQL Analyzer extension without needing to save them first.
+- Loading SAP HANA Database Explorer Connections does not require a Cloud Foundry org or space to be set.
+- Available SAP HANA userstore entries are listed correctly when adding a database connection.
+- Long-running SQL statements can be canceled in the SQL console.
+- SAP HANA Database Explorer connections are not shown in the database selection list if they have been disabled via the settings.
+
 ## 1.14.0
 
 ### Fixes

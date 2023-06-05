@@ -1,5 +1,12 @@
-## 1.3.14
+## 1.3.16
+- The node colors in the Plan Graph have been changed to improve readability.
+- Fixed an issue where the session context information of the inner plan was not being displayed in the SQL tab.
+- The following improvements and bug fixes have been made in the Timeline view:
+  - Enhanced hover pop-up design for improved readability.
+  - Fixed an issue where navigating to the operator tree column was not functioning when selecting an operator from the Top 5 Dominant Operators or Top 10 Critical Path Operators in the Sidebar.
+  - Fixed an issue where the width of the operator tree column was not adjustable, allowing users to change the column width as needed.
 
+## 1.3.14
 - The Plan Graph remains accessible for files that are too large to open because of an excessive number of operators. However, the critical path and timeline information will not be displayed.
 - "Not Started" operators are now displayed in the Plan Graph and offer more visibility into the execution plan.
 - The exclusive time in the Plan Graph now precisely reflects the execution plan’s time values with no recalculation.

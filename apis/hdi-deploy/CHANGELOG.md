@@ -1,3 +1,8 @@
+## 4.6.1
+Features:
+- use @sap/hana-client@2.16.26
+- log client version during deployment
+
 ## 4.6.0
 Features:
 - use @sap/hana-client@2.16.21

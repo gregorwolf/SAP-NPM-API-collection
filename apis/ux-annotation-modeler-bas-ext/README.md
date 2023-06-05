@@ -106,7 +106,7 @@ Place your text cursor somewhere inside path referencing to annotation term segm
 
 ## Prerequisites
 The generated application requires the following software to be installed:
-- [NodeJS](https://nodejs.org/en/download/) Version 14.16 or higher
+- [NodeJS](https://nodejs.org/en/download/) Version 16.19.1 or higher
 - Local copy of OData metadata file to be present in the application folder structure.
 - `manifest.json` file to be present in the application folder structure and contain local URIs to the  metadata and annotation file(s) in its dataSources section.
 - The annotation file must be within the webapp folder or its sub-folders

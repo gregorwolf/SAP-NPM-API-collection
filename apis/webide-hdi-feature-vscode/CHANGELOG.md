@@ -1,3 +1,33 @@
+## 1.23.0
+
+### New Features
+- The default view of the data preview can be set via the setting "Calculation View Editor > Data Preview: Default Display Option".
+- A new object type filter "table type" is available.
+- Filter mappings can be maintained graphically, similar to join mappings.
+- Exception aggregation attributes are checked for consistency.
+- An SQL Editor can be opened from the context menu of calculation view nodes.
+- The join cardinality and optimize join column can be set for non-equi-joins.
+- Support "between/and" and "from/to" option for system-versioned tables.
+
+### Fixes
+- The hierarchy could be missing in the data preview if a calculation view has input parameters
+- Always generate technical join in join node
+- The value help of "associated attribute restrictions" could be empty in the analytic privilege editor
+- Integrity constraint should not be filled for joins other than referential joins
+- Rank nodes could be edited in read only mode
+- Cannot remove rank column by unselecting "Generate Rank Column" checkbox
+- Fields are wrongly marked as mandatory in add constant dialog of union node
+- Renaming dialog does not show reason why renaming fails
+- Rank node of type "Rank" could be created with wrong XML initially
+- The data preview could fail if called from a CAP project
+- Debug query does not contain Fuzzy Search input parameters
+- Refactoring dialog changes cursor positions if temporarily an invalid namespace is typed in
+- Unable to add data source into Minus node
+- Debugging a calcuation view with input parameters proposes wrong input value
+- The mapping pane could show an incorrect tooltip
+- A grey rectangle appears if the working area is too small
+- The text of the selected items in the mapping control pane is displayed in bold font to make the selection more visible
+
 ## 1.22.0
 
 ### New Features

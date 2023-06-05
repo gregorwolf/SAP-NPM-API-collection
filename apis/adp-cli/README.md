@@ -1,7 +1,5 @@
 # Adaptation Project Command-line Interface
 
-WARNING: This package is intended for usage only within SAP Business Application Studio and NOT VSCode
-
 **Command-line interface** that allows user to **deploy** (**update**) or **undeploy** an Adaptation Project.
 
 ## Usage
@@ -28,17 +26,32 @@ Example:<br/>
 Options that are surrounded by arrows are **required**, the ones in square brackets are **optional**. <br/>
 If the project is local pass '\$TMP' with single quotes or "\\$TMP" with double quotes and a slash instead of $TMP, then you can omit `-at, --abap-transport` parameter.
 
-## Usage on SAP Business Application Studio
+## Usage on Business Application Studio (BAS)
 
 You _can use_ the command on SAP Business Application Studio with **either** [destination_name] **or** [system_url] & [client] parameters (the latter requires you to pass credentials). **NOTE**: You cannot use both at the same time.
 
 ```bash
 # abap-deploy with $TMP package
 $ adp abap-deploy --abap-package '$TMP' --destination-name DEST_NAME
+
 # abap-deploy
 adp abap-deploy --abap-package ABAP_PKG --abap-transport ABAP_TRANSPORT --destination-name DEST_NAME
+
 # abap-deploy with force update
 adp abap-deploy --abap-package ABAP_PKG --abap-transport ABAP_TRANSPORT --destination-name DEST_NAME --force-update
+
 # abap-undeploy
 adp abap-undeploy --abap-package ABAP_PKG --abap-transport ABAP_TRANSPORT --destination-name DEST_NAME
+```
+
+## Usage on VSCode
+
+You _can only use_ the command on **VSCode** (or in you **CI/CD pipelines**) using the following parameters, example:
+
+```bash
+# abap-deploy with system url & client
+adp abap-deploy --abap-package ABAP_PKG --abap-transport ABAP_TRANSPORT --system-url https://SYSTEM_URL.sap --client XXX --username USERNAME --password PASSWORD
+
+# abap-undeploy with system url & client
+adp abap-undeploy --abap-package ABAP_PKG --abap-transport ABAP_TRANSPORT --system-url https://SYSTEM_URL.sap --client XXX --username USERNAME --password PASSWORD
 ```

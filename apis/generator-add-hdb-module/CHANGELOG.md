@@ -1,3 +1,8 @@
+## 1.8.0
+
+### New Features
+- Login to Cloud Foundry is delegated to the Cloud Foundry Tools Visual Studio Code extension if available
+
 ## 1.7.0
 
 ### New Features

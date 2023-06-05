@@ -1,3 +1,16 @@
+## 1.14.0
+
+### New Features
+
+- The deployment sets the "stop_on_error" parameter to collect as many errors as possible
+- The "Add database connection" wizard allows binding to a "schema" service
+- Database modules can be bound to application-managed services
+
+### Fixes
+
+- CAP project improvements
+- The deployment state is set correctly for CAP projects
+
 ## 1.13.0
 
 ### New Features

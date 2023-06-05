@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.9.7] - 2023-05-18
+### Added
+- Added ability for customers to create a sub-generator that allows them to customize some of the project attributes and add their own steps and writing logic to the generated Fiori application.  For more details, please see https://github.com/SAP-samples/fiori-tools-samples/sample-fiori-gen-ext.
+- Added support for migrating extension projects that were generated with WebIDE personal edition.
+
+### Changed
+- Migrating re-use libraries no longer launches the SAP Fiori application information page, as this was invalid for these type of applications.
+
+### Fixed
+- Fixed an issue with linting failures for applications generated with TypeScript support.
+- Fixed an issue with invalid custom controller TypeScript files being generated for the Custom Page template. 
+ 
 ## [1.9.6] - 2023-05-03
 ### Added
 - Added the description of the transport request alongside the transport request number when configuring your application for ABAP deployment.
