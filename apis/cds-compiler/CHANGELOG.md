@@ -7,6 +7,16 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 3.9.4 - 2023-06-07
+
+### Fixed
+
+- compiler: `USING` empty files were incorrectly marked as "not found".
+- Localized convenience views for projections (not views) did not have references rewritten.
+  This only affects CSN, the SQL result was correct.
+- to.edm(x): Render correct EntitySetPath and annotation target path for actions/functions
+  with explicit binding parameter.
+
 ## Version 3.9.2 - 2023-04-27
 
 ### Fixed

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.2.0 - 2023-05-12
+
+### Added
+
+- Content for a new `minorUnit` element in `sap.common.Currencies` holding the number of fractions that the minor unit takes (e.g. 0 or 2).
+
 ## Version 1.1.0 - 2023-01-09
 
 ### Changed
