@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.0] - 2023-06-01
+### Added
+- Added a warning when choosing to automatically add table columns during generation if the metadata service is larger than 1Mb, as this can significantly increase the time it takes to generate the application.
+
+### Fixed
+- Fixed an issue where the list of local CAP projects available as the data source in the Fiori generator would sometimes show an invalid CAP project.
+
 ## [1.9.7] - 2023-05-18
 ### Added
 - Added ability for customers to create a sub-generator that allows them to customize some of the project attributes and add their own steps and writing logic to the generated Fiori application.  For more details, please see https://github.com/SAP-samples/fiori-tools-samples/sample-fiori-gen-ext.

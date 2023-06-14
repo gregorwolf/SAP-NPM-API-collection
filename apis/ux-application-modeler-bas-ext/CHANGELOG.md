@@ -5,6 +5,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.0] - 2023-06-01
+### Added
+- Added support for `contextPath` in page routing definitions for OData V4-based applications in conjunction with `@sap/ux-specification` versions 1.96.40, 1.108.7 or higher
+- Enabled external (outbound) navigation to a different app via the properties "Semantic Object Name" and "Semantic Object Property Mapping" for basic fields and columns. Note: launchpad configuration and inbound navigation in target app must be configured separately.
+- Added message when additional value help variants are defined besides the default one 
+
+### Changed
+- Enhanced the error messages when starting Page Map or Page Editor to be more helpful in case required node modules are not installed
+- Refactored the outline tree of the Page Editor to become a reusable UI component
+
+### Fixed
+- Fixed an issue with context menu and command palette entries for preview not available for extension projects
+
 ## [1.9.7] - 2023-05-17
 ### Added
 - Enabled the ability to add external navigation actions to tables and sections. This assumes launchpad configuration for app-to-app navigation and inbound configuration in the target app are provided.

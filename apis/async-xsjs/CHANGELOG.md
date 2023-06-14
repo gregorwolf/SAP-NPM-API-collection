@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="1.0.5"></a>
+## 1.0.5 - 2023-06-08
+
+### Fixed
+- Replace deprecated _request_ with _axios_ v1.3.5
+
+
 <a name="1.0.4"></a>
 ## 1.0.4 - 2023-03-28
 

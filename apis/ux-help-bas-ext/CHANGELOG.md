@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.0] - 2023-06-01
+### Added
+- Introduced a CAP CDS variant for the _Add a value help to a field_ guide.
+- Introduced a TypeScript variant for the _Add a custom filter to the filter bar of a list report_ guide.
+
+### Changed
+- Updated the UI5 version warning page with a link that opens the _Fiori: Change the minimum UI5 version_ command.
+
 ## [1.9.7] - 2023-05-18
 ### Changed
 - Updated All Guides view to feature a warning when a project's UI5 version is too low or too high for a given guide variant.
