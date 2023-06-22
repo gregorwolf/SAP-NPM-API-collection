@@ -2,7 +2,11 @@
 
 Command-Line Interface (CLI) for SAP Data Warehouse Cloud.
 
-[![Node Version](https://img.shields.io/badge/node-16.xx.x-brightgreen)](https://nodejs.org/dist/latest-v16.x/docs/api/#) [![npm version](https://badge.fury.io/js/@sap%2Fdwc-cli.svg)](https://badge.fury.io/js/@sap%2Fdwc-cli) [![Documentation](https://img.shields.io/badge/docs-online-ff69b4.svg)](https://help.sap.com/viewer/9f804b8efa8043539289f42f372c4862/cloud/en-US/5eac5b71e2d34c32b63f3d8d47a0b1d0.html) [![Command help pages](https://img.shields.io/badge/command-help-lightgrey.svg)](#usage) ![NPM](https://img.shields.io/npm/l/@sap/dwc-cli?color=%23FFFF00)
+[![Node Version](https://img.shields.io/badge/node-16.xx.x-brightgreen)](https://nodejs.org/dist/latest-v16.x/docs/api/#) [![npm version](https://badge.fury.io/js/@sap%2Fdwc-cli.svg)](https://badge.fury.io/js/@sap%2Fdwc-cli) [![Documentation](https://img.shields.io/badge/docs-online-ff69b4.svg)](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html) [![Command help pages](https://img.shields.io/badge/command-help-lightgrey.svg)](#usage) ![NPM](https://img.shields.io/npm/l/@sap/dwc-cli?color=%23FFFF00)
+
+> **DEPRECATION NOTICE**
+>
+> This package is deprecated and will be removed end of 2023 from [npmjs.com](https://npmjs.com). Following the release of SAP Datasphere, a new package [@sap/datasphere-cli](https://www.npmjs.com/package/@sap/datasphere-cli) is available on [npmjs.com](https://npmjs.com). Please switch to this package as soon as possible.
 
 ## Content
 
@@ -300,6 +304,31 @@ try {
 }
 ```
 
+#### Work with command results
+
+The result of executing a command is returned from the function call.
+
+```javascript
+const result = await commands["spaces read"]({
+  "--space": "MYSPACE",
+  "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+  "--passcode": "mypasscode",
+});
+console.log(result);
+// [
+//   [
+//     '{\n' +
+//       '  "MYSPACE": {\n' +
+//       '    "spaceDefinition": {\n' +
+//       '      "version": "1.0.4",\n' +
+// ...
+//       '    }\n' +
+//       '  }\n' +
+//       '}'
+//   ]
+// ]
+```
+
 #### Provide custom logger function
 
 Any output of a command you execute is forwarded to the `logger.output` function. To handle the result yourself, you can provide a custom `logger.output` function implementation:
@@ -428,7 +457,7 @@ Defines the port the CLI starts the HTTP server at when logging in when using OA
 
 ## Help Documentation
 
-Find the full documentation on [help.sap.com](https://help.sap.com/viewer/9f804b8efa8043539289f42f372c4862/cloud/en-US/5eac5b71e2d34c32b63f3d8d47a0b1d0.html), check out the blog post on [blogs.sap.com](https://blogs.sap.com/2021/09/21/new-command-line-for-sap-data-warehouse-cloud-code-way-to-the-cloud/) or use option `-h, --help`:
+Find the full documentation on [help.sap.com](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html), check out the blog post on [blogs.sap.com](https://blogs.sap.com/2021/09/21/new-command-line-for-sap-data-warehouse-cloud-code-way-to-the-cloud/) or use option `-h, --help`:
 
 ```bash
 $ dwc <command> -h

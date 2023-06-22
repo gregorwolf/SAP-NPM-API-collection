@@ -5,12 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="7.7.5"></a>
+## 7.7.5 - 2023-06-20
+
+### Updated
+- Update *@sap/hana-client* to v2.17.14
+
 <a name="7.7.4"></a>
 ## 7.7.4 - 2023-05-03
 
 ### Updated
 - Update *@sap/hana-client* to v2.16.26
-
 
 <a name="7.7.3"></a>
 ## 7.7.3 - 2023-03-27

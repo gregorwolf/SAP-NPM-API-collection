@@ -1642,7 +1642,7 @@ In a multi-tenancy landscape, the application router will calculate the tenant i
 ### Authorization Header
 * x-approuter-authorization - to be used in [Service to Application Router](#service-to-application-router) scenario - two token types are supported:
  - Bearer: contains the JSON Web Token (JWT) or Open ID Connect (OIDC) access token.
- - Basic: contains a Base64 encoded set of user/password. Note that Application Router uses these credentials to create a Bearer token using the password grant flow.
+ - Basic: contains a Base64 encoded set of user/password. Note that Application Router uses these credentials to create a Bearer token using the password grant flow (currently supported only with XSUAA credentials).
 
 ## CSRF Protection
 

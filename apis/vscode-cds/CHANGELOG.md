@@ -6,6 +6,23 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 
+## Version 7.0.0 - 2023-06-13
+
+### Added
+- CAP with Typescript (beta): generate TS typings from CDS model files upon save - requires `@cap-js/cds-typer` to be installed in project
+- CDS language: Support highlighting, formatting and where-used for new language constructs: ternary operator, `stored` elements and annotated `returns` statements
+
+### Changed
+- CAP notebooks: Default code cell type is 'shell'
+- Minimum VSCode version is now 1.78.0
+
+### Fixed
+- CAP Release Notes page: remove superfluous footer section
+- CAP notebooks: Magic command newline issues on windows powershell
+
+### Also see
+- `@sap/cds-lsp` 7.0.0
+- `@sap/cds-compiler` 4.0.0
 
 
 ## Version 6.8.2 - 2023-05-31
@@ -15,7 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 ### Changed
 - Changed default output directory for generated CDS types from `@types` to a `node_modules` subfolder
 ### Fixed
-- Links on CDS Welcome Page are now pointing to correct locations in Capire.
+- Links on CAP Release Notes page are now pointing to correct locations in Capire.
 
 ## Version 6.8.1 - 2023-05-12
 ### Changed
@@ -24,7 +41,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 - CAP notebooks: sample notebook `Shell` now uses a cross platform example
 - CAP notebooks: shellscript syntax highlighting for `Shell` cell
 - CAP notebooks: cells `CDS`, `Java` and `Javascript` now show error message if needed executable is not found
-- Fix CDS Welcome Page
+- Fix CAP Release Notes page
 - `Report issues` url now points to correct SAP Answers location
 
 ## Version 6.8.0 - 2023-05-03

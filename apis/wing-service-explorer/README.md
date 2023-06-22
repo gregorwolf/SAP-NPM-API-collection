@@ -61,3 +61,4 @@ This object exposes APIs for exploration of systems exposed by the Extension Fac
 #### getDestinations
 
 Returns a list of destinations which contain an additional property named **XFSystemName**.
+

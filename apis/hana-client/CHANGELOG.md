@@ -1,3 +1,32 @@
+# Hana Client 2.17.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.17 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.17/en-US
+
+For the latest updates please see SAP Note 3329999 - SAP HANA Client 2.17 Release Notes
+
+https://launchpad.support.sap.com/#/notes/3329999
+
+## Version 2.17.14
+
+### Changes:
+
+ - Issue Number 305853: Connection.getWarnings could have failed to return warnings.
+ - Issue Number 300259: The Node.js driver could have crashed with certain concurrent Statement operations.
+ - Issue Number 259321: Pooled connections may not be reused due to session variables.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 305857: Added reply compression information to PACKET=0 tracing.
+ - Issue Number 304108: The client could have returned incorrect CLOB data.
+ - Issue Number 303665: Getting VARBINARY column in multiple chunks could have returned incorrect data.
+ - Issue Number 300317: Client statement caching may have not reused a cached prepared statement.
+ - Issue Number 291233: Getting NVARCHAR column in multiple chunks could have returned incorrect data.
+ - Issue Number 288540: There were several issues fetching NCLOB and BLOB values depending on the destination type used.
+ - Issue Number 304109: Additional information is now shown in the error message when a network-related exception occurs.
+ - Issue Number 282033: Some error messages in SQLDBC-based drivers indicated an issue with a parameter/column value and referenced the parameter/column by number alone.
+
 # Hana Client 2.16.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.16 documentation:

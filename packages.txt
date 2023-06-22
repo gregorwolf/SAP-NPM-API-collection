@@ -2,6 +2,7 @@
 @sap/adp-cf
 @sap/adp-cli
 @sap/adp-common
+@sap/adp-ve-bas-ext
 @sap/apihub-enterprise-service-provider
 @sap/apihub-service-provider
 @sap/approuter
@@ -26,6 +27,7 @@
 @sap/cds-mtxs
 @sap/cds-odata-v2-adapter-proxy
 @sap/cf-tools
+@sap/cli-core
 @sap/destination-instance-service-provider
 @sap/dwc-cli
 @sap/eslint-plugin-cds
@@ -75,6 +77,7 @@
 @sap/vscode-cds
 @sap/webide-hdi-base-feature-vscode
 @sap/webide-hdi-feature-vscode
+@sap/wing-service-explorer
 @sap/xsjs
 @sap/xsodata
 @sap/xss-secure

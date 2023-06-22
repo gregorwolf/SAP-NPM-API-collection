@@ -5,6 +5,12 @@ All notable changes to this project SAP Data Warehouse Cloud Command-Line Interf
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2023.12.0
+
+> **DEPRECATION NOTICE**
+>
+> This package is deprecated and will be removed end of 2023 from [npmjs.com](https://npmjs.com). Following the release of SAP Datasphere, a new package [@sap/datasphere-cli](https://www.npmjs.com/package/@sap/datasphere-cli) is available on [npmjs.com](https://npmjs.com). Please switch to this package as soon as possible.
+
 ## 2023.3.0
 
 ### Added

@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 14.1.2 - 2023-06-13
+
+### Fixed
+- Return content-type in user-api
+- JWT refresh token flow with IAS (add app_tid to request)
+- In service to approuter flow supports Basic token authorization only with XSUAA credentials
+- Subscribed applications API handling
+- Return user name from sub claim in user-api in case of IAS login
+
 ## 14.1.1 - 2023-03-21
 
 ### Fixed
