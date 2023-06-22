@@ -4,6 +4,20 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 6.8.4 - 2023-06-14
+
+### Fixed
+
+- `$metadata` requests for multitenant applications
+
+## Version 6.8.3 - 2023-06-13
+
+### Fixed
+
+- `cds build` no longer reports CAP Java Classic runtime usage by mistake.
+- `cds version` prints the local `@sap/cds` version, even if called from a different `@sap/cds` installation.
+- User challenges handling in case of `cds.env.auth.restrict_all_services: false`
+
 ## Version 6.8.2 - 2023-05-26
 
 ### Fixed

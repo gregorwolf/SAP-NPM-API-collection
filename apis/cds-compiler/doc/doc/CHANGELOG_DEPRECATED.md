@@ -11,6 +11,34 @@ Note: `deprecated` features are listed in this ChangeLog just for information.
 **When the `deprecated` option is set, the `beta` option is ignored,
 and several new features are not available.**
 
+## Version 4.0.0 - 2023-06-06
+
+### Added `downgradableErrors`
+
+Allow to change the severity of some errors which are meant to stay errors in v4.
+
+### Added `includesNonShadowedFirst`
+
+Use this flag to keep adding elements from included definitions first, example:
+
+```cds
+entity A { one: Integer; two: String(10); three: Integer; }
+entity E : A { two: String(12); }
+// v3:  one, three, two
+// v4:  one, two, three
+```
+
+### Added `ignoreSpecifiedQueryElements`
+
+Use this flag if you want to ignore a query's `elements`, except for annotations and doc comments.
+cds-compiler v3 and earlier simply ignored a query element except for its annotations.
+cds-compiler v4 resolves the element's type.
+
+### Removed `autoCorrectOrderBySourceRefs`
+
+Instead of this deprecated flag, you can downgrade error message `ref-deprecated-orderby`.
+
+
 ## Version 3.1.0 - 2022-08-04
 
 ### Added `autoCorrectOrderBySourceRefs`

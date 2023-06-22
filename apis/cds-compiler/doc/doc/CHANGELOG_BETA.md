@@ -8,13 +8,29 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 4.0.0 - 2023-06-06
+
+### Removed `v4preview`
+
+`v4preview` is now the default.
+
+### Removed `calculatedElementsOnWrite`
+
+It is now enabled by default.  The feature is still "beta".
+
+### Removed `ignoreAssocPublishingInUnion`
+
+The behavior is now the default.  If you still want to get an error message for
+ignored published associations in unions, you can change the severity of message
+`query-ignoring-assoc-in-union` to an error via `options.severities`.
+
 ## Version 3.9.2 - 2023-04-27
 
 ### Removed `odataOpenType`
 
 This feature is now set to production mode.
 
-## Version 3.9.0 - 2023-04-XX
+## Version 3.9.0 - 2023-04-20
 
 ### Added `calculatedElementsOnWrite`
 

@@ -206,7 +206,7 @@ The compiler behaviour concerning `beta` features can change at any time without
 ### Fixed
 
 - Fix memory issue: do not keep reference to last-compiled model.
-- Fix dump which occured when trying to report that the user has defined an element to be both `key` and `localized` if
+- Fix dump which occurred when trying to report that the user has defined an element to be both `key` and `localized` if
   `localized` was inherited via the provided type, or in the generated entity for a managed composition of aspect.
 - Properly auto-expose targets of associations in parameters and `many`.
 - for.Odata:

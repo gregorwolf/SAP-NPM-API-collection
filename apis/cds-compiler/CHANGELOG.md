@@ -7,15 +7,103 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
-## Version 3.9.4 - 2023-06-07
+## Version 4.0.0 - 2023-06-06
+
+### Added
+
+- Calculated elements "on-write" are now supported, e.g. `elem = field + 1 stored;` will be rendered in SQL
+  as `GENERATED ALWAYS AS`.
+- compiler:
+  + `returns` of actions and functions can now be annotated, e.g.
+
+    ```cds
+    action A() returns @direct { … };
+    annotate A with returns {
+      @anno val;
+    }
+    ```
+  + It is now possible to use `*/` inside doc comments by escaping it `*\/`.  Only this exact string can be escaped.
+  + Functions `parse.expr` and `parse.cql` now support `group by`, `having`, `order by`, `limit`, and `offset` in infix filters.
+  + In expressions, you can now use function names after the `new` keyword which do
+    not start with `st_`, if the name is followed by an open parenthesis.
+
+### Changed
+
+- API:
+  + `messageContext()` is now deprecated; use `messageStringMultiline()` instead with `config.sourceMap`.
+  + `messageString(err, config)` has a new signature; the old one is still supported for backward compatibility.
+  + Option `docComment: false` now removes doc comments during compilation even for CSN.
+    If this option is not defined, doc comments are checked, but not put into CSN.
+- compiler:
+  + CSN: Specified elements of queries are now resolved and checked (previously ignored except for annotations).
+    Type properties (`length`, …) and some element properties are now taken from the specified elements
+    instead of relying only on the elements inferred by the compiler.
+  + CSN: Compiler accepts CSN input with CSN version `0.1.0` (produced by cds-compiler version 1.10.0 and older)
+    only if the version attribute is properly set, i.e. `"version": {"csn": "0.1.0"}`.
+  + CSN: Type properties (`length`, `precision`, `scale`, and `srid`) next to `elements` or `items` in CSN input
+    is now an error.  Previously ignored.
+  + An extension of the form `extend Def with { name = 42 };` is now represented in parsed CSN as
+    adding a calculated element.
+  + `having` as the first word in an infix filter is now interpreted as keyword. Write `![having]`
+    to have it parsed as identifier.
+  + If a definition overrides elements of an included definition, it is sorted according
+    to the included definition's element order.  This is similar to how `*` works in projections.
+    It is no longer possible to overwrite a scalar element with a structure and vice versa.
+  + Two included definitions cannot have the same element. The including entity must override the element.
+  + If a type with properties precision and scale is extended, the `extend` statement must extend both properties.
+  + `annotate E:elem with actions {};` is now a parser error and no longer a compiler error.
+    Only relevant if you use `parseCdl`-style CSN.
+  + Annotations (and other properties) are now propagated to `returns` as well, if the returned artifact
+    is a non-entity, e.g. a type.
+  + `annotate E with returns {…}` is now only applied to actions/functions. Previous compiler versions
+    autocorrected the `annotate` statements to apply them to an entity's elements.
+  + Calculated elements can't refer to localized elements.
+  + Table aliases can't be used in `extend Query with columns {…}` any longer. Use direct element references instead.
+  + Table alias and mixin names can no longer start with `$`. Choose a different name. With this change
+    we avoid unexpected name resolution effects in combination with built-in `$`-variables.
+  + A semicolon is now required after a type definition like `type T : many {} null`.
+  + It is no longer possible to write `type of $self.‹elem›` to refer to the element `‹Def›.‹elem›`
+    where `‹Def›` is the main artifact where the type expression is embedded in. Replace by `type of <Def>:‹elem›`.
+  + Message ID `duplicate-autoexposed` was changed to `def-duplicate-autoexposed`.
+- Update OData vocabularies 'Common', 'UI'.
+- to.sql:
+  + Change default `length` for `cds.String` for all SQL dialects except `hana` to 255.
+  + for the sql dialect `postgres`, the `ON DELETE RESTRICT` / `ON UPDATE RESTRICT` rules
+    are omitted from the referential constraint definitions.
+- to.cdl:
+  + If associations are used inside `items`, an error is emitted instead of rendering invalid CDL.
+  + `items` inside `items`, where the outer one does not have a `type`, is now always an error,
+    because it can't be rendered in CDL
 
 ### Fixed
 
-- compiler: `USING` empty files were incorrectly marked as "not found".
+- compiler:
+  + `parseCdl` CSN did not include correct `...` entries for annotations containing `... up to`
+  + Type references inside calculated elements were not always correctly resolved.
+  + `USING` empty files were incorrectly marked as "not found".
+  + If an association was inside `items`, e.g. via type chains, the compiler crashes instead of emitting proper errors.
 - Localized convenience views for projections (not views) did not have references rewritten.
   This only affects CSN, the SQL result was correct.
-- to.edm(x): Render correct EntitySetPath and annotation target path for actions/functions
-  with explicit binding parameter.
+- Calculated elements in composition-of-aspect lost their `value` when generating composition targets.
+- to.sql/to.hdi/for.odata: Foreign keys in ON-conditions were not always properly checked and flattened if explicit
+  `keys` were provided that reference structures.
+- Extending bound actions with elements is not possible, but was not reported by the compiler and elements were silently lost.
+- for.odata:
+  + Don't propagate `@odata { Type, MaxLength, Precision, Scale }` from structured to flattened leaf elements.
+  + Remove `type: null` attribute from element definitions referencing an undefined type via `type of`.
+- to.edm(x):
+  + Don't reject untyped properties that are API typed with a valid `@odata.Type` annotation.
+  + Render correct `EntitySetPath` and annotation target path for actions/functions with explicit binding parameter.
+- to.cdl: ParseCdl-style CSN containing annotations with `...` were not properly rendered.
+
+### Removed
+
+- NodeJs 14 is no longer supported.
+- `CompileMessage` no longer has property `location`, which was deprecated in v2.1.0, but `$location`,
+  which is supported since v2.1.0
+- "Smart type references" such as `Entity.myElement` instead of `Entity:myElement` are removed, because since
+  compiler v2, `Entity.myElement` could also be a definition, creating ambiguities.
+- Element type references can no longer follow associations, i.e. `E:assoc.id` is not allowed.
 
 ## Version 3.9.2 - 2023-04-27
 

@@ -6,7 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 6.8.0 - tbd
+## 7.0.0 - 2023-06-13
+
+### Added
+- support for `.d.ts` type generation from `cds` model files upon save
+- support for CDS ternary operator (highlighting, formatting, where-used)
+- support for `stored` elements (where-used)
+- support for annotated `returns` statements
+
+### Also see
+- `@sap/cds-compiler` 4.0.0
+
+
+## 6.8.0 - 2023-05-02
 
 ### Fixed
 - where-used index could be incomplete with latest OData annotation plugin
@@ -14,6 +26,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 - custom request to get lsp properties
+- formatting and highlighting of ternary conditions
 
 ### Changed
 - now using Typescript 5.0
