@@ -4,11 +4,58 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Version 6.8.4 - 2023-06-14
+## Version 7.0.0 - 2023-06-21
+
+### Added
+
+- Handling of expand with multiple `*` (e.g. $expand=*,*) in new parser. When using `*` in an expand the new OData parser now removes all unneeded `*`.
+- Tests run with `cds.test()` now also load `cds-plugins`
+
+### Changed
+
+- Result of `READ` events is now always an array. Previously, it could be `null/undefined` (now empty array), single object (now array with one entry) or array.
+- OData: `PUT`/`PATCH` requests resulting in a new entity (i.e., the `UPSERT` effectively was an `INSERT`) return status code 201
+- Draft: Draft activate requests resulting in an `UPDATE` return status code 200
+- ETags are validated via `WHERE EXISTS` clause attached to query on `GET`, `PUT`/`PATCH`, and `DELETE`
+- OData: `PUT`/`PATCH` with `if-match` header prevents `UPSERT`, i.e., only an existing entity can be updated by such a request
+- Runtime support for `@sap/instance-manager` is removed in favor of the `cds-mtxs` Service Manager client.
+- In multitenant mode, the HANA pool uses the `cds-mtxs` credentials cache
+- Draft handlers are registered for all entities.
+- Decimals in client input are validated in runtime's assert framework (previously OData adapter)
+- `cds build` and `cds deploy --to hana` have moved to `@sap/cds-dk`. Upgrade `@sap/cds-dk` to version 7 to continue using these commands.
+- Changed the behavior of `SELECT` queries for single entities to return `undefined` instead of `null` when no record is found.
+- Fiori preview has moved to new `@sap/cds-fiori` module.
+- Numbers are now always used as placeholders in SQL, except for `SELECT 1 From...`, `LIMIT` and the comparison of two numeric values (e.g. `1 eq 1`).
+- Only new major version 3 of SAP Cloud SDK is from now on supported. Please make sure to upgrade. Version 2 is not maintained anymore.
+- `@protocol` annotation can be used to serve multiple protocols per service.
+- Per default, services are served with a protocol-specific prefix (for example '/odata/v4' for a service using the OData V4 protocol). To also serve without this prefix, as it was the case in older @sap/cds versions, the flag `cds.env.features.serve_on_root` can be set to `true`. Alternatively, the `@path` annotation can be used to explicitely specify an absolute path (with a leading `/`).
+- `cds.requires.middlewares` is enabled by default.
+- The order of csv files that `cds deploy --to sqlite` uses now reflects the dependency order of cds models.  This is needed if `UPSERT` is used to create a logically correct deployment.
+- `cds.fiori.lean_draft` is activated by default. You can still set it to `false` as fallback.
 
 ### Fixed
 
-- `$metadata` requests for multitenant applications
+- UUID typed key properties are no longer automatically filled during UPSERT
+- OData: When undefined in the payload, requests for actions with not nullable array-type parameters result in a client-side error
+- Missing `GROUP BY` in request with $apply in combination with aggregate on restricted entity
+- When `@sap/cds` was not installed underneath project root, cds-plugins where not found
+- Support for multiline texts in `properties` files
+- Error when reading auth protected entities with infix filter in expand
+- Glitch in transaction handling in case of concurrent async before handlers
+- Detection of feature toggles in single-tenant mode
+
+### Removed
+
+- Deprecated `req.run()` function, use `cds.run()` instead.
+- Deprecated compat mode `cds.env.features.cds_tx_protection = false`
+- Deprecated referential integrity checks at runtime
+- Support for inofficial feature flag `cds.env.features.bigjs`
+- Support for inofficial feature flag `cds.features.parameterized_numbers`
+- Support for `cds-mtx`
+- Support for Node 14
+- Internal `req.getUriInfo()` and `req.getUrlObject()`
+- `cds deploy --to hana` is now part of `@sap/cds-dk`.
+- Beta `AuditLogService` and out-of-the-box audit logging. Use plugin `@cap-js/audit-logging` instead.
 
 ## Version 6.8.3 - 2023-06-13
 
@@ -48,6 +95,9 @@ For example, similar OData requests `Entity?$expand=items($expand=item($expand=t
 - `cds build` ignores invalid entries in `undeploy.json`
 - New `minorUnit` element in `sap.common.Currencies` for how many fractions the minor unit takes (e.g. `0`, or `2`).  See https://www.npmjs.com/package/@sap/cds-common-content for matching content.
 - Support for `$user.<attr> is null` and `$user.<attr> is not null` in `@restrict.where`. `is null` matches `null` and `[]`, `is not null` matches arrays with at least one entry as well as `!= null` if no array.
+- Plugins are now also fetched from `devDependencies`, unless `NODE_ENV === 'production'`
+- Plugins can now provide `cds` configurations in their package.json.
+- Support in OData entities with special letters (like ó,â,ü) in names.
 
 ### Changed
 
@@ -66,6 +116,10 @@ The fix relies on the `@sap-cloud-sdk/connectivity` npm package to be installed.
 - Fixes in lean-draft
 - Fixed an issue where the combined `$search` and `$expand` query and localized data was returning empty results on SAP HANA
 - Tests using `cds.test` no longer crash with a segmentation fault if `injectGlobals: false` is set in the Jest configuration.
+- Handlers registered with `cds.on('shutdown')` are now called with an `err` argument in case the shutdown happened in response to uncaught exceptions or unhandled rejected Promises.
+- Log output on uncaught exceptions or unhandled rejected Promises now is done via `cds.log` instead of `console`.
+- New config option `cds.env.server.force_exit_timeout` allows to configure the timeout in ms after which we force-exit the server (default: 1111) if it didn't do so as expected after a prior `server.close()`. Values `false` or `0` disable force-exit.
+- Require custom auth relative to project root when using pluggable middlewares
 
 ## Version 6.7.2 - 2023-04-24
 
@@ -273,6 +327,7 @@ cds env requires/cds.xt.ModelProviderService
 - `cds.context.http` is now available for webhook-based requests
 - `cds build` for SAP HANA migration tables now only saves model entities annotated with `@cds.persistence.journal` as `last-dev` version.
 - `cds deploy` now uses the `VCAP_SERVICES` environment variable (if set), and skips `cf` operations in this case
+- Support for timestamp precision greater than 3 digits of fractional seconds
 
 ### Changed
 
@@ -488,8 +543,6 @@ Content-Length: 145
 - REST: reject action calls with round brackets (parentheses). For example, the request `/Books(1)/bookShelf.CatalogService.rate()` is now rejected.
 - `cds deploy` and `cds run/serve/watch` no longer print terminal escape sequences (`x1b...`) if they run non-interactively.
 - Some fields in entities like `path` generated invalid sql
-
-### Removed
 
 ## Version 6.1.3 - 2022-09-13
 

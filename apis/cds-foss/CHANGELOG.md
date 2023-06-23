@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 4.0.2 - 2023-06-21
+
+### Fixed
+
+- Enforce `yaml` 2.2.2 for security reasons
+
 ## Version 4.0.1 - 2023-04-27
 
 ### Fixed

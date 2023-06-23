@@ -7,6 +7,21 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+
+## Version 4.0.2 - 2023-06-22
+
+### Fixed
+
+- to.sql.migration: When drop-creating views, also drop-create (transitively) dependent views.
+- to.edm(x):
+  + Forward `@odata.singleton { nullable }` annotation to parameter entity.
+  + Annotations assigned to a parameterized entity are propagated to the parameter entity if the annotation is
+    applicable to either an `edm.EntitySet` or `edm.Singleton`. This especially covers all `@Capabilities` and their
+    shortcut forms like `@readonly` and `@insertonly`. The original annotation is not removed from the original entity.
+    Annotations that should be rendered at the parameter `edm.EntityType` can be qualified with `$parameters`.
+    Explicitly qualified annotations are removed from the original entity allowing individual assignments.
+
+
 ## Version 4.0.0 - 2023-06-06
 
 ### Added

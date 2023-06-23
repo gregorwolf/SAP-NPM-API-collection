@@ -31,11 +31,11 @@
 
 **Description:** For more information, see https://helm.sh/docs/chart_template_guide/subcharts_and_globals/#global-chart-values
 
-| Property                                                | Pattern | Type   | Deprecated | Definition | Title/Description               |
-| ------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------- |
-| - [imagePullSecret](#global_imagePullSecret )           | No      | object | No         | -          | Image Pull Secret configuration |
-| - [image](#global_image )                               | No      | object | No         | -          | Image configuration             |
-| - [additionalProperties](#global_additionalProperties ) | No      | object | No         | -          | -                               |
+| Property                                      | Pattern | Type   | Deprecated | Definition | Title/Description               |
+| --------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------- |
+| - [imagePullSecret](#global_imagePullSecret ) | No      | object | No         | -          | Image Pull Secret configuration |
+| - [image](#global_image )                     | No      | object | No         | -          | Image configuration             |
+| - [](#global_additionalProperties )           | No      | object | No         | -          | -                               |
 
 ### <a name="global_imagePullSecret"></a>1.1. ![Optional](https://img.shields.io/badge/Optional-yellow) Property `imagePullSecret`
 
@@ -48,11 +48,11 @@
 
 **Description:** For more information, see https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 
-| Property                                                                | Pattern | Type   | Deprecated | Definition                      | Title/Description |
-| ----------------------------------------------------------------------- | ------- | ------ | ---------- | ------------------------------- | ----------------- |
-| - [name](#global_imagePullSecret_name )                                 | No      | string | No         | In #/definitions/KubernetesName | Secret name       |
-| - [dockerconfigjson](#global_imagePullSecret_dockerconfigjson )         | No      | string | No         | -                               | Secret content    |
-| - [additionalProperties](#global_imagePullSecret_additionalProperties ) | No      | object | No         | -                               | -                 |
+| Property                                                        | Pattern | Type   | Deprecated | Definition                      | Title/Description |
+| --------------------------------------------------------------- | ------- | ------ | ---------- | ------------------------------- | ----------------- |
+| - [name](#global_imagePullSecret_name )                         | No      | string | No         | In #/definitions/KubernetesName | Secret name       |
+| - [dockerconfigjson](#global_imagePullSecret_dockerconfigjson ) | No      | string | No         | -                               | Secret content    |
+| - [](#global_imagePullSecret_additionalProperties )             | No      | object | No         | -                               | -                 |
 
 #### <a name="global_imagePullSecret_name"></a>1.1.1. ![Optional](https://img.shields.io/badge/Optional-yellow) Property `name`
 
@@ -90,11 +90,11 @@
 
 **Description:** Either name or repository is required.
 
-| Property                                                      | Pattern | Type   | Deprecated | Definition                     | Title/Description                                                                                                       |
-| ------------------------------------------------------------- | ------- | ------ | ---------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| - [tag](#global_image_tag )                                   | No      | string | No         | In #/definitions/ImageTag      | Image tag without the name (everything after the \`:\` sign, potentially including the \`@sha256\` section at the end). |
-| - [registry](#global_image_registry )                         | No      | string | No         | In #/definitions/ImageRegistry | Image registry e.g. docker.io                                                                                           |
-| - [additionalProperties](#global_image_additionalProperties ) | No      | object | No         | -                              | -                                                                                                                       |
+| Property                                  | Pattern | Type   | Deprecated | Definition                     | Title/Description                                                                                                       |
+| ----------------------------------------- | ------- | ------ | ---------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| - [tag](#global_image_tag )               | No      | string | No         | In #/definitions/ImageTag      | Image tag without the name (everything after the \`:\` sign, potentially including the \`@sha256\` section at the end). |
+| - [registry](#global_image_registry )     | No      | string | No         | In #/definitions/ImageRegistry | Image registry e.g. docker.io                                                                                           |
+| - [](#global_image_additionalProperties ) | No      | object | No         | -                              | -                                                                                                                       |
 
 #### <a name="global_image_tag"></a>1.2.1. ![Optional](https://img.shields.io/badge/Optional-yellow) Property `tag`
 
@@ -349,7 +349,7 @@
 | [item 0](#env_anyOf_i0) |
 | [item 1](#env_anyOf_i1) |
 
-### <a name="env_anyOf_i0"></a>8.1. Property `None`
+### <a name="env_anyOf_i0"></a>8.1. Property `item 0`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -371,12 +371,12 @@ must respect the following conditions
 | **Type**                  | `combining`                                                                                                                       |
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
 
-| Any of(Option)                            |
-| ----------------------------------------- |
-| [item 0](#env_anyOf_i0_pattern1_anyOf_i0) |
-| [item 1](#env_anyOf_i0_pattern1_anyOf_i1) |
+| Any of(Option)                               |
+| -------------------------------------------- |
+| [item 0](#env_anyOf_i0_pattern1_pattern2_i0) |
+| [item 1](#env_anyOf_i0_pattern1_pattern2_i1) |
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i0"></a>8.1.1.1. Property `None`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i0"></a>8.1.1.1. Property `item 0`
 
 |          |                     |
 | -------- | ------------------- |
@@ -384,7 +384,7 @@ must respect the following conditions
 
 **Description:** Plain value of an environment variable.
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1"></a>8.1.1.2. Property `None`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1"></a>8.1.1.2. Property `item 1`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -393,14 +393,14 @@ must respect the following conditions
 
 **Description:** `valueFrom` configuration for the environment variable https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/
 
-| Property                                                                | Pattern | Type   | Deprecated | Definition | Title/Description                    |
-| ----------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------ |
-| - [configMapKeyRef](#env_anyOf_i0_pattern1_anyOf_i1_configMapKeyRef )   | No      | object | No         | -          | Selects a key of a ConfigMap.        |
-| - [secretKeyRef](#env_anyOf_i0_pattern1_anyOf_i1_secretKeyRef )         | No      | object | No         | -          | Selects a key of a Secret.           |
-| - [resourceFieldRef](#env_anyOf_i0_pattern1_anyOf_i1_resourceFieldRef ) | No      | object | No         | -          | Selects a resource of the container. |
-| - [fieldRef](#env_anyOf_i0_pattern1_anyOf_i1_fieldRef )                 | No      | object | No         | -          | Selects a field of the pod.          |
+| Property                                                                   | Pattern | Type   | Deprecated | Definition | Title/Description                    |
+| -------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------ |
+| - [configMapKeyRef](#env_anyOf_i0_pattern1_pattern2_i1_configMapKeyRef )   | No      | object | No         | -          | Selects a key of a ConfigMap.        |
+| - [secretKeyRef](#env_anyOf_i0_pattern1_pattern2_i1_secretKeyRef )         | No      | object | No         | -          | Selects a key of a Secret.           |
+| - [resourceFieldRef](#env_anyOf_i0_pattern1_pattern2_i1_resourceFieldRef ) | No      | object | No         | -          | Selects a resource of the container. |
+| - [fieldRef](#env_anyOf_i0_pattern1_pattern2_i1_fieldRef )                 | No      | object | No         | -          | Selects a field of the pod.          |
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_configMapKeyRef"></a>8.1.1.2.1. Property `configMapKeyRef`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_configMapKeyRef"></a>8.1.1.2.1. Property `configMapKeyRef`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -409,12 +409,12 @@ must respect the following conditions
 
 **Description:** Selects a key of a ConfigMap.
 
-| Property                                                        | Pattern | Type   | Deprecated | Definition | Title/Description                                |
-| --------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------------------ |
-| - [name](#env_anyOf_i0_pattern1_anyOf_i1_configMapKeyRef_name ) | No      | string | No         | -          | Name of a ConfigMap.                             |
-| - [key](#env_anyOf_i0_pattern1_anyOf_i1_configMapKeyRef_key )   | No      | string | No         | -          | Key in that ConfigMap, which value will be used. |
+| Property                                                           | Pattern | Type   | Deprecated | Definition | Title/Description                                |
+| ------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ------------------------------------------------ |
+| - [name](#env_anyOf_i0_pattern1_pattern2_i1_configMapKeyRef_name ) | No      | string | No         | -          | Name of a ConfigMap.                             |
+| - [key](#env_anyOf_i0_pattern1_pattern2_i1_configMapKeyRef_key )   | No      | string | No         | -          | Key in that ConfigMap, which value will be used. |
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_configMapKeyRef_name"></a>8.1.1.2.1.1. Property `name`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_configMapKeyRef_name"></a>8.1.1.2.1.1. Property `name`
 
 |          |          |
 | -------- | -------- |
@@ -422,7 +422,7 @@ must respect the following conditions
 
 **Description:** Name of a ConfigMap.
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_configMapKeyRef_key"></a>8.1.1.2.1.2. Property `key`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_configMapKeyRef_key"></a>8.1.1.2.1.2. Property `key`
 
 |          |          |
 | -------- | -------- |
@@ -430,7 +430,7 @@ must respect the following conditions
 
 **Description:** Key in that ConfigMap, which value will be used.
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_secretKeyRef"></a>8.1.1.2.2. Property `secretKeyRef`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_secretKeyRef"></a>8.1.1.2.2. Property `secretKeyRef`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -439,12 +439,12 @@ must respect the following conditions
 
 **Description:** Selects a key of a Secret.
 
-| Property                                                     | Pattern | Type   | Deprecated | Definition | Title/Description                             |
-| ------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | --------------------------------------------- |
-| - [name](#env_anyOf_i0_pattern1_anyOf_i1_secretKeyRef_name ) | No      | string | No         | -          | Name of a Secret.                             |
-| - [key](#env_anyOf_i0_pattern1_anyOf_i1_secretKeyRef_key )   | No      | string | No         | -          | Key in that Secret, which value will be used. |
+| Property                                                        | Pattern | Type   | Deprecated | Definition | Title/Description                             |
+| --------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | --------------------------------------------- |
+| - [name](#env_anyOf_i0_pattern1_pattern2_i1_secretKeyRef_name ) | No      | string | No         | -          | Name of a Secret.                             |
+| - [key](#env_anyOf_i0_pattern1_pattern2_i1_secretKeyRef_key )   | No      | string | No         | -          | Key in that Secret, which value will be used. |
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_secretKeyRef_name"></a>8.1.1.2.2.1. Property `name`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_secretKeyRef_name"></a>8.1.1.2.2.1. Property `name`
 
 |          |          |
 | -------- | -------- |
@@ -452,7 +452,7 @@ must respect the following conditions
 
 **Description:** Name of a Secret.
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_secretKeyRef_key"></a>8.1.1.2.2.2. Property `key`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_secretKeyRef_key"></a>8.1.1.2.2.2. Property `key`
 
 |          |          |
 | -------- | -------- |
@@ -460,7 +460,7 @@ must respect the following conditions
 
 **Description:** Key in that Secret, which value will be used.
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_resourceFieldRef"></a>8.1.1.2.3. Property `resourceFieldRef`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_resourceFieldRef"></a>8.1.1.2.3. Property `resourceFieldRef`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -469,12 +469,12 @@ must respect the following conditions
 
 **Description:** Selects a resource of the container.
 
-| Property                                                                           | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                               |
-| ---------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| - [containerName](#env_anyOf_i0_pattern1_anyOf_i1_resourceFieldRef_containerName ) | No      | string | No         | -          | Name of a Container.                                                                                                                                                            |
-| - [resource](#env_anyOf_i0_pattern1_anyOf_i1_resourceFieldRef_resource )           | No      | string | No         | -          | Only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. |
+| Property                                                                              | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                               |
+| ------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - [containerName](#env_anyOf_i0_pattern1_pattern2_i1_resourceFieldRef_containerName ) | No      | string | No         | -          | Name of a Container.                                                                                                                                                            |
+| - [resource](#env_anyOf_i0_pattern1_pattern2_i1_resourceFieldRef_resource )           | No      | string | No         | -          | Only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. |
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_resourceFieldRef_containerName"></a>8.1.1.2.3.1. Property `containerName`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_resourceFieldRef_containerName"></a>8.1.1.2.3.1. Property `containerName`
 
 |          |          |
 | -------- | -------- |
@@ -482,7 +482,7 @@ must respect the following conditions
 
 **Description:** Name of a Container.
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_resourceFieldRef_resource"></a>8.1.1.2.3.2. Property `resource`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_resourceFieldRef_resource"></a>8.1.1.2.3.2. Property `resource`
 
 |          |          |
 | -------- | -------- |
@@ -490,7 +490,7 @@ must respect the following conditions
 
 **Description:** Only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_fieldRef"></a>8.1.1.2.4. Property `fieldRef`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_fieldRef"></a>8.1.1.2.4. Property `fieldRef`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -499,11 +499,11 @@ must respect the following conditions
 
 **Description:** Selects a field of the pod.
 
-| Property                                                           | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                                                |
-| ------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| - [fieldPath](#env_anyOf_i0_pattern1_anyOf_i1_fieldRef_fieldPath ) | No      | string | No         | -          | Supports metadata.name, metadata.namespace, \`metadata.labels['<KEY>']\`, \`metadata.annotations['<KEY>']\`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. |
+| Property                                                              | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                                                |
+| --------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| - [fieldPath](#env_anyOf_i0_pattern1_pattern2_i1_fieldRef_fieldPath ) | No      | string | No         | -          | Supports metadata.name, metadata.namespace, \`metadata.labels['<KEY>']\`, \`metadata.annotations['<KEY>']\`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. |
 
-##### <a name="env_anyOf_i0_pattern1_anyOf_i1_fieldRef_fieldPath"></a>8.1.1.2.4.1. Property `fieldPath`
+##### <a name="env_anyOf_i0_pattern1_pattern2_i1_fieldRef_fieldPath"></a>8.1.1.2.4.1. Property `fieldPath`
 
 |          |          |
 | -------- | -------- |
@@ -511,7 +511,7 @@ must respect the following conditions
 
 **Description:** Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.
 
-### <a name="env_anyOf_i1"></a>8.2. Property `None`
+### <a name="env_anyOf_i1"></a>8.2. Property `item 1`
 
 |          |                   |
 | -------- | ----------------- |
@@ -521,7 +521,7 @@ must respect the following conditions
 | ----------------------------------- | ----------- |
 | [item 1 items](#env_anyOf_i1_items) | -           |
 
-#### <a name="autogenerated_heading_2"></a>8.2.1. items
+#### <a name="autogenerated_heading_2"></a>8.2.1. item 1 items
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -677,7 +677,7 @@ must respect the following conditions
 | --------------------------------------- | ----------- |
 | [KubernetesName](#envSecretNames_items) | -           |
 
-### <a name="autogenerated_heading_3"></a>9.1. items
+### <a name="autogenerated_heading_3"></a>9.1. KubernetesName
 
 |                        |                                      |
 | ---------------------- | ------------------------------------ |
@@ -697,7 +697,7 @@ must respect the following conditions
 | ------------------------------- | ----------- |
 | [envFrom items](#envFrom_items) | -           |
 
-### <a name="autogenerated_heading_4"></a>10.1. items
+### <a name="autogenerated_heading_4"></a>10.1. envFrom items
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -709,7 +709,7 @@ must respect the following conditions
 | [item 0](#envFrom_items_oneOf_i0) |
 | [item 1](#envFrom_items_oneOf_i1) |
 
-#### <a name="envFrom_items_oneOf_i0"></a>10.1.1. Property `None`
+#### <a name="envFrom_items_oneOf_i0"></a>10.1.1. Property `item 0`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -741,7 +741,7 @@ must respect the following conditions
 
 **Description:** Name of a ConfigMap.
 
-#### <a name="envFrom_items_oneOf_i1"></a>10.1.2. Property `None`
+#### <a name="envFrom_items_oneOf_i1"></a>10.1.2. Property `item 1`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -811,23 +811,23 @@ must respect the following conditions
 | **Type**                  | `combining`                                                                                                                       |
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
 
-| One of(Option)                        |
-| ------------------------------------- |
-| [item 0](#bindings_pattern1_oneOf_i0) |
-| [item 1](#bindings_pattern1_oneOf_i1) |
+| One of(Option)                           |
+| ---------------------------------------- |
+| [item 0](#bindings_pattern1_pattern1_i0) |
+| [item 1](#bindings_pattern1_pattern1_i1) |
 
-#### <a name="bindings_pattern1_oneOf_i0"></a>12.1.1. Property `None`
+#### <a name="bindings_pattern1_pattern1_i0"></a>12.1.1. Property `item 0`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                 |
 | **Additional properties** | [![Not allowed](https://img.shields.io/badge/Not%20allowed-red)](# "Additional Properties not allowed.") |
 
-| Property                                                | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                     |
-| ------------------------------------------------------- | ------- | ------ | ---------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| + [fromSecret](#bindings_pattern1_oneOf_i0_fromSecret ) | No      | string | No         | -          | Name of a Kubernetes Secret, with the binding content, compliant to the SAP Kubernetes Service Binding spec https://github.tools.sap/Kubernetes-Service-Bindings/doc/ |
+| Property                                                   | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                     |
+| ---------------------------------------------------------- | ------- | ------ | ---------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| + [fromSecret](#bindings_pattern1_pattern1_i0_fromSecret ) | No      | string | No         | -          | Name of a Kubernetes Secret, with the binding content, compliant to the SAP Kubernetes Service Binding spec https://github.tools.sap/Kubernetes-Service-Bindings/doc/ |
 
-##### <a name="bindings_pattern1_oneOf_i0_fromSecret"></a>12.1.1.1. Property `fromSecret`
+##### <a name="bindings_pattern1_pattern1_i0_fromSecret"></a>12.1.1.1. Property `fromSecret`
 
 |          |          |
 | -------- | -------- |
@@ -835,24 +835,24 @@ must respect the following conditions
 
 **Description:** Name of a Kubernetes Secret, with the binding content, compliant to the SAP Kubernetes Service Binding spec https://github.tools.sap/Kubernetes-Service-Bindings/doc/
 
-#### <a name="bindings_pattern1_oneOf_i1"></a>12.1.2. Property `None`
+#### <a name="bindings_pattern1_pattern1_i1"></a>12.1.2. Property `item 1`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                 |
 | **Additional properties** | [![Not allowed](https://img.shields.io/badge/Not%20allowed-red)](# "Additional Properties not allowed.") |
 
-| Property                                                                              | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| - [serviceInstanceName](#bindings_pattern1_oneOf_i1_serviceInstanceName )             | No      | string | No         | -          | Name of a BTP Operator Service Instance, created by the \`service-instance\` Helm chart. Can't be used with the \`serviceInstanceFullname\` option.                                                      |
-| - [serviceInstanceFullname](#bindings_pattern1_oneOf_i1_serviceInstanceFullname )     | No      | string | No         | -          | Full name of a BTP Operator Service Instance. Can't be used with the \`serviceInstanceName\` option.                                                                                                     |
-| - [externalName](#bindings_pattern1_oneOf_i1_externalName )                           | No      | string | No         | -          | The name for the service binding in SAP BTP                                                                                                                                                              |
-| - [secretName](#bindings_pattern1_oneOf_i1_secretName )                               | No      | string | No         | -          | The name of the secret where the credentials are stored.                                                                                                                                                 |
-| - [parameters](#bindings_pattern1_oneOf_i1_parameters )                               | No      | object | No         | -          | Some services support the provisioning of additional configuration parameters during the bind request. For the list of supported parameters, check the documentation of the particular service offering. |
-| - [parametersFrom](#bindings_pattern1_oneOf_i1_parametersFrom )                       | No      | array  | No         | -          | List of sources to populate parameters.                                                                                                                                                                  |
-| - [credentialsRotationPolicy](#bindings_pattern1_oneOf_i1_credentialsRotationPolicy ) | No      | object | No         | -          | Holds automatic credentials rotation configuration. For more details, see https://github.com/SAP/sap-btp-service-operator#spec-1                                                                         |
+| Property                                                                                 | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                                                        |
+| ---------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - [serviceInstanceName](#bindings_pattern1_pattern1_i1_serviceInstanceName )             | No      | string | No         | -          | Name of a BTP Operator Service Instance, created by the \`service-instance\` Helm chart. Can't be used with the \`serviceInstanceFullname\` option.                                                      |
+| - [serviceInstanceFullname](#bindings_pattern1_pattern1_i1_serviceInstanceFullname )     | No      | string | No         | -          | Full name of a BTP Operator Service Instance. Can't be used with the \`serviceInstanceName\` option.                                                                                                     |
+| - [externalName](#bindings_pattern1_pattern1_i1_externalName )                           | No      | string | No         | -          | The name for the service binding in SAP BTP                                                                                                                                                              |
+| - [secretName](#bindings_pattern1_pattern1_i1_secretName )                               | No      | string | No         | -          | The name of the secret where the credentials are stored.                                                                                                                                                 |
+| - [parameters](#bindings_pattern1_pattern1_i1_parameters )                               | No      | object | No         | -          | Some services support the provisioning of additional configuration parameters during the bind request. For the list of supported parameters, check the documentation of the particular service offering. |
+| - [parametersFrom](#bindings_pattern1_pattern1_i1_parametersFrom )                       | No      | array  | No         | -          | List of sources to populate parameters.                                                                                                                                                                  |
+| - [credentialsRotationPolicy](#bindings_pattern1_pattern1_i1_credentialsRotationPolicy ) | No      | object | No         | -          | Holds automatic credentials rotation configuration. For more details, see https://github.com/SAP/sap-btp-service-operator#spec-1                                                                         |
 
-##### <a name="bindings_pattern1_oneOf_i1_serviceInstanceName"></a>12.1.2.1. Property `serviceInstanceName`
+##### <a name="bindings_pattern1_pattern1_i1_serviceInstanceName"></a>12.1.2.1. Property `serviceInstanceName`
 
 |          |          |
 | -------- | -------- |
@@ -860,7 +860,7 @@ must respect the following conditions
 
 **Description:** Name of a BTP Operator Service Instance, created by the `service-instance` Helm chart. Can't be used with the `serviceInstanceFullname` option.
 
-##### <a name="bindings_pattern1_oneOf_i1_serviceInstanceFullname"></a>12.1.2.2. Property `serviceInstanceFullname`
+##### <a name="bindings_pattern1_pattern1_i1_serviceInstanceFullname"></a>12.1.2.2. Property `serviceInstanceFullname`
 
 |          |          |
 | -------- | -------- |
@@ -868,7 +868,7 @@ must respect the following conditions
 
 **Description:** Full name of a BTP Operator Service Instance. Can't be used with the `serviceInstanceName` option.
 
-##### <a name="bindings_pattern1_oneOf_i1_externalName"></a>12.1.2.3. Property `externalName`
+##### <a name="bindings_pattern1_pattern1_i1_externalName"></a>12.1.2.3. Property `externalName`
 
 |          |          |
 | -------- | -------- |
@@ -876,7 +876,7 @@ must respect the following conditions
 
 **Description:** The name for the service binding in SAP BTP
 
-##### <a name="bindings_pattern1_oneOf_i1_secretName"></a>12.1.2.4. Property `secretName`
+##### <a name="bindings_pattern1_pattern1_i1_secretName"></a>12.1.2.4. Property `secretName`
 
 |          |          |
 | -------- | -------- |
@@ -884,7 +884,7 @@ must respect the following conditions
 
 **Description:** The name of the secret where the credentials are stored.
 
-##### <a name="bindings_pattern1_oneOf_i1_parameters"></a>12.1.2.5. Property `parameters`
+##### <a name="bindings_pattern1_pattern1_i1_parameters"></a>12.1.2.5. Property `parameters`
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -893,7 +893,7 @@ must respect the following conditions
 
 **Description:** Some services support the provisioning of additional configuration parameters during the bind request. For the list of supported parameters, check the documentation of the particular service offering.
 
-##### <a name="bindings_pattern1_oneOf_i1_parametersFrom"></a>12.1.2.6. Property `parametersFrom`
+##### <a name="bindings_pattern1_pattern1_i1_parametersFrom"></a>12.1.2.6. Property `parametersFrom`
 
 |          |         |
 | -------- | ------- |
@@ -901,23 +901,23 @@ must respect the following conditions
 
 **Description:** List of sources to populate parameters.
 
-| Each item of this array must be                                          | Description |
-| ------------------------------------------------------------------------ | ----------- |
-| [parametersFrom items](#bindings_pattern1_oneOf_i1_parametersFrom_items) | -           |
+| Each item of this array must be                                             | Description |
+| --------------------------------------------------------------------------- | ----------- |
+| [parametersFrom items](#bindings_pattern1_pattern1_i1_parametersFrom_items) | -           |
 
-##### <a name="autogenerated_heading_5"></a>12.1.2.6.1. items
+##### <a name="autogenerated_heading_5"></a>12.1.2.6.1. parametersFrom items
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `combining`                                                                                                                       |
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
 
-| Any of(Option)                                                      |
-| ------------------------------------------------------------------- |
-| [item 0](#bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i0) |
-| [item 1](#bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i1) |
+| Any of(Option)                                                         |
+| ---------------------------------------------------------------------- |
+| [item 0](#bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i0) |
+| [item 1](#bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i1) |
 
-##### <a name="bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i0"></a>12.1.2.6.1.1. Property `None`
+##### <a name="bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i0"></a>12.1.2.6.1.1. Property `item 0`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -926,23 +926,23 @@ must respect the following conditions
 
 **Description:** Kubernetes Secret as a parameters source.
 
-| Property                                                                                  | Pattern | Type   | Deprecated | Definition | Title/Description |
-| ----------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
-| - [secretKeyRef](#bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i0_secretKeyRef ) | No      | object | No         | -          | -                 |
+| Property                                                                                     | Pattern | Type   | Deprecated | Definition | Title/Description |
+| -------------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [secretKeyRef](#bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i0_secretKeyRef ) | No      | object | No         | -          | -                 |
 
-##### <a name="bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i0_secretKeyRef"></a>12.1.2.6.1.1.1. Property `secretKeyRef`
+##### <a name="bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i0_secretKeyRef"></a>12.1.2.6.1.1.1. Property `secretKeyRef`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                 |
 | **Additional properties** | [![Not allowed](https://img.shields.io/badge/Not%20allowed-red)](# "Additional Properties not allowed.") |
 
-| Property                                                                               | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                  |
-| -------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| + [name](#bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i0_secretKeyRef_name ) | No      | string | No         | -          | Name of a Secret.                                                                                                                  |
-| + [key](#bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i0_secretKeyRef_key )   | No      | string | No         | -          | Key in that Secret, which contains a string that represents the json to include in the set of parameters to be sent to the broker. |
+| Property                                                                                  | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                  |
+| ----------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| + [name](#bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i0_secretKeyRef_name ) | No      | string | No         | -          | Name of a Secret.                                                                                                                  |
+| + [key](#bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i0_secretKeyRef_key )   | No      | string | No         | -          | Key in that Secret, which contains a string that represents the json to include in the set of parameters to be sent to the broker. |
 
-##### <a name="bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i0_secretKeyRef_name"></a>12.1.2.6.1.1.1.1. Property `name`
+##### <a name="bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i0_secretKeyRef_name"></a>12.1.2.6.1.1.1.1. Property `name`
 
 |          |          |
 | -------- | -------- |
@@ -950,7 +950,7 @@ must respect the following conditions
 
 **Description:** Name of a Secret.
 
-##### <a name="bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i0_secretKeyRef_key"></a>12.1.2.6.1.1.1.2. Property `key`
+##### <a name="bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i0_secretKeyRef_key"></a>12.1.2.6.1.1.1.2. Property `key`
 
 |          |          |
 | -------- | -------- |
@@ -958,7 +958,7 @@ must respect the following conditions
 
 **Description:** Key in that Secret, which contains a string that represents the json to include in the set of parameters to be sent to the broker.
 
-##### <a name="bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i1"></a>12.1.2.6.1.2. Property `None`
+##### <a name="bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i1"></a>12.1.2.6.1.2. Property `item 1`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -967,23 +967,23 @@ must respect the following conditions
 
 **Description:** Kubernetes Config Map as a parameters source.
 
-| Property                                                                                        | Pattern | Type   | Deprecated | Definition | Title/Description |
-| ----------------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
-| - [configMapKeyRef](#bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i1_configMapKeyRef ) | No      | object | No         | -          | -                 |
+| Property                                                                                           | Pattern | Type   | Deprecated | Definition | Title/Description |
+| -------------------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [configMapKeyRef](#bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i1_configMapKeyRef ) | No      | object | No         | -          | -                 |
 
-##### <a name="bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i1_configMapKeyRef"></a>12.1.2.6.1.2.1. Property `configMapKeyRef`
+##### <a name="bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i1_configMapKeyRef"></a>12.1.2.6.1.2.1. Property `configMapKeyRef`
 
 |                           |                                                                                                          |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                 |
 | **Additional properties** | [![Not allowed](https://img.shields.io/badge/Not%20allowed-red)](# "Additional Properties not allowed.") |
 
-| Property                                                                                  | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                      |
-| ----------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| + [name](#bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i1_configMapKeyRef_name ) | No      | string | No         | -          | Name of a Config Map                                                                                                                   |
-| + [key](#bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i1_configMapKeyRef_key )   | No      | string | No         | -          | Key in that Config Map, which contains a string that represents the json to include in the set of parameters to be sent to the broker. |
+| Property                                                                                     | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                      |
+| -------------------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| + [name](#bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i1_configMapKeyRef_name ) | No      | string | No         | -          | Name of a Config Map                                                                                                                   |
+| + [key](#bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i1_configMapKeyRef_key )   | No      | string | No         | -          | Key in that Config Map, which contains a string that represents the json to include in the set of parameters to be sent to the broker. |
 
-##### <a name="bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i1_configMapKeyRef_name"></a>12.1.2.6.1.2.1.1. Property `name`
+##### <a name="bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i1_configMapKeyRef_name"></a>12.1.2.6.1.2.1.1. Property `name`
 
 |          |          |
 | -------- | -------- |
@@ -991,7 +991,7 @@ must respect the following conditions
 
 **Description:** Name of a Config Map
 
-##### <a name="bindings_pattern1_oneOf_i1_parametersFrom_items_anyOf_i1_configMapKeyRef_key"></a>12.1.2.6.1.2.1.2. Property `key`
+##### <a name="bindings_pattern1_pattern1_i1_parametersFrom_items_anyOf_i1_configMapKeyRef_key"></a>12.1.2.6.1.2.1.2. Property `key`
 
 |          |          |
 | -------- | -------- |
@@ -999,7 +999,7 @@ must respect the following conditions
 
 **Description:** Key in that Config Map, which contains a string that represents the json to include in the set of parameters to be sent to the broker.
 
-##### <a name="bindings_pattern1_oneOf_i1_credentialsRotationPolicy"></a>12.1.2.7. Property `credentialsRotationPolicy`
+##### <a name="bindings_pattern1_pattern1_i1_credentialsRotationPolicy"></a>12.1.2.7. Property `credentialsRotationPolicy`
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,8 +1,6 @@
-# @sap/cds
+# @sap/cds-fiori
 
-The API package for the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap).
-
-See the [API documentation](https://cap.cloud.sap/docs/node.js/api) for more details.
+A collection of [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap) services for [SAP Fiori Elements](https://cap.cloud.sap/docs/advanced/fiori).
 
 ## How to Obtain Support
 

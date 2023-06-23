@@ -4,9 +4,14 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Version 2.0.0 - 2023-06-07
+## Version 1.0.0 - 2023-06-22
+
+### Changed
+
+- `@sap/cds` 7 is required at minimum
+
+## Version 0.1.0 - 2023-06-07
 
 ### Added
 
-- New release as a fresh start w/o code from the 1.x version of `@sap/hana`.
-- Dependency to `hdb` driver.
+- Initial release. Includes preview code for SAP Fiori Elements, formerly in `@sap/cds`.

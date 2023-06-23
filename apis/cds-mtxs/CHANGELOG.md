@@ -6,6 +6,216 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.9.0 - 2023-06-22
+
+### Added
+
+- MTXS Migration now checks extensibility configuration if old extensions exist.
+- Upgrade now checks if MTXS Migration has been done if old extensions exist and if extensibility is properly configured.
+- `GET /-/cds/saas-provisioning/tenant` now returns a `tenant` field, even if the tenant was onboarded with no metadata.
+- Token resource now accepts the POST method (can be used with @sap/cds-dk version 7).
+
+## Version 1.8.4 - 2023-06-07
+
+### Fixed
+
+- Further improvement of timeout error handling when fetching uaa tokens.
+
+## Version 1.8.3 - 2023-06-05
+
+### Fixed
+
+- Enables passing deployment options to the `upgrade` endpoint of `cds.xt.SaasProvisioningService`.
+- The Service Manager now requests the authorization token resiliently.
+- MTXS migration script now ignores changes caused by sap.common entities when verifying the migration result.
+
+## Version 1.8.2 - 2023-05-24
+
+### Fixed
+
+- Fix for asynchronous subscriptions with `lazyT0 = true`.
+- SAP HANA deployment now correctly evaluates the sql mapping configuration (e. g. `cds.data.sql_mapping.quoted`) also for deployment of `t0`.
+
+## Version 1.8.1 - 2023-05-10
+
+### Fixed
+
+- MTXS Migration can now handle empty extension projects.
+- MTXS Migration can now handle extension projects with complex folder structure correctly.
+- The SaaS registry callback now supports X.509 authentication.
+- Sidecar is now using mocked authentication in development mode.
+- Fix for asynchronous subscriptions with `lazyT0 = true`.
+
+## Version 1.8.0 - 2023-05-04
+
+### Added
+
+- Token endpoint can now handle UAA binding with X.509 (mTLS) authentication. On CLI side, this requires @sap/cds-dk@>=6.8.0.
+
+### Changed
+
+- `JobsService`: the job status will now remain `RUNNING` until all tenant tasks have succeeded or failed, instead moving to `FAILED` as soon as there's the first task failure.
+
+### Fixed
+
+- MTXS Migration only deploys `cds.xt.Extensions` instead of the full application model.
+
+## Version 1.7.2 - 2023-04-17
+
+### Fixed
+
+- MTXS Migration now handles multiple generated projects correctly.
+- Extensibility Service now contains action `add` for extension modification.
+- Model Provider Service now offer action `getExtResources` returning the archive of the uploaded extension.
+- CSV files provided in extensions are now correctly re-deployed again with `upgrade`.
+
+## Version 1.7.1 - 2023-04-05
+
+### Fixed
+
+- MTXS Migration now behaves more robust with regards to cds build configurations.
+- Re-subscribe now also re-deploys extensions again.
+- Stability improvements for tenant upgrades.
+
+## Version 1.7.0 - 2023-03-28
+
+### Changed
+
+- Filter duplicate linter messages based on new LinterMessage API.
+- cds-mtx script now logs reasons for missing MTXS environment.
+- `DeploymentService` plugin handlers are now registered on `serving:cds.xt.DeploymentService`.
+
+### Fixed
+
+- HANA deployment now correctly evaluates the sql mapping configuration (e. g. `cds.data.sql_mapping.quoted`).
+
+## Version 1.6.3 - 2023-03-13
+
+### Fixed
+
+- `t0` model DDL files do not end up in application build results any more.
+- `cds.xt.SaasProvisioningService`: fixed an error for programmatic usage when sending the callback.
+- `cds-mtx` commands now properly exit with code != 1 when receiving an error from the `DeploymentService`.
+
+## Version 1.6.2 - 2023-03-03
+
+### Fixed
+
+- Robustness of MTX Migration has been improved.
+
+## Version 1.6.1 - 2023-03-01
+
+### Fixed
+
+- The lazily onboarded `t0` will now implicitly be created with the same onboarding parameters (e.g. database ID) as the first onboarded tenant.
+
+## Version 1.6.0 - 2023-02-27
+
+### Added
+
+- `t0` onboarding can now happen lazily before the first subscription by setting `cds.requires.['cds.xt.DeploymentService'].lazyT0`.
+- E-Tag handling for the `getCsn` API in sidecar scenarios has been introduced.
+
+### Fixed
+
+- Fixed input validation for feature toggles containing `_` or `-`.
+
+## Version 1.5.1 - 2023-02-08
+
+### Added
+
+- Jobs are now cleaned up in the database after configurable cutoff times. The following options are possible:
+  + `jobCleanupInterval`: Frequency in milliseconds for cleaning up finished or failed jobs. Default is 1 day.
+  + `jobCleanupAge`: Time in milliseconds for the minimum age of the failed or finished jobs to delete. Default is 1 day.
+  + `jobCleanupIntervalStale`: Frequency in milliseconds for cleaning up queued or running jobs. Default is 7 days.
+  + `jobCleanupAgeStale`: Time in milliseconds for the minimum age of the queued or running jobs to delete. Default is 7 days.
+- MTXS migration script now allows to cleanup @sap/mtx metadata containers.
+
+### Changed
+
+- `/-/cds/saas-provisioning/tenant`: consumers using the `mtx_status_callback` don't need a SaaS registry binding to the application any more.
+
+### Fixed
+
+- `cds migrate` does not crash any more when no options are supplied.
+- `cds-mtx-migrate` command now terminates immediately when the migration is finished.
+- Parameter `--dry` for `cds migration` now also skips the creation of the `t0`tenant.
+- `ModelProviderService`: Non-repeated dots are now allowed in feature toggles, e.g. `foo.bar.baz` is a valid feature toggle name.
+
+## Version 1.5.0 - 2023-01-27
+
+### Added
+
+- The built-in Service Manager client now caches binding information in-memory.
+- The `optimise_file_upload` HDI deployment option is now supported.
+- MTX migration script now allows to split extensions based on extension file names using regular expressions.
+- Now, provisioning supports SaaS applications using extensibility in combination with migration tables. Before, provisioning failed with a HDI deployment error.
+  **Note:** Extending migration table artifacts is not supported.
+
+### Fixed
+
+- MTX migration script now detects enabled multitenancy also for a sidecar project setup.
+- Improved robustness for MTX migration script, e. g. with inconsistent old metadata tenants.
+
+
+## Version 1.4.5 - 2023-01-18
+
+- The authorization header for asynchronous operations is correctly propagated for internal callbacks using `mtx_status_callback`.
+
+## Version 1.4.4 - 2023-01-16
+
+### Changed
+
+- `cds.xt.DeploymentService` configuration has been flattened. Instead of
+  ```js
+  "hdi": {
+    "create": {
+      "provisioning_parameters": {
+        "database_id": "<ID>"
+      },
+      "binding_parameters": {
+        "key": "value"
+      }
+    }
+  }
+  ```
+  you can now also write
+  ```js
+  "hdi": {
+    "create": {
+      "database_id": "<ID>"
+    },
+    "bind": {
+      "key": "value"
+    }
+  }
+  ```
+  The old configuration is still supported, but you're advised to migrate to the new configuration for improved readability.
+
+- `/-/cds/jobs/pollJob` now also returns a `tenants` field, so tenant-specific tasks don't have to be polled individually. An example response format looks like this:
+  ```js
+  {
+    "status": "FAILED",
+    "op": "upgrade",
+    "tenants": {
+        "non-existing-tenant": {
+           "status": "FAILED",
+           "error": "Tenant 'non-existing-tenant' does not exist"
+        },
+        "existing-tenant": {
+           "status": "FINISHED"
+        }
+     }
+  }
+  ```
+
+### Fixed
+
+- `cds.xt.SaasProvisioningService`: `*` is not allowed as a tenant name any more.
+- Namespace check for new entities in extensions now also covers new root entities.
+- Asynchronous operations now correctly send the callbacks defined via `status_callback` or `mtx_status_callback`.
+
+
 ## Version 1.4.3 - 2022-12-28
 
 ### Fixed
@@ -25,9 +235,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- Fixed an error with when parsing the tenant metadata when it is empty
-- Async upgrade parallelization via database clustering now works correctly with the new jobs service
-- Improved `tenant_id` correlation for Kibana logging
+- Fixed an error with when parsing the tenant metadata when it is empty.
+- Async upgrade parallelization via database clustering now works correctly with the new jobs service.
+- Improved `tenant_id` correlation for Kibana logging.
 
 ## Version 1.4.0 - 2022-12-15
 
@@ -152,7 +362,7 @@ Via `cds` environment:
 - `GET /-/cds/saas-provisioning/tenant/<tenantId>` returns the saved tenant metadata for `<tenantId>`.
 - `GET /-/cds/saas-provisioning/tenant` returns the saved tenant metadata for all tenants.
 - `GET /-/cds/deployment/getTables(tenant='<tenantId>)` returns all deployed tables for a tenant.
-- [BETA] Command line tool `cds-mtx` allows to run `subscribe and unsubscribe` in an application environment, e. g. `npx cds-mtx subscribe tenant1` or `cds-mtx subscribe tenant1` if you have installed `@sap/cds-mtxs` globally
+- [BETA] Command line tool `cds-mtx` allows to run `subscribe and unsubscribe` in an application environment, e. g. `npx cds-mtx subscribe tenant1` or `cds-mtx subscribe tenant1` if you have installed `@sap/cds-mtxs` globally.
 
 ### Changed
 
