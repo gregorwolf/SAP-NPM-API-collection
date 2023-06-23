@@ -1,6 +1,9 @@
 @sap/xsjs
 ===========
 
+> **Important:** NOTE OF OBSOLESCENCE – This library is deprecated. XSJS runs on node.js runtime versions up to node.js 14, which has reached EoL in April 2023. The successor for XSJS with node.js 16 or later is @sap/async-xsjs.
+
+
 Compatibility layer for SAP HANA extended application services, classic model (SAP HANA XS Classic) applications to run on Node.js in SAP HANA extended application services, advanced model.
 
 <!-- toc -->

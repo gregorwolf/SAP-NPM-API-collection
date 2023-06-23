@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.7.9"></a>
+## 6.7.9 - 2023-06-22
+
+### Update
+- Update _@sap/hana-client_ to v2.17.14
+
+### Deprecate
+
+- @sap/xsjs library is deprecated
+
 <a name="6.7.8"></a>
 ## 6.7.8 - 2023-05-03
 

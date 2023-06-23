@@ -22,7 +22,9 @@
 @sap/cds-common-content
 @sap/cds-compiler
 @sap/cds-dk
+@sap/cds-fiori
 @sap/cds-foss
+@sap/cds-hana
 @sap/cds-lsp
 @sap/cds-mtxs
 @sap/cds-odata-v2-adapter-proxy

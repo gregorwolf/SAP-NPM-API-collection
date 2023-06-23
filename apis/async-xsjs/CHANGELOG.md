@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="1.0.6"></a>
+## 1.0.6 - 2023-06-23
+
+### Updated
+- Updated hana-client to v2.17.14
+- Updated hdbext to v7.7.5
+
 <a name="1.0.5"></a>
 ## 1.0.5 - 2023-06-08
 
