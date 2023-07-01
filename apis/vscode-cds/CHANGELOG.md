@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
+## Version 7.0.1 - 2023-06-27
+
+### Changed
+- Changed default output for generated types to `@cds-models`
+- Minimum VSCode version is now 1.77.0
+
+### Added
+- CAP notebooks: CDS server cell reacts to regular expression `/started application/i`.
 
 ## Version 7.0.0 - 2023-06-13
 
