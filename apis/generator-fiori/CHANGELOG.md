@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.1] - 2023-06-15
+### Added
+- Added option for generating SAP Fiori applications in a CAP project with TypeScript support.
+- Added ability to create new reusable libraries that can be referenced in SAP Fiori applications.  Users can launch this generator from the command palette entry `Fiori: Open Reusable Library Generator`.
+
 ## [1.10.0] - 2023-06-01
 ### Added
 - Added a warning when choosing to automatically add table columns during generation if the metadata service is larger than 1Mb, as this can significantly increase the time it takes to generate the application.

@@ -30,6 +30,7 @@
 @sap/cds-odata-v2-adapter-proxy
 @sap/cf-tools
 @sap/cli-core
+@sap/datasphere-cli
 @sap/destination-instance-service-provider
 @sap/dwc-cli
 @sap/eslint-plugin-cds
@@ -68,7 +69,6 @@
 @sap/subaccount-destination-service-provider
 @sap/textbundle
 @sap/ucl-provider
-@sap/ui5-visual-editor
 @sap/ux-annotation-modeler-bas-ext
 @sap/ux-application-modeler-bas-ext
 @sap/ux-cds-odata-language-server-extension

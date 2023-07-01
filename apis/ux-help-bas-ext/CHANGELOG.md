@@ -4,6 +4,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.1] - 2023-06-15
+### Added
+- Introduced the _Create a table building block_ guide for custom pages.
+
+### Changed
+- Simplified guides that feature multiple code snippets in a single step by adding the file buttons to the code snippet header.
+
+### Fixed
+- Fixed an issue in the _Add a progress indicator column to a table_ guide where a parameter updated in step 2 would not be retained after navigating to step 1.
+
 ## [1.10.0] - 2023-06-01
 ### Added
 - Introduced a CAP CDS variant for the _Add a value help to a field_ guide.

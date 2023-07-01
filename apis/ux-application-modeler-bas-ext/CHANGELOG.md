@@ -5,6 +5,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.1] - 2023-06-15
+### Added
+- Added support for building blocks in custom pages and custom sections in OData V4-based applications (experimental)
+- Added support of controller artifacts using TypeScript in OData V2-based applications 
+- Added support for custom (sub-)sections as part of group sections for OData V4-based applications
+- Added `contextPath` support for custom pages in OData V4-based applications
+- Added support for CAP projects using workspaces to organize applications and node modules
+- Enabled setting the label for default Value Help
+
+### Fixed
+- Fixed an issue with drag and drop of multiple items in the Page Editor outline not expanding the target node on hover
+- Fixed an issue with the command to change the minimum SAPUI5 version not working for CAP applications
+
 ## [1.10.0] - 2023-06-01
 ### Added
 - Added support for `contextPath` in page routing definitions for OData V4-based applications in conjunction with `@sap/ux-specification` versions 1.96.40, 1.108.7 or higher

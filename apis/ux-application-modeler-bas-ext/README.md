@@ -1,12 +1,12 @@
 # Application Modeler
 
-The Application Modeler extension allows you to visualize and change the pages structure of SAP Fiori elements applications (Page Map), and to configure individual pages via manifest settings and UI flexibility changes (Page Editor).
+The application modeler extension allows you to visualize and change the page routing of SAP Fiori elements applications (Page Map), and to configure individual pages via manifest settings, annotation properties, and UI flexibility changes (Page Editor).
 
-Since version 1.4.1, the Page Editor also allows adding and maintaining common annotation-based UI elements, such as object page sections, fields, columns and their properties for OData V4 based applications.
+Starting as of version 1.10.1, the Page Editor supports adding and maintaining properties of [SAP Fiori elements building blocks](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/buildingBlockOverview) for OData V4-based applications. This feature is currently an experimental one and is subject to changes and enhancements based on customer feedback.
 
 ## Migration
 
-Applications created with the SAP Fiori Tools (see "Integration with the Fiori: Application Generator" topic below) are automatically enabled for Application Modeler. In order to migrate an existing project, which is already present in your workspace, execute the command `Fiori: Migrate Project for use in Fiori tools` from the Command Palette.
+Applications created with the SAP Fiori Tools (see "Integration with the Fiori: Application Generator" topic below) are automatically enabled for application modeler. In order to migrate an existing project, which is already present in your workspace, execute the command `Fiori: Migrate Project for use in Fiori tools` from the Command Palette.
 Supported project types:
 
 - SAP Fiori elements for V2
@@ -33,7 +33,7 @@ The migration will update the `package.json`, `ui5*.yaml`, and `test\*.html` fil
 
 The **SAP Fiori Tools - Page Map** provides a visual representation of the application's pages, navigations, and the service entities that it uses. The developer can add new navigations and pages, delete pages, and navigate to corresponding editing tools.
 
-The Page Map extension reads and updates the `app.json` file containing the navigation and pages information in a compact and technology independent notation. The file also serves as a simple text-based interface. It is generated on demand and can be accessed from the Application Modeler tree view from SAP Fiori sidebar view by selecting the `Show Source Code` option from the `Map` node's right-click context menu. The application descriptor (`webapp/manifest.json`) of the application will be updated automatically when the `app.json` is saved, and changes to the `webapp/manifest.json` will be converted to `app.json`. The `app.json` is virtual and will not be written to the project folder.
+The Page Map extension reads and updates the `app.json` file containing the navigation and pages information in a compact and technology independent notation. The file also serves as a simple text-based interface. It is generated on demand and can be accessed from the application modeler tree view from SAP Fiori sidebar view by selecting the `Show Source Code` option from the `Map` node's right-click context menu. The application descriptor (`webapp/manifest.json`) of the application will be updated automatically when the `app.json` is saved, and changes to the `webapp/manifest.json` will be converted to `app.json`. The `app.json` is virtual and will not be written to the project folder.
 
 #### Supported Templates of SAP Fiori Elements
 
@@ -50,7 +50,7 @@ Select the root folder of your app or any folder in your workspace within Explor
 
 OR
 
-Left-click on the `Map` node in Application Modeler tree view for the project from SAP Fiori side bar view.
+Left-click on the `Map` node in application modeler tree view for the project from SAP Fiori side bar view.
 
 OR
 
@@ -74,11 +74,17 @@ From the Command Palette execute the command `Fiori: Show Page Map`
 
 The **SAP Fiori Tools - Page Editor** provides an outline view of the configurable elements on the selected page. Settings can be changed within a property panel which opens on click on an element. The property panel displays the editable properties, provides a search filter option, info texts for properties, and via `Edit in source code` the option to see and edit the property directly in the associated file.
 
-The Page editor reads and writes `pages/*.json` files containing the applicable manifest and UI5 flexibility based settings in a compact and technology independent notation. The files also serve as a simple text-based interface. They are generated on demand and can be accessed from the Application Modeler tree view from SAP Fiori sidebar view by selecting the `Show Source Code` option from the respective page's node's right-click context menu. Each page in your app has its own `json` file. The virtual files will be automatically synchronized with the `webapp/manifest.json` and UI5 flex changes in the `webapp/changes` folder.
+The Page editor reads and writes `pages/*.json` files containing the applicable manifest and UI5 flexibility based settings in a compact and technology independent notation. The files also serve as a simple text-based interface. They are generated on demand and can be accessed from the application modeler tree view from SAP Fiori sidebar view by selecting the `Show Source Code` option from the respective page's node's right-click context menu. Each page in your app has its own `json` file. The virtual files will be automatically synchronized with the `webapp/manifest.json` and UI5 flex changes in the `webapp/changes` folder.
 
-##### Annotation Support
+#### Annotation Support
 
-With version 1.4.1 of Application modeler and [`@sap/ux-specification`](https://www.npmjs.com/package/@sap/ux-specification) versions 1.84.25 and 1.90.14 the Page editor will allow the creation and maintenance of annotation-based UI elements for OData V4 based List report Object page and Form entry page applications. Supported are common filter fields, tables, (sub)sections, header sections, actions, and their properties, including full `i18n` support. With this addition the Application modeler further strengthens the goal of SAP Fiori Tools to ease and speed up the application development.
+Starting as of version 1.4.1 of the application modeler and [`@sap/ux-specification`](https://www.npmjs.com/package/@sap/ux-specification) with the versions 1.84.25, 1.90.14 or higher, the Page Editor allows the creation and maintenance of the most common annotation-based UI elements for OData V4-based List report Object page and Form entry page applications. With this addition, the application modeler further strengthens the goal of SAP Fiori tools to ease and speed up the application development.
+
+#### Building Block Support
+
+Starting as of version 1.10.1 of the application modeler and [`@sap/ux-specification`](https://www.npmjs.com/package/@sap/ux-specification) 1.108.8, 1.96.41 or higher, the Page Editor supports adding and maintaining the properties of [SAP Fiori elements building blocks](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/buildingBlockOverview) for OData V4-based applications. Building blocks within a custom page or custom section can be shown in the outline and their properties be modified in the property panel. The building blocks for the chart, filter bar, and table can be created from the outline using a link to the corresponding feature guides in the Guided Development tool.
+
+This feature is currently experimental and subject to changes and enhancements based on customer feedback.
 
 #### Supported Templates of SAP Fiori Elements
 
@@ -94,7 +100,7 @@ Select the root folder of your app or any folder in your workspace within Explor
 
 OR
 
-Left-click on the respective page's node in Application Modeler tree view for the project from the SAP Fiori side bar view.
+Left-click on the respective page's node in application modeler tree view for the project from the SAP Fiori side bar view.
 
 OR
 
@@ -102,7 +108,7 @@ In the text editor of the virtual JSON file of the page choose the `Show Page Ed
 
 ## How to Preview the Application
 
-The Application modeler also comprises a live preview in a browser for non-CAP applications (for CAP the preview is handled via CDS tools), which is automatically refreshed when application project files are changed. The live preview starts a http local server at default port 8080 (additional apps start at subsequent ports), where the application is run.
+The application modeler also comprises a live preview in a browser for non-CAP applications (for CAP the preview is handled via CDS tools), which is automatically refreshed when application project files are changed. The live preview starts a http local server at default port 8080 (additional apps start at subsequent ports), where the application is run.
 
 Select the root folder of your app or any folder in your workspace within Explorer, right-click and choose `Preview Application` to start the app in your default browser.
 
@@ -112,12 +118,12 @@ From the Command Palette execute the command `Fiori: Preview Application`
 
 OR
 
-From the Application Modeler tree view for the project from the SAP Fiori sidebar view right-click on any folder, and choose `Preview Application`.
+From the application modeler tree view for the project from the SAP Fiori sidebar view right-click on any folder, and choose `Preview Application`.
 
 If the project can't be determined from your selection, you will be presented with a quick pick to select the project. Next it presents you with a list of start scripts from `package.json` to choose from on how you want the preview being executed. As of Application Generator version 1.0.14 and [`@sap/ux-ui5-tooling`](https://www.npmjs.com/package/@sap/ux-ui5-tooling) version 1.0.13 the three default options are:
 
 * `start` - starts the application with real service data
-* `start-mock` - starts the application with mock data (only availabe for OData V2 projects)
+* `start-mock` - starts the application with mock data (only available for OData V2 projects)
 * `start-local` - starts the application with mock data and a local copy of the SAPUI5 resources for offline work
 
 The command `Fiori: Open Run Configuration` allows you to create a new run configuration in VSCode. In SAP Business Application Studio the functionality is available also via the action `Create Configuration` under `View` -> `Run configurations`.
@@ -142,19 +148,19 @@ Prerequisite: [`@sap/ux-ui5-tooling`](https://www.npmjs.com/package/@sap/ux-ui5-
 
 ## Documentation of Configuration Features
 
-The manifest and UI5 flexibility properties of the respective SAP UI5 version shown in Page map and Page editor are provided by the `@sap/ux-specification` node module installed on project creation or migration. The version of the module is determined by the `minUI5Version` of the application project stored in the `manifest.json` file. The full list and documentation of available properties for the application, and the application's individual pages can be accessed independently from the Page Map and Page Editor via the right-click context menus in the Application Modeler tree view.
+The manifest and UI5 flexibility properties of the respective SAP UI5 version shown in Page map and Page editor are provided by the `@sap/ux-specification` node module installed on project creation or migration. The version of the module is determined by the `minUI5Version` of the application project stored in the `manifest.json` file. The full list and documentation of available properties for the application, and the application's individual pages can be accessed independently from the Page Map and Page Editor via the right-click context menus in the application modeler tree view.
 
 ## Integration with the SAP Fiori Tools - Application Generator
 
 ### Installation
 
-Installing the **Application Modeler** extension adds support for the Application Generator tool. The Application Generator allows the user to generate an application based on a number of different templates.
+Installing the **Application Modeler** extension adds support for the application generator tool. The Application Generator allows the user to generate an application based on a number of different templates.
 
 ### How to use Application Generator
 
 From the Command Palette execute the command `Fiori: Open Application Generator`
 
-This will launch the Application Generator tool if installed.  If the Application Generator is not yet installed, it will install it the first time this command is executed.
+This will launch the application generator tool if installed.  If the application generator is not yet installed, it will install it the first time this command is executed.
 
 ### Prerequisites
 

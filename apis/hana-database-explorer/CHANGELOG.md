@@ -1,3 +1,14 @@
+# SAP HANA Database Explorer Change Log
+
+## 1.16.0
+
+### New Features
+- This change log is shown after each upgrade.
+
+### Fixes
+- An error could occur if no workspace folder was opened.
+- Significantly reduced the size of the extension.
+
 ## 1.15.0
 
 ### New Features

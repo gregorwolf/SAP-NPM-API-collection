@@ -8,8 +8,13 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.5.8"></a>
+## 6.5.8 - 2023-06-25
+### Changed
+- Dependencies version update.
+
 <a name="6.5.7"></a>
-## 6.5.6 - 2023-04-03
+## 6.5.7 - 2023-04-03
 ### Changed
 - Dependencies version update.
 
