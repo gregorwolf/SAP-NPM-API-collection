@@ -21,6 +21,7 @@ The manifest-based extension points provided by SAP Fiori elements are:
 	<li>Custom Section</li>
 	<li>Custom Subsection</li>
     <li>Custom Action</li>
+    <li>Custom Dialog</li>
     <li>Custom Column</li>
     <li>Custom Header Facet</li>
     <li>Custom Form Element</li>
@@ -30,6 +31,7 @@ The manifest-based extension points provided by SAP Fiori elements are:
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/92ad9968e41748aeb74971f7a08a91c8" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/ce8d468269814077bc4b132572979b66" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/7619517a92414e27b71f02094bd08d06" target="_blank">Documentation</a></li>
+    <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/d6af195124cf430599530668ddea7425" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/28e95702b5854b938ac51c4bc2d078ab" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/61cf0ee828824903907464c80dd0d88c" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/4e49753530ad4a73a44a5f8efac238d6" target="_blank">Documentation</a></li>

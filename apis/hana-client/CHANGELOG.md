@@ -8,6 +8,17 @@ For the latest updates please see SAP Note 3329999 - SAP HANA Client 2.17 Releas
 
 https://launchpad.support.sap.com/#/notes/3329999
 
+## Version 2.17.21
+
+### Changes:
+
+ - Issue Number 305266: Added missing return type annotation for connect method in index.d.ts.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 309326: The error "Internal Error: No LOB locator id found for index" could have occurred.
+ - Issue Number 309037: SQLDBC could have crashed when the trace file size was limited using the SIZE trace option.
+
 ## Version 2.17.14
 
 ### Changes:

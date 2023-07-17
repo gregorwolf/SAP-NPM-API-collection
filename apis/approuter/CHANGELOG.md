@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 14.2.0 - 2023-07-11
+
+### Added
+- Credentials caching support
+- No html5 app found (503 response) caching support
+
+### Fixed
+- support not case sensitive in dynamicDestination property
+- fix redis with Sentinel mode initialization: use 'sentinelPassword' instead of 'password'.
+
 ## 14.1.2 - 2023-06-13
 
 ### Fixed

@@ -1,3 +1,21 @@
+## 1.24.0
+
+### New Features
+- Business context information is shown if available when modeling joins.
+
+### Fixes
+- Hierarchy data in the analytic privilege editor could be missing
+- Fixed some inconsistent behaviour when no value is selected for restricted columns
+- A null value could be mapped to a calculated column
+- Regular columns can show reference information
+- The filter icon could be shown for nodes after the removal of a filter
+- The filter mapping was not saved in star joins if no join was defined
+- The dialog for currency conversion does not open for already defined measures
+- Refactor of column used in analytic privilege doesn't work
+- The expression editor for temporal tables allows columns and calculated columns as inputs
+- A misleading join validation message could be displayed in debug mode
+- Only offer side-effect free procedures for input parameters derived by procedure
+
 ## 1.23.0
 
 ### New Features

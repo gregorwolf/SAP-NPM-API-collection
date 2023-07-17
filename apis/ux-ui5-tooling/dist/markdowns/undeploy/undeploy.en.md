@@ -18,6 +18,7 @@ OPTIONS:
 | --transport    | -t  | Transport number for deploy target ABAP system |
 | --name         | -n  | Project name of the app |
 | --yes          | -y  | Generate index.html file (y/n) |
+| --service      | -sv | Target SAPUI5 ABAP Repository OData Service |
 | --uaa-url      | -uu | UAA server url for steampunk systems which can be found in service key. |
 | --uaa-username | -un | Username for steampunk system authentication. |
 | --uaa-password | -up | User password for steampunk system authentication. |

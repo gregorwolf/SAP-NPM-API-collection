@@ -195,41 +195,42 @@ or from the *default-env.json* file (when running locally). Refer to the documen
 The environment variables that the application router takes into account are:
 
 
-Configuration | Environment variable | Description
-------------- | -------------------- | ------------
-[UAA service name](#uaa-configuration) | `UAA_SERVICE_NAME` | Contains the name of the UAA service to be used.
-[Destinations](#destinations) | `destinations` | Provides information about the available destinations.
-[Additional headers](#additional-headers-configuration) | `httpHeaders` | Provides headers that the application router will return to the client in its responses.
-[Additional cookies](#additional-cookies-configuration) | `COOKIES` | Provides cookies that the application router will return to the client in its responses. Currently only SameSite cookie is supported.
-[Plugins](#plugins-configuration) | `plugins` | A plugin is just like a [*route*](#routes) except that you can't configure some inner properties.
-[Session timeout](#session-timeout-configuration) | `SESSION_TIMEOUT` | Positive integer representing the session timeout in minutes. The default timeout is 15 minutes.
-[X-Frame-Options](#x-frame-options-configuration) | `SEND_XFRAMEOPTIONS`, `httpHeaders` | Configuration for the X-Frame-Options header value.
-[Allowlist service](#whitelist-service) | `CJ_PROTECT_WHITELIST` | Configuration for the allowlist that is preventing clickjack attacks.
-[Web Sockets origins allowlist](#web-sockets) | `WS_ALLOWED_ORIGINS` | An allowlist configuration that is used for verifying the `Origin` header of the initial upgrade request when establishing a web socket connection.
-JWT Token refresh | `JWT_REFRESH` | The time in minutes before a JWT token expires and the application router should trigger a token refresh routine.
-Incoming connection timeout | `INCOMING_CONNECTION_TIMEOUT` | Maximum time in milliseconds for a client connection. After that time the connection is closed. If set to 0, the timeout is disabled. Default: 120000 (2 min)
-Tenant host pattern | `TENANT_HOST_PATTERN` | String containing a regular expression with a capturing group. The request host is matched against this regular expression. The value of the first capturing group is used as tenant id.
-Destination host pattern | `DESTINATION_HOST_PATTERN` | String containing a regular expression with a capturing group. The request host is matched against this regular expression. The value of the capturing group is used as destination name.
-[Compression](#compression-property) | `COMPRESSION` | Configuration regarding compressing resources before responding to the client.
-_Secure_ flag of session cookie | `SECURE_SESSION_COOKIE` | Can be set to `true` or `false`. By default, the _Secure_ flag of the session cookie is set depending on the environment the application router runs in. For example, when application router is behind a router (Cloud Foundry's router or SAP Web Dispatcher) that is configured to serve HTTPS traffic, then this flag will be present. During local development the flag is not set. This environment variable can be used to enforce setting or omitting the _Secure_ flag. **Note**: If the Secure flag is enforced, the application router will reject requests sent over unencrypted connection (http).
-Trusted CA certificates | `XS_CACERT_PATH` | List of files paths with trusted CA certificates used for outbound https connections (UAA, destinations, etc.). File paths are separated by [path.delimiter](https://nodejs.org/api/path.html#path_path_delimiter). If this is omitted, several well known "root" CAs (like VeriSign) will be used. This variable is set automatically by XSA On-premise runtime.
-Reject untrusted certificates | `NODE_TLS_REJECT_UNAUTHORIZED` | By default an outbound https connection is terminated if the remote end does not provide a trusted certificate. This check can be disabled by setting `NODE_TLS_REJECT_UNAUTHORIZED` to `0`. This is a built-in feature of Node.js. **Note:** Do not use this in production as it compromises security!
-External reverse proxy flag | `EXTERNAL_REVERSE_PROXY` | Boolean value that indicates the use of application router behind an external reverse proxy (outside of Cloud Foundry domain)
+Configuration | Environment variable                  | Description
+------------- |---------------------------------------| ------------
+[UAA service name](#uaa-configuration) | `UAA_SERVICE_NAME`                    | Contains the name of the UAA service to be used.
+[Destinations](#destinations) | `destinations`                        | Provides information about the available destinations.
+[Additional headers](#additional-headers-configuration) | `httpHeaders`                         | Provides headers that the application router will return to the client in its responses.
+[Additional cookies](#additional-cookies-configuration) | `COOKIES`                             | Provides cookies that the application router will return to the client in its responses. Currently only SameSite cookie is supported.
+[Plugins](#plugins-configuration) | `plugins`                             | A plugin is just like a [*route*](#routes) except that you can't configure some inner properties.
+[Session timeout](#session-timeout-configuration) | `SESSION_TIMEOUT`                     | Positive integer representing the session timeout in minutes. The default timeout is 15 minutes.
+[X-Frame-Options](#x-frame-options-configuration) | `SEND_XFRAMEOPTIONS`, `httpHeaders`   | Configuration for the X-Frame-Options header value.
+[Allowlist service](#whitelist-service) | `CJ_PROTECT_WHITELIST`                | Configuration for the allowlist that is preventing clickjack attacks.
+[Web Sockets origins allowlist](#web-sockets) | `WS_ALLOWED_ORIGINS`                  | An allowlist configuration that is used for verifying the `Origin` header of the initial upgrade request when establishing a web socket connection.
+JWT Token refresh | `JWT_REFRESH`                         | The time in minutes before a JWT token expires and the application router should trigger a token refresh routine.
+Incoming connection timeout | `INCOMING_CONNECTION_TIMEOUT`         | Maximum time in milliseconds for a client connection. After that time the connection is closed. If set to 0, the timeout is disabled. Default: 120000 (2 min)
+Tenant host pattern | `TENANT_HOST_PATTERN`                 | String containing a regular expression with a capturing group. The request host is matched against this regular expression. The value of the first capturing group is used as tenant id.
+Destination host pattern | `DESTINATION_HOST_PATTERN`            | String containing a regular expression with a capturing group. The request host is matched against this regular expression. The value of the capturing group is used as destination name.
+[Compression](#compression-property) | `COMPRESSION`                         | Configuration regarding compressing resources before responding to the client.
+_Secure_ flag of session cookie | `SECURE_SESSION_COOKIE`               | Can be set to `true` or `false`. By default, the _Secure_ flag of the session cookie is set depending on the environment the application router runs in. For example, when application router is behind a router (Cloud Foundry's router or SAP Web Dispatcher) that is configured to serve HTTPS traffic, then this flag will be present. During local development the flag is not set. This environment variable can be used to enforce setting or omitting the _Secure_ flag. **Note**: If the Secure flag is enforced, the application router will reject requests sent over unencrypted connection (http).
+Trusted CA certificates | `XS_CACERT_PATH`                      | List of files paths with trusted CA certificates used for outbound https connections (UAA, destinations, etc.). File paths are separated by [path.delimiter](https://nodejs.org/api/path.html#path_path_delimiter). If this is omitted, several well known "root" CAs (like VeriSign) will be used. This variable is set automatically by XSA On-premise runtime.
+Reject untrusted certificates | `NODE_TLS_REJECT_UNAUTHORIZED`        | By default an outbound https connection is terminated if the remote end does not provide a trusted certificate. This check can be disabled by setting `NODE_TLS_REJECT_UNAUTHORIZED` to `0`. This is a built-in feature of Node.js. **Note:** Do not use this in production as it compromises security!
+External reverse proxy flag | `EXTERNAL_REVERSE_PROXY`              | Boolean value that indicates the use of application router behind an external reverse proxy (outside of Cloud Foundry domain)
 Skip client credentials tokens load on start | `SKIP_CLIENT_CREDENTIALS_TOKENS_LOAD` | Boolean value that indicates that no client credentials tokens should be created during the application router start phase 
-[Cross-Origin Resource Sharing](#cross-origin-resource-sharing-configuration) | `CORS` | Configuration regarding CORS enablement.
-Preserve URL fragment | `PRESERVE_FRAGMENT` | When set to `true` or not set, fragment part of the URL provided during first request of not logged-in user to protected route will be preserved, and after login flow user is redirected to original URL including fragment part. However, this may break programmatic access to Approuter (e.g. e2e tests), since it introduces change in login flow, which is incompatible with Approuter version 4.0.1 and earlier. Setting value to `false` makes login flow backward compatible, however will not take fragment part of the URL into account.
-[Direct Routing URI Patterns](#direct-routing-uri-patterns-configuration) | `DIRECT_ROUTING_URI_PATTERNS` | Configuration for direct routing URI patterns. 
-[NodeJS Minimal Logging Level](#nodejs-minimal-logging-level-configuration) | `CF_NODEJS_LOGGING_LEVEL` | Configuration for NodeJS minimal logging level.
-[Dynamic Identity Provider](#dynamic-identity-provider-configuration) | `DYNAMIC_IDENTITY_PROVIDER` | Configuration for dynamic identity provider.
-Backend Cookies Secret | `BACKEND_COOKIES_SECRET` | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
-Service to Application Router | `SERVICE_2_APPROUTER` | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
-Client certificate header name | `CLIENT_CERTIFICATE_HEADER_NAME` | When set application router will use this header name to get the client certificate from the request header in subscription callback. If not provided the default header name `x-forwarded-client-cert` is used.
-Server Keep Alive | `SERVER_KEEP_ALIVE` | server keep alive timeout (positive integer in milliseconds).
-Minimum Token Validity | `MINIMUM_TOKEN_VALIDITY` | positive integer in seconds. When set, approuter will check that the token returned from the authorization service has an expiration time higher than the minimum token validity value.
-State Parameter Secret | `STATE_PARAMETER_SECRET` | enables the use of state parameters to prevent CRFS attacks. If this environment  variable is set, the application router creates a state parameter for each initial authorization request. By validating that the authentication server returns the same state parameter in its response, the application server can verify that the response did not originate from a third party. **Note**: this feature is only available in Cloud Foundry runtime
-HTTP2 Support | `HTTP2_SUPPORT` | Enables the application router to start as an HTTP/2 server. Note: To configure HTTP/2 support, you must use Cloud Foundry routes with an HTTP/2 destination protocol. See [Configuring HTTP/2 Support](https://docs.cloudfoundry.org/adminguide/supporting-http2.html#application) in the Cloud Foundry Documentation. As connection-specific header fields aren't supported by the HTTP/2 protocol, see [rfc9113](https://datatracker.ietf.org/doc/html/rfc9113), the application router removes such headers automatically when they are returned from a backend to prevent a failure of the HTTP/2 response.
-Full Certificate Chain | `FULL_CERTIFICATE_CHAIN` | If `true`, the application router will send the entire chain of certificates provided by authorization service.
+[Cross-Origin Resource Sharing](#cross-origin-resource-sharing-configuration) | `CORS`                                | Configuration regarding CORS enablement.
+Preserve URL fragment | `PRESERVE_FRAGMENT`                   | When set to `true` or not set, fragment part of the URL provided during first request of not logged-in user to protected route will be preserved, and after login flow user is redirected to original URL including fragment part. However, this may break programmatic access to Approuter (e.g. e2e tests), since it introduces change in login flow, which is incompatible with Approuter version 4.0.1 and earlier. Setting value to `false` makes login flow backward compatible, however will not take fragment part of the URL into account.
+[Direct Routing URI Patterns](#direct-routing-uri-patterns-configuration) | `DIRECT_ROUTING_URI_PATTERNS`         | Configuration for direct routing URI patterns. 
+[NodeJS Minimal Logging Level](#nodejs-minimal-logging-level-configuration) | `CF_NODEJS_LOGGING_LEVEL`             | Configuration for NodeJS minimal logging level.
+[Dynamic Identity Provider](#dynamic-identity-provider-configuration) | `DYNAMIC_IDENTITY_PROVIDER`           | Configuration for dynamic identity provider.
+Backend Cookies Secret | `BACKEND_COOKIES_SECRET`              | Secret that is used to encrypt backend session cookies in service to Application Router flow. Should be set in case multiple instances of Application Router are used. By default a random sequence of characters is used.
+Service to Application Router | `SERVICE_2_APPROUTER`                 | If `true`, when the SAP Passport header is received from the application router, it will be transferred without modification to the backend application.
+Client certificate header name | `CLIENT_CERTIFICATE_HEADER_NAME`      | When set application router will use this header name to get the client certificate from the request header in subscription callback. If not provided the default header name `x-forwarded-client-cert` is used.
+Server Keep Alive | `SERVER_KEEP_ALIVE`                   | server keep alive timeout (positive integer in milliseconds).
+Minimum Token Validity | `MINIMUM_TOKEN_VALIDITY`              | positive integer in seconds. When set, approuter will check that the token returned from the authorization service has an expiration time higher than the minimum token validity value.
+State Parameter Secret | `STATE_PARAMETER_SECRET`              | enables the use of state parameters to prevent CRFS attacks. If this environment  variable is set, the application router creates a state parameter for each initial authorization request. By validating that the authentication server returns the same state parameter in its response, the application server can verify that the response did not originate from a third party. **Note**: this feature is only available in Cloud Foundry runtime
+HTTP2 Support | `HTTP2_SUPPORT`                       | Enables the application router to start as an HTTP/2 server. Note: To configure HTTP/2 support, you must use Cloud Foundry routes with an HTTP/2 destination protocol. See [Configuring HTTP/2 Support](https://docs.cloudfoundry.org/adminguide/supporting-http2.html#application) in the Cloud Foundry Documentation. As connection-specific header fields aren't supported by the HTTP/2 protocol, see [rfc9113](https://datatracker.ietf.org/doc/html/rfc9113), the application router removes such headers automatically when they are returned from a backend to prevent a failure of the HTTP/2 response.
+Full Certificate Chain | `FULL_CERTIFICATE_CHAIN`              | If `true`, the application router will send the entire chain of certificates provided by authorization service.
 Store CSRF token in external session | SVC2AR_STORE_CSRF_IN_EXTERNAL_SESSION | If `true` and have enabled [external session management](#external-session-management), the application router can generate and validate CSRF tokens in service-to-application-router flows by storing the token in an external session.
+Cache service credentials | CACHE_SERVICE_CREDENTIALS             | If `true`, services credentials are cached in the application router memory
 **Note:** all those environment variables are optional.
 
 
@@ -1888,7 +1889,7 @@ skipXSAppJsonCache - Optional
 A cache buster allows the application router to notify the browser to refresh the resources only when the application resources have been changed. Otherwise the resources are always fetched from the browser's cache.
 This flow applies to requests that should be forwarded to HTML5 Application Repository. If requests are forwarded to backend applications that return data, cache buster handling is not applied.
 
-* When the second path segment of the request url contains the pattern “~timestamp~”, this segment is removed from the subsequent request to HTML5 Application Repository
+* When the second path segment of the request url contains the pattern `~timestamp~`, this segment is removed from the subsequent request to HTML5 Application Repository
 * In case the request had a cache buster segment, application router adds to corresponding response the header: Cache-Control: public, max-age=31536000
 
 **Note:** Cache buster flow is only supported in HTML5 Application Repository integration flow.
@@ -2055,6 +2056,10 @@ The application router establishes a session with the client (browser) using a s
 
 The application router intercepts all _session_ cookies, sent by backend services and stores them in its own session. Backend session cookies are not sent to the client in order to prevent cookie collisions. Upon subsequent requests the application router sends back the cookies to the respective backend services so they can establish their own sessions.
 **Note:** Non-session cookies from backend services are forwarded to the client. Cookie collisions may occur and the application should be able to handle them.
+**Restriction:** You must not use multiple destinations with the same URL in an application router user session!
+The application router stores the session cookies from the backend services in a user session according to the destination URLs for the backend services. If there are multiple destinations with the same URL, the application router cannot correctly send back the cookies to the backend services.
+To avoid conflicts, the destination URLs must have different domains.
+
 
 If a pending request is canceled, the request cancellation will be propagated to the backend service.
 

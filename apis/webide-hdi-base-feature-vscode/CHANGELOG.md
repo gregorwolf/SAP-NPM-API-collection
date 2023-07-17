@@ -1,3 +1,11 @@
+## 1.22.0
+
+### New Features
+- Business context information is shown if available when modeling joins.
+
+### Fixes
+- Only offer side-effect free procedures for input parameters derived by procedure
+
 ## 1.21.0
 
 ### Fixes

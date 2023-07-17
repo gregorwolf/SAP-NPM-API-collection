@@ -1,3 +1,15 @@
+## 1.15.0
+
+### New Features
+
+- A warning is issued if a project is using an outdated HDI deployer version
+- The artifact creation wizard supports application-time and system versioned tables
+
+### Fixes
+
+- CAP projects without CDS files are displayed correctly
+- The SAP HANA Database Explorer URL is calculated correctly if a custom URL is configured
+
 ## 1.14.0
 
 ### New Features

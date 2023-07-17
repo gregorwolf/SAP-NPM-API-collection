@@ -5,6 +5,17 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.2] - 2023-06-29
+### Added
+- Added the capability to the Application Info page, Page Map, and Page Editor webviews to restore their previous content when the development environment is reloaded
+- Added a `force` flag to the command `Fiori: Delete Application from CAP Project` so programmatic callers can suppress the confirmation dialog
+- Added the option in the migration views to **Go Back** (from the **Results** view) and **Refresh** (the project list) so that the migration view doesn't need to be refreshed each time after project migrations
+
+### Fixed
+- Fixed an issue with custom sections not showing their `i18n` translated label text in the outline
+- Fixed an issue with the **Show Page Editor** button being displayed in toolbars of unrelated webviews
+- Fixed an issue with the failing deletion of a Visual Filter
+
 ## [1.10.1] - 2023-06-15
 ### Added
 - Added support for building blocks in custom pages and custom sections in OData V4-based applications (experimental)

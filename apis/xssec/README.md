@@ -95,34 +95,6 @@ xssec.createSecurityContext(access_token, config, function(error, securityContex
 });
 ```
 
-### Disable the cache for the current call (ONLY FOR TESTING!)
-The xssec library internally calls REST APIs to fetch the public verification keys from XSUAA/IAS.
-For performance reasons there is a cache, so not all calls have to fetch the key again.
-
-Now it's possible to turn off the cache using the  `disableCache` option during context creation.
-For this you have to restructe the configuration object.
-
-```js
-const config = {
-  credentials: xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa,
-  correlationId: "1111-1111-11111111"
-  disableCache: true
-};
-
-//now you can call the createSecurityContext method as always
-//internally no Cache will be used!
-xssec.createSecurityContext(access_token, config, function(error, securityContext, tokenInfo) {
-    if (error) {
-        console.log('Security Context creation failed');
-        return;
-    }
-    console.log('Security Context created successfully');
-    console.log(tokenInfo.getPublicClaims());
-});
-```
-
-This also works for the Tokenexchange methods!
-
 ### Usage with Passport Strategy
 
 If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.
@@ -170,53 +142,58 @@ In XSA each request comes with a JWT token so it is authenticated explicitly and
 If you still need the session, you can enable it but then you should also implement [user serialization/deserialization](http://passportjs.org/guide/configure/) and some sort of [session persistency](https://github.com/expressjs/session).
 
 
-### Configure the cache of Verificationkeys
-For token verification the library needs a so called `public key`. This key can be requested from the XSUAA server.
-The library caches these keys to reduce the load to the XSUAA. (And for better performance!)
-There are two values that are used to control the cache. The number of cache entries and an expiration time of each item. The latter is important to easily support key rotation scenarios and should not be too high.
-:exclamation: **Normally you don't need to overwrite the default values!**
+### JWKS cache configuration
+To verify the validity of a token, the library needs to ensure that it was signed with a `public key` from the authorization server's [JWKS](https://datatracker.ietf.org/doc/html/rfc7517) (JSON Web Key Set). The application retrieves the JWKS via HTTP from the authorization server. It is cached to reduce both the load on the authorization server and the latency of requests introduced by the token validation.
 
-But in rare situations there is a need to change them.
+There are two values that are used to control the cache:
+- `expiration time`: When a JWKS is needed for validation whose cache entry has expired (`time since last refresh` > `X`), a refresh of the JWKS is performed (if not already in progress) and the token validation of the request needs to wait synchronously until the JWKS has been succesfully refreshed.
+- `refresh period`: When a JWKS is needed for validation whose cache entry is within the refresh period (`time until expiration` < `Y`), the cached JWKS will be used for validation (unless it has expired completely) and the JWKS will be refreshed asynchronously in the background.
 
-**Conditions:**
-The cacheSize value has to be >=1000
-The expirationTime is measured in minutes and has to be a number >= 10 
+Only **one HTTP request at a time** will be performed to refresh the JWKS.
 
-**Currently the default values are:**
+In effect, productive systems with regular incoming requests should not experience delays from refreshing the JWKS (apart from the first request). Delays will only happen when the JWKS could not be refreshed during the refresh period, e.g. due to a prolonged outage of the JWKS endpoint or when no requests were received during the refresh period that would trigger a refresh.
+
+
+##### Default cache configuration
 ```json
 {
-  "cacheSize": 1000,
-  "expirationTime": 10
+  "expirationTime": 1800000, // 1800000ms = 30min
+  "refreshPeriod": 900000, // 900000ms = 15min
 }
 ```
 
-**Here are some codesnippets how to do this:**
+##### Manual cache configuration
+In rare situations you might need to change the cache configuration.
+The expiration time is important to support key rotation scenarios and should not be too high. Otherwise, the security of the application is impacted.
+
+:exclamation: **Normally you don't need to overwrite the default values!**
+
+To overwrite cache parameters you need to specify them as key/value pairs under `<serviceCredentialJSON>.jwksCache`.
+Please note that the cache parameters are configured in `ms` (milliseconds).
+
+***Example code:***
 
 ```js
-//just add the keyCache object into the config object and pass it to the constructor functions
+// load service config
+let config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
 
-var config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
-config.keyCache = {
-  cacheSize: 5000,
-  expirationTime: 10
+// add a jwksCache object to the config
+config.jwksCache = {
+  expirationTime: 3600000
+  refreshPeriod: 1800000,
 };
 
-//if you only want to overwrite one value you can also:
-var config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
-config.keyCache = {
-  cacheSize: 10000
+// you can also overwrite only one value:
+config.jwksCache = {
+  refreshPeriod: 1200000,
 };
 
-//then pass the config object to createSecurityConfig
+// pass the config object to createSecurityConfig ...
 xssec.createSecurityContext(access_token, config, function(error, securityContext, tokenInfo) {
    ...
 });
 
-//if you use passport:
-var config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
-config.keyCache = {
-  cacheSize: 10000
-};
+// ... or if you use passport:
 passport.use(new JWTStrategy(config));
 ...
 ```

@@ -34,6 +34,7 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
 
         Target 'js' can build to bundle.js and bundle.js.map, you can use it to update your local run project.   
         Target 'zip' can build to uploadBundle.zip, you can uploaded it to Mobile Services.
+        Target 'source' can pack source code into zip with configuration for Mobile Services.This is for scenario to extend a multi tenant application.
         
         The build results are generated in .build folder under project.
     - project
@@ -63,6 +64,7 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
     mdk build --target js
     mdk build --target js  --project /path/to/Your-MDK-metadata-project 
     mdk build --target zip --project /path/to/Your-MDK-metadata-project
+    mdk build --target source --project /path/to/Your-MDK-metadata-project
     ```
     
 

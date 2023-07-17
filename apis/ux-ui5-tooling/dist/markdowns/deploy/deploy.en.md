@@ -30,6 +30,7 @@ OPTIONS:
 | --transport    | -t  | Transport number for deploy target ABAP system |
 | --name         | -n  | Project name of the app |
 | --package      | -p  | Package name for deploy target ABAP system |
+| --service      | -sv | Target SAPUI5 ABAP Repository OData Service |
 | --description  | -e  | Project description of the app |
 | --archive-url  | -au | Download app bundle from this url and upload this bundle for deployment |
 | --strict-ssl   | -ss | Perform certificate validation on archive url (Y/n)|

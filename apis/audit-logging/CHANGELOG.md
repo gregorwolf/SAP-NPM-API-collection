@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.7.1 - 2023-07-10
+
+### Updated
+- Updated *debug* to 4.3.4
+
 ## 5.7.0 - 2023-01-26
 
 ### Added
