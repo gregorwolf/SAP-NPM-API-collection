@@ -6,13 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.9.1 - 2023-07-06
+
+### Fixed
+
+- `GET /-/cds/saas-provisioning/tenant` now doesn't include a duplicate `tenant` field, but only provides the tenant via `subscribedTenantId`.
+
 ## Version 1.9.0 - 2023-06-22
 
 ### Added
 
 - MTXS Migration now checks extensibility configuration if old extensions exist.
 - Upgrade now checks if MTXS Migration has been done if old extensions exist and if extensibility is properly configured.
-- `GET /-/cds/saas-provisioning/tenant` now returns a `tenant` field, even if the tenant was onboarded with no metadata.
+- `GET /-/cds/saas-provisioning/tenant` now returns a `subscribedTenantId` field, even if the tenant was onboarded with no metadata.
 - Token resource now accepts the POST method (can be used with @sap/cds-dk version 7).
 
 ## Version 1.8.4 - 2023-06-07

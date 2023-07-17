@@ -4,6 +4,24 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.0.2 - 2023-07-06
+
+### Fixed
+
+- Glitch in `cds.deploy` if no change was applied
+- Detection of `.cdsrc-private.json` during startup
+- Respect capabilities annotation for draft events
+- `cds compile --to serviceinfo` returns correct service paths again
+
+## Version 7.0.1 - 2023-07-03
+
+### Fixed
+
+- Feature toggle detection in single tenant mode
+- Log output for OData $batch requests
+- Avoid "catastrophic backtracking" issue in okra's tokenizer
+- Transaction marked as committed too early
+
 ## Version 7.0.0 - 2023-06-21
 
 ### Added

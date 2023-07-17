@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/
 
+
+
+## Version 7.0.2 - 2023-07-14
+
+### Fixed
+- CDS Welcome Page does not show an error message if page is not reachable during start up
+- CDS Welcome Page now starts with correct theme
+- CAP notebooks: Only allow resolving, but not setting of env vars in Magic command cells
+
+### Added
+- CAP notebooks: add support for backslash in shell and terminal cells for multiline scripts
+- CAP notebooks: Shell-type syntax highlighting for Terminal cells
+
 ## Version 7.0.1 - 2023-06-27
 
 ### Changed
