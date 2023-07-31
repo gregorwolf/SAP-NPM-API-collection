@@ -1,3 +1,19 @@
+## 4.7.1
+Fixes:
+- removed extraneous packages in shrinkwrap
+
+## 4.7.0
+Features:
+- use @sap/hana-client@2.17.21
+- log deleted files before applying undeploy.json
+- added option --stop-on-error to stop deploying further files after an error occurs while deploying a file
+- merge custom parameters passed via --parameter instead of overriding
+
+Fixes :
+- log all errors in stderr instead of stdout
+- fix extra space while logging delta time
+- set default hdb timeout to 1000 ms
+
 ## 4.6.1
 Features:
 - use @sap/hana-client@2.16.26

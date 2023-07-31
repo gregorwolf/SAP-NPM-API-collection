@@ -231,6 +231,7 @@ HTTP2 Support | `HTTP2_SUPPORT`                       | Enables the application 
 Full Certificate Chain | `FULL_CERTIFICATE_CHAIN`              | If `true`, the application router will send the entire chain of certificates provided by authorization service.
 Store CSRF token in external session | SVC2AR_STORE_CSRF_IN_EXTERNAL_SESSION | If `true` and have enabled [external session management](#external-session-management), the application router can generate and validate CSRF tokens in service-to-application-router flows by storing the token in an external session.
 Cache service credentials | CACHE_SERVICE_CREDENTIALS             | If `true`, services credentials are cached in the application router memory
+Skip adding xsuaa/ias mTLS certificate | SKIP_DEFAULT_MTLS_AUTH_CA             | If `true`, the application router will not add xsuaa/ias client certificate to backend requests
 **Note:** all those environment variables are optional.
 
 
@@ -253,7 +254,7 @@ strictSSL | Boolean | x | Configures whether the application router should rejec
 timeout | Number | x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.
 setXForwardedHeaders | Boolean | x | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
 proxyType | String | x | Configures whether the destination is used to access applications in on-premise networks or on public Internet. Possible value: `OnPremise`. if the property is not provided, it is assumed that it is a public Internet access. <br />**Note:** if `OnPremise` value is set,  binding to SAP Cloud Platform connectivity service is required, and `forwardAuthToken` property should not be set.
-
+IASDependencyName | String | x | Configures the name of the IAS dependency that is used to exchange the IAS login token. The exchanged token is also forwarded to the backend application.
 
 **Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or  [service's logout path](#services-property) (if you have set one). <br />
 **Note:** `proxyHost` and `proxyPort` are optional, but if one of them is defined, then the other one becomes mandatory.
@@ -300,15 +301,16 @@ ProxyType |   | Supported proxy type : `on-premise`, `internet`, `private-link`.
 
 ##### Optional additional properties:
 
-Property  | Additional Property | Description
--------- |:--------:| -----------
-HTML5.ForwardAuthToken | x | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.<br> **Note:** if ProxyType set to `on-premise`, ForwardAuthToken property should not be set.<br> **Note:** if Authentication type is other than NoAuthentication, ForwardAuthToken property should not be set.
-HTML5.Timeout |  x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or [service's logout path](#services-property) (if you have set one). 
-HTML5.PreserveHostHeader | x | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
-HTML5.DynamicDestination | x | If `true` , the application router allows to use this destination dynamically on host or path level.
-HTML5.SetXForwardedHeaders | x | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
-sap-client | x | If provided, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
-URL.headers.`<header-name>` | x | If provided, the application router propagates this special attribute in the destination as the header. The application router can get the headers list from the destination API. Existing request headers are not overwritten.
+Property  | Additional Property  | Description
+-------- |:--------------------:| ----------
+HTML5.ForwardAuthToken |          x           | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.<br> **Note:** if ProxyType set to `on-premise`, ForwardAuthToken property should not be set.<br> **Note:** if Authentication type is other than NoAuthentication, ForwardAuthToken property should not be set.
+HTML5.Timeout |          x           | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or [service's logout path](#services-property) (if you have set one). 
+HTML5.PreserveHostHeader |          x           | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
+HTML5.DynamicDestination |          x           | If `true` , the application router allows to use this destination dynamically on host or path level.
+HTML5.SetXForwardedHeaders |          x           | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
+HTML5.IASDependencyName |          x           | Configures the name of the IAS dependency that is used to exchange the IAS login token. The exchanged token is also forwarded to the backend application.
+sap-client |          x           | If provided, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
+URL.headers.`<header-name>` |          x           | If provided, the application router propagates this special attribute in the destination as the header. The application router can get the headers list from the destination API. Existing request headers are not overwritten.
 
 <br />**Note:** 
 * In case destination with the same name is defined both in environment destination and destination service, the destination configuration will load from the environment.

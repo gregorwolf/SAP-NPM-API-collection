@@ -80,7 +80,6 @@
 @sap/webide-hdi-base-feature-vscode
 @sap/webide-hdi-feature-vscode
 @sap/wing-service-explorer
-@sap/xsjs
 @sap/xsodata
 @sap/xss-secure
 @sap/xssec

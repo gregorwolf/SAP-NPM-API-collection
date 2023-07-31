@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.5.0"
+    "@sap/hdi-deploy": "4.7.1"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -543,7 +543,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.5.0",
+    "@sap/hdi-deploy": "4.7.1",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -997,7 +997,7 @@ Example `manifest.yml`:
 - `APPLICATION_ID`: (optional, fallback `SAP_HDI`) this will be used, in conjunction with the `space_name` and the `organization_name` of the `VCAP_APPLICATION` to set the session variable `APPLICATION` for all connections to the database. This setting may only be used by applications from SAP.
 - `APPLICATION_VERSION_INFO`: (optional) this will be logged to the command line, to allow logging of some additional information about the application.
 
-Options from `HDI_DEPLOY_OPTIONS` override options which are passed on the command line.
+Options from `HDI_DEPLOY_OPTIONS` has priority over options that are passed in the command line. If different options are specified in HDI_DEPLOY_OPTIONS and in the command line, then the union of both is used.
 
 ## Ignore List
 The hdi deployer supports ignoring certain files via an `.hdiignore` file. The file has to be placed at the root of the project folder, just like the `undeploy.json`.
@@ -1034,6 +1034,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--[no-]treat-warnings-as-errors`: [don't] treat warnings as errors
 - `--[no-]validate-external-dependencies`: [don't] start a make, even if no files are in the deploy/undeploy sets; all deployed synonyms, projection views, and virtual tables in the container will be checked for changes to referenced objects and redeployed, if a change is detected.
 - `--[no-]simulate-make`: [don't] simulate the make and skip post-make activities; pre-make activities still take effect, e.g. grants
+- `--[no-]stop-on-error`: [don't] collect as many erros as possible during the deployment
 - `--connection-timeout <ms>`: number of milliseconds to wait for the database connection(s)
 - `--delete-timeout <ms>`: number of milliseconds to wait for the DELETE call
 - `--write-timeout <ms>`: number of milliseconds to wait for the WRITE call
@@ -1076,7 +1077,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "4.5.0",
+        "version": "4.7.1",
         "features": {
             "info": 2,
             "verbose": 1,

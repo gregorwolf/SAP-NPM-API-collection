@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.3] - 2023-07-13
+### Added
+- Added support for @sap/cds version 7.
+
+### Fixed
+- Fixed issue where failed ABAP deployment would not exit with an error code.
+- Fixed an issue where the list of transport requests provided during deployment configuration could fail if the package name contains a forward slash.
+
+### Changed
+- The Fiori generator now consumes ABAP deployment logic from open source, which is published [here](https://github.com/SAP/open-ux-tools).
+
 ## [1.10.2] - 2023-06-29
 ### Fixed
 - Fixed an issue where reference to a local Reuse Library was added as an absolute path rather than relative path to an existing Fiori project.

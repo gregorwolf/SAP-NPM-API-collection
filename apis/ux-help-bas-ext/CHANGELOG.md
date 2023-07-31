@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.3] - 2023-07-13
+### Changed
+- Consolidated the three different _Add a custom filter to the filter bar of a list report page/analytical list page/overview page_ guides into a single guide: _Add a custom filter to the filter bar_. Guide parameters will update based on the page type of the project. 
+## [1.10.2] - 2023-06-29
+### Changed
+- Removed the deprecated `Hide Descriptions` setting. Please continue to use its replacement `Show Descriptions`.
+
 ## [1.10.1] - 2023-06-15
 ### Added
 - Introduced the _Create a table building block_ guide for custom pages.

@@ -6,6 +6,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 14.3.0 - 2023-07-30
+
+### Added
+- IAS App2App navigation support via IAS dependency destination configuration
+
+## 14.2.1 - 2023-07-23
+
+### Updated dependencies
+- deps: tough-cookie@4.1.3
+
+### Added
+- Introduce SKIP_DEFAULT_MTLS_AUTH_CA environment to prevent adding Auth certificate to backend call.
+
+### Fixed
+- Support mTLS certificate with more than three certificates in the chain.
+
 ## 14.2.0 - 2023-07-11
 
 ### Added

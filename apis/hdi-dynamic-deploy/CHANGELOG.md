@@ -1,3 +1,8 @@
+# 2.5.5
+Features
+- use @sap/hdi-deploy@4.7.1
+- use @sap/audit-logging@5.7.1
+
 # 2.5.4
 Features:
 - use @sap/hdi-deploy@4.6.1

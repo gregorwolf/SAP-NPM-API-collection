@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.3.2 - 2023-07-28
+- restore backward-compatibility feature: use cleanUpPemKey function on verification keys to support PEM with missing line breaks-
+- restore backward-compatible behaviour: use verificationKey as fallback if KID is not found in JWKS but throw error about missing KID if it fails
+- fix error handling for cert endpoint
+
+## 3.3.0 - 2023-07-24
+- add app_tid to formular for token exchanges
+- support for "x-app_tid" and "x-client-id" header for IAS cert endpoint
+- bugfix for unknown variable in new cache implementation
+
 ## 3.2.18 - 2023-07-13
 - Replaced keycache implementation with new JwksReplica implementation: When a JWKS is used for validation, it is now checked if the cached replica will expire soon (default refresh period: 15min before expiration). If so, it will be refreshed in the background and the cached replica will still be used for validation until it has expired completely (default expiration time: 30min since last refresh). Validation of incoming requests will only be blocked by an expired JWKS if it could not be refreshed during the refresh period. Only one call at a time will be performed to refresh the JWKS.
 - Addd support for resource-attribute for token flow/token exchange calls

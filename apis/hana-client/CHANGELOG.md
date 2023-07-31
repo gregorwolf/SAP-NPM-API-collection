@@ -8,6 +8,17 @@ For the latest updates please see SAP Note 3329999 - SAP HANA Client 2.17 Releas
 
 https://launchpad.support.sap.com/#/notes/3329999
 
+## Version 2.17.22
+
+### Changes:
+
+ - Issue Number 310216: Memory used for statement output parameters could have been temporarily higher than necessary.
+ - Issue Number 309655: Node.js could have crashed while executing a stored procedure with ST_Geometry out parameters.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 309136: CCL error "No user exists with SNC name ..." could have occurred.
+
 ## Version 2.17.21
 
 ### Changes:

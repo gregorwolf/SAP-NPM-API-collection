@@ -638,7 +638,6 @@ Deploys an application to an ABAP frontend server.
 * `--yes, -y` - Deploy without asking for confirmation.
 * `--failfast, -f` - Throw an error if something goes wrong and exit with a return code != 0.
 
-
 ## [FAQ](#faq)
 
 **My backend system contains the SAP_UI component version 7.53 or newer, but the SAPUI5 repository service cannot be reached.**

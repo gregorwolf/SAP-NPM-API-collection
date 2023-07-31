@@ -5,6 +5,23 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.3] - 2023-07-12
+### Added
+- Added support in the Page Editor for reordering table columns and actions based on building blocks (experimental)
+- Added support for the generation of a new method code for custom actions in TypeScript-enabled projects
+- Added an option to the Page Map and Page Editor to open the "Output" panel showing the status messages from the Application Modeler to follow up on issues more easily
+
+### Changed
+- Changed the functionality of "Go to Code" for building blocks in the outline: it now navigates to the XML source only (experimental)
+
+### Fixed
+- Fixed an issue with manually-created action methods not being selectable in a custom action dialog when the dialog was already open in SAP Business Application Studio
+- Fixed an issue with missing icons for nodes representing table and chart views in the Page Editor outline view
+- Fixed an issue with incorrect context path generation in the Page Map for pages navigating out of a custom page
+- Fixed an issue with not showing the edit link in the property panel for value helps after inserting the annotation manually
+- Fixed an issue where editing properties of a custom column could result in the removal of another custom column
+- Fixed an issue with the `Fiori: Archive Project` command, mistakenly including the `.git` folder
+
 ## [1.10.2] - 2023-06-29
 ### Added
 - Added the capability to the Application Info page, Page Map, and Page Editor webviews to restore their previous content when the development environment is reloaded

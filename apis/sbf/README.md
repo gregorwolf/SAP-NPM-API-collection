@@ -995,7 +995,7 @@ These credentials can be provided via the option `brokerCredentialsHash` or the 
 **Note:** To generate such hashed credentials, you can use the [hash-broker-password](#hash-broker-password) script.
 #### mTLS Authentication
 ##### Out-of-the-Box mTLS
-***Note:*** Only available on public PaaS.
+***Note:*** For those of you who use out-of-the-box mTLS, ***we recommend using unique credentials, i.e. Basic authentication, alongside out-of-the-box*** mTLS, to ensure accurate identification in relation to your brokers. This can assist in identifying potential misconfiguration incidents.
 
 
 You can configure SBF broker to verify the Service Manager-issued client certificate each time the Service Manager communicates with the broker. 
