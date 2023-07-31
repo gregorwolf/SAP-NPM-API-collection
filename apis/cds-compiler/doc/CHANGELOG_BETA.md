@@ -8,6 +8,17 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 4.1.0 - 2023-07-28
+
+### Added `associationDefault`
+
+With this beta flag enabled, managed associations with exactly one foreign key can now
+have a default value.
+
+### Removed `aspectWithoutElements`
+
+Aspects without elements can now be defined without beta flag, e.g. `aspect A;`.
+
 ## Version 4.0.0 - 2023-06-06
 
 ### Removed `v4preview`

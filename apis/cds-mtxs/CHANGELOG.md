@@ -6,11 +6,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.9.2 - 2023-07-20
+
+### Changed
+
+- Remove peerDependency to `@sap/cds>=6`.  This caused troubles in installation scenarios where sap/cds 7 was fetched while 6 should be used.
+
+### Fixed
+
+- The MTX migration script does not longer undeploy application database tables if HDI `auto_undeploy` is configured for the `cds.xt.DeploymentService`.
+- The result verification of the MTX migration script no longer shows false errors when using `--force`.
+- When a request fails, shorter errors are logged and secret data is hidden. (Set `DEBUG=req` in env to see all details again.)
+
 ## Version 1.9.1 - 2023-07-06
 
 ### Fixed
 
 - `GET /-/cds/saas-provisioning/tenant` now doesn't include a duplicate `tenant` field, but only provides the tenant via `subscribedTenantId`.
+- After switching from `@sap/cds-mtx` to `@sap/cds-mtxs`, existing tenants will now be taken into account when running an upgrade for all tenants (`['*']`).
 
 ## Version 1.9.0 - 2023-06-22
 

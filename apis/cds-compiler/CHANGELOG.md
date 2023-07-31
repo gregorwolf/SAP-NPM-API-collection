@@ -7,6 +7,74 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.1.2 - 2023-07-31
+
+### Fixed
+
+- to.hdi.migration: Changes in constraints are not rendered as part of the .hdbmigrationtable file, as they belong in other HDI artifacts
+
+## Version 4.1.0 - 2023-07-28
+
+### Added
+
+- Calculated elements "on-read" can now reference localized elements.
+- Aliases for columns inside sub-queries are now optional, also for expressions.
+- for.odata/to.hdi/to.sql: Specified default value on a managed association is forwarded to a foreign key
+  if association has exactly one foreign key.
+- CDL: Annotation-only aspects having no `elements` and `actions` can now be defined with
+  the CDL syntax `@Anno… aspect Name;`.  They cannot be extended with elements or actions
+  in order to ensure that they can always be used to extend non-structures.
+  To allow the former but not the latter, use `@Anno… aspect Name {…};`.
+- to.sql: Support session variables for h2
+
+### Changed
+
+- api: Function `isInReservedNamespace(name)` handles name `cds` as being in a reserved namespace as well.
+- `CompilationError.messages` are now sorted severity aware. Errors are listed first.
+- Compiler:
+  + Improve the calculation of semantic code completion candidates.
+  + Some checks, like those for valid `on` conditions of associations,
+    are now already done with `compile` and not just the backends.
+  + SQL `cast()`s must always have a `type` property
+  + Type properties such as `precision` or `length` must be accompanied by a type (possibly inferred).
+- for.odata/to.hdi/to.sql: No longer reject unmanaged associations as foreign keys of a managed association.
+  Instead, ignore such references during ON-condition rewriting and foreign key generation. Referring to
+  unmanaged associations is incompatible with SAP HANA CDS naming mode 'hdbcds'.
+- to.sql: Rework session variables for postgres.
+- Update OData vocabularies: 'Common', 'HTML5', 'PersonalData', 'UI'.
+
+### Fixed
+
+- Compiler:
+  + ensure that annotations of elements in anonymous aspects of managed compositions
+    are not lost.
+  + issue error for definitions like `entity Self as projection on Base { $self.* };`
+    instead of simply concluding that the projection has zero elements.
+  + do not report a invalid cyclic dependency if associations between two entities
+    are valid cycles.
+  + Element type references can again follow associations (removed v4.0 incompatibility).
+- to.sql:
+  + `$self` references inside a nested projection using `$self` was incorrectly resolved.
+  + associations to entities marked with `@cds.persistence.skip` were not properly
+    checked inside nested projections.
+  + Select items casting `null` to an arrayed type work again, e.g. `null as ManyType`.
+- to.sql/hdi/hdbcds: Raise a nice error message for `@sql.append` on managed associations/compositions,
+  as we do for structured error messages.
+- to.cdl: Annotations with multiple qualifiers (`#`) are now rendered correctly.
+- to.edm(x): Revert change introduced with [3.9.0](#version-390---2023-04-20)
+    "Correct referential constraint calculation for `[0..1]` backlink associations".
+- for.odata: Process shortcut annotations sequence independent.
+- to.sql.migration:
+  + Respect unique and referential constraints for delta calculation.
+  + Added a configurable error for primary key additions, as those will lead to errors if the table
+    contains data. This could lead to inconsistent states if
+    some deployments succeed and others fail, so by default it is an error.
+
+### Removed
+
+- Compiler:
+  + forbid wildcards in projection extensions: `extend … with columns { * )`.
+  + forbid column references such as `$user.*`, `$user.{id}` and `$user {id}`.
 
 ## Version 4.0.2 - 2023-06-22
 
@@ -77,8 +145,6 @@ The compiler behavior concerning `beta` features can change at any time without 
   + Table alias and mixin names can no longer start with `$`. Choose a different name. With this change
     we avoid unexpected name resolution effects in combination with built-in `$`-variables.
   + A semicolon is now required after a type definition like `type T : many {} null`.
-  + It is no longer possible to write `type of $self.‹elem›` to refer to the element `‹Def›.‹elem›`
-    where `‹Def›` is the main artifact where the type expression is embedded in. Replace by `type of <Def>:‹elem›`.
   + Message ID `duplicate-autoexposed` was changed to `def-duplicate-autoexposed`.
 - Update OData vocabularies 'Common', 'UI'.
 - to.sql:
@@ -96,7 +162,12 @@ The compiler behavior concerning `beta` features can change at any time without 
   + `parseCdl` CSN did not include correct `...` entries for annotations containing `... up to`
   + Type references inside calculated elements were not always correctly resolved.
   + `USING` empty files were incorrectly marked as "not found".
+  + Correct the handling of `$self` references in nested projections and filters in queries.
   + If an association was inside `items`, e.g. via type chains, the compiler crashes instead of emitting proper errors.
+  + References in the user-provided `on` conditions of associations with a to be
+    auto-redirected model entity as target were not always resolved correctly.
+    Complain in error situations.
+  + Make extend code robust against prototype-polluted JS classes.
 - Localized convenience views for projections (not views) did not have references rewritten.
   This only affects CSN, the SQL result was correct.
 - Calculated elements in composition-of-aspect lost their `value` when generating composition targets.
@@ -116,9 +187,33 @@ The compiler behavior concerning `beta` features can change at any time without 
 - NodeJs 14 is no longer supported.
 - `CompileMessage` no longer has property `location`, which was deprecated in v2.1.0, but `$location`,
   which is supported since v2.1.0
-- "Smart type references" such as `Entity.myElement` instead of `Entity:myElement` are removed, because since
-  compiler v2, `Entity.myElement` could also be a definition, creating ambiguities.
-- Element type references can no longer follow associations, i.e. `E:assoc.id` is not allowed.
+- compiler:
+  + It is no longer possible to write `type of $self.‹elem›` to refer to the element `‹Def›.‹elem›`
+    where `‹Def›` is the main artifact where the type expression is embedded in. Replace by `type of <Def>:‹elem›`.
+  + Element type references can no longer follow associations, i.e. `E:assoc.id` is not allowed
+    (v4.0 only, re-introduced with v4.1).
+  + "Smart type references" such as `Entity.myElement` instead of `Entity:myElement`
+    are removed, because since - `Entity.myElement` could also be a definition,
+    creating ambiguities. This did not work always, anyway.
+
+
+## Version 3.9.6 - 2023-07-27
+
+### Fixed
+
+- to.edm(x): Revert change introduced with [3.9.0](#version-390---2023-04-20)
+    "Correct referential constraint calculation for `[0..1]` backlink associations".
+- for.odata: Process shortcut annotations sequence independent.
+
+## Version 3.9.4 - 2023-06-07
+
+### Fixed
+
+- compiler: `USING` empty files were incorrectly marked as "not found".
+- Localized convenience views for projections (not views) did not have references rewritten.
+  This only affects CSN, the SQL result was correct.
+- to.edm(x): Render correct EntitySetPath and annotation target path for actions/functions
+  with explicit binding parameter.
 
 ## Version 3.9.2 - 2023-04-27
 

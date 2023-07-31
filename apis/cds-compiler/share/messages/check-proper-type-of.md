@@ -43,4 +43,4 @@ view ViewFoo as select from Foo {
 
 ## Related Messages
 
-- `check-proper-type`
+- `def-missing-type`

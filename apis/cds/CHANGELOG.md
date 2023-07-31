@@ -4,6 +4,64 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.1.0 - 2023-07-28
+
+### Added
+
+- Support for resolving of `STREAM` CQN queries that point to views
+- Enable PDF export via GET to collection with accept header `appplication/pdf`.
+  Custom handler must return the following:
+  ```
+  {
+    value: <instance of Readable>,
+    $mediaContentType: <String>, // > optional, defaults to: application/pdf
+    $mediaContentDispositionFilename: <String>, // > optional
+    $mediaContentDispositionType: <String> // > optional, defaults to 'attachment' if $mediaContentDispositionFilename is set
+  }
+  ```
+- Schema for `cds` entry in `package.json` now has a tooltip and default value
+- `srv.endpoints`: Array containing the information for all endpoints at which the service is served.
+  Example:
+  ```
+  [
+    { kind: 'odata-v4', path: '/odata/v4/browse' },
+    { kind: 'rest', path: '/rest/browse' }
+  ]
+  ```
+
+### Fixed
+
+- Multiple TypeScript improvements
+- Proper handling for `expand=*` for OData URL to CQN parser (`cds.env.features.odata_new_parser`)
+- Fully qualified operation names are correctly resolved in rest adapter
+- Log level for odata metadata cache was not handled correctly
+- Protocol paths are normalized to always have a leading slash
+- `@odata` shortcut for `odata-v4` protocol with custom configuration
+- Default protocol is `odata-v4`, independent of the order in `cds.env.protocols`
+- Data is not logged for GET and DELETE remote requests
+- draft: deep update without change should not update the `modifiedAt` field
+- Lean draft: do not propagate `@Capabilities.NavigationRestrictions.RestrictedProperties`
+- Commit db transaction only once outbound streaming has ended
+- Lean draft: deactivate legacy `drafts` getter
+- Updated typings for srv.send
+- `$search`: exclude calculated fields/expressions from default search in projection of projections
+- Immutable properties are always removed from payload during UPDATE
+- `serviceinfo.urlPath` contains the first endpoint of the service (cf. `srv.endpoints`), which is the legacy path if `cds.env.features.serve_on_root === true`
+
+## Version 7.0.3 - 2023-07-19
+
+### Fixed
+
+- Compile for lean draft: do not add draft entity for external entities
+- Rollback awaited in REST adapter
+- `service.on('error')` handler invoked only once
+- `SELECT.one.localized`
+- `COPYFILE_DISABLE=1` is now set for building `tar` archives by default
+- Actions of projection target are no longer accessible in linked models
+- Batch execute model-less mass inputs when on `@sap/hana-client`
+- Requests to `/<path>/webapp` return 404 for absolute `@path` specifications
+- `cds compile --to serviceinfo` no longer returns paths w/ Windows `\` path characters
+
 ## Version 7.0.2 - 2023-07-06
 
 ### Fixed
@@ -60,19 +118,18 @@
 - Support for multiline texts in `properties` files
 - Error when reading auth protected entities with infix filter in expand
 - Glitch in transaction handling in case of concurrent async before handlers
-- Detection of feature toggles in single-tenant mode
 
 ### Removed
 
 - Deprecated `req.run()` function, use `cds.run()` instead.
-- Deprecated compat mode `cds.env.features.cds_tx_protection = false`
-- Deprecated referential integrity checks at runtime
 - Support for inofficial feature flag `cds.env.features.bigjs`
 - Support for inofficial feature flag `cds.features.parameterized_numbers`
+- Deprecated referential integrity checks at runtime
 - Support for `cds-mtx`
 - Support for Node 14
 - Internal `req.getUriInfo()` and `req.getUrlObject()`
 - `cds deploy --to hana` is now part of `@sap/cds-dk`.
+- Deprecated compat mode `cds.env.features.cds_tx_protection = false`
 - Beta `AuditLogService` and out-of-the-box audit logging. Use plugin `@cap-js/audit-logging` instead.
 
 ## Version 6.8.3 - 2023-06-13
