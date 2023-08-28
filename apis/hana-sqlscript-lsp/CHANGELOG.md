@@ -1,3 +1,8 @@
+## 1.11.0
+
+### Fixes
+- Fixed some inaccuracies in error messages
+
 ## 1.10.0
 
 ### Fixes

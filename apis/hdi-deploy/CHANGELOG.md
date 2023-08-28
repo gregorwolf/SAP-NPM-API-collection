@@ -1,3 +1,9 @@
+## 4.8.0
+Features:
+- use @sap/hdi@4.5.0
+- use @sap/hana-client@2.17.22
+- Node 20.x support
+
 ## 4.7.1
 Fixes:
 - removed extraneous packages in shrinkwrap

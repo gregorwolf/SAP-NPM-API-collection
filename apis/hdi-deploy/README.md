@@ -101,7 +101,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.7.1"
+    "@sap/hdi-deploy": "4.8.0"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -543,7 +543,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.7.1",
+    "@sap/hdi-deploy": "4.8.0",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -997,7 +997,7 @@ Example `manifest.yml`:
 - `APPLICATION_ID`: (optional, fallback `SAP_HDI`) this will be used, in conjunction with the `space_name` and the `organization_name` of the `VCAP_APPLICATION` to set the session variable `APPLICATION` for all connections to the database. This setting may only be used by applications from SAP.
 - `APPLICATION_VERSION_INFO`: (optional) this will be logged to the command line, to allow logging of some additional information about the application.
 
-Options from `HDI_DEPLOY_OPTIONS` has priority over options that are passed in the command line. If different options are specified in HDI_DEPLOY_OPTIONS and in the command line, then the union of both is used.
+Options from `HDI_DEPLOY_OPTIONS` and the command line are merged. `HDI_DEPLOY_OPTIONS` have priority over options from the command line.
 
 ## Ignore List
 The hdi deployer supports ignoring certain files via an `.hdiignore` file. The file has to be placed at the root of the project folder, just like the `undeploy.json`.
@@ -1048,7 +1048,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 
 See `--help` for details and defaults.
 
-Options can also be passed to `@sap/hdi-deploy` via the `HDI_DEPLOY_OPTIONS` environment variable.
+Options can also be passed to `@sap/hdi-deploy` via the `HDI_DEPLOY_OPTIONS` environment variable. Options from `HDI_DEPLOY_OPTIONS` and the command line are merged. `HDI_DEPLOY_OPTIONS` have priority over options from the command line.
 
 ## Supported Features
 
@@ -1077,7 +1077,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "4.7.1",
+        "version": "4.8.0",
         "features": {
             "info": 2,
             "verbose": 1,

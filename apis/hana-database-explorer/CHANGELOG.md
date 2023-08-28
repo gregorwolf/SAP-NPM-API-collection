@@ -1,5 +1,20 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.17.0
+
+### New Features
+- Database objects can be visualized via a dependency viewer.
+- The metadata of procedures and functions can be visualized graphically by clicking on a procedure or function in the catalog browser.
+- The size of large object (LOB) column data in a result set can be configured via the setting "SAP HANA Database Explorer.LargeObjectSizeLimit".
+
+### Fixes
+- Opening the data of a table could fail in some scenarios.
+- Opening a SQL console as admin did not work correctly.
+- Fixed a misleading error message when downloading SQL plan files.
+- SQL plan files were not downloaded correctly.
+- The cursor in a SQL console could jump to the end of the text editor in some circumstances.
+- CALL statements generated via the UI are not executed automatically.
+
 ## 1.16.0
 
 ### New Features

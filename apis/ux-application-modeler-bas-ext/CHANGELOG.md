@@ -5,6 +5,42 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.5] - 2023-08-09
+### Added
+- Enabled static and dynamic hiding of UI elements such as table columns, sections, and section fields
+
+### Fixed
+- Fixed an issue with the context menu not being shown in the file explorer for projects that were newly added to the workspace
+- Fixed an issue with the application's pages not being displayed in the Application Info Page after `@sap/ux-specification` was installed for the first time for the project
+- Fixed an issue with new pages that were added to OData V2-based applications via Page Map not being visualized
+- Fixed an issue with the Page Editor outline not having a maximum width
+- Fixed an issue with the Page Editor coming back up when quickly navigating to the Page Map after a property change
+- Fixed an issue with action divider colors in the Page Editor
+- Fixed an issue with the info tooltip icon being shown although no tooltip was defined in the table dialog of the property panel
+- Fixed various inconsistencies related to UI texts
+
+## [1.10.4] - 2023-07-27
+### Added
+- Enabled enhancing visual filters with fixed values based on properties of numeric, string, and boolean data types 
+- Added support for building blocks that were defined using default aggregations (experimental)
+- Added support for multiple building block namespaces (experimental)
+- Added support for the creation of custom columns/sections for cases when there are no previous annotation-based columns/sections
+- Added a warning message for inconsistently defined building blocks in the Page Editor outline (experimental) 
+
+### Changed
+- Harmonized error and validation messages across Application Modeler UIs
+- Enabled all navigation types in the Page Map in case the source is a custom page
+- Increased tolerance of Application Modeler against inconsistencies in the service metadata, e.g., duplicate alias definitions
+
+### Fixed
+- Fixed an issue with changes not being saved if the app's name is the prefix of another app's name in the same CAP project
+- Fixed an issue with the Light High Contrast theme usage in the Page Map
+- Fixed an issue with not being able to create multiple navigations from a **List Report** for multiple views
+- Fixed an issue with navigation links not working in the project validation results list
+- Fixed an issue with multi-select attempts in the Page Editor always opening the property panel
+- Fixed an issue with commands from Application Info Page tiles being started twice when the page was restored after a reload
+- Fixed an issue with the context menu not working for a project which is newly added to the workspace
+
 ## [1.10.3] - 2023-07-12
 ### Added
 - Added support in the Page Editor for reordering table columns and actions based on building blocks (experimental)

@@ -1,3 +1,7 @@
+## 4.5.0
+Features:
+- Node 20.x support
+
 ## 4.4.0
 Features:
 - Node 18.x support

@@ -92,6 +92,16 @@ To add this package as a dependency in your **package.json** file, under the "de
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*filter* (optional): For additional query parameters to pass to the service. For example: ```new Filter(new Map([[ServiceRequestKey.TopRows, "2""]]))```  
 **Output:** An object that contains a JSON string with live data from the service  
 
+### getServiceSwagger
+**Description:** *Provides Swagger from the 'API Business Hub Enterprise' service*  
+**Signature:** 
+  ```typescript
+  async getServiceSwagger(serviceId: string): Promise<string | undefined>
+  ```
+**Input:**    
+&nbsp;&nbsp;&nbsp;&nbsp;*serviceId*: The ID of the service that  we want to get the Swagger for  
+**Output:** A JSON string with Swagger data of the service 
+
 ## AdministrationManager
 ### getSubscriptions
 **Description:** *A static method that retrieves the user's subscriptions*  

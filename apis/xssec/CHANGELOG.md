@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.3.3 - 2023-08-08
+- Send either both x-app_tid & x-client_id headers or none of them to IAS /certs endpoint to prevent bad request
+
 ## 3.3.2 - 2023-07-28
 - restore backward-compatibility feature: use cleanUpPemKey function on verification keys to support PEM with missing line breaks-
 - restore backward-compatible behaviour: use verificationKey as fallback if KID is not found in JWKS but throw error about missing KID if it fails

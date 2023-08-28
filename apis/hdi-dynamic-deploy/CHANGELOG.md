@@ -1,3 +1,8 @@
+# 2.6.0
+Features
+- use @sap/hdi-deploy@4.8.0
+- Node 20 support
+
 # 2.5.5
 Features
 - use @sap/hdi-deploy@4.7.1

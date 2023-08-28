@@ -140,6 +140,7 @@ This API retrieves data for a specific service's entity.
 
 Bump the version in the "package.json" GitHub file.
 
+  
 **_Notes:_**
 Make sure to follow this versioning concept:
 - When providing new features (when releasing at end of the sprint or when a new feature is ready), bump a major version (for example, from 1.1.0 to 1.2.0).

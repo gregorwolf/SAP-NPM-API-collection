@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 4.0.0 - 2023-08-01
+
+### Updated
+- Updated xssec to 3.3.2
+
+### Removed
+- Support for Node.js 10
+
 ## 3.5.3 - 2023-01-10
 
 ### Updated

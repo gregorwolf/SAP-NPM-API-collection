@@ -1,3 +1,31 @@
+## 1.25.0
+
+### New Features
+- Allow selecting specific T009/T009B tables or synonyms pointing to T009/T009B as an alternative when generating fiscal timetable data
+- Renaming a column is propagated through all dependent views
+- Column impact can be displayed in addition to column lineage
+- Multiple output parameters can be listed in the UDF tab of the expression editor
+
+### Fixes
+- The deployment with input parameters is not working
+- Restricted column aggregation behavior lists both attributes and columns
+- Able to remove data source in read only debug mode
+- Greedy pruning setting doesnt work in Non equi join node
+- Fixed a warning message when opening the parameters pane
+- Value help for synonyms in analytic privilege uses wrong schema
+- Proposed cardinality is 0..0 when there is no data in the underlying data source
+- Replace With Node doesn't work
+- The editor remains in busy state after extracting a variable
+- Reading data from a hierarchy could fail
+- Unable to search database artifact in calculation view edit with connection to service manager
+- Dragging a view node onto a link is not working
+- Unable to set the first level in hierarchy node of leveled function generation
+- Unexpected text 'Adjust the expression manually' appears when checking where-used of a column
+- When replacing data source, remove mapping option doesn't work in the step manage mappings
+- Window Function output column data type not populated
+- Set "Execute in SQL Engine" as default for new calculation views created via new-file dialog
+- Join Definition can't be shown after switch table
+
 ## 1.24.0
 
 ### New Features

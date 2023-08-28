@@ -1,3 +1,17 @@
+## 1.16.0
+
+### New Features
+
+- New database connections can be bound to application-managed service instances
+- The artifact creation wizard supports enterprise search configurations (hdbeshconfig)
+- Database connections can be deleted from the SAP HANA PROJECTS tab
+
+### Fixes
+
+- The list of HDI containers in a service manager instance could be empty in BAS
+- Binding a target container to a schema service should not be possible
+- Fixed a bug in the HDI deployer version check
+
 ## 1.15.0
 
 ### New Features

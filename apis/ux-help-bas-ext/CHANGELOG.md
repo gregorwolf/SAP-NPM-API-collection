@@ -4,6 +4,20 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.5] - 2023-08-10
+### Changed
+- Updated the CAP CDS variant of the _Add a new visual filter_ guide to use dynamic measures. For custom measures, please continue using the `Measures` parameter.
+- Consolidated steps in the _Configure multiple views_ to shorten the guide. All of the previous parameters remain available. 
+### Fixed
+- Fixed an issue in the _Configure multiple selection in tables_ guide where the `Page Name` parameter was not automatically filled based on whether the guide is opened in the List Report or Object Page section of the guide list.
+
+## [1.10.4] - 2023-07-27
+### Added
+- Introduced a CAP CDS variant for the _Set default filter values_ guide.
+- Added warning pages for common errors that prevent Guided Development from opening, for example: node modules not being installed, issues parsing manifest and CDS files, no pages present in the project, or application modeler not being installed.
+### Fixed
+- Fixed an issue with keyboard navigation in guides with multiple code snippets in a single step where it was not possible to use the tab key to navigate to the second, third, or fourth code snippet.
+
 ## [1.10.3] - 2023-07-13
 ### Changed
 - Consolidated the three different _Add a custom filter to the filter bar of a list report page/analytical list page/overview page_ guides into a single guide: _Add a custom filter to the filter bar_. Guide parameters will update based on the page type of the project. 

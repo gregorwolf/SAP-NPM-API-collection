@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.0.0 - 2023-08-02
+
+### Added
+- Added sslkey for GCP postgres support
+
+### Removed
+- Removed node 10.x support and tests
+
+### Fixed
+- check and use of ssl options
+
+
 ## 5.4.0 - 2023-02-08
 
 ### Added

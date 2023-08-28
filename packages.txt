@@ -37,6 +37,7 @@
 @sap/external-service-mashup
 @sap/generator-adaptation-project
 @sap/generator-add-hdb-module
+@sap/generator-aicore
 @sap/generator-cap-project
 @sap/generator-fiori
 @sap/generator-hdb-project
@@ -45,7 +46,10 @@
 @sap/hana-performance-tools
 @sap/hana-project-explorer
 @sap/hana-sqlscript-lsp
+@sap/hana-tooling-feature-toggles
+@sap/hana-xs-tools
 @sap/hdbext
+@sap/hdi
 @sap/hdi-deploy
 @sap/hdi-dynamic-deploy
 @sap/hrtt-core-vscode
@@ -80,6 +84,8 @@
 @sap/webide-hdi-base-feature-vscode
 @sap/webide-hdi-feature-vscode
 @sap/wing-service-explorer
+@sap/xs-tools
+@sap/xsenv
 @sap/xsodata
 @sap/xss-secure
 @sap/xssec

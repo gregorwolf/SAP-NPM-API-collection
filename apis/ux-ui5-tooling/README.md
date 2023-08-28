@@ -3,6 +3,8 @@
 The SAP Fiori Tools - UI5 Tooling contains a selection of custom [middlewares](https://sap.github.io/ui5-tooling/pages/extensibility/CustomServerMiddleware/) that can be used with the command `ui5 serve` as well as custom [tasks](https://sap.github.io/ui5-tooling/pages/extensibility/CustomTasks/) that can be used with the command `ui5 build`. 
 Furthermore, the module expose the cli `fiori` offering e.g. the [`fiori run`](#run) command is a wrapper of the `ui5 serve` commands and provides some additional parameters as well as `fiori add deploy-config` and `fiori add flp-config` to extend an existing project.
 
+**IMPORTANT**: Starting with version `1.10.5`, the minimum required `@ui5/cli` version is >= 3! For more information about migration to version 3 of the `@ui5/cli`, see [here](https://sap.github.io/ui5-tooling/v3/updates/migrate-v3/).
+
 ## [**Middlewares**](#middlewares)
 
 SAP Fiori tools use the capabilities of custom middlewares to start and preview SAP Fiori elements or SAPUI5 freestyle applications, e.g. to enable auto refresh, to switch the version of SAPUI5 sources or to serve static resources. Starting with version `1.3.0` the behaviour of the preview of the SAP Fiori applications has changed. Now the persistent iAppState is ignored in order to have the source code changes always apply when application is refreshed. If you want to enable the iAppState then you need to add the URL parameter `fiori-tools-iapp-state=true` to the browser URL, e.g. `http://localhost:8080/test/flpSandbox.html?fiori-tools-iapp-state=true#masterDetail-display`.

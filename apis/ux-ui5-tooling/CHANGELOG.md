@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.5] - 2023-08-09
+### Changed
+- The `fiori-tools-preview` is now using the [@sap-ux/preview-middleware](https://www.npmjs.com/package/@sap-ux/preview-middleware) for the support of developer variant creation
+- The `@sap/ux-ui5-tooling` middlewares now require the `@ui5/cli` version >= 3 to be installed in the project.
+
 ## [1.9.5] - 2023-04-19
 ### Fixed
 - Fixed an issue with not finding the preview helper library `locate-reuse-libs.js` in older apps after its default location was changed

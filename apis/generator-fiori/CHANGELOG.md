@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.4] - 2023-07-27
+### Added
+- Added abililty for users to create an ABAP transport request during deployment.
+- Added option to generate UI annotations during generation if there are none already available for a Java CAP project.
+- Added a new VS Code command `Fiori: Deploy Application` to allow users to deploy their application from the command palette.  
+
+### Fixed
+- Fixed an issue where deployment could fail even when the correct credentials were passed as command line arguments.
+
 ## [1.10.3] - 2023-07-13
 ### Added
 - Added support for @sap/cds version 7.

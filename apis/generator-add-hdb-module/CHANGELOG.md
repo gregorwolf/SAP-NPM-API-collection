@@ -1,3 +1,9 @@
+## 1.9.0
+
+### New Features
+- The configuration of new projects now includes a mapping for hdbeshconfig
+- Switch to Node 16
+
 ## 1.8.0
 
 ### New Features

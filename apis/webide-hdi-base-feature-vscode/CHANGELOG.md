@@ -1,3 +1,13 @@
+## 1.23.0
+
+### New Features
+- Multiple output parameters can be listed in the UDF tab of the expression editor
+
+### Fixes
+- Add "previous" and "next" buttons to associations dialog
+- Fixed incorrect filter behavior for types in the "Add data source" dialog
+- Unable to search database artifact in calculation view edit with connection to service manager
+
 ## 1.22.0
 
 ### New Features
