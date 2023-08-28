@@ -4,6 +4,26 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.1.2 - 2023-08-11
+
+### Fixed
+
+- `req.tenant` is undefined when using new OData parser
+- Draft: replace some occurrences of the `arr.push(...largeArray)` pattern when copying large arrays to prevent maximum call stack size exceeded errors due to large deep update processing when saving the draft
+- Do not add keys to diff as they could be renamed (which leads to SQL error)
+- Custom bound actions for draft-enabled entities don't trigger a READ request on application service anymore
+- `cds.connect.to('db', options)`: add-hoc options for SAP HANA Database Service
+- Reading key-less singleton with `$select` clause while using the new OData parser `cds.env.features.odata_new_parser`
+- Don't use colored logs if `process.env.NO_COLOR` is set or not logging to a terminal (i.e., `!process.stdout.isTTY || !process.stderr.isTTY`)
+
+## Version 7.1.1 - 2023-08-01
+
+### Fixed
+
+- Lean draft: read actives via service on draft edit
+- Resolve column name for `STREAM` CQN queries that point to views
+- Only log the error in case of an unhandled rejection
+
 ## Version 7.1.0 - 2023-07-28
 
 ### Added
@@ -304,6 +324,7 @@ cds env requires/cds.xt.ModelProviderService
 ## Version 6.6.0 - 2023-02-27
 
 ### Added
+
 - Improved error handling for `cds build` if the SaaS base model is missing in an extension project.
 - Support for reliable paging using `$skiptoken`. Can be activated via `cds.query.limit.reliablePaging = true`
 - Built-in models are now added to existing model options of custom build tasks.

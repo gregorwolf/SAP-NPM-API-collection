@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.10.0 - 2023-07-31
+
+### Added
+
+- Cleanup of stale jobs can now be disabled by setting `cds.requires.multitenancy.jobCleanup = false`.
+- Experimental Extension CRUD API.
+
+### Changed
+
+- The Service Manager cache is invalidated for connection acquisition errors matching `SSL certificate validation failed`.
+
 ## Version 1.9.2 - 2023-07-20
 
 ### Changed
@@ -54,6 +65,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Fix for asynchronous subscriptions with `lazyT0 = true`.
 - SAP HANA deployment now correctly evaluates the sql mapping configuration (e. g. `cds.data.sql_mapping.quoted`) also for deployment of `t0`.
+
+### Changed
+
+- New API `ExtensibiltyService.getExtensions` replaces projection `ExtensibiltyService.Extensions` and is now working without additional configuration effort.
 
 ## Version 1.8.1 - 2023-05-10
 
