@@ -26,6 +26,7 @@
 @sap/cds-foss
 @sap/cds-hana
 @sap/cds-lsp
+@sap/cds-mtx
 @sap/cds-mtxs
 @sap/cds-odata-v2-adapter-proxy
 @sap/cf-tools

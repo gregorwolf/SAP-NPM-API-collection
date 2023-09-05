@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+
+## [1.7.3] - 2023-09-05
+### Added
+- add option `for = 'production'`;
+
 ## [1.7.2] - 2023-04-13
 ### Changed
 - generator is now bundled into one file

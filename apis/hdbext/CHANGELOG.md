@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.0.0"></a>
+## 8.0.0 - 2023-08-30
+
+### Removed
+- Removed support node.js 10 
+
 <a name="7.7.6"></a>
 ## 7.7.6 - 2023-07-18
 
@@ -30,7 +36,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Update *@sap/hana-client* to v2.16.21
 
 ### Removed 
-- Removed support node.js 8 & node.js 10 
+- Removed support node.js
 
 <a name="7.7.2"></a>
 ## 7.7.2 - 2023-01-24

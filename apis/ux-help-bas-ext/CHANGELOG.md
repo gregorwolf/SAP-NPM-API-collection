@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.6] - 2023-08-24
+### Added
+- Introduced the _Configure default grouping in a table_ guide for OData V2 list report projects.
+### Changed
+- Updated the _Add a chart building block_ guide to add support for dynamic measure annotations. For custom measures, please continue using the `Measures` property. 
+
 ## [1.10.5] - 2023-08-10
 ### Changed
 - Updated the CAP CDS variant of the _Add a new visual filter_ guide to use dynamic measures. For custom measures, please continue using the `Measures` parameter.

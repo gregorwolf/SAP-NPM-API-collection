@@ -120,8 +120,8 @@ If you want to connect to an ABAP Environment on SAP Business Technology Platfor
       scp: true
 ```
 
-#### [Connecting to the SAP API Business Hub](#connecting-to-the-sap-api-business-hub)
-If you want to connect to the SAP API Business Hub then you will need to set the optional property `apiHub` to `true`, and set the corresponding `path` and `url`, e.g.
+#### [Connecting to the SAP Business Accelerator Hub](#connecting-to-the-sap-business-accelerator-hub)
+If you want to connect to the SAP Business Accelerator Hub then you will need to set the optional property `apiHub` to `true`, and set the corresponding `path` and `url`, e.g.
 
 ```
 - name: fiori-tools-proxy

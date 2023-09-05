@@ -4,6 +4,30 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.108.13] - 2023-08-23
+
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades:
+
+- eslint to 8.47.0
+- eslint-config-prettier to 8.10.0
+- @sapui5/ts-types-esm to 1.108.21
+- @sap-ux/fe-fpm-writer to 0.23.0
+- @sap-ux/annotation-converter to 0.7.2
+
 ## [1.108.12] - 2023-08-09
 
 ### Added
@@ -28,6 +52,7 @@ Upgrades:
 
 - eslint to 8.46.0
 - eslint-config-prettier to 8.9.0
+
 
 ## [1.108.11] - 2023-07-26
 

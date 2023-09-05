@@ -3,6 +3,35 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.6] - 2023-08-24
+### Added
+- Added ability to retain developer personalization settings for local preview on refresh or restart.
+
+### Changed
+- Updated deprecation message for Fiori freestyle templates to indicate when they will be removed.
+- The Fiori module name suggested during generation will now increment if the default suggested name already exists.  For example, the suggested module name will increment from `project1` to `project2` if  the module `project1` already exists.
+- Changed the data source name `SAP API Business Hub` to be `SAP Business Accelerator Hub` to reflect the branding change in SAP Business Application Studio.
+
+### Fixed
+- Fixed an issue where deploying a TypeScript application to an ABAP system would not include the TypeScript source artifacts in the deployed BSP.
+- Adding deployment configuration after generation using the wizard now correctly displays the already answered questions in the side panel.
+- Fixed an issue where the list of transport requests could not be retrieved during deployment configuration if the repository name or package name contained a namespace.
+
+## [1.10.5] - 2023-08-10
+### Added
+- Added option to create Fiori launchpad configuration after generation using a wizard style approach rather than needing to use the command line.  Users can use the command palette option `Fiori: Add Fiori Launchpad Configuration` to launch the wizard.
+- Added Guided Answers link for deployment failures due to an invalid SSL certificate being used.
+
+### Changed
+- Updated error messages to more clearly detail when you cannot use a V2 catalog service with the choosen SAP Fiori template.
+- Updated `cds-ui5-plugin` library version in generated CAP projects to support CDS V7.
+
+### Fixed
+- Fixed an issue with deployment not using credentials supplied with the command line deploy target.
+- Fixed an issue where the deployment configuration wizard would not launch if the application was configured with managed app router support.
+- Fixed an issue with the un-deploy command not using credentials in local `.env` file.
+- Fixed an invalid URL link in the `readme.md` generated for an SAP Fiori application in a CAP project.
+
 ## [1.10.4] - 2023-07-27
 ### Added
 - Added abililty for users to create an ABAP transport request during deployment.

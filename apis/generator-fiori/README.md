@@ -90,9 +90,9 @@ Currently, the generator supports the following methods to provide the Data Sour
 
   Enter the OData endpoint URL you wish to use in your generated application. Currently, the generator supports an OData endpoint that is either unauthenticated or authenticated with Basic authentication. For an authenticated OData endpoint, you will be asked to provide a username and password.
 
-- **Connect to SAP API Business Hub**
+- **Connect to SAP Business Accelerator Hub**
 
-  You can use any of the services available in the SAP API Business Hub by providing your authentication details and choosing the relevant service.
+  You can use any of the services available in the SAP Business Accelerator Hub by providing your authentication details and choosing the relevant service.
 
 - **Use a Local CAP Project**
 

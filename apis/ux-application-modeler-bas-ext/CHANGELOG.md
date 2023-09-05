@@ -5,6 +5,21 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.6] - 2023-08-23
+### Added
+- Added feature tiles `Maintain Mockdata` and `Manage XML Annotations` to the Application Info Page of SAPUI5 freestyle applications
+
+### Changed
+- Enhanced the version picker of the command `Fiori: Change the Minimum SAPUI5 Version` to separate between still-maintained and out-of-maintenance versions
+- Allow properties that were selected as part of the header section to be added to the body section of an Object Page and vice versa
+- Updated the Application Info Page being launched after the migration of a project to show the status of the node modules being installed
+
+### Fixed
+- Fixed an issue with new manifest entries for custom views not considering the namespace of the application
+- Fixed an issue with the first-time installation of `@sap/ux-specification` for a project that required a dev environment reload. The reload is still required for an upgrade to take effect
+- Fixed an issue with the Application Info Page incorrectly offering an `@sap/ux-specification` upgrade to a higher version than the one that matches the defined minimum SAPUI5 version for the application
+- Fixed an issue with the local preview of migrated SAP Fiori applications not loading font icons
+ 
 ## [1.10.5] - 2023-08-09
 ### Added
 - Enabled static and dynamic hiding of UI elements such as table columns, sections, and section fields

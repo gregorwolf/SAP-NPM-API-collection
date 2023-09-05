@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 14.3.1 - 2023-08-02
+
+### Added
+- Support of using several instances of a Business Service on the same session
 
 ## 14.3.0 - 2023-07-30
 

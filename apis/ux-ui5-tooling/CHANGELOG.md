@@ -3,10 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.10.6] - 2023-08-23
+### Added
+- Check the `@ui5/cli` version of the project and advise the user how to upgrade, if version < 3
+
 ## [1.10.5] - 2023-08-09
 ### Changed
 - The `fiori-tools-preview` is now using the [@sap-ux/preview-middleware](https://www.npmjs.com/package/@sap-ux/preview-middleware) for the support of developer variant creation
-- The `@sap/ux-ui5-tooling` middlewares now require the `@ui5/cli` version >= 3 to be installed in the project.
+- The `@sap/ux-ui5-tooling` middlewares now require the `@ui5/cli` version >= 3 to be installed in the project
 
 ## [1.9.5] - 2023-04-19
 ### Fixed
