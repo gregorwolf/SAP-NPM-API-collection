@@ -73,6 +73,11 @@ Now enabled per default.
 
 ## Version 3.7.0 - 2023-02-22
 
+### Added `annotationExpressions`
+
+This option allows to use expressions as annotation values, e.g.
+`@anno: (1+2)`.
+
 ### Added `calculatedElements`
 
 Allows to define calculated elements in entities and aspects.  When used in views, they

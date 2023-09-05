@@ -7,11 +7,92 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.2.2 - 2023-08-31
+
+### Fixed
+
+- to.sql|hdi.migration: Fix bug that caused a migration to be rendered for the HANA CDS types that were removed from the CSN
+
+## Version 4.2.0 - 2023-08-29
+
+### Added
+
+- Compiler:
+  + Option `moduleLookupDirectories: [ 'strings' ]` can be used to specify additional module lookup
+    directories, similar to `node_modules/`.
+  + LIMIT and OFFSET clauses can now contain expressions, including parameter references.
+- to.edm(x):
+  + Detect spec violation `scale` > `precision`.
+- to.sql/for.odata:
+  + With the new option `fewerLocalizedViews: true|false`, an entity/view will not get a localized convenience
+    view, if it only has associations to localized entities/views.  Only if there is actually a localized
+    element (e.g. new localized element or reference to one), will it get a convenience view.
+- to.sql
+  + In a localized scenario, create foreign key constraints for the generated `.texts` entities.
+  + Casting `null` to a structure such as `null as field : StructT` is now supported.  For each leaf element,
+    an additional `null as field_name` column is added.
+
+### Changed
+
+- Compiler:
+  + Selecting fields of structures or associations (without filters) are now candidates for ON-condition
+    rewrites: It is no longer necessary to select the struct/association directly.
+  + Consistently handle the case when type elements are defined to be a `key`:
+    the `key` property is not only preserved with `includes`, but also in other cases.
+    Use option `deprecated.noKeyPropagationWithExpansions` to switch to the v3 behavior.
+  + When including aspects or entities into structured type definitions,
+    do not add actions to the type.
+  + An `annotate` statement in the `extensions` section of a CSN now consistently uses the
+    `elements` property even if the `annotate` is intended to be used for an enum symbol.
+    Before v4.2, the compiler has used the `enum` property in a CSN of flavor `xtended`
+    (`gensrc`) if it was certain that it was to be applied to an enum symbol.
+- to.cdl: If a definition has an `actions` property, an `actions {…}` block is now always rendered,
+  and is not ignored if empty.
+- to.sql:
+  + For SQL dialect "sqlite", `cds.DateTime` is now rendered as `DATETIME_TEXT` instead of `TIMESTAMP_TEXT`.
+  + Casting a literal (except `null`) to a structure now yields a proper error.
+  + `.texts` entities annotated with `@cds.persistence.skip` (without their original entity having that annotation)
+    lead to deployment issues later.  It is now an error.
+
+### Fixed
+
+- Compiler:
+  + Reject invalid reference in the `on` of `join`s already while compiling,
+    not just when calling the (SQL) backend.
+  + Correct the calculation of annotation assignments on the return structure of actions
+    when both `annotate … with {…}` and `annotate … with returns {…}` had been used
+    on the same structure element.  Ensure that it works when non-applied, too.
+  + Do not remove or invent `actions` properties with zero actions or functions in it.
+  + Correct auto-redirection of direct cycle associations: if the source and target of a
+    model association are the same entity, and the main artifact of the service association
+    based on the model association is a suitable auto-redirection target, then use it
+    as new target, independently from the value of `@cds.redirection.target`.
+- to.cdl: Indirectly structured types (`type T: Struct;`) with `includes` (`extend T with T2;`), are now properly rendered.
+- to.sql/hdi/hdbcds:
+  + Views on views with parameters did not have localized convenience views based on
+  other localized views (missing `localized.` prefix in FROM clause)
+  + Run less checks on entities marked with `@cds.persistence.exists`
+  + Correctly render SELECT items where the column name conflicts with a table alias
+- to.sql: Casting expressions to a structured type yields a proper error instead of strange compiler error.
+- to.edm(x):
+  + Don't expand `@mandatory` if element has an annotation with prefix `@Common.FieldControl.`.
+  + Fix a bug when referencing nested many structures, especially referring to a managed association via
+  `$self` comparison.
+  + Improve handling of non-collection annotation values for collection-like vocabulary types.
+  + Don't render `Scale: variable` for `cds.Decimal(scale:0)`.
+- to.sql|hdi.migration:
+  + Fixed a bug that caused rendering of `ALTER` statements to abort early and not render some statements.
+  + CSN output now only contains real `cds` builtins, no early remapping to HANA CDS types or similar.
+- to.sql.migration: Don't drop-create views marked with `@cds.persistence.exists`
+
+### Removed
+
 ## Version 4.1.2 - 2023-07-31
 
 ### Fixed
 
-- to.hdi.migration: Changes in constraints are not rendered as part of the .hdbmigrationtable file, as they belong in other HDI artifacts
+- to.hdi.migration: Changes in constraints are not rendered as part of the .hdbmigrationtable file,
+  as they belong in other HDI artifacts
 
 ## Version 4.1.0 - 2023-07-28
 
@@ -196,6 +277,25 @@ The compiler behavior concerning `beta` features can change at any time without 
     are removed, because since - `Entity.myElement` could also be a definition,
     creating ambiguities. This did not work always, anyway.
 
+## Version 3.9.10 - 2023-08-25
+
+### Fixed
+
+- to.edm(x): Error reporting for incorrect handling of "Collection()" has been improved.
+- to.sql/hdi/hdbcds: Views on views with parameters did not have localized convenience views based on
+  other localized views (missing `localized.` prefix in FROM clause)
+- to.sql: Casting expressions to a structured type yields a proper error instead of strange compiler error.
+- to.sql.migration: Don't drop-create views marked with `@cds.persistence.exists` or `@cds.persistence.skip`
+
+## Version 3.9.8 - 2023-08-03
+
+### Fixed
+
+- to.edm(x):
+  + Don't expand `@mandatory` if element has an annotation with prefix `@Common.FieldControl.`.
+  + Fix a bug when referencing nested many structures, especially referring to a managed association via
+  `$self` comparison.
+- to.sql/hdi/hdbcds: Detect navigation into arrayed structures and raise helpful errors instead of running into internal errors.
 
 ## Version 3.9.6 - 2023-07-27
 

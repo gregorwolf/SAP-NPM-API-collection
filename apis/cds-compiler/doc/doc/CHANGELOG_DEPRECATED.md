@@ -11,6 +11,21 @@ Note: `deprecated` features are listed in this ChangeLog just for information.
 **When the `deprecated` option is set, the `beta` option is ignored,
 and several new features are not available.**
 
+## Version 4.2.0 - 2023-08-29
+
+### Added `noKeyPropagationWithExpansions`
+
+When this option is set, element `id` in types `Orig` and `I` are keys,
+but `id` in `D` is not.
+
+```cds
+type Orig { key id: Integer };
+type I: Orig {};
+type D: Orig;
+```
+
+When this option is not set, element `id` in all three types are keys.
+
 ## Version 4.0.0 - 2023-06-06
 
 ### Added `downgradableErrors`

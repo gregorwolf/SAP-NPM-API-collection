@@ -4,6 +4,43 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.2.0 - 2023-09-04
+
+### Added
+
+- Typescript definition for:
+  - The `cds.exit()` method.
+  - The `label` option parameter in the `cds.log()` API. For example: `cds.log('log message', { label: 'adapter' }`.
+- `@restrict` annotations can now prevent the creation of drafts([see documentation](https://pages.github.tools.sap/cap/docs/guides/authorization#restrictions-and-draft-mode))
+- JSON Schema validation for `cds.requires.multitenancy.jobs` settings.
+- Managed associations to-one with exactly one foreign key can now have a default value.
+- Skip Okra's parsing of query options via experimental feature flag `cds.env.features.okra_skip_query_options = true`.
+  Only allowed in combination with new OData parser, i.e., `cds.env.features.odata_new_parser = true`.
+- Support for `@requires: 'any'` to make service public, i.e., no authenticated user is required
+
+### Changed
+
+- The built-in `java` profile sets `build.target` to `.` by default
+- Decimals from query options (e.g., `$filter`) are represented as strings in CQN
+- Improve error message for unsupported transformations with `$apply`
+- For database dialect H2, specialized localized views for languages `de` and `fr` are no longer generated.
+- Authentication kinds `jwt`, `xsuaa`, and `ias` throw an error during bootstrapping if the necessary credentials are not available.
+  Previously, a warning was logged and authentication was skipped.
+  See `cds bind`/ Hybrid Testing in CAPire for how to combine local development and cloud resources.
+- The Typescript definitions now make use of the default export.
+
+### Fixed
+
+- Trace middleware: Adapted usage of `performance.now()` for Node 20.
+- Draft: Associations to non-draft enabled entities must never point to drafts
+- Avoid type error in old db post processing
+- `<remote-srv>.run('/arbitrary-url')` properly defaults to a get request and does not add request body
+- `@cds.query.limit` is cached per projection
+- Application crash for incorrect usage of REST-style API to run queries
+- The `@requires` annotation on entity level didn't get applied to bound operations
+- `cds.test` run with a profile parameter such as `cds.test('run', '--profile', 'integration-tests')` will use the correct profile.
+- `cds.env.requires.auth.restrict_all_services = false` in combination with `cds.env.requires.middlewares = true` (the default)
+
 ## Version 7.1.2 - 2023-08-11
 
 ### Fixed
@@ -21,14 +58,13 @@
 ### Fixed
 
 - Lean draft: read actives via service on draft edit
-- Resolve column name for `STREAM` CQN queries that point to views
 - Only log the error in case of an unhandled rejection
+- Resolve column name for experimental `STREAM` CQN queries that point to views
 
 ## Version 7.1.0 - 2023-07-28
 
 ### Added
 
-- Support for resolving of `STREAM` CQN queries that point to views
 - Enable PDF export via GET to collection with accept header `appplication/pdf`.
   Custom handler must return the following:
   ```
@@ -48,6 +84,15 @@
     { kind: 'rest', path: '/rest/browse' }
   ]
   ```
+- Service level support for @restrict. Limited to grant: '*' and all filter conditions in `where` are ignored.
+  Example:
+  ```
+  @(restrict: [{
+    grant: '*',
+    to: ['authenticated-user']
+  }])
+  ```
+- Support for resolving of experimental `STREAM` CQN queries that point to views
 
 ### Fixed
 
@@ -152,13 +197,19 @@
 - Deprecated compat mode `cds.env.features.cds_tx_protection = false`
 - Beta `AuditLogService` and out-of-the-box audit logging. Use plugin `@cap-js/audit-logging` instead.
 
+## Version 6.8.4 - 2023-06-14
+
+### Fixed
+
+- `$metadata` requests for multitenant applications
+
 ## Version 6.8.3 - 2023-06-13
 
 ### Fixed
 
 - `cds build` no longer reports CAP Java Classic runtime usage by mistake.
 - `cds version` prints the local `@sap/cds` version, even if called from a different `@sap/cds` installation.
-- User challenges handling in case of `cds.env.auth.restrict_all_services: false`
+- User challenges handling in case of `cds.env.requires.auth.restrict_all_services: false`
 
 ## Version 6.8.2 - 2023-05-26
 
@@ -1030,7 +1081,7 @@ In such scenarios, now the HTTP `404 Not Found` status code is returned rather t
 - Avoid error that is caused e.g. in a streaming scenario when there is an issue while processing the stream. Trying to change/send the response object could cause a crash because the response was sent already.
 - Correct URL generation for `Integer64` and `Decimal` for remote services
 - Operation parameters from structured type and annotated with @open are not filtered from the input query
-- Services are secured by default in production. Can be disabled via feature flag `cds.env.auth.restrict_all_services: false` or by using `mocked-auth`.
+- Services are secured by default in production. Can be disabled via feature flag `cds.env.requires.auth.restrict_all_services: false` or by using `mocked-auth`.
 - Optimized Search: Exception when searching on views using built-in SQL SAP HANA functions
 - In some cases, custom error handlers were not called for rest
 - `cds build` adds newline at EOF for `hdbmigrationtable` files

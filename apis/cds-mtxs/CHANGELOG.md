@@ -6,6 +6,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## Version 1.11.0 - 2023-09-01
+
+### Added
+
+- `/-/cds/extensibility/push` now also accepts the `prefer: respond-async` header for asynchronous requests.
+- `/-/cds/model-provider/getCsn` uses an LRU cache for base model CSNs, limited to 5 entries by default. This cache size can be configured using `cds.requires['cds.xt.ModelProviderService'].cacheSize`.
+- The `treat_unmodified_as_modified` parameter is now allowed for HDI deployments.
+
+### Fixed
+
+- The Service Manager client now returns all bindings for partial cache misses for `cds.requires.['cds.xt.SaasProvisioningService'].jobs.clusterSize > 1`.
+- The Service Manager client will now wait with exponential back-off for unexpected error codes.
+- The Service Manager client will now print the correct root cause for errors with a `description` field.
+- Command `cds-mtx` now terminates immediately after execution is finished.
+
 ## Version 1.10.0 - 2023-07-31
 
 ### Added

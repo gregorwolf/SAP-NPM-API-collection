@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.6.5 - 2023-09-04
+
+### Changed
+- All available HDI deployment parameters can now be passed for tenant deployment.
+
+### Added
+- Container creation now adds parameters needed for HANA encryption
+
 ## Version 2.6.4 - 2022-11-17
 
 ### Fixed
