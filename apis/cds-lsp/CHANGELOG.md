@@ -6,6 +6,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.2.0 - 2023-09-03
+
+### Changed
+- refactored data structures of where-used index to keep file indexes independent of each other
+- (beta): reuse file indexes in most situations to speed up indexing - can be disabled via user setting `cds.workspaceValidationOptimistic` 
+- annotation handler is only called for completion if cursor at reasonable annotation position
+- workspace symbol query has new switch `/a` to include auto-exposed entities
+- rewritten indexing of annotations to boost performance
+- resolution of reference AST nodes is now cached to boost performance
+- elements of `mixin`s now use `LSP.SymbolKind.Field` (was: Operator) for outline
+
+### Fixed
+- highlighting of custom types starting with built-in name
+- explicit annotation definition is now searched in all file indexes as annotations are not dependent on imports via  `using` statement
+- _semantic_ outline now only shows first non-empty line of docs as VSCode does not support multi-line docs in semantic outline
+
+### Also see
+- `@sap/cds-compiler` 4.2.2
+
 ## 7.0.0 - 2023-06-13
 
 ### Added

@@ -8,6 +8,13 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 4.3.0 - 2023-09-29
+
+### Removed `associationDefault`
+
+This flag is now the default. Managed associations with exactly one foreign key can now
+have a default value.
+
 ## Version 4.1.0 - 2023-07-28
 
 ### Added `associationDefault`

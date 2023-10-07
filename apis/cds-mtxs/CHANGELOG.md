@@ -6,6 +6,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.12.0 - 2023-10-05
+
+### Added
+
+- Beta: Setting `cds.requires.multitenancy.humanReadableInstanceName = true` will create human-readable tenant IDs for instances created via Service Manager, instead of hashed strings. This is incompatible with existing tenants using hashed instance names.
+- Extensions of internal entities / services starting with `cds.xt.` are no longer allowed.
+- If no extensions exist, `ModelProviderService.getEdmx()` now uses edmx files prebuilt by `cds build`.
+- `ModelProviderService.getEdmx()` with empty `locale` parameter returns non-translated edmx.
+- `ModelProviderService.getI18n()` returns the translated texts for a given `locale` and `tenant`.
+- Migrated extension projects can now be downloaded using `cds extend <url> --download-migrated-projects`.
+
+### Changed
+
+- The allowlist for HDI deployment parameters (`HDI_DEPLOY_OPTIONS`) is removed. Any option can now be used.
+- `PUT /-/cds/saas-provisioning/tenant` now also allows non-UUID strings for `subscribedSubaccountId`.
+
+### Fixed
+
+- Synchronous call of `PUT /-/cds/saas-provisioning/tenant` now returns correct `content-type`: `text/plain`.
+- Update of extensions with different tags that depend on each other does no longer result in a compilation error.
+- Extensions containing new entities with associations to base entities do no longer cause a compilation error.
+- For HANA deployment, no recompilation is done any more for applications not using extensibility.
 
 ## Version 1.11.0 - 2023-09-01
 

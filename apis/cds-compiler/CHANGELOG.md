@@ -7,6 +7,38 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.3.0 - 2023-09-29
+
+### Added
+
+- compiler: it is possible to publish associations with filters in views.
+  Managed associations become unmanaged ones.  For example:  
+  ```cds
+  entity Proj as projection on Base {
+    assoc[id = 1],
+  };
+  ```
+
+### Changed
+
+- Update OData vocabularies: 'Aggregation', 'Capabilities', 'Common', 'PDF', 'PersonalData', 'UI'.
+
+### Fixed
+
+- parser: Chained methods without arguments such as `b` in `a().b.c()` were lost.
+- compiler:
+  + Type arguments in `cast()` functions, whose column also has an explicit type set, were not
+    properly checked.  Now the `cast()`s type and type arguments are checked.
+  + SQL function `STDDEV(*)` was not parsable.
+  + In views, published association's ON-conditions containing `$projection` are now rewritten
+    to `$self` in the CSN `elements` property.  This ensures recompilability of the CSN.
+
+## Version 4.2.4 - 2023-09-14
+
+### Fixed
+
+- OData: For compatibility with the Java runtime, don't prepend table aliases to column aliases unless necessary.
+
 ## Version 4.2.2 - 2023-08-31
 
 ### Fixed

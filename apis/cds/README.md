@@ -2,7 +2,7 @@
 
 The API package for the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap).
 
-See the [API documentation](https://cap.cloud.sap/docs/node.js/api) for more details.
+See the [API documentation](https://cap.cloud.sap/docs/node.js) for more details.
 
 ## How to Obtain Support
 

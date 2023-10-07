@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 5.0.0 - 2023-10-05
+
+### Removed
+ 
+ - "uuid" dependency, use Node.js crypto instead
+
 ## Version 4.0.2 - 2023-06-21
 
 ### Fixed
