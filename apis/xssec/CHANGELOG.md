@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.3.5 - 2023-09-28
+- Support for app2service and app2app for IAS
+
+## 3.3.4 - 2023-09-06
+- Fix IAS token exchange with X509 binding
+
 ## 3.3.3 - 2023-08-08
 - Send either both x-app_tid & x-client_id headers or none of them to IAS /certs endpoint to prevent bad request
 

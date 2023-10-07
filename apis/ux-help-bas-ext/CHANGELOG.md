@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.0] - 2023-09-12
+### Added
+- Introduced an indicator for parameters that are pre-filled when a guide is opened from the Page Editor.
+### Changed
+- Minor UX changes to make the guide details screen render better on smaller screen sizes. 
+### Fixed
+- Fixed an issue in the TypeScript variant of the `Add a custom action to a page using extensions` guide where the guide displayed a wrong file name.
+
 ## [1.10.6] - 2023-08-24
 ### Added
 - Introduced the _Configure default grouping in a table_ guide for OData V2 list report projects.

@@ -224,3 +224,11 @@ conn.rollback(function(err) {
 ## Resources
 
 + [SAP HANA Documentation](https://help.sap.com/viewer/f1b440ded6144a54ada97ff95dac7adf/latest/en-US/a5c332936d9f47d8b820a4ecc427352c.html)
+
+## License
+
+The HANA Node.js Driver is provided via the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_1.txt).
+
+By using this software, you agree that the following text is incorporated into the terms of the Developer Agreement:
+
+> If you are an existing SAP customer for On Premise software, your use of this current software is also covered by the terms of your software license agreement with SAP, including the Use Rights, the current version of which can be found at: https://www.sap.com/about/agreements/product-use-and-support-terms.html?tag=agreements:product-use-support-terms/on-premise-software/software-use-rights

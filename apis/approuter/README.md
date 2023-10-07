@@ -232,6 +232,7 @@ Full Certificate Chain | `FULL_CERTIFICATE_CHAIN`              | If `true`, the 
 Store CSRF token in external session | SVC2AR_STORE_CSRF_IN_EXTERNAL_SESSION | If `true` and have enabled [external session management](#external-session-management), the application router can generate and validate CSRF tokens in service-to-application-router flows by storing the token in an external session.
 Cache service credentials | CACHE_SERVICE_CREDENTIALS             | If `true`, services credentials are cached in the application router memory
 Skip adding xsuaa/ias mTLS certificate | SKIP_DEFAULT_MTLS_AUTH_CA             | If `true`, the application router will not add xsuaa/ias client certificate to backend requests
+Enable x-forwarded-host header validation | ENABLE_X_FORWARDED_HOST_VALIDATION | If `true`, x-forwarded-host validation will be performed, allowing letters, digits, hypens (-), underscores (_) and dots (.). As well as it validates hostname length.  
 **Note:** all those environment variables are optional.
 
 

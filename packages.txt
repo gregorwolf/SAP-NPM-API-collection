@@ -3,6 +3,8 @@
 @sap/adp-cli
 @sap/adp-common
 @sap/adp-ve-bas-ext
+@sap/ams
+@sap/ams-dev
 @sap/apihub-enterprise-service-provider
 @sap/apihub-service-provider
 @sap/approuter
@@ -34,12 +36,14 @@
 @sap/datasphere-cli
 @sap/destination-instance-service-provider
 @sap/dwc-cli
+@sap/e2e-trace
 @sap/eslint-plugin-cds
 @sap/external-service-mashup
 @sap/generator-adaptation-project
 @sap/generator-add-hdb-module
 @sap/generator-aicore
 @sap/generator-cap-project
+@sap/generator-cds
 @sap/generator-fiori
 @sap/generator-hdb-project
 @sap/hana-client
@@ -72,6 +76,7 @@
 @sap/site-content-deployer
 @sap/site-entry
 @sap/subaccount-destination-service-provider
+@sap/swa-for-sapbas-vsx
 @sap/textbundle
 @sap/ucl-provider
 @sap/ux-annotation-modeler-bas-ext

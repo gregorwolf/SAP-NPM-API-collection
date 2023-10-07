@@ -4,9 +4,50 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.108.13] - 2023-08-23
+## [1.108.15] - 2023-09-21
 
 ### Added
+
+- Check "UI.LineItem is not defined" added to OData V2
+- More error messages added to the logger in case of inconsistencies with regards to the page definitions in manifest
+- Added new tag `descriptionSrcURL` to certain properties
+
+### Changed
+
+- Error handling enhanced to detect missing component names of pages. An error message is added to the log passed in the API call
+- References now use platform-independent SAPUI5 CDN URL `ui5.sap.com`
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- The error message "UI.LineItem is not defined" wrongly appeared in the output log when views and/or (Selection)PresentationVariants have been used
+- In case of a missing entitySet definition in the manifest for a List Report, subsequent Object Pages got deleted during the export
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades:
+
+- eslint to v8.49.0
+- @sap-ux/annotation-converter to 0.7.4
+- @sap-ux/vocabularies-types to 0.9.3
+- @sap-ux/vocabularies-types to 0.9.3
+- @sapui5/ts-types-esm to 1.108.22
+- @types/semver to v7.5.2
+- esbuild to 0.19.3
+- @types/jquery to 3.5.19
+- @sap-ux/fe-fpm-writer to 0.23.5
+
+## [1.108.14] - 2023-09-07
+
+### Added
+
+- OData V2:
+  - Added support for the binding pattern to `showHeaderContent` property
 
 ### Changed
 
@@ -15,6 +56,29 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Deprecated
 
 ### Fixed
+
+- OData V4:
+  - Wrong annotation path is generated for connected fields with a different entity type than the section
+- OData V2:
+  - Schema was not completely filled for custom columns, enum values for fragmentName and cellsFragmentName had been partially missing
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades:
+
+- @types/jquery to 3.5.18
+- eslint to 8.48.0
+- esbuild to 0.19.2
+- @sap-ux/fe-fpm-writer to 0.23.2
+- jquery to 3.7.1
+- @types/semver to 7.5.1
+- @sap-ux/vocabularies-types to 0.9.2
+- @sap-ux/annotation-converter to 0.7.3
+- typescript-json-schema to v0.57.0
+
+## [1.108.13] - 2023-08-23
 
 ### Quality
 
@@ -36,14 +100,6 @@ Upgrades:
 - OData V4: 
   - Support connected fields on the Object Page
 
-### Changed
-
-### Removed
-
-### Deprecated
-
-### Fixed
-
 ### Quality
 
 - Update transitive dependencies
@@ -53,7 +109,6 @@ Upgrades:
 - eslint to 8.46.0
 - eslint-config-prettier to 8.9.0
 
-
 ## [1.108.11] - 2023-07-26
 
 ### Added
@@ -61,12 +116,6 @@ Upgrades:
 - OData V4:
   - Default aggregation support for macros table and action group
   - Multiple namespaces support for macros
-
-### Changed
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 

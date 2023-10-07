@@ -3,6 +3,25 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.1] - 2023-09-21
+### Changed
+- Removed the experimental warning that was being displayed when choosing TypeScript during generation
+
+### Fixed
+- Fixed an issue where generating an SAP Fiori app as part of the `Full-Stack Application Using Productivity Tools` Dev Space in SAP Business Application Studio could generate an invalid `manifest.json` file
+- Fixed an issue where some local CAP projects were not being correctly detected as valid data sources during generation
+- Fixed an issue with generating an invalid key in the `manifest.json` file if the data source contained forward slashes
+- Fixed an issue where ABAP deployment was incorrectly requesting authentication details when being deployed in a CI/CD environment
+
+## [1.11.0] - 2023-09-07
+### Added
+- Added the ability to generate a SAP Fiori app in VSCode with a self-signed or untrusted root CA
+
+### Fixed
+- Fixed an issue when running SAP Fiori application resulted in an error due to missing `sap.cloud` property in manifest.json
+- Fixed an issue when Reuse Library Reference generator crashes when reference to a library is added to an exisitng library type project
+- Fixed an issue with generator which was launching app info page instead of page map in Low-Code-Base Full-Stack Cloud Application type dev space
+
 ## [1.10.6] - 2023-08-24
 ### Added
 - Added ability to retain developer personalization settings for local preview on refresh or restart.

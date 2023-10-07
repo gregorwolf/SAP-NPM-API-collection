@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 ​
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.0] - 2023-09-06
+### Changed
+- Changed the message appearing if no eligible app is found at the start of Service Manager or Annotation File Manager from a modal popup to a notification to be in line with the behavior of other tools
+
+### Fixed
+- Fixed several small UI inconsistencies in Service Manager and Annotation File Manager
+
 ## [1.9.6] - 2023-05-03
 ### Added
 - Added deprecation message for Compact and Expanded views; these views will be deprecated in future

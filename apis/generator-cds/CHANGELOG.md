@@ -8,6 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 
 
+
+## [2.18.3] - 2023-09-08
+### Fixed
+- now handles return value of npm show version command correctly
+
+### Changed
+- Requires `Node.js` version 14 or higher
+- Updated libraries
+
 ## [2.18.1] - 2022-07-01
 ### Fixed
 - Various bug fixes

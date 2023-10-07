@@ -1,3 +1,9 @@
+## 1.24.0
+
+### Fixes
+- Namespaces could be generated as "null" in the synonym editor
+- A synonym could be used instead of a user-defined function in the expression editor
+
 ## 1.23.0
 
 ### New Features

@@ -1,4 +1,5 @@
-[![Build Status](https://gkedevxlondon.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=swa_ci/master)](https://gkedevxlondon.jaas-gcp.cloud.sap.corp/job/swa_ci/job/master/)
+[![Build Status](https://gkeplatform2.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=swa-for-sapbas-vsx-voter/master)](https://gkeplatform2.jaas-gcp.cloud.sap.corp/job/swa-for-sapbas-vsx-voter/job/master/)
+[![Product PR](https://esm-product-status.cfapps.sap.hana.ondemand.com/swa/badge)](https://esm-product-status.cfapps.sap.hana.ondemand.com/swa/pr)
 [![Quality Gate Status](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=alert_status)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
 [![Coverage](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=coverage)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
 [![Rating](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=sqale_rating)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
@@ -147,7 +148,7 @@ The following fields can be used for creating SWA reports:
 | **Custom event parameter 6**  | IAAS (aws,ali,azure), set by the lib automatically   |
 | **Custom event parameter 7**  | Datacenter (stg10.int, cry10.int, ap21, prd40), set by the lib automatically    |
 | **Custom event parameter 8**  | Version (currently not supported), set by the lib automatically    |
-| **Custom event parameter 9**  | Is SAP User where allowed, empty overwise, set by the lib automatically    |
+| **Custom event parameter 9**  | Tenant Plan (currently supported only for reports from ws manager)    |
 | **Custom event parameter 10**  | The unique caller ID "vsxPublisher.vsxPackageName", set by lib automatically  |
 | **Numeric event parameter 1** | Event additional numeric data 1, "numeric event 1" sent via tack API |
 | **Numeric event parameter 2** | Event additional numeric data 2, "numeric event 2" sent via tack API |

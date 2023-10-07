@@ -1,3 +1,40 @@
+# Hana Client 2.18.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.18 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.18/en-US
+
+For the latest updates please see SAP Note 3362072 - SAP HANA Client 2.18 Release Notes
+
+https://me.sap.com/notes/3362072
+
+## Version 2.18.24
+
+### Changes:
+
+ - Issue Number 312829: The poolKey parameter may not have been parsed correctly.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 313362: An error message involving a getpwuid failure may have been incomplete.
+ - Issue Number 310723: SQLDBC could have crashed when working with distributed transactions.
+
+## Version 2.18.22
+
+### Changes:
+
+ - Issue Number 301770: Calling status functions on Connection, Statement, or ResultSet objects could have caused the application to block temporarily.
+ - Issue Number 310411: The driver could have crashed with a malformed connection string.
+ - Issue Number 312275: The Node.js driver included in the HANA Client install for Mac on ARM64 could have failed to install.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 307786: The client could have crashed when the Transaction Isolation Level was changed.
+ - Issue Number 307701: Incorrect results could have been returned after running out of memory.
+ - Issue Number 296003: The index server could have exited during out-of-memory situations when SQLDBC tracing was enabled.
+ - Issue Number 291672: High CPU usage could have been observed in a multi-threaded SQLDBC application.
+ - Issue Number 308137: SQLDBC could have crashed when accessed by a new user or technical user.
+
 # Hana Client 2.17.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.17 documentation:

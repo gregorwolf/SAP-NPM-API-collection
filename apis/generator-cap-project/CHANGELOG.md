@@ -9,6 +9,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+
+## [1.7.4] - 2023-09-13
+
+### Fixed
+- improved error message in Application Wizard
+- add missing dependencies to fix bundling
+
 ## [1.7.3] - 2023-09-05
 ### Added
 - add option `for = 'production'`;

@@ -13,7 +13,7 @@ So there is a deep parameter validation needed!
 
 ### How to get the TokenInfo object
 There are several ways to get the TokenInfo.
-If an error occurs NO security context is created. But the [TokenInfo](doc/TokenInfo.md) object is available, so you can do some logging.
+If an error occurs NO security context is created. But the [TokenInfo](TokenInfo.md) object is available, so you can do some logging.
 
 #### If you create the SecurityContext on your own
 ```js

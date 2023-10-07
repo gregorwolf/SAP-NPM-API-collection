@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2023.19.0
+
+### Fixed
+
+- Logging in failed if required information such as the client ID or client secret were provided via interactive input prompt. When the information were provided using a secrets file or via options, the login worked as expected.
+
 ## 2023.18.0
 
 ### Added

@@ -5,6 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="1.0.7"></a>
+## 1.0.7 - 2023-10-03
+
+### Updated
+- Updated hana-client to v2.18.24
+- Updated hdbext to v8.0.0
+- Updated xssec to v3.3.5
+- Updated audit-logging to v5.7.1
+
+
+### Fixed
+- Fixed Sql script job runner
+
+
 <a name="1.0.6"></a>
 ## 1.0.6 - 2023-06-23
 

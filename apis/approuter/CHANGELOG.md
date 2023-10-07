@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 14.3.2 - 2023-09-10
+
+### Added
+- Clean invalid token from cache when calling service in case of getting 401/403
+- Add option (ENABLE_X_FORWARDED_HOST_VALIDATION) to validate x-forwarded-host header as a valid hostname
+
+### Fixed
+- Collect logout data also for Direct Routing URI
+- Token exchange in html5 repo credentials flow
+
+### Updated dependencies
+- deps: @sap/xssec@3.34
+
 ## 14.3.1 - 2023-08-02
 
 ### Added

@@ -173,6 +173,19 @@ By the default the `fiori-tools-proxy` will read the proxy configuration from th
       url: https://my.backend.com:1234
 
 ```
+#### [Ignoring Certificate Errors](#ignoring-certificate-errors)
+By default, the `fiori-tools-proxy` will verify the SSL certificates and will throw an error if the validation fails. One can set the parameter `ignoreCertError: true` to ignore the certificate errors. Setting this parameter to `true` also allows the usage of self-signed certificates.
+
+```
+- name: fiori-tools-proxy
+  afterMiddleware: compression
+  configuration:
+    ignoreCertError: true
+    backend:
+    - path: /sap
+      url: https://my.backend.com:1234
+
+```
 #### [Providing Credentials](#providing-credentials)
 Starting with version `1.6.7` it is now possible to provide the credentials for the backend service upfront in a `.env` file.
 
@@ -639,6 +652,7 @@ Deploys an application to an ABAP frontend server.
 * `--description, -e` - The application description (default: description from `ui5-deploy.yaml`).
 * `--yes, -y` - Deploy without asking for confirmation.
 * `--failfast, -f` - Throw an error if something goes wrong and exit with a return code != 0.
+* `--testMode, -tm` - Shows the results of CRUD operations that would be done in a real deployment to help you make an informed decision.  
 
 ## [FAQ](#faq)
 

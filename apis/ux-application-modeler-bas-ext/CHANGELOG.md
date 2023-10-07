@@ -5,6 +5,27 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.1] - 2023-09-20
+### Fixed
+- Fixed an issue with the dropdown control for the Add Contact Column dialog in the Page Editor
+- Fixed an issue with Unicode characters not being shown correctly in the application modeler tree view
+- Fixed an issue where moving multiple custom columns per drag & drop to the first position didn't work with the Page Editor and OData V2-based applications
+- Fixed issues with adding custom columns not being successful with Page Editor and OData V2-based applications in conjunction with `@sap/ux-specification` versions 1.71.94, 1.84.74, 1.96.48, 1.108.14 or higher
+- Fixed an issue with custom pages as root pages of an application not offering the correct navigation targets for creating new pages in the Page Map
+- Fixed an issue with the minimum SAPUI5 version not being considered when the version of `@sap/ux-specification` that should be installed on the Application Info page is being determined
+
+## [1.11.0] - 2023-09-06
+### Added
+- Added support for projects of the type library to the Application Information Page; renamed the labels to reduce redundancy and make them sound more general
+- Added the run configuration to the preview command, hence developers can now access all preview options for an application in one place
+- Migration view now informs if Node.JS is not installed when migrating SAP Fiori projects in VSCode
+- Enabled adding, maintaining, and deleting the semantically connected fields in Form and Identification sections residing in the content area of the Object Pages
+
+### Fixed
+- Fixed an issue with missing tiles for test deployment and undeployment operations on the Application Information Page
+- Fixed an issue with the preview throwing an error when trying to start an SAPUI5 freestyle application via the preview command
+- Fixed an issue in the migration view when deleted projects are not removed from the migration table after refresh
+
 ## [1.10.6] - 2023-08-23
 ### Added
 - Added feature tiles `Maintain Mockdata` and `Manage XML Annotations` to the Application Info Page of SAPUI5 freestyle applications

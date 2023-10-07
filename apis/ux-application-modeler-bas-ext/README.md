@@ -108,9 +108,9 @@ In the text editor of the virtual JSON file of the page choose the `Show Page Ed
 
 ## How to Preview the Application
 
-The application modeler also comprises a live preview in a browser for non-CAP applications (for CAP the preview is handled via CDS tools), which is automatically refreshed when application project files are changed. The live preview starts a http local server at default port 8080 (additional apps start at subsequent ports), where the application is run.
+Provided by [`@sap/ux-ui5-tooling`](https://www.npmjs.com/package/@sap/ux-ui5-tooling) the application modeler also comprises a live preview in a browser for non-CAP applications (for CAP the preview is handled via CDS tools), which is automatically refreshed when application project files are changed. The live preview starts an HTTP local server at default port 8080 (additional apps start at subsequent ports), where the application is run.
 
-Select the root folder of your app or any folder in your workspace within Explorer, right-click and choose `Preview Application` to start the app in your default browser.
+Select the root folder of your app or any app-related folder within the Explorer, right-click, and choose `Preview Application` to start the app in your default browser.
 
 OR
 
@@ -120,13 +120,14 @@ OR
 
 From the application modeler tree view for the project from the SAP Fiori sidebar view right-click on any folder, and choose `Preview Application`.
 
-If the project can't be determined from your selection, you will be presented with a quick pick to select the project. Next it presents you with a list of start scripts from `package.json` to choose from on how you want the preview being executed. As of Application Generator version 1.0.14 and [`@sap/ux-ui5-tooling`](https://www.npmjs.com/package/@sap/ux-ui5-tooling) version 1.0.13 the three default options are:
+If the application can't be determined from your selection, you will receive a quick pick to select it from. Next, you receive a list of start scripts from the `package.json` with options on how you want the preview to be executed. The default options are:
 
 * `start` - starts the application with real service data
-* `start-mock` - starts the application with mock data (only available for OData V2 projects)
+* `start-mock` - starts the application with mock data
 * `start-local` - starts the application with mock data and a local copy of the SAPUI5 resources for offline work
+* `start-noflp` - starts the applications without the sandbox SAP Fiori launchpad
 
-The command `Fiori: Open Run Configuration` allows you to create a new run configuration in VSCode. In SAP Business Application Studio the functionality is available also via the action `Create Configuration` under `View` -> `Run configurations`.
+The preview command also offers the existing run configurations for the applications to start. Preview via run configurations gives the developer more flexibility in maintaining multiple preview setups and run with debugger attached. The command `Fiori: Open Run Configuration` allows you to create a new run configuration in VSCode. In SAP Business Application Studio the functionality is available also via the action `Create Configuration` under `View` -> `Run configurations`.
 
 ### Enable App-to-App Navigation Preview
 

@@ -1,5 +1,11 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.18.0
+
+### Fixes
+- Several minor SQL console fixes.
+- Updated SAP HANA clients.
+
 ## 1.17.0
 
 ### New Features

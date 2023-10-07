@@ -9,6 +9,13 @@ See the [migration guide](migration.md) how to adapt.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 <a name="6.5.9"></a>
+## 6.6.0 - 2023-09-18
+### Added
+- Support for node v20 added.
+### Removed
+- Support for node v12 is removed.
+
+<a name="6.5.9"></a>
 ## 6.5.9 - 2023-07-24
 ### Changed
 - Dependencies version update.

@@ -1,5 +1,21 @@
 # SQLA/IQ/DataLake Client 2.x Drivers
 
+## Version 2.18.24
+
+- Updated driver code to Client 2.18.24
+
+## Version 2.18.22
+
+- Updated driver code to Client 2.18.22
+
+## Version 2.18.21
+
+- Updated driver code to Client 2.18.21
+
+## Version 2.18.18
+
+- Updated driver code to Client 2.18.18
+
 ## Version 2.17.22
 
 - Updated driver code to Client 2.17.22

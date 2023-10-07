@@ -1,3 +1,21 @@
+## 1.26.0
+
+### New Features
+- Removal of outlier values before aggregation in restricted columns
+- Multiple nodes can be selected in a calculation view
+
+### Fixes
+- Special characters are allowed in window function in result column
+- Text fixes
+- "restrictionExpressionLanguage" was added redundantly to the XML
+- Rename of column in hierarchy function node causes build failure
+- Nonexistent standard tables are getting auto-populated in quantity with unit of measure semantics dialog
+- Data preview in XS Advanced projects does not work
+- Provide Where Used Outside Current View functionality also for input parameters and variables
+- Auto synonym generation does not work in time table generation in BAS
+- 'Where Used outside current view' does not work when the column is used in expression and reference
+- 'Cancel' button looks disabled in rename dialog of analytic privilege
+
 ## 1.25.0
 
 ### New Features

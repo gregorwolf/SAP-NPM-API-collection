@@ -1,3 +1,15 @@
+## 1.17.0
+
+### New Features
+
+- Bound modules in an XS Advanced development scenario can be opened in the Database Explorer
+
+### Fixes
+
+- Fixed the names of the available database versions
+- Artifact recovery works when bound to a schema service
+- The deployment status of files changed during a deployment is set correctly
+
 ## 1.16.0
 
 ### New Features

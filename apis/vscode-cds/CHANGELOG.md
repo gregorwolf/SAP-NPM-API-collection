@@ -7,6 +7,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 
 
 
+
+## Version 7.2.0 - 2023-09-04
+
+### Added
+- CAP with Typescript (beta): add setting to customize type generation command
+
+### Changed
+- New data structures and caching to improve performance of where-used requests (e.g. Find References) and code completion
+- Elements of `mixin`s now use `SymbolKind.Field` (was: Operator) in Outline
+
+### Fixed
+- CAP notebooks: Do not restrict running of CDS Server cell
+- Highlighting of custom types starting with built-in name
+- Outline now only shows first non-empty line of docs when in semantic mode (see user setting `cds.outline.semantical`) as VSCode does not support multi-line docs 
+
+### Removed
+- Legacy `Vanilla` theme - we recommend to use the default theme e.g. `Light Modern` which is similar but covers more token classes
+
+### Also see
+- `@sap/cds-lsp` 7.2.0
+- `@sap/cds-compiler` 4.2.2
+
+
 ## Version 7.0.2 - 2023-07-14
 
 ### Fixed
