@@ -1,3 +1,7 @@
+## 4.5.1
+Features:
+- Accept XSA environment variables and transform to client understandable variables
+
 ## 4.5.0
 Features:
 - Node 20.x support

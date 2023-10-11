@@ -1,3 +1,20 @@
+## 1.3.18
+### Overview Tab (Enhanced)
+- Removed the bar graph that previously visualized "Compilation Time", "Execution Time", or "CPU Time" in the Execution Summary card. Instead, these time values are now presented as numerical values under the titles: "Compilation Time", "Execution Time (Elapsed)", and "Execution Time (CPU)", respectively. This enhancement improves the clarity of time-related information in the Execution Summary card.
+- Added tooltips to the “Execution Time (Elapsed)” and “Execution Time (CPU)” entries in the Execution Summary card. These tooltips offer additional explanations upon clicking, ensuring that users can access detailed information within the tool.
+- Enhanced the display of bar graph color in the Dominant Plan Operators card. Previously, the color remained consistent regardless of the selected time mode. However, it's now dynamically presented based on the chosen time mode. In Inclusive Wall Time mode, the self-execution time is represented in red, while in CPU Time mode, it appears in yellow. This alignment also mirrors the way execution time is depicted on the Plan Graph.
+- Updated the system response when the thread limit is exceeded during query execution. A more relevant explanation is now displayed in the “SQL Performance Recommendations” card of the Overview tab. The original message has been revised, and distinct messages are now shown depending on whether the peak thread limit is associated with the workload class setting or the default_statement_concurrency_limit, along with relevant SAP Note link.
+
+### Plan Graph Tab (Enhanced)
+- Adjusted the CPU time bar chart size in the Plan Graph to be based on the total query execution CPU time rather than the physical container CPU time. This makes it easier to compare time values across different nodes.
+- Enhanced the time bar in our node interface and sidebar for HEX plans, offering comprehensive insights into query execution times. The time bar now includes both the operator's CPU time (yellow) and the physical operator group CPU time (light blue), making it easier for you to identify the most time-consuming aspects of your queries.
+
+### Timeline Tab (Enhanced)
+- In the HEX query plan, the timeline tab now displays “Pop” instead of “Open” for executed operations in CPU Time mode, enhancing consistency and clarity in representing operations.
+
+### Bug Fixes
+- Fixed an issue where the Re-Execute feature in the SQL Tab wasn't functioning properly. Furthermore, you'll soon be able to use the re-execute feature with the HRTT connection once the new version of the SAP HANA database explorer is released.
+
 ## 1.3.16
 - The node colors in the Plan Graph have been changed to improve readability.
 - Fixed an issue where the session context information of the inner plan was not being displayed in the SQL tab.

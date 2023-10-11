@@ -14,10 +14,10 @@
 ## General things
 
 Note: Either [@sap/hana-client](https://www.npmjs.com/package/@sap/hana-client) or [hdb](https://www.npmjs.com/package/hdb) must be installed by yourself. 
-@sap/hana-client versions ^2 >= 2.5 are currently supported by @sap/hdi 4.3.0.
+@sap/hana-client versions ^2 >= 2.5 are currently supported by @sap/hdi 4.5.1.
 To install the latest @sap/hana-client simply run `npm install @sap/hana-client`.
 
-hdb version ^0 is currently supported by @sap/hdi 4.3.0.
+hdb version ^0 is currently supported by @sap/hdi 4.5.1.
 To install the latest hdb simply run `npm install hdb`.
 
 Running `npm install --save @sap/hdi` will install the package and add it as a dependency to your **package.json**.
@@ -62,6 +62,7 @@ Access to the _SYS_DI API is provided by the `HDI` class. Access to this API req
 const { HDI } = require('@sap/hdi');
 
 // This credentials object will be directly passed to the @sap/hana-client or hdb client. Any options accepted by the @sap/hana-client or hdb clients can be passed.
+// Credentials object containing XSA environment variables will be converted to client acceptable options. 
 const credentials = {
     host : <host>,
     port : <port>,

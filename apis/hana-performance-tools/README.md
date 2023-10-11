@@ -1,6 +1,7 @@
 # SAP HANA SQL Analyzer for Visual Studio Code
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg?logo=jest)](https://github.com/facebook/jest)
 
 HANA SQL Analyzer for Visual Studio Code is a brand new software that we are developing from the scratch to help users analyze the performance of HANA SQL queries. This repository will be the only single source for the development plan, code, development status, release information, downloadable package, analysis know-hows, and bug reporting.
 
@@ -46,4 +47,4 @@ SQL Analyzer for Visual Studio Code is still under heavy development. Here are s
 
 ## Feedbacks
 
-Please provide your feedbacks thru "SAP HANA SQL Analyzer <hana_sql_analyzer@sap.com>"
+Please provide your feedback through [ServiceNow](https://itsm.services.sap/now/workspace/agent/record/u_sap_component/b1b0603e1bb3d4d0ddab74049b4bcbda/params/selected-tab-index/3) using the component HAN-BAS-SA.

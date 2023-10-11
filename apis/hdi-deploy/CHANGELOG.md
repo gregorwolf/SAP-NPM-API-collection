@@ -1,3 +1,8 @@
+## 4.8.1
+Features:
+- use @sap/hdi@4.5.1
+- use @sap/hana-client@2.18.24
+
 ## 4.8.0
 Features:
 - use @sap/hdi@4.5.0

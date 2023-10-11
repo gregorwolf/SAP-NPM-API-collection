@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.7.2 - 2023-10-05
+
+### Updated
+- Updated *xssec* to 3.3.5
+- Updated *hdbext* to 8.0.0
+
+
 ## 5.7.1 - 2023-07-10
 
 ### Updated
