@@ -3,9 +3,29 @@
 All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/).
-The format is based on [Keep a Changelog](https://keepachangelog.com/
+The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 
+## Version 7.3.0 - 2023-10-09
+
+### Added
+- support for `cdsc.moduleLookupDirectories`
+- Support for merged cds schemas returned by `cds-dk`
+
+### Changed
+- formatting of action and function parameters according to existing newlines
+- Minimum VSCode version is now 1.80.0. Note: This is likely the last version that supports NodeJS 16
+
+### Fixed
+- highlighting of identifiers, annotations, actions, functions, comments, and more
+- highlighting of queries in entity definitions
+- highlighting of keywords and literals in `type` statements
+- formatting of escaped names and `order by` clauses
+
+
+### Also see
+- `@sap/cds-lsp` 7.3.0
+- `@sap/cds-compiler` 4.3.0
 
 
 ## Version 7.2.0 - 2023-09-04
@@ -20,7 +40,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/
 ### Fixed
 - CAP notebooks: Do not restrict running of CDS Server cell
 - Highlighting of custom types starting with built-in name
-- Outline now only shows first non-empty line of docs when in semantic mode (see user setting `cds.outline.semantical`) as VSCode does not support multi-line docs 
+- Outline now only shows first non-empty line of docs when in semantic mode (see user setting `cds.outline.semantical`) as VSCode does not support multi-line docs
 
 ### Removed
 - Legacy `Vanilla` theme - we recommend to use the default theme e.g. `Light Modern` which is similar but covers more token classes

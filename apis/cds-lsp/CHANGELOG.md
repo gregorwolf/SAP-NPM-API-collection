@@ -6,6 +6,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.3.0 - 2023-10-09
+
+### Added
+- support for `cdsc.moduleLookupDirectories`
+
+### Changed
+- formatting of action and function parameters according to existing newlines
+
+### Fixed
+- highlighting of identifiers, annotations, actions, functions, comments, and more
+- highlighting of queries in entity definitions
+- highlighting of keywords and literals in `type` statements
+- formatting of escaped names and `order by` clauses
+
+### Also see
+- `@sap/cds-compiler` 4.3.0
+
 ## 7.2.0 - 2023-09-03
 
 ### Changed
