@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.2] - 2023-10-04
+### Changed
+- Changed the Basic template generated to also generate Typescript OPA tests when the user chooses to generate their application with Typescript support
+
+### Fixed
+- Fixed an issue with the latest version of VSCode (1.83) not supporting storing and retrieving credentials from secure storage of the operating system for use with SAP saved systems
+- Fixed an issue with CAP projects not using a valid version of the `cds-ui5-plugin` library when choosing to use npm workspaces during generation
+- Fixed an issue where using uppercase characters for the project namespace during generation would lead to invalid applications that could not be previewed
+
 ## [1.11.1] - 2023-09-21
 ### Changed
 - Removed the experimental warning that was being displayed when choosing TypeScript during generation

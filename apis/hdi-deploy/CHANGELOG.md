@@ -1,3 +1,7 @@
+## 4.8.2
+Fixes:
+- removed extraneous packages in shrinkwrap
+
 ## 4.8.1
 Features:
 - use @sap/hdi@4.5.1

@@ -2,6 +2,10 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.11.2] - 2023-10-04
+### Fixed
+- Removed usage of the deprecated `@ui5/logger` version 2 package 
+
 ## [1.11.0] - 2023-09-06
 ### Fixed
 - Fixed an issue with newly created variants not being shown during the preview

@@ -5,6 +5,17 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.2] - 2023-10-04
+### Added
+- Added the support for custom header sections for OData V4-based applications in conjunction with `@sap/ux-specification` versions 1.84.75, 1.96.49, 1.108.16 or higher
+- Added the support for custom filter fields for OData V4-based applications in conjunction with `@sap/ux-specification` versions 1.84.75, 1.96.49, 1.108.16 or higher
+- Added the support for standard actions (like "Share") and their properties for OData V2-based applications in conjunction with `@sap/ux-specification` versions 1.71.95, 1.84.75, 1.96.49, 1.108.16 or higher
+- Added tiles for test deployment and undeploy features of libraries to their Application Information Page
+- Added the support for launching the Application Info page after migrating a reusable library to be compatible with SAP Fiori tools
+
+### Fixed
+- Fixed an issue with an already used custom column fragment not being presented as the only valid option to store new custom columns for OData V2-based applications
+
 ## [1.11.1] - 2023-09-20
 ### Fixed
 - Fixed an issue with the dropdown control for the Add Contact Column dialog in the Page Editor

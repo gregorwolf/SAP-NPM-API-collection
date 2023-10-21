@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 14.3.3 -  2023-10-12
+
+### Fixed
+-  Crash on cookie name equal to basic object attribute 
+
+### Updated dependencies
+- deps: @sap/audit-logging@5.7.1
+
+### Added
+- Protect from timing attack on state parameter middleware.
+- Protect against Request Smuggling.
+
 ## 14.3.2 - 2023-09-10
 
 ### Added
@@ -16,7 +28,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Token exchange in html5 repo credentials flow
 
 ### Updated dependencies
-- deps: @sap/xssec@3.34
+- deps: @sap/xssec@3.3.4
 
 ## 14.3.1 - 2023-08-02
 

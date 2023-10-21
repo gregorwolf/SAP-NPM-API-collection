@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.12.1 - 2023-10-17
+
+### Fixed
+
+- More stable upgrade with extensibility enabled.
+- Downloaded migrated extension projects now contain correct base model references.
+
 ## Version 1.12.0 - 2023-10-05
 
 ### Added
@@ -27,7 +34,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Synchronous call of `PUT /-/cds/saas-provisioning/tenant` now returns correct `content-type`: `text/plain`.
 - Update of extensions with different tags that depend on each other does no longer result in a compilation error.
 - Extensions containing new entities with associations to base entities do no longer cause a compilation error.
-- For HANA deployment, no recompilation is done any more for applications not using extensibility.
+- For SAP HANA deployment, no recompilation is done any more for applications not using extensibility.
 
 ## Version 1.11.0 - 2023-09-01
 

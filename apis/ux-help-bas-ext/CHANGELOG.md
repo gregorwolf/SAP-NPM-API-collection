@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.2] - 2023-10-05
+### Fixed
+- Fixed an issue where the extension would not open if a workspace with multiple projects in it had a package.json file that was not assigned to a project.
+
 ## [1.11.0] - 2023-09-12
 ### Added
 - Introduced an indicator for parameters that are pre-filled when a guide is opened from the Page Editor.

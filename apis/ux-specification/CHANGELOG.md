@@ -4,6 +4,43 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.108.16] - 2023-10-05
+
+### Added
+
+- OData V2:
+  - Added support for standard header actions `Share` and `Up and Down Navigation`, and footer action `Save and Edit`
+- OData V4:
+  - Support for custom header sections
+  - Support for custom filter fields
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V2:
+  - A missing entitySet definition for a page in manifest was not indicated correctly in the returned log. Even worse, the export deleted the related page in such a scenario. This is fixed now, the schema generation as well as the import are more fault-tolerant now with regard to this situation
+- OData V4:
+  - Added missing descriptions to custom section properties `relatedFacet`, `relativePosition`, `id`, `fragmentName`
+  - Custom section properties `className` and `type` are marked as hidden
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades:
+
+- @sap-ux/fe-fpm-writer to 0.23.8
+- eslint to 8.50.0
+- @types/d3 to 7.4.1
+- @types/semver to 7.5.3
+- @types/jquery to 3.5.20
+- @types/mem-fs-editor to 7.0.4
+
 ## [1.108.15] - 2023-09-21
 
 ### Added
@@ -16,10 +53,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 - Error handling enhanced to detect missing component names of pages. An error message is added to the log passed in the API call
 - References now use platform-independent SAPUI5 CDN URL `ui5.sap.com`
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 
@@ -48,12 +81,6 @@ Upgrades:
 
 - OData V2:
   - Added support for the binding pattern to `showHeaderContent` property
-
-### Changed
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 

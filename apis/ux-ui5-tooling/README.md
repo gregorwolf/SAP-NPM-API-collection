@@ -282,7 +282,7 @@ Starting with version `1.6.0` one can use the following syntax for proxying diff
         - path: /resources
           url: https://ui5.sap.com
         - path: /test-resources
-          src: https://sapui5.hana.ondemand.com
+          src: https://ui5.sap.com
       version: '1.100.1'
 ```
 
@@ -417,7 +417,7 @@ SAP Fiori Tools use the capabilities of custom tasks to deploy the SAP Fiori pro
 
 ### [Deployment to ABAP](#deployment-to-abap)
 
-The deployment to ABAP task allows deploying SAP Fiori applications to SAP systems using the [SAPUI5 Repository OData service](https://sapui5.hana.ondemand.com/#/topic/a883327a82ef4cc792f3c1e7b7a48de8.html).
+The deployment to ABAP task allows deploying SAP Fiori applications to SAP systems using the [SAPUI5 Repository OData service](https://ui5.sap.com/#/topic/a883327a82ef4cc792f3c1e7b7a48de8.html).
 
 **Pre-requisites:**
 
