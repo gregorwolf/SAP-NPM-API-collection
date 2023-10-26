@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.3.1 - 2023-10-23
+
+### Fixed
+
+- `cds-ts` no longer fails if configured with an ESM loader. It tries loading files w/ `import()` in this case.
+- `cds deploy` for draft enabled entities
+
 ## Version 7.3.0 - 2023-10-04
 
 ### Added

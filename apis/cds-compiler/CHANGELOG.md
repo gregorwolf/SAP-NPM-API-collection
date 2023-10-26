@@ -7,6 +7,13 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.3.2 - 2023-10-25
+
+### Fixed
+
+- compiler: Fix auto-exposure of composition target entities inside anonymous composition target aspects.
+- to.hana: Fix a bug in association to join translation, expect ON condition operand to be a function without arguments.
+
 ## Version 4.3.0 - 2023-09-29
 
 ### Added
