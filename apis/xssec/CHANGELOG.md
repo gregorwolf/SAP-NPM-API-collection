@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.4.0 - 2023-10-23
+- add optional x5t validation (RFC 8705) for IAS tokens
+- Restore support for disableCache flag for JWKS retrieval
+- Bugfix for requests to XSUAA with array values inside form
+
 ## 3.3.5 - 2023-09-28
 - Support for app2service and app2app for IAS
 

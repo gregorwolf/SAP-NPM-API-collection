@@ -226,7 +226,7 @@ Service to Application Router | `SERVICE_2_APPROUTER`                 | If `true
 Client certificate header name | `CLIENT_CERTIFICATE_HEADER_NAME`      | When set application router will use this header name to get the client certificate from the request header in subscription callback. If not provided the default header name `x-forwarded-client-cert` is used.
 Server Keep Alive | `SERVER_KEEP_ALIVE`                   | server keep alive timeout (positive integer in milliseconds).
 Minimum Token Validity | `MINIMUM_TOKEN_VALIDITY`              | positive integer in seconds. When set, approuter will check that the token returned from the authorization service has an expiration time higher than the minimum token validity value.
-State Parameter Secret | `STATE_PARAMETER_SECRET`              | enables the use of state parameters to prevent CRFS attacks. If this environment  variable is set, the application router creates a state parameter for each initial authorization request. By validating that the authentication server returns the same state parameter in its response, the application server can verify that the response did not originate from a third party. **Note**: this feature is only available in Cloud Foundry runtime
+State Parameter Secret | `STATE_PARAMETER_SECRET`              | enables the use of state parameters to prevent CSRF attacks. If this environment  variable is set, the application router creates a state parameter for each initial authorization request. By validating that the authentication server returns the same state parameter in its response, the application server can verify that the response did not originate from a third party. **Note**: this feature is only available in Cloud Foundry runtime
 HTTP2 Support | `HTTP2_SUPPORT`                       | Enables the application router to start as an HTTP/2 server. Note: To configure HTTP/2 support, you must use Cloud Foundry routes with an HTTP/2 destination protocol. See [Configuring HTTP/2 Support](https://docs.cloudfoundry.org/adminguide/supporting-http2.html#application) in the Cloud Foundry Documentation. As connection-specific header fields aren't supported by the HTTP/2 protocol, see [rfc9113](https://datatracker.ietf.org/doc/html/rfc9113), the application router removes such headers automatically when they are returned from a backend to prevent a failure of the HTTP/2 response.
 Full Certificate Chain | `FULL_CERTIFICATE_CHAIN`              | If `true`, the application router will send the entire chain of certificates provided by authorization service.
 Store CSRF token in external session | SVC2AR_STORE_CSRF_IN_EXTERNAL_SESSION | If `true` and have enabled [external session management](#external-session-management), the application router can generate and validate CSRF tokens in service-to-application-router flows by storing the token in an external session.
@@ -696,7 +696,7 @@ when a request with the path /destination/myDestination/myTarget is received, th
 
 **Note:** You can use a dynamic value (regex) or a static string for both destination and target values
 
-**Note:** The approuter first looks for the destination name in the mainfest.yaml file, and if not found, looks for it in the destination service.
+**Note:** The approuter first looks for the destination name in the manifest.yaml file, and if not found, looks for it in the destination service.
 
 * Destination In Host
 
@@ -2366,7 +2366,7 @@ Refer to the `Content-Security-Policy` specification for more information on the
   "target": "$1",
   "service": "html5-apps-repo-rt",
   "authenticationType": "xsuaa",
-  "identityProvider": "patrientsIDP"
+  "identityProvider": "patientsIDP"
 }
 ```
 
@@ -2389,6 +2389,6 @@ Refer to the `Content-Security-Policy` specification for more information on the
   "target": "$1",
   "service": "html5-apps-repo-rt",
   "authenticationType": "xsuaa",
-  "identityProvider": "patrientsIDP"
+  "identityProvider": "patientsIDP"
 }
 ```

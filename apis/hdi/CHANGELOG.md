@@ -1,3 +1,7 @@
+## 4.5.2
+Fixes:
+- Fix to use hdi_user instead of user when xsa environment variables are passed
+
 ## 4.5.1
 Features:
 - Accept XSA environment variables and transform to client understandable variables

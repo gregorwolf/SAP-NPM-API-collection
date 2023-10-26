@@ -198,6 +198,21 @@ passport.use(new JWTStrategy(config));
 ...
 ```
 
+### x5t Token Validation
+The library optionaly supports token ownership validation via x5t thumbprint ([RFC 8705](https://datatracker.ietf.org/doc/html/rfc8705)) for tokens issues by SAP Identity service.
+
+:grey_exclamation: x5t token validation should only be enabled for applications using mTLS because the x5t validation will fail when there is no client certificate used for the request. SAP BTP will automatically put the client certificate in the `x-forwarded-client-cert` header of requests performed against `cert` application routes. From there it will be picked up by this lib to do the validation against the fingerprint claim from the token payload.
+
+To enable x5t validation, pass a truthy value for the `x5tValidation` flag in the configuration object:
+
+```js
+// when creating securityContext manually
+xssec.createSecurityContext(access_token, { x5tValidation: true }, function(error, securityContext, tokenInfo) { ... });
+
+// when using passport
+app.use(passport.authenticate('JWT', { x5tValidation: true }));
+```
+
 ### Test Usage without having an Access Token
 
 For test purposes, you may retrieve the token for a certain user (whose credentials you know) from the UAA as in the following code-snippet.

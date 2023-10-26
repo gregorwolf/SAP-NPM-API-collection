@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 14.3.4 -  2023-10-25
+
+### Fixed
+- Avoid reading service credentials on approuter startup
+- Read Redis tls certificates also from binding credentials ca property
+
+### Updated dependencies
+- deps: @sap/xsenv@4.0.0
+
 ## 14.3.3 -  2023-10-12
 
 ### Fixed
