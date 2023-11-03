@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.3] - 2023-10-19
+### Changed
+- Updated CAP CDS guide variants to automatically select the `Service` parameter if there is only one service available for the project.
+### Fixed
+- Fixed an issue in the ABAP CDS variant of the _Add and edit table columns_ guide where the `Entity Type` parameter was missing.
+
 ## [1.11.2] - 2023-10-05
 ### Fixed
 - Fixed an issue where the extension would not open if a workspace with multiple projects in it had a package.json file that was not assigned to a project.

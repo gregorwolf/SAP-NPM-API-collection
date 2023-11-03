@@ -5,6 +5,26 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.3] - 2023-10-18
+### Added
+- Enabled adding and maintaining filter fields based on associated properties
+- Added an enhanced visualization of error situations to the Page Map and Page Editor
+
+### Changed
+- Changed the minimum required [NodeJS](https://nodejs.org/en/download) version to 18.14.2 or higher
+
+### Fixed
+- Fixed an issue with the warning indicator missing in the application modeler tree view
+- Fixed an issue with dropdown boxes auto-selecting the wrong entry
+- Fixed an issue with extensions being allowed to be anchored on itself on creation
+- Fixed several issues with navigation to source code when working with building blocks (experimental)
+- Fixed an issue with a missing key property for action group building blocks (experimental)
+- Fixed an issue with an incorrect tab key being written to manifest when setting the tab key to empty in the Page Editor property panel
+- Fixed an issue with the Page Map being able to add pages for the same navigation property multiple times
+- Fixed an issue with the Page Editor losing selection focus when refreshing on manual external changes in the source file
+- Fixed an issue with scrolling via touch screen in the Page Editor property panel
+- Fixed several minor UX issues in dropdown boxes 
+
 ## [1.11.2] - 2023-10-04
 ### Added
 - Added the support for custom header sections for OData V4-based applications in conjunction with `@sap/ux-specification` versions 1.84.75, 1.96.49, 1.108.16 or higher

@@ -81,6 +81,7 @@
 @sap/ucl-provider
 @sap/ux-annotation-modeler-bas-ext
 @sap/ux-application-modeler-bas-ext
+@sap/ux-cds-compiler-facade
 @sap/ux-cds-odata-language-server-extension
 @sap/ux-help-bas-ext
 @sap/ux-service-modeler-bas-ext

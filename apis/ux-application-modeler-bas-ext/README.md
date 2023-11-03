@@ -66,7 +66,7 @@ From the Command Palette execute the command `Fiori: Show Page Map`
 
 ### Prerequisites
 
-* [NodeJS](https://nodejs.org/en/download/) Version 16.18 or higher
+* [NodeJS](https://nodejs.org/en/download/) Version 18.14.2 or higher
 
 ## Page Editor
 
@@ -165,7 +165,7 @@ This will launch the application generator tool if installed.  If the applicatio
 
 ### Prerequisites
 
-* [NodeJS](https://nodejs.org/en/download/) Version 16.18 or higher
+* [NodeJS](https://nodejs.org/en/download/) Version 18.14.2 or higher
 
 ## Application Information Page
 

@@ -148,8 +148,8 @@ After the application has been successfully generated, open a terminal and brows
 
 The generated application requires the following software to be installed:
 
-- [NodeJS](https://nodejs.org/en/download/) Node version must be >=16.19.1
-- [MTA](https://www.npmjs.com/package/mta) MTA Version must be >= 1.0
+- [NodeJS](https://nodejs.org/en/download/) Node version must be >=16.14.2
+- [MTA](https://www.npmjs.com/package/mta) MTA Version must be 1.0.4
 - Windows OS requires [windows-build-tools](https://www.npmjs.com/package/windows-build-tools) NPM module installed globally.
 
 ## Support

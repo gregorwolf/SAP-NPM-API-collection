@@ -2,6 +2,13 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.11.3] - 2023-10-18
+### Changed
+- Changed the minimum required [NodeJS](https://nodejs.org/en/download) version to 18.14.2 or higher
+
+### Fixed
+- Fixed an issue with starting developer variant creation with an older UI5 version
 ## [1.11.2] - 2023-10-04
 ### Fixed
 - Removed usage of the deprecated `@ui5/logger` version 2 package 

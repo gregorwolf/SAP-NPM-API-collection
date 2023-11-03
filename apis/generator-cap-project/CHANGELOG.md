@@ -9,6 +9,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+## [1.7.6] - 2023-10-24
+### Removed
+- handling for `cds-dk` version 3 or less
+
+## [1.7.5] - 2023-10-13
+### Removed
+- version check for `@sap/cds-dk@1.7.x` version
 
 ## [1.7.4] - 2023-09-13
 

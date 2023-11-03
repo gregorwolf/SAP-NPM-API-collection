@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## [1.11.3] - 2023-10-18
+### Changed
+- Updated the generator to automatically select the default value in a dropdown list of options if only one option is available, thereby decreasing the number of clicks the user needs to perform
+- The generator should now warn the user if Node.js is not installed before use
+- Updated the manifest for OData V4 services using UI5 version 1.94 or higher to now use the `contextPath` instead of `entitySet`.
+
+### Fixed
+- The FLP configuration wizard no longer writes out the value `{{flpSubtitle}}` in the launchpad if the optional subtitle for FLP is not provided.
+
 ## [1.11.2] - 2023-10-04
 ### Changed
 - Changed the Basic template generated to also generate Typescript OPA tests when the user chooses to generate their application with Typescript support

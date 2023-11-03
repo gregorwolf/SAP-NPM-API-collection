@@ -3,7 +3,9 @@
 The SAP Fiori Tools - UI5 Tooling contains a selection of custom [middlewares](https://sap.github.io/ui5-tooling/pages/extensibility/CustomServerMiddleware/) that can be used with the command `ui5 serve` as well as custom [tasks](https://sap.github.io/ui5-tooling/pages/extensibility/CustomTasks/) that can be used with the command `ui5 build`. 
 Furthermore, the module expose the cli `fiori` offering e.g. the [`fiori run`](#run) command is a wrapper of the `ui5 serve` commands and provides some additional parameters as well as `fiori add deploy-config` and `fiori add flp-config` to extend an existing project.
 
-**IMPORTANT**: Starting with version `1.10.5`, the minimum required `@ui5/cli` version is >= 3! For more information about migration to version 3 of the `@ui5/cli`, see [here](https://sap.github.io/ui5-tooling/v3/updates/migrate-v3/).
+**IMPORTANT**: 
+- Starting with version `1.10.5`, the minimum required `@ui5/cli` version is >= 3! For more information about migration to version 3 of the `@ui5/cli`, see [here](https://sap.github.io/ui5-tooling/v3/updates/migrate-v3/).
+- Starting with version `1.11.3`, the minimum required NodeJS version is 18.14.2 or higher!
 
 ## [**Middlewares**](#middlewares)
 

@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.7.4 - 2023-11-01
+
+### Fixed 
+- Removed npm prune from prerelease script
+
+## 5.7.3 - 2023-10-30
+
+### Updated
+- Updated *xssec* to 3.4.0
+
 ## 5.7.2 - 2023-10-05
 
 ### Updated
