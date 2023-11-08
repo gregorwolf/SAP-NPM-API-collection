@@ -4,6 +4,44 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+# Prerequisites
+
+[NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
+
+## [1.108.17] - 2023-10-19
+
+### Added
+
+- OData V4:
+  - `displayName` property for `relatedFacet` and `relativePosition` custom section properties
+  - Missing `key` property for macros action group
+
+### Changed
+
+- Own definitions for the manifest or app descriptor have been replaced as far as possible by the given definitions from npm module @ui5/manifest
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- Under certain circumstances, the non-existence of the UI.LineItem annotation led to the exception "find is not a function" when executing the importProject API
+- OData V4:
+  - Extra entry `sap.ui5/extends/extensions/sap.ui.controllerExtensions` is created in manifest.json during sync
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades:
+
+- rimraf to 5.0.5
+- eslint to 8.51.0
+- @types/jquery to 3.5.22
+- esbuild to 0.19.4
+- @sapui5/ts-types-esm to 1.108.23
+
 ## [1.108.16] - 2023-10-05
 
 ### Added
