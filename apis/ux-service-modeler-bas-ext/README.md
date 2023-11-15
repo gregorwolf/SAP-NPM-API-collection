@@ -59,7 +59,7 @@ Note: Expanded and Compact views are being deprecated
 
 The generated application requires the following software to be installed
 
-- [NodeJS](https://nodejs.org/en/download/) Version 16.19.1 or higher
+- [NodeJS](https://nodejs.org/en/download/) Version 18.14.2 or higher
 
 ## Support
 Join the [SAP Fiori Tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.

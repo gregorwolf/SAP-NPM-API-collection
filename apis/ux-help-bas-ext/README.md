@@ -40,7 +40,7 @@ After launching the Guided development, a user can do the following:
 
 The generated application requires the following software to be installed:
 
-- [NodeJS](https://nodejs.org/en/download/) Version 16.19.1 or higher
+- [NodeJS](https://nodejs.org/en/download/) Version 18.14.2 or higher
 
 ## Support
 

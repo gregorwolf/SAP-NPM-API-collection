@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.4] - 2023-11-01
+### Fixed
+- Fixed an issue with using `fiori-tools-servestatic` middleware in an npm monorepository
+
 ## [1.11.3] - 2023-10-18
 ### Changed
 - Changed the minimum required [NodeJS](https://nodejs.org/en/download) version to 18.14.2 or higher

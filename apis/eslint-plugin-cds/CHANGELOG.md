@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## [2.6.4] - 2023-11-02
+
+### Added
+
+- New `auth-restrict-grant-service` rule that validates events on restricted services.
+
+### Fixed
+
+- In _no-join-on-draft_, do not run check if there is no valid query.
+- In _auth-valid-restrict-where_, do not consider when missing expression references.
+
 ## [2.6.3] - 2023-02-13
 
 ### Changed

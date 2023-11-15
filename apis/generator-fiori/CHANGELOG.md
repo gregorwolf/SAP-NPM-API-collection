@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.4] - 2023-11-01
+### Added
+- Choosing to automatically add table columns to a list page during generation of an SAP Fiori elements List Report or Worklist application with a CAP data source will now also add basic value helps. 
+
+### Changed
+- The ABAP `deploy-test` function has been updated to now also validate that the defined package name and transport request are available in the backend ABAP system.
+- Updated the error message for ABAP deployment when a longtext message is displayed.
+- The console information logged during generation now includes the time taken to generate the application.
+
+### Fixed
+- Fixed an issue where building an MTA archive in SAP Business Application Studio would fail in some cases when it contained an SAP Fiori application.
+- Fixed an issue where deployment configuration could allow input of an invalid Cloud Foundry destination name.
+- Fixed an issue where the manifest id created during generation in the manifest file could be longer than permitted.
 
 ## [1.11.3] - 2023-10-18
 ### Changed

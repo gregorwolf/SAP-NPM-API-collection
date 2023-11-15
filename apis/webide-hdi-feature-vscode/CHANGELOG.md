@@ -1,3 +1,31 @@
+## 1.27.0
+
+### New Features
+- Adding and deleting a column can be propagated through all dependent views
+- Filter mapping is also possible for non-equi joins
+- Data sources can be refreshed while a calculation view is open
+- Labels for columns can be generated automatically
+- Reference information in the references dialog is grouped
+
+### Fixes
+- The synonym editor displays a "*.configure" column
+- Variant cannot be fetched when generating fiscal time data
+- Unclear message when parsing calculation view fails
+- Line comments are not correct for filters and in the expression editor
+- Removing a mapping can fail when mapping three columns to one
+- Deployments could fail after undo
+- The "keep" flag cannot be set for one attribute of a shared dimension
+- Icons are not shown when connecting columns in non-equi join node for the first time
+- Window function arguments not updated after renaming columns
+- Dynamic join does not work with technical join
+- Filter expressions are not saved when sources are not connected in a multi-join node
+- Buttons disappear for larger number of parameters
+- Window function result column validation message is inconsistent
+- Change "star join" to "non-equi join" in warning message
+- Removing a column from a node created on link is not working correctly
+- Window function result column is available in expression editor
+- The target value field of rank node behaves inconsistently
+
 ## 1.26.0
 
 ### New Features

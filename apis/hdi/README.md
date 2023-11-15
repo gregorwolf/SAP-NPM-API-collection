@@ -14,10 +14,10 @@
 ## General things
 
 Note: Either [@sap/hana-client](https://www.npmjs.com/package/@sap/hana-client) or [hdb](https://www.npmjs.com/package/hdb) must be installed by yourself. 
-@sap/hana-client versions ^2 >= 2.5 are currently supported by @sap/hdi 4.5.1.
+@sap/hana-client versions ^2 >= 2.5 are currently supported by @sap/hdi 4.5.2.
 To install the latest @sap/hana-client simply run `npm install @sap/hana-client`.
 
-hdb version ^0 is currently supported by @sap/hdi 4.5.1.
+hdb version ^0 is currently supported by @sap/hdi 4.5.2.
 To install the latest hdb simply run `npm install hdb`.
 
 Running `npm install --save @sap/hdi` will install the package and add it as a dependency to your **package.json**.

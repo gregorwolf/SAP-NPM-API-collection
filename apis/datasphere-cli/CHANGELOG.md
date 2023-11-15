@@ -5,6 +5,34 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2023.24.0
+
+### Fixed
+
+- Trailing single quotes (`'`) were removed from option values even though there was no leading single quote. This version contains a fix that trailing single quotes are only removed if there is a leading single quote.
+
+  Trailing single quote is not removed: `some 'value'` stays `some 'value'`.
+
+  Trailing single quote is removed: `'some value'` becomes `some value`.
+
+- The help output did not mention the correct CLI name. Instead the output showed the name 'terminal'.
+
+  ```javascript
+  Usage: terminal [options] [command]
+
+  Command-Line Interface for SAP Datasphere.
+  ...
+  ```
+
+  Since this version, the name is shown correctly.
+
+  ```javascript
+  Usage: datasphere [options] [command]
+
+  Command-Line Interface for SAP Datasphere.
+  ...
+  ```
+
 ## 2023.19.0
 
 ### Added

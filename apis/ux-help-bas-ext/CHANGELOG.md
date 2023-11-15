@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.4] - 2023-11-02
+### Added
+- Introduced a new warning page for projects with virtual file system errors. 
+### Changed
+- Updated overview page guides to automatically select the `Model` parameter if there is only one option available for the project.
+- Updated chart guides to only display `Dynamic Measures` or `Measures` parameter properties that can be used to successfully create charts for a given project.
+### Fixed
+- Fixed an issue with the code snippet inserted from the _Add a stack card to an overview page_ guide that used an invorrect variable type, causing an error. 
+- Fixed an issue where the guided development window would not scroll up to display inline errors.
+- Fixed an issue in the _Add a new visual filter_ guide where selected properties were not displayed in the guide code snippet.
+- Fixed an issue in the _Add a table card to an overview page_ guide where the `Entity Type` parameter selected in earlier steps was not retained across all guide steps.
+
 ## [1.11.3] - 2023-10-19
 ### Changed
 - Updated CAP CDS guide variants to automatically select the `Service` parameter if there is only one service available for the project.

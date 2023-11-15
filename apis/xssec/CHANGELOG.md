@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.5.0 - 2023-11-14
+- update dependencies (e.g. axios 0 -> 1)
+
 ## 3.4.0 - 2023-10-23
 - add optional x5t validation (RFC 8705) for IAS tokens
 - Restore support for disableCache flag for JWKS retrieval

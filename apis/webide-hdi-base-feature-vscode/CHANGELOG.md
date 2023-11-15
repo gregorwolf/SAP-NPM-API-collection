@@ -1,3 +1,13 @@
+## 1.25.0
+
+### New Features
+- Group objects by schema in find data sources dialog
+
+### Fixes
+- Don't list tables in Find Data Sources for Star Join
+- Opening editors should not be blocked if the editor cannot find a .hdiconfig file
+- The deployment is not triggered when the 'Create synonym configuration file' option is checked.
+
 ## 1.24.0
 
 ### Fixes

@@ -5,6 +5,25 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.4] - 2023-11-01
+### Added
+- Added an information panel to the activity bar item of SAP Fiori tools
+
+### Changed 
+- Enhanced the validation check for the creation of OData V2-based custom columns ensuring that an existing fragment is reused for further columns
+- Enhanced the performance for the application modeler tree view: in the case of multiple apps in the project, a lazy load mechanism prevents the generation of all page configurations and schemas right from the start
+
+### Fixed
+- Fixed an issue with selected item focus in dropdown menus
+- Fixed an issue with touch events outside the menu not closing the dropdown
+- Fixed an issue with error messages shown on Page Map not disappearing after correcting the root cause
+- Fixed an issue with an empty string being considered invalid for `ValueListForValidation` annotation preventing the creation of new pages in the Page Map
+- Fixed an issue with the filter icon becoming invisible when resizing the Page Map
+- Fixed an issue with the Add Custom Column dialog that offered to select existing functions for a newly created handler file
+- Fixed an issue with reuse libraries being wrongly offered for run configurations
+- Fixed an issue with sections being displayed in selection dialogs for anchors showing the i18n key instead of the text
+- Fixed an issue with SAPUI5 flexibility changes created for contact person details on object page subsections of OData V2-based applications
+
 ## [1.11.3] - 2023-10-18
 ### Added
 - Enabled adding and maintaining filter fields based on associated properties

@@ -8,6 +8,50 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.108.18] - 2023-11-02
+
+### Added
+
+- OData V4: 
+  - Added additional log entries while executing API call for schema generation, and error log entries in case of missing UI.LineItem annotation
+
+### Changed
+
+- UX adjustments of inplace documentation:
+  - Harmonized the zoom behavior and removed the ability to scroll via mouse wheel
+  
+### Removed
+
+- OData V2: 
+  - Removed the `visibility` property for *addresses* on subsections of the object page, as flexibility changes are not supported on this level
+
+### Deprecated
+
+### Fixed
+
+- OData V2: 
+  - Fixed an issue with the selector ID of flexibility changes generated for *contacts* on subsection level of object pages
+- OData V4: 
+  - Schema generation: mark custom anchors in "oneOf" enums and additional anchor enum enhancements (missing descriptions for some actions and sections)
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades:
+
+- @sap-ux/fe-fpm-writer to 0.24.0
+- @types/semver to 7.5.4
+- @types/d3 to 7.4.2
+- @types/mem-fs-editor to 7.0.5
+- @types/jquery to 3.5.25
+- @sap-ux/annotation-converter to 0.8.0
+- @sap-ux/vocabularies-types to 0.10.0
+- @sap-ux/edmx-parser to 0.7.0
+- esbuild to 0.19.5
+- @ui5/manifest to 1.61.0
+- eslint to 8.52.0
+
 ## [1.108.17] - 2023-10-19
 
 ### Added

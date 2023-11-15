@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.1.0 - 2023-11-07
+
+### Added
+- Added node 20.x support and tests
+
+### Updated
+- filter-node-package to 3.2.0
+
 ## 4.0.0 - 2023-09-12
 
 ### Removed

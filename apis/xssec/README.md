@@ -207,7 +207,9 @@ To enable x5t validation, pass a truthy value for the `x5tValidation` flag in th
 
 ```js
 // when creating securityContext manually
-xssec.createSecurityContext(access_token, { x5tValidation: true }, function(error, securityContext, tokenInfo) { ... });
+xssec.createSecurityContext(access_token,
+{ x5tValidation: true, x509Certificate: ... // PEM or DER encoded certificate as string
+}, function(error, securityContext, tokenInfo) { ... });
 
 // when using passport
 app.use(passport.authenticate('JWT', { x5tValidation: true }));

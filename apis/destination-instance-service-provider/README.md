@@ -28,7 +28,7 @@ This API initializes a provider repository representing a given destination inst
 
 ### getSystems
 
-This API retrieves systems exposed by the service instance that initialized the provider.
+This API retrieves systems exposed by the service instance that initialized the provider..
 
 `async getSystems(filter?: Filter): Promise<ProviderSystem[]>`
 
@@ -176,4 +176,4 @@ Bump the version in the "package.json" GitHub file.
 Make sure to follow this versioning concept:
 
 - When providing new features (when releasing at the end of the sprint or when a new feature is ready), bump a major version (for example, from 1.1.0 to 1.2.0).
-- When providing a bug fix to an existing version ("hotfix"), bump a minor version (for example, from 1.1.0 to 1.1.1).
+- When providing a bug fix to an existing version ("hotfix"), bump a minor version (for example, from 1.1.0 to 1.1.1)..

@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.1.0 - 2023-11-06
+
+### Added
+- Added node 20.x support and tests
+
 ## 4.0.0 - 2023-08-14
 
 ### Removed

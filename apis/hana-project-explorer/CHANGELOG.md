@@ -1,3 +1,13 @@
+## 1.18.0
+
+### New Features
+
+- HDI service instances can be created via a wizard.
+
+### Fixes
+
+- The deployment status of files changed during a deployment is set correctly
+
 ## 1.17.0
 
 ### New Features

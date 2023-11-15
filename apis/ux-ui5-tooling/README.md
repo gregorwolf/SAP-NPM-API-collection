@@ -340,9 +340,10 @@ server:
     configuration:
       paths:
         - path: /userapi/currentUser
-          src: "Path/To/UserJson"
-          index: "user.json"
+          src: "Path/To/UserJson/user.json"
+          index: false
           fallthrough: false
+          redirect: false
 ```
 whereas the `user.json` can look like this e.g.
 

@@ -1,3 +1,11 @@
+## 1.10.0
+
+### New Features
+- A database ID can be entered manually when binding the module to a service instance
+
+### Fixes
+- Renamed the database versions to their official names
+
 ## 1.9.0
 
 ### New Features

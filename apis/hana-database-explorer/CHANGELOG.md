@@ -1,5 +1,20 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.19.0
+
+### New Features
+- When executing multiple statements in the SQL console, failed executions can be handled individually per statement.
+- Objects in the dependency viewer are grouped by schema. Schemas can be collapsed or expanded to make the graph easier to view.
+- Objects in the dependency viewer can be filtered by object type.
+- HDI containers can be added as local database connections.
+- The metadata of views can be visualized graphically by clicking on a view in the catalog browser.
+- An INSERT statement can be generated for tables via the context menu of the database objects in the catalog browser. The INSERT statement will be opened in a new SQL console.
+- Local database connections can be added by providing the connection information in a JSON format, for example, from a Cloud Foundry service key.
+- Local database connections can be configured to use Kerberos authentication.
+
+### Fixes
+- Scheduler jobs were not loaded correctly.
+
 ## 1.18.0
 
 ### Fixes
