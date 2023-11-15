@@ -7,6 +7,35 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.4.0 - 2023-11-09
+
+### Added
+
+- compiler: International letters such as `ä` can now be used in CDS identifiers without quoting.
+  Unicode letters similar to JavaScript are allowed.
+- to.edm(x):
+  + Allow to render all complex types within a requested service as `OpenType=true` with option `--odata-open-type`.
+    Explicit `@open: false` annotations are not overwritten.
+  + Allow to annotate the generated draft artifacts but not generated foreign keys (as with any other managed association).
+- to.sql|hdi|hdbcds: Allow annotating the generated `.drafts` tables.
+
+### Changed
+
+- CDL parser: improve error recovery inside structured annotation values
+- Update OData vocabularies: 'Aggregation', 'Common', 'Core', 'Hierarchy', 'ODM', 'UI'.
+
+### Fixed
+
+- parser:
+  + `/**/` was incorrectly parsed as an unterminated doc-comment, leading to parse errors.
+  + Doc-comments consisting only of `*` were not correctly parsed.
+- compiler: do not propagate `default`s in a CSN of flavor `xtended`/`gensrc`.
+- to.hana: Fix various bugs in association to join translation. Support `$self` references
+  in filter expressions.
+- to.edm(x): Omit `EntitySet` attribute on `Edm.FunctionImport` and `Edm.ActionImport` that return
+  a singleton.
+- to.sql|hdi.migration: Improve handling of primary key changes - detect them and render corresponding drop-create.
+
 ## Version 4.3.2 - 2023-10-25
 
 ### Fixed

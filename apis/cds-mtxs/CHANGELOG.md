@@ -6,7 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.13.0 - 2023-11-13
+
+### Added
+
+- `GET /-/cds/saas-provisioning/tenant` now also returns `createdAt` and `modifiedAt` fields.
+
+### Changed
+
+- The internal job runner now has an in-memory queuing mechanism. For non-scaled sidecar instances, this avoids tasks for the same tenant from being run at the same time.
+
 ## Version 1.12.1 - 2023-10-17
+
+### Added
+
+- API `PUT /-/cds/extensibility/Extensions/<extension id>` now also accepts i18n-files.
 
 ### Fixed
 

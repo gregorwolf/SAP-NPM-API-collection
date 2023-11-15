@@ -4,6 +4,61 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.4.0 - 2023-11-13
+
+### Added
+
+- Any service is outboxable via `srv = cds.outboxed(srv)`
+- Draft: support `HasActiveEntity eq false` by read
+- Check if OData function/action params exist for complex types
+- Remote services: destination option `jwt` set to `null` instructs that an incoming request's JWT shall not be passed to SAP Cloud SDK, e.g., when it shall use a fresh client credentials flow token
+  + Example:
+    ```json
+    "requires": {
+      "API_BUSINESS_PARTNER": {
+        [...]
+        "destinationOptions": {
+          "jwt": null
+        }
+      }
+    }
+    ```
+- Alpha feature flag `cds.env.fiori.wrap_multiple_errors` to toggle the following behaviour for OData errors meant to be consumed by SAP Fiori Elements:
+  In cases where multiple errors occur and the flag is set to `false`, the first error is presented as the top-level error (replacing the generic "multiple errors" wrapper).
+  The default value is `true`, but `false` will become the default value in cds^8.
+- On CF, the default keep alive timeout of the server is set to 91s (to exceed the 90s of CF's gorouter)
+- `cds deploy` now auto-fills the `ID_texts` field (which get created for entities marked with `@fiori.draft.enabled`) in csv and json data files with a stable UUID.  This way, it does not need to be manually added to data files.  Also, as the value is stable (a hash of the semantic key fields `ID` and `locale`), it works with `UPSERT` statements.
+
+### Changed
+
+- Default outbox configuration (overridable via `cds.env.requires.outbox = { ... }`):
+  + `kind` changed to `persistent-outbox` (was `in-memory-outbox`)
+  + `parallel` changed to `true` (i.e., messages are not emitted in sequence)
+- Internal class `OutboxService` is deprecated and will be removed
+
+### Fixed
+
+- `req.subject` in lean-draft handlers
+- `cds.odata.batch_limit` wasn't taken into account
+- Enterprise-Messaging: Only set tenant information for multitenant apps
+- Enterprise-Messaging: Race condition in `subscribe` event
+- Draft: delete of active entity is forbidden, if draft exist
+- Draft: sorting of draft entities in `list status: all`
+- Draft: invalid delete draft request now rejects with error
+- Draft: Enhance Draft Edit functionality with exclusive record lock
+- Typings for `req.reject/error/info/warn`
+- Deep delete with mixins on new db layer did not work
+- Special strings like `'$now'`, `'$user'` and `'$uuid'` expanded automatically
+- Only services that are served via OData are precompiled during startup
+- Response status of not existing mocks returned 200 instead of 404
+- Calculation of @Capabilities in case of complex $apply
+- `test.data.reset()` did not delete drafts
+- `resolveView` considers `list` for renamed columns
+- `cds.schema` now loads lazily
+- `odata_new_parser`: `$expand=` no longer throws an error with and is simply ignored
+- `odata_new_parser`: Empty custom query params like `Foo?bar` are ignored
+- `odata_new_parser`: generated wrong CQN for queries like `$filter=false or ref eq 5`
+
 ## Version 7.3.1 - 2023-10-23
 
 ### Fixed
@@ -18,7 +73,7 @@
 - `cds.localized` now caches i18n bundles per locale and per model to speed up repeated usages of the same bundle at runtime, for example, in repeated calls to `cds.compile.for.edmx()`.
 - Based on `cds.localized` with cached bundles, a new operation `cds.localized.lookup(i18n_key, locale)` is provided.
 - If env variable `CDS_TEST_ENV_CHECK` is set, `cds.test.in()` detects if `cds.env` was loaded before from a different folder.
-- `cds.test.log()` allows to capture and analyse any console log output. `cds.test.verbose()` is now deprecated.
+- `cds.test.log()` allows to capture and analyze any console log output. `cds.test.verbose()` is now deprecated.
 - Typings for `cds.tx`
 - Add method `cds.schema.default4(schemaId)` to retrieve json schema based on its id
 - Support for pseudo role `internal-user` with authentication kind `ias`
@@ -26,7 +81,7 @@
 
 ### Changed
 
-- If ommitted in the accept header, `ExponentialDecimals` no longer gets defaulted (to `true`), which violated the OData 4.0 specification.
+- If omitted in the accept header, `ExponentialDecimals` no longer gets defaulted (to `true`), which violated the OData 4.0 specification.
   This change can _temporarily_ be overridden via `cds.env.odata.defaultExponentialDecimals = 'true/false'`.
 - Make type signature of `extend.with` more general
 - `cds.test.data.autoReset()` is deprecated in favor of explicit `cds.test.data.reset()` call, like `beforeEach (test.data.reset)`.
@@ -728,7 +783,7 @@ Content-Length: 145
 - Signatures for QL operations are now more specific
 - `basic-auth` does not inherit users of `mocked-auth`
 - `cds.localize` now ignores i18n files defined outside the project scope.
-- Allow `@Capabilities.NavigationRestrictions.RestrictedProperties` to be specified in the format `{ InsertRestrictions.Insertable: false }`
+- Allow `@Capabilities.NavigationRestrictions.RestrictedProperties` to be specified in the format `{ InsertRestrictions: { Insertable: false } }`
 - Bound actions/functions while calling remote service
 - `$search`: Search on localized projections/views does not always return the localized data
 - `cds push` now shows better output for failed extension validations
