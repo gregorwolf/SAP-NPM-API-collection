@@ -6,6 +6,38 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 
+## Version 7.4.0 - 2023-11-16
+
+### Changed
+- Formatting
+  + Projections now similar to that of views
+  + Markdown formatting inside doc comments is now done with `marked` parser AST instead of `remark`.
+    Previously, this was enabled by default but due to slightly different formatting this feature is
+    disabled by default, now. Thus, already formatted markdown won't be changed and thus
+    won't lead to file changes when used in CI/CD via `format-cds` command.
+    Enable it via format setting `formatDocComments`.
+- Simplified trace configuration - just use `cds.trace.level`
+
+### Fixed
+- CDS schema loading is more robust
+- Formatting
+  + Padding of quoted identifiers
+  + Treat only /** (no additional asterisks) as start of doc comments
+- Syntax highlighting of comments within braced select item lists
+- Update of diagnostic messages could have got lost
+
+## Removed
+- Workspace validation modes `OpenEditorsAndDirectSources` and
+  `OpenEditorsDirectSourcesAndDirectDependencies` are no longer supported.
+  In real-world models they led to high CPU usage and slow responsiveness.
+  Any of these user setting values are now treated as `ActiveEditorOnly`
+  if supported by IDE, else `OpenEditorsOnly`.
+
+### Also see
+- `@sap/cds-lsp` 7.4.0
+- `@sap/cds-compiler` 4.4.0
+
+
 ## Version 7.3.0 - 2023-10-09
 
 ### Added

@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.2.0 - 2023-11-17
+
+### Changed
+
+- Preview now uses SAP UI5 version 1.120.0 by default
+
 ## Version 1.1.0 - 2023-08-31
 
 ### Changed

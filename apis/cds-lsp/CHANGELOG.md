@@ -6,6 +6,42 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 7.4.0 - 2023-11-16
+
+### Changed
+- minimum required NodeJS version is now 18.15.0
+- formatting of projections now similar to that of views
+- trace overhead is now zero if turned off, but trace components must be set once before starting the
+  language server via environment var e.g. `CDS_LSP_TRACE_COMPONENTS=*:error,workspace:info`
+- markdown formatting inside doc comments is now done with `marked` parser AST instead of `remark`.
+  Previously, this was enabled by default but due to slightly different formatting this feature is
+  disabled by default, now. Thus, already formatted markdown won't be changed and thus
+  won't lead to file changes when used in CI/CD via `format-cds` command.
+  Enable it via user setting `formatDocComments`.
+
+### Fixed
+- padding of quoted identifiers
+- treat only /** (no additional asterisks) as start of doc comments
+- highlighting of comments within braced select item lists
+- update of diagnostics could have got lost
+
+## Removed
+- workspace validation modes `OpenEditorsAndDirectSources` and
+  `OpenEditorsDirectSourcesAndDirectDependencies` are no longer supported.
+  In real-world models they led to high CPU usage and slow responsiveness.
+  Any of these user setting values are now treated as `ActiveEditorOnly`
+  if supported by IDE, else `OpenEditorsOnly`.
+
+## Added
+- (Experimental): `cds-lsp` can now be used in-process. `ServerStarted.start` method has
+  new optional `options` parameter which allows to use any
+  [supported values](https://github.com/microsoft/vscode-languageserver-node/blob/c4f80308b155d79cc479ec9d33fba254ba93fdd2/client/src/main.ts#L134-L136)
+  e.g. Readable/WritableStream.
+
+### Also see
+- `@sap/cds-compiler` 4.4.0
+
 ## 7.3.0 - 2023-10-09
 
 ### Added
