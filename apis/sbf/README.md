@@ -121,8 +121,6 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
 
 ## Usage
 
-You can find the examples that demonstrate the usage and consumption of the service broker framework in the [examples](https://github.wdf.sap.corp/xs2/node-sbf-examples) directory.
-
 ### Create a simple service broker
 For simple use cases, you don't need to write any JavaScript code. You can start this package directly by providing it with the necessary configuration.
 

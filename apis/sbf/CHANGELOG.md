@@ -8,7 +8,12 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-<a name="6.5.9"></a>
+<a name="6.6.1"></a>
+## 6.6.1 - 2023-11-13
+### Changed
+- Dependencies version update.
+
+<a name="6.6.0"></a>
 ## 6.6.0 - 2023-09-18
 ### Added
 - Support for node v20 added.

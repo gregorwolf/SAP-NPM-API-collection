@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.8.1 - 2023-11-16
+
+### Updated
+- Updated *xssec* to v3.5.0
+- Updated *node-cache* to v5.1.2
+- Updated *node-fetch* to v2.7.0
+
 ## 5.8.0 - 2023-11-08
 
 ### Added 

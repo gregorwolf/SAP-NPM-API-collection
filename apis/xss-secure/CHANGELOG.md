@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.3.0 - 2022-11-08
+
+### Added
+- Support for Node.js 20.x
+
 ## 4.2.0 - 2022-02-17
 
 ### Added

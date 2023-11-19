@@ -21,6 +21,23 @@ greeting = Hello {0}, you are {1} years old.
 greeting = Hallo {0}, Sie sind {1} Jahre alt.
 ```
 
+## Single quote inconsistency
+When there is a single quote in a resource, then several cases must be kept in mind:
+- whether there is one or more placeholders in the resources
+- whether the textbundle user is passing an array for the placeholders to `getText`
+
+The result is summarized in the following table, where `N/A` means that no parameters were provided (not even an empty array of parameters):
+
+| Resource (example) | Parameters          | `getText()` result      | Counter intuitive |
+|--------------------|---------------------|-------------------------|:-----------------:|
+| `It's me`          | N/A                 | `It's me`               |                   |
+| `It's me`          | `[]`                | `Its me`                |        :x:        |
+| `It's {0}`         | N/A                 | `It's {0}`              |                   |
+| `It's {0}`         | `[]` or `['Bryan']` | `Its {0}`               |      :x: :x:      |
+| `It''s really {0}` | N/A                 | `It''s really {0}`      |        :x:        |
+| `It''s really {0}` | `[]`                | `It's really undefined` |                   |
+| `It''s really {0}` | `['Bryan']`         | `It's really Bryan`     |                   |
+
 ### Creating a TextBundle
 #### Old API
 ```js

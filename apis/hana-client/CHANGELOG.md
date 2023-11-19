@@ -1,3 +1,22 @@
+# Hana Client 2.19.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.19 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.19/en-US
+
+For the latest updates please see SAP Note 3393980 - SAP HANA Client 2.19 Release Notes
+
+https://me.sap.com/notes/3393980
+
+## Version 2.19.13
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 314098: Access to the user store may not have operated correctly on Apple macOS ARM machines.
+ - Issue Number 312321: GetData could have hung in rare cases when NCLOB contained non-BMP characters.
+ - Issue Number 310229: Some drivers could have reported an empty string for SQL state.
+ - Issue Number 309098: hdbsqldbc_cons and hdbodbc_cons did not notify running clients when the trace file name was changed.
+
 # Hana Client 2.18.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.18 documentation:
@@ -7,6 +26,18 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.18/en-US
 For the latest updates please see SAP Note 3362072 - SAP HANA Client 2.18 Release Notes
 
 https://me.sap.com/notes/3362072
+
+## Version 2.18.27
+
+### Changes:
+
+ - Issue Number 315554: Memory could have been leaked if setClientInfo() was called.
+ - Issue Number 305267: Statement.exec[ute](null | undefined) would have caused an error in TypeScript.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 314283: SQLDBC performance could have been negatively affected in some situations.
+ - Issue Number 316010: When the SECUDIR environment variable was not needed, the driver still required it to be set to a dummy value in order to connect using SAP’s Common Crypto Library (CCL).
 
 ## Version 2.18.24
 
