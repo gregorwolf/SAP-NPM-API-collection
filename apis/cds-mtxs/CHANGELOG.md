@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.13.1 - 2023-11-27
+
+### Added
+
+- `DEBUG=mtx` will now log all outgoing requests to Service Manager.
+- For `multitenancy.jobs.clusterSize > 1` the Service Manager request will throw an error for a corrupt tenant without credentials.
+
+### Changed
+
+- For non-extensibility projects, a shared deployment folder is used across tenants for resource extraction. For `n` simultaneous tenant upgrades, this decreases the number of extracted files `n`-fold.
+
 ## Version 1.13.0 - 2023-11-13
 
 ### Added

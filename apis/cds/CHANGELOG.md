@@ -4,6 +4,17 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.4.1 - 2023-11-23
+
+### Fixed
+
+- Add dynamic properties to result when experimental feature `cds.env.features.okra_skip_query_options` is active
+- Allow negative integers in new parser
+- Allow deletion of instances outside the draft tree
+- Tenant lookup in OData metadata requests
+- `cds.parse.csv` and `cds deploy` correctly parse CSV files with Windows file endings (CRLF) and quoted values
+- Typescript Typings
+
 ## Version 7.4.0 - 2023-11-13
 
 ### Added

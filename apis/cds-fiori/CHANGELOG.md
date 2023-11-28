@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.2.1 - 2023-11-27
+
+### Fixed
+
+- V2 proxy prefix is preferrably taken from `cds.protocols.odata-v2`
+- Routing to services using odata-v4 protocol prefix
+
 ## Version 1.2.0 - 2023-11-17
 
 ### Changed

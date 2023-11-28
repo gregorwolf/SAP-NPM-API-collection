@@ -7,6 +7,22 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.4.4 - 2023-11-24
+
+### Fixed
+
+- to.hdi.migration: Changes in only `doc`-comments should not result in a drop-create of the primary key.
+
+## Version 4.4.2 - 2023-11-17
+
+### Fixed
+
+- for.odata: Fix crash when using a projection with associations as action parameter type.
+- to.edm(x): `Edm.AnyPropertyPath` is hard to `Edm.PropertyPath`. As there is no dynamic path evaluation,
+  `Edm.NavigationPropertyPath` must be enforced via `$edmJson`.
+  `Edm.AnyPropertyPath` has been used in `@Aggregation.ApplySupported.GroupableProperties` for the first
+  time after vocabulary update with [4.4.0](#version-440---2023-11-09).
+
 ## Version 4.4.0 - 2023-11-09
 
 ### Added
