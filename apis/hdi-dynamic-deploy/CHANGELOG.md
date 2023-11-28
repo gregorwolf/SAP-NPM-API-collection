@@ -1,3 +1,10 @@
+# 2.7.0
+Features
+- use @sap/audit-logging@5.8.1
+
+Removed:
+- Node 12.x and 14.x support
+
 # 2.6.1
 Features
 - use @sap/hdi-deploy@4.8.2

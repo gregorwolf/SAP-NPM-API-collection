@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.5] - 2023-11-15
+### Changed
+- Improved error message and associated help text when connecting to an SAP saved system in VSCode fails.
+
+### Fixed
+- Fixed an issue where the service annotation file was not downloaded during generation if using service url directly in a destination.
+- Fixed an issue where the parent `mta.yaml` file for a cloud foundry application was sometimes not updated when adding deployment configuration for a Fiori application.
+- Fixed an issue where the `deploy-test` command for validating ABAP deployment could sometimes report the deployment as invalid when it was valid.
+- Fixed an issue where undeployment of an ABAP application would fail if the application contained a namespace.
+
 ## [1.11.4] - 2023-11-01
 ### Added
 - Choosing to automatically add table columns to a list page during generation of an SAP Fiori elements List Report or Worklist application with a CAP data source will now also add basic value helps. 

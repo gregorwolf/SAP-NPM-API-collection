@@ -9,6 +9,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+
+## [1.7.7] - 2023-11-02
+### Changed
+- update yeoman-generator to `5.10.0`
+- update some dev dependencies
+
 ## [1.7.6] - 2023-10-24
 ### Removed
 - handling for `cds-dk` version 3 or less

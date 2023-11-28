@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.6.0 - 2023-11-24
+- adapt optimized IAS server API
+
 ## 3.5.0 - 2023-11-14
 - update dependencies (e.g. axios 0 -> 1)
 

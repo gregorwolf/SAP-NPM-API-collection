@@ -2,9 +2,15 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.11.5] - 2023-11-15
+### Added
+- Enhanced code completion and validation to support annotating inline composition
+
 ## [1.9.4] - 2023-04-17
 ### Added
 - The **Show All References** option for service elements such as entities, properties, and actions displays now also the references to these elements in annotation values. You can use it before modifying a service element to understand if annotations will be affected by the change and avoid the related errors or easily fix them.
+
 ## [1.5.4] - 2022-04-14
 ### Fixed
 - Unjustified error for `LocalDataProperty` in `Common.ValueList` when the property is defined in the service using a `many` clause.

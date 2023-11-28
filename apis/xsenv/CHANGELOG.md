@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 4.2.0 - 2023-11-21
+
+### Added
+- Added an environment variable XSENV_PASE_ALL_JSON to control if all the values in k8s secrets should be parsed as JSON instead of only JSON objects  
+- Added custom tags in service-bindings
+
 ## 4.1.0 - 2023-11-06
 
 ### Added

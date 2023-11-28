@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.5] - 2023-11-16
+### Changed
+- Updated guides for creating charts so that the option to add values for `Dynamic Measures` or `Measures` is automatically set based on the type of measures available in the project.
+### Fixed
+- Resolved an issue where the _Add a micro chart to a table_ guide was not appearing in search results when searching by annotation terms. 
+
 ## [1.11.4] - 2023-11-02
 ### Added
 - Introduced a new warning page for projects with virtual file system errors. 

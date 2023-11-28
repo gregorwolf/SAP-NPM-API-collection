@@ -1,6 +1,8 @@
 @sap/html5-app-deployer
 ==============
-[![Build Status](https://travis-ci.mo.sap.corp/html5-apps-repo/html5-app-deployer.svg?token=WNUCzC1QGN7ssw8yMAqk&branch=master)](https://travis-ci.mo.sap.corp/html5-apps-repo/html5-app-deployer)
+
+[![Build Status](https://gkehtml5appsrepo.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=Dependency-Check-html5-app-deployer-voter%2Fmaster)](https://gkehtml5appsrepo.jaas-gcp.cloud.sap.corp/view/voter/job/Dependency-Check-html5-app-deployer-voter/job/master/)
+
 
 <!-- toc -->
 - [Overview](#overview)

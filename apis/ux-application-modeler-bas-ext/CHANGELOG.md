@@ -5,6 +5,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.11.5] - 2023-11-15
+
+### Added
+- Added support for annotation features based on inline compositions, e.g. adding table sections
+
+### Changed
+- Enhanced the multi-select dropdowns in dialogs to ensure they don't obstruct the action buttons when open
+- Enhanced the hover area of the tooltip for error markers
+
+### Fixed
+- Fixed issues with overlapping and misaligned texts
+- Fixed Value helps referenced from another service are now considered in the Display Type property
+
 ## [1.11.4] - 2023-11-01
 ### Added
 - Added an information panel to the activity bar item of SAP Fiori tools

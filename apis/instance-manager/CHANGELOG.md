@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 4.1.0 - 2023-11-22
+
+### Updated
+- Updated xssec to 3.5.0
+- Updated node-fetch to 2.7.0
+
+### Added
+- Support for Node.js 20
+
+
+
 ## 4.0.0 - 2023-08-01
 
 ### Updated

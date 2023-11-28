@@ -228,11 +228,10 @@ Server Keep Alive | `SERVER_KEEP_ALIVE`                   | server keep alive ti
 Minimum Token Validity | `MINIMUM_TOKEN_VALIDITY`              | positive integer in seconds. When set, approuter will check that the token returned from the authorization service has an expiration time higher than the minimum token validity value.
 State Parameter Secret | `STATE_PARAMETER_SECRET`              | enables the use of state parameters to prevent CSRF attacks. If this environment  variable is set, the application router creates a state parameter for each initial authorization request. By validating that the authentication server returns the same state parameter in its response, the application server can verify that the response did not originate from a third party. **Note**: this feature is only available in Cloud Foundry runtime
 HTTP2 Support | `HTTP2_SUPPORT`                       | Enables the application router to start as an HTTP/2 server. Note: To configure HTTP/2 support, you must use Cloud Foundry routes with an HTTP/2 destination protocol. See [Configuring HTTP/2 Support](https://docs.cloudfoundry.org/adminguide/supporting-http2.html#application) in the Cloud Foundry Documentation. As connection-specific header fields aren't supported by the HTTP/2 protocol, see [rfc9113](https://datatracker.ietf.org/doc/html/rfc9113), the application router removes such headers automatically when they are returned from a backend to prevent a failure of the HTTP/2 response.
-Full Certificate Chain | `FULL_CERTIFICATE_CHAIN`              | If `true`, the application router will send the entire chain of certificates provided by authorization service.
 Store CSRF token in external session | SVC2AR_STORE_CSRF_IN_EXTERNAL_SESSION | If `true` and have enabled [external session management](#external-session-management), the application router can generate and validate CSRF tokens in service-to-application-router flows by storing the token in an external session.
 Cache service credentials | CACHE_SERVICE_CREDENTIALS             | If `true`, services credentials are cached in the application router memory
-Skip adding xsuaa/ias mTLS certificate | SKIP_DEFAULT_MTLS_AUTH_CA             | If `true`, the application router will not add xsuaa/ias client certificate to backend requests
 Enable x-forwarded-host header validation | ENABLE_X_FORWARDED_HOST_VALIDATION | If `true`, x-forwarded-host validation will be performed, allowing letters, digits, hypens (-), underscores (_) and dots (.). As well as it validates hostname length.  
+Add the content security policy headers to the response |ENABLE_FRAME_ANCESTORS_CSP_HEADERS | If `true`,  Approuter will include the content security policy (CSP) header using subaccount trusted domains with frame-ancestors policy.
 **Note:** all those environment variables are optional.
 
 
@@ -251,6 +250,7 @@ url | String | | URL of the app (microservice).
 proxyHost | String | x | The host of the proxy server used in case the request should go through a proxy to reach the destination.
 proxyPort | String | x | The port of the proxy server used in case the request should go through a proxy to reach the destination.
 forwardAuthToken | Boolean | x | If `true`, the OAuth token is sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA or IAS service, so it can be used for user authentication and authorization with backend services.
+forwardAuthCertificates | Boolean | x | If `true`, the certificates and key  of the authentication service are added to the HTTP connection to the destination. The default value is false. For more information see: [Mutual TLS Authentication (mTLS) and Certificates Handling](#mutual-tls-authentication-mtls-and-certificates-handling).
 strictSSL | Boolean | x | Configures whether the application router should reject untrusted certificates. The default value is `true`.<br />**Note:** Do not use this in production as it compromises security!
 timeout | Number | x | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.
 setXForwardedHeaders | Boolean | x | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
@@ -302,16 +302,17 @@ ProxyType |   | Supported proxy type : `on-premise`, `internet`, `private-link`.
 
 ##### Optional additional properties:
 
-Property  | Additional Property  | Description
--------- |:--------------------:| ----------
-HTML5.ForwardAuthToken |          x           | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.<br> **Note:** if ProxyType set to `on-premise`, ForwardAuthToken property should not be set.<br> **Note:** if Authentication type is other than NoAuthentication, ForwardAuthToken property should not be set.
-HTML5.Timeout |          x           | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or [service's logout path](#services-property) (if you have set one). 
-HTML5.PreserveHostHeader |          x           | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
-HTML5.DynamicDestination |          x           | If `true` , the application router allows to use this destination dynamically on host or path level.
-HTML5.SetXForwardedHeaders |          x           | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
-HTML5.IASDependencyName |          x           | Configures the name of the IAS dependency that is used to exchange the IAS login token. The exchanged token is also forwarded to the backend application.
-sap-client |          x           | If provided, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
-URL.headers.`<header-name>` |          x           | If provided, the application router propagates this special attribute in the destination as the header. The application router can get the headers list from the destination API. Existing request headers are not overwritten.
+Property  | Additional Property | Description
+-------- |:-------------------:| ---------
+HTML5.ForwardAuthToken |          x          | If `true` the OAuth token will be sent to the destination. The default value is `false`. This token contains user identity, scopes and other attributes. It is signed by the UAA so it can be used for user authentication and authorization with backend services.<br> **Note:** if ProxyType set to `on-premise`, ForwardAuthToken property should not be set.<br> **Note:** if Authentication type is other than NoAuthentication, ForwardAuthToken property should not be set.
+HTML5.ForwardAuthCertificates |          x          | If `true`, the certificates and key  of the authentication service are added to the HTTP connection to the destination. The default value is false. For more information see: [Mutual TLS Authentication (mTLS) and Certificates Handling](#mutual-tls-authentication-mtls-and-certificates-handling).
+HTML5.Timeout |          x          | Positive integer representing the maximum wait time for a response (in milliseconds) from the destination. Default is 30000ms.**Note:** The timeout specified will also apply to the [destination's logout path](#destinations-property) or [service's logout path](#services-property) (if you have set one). 
+HTML5.PreserveHostHeader |          x          | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
+HTML5.DynamicDestination |          x          | If `true` , the application router allows to use this destination dynamically on host or path level.
+HTML5.SetXForwardedHeaders |          x          | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
+HTML5.IASDependencyName |          x          | Configures the name of the IAS dependency that is used to exchange the IAS login token. The exchanged token is also forwarded to the backend application.
+sap-client |          x          | If provided, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
+URL.headers.`<header-name>` |          x          | If provided, the application router propagates this special attribute in the destination as the header. The application router can get the headers list from the destination API. Existing request headers are not overwritten.
 
 <br />**Note:** 
 * In case destination with the same name is defined both in environment destination and destination service, the destination configuration will load from the environment.
@@ -1789,16 +1790,16 @@ For example:
 ```
 
 ## Mutual TLS Authentication (mTLS) and Certificates Handling
-The application router supports the use of certificates for the creation of tokens and a mTLS handshake in backend connections. To enable the mTLS handshake in backend connections, the authentication service instance (XSUAA or IAS) bound to the application router must provide a certificates chain and a private key in its credentials.
+The application router supports the use of certificates for the creation of tokens and a mTLS handshake in backend connections.
+To enable the mTLS handshake in backend connections, the authentication service instance (IAS or XSUAA) bound to the application router must provide a certificates chain and a private key in its credentials.
+In addition, the destinations for the backend applications must contain either the HTML5.ForwardAuthCertificates property in the configuration provided by the destination service  or the forwardAuthCertificates property in the destinations environment variable.
 
-Note that application router also supports providing private key via environment variables: XSUAA_PRIVATE_KEY (XSUAA) and IAS_PRIVATE_KEY (IAS).
+Note that application router also supports providing private key via environment variables: IAS_PRIVATE_KEY (IAS).
 
-If the certificates and the private key are available in the credentials of the authentication service instance (XSUAA or IAS) bound to the application router, the application router gets the XSUAA or IAS tokens providing the certificates chain and private key.
+If the certificates and the private key are available in the credentials of the authentication service instance (IAS or XSUAA) bound to the application router, the application router gets the IAS/XSUAA tokens providing the certificates chain and private key.
 When forwarding request to business services, application router also uses certificates to create a client_credentials token or exchange the login token.
 
 The application router creates the HTTP connection to backend using the private key and a chain of intermediate and client certificates, which enable the mTLS handshake.
-
-If the FULL_CERTIFICATE_CHAIN environment variable is enabled, the application router sends the entire chain of certificates provided in the binding of the authentication service (XSUAA or IAS) to the backend applications.
 
 In Cloud Foundry, the client certificate is propagated via the x-forwarded-client-cert header. To enable this, the backend URL must contain a .cert segment in its domain.
 

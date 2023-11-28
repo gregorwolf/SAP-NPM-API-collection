@@ -8,6 +8,12 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+<a name="6.6.2"></a>
+## 6.6.2 - 2023-11-20
+### Changed
+- Dependencies version update.
+
 <a name="6.6.1"></a>
 ## 6.6.1 - 2023-11-13
 ### Changed
