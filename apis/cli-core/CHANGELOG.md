@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2023.25.0
+
+### Added
+
+- A check for the correct node version environment when using the CLI. In case the node version does not satisfy the minimum node version required by the CLI to function correctly, a warning is printed to the console.
+
+- When printing the help information for the `login` command, the list of options now includes the login-specific options such as `--authorization-url` and `--token-url`. Previously the help showed the following options:
+
+  ```bash
+  <CLI> login --help
+  Usage: <CLI> login [options]
+  log in to your account using interactive OAuth authentication
+  Options:
+    -H, --host <host>  specifies the url where the tenant is hosted (optional)
+    -h, --help         display help for command
+  ```
+
+  With this version, the help looks like this:
+
+  ```bash
+  <CLI> login --help
+  Usage: <CLI> login [options]
+  log in to your account using interactive OAuth authentication
+  Options:
+    -H, --host <host>              specifies the url where the tenant is hosted (optional)
+    -A, --authorization-url <url>  authorization url for interactive oauth session authentication (optional)
+    -t, --token-url <url>          token url for interactive oauth session authentication (optional)
+    -c, --client-id <id>           client id for interactive oauth session authentication (optional)
+    -C, --client-secret <secret>   client secret for interactive oauth session authentication (optional)
+    -a, --access-token <token>     access token for interactive oauth session authentication (optional)
+    -b, --code <code>              code for oauth token retrieval (optional)
+    -r, --refresh-token <token>    refresh token for interactive oauth session authentication (optional)
+    -s, --secrets-file <file>      path to secrets file (optional)
+    -h, --help                     display help for command
+  Only command-specific options are listed here. To learn more about available generic options, visit https://tinyurl.com/yck8vv4w
+  ```
+
+- Added the option `--browser <browser>` to the login command. Users can now choose explicitly which browser to open when logging in to a tenant. By default the system's default browser is used.
+
+### Fixed
+
+- The HTTPS proxy support introduced with `2023.24.0` did not respect the underlying `axios` module configuration need to disable the native proxy handling by passing `proxy: false` to the request configuration.
+
+### Changed
+
+- Previously, when running the `logout` command but no secrets existed anymore, the command would fail with exit code 1 and an error message. Now, when running the `logout` command but there are no secrets to logout from, the command fails silently.
+
 ## 2023.24.0
 
 ### Fixed

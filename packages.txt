@@ -35,7 +35,6 @@
 @sap/cli-core
 @sap/datasphere-cli
 @sap/destination-instance-service-provider
-@sap/dwc-cli
 @sap/e2e-trace
 @sap/eslint-plugin-cds
 @sap/external-service-mashup

@@ -5,6 +5,18 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2023.25.0
+
+### Fixed
+
+- The defined HTTP protocol was not applied to calculated authorization URL and token URL. No matter which HTTP protocol (`http` or `https`) was used, the automatically calculated authorization URL and token URL always used the `https` protocol.
+
+### Added
+
+- HTTPS proxy support via environment variable `https_proxy`. When using an HTTPS proxy to communicate with the public internet, you can configure the environment variable `https_proxy`. The CLI uses the value from the environment variable to establish a correct connection to the HTTPS proxy.
+
+- Support for response header `x-sap-datasphere-cli-file-name`. When the user adds option `--output` and provides a path to a file location, this value is always used to store the response data, no matter whether response header `x-sap-datasphere-cli-file-name` is present. If the user adds option `--output` without providing a path to a file location and the response header `x-sap-datasphere-cli-file-name` is present, the response data is stored in the location mentioned in `x-sap-datasphere-cli-file-name`. In all other cases, the response data is printed to the console.
+
 ## 2023.24.0
 
 ### Fixed
