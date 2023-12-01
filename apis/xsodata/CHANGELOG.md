@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [8.1.1] - 2023-11-30
+
+* Add support for node 20
+* Remove support for node 14
+* Remove support for node 16
+* Update dependencies
+* Security fix - update @sap/xssec library to version 3.6.0
+
 ## [8.1.0] - 2023-02-20
 * Add support Node.js 18
 * Update node module dependencies

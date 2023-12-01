@@ -2,6 +2,8 @@ XSODATA
 =======
 
 Expose data from HANA database artifacts like tables or views as OData V2 service with the help of .xsodata service definition files. 
+Starting from version 8.1.1 - XSODATA is supported only with @sap/async-xsjs library. @sap/xsjs is deprecated and no new versions will be 
+released. [see CHANGELOG](./CHANGELOG.md)
 
 Note: XSOData was developed to provide XS Classic users using XSOData the possibility to migrate to XS Advanced on node.js. 
       This library contains nearly the same feature set as XSOData provided on SAP HANA XS Classic. This module is already 
@@ -14,19 +16,19 @@ Note: XSOData was developed to provide XS Classic users using XSOData the possib
       For node.js we also provide an OData V4 solution. The development of the OData V4 node.js Library already started in 2016.
       It is also planned that a generic CDS-Odata provider will be deliverd.
 
-      If you are developing an OData service for SAP Business Technology Platform, it is recommended to move to the SAP Cloud Application Programming Model (CP).
-      The XSODATA solution supports HANA as a service, but does **NOT** support SAP HANA Cloud Services (see also SAP note 3013788).
+      If you are developing an OData service for SAP Business Technology Platform, it is recommended to move to the SAP Cloud Application Programming Model (CAP).
+      The XSODATA solution supports HANA as a service, also support was introduced for SAP HANA Cloud Services from XSODATA v8.0.0 and above.
 
 ## Usage
 
-  * This module is used in the XSJS shim for SAP HANA XSC Engine applications to
+  * This module is used in the XSJS/ASYNC-XSJS shim for SAP HANA XSC Engine applications to
     allow the reuse of .xsodata files from XSC applications on SAP HANA XSA.
 
   * It can also be used directly in your own nodejs server application. Be aware that you use the same version of the hdb and winston node module version in your application.
   
 ## Documentation 
 
-[For documentation see here](./documentation.md)
+[For documentation see here](./documentation)
 
 ## Warning
 
@@ -49,7 +51,7 @@ Note: XSOData was developed to provide XS Classic users using XSOData the possib
   * Calculation view support
   * Batch handling
   * Logging:
-    When the xsjs application log is enabled then xsodata also writes log information.
+    When the xsjs/async-xsjs application log is enabled then xsodata also writes log information.
     If, in addition, the environment variable XSODATA_LOG_MEMORY_CONSUMPTION is set to 'true'
     xsodata writes also memory consumption information to the logs
 
@@ -96,28 +98,28 @@ CreateUpdateDelete Requests:
   * Create/update/delete restrictions of OData requests
   * Exposure of table and views (including calculation views) as EntitySet
   * Property Projection: Expose a subset of the table columns as properties of an OData EntityType
-  * [Automatic OData key generation] (/documentation/generatedKeys.md), e.g. required for aggregated views
+  * [Automatic OData key generation](/documentation/generatedKeys.md), e.g. required for aggregated views
   * Simple and complex associations 
-  * [Data aggregation] (/documentation/aggregations.md)
+  * [Data aggregation](/documentation/aggregations.md)
   * Parameter EntitySets for calculation views
   * ETAG handling
   * Nullable properties
   * Cache Control via cache header
-  * [Custom exits] (/documentation/customExits.md) (JavaScript and SQL Script) for modification and validation requests
+  * [Custom exits](/documentation/customExits.md) (JavaScript and SQL Script) for modification and validation requests
   * Custom exits in batch requests
   * Uses only UTF-8
   * Uses "content-type: application/json" for CREATE, UPDATE, DELETE
   * Expose data only via JSON format (ATOM format is not supported)
   * Supported types and type mapping [see here](/documentation/typemapping.md) 
-  * [Supported XSOData features by OSDL] (/documentation/xsodataEbnf.md) 
+  * [Supported XSOData features by OSDL](/documentation/xsodataEbnf.md) 
   
 
 Note: 
 
 * XS1 applications using analytical views, attribute views or calculation views <= SAP HANA SPS 10 have to migrate first their views to the new calculation views of SPS 11. 
 * Authentication/Authorisation is not handled by XSOData node module and has to be done by the application using the node module. 
-* [The module can be used in development mode and productive mode] (/documentation/modes.md)
-* [Debug View is available when using the module in development mode] (/documentation/debugView.md)
+* [The module can be used in development mode and productive mode](/documentation/modes.md)
+* [Debug View is available when using the module in development mode](/documentation/debugView.md)
 
 ## Features per HANA DB Artifact
 
