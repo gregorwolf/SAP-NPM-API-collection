@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.4.2 - 2023-11-30
+
+### Fixed
+
+- Typing for `DELETE.from(<e>.drafts)`
+- UUID keys must not be generated for associations
+
 ## Version 7.4.1 - 2023-11-23
 
 ### Fixed
