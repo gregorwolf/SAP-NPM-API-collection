@@ -1,3 +1,8 @@
+## 4.9.0
+Features:
+- only log VCAP_SERVICES of hana service or user-provided service with hana tag 
+- use @sap/hana-client@2.19.18
+
 ## 4.8.2
 Fixes:
 - removed extraneous packages in shrinkwrap

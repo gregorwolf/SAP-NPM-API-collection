@@ -1,3 +1,19 @@
+## 1.1.2
+
+### Fixes
+- feat(JIRA-2137): BAS on-premise dev support for SDI plugin eimtools
+- feat(BUG-312684): Recommend user to use single source per reptask
+- fix(Bug-311262): Realtime checkbox not shown when API call fails
+- feature(HANAEIM20PT-2135): Enable Match transform in HANA Cloud
+- Bug 310429 - reptask partition validation error
+
+## 1.1.1
+
+### Fixes
+- make the virtual table file format editor optional (not default)
+- Fix the message shown upon execution of Flowgraph and Reptask
+- Show the error message in the console when execution was not triggered
+
 ## 1.0.8
 
 ### Fixes

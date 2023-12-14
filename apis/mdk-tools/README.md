@@ -29,7 +29,14 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
 
 - Builder
 
-    You can build metadata project into js or zip file.
+    You can build metadata project into js or zip file. 
+    
+    Below command can get build parameter details:
+    
+    ```bash
+    mdk build
+    ```
+
     - target
 
         Target 'js' can build to bundle.js and bundle.js.map, you can use it to update your local run project.   
@@ -60,6 +67,15 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         mdk build --target zip --filters "/FolderA/" "/FolderB/readme.txt"
         ```
 
+    - debugging
+
+        Enable debugging by add devtool option
+
+        ```bash
+        mdk build --target zip --devtool "source-map"
+        ```
+
+
     ```bash
     mdk build --target js
     mdk build --target js  --project /path/to/Your-MDK-metadata-project 
@@ -71,6 +87,13 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
 - Deployer
 
     You can deploy MDK metadata project directly to SAP Business Technology Platform (BTP) Cloud Foundry and NEO environment.
+
+    Below command can get deploy parameter details:
+    
+    ```bash
+    mdk deploy
+    ```
+
     - Deploy to Mobile Services on Cloud Foundry to run it as a mobile application
 
         It bundles MDK metadata project, uploads to Mobile Services and publishes it.
@@ -79,10 +102,11 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         >In case of MDK metadata project exported from SAP Web IDE, *name* argument is mandatory.
 
         ```bash
-        mdk deploy --target mobile --name "com.mdk.myapp" 
+        mdk deploy --target mobile --name "com.mdk.myapp" --devtool "source-map"
         mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project
         mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --externals "@nativescript/geolocation" "external2"
         mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --showqr
+        mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project
         ```
 
         If your Mobile Services is Preview version, you can add *--preview* option.
@@ -116,7 +140,7 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         >In case of MDK metadata project exported from SAP Web IDE, *name* argument is mandatory.
 
         ```bash
-        mdk deploy --target cf --name "MyWebApplication"
+        mdk deploy --target cf --name "MyWebApplication" --devtool "source-map"
         mdk deploy --target cf --name "MyWebApplication" --project /path/to/Your-MDK-metadata-project 
         mdk deploy --target cf --name "MyWebApplication" --externals "@nativescript/geolocation" "external2"
         ```

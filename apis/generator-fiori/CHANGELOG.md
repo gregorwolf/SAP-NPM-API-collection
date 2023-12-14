@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.0] - 2023-11-29
+### Added
+- Users can now add deployment configuration for Cloud Foundry to an existing application in a non-interactive mode from the command line or as a child process.
+
+### Changed
+- Improved test connection functionality in the Saved Systems view in VSCode to more explicitly detail when services could not be retrieved.
+
+### Fixed
+- Fixed issue with the FLP sandbox test file not loading for generated Fiori applications in a CAP project.
+- Fixed `typeRoots` compilation error for generated Fiori applications with TypeScript in a CAP project.
+- Fixed an issue where the latest version of CDS could cause a compliation failure of the CAP project.
+
 ## [1.11.5] - 2023-11-15
 ### Changed
 - Improved error message and associated help text when connecting to an SAP saved system in VSCode fails.

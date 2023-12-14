@@ -5,8 +5,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.11.5] - 2023-11-15
+## [1.12.0] - 2023-11-29
+### Changed
+- Changed the parsing of `launch.json` files to be tolerant in regards to using comments
+- Optimized the schema generation for multi-app projects to reduce loading and roundtrip times 
 
+### Fixed
+- Fixed an issue with opening the same file twice when using the navigate to source option and the file being open already
+- Fixed an issue with a lower border on dropdown boxes not visible with certain zoom levels
+- Fixed an issue with "Use Existing View" being selected in the custom section dialog even if there is no view available
+- Fixed an issue with drag & drop placeholders being wrongly positioned when a resizing of the window leads to a multi-row toolbar
+- Fixed an issue with losing the focus when moving toolbar actions to table columns
+
+## [1.11.5] - 2023-11-15
 ### Added
 - Added support for annotation features based on inline compositions, e.g. adding table sections
 

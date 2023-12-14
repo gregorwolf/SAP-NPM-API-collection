@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.0] - 2023-11-30
+### Changed
+- Updated guide names to reflect the floorplans the guides can modify.
+- Introduced the ability to edit existing field group annotations in the _Add a field group to an object page_ guide by selecting an existing qualifier.
+- Updated chart guides to provide a warning if a selected entity does not have measures available.
+- Updated the _Add a filter building block_, _Add a chart building block_, and _Add a table building block_ guides to feature validation for the `Building Block ID` parameter so that duplicate code snippets cannot accidentally be inserted into the project's fragment file.
+
 ## [1.11.5] - 2023-11-16
 ### Changed
 - Updated guides for creating charts so that the option to add values for `Dynamic Measures` or `Measures` is automatically set based on the type of measures available in the project.

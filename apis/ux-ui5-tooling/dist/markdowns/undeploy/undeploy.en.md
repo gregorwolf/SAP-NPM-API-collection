@@ -23,6 +23,7 @@ OPTIONS:
 | --yes          | -y  | Yes to all questions |
 | --verbose      | -vb | Enable verbose logging (default: false) |
 | --strict-ssl   | -ss | Perform certificate validation (Y/n) (default: true)|
+| --lrep         | -lr | Enhanced LREP services to support undeployment of adaptation projects |
 | --username     | -ur | Name of environment variable containing a username to authenticate (default: username from ui5-deploy.yaml) |
 | --password     | -pw | Name of environment variable containing a password to authenticate (default: password from ui5-deploy.yaml) |
 | --uaa-url      | -uu | UAA server url for steampunk systems which can be found in service key. |

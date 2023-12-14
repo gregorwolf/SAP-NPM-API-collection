@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+## 5.0.2 - 2023-11-29
+
+### Updated dependencies
+- deps: xssec@3.6.0
 
 ## 5.0.1 - 2023-11-18
 

@@ -5,6 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.0.0"></a>
+## 2.0.0 - 2023-12-08
+
+### Added
+- Added Node.js 20.x support.
+
+### Updated
+- Dependent node module versions updated to latest versions to support Node 20.
+- Updated axios version to 1.6.2 to fix the security vulnerability.
+
+### Removed
+- Removed support Node.js 16.x
+- Removed text-mining and text-analysis features.
+
 <a name="1.0.8"></a>
 ## 1.0.8 - 2023-10-20
 

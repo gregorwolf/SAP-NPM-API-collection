@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.0] - 2023-11-29
+### Fixed
+- Removed usage of the deprecated `@ui5/fs` version 2 package
+- Fixed an issue with the check of a newer version preventing the server from starting if the customer is behind a corporate proxy
+
 ## [1.11.4] - 2023-11-01
 ### Fixed
 - Fixed an issue with using `fiori-tools-servestatic` middleware in an npm monorepository

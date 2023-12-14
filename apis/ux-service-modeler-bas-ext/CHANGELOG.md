@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 ​
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## [1.12.0] - 2023-11-29
+### Added
+- Added the new Annotations side panel in the redesigned list view
+- Added the ability to launch the Service Manager from the Service Modeler
+- Enabled the SAP Business Application Studio to add services to applications
+
+### Changed
+- Redesigned the list view to add the ability to view or override annotations in the Annotations side panel
+- Enhanced the list to display the properties as part of the entities in a tree structure
+- Renamed the right-click option to launch the Service Modeler from file explorer to 'Override Annotations'
+- Deprecated the Compact and Expanded views from the Service Modeler
+
 ## [1.11.0] - 2023-09-06
 ### Changed
 - Changed the message appearing if no eligible app is found at the start of Service Manager or Annotation File Manager from a modal popup to a notification to be in line with the behavior of other tools

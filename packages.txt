@@ -47,6 +47,7 @@
 @sap/generator-hdb-project
 @sap/hana-client
 @sap/hana-database-explorer
+@sap/hana-eim-sditools-vscode
 @sap/hana-performance-tools
 @sap/hana-project-explorer
 @sap/hana-sqlscript-lsp

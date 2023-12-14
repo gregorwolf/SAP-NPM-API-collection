@@ -2,13 +2,13 @@
 
 ## Description
 
-The **SAP Fiori Tools - Service Modeler** is a graphical tool that provides visualization of OData service including its backend and local annotations. The Service Modeler helps you easily find entities or projection and their associated annotations. 
+The **SAP Fiori Tools - Service Modeler** is a tool that provides visualization of OData service including its backend and local annotations. The Service Modeler helps you easily find entities or projection and their associated annotations. 
 
 ## Features
 
-- Visualization of OData service based on the local EDMX .xml file within the project.
-- View and manage annotations associated to the entities, projections and properties of a service. 
-- Manage services required for Fiori Element applications, for example adding new services to a project or syncing services that already exist to ensure they are up to date. 
+- Visualization of OData service based on the local EDMX .xml and CAP CDS file within the project. 
+- View and manage annotations associated to the entities and properties of a service. 
+- Manage services required for Fiori Elements and Fiori FreeStyle applications, for example adding new services to a project or syncing services that already exist to ensure they are up to date. 
 - Manage local annotation files associated to the different services of a Fiori Element project. Users can create local annotation files and set the hierarchy for local annotation for a service.
 
 ## Usage
@@ -21,7 +21,7 @@ OR
 
 - From the File Explorer in your project, navigate to `webapp->localService->metadata.xml`
 - Right click on the file
-- Choose `Open Service Modeler`
+- Choose `Override Annotations`
 
 OR
 
@@ -32,28 +32,31 @@ OR
 - From the File Explorer in your project, navigate to `webapp->manifest.json`
 - Right click on the file
 - Choose `Open Service Manager`
+
+OR
+
+- Click on 'Service Manager' button from Service Modeler
  
 ### How to launch Annotation File Manager
 - From the File Explorer in your project, navigate to `webapp->manifest.json`
 - Right click on the file
 - Choose `Open Annotation File Manager`
 
+OR
+
+- Click on 'Annotation Hierarchy' button from Service Modeler
 
 ### Using the Service Modeler
 
-- User can view the OData service in different views e.g. Expanded, Compact and List 
-- Users can view all the entities , projections and associations included in the service. 
-- Users can select a service and view the projections/entities included in the service
-- Users can select an entity and view the properties/associations/annotations of that entity.
-- Users can select a property and view the property details and annotations of that property.
-- Users can filter the model on entities, projections and services.
-- In Compact or Expanded View the user can zoom the model in and out
-- In Compact or Expanded View can rearrange the position of the entites and projections and save the positions.
+- User can browse and view the OData service in the tree list
+- Users can view all the entity types, entities and properties included in the service. 
+- Users can select an entity and view the properties/annotations of that entity.
+- Users can select a property and view the annotations of that property.
+- Users can search for entity/property or annotations to filter the displayed data
+- User can override the backend annotations using the Service Modeler.
+- User can navigate to manage the Services and local Annotation files from the Service Modeler
 - If the Application Modeler or Annotation Modeler extensions are also installed the user can navigate to these tools from 
   the Service Modeler
-- From extension settings, Users can change the preferences of the tool e.g. change the default view mode from List to Compact
-
-Note: Expanded and Compact views are being deprecated
 
 ## Pre Requisites for using this extension
 

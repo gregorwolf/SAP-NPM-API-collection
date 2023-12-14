@@ -3,7 +3,44 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+
+## 14.4.3 - 2023-12-07
+
+### Fixed
+- Path traversal validation - normalize for windows 
+- Only if tenant_id header not populated set header with provider/subscriber subdomain.
+
+### Updated dependencies
+- deps: @sap/audit-logging@5.8.2
+
+## 14.4.2 - 2023-11-30 
+
+### Updated dependencies
+- deps: @sap/xssec@3.6.0
+
+## 14.4.1 - 2023-11-26
+
+### Added
+- Path traversal validation
+
+### Updated dependencies
+- deps: @sap/audit-logging@5.8.1
+
+## 14.4.0 -  2023-11-19
+
+### Fixed
+- Retrieve logs from CLS instead of application log (SAAS approuter)
+
+### Added
+- Introduce a new configuration option (ENABLE_FRAME_ANCESTORS_CSP_HEADERS) to include the content security policy (CSP) header using subaccount trusted domains with frame-ancestors policy.
+- Forward auth certificates only in case it is configured via HTML5.ForwardAuthCertificates destination property
+- FULL_CERTIFICATE_CHAIN and SKIP_DEFAULT_MTLS_AUTH_CA env. variables support remove
+- Provider/subscriber subdomain propagation to logs via tenant_id header
+
+### Updated dependencies
+- deps: @sap/xssec@3.5.0
+- deps: axios@1.6.1
 
 ## 14.3.4 -  2023-10-25
 
@@ -17,13 +54,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ## 14.3.3 -  2023-10-12
 
 ### Fixed
--  Crash on cookie name equal to basic object attribute 
+-  Crash on cookie name equal to basic object attribute
 
 ### Updated dependencies
 - deps: @sap/audit-logging@5.7.1
 
 ### Added
 - Protect from timing attack on state parameter middleware.
+- Validate state parameter is valid uuid v4 string.
 - Protect against Request Smuggling.
 
 ## 14.3.2 - 2023-09-10

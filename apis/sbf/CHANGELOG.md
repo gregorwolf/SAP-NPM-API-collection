@@ -8,6 +8,15 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.6.4"></a>
+## 6.6.4 - 2023-12-07
+### Updated
+- Updated audit-logging to v5.8.2.
+
+<a name="6.6.3"></a>
+## 6.6.3 - 2023-12-03
+### Removed
+- Remove usage of deprecated AuditLog v1 APIs.
 
 <a name="6.6.2"></a>
 ## 6.6.2 - 2023-11-20

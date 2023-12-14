@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+
+<a name="8.0.2"></a>
+## 8.0.2 - 2023-11-28
+
+### Added
+- Added Node.js 20.x support.
+
+### Updated
+- Update *@sap/hana-client* to v2.18.27
+- Update *@sap/e2e-trace* to v4.1.0
+- Updated versions of dev dependencies node modules
+- Replaced *options.hasOwnProperty(prop)* by *Object.prototype.hasOwnProperty.call(obj, prop)*
+- Replaced *istanbul* with *nyc* for test script as *istanbul* is deprecated
+- Replaced Buffer() with Buffer.from() and Buffer.alloc() as Buffer() is deprecated
+
+### Fixed
+- Replaced deprecated function of *@sap/hana-client* library - createClient and close with createConnection and disconnect respectively.
+
 <a name="8.0.1"></a>
 ## 8.0.1 - 2023-11-14
 
