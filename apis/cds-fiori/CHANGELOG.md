@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.2.2 - 2023-12-04
+
+### Fixed
+
+- Do not crash for services w/o a path
+
 ## Version 1.2.1 - 2023-11-27
 
 ### Fixed

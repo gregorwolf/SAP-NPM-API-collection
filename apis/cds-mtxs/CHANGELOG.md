@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.13.4 - 2023-12-07
+
+### Changed
+
+- The built-in Service Manager client uses async APIs for creating or deleting service bindings by default.
+
+## Version 1.13.3 - 2023-12-05
+
+### Fixed
+
+- `PUT /-/cds/saas-provisioning/tenant` can now be used for upgrade purposes with shared deployment directories in non-extensible apps.
+- `POST /-/cds/saas-provisioning/upgrade` correctly determines the deployment directory in non-extensible apps if just one tenant is passed in the request body.
+
+## Version 1.13.2 - 2023-12-01
+
+### Fixed
+
+- Projects with `cds.features.assert_integrity = 'db'` don't generate constraints for `t0` any more.
+- Deployment resources for `t0` are not created in the `base` directory any more.
+- Fixed a race condition for the shared `base` directory.
+
 ## Version 1.13.1 - 2023-11-27
 
 ### Added
