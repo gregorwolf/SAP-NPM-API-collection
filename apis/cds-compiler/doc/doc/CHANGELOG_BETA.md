@@ -8,6 +8,22 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 4.5.0 - 2023-12-08
+
+### Added `odataAnnotationExpressions`
+
+This flag allows to use expressions as annotation values, e.g.
+`@anno: (1+2)` and to enable OData specific transformations on those expressions.
+
+### Added `tenantVariable`
+
+If this beta flag is enabled, variable `$tenant` can be used without explicit replacement value.
+
+### Added feature "associations as direct calculated element values"
+
+This beta feature does not require a flag.  It is now possible to use associations with
+filters as direct values of calculated elements (on-read), e.g. `calc = assoc[ID = 1]`.
+
 ## Version 4.3.0 - 2023-09-29
 
 ### Removed `associationDefault`

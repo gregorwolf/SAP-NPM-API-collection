@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.14.0 - 2023-12-14
+
+### Changed
+
+- Various performance improvements for retrieving EDMX or CSN models.
+- Improved logging for `cds.xt.JobsService` or `cds.xt.DeploymentService`.
+
 ## Version 1.13.4 - 2023-12-07
 
 ### Changed

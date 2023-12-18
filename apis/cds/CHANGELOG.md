@@ -4,6 +4,100 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.5.0 - 2023-12-14
+
+### Added
+
+- Support for expressions in where clause of `@restrict` annotation.
+  - Example: `@(restrict : [{ grant : ['*'], where : (NAME = $user) }])`
+- Function `cds.unboxed(srv)` to get the non-outboxed variant of the service
+- Service implementations can now be provided in .mjs modules.
+- Remote services: advanced configurable `CSRF` token fetching HTTP method and the URL.
+  For example, in the configuration of your remote services, you can now configure the HTTP method and URL as follows:
+  ```json
+  "cds": {
+    "requires": {
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+        "csrf": { // this configuration implies `csrf: true`
+          "method": "get",
+          "url": "..."
+        } 
+      }
+    }
+  }
+  ```
+- `cds.log`'s built-in JSON formatter:
+  + Extract custom fields (`cds.env.log.als_custom_fields`) and categories from args (not only error-like first objects)
+    * Example: `LOG.info('foo', { query: 'SELECT * FROM DUMMY' }, 'bar', { categories: ['baz'] })`
+  + `cds.env.log.mask_headers = [...]` allows to specify a list of matchers for which the header value shall be masked (i.e., printed as `***`)
+    * Default: `['/authorization/i', '/cookie/i']`
+- `cds.env.fiori.bypass_draft` feature flag, designed to enable direct modifications via `POST` and `PATCH` of
+active instances in lean draft mode (`cds.env.fiori.lean_draft=true`). For example:
+
+```http
+POST /Orders
+{
+  "IsActiveEntity": true
+}
+```
+
+- Auth kind `ias`: same SAML attr api as auth kind `xsuaa` for easier migration
+
+### Changed
+
+- Removed and integrated former `ctx-auth` middleware into `cds.auth` middleware
+- `cds.log`:
+  + `cds.env.log.format = 'plain'|'json'` allows to configure which built-in formatter is used. Defaults to `json` in production, `plain` otherwise.
+  + If built-in JSON formatter is used:
+    * Field `tenant_subdomain` is filled if running on CF and information is available through authentication
+    * Additional CF-related fields are filled if running on CF
+    * Custom fields (`cds.env.log.als_custom_fields`) are filled if bound to an instance of Application Logging Service
+    * Field `categories` is filled if bound to an instance of Application Logging Service
+  + Config `cds.env.log.kibana_custom_fields` changed to `cds.env.log.als_custom_fields` (ALS = Application Logging Service) with compatibility until next major
+- Package `passport` is no longer required (if `cds.env.requires.middlewares` is not set to `false`)
+- Type definitions for the APIs of this package are now maintained in package [`@cap-js/cds-types`](https://npmjs.com/package/@cap-js/cds-types).
+  - If you used one of the types `CSN`, `Definitions`, `entity` of _@sap/cds/apis/reflect_, use the `Linked` counterparts instead.
+  - If you used the type `CQNQuery` of _@sap/cds/apis/cqn_, use `SELECT` or a union type instead.
+  - This also includes various fixes to Typings for
+    - `req.subject` like `SELECT.from(req.subject)`
+    - `SELECT.columns([...])`
+    - `cds.db`
+    - `cds.util`
+    - `cds.context.features`
+- The number of files logged on `cds serve` is now limited to 30 by default. You can run with `DEBUG=serve` to show all files.
+- `express.static` is only mounted if the target folder (`cds.folders.app`) exists
+- `cds.outbox.Messages` no longer uses aspect `cuid` to reduce model size impact in case `@sap/cds/common` is not used otherwise
+
+### Fixed
+
+- Messaging: Listen to `*`
+- Drafts of `@readonly` entities cannot be deleted
+- Made `srv.prepend()` robust by not allowing async callbacks and hence not being an async function itself anymore
+- Formatting for stringified number-literal value
+- Secrets are now masked with `DEBUG=cds.service.factory`
+- The timestamp of cds.context is not propagated to new root contexts
+- `cds.localize` uses less memory to create translation bundles
+- `UPSERT` operation failed to fill DateTime/Timestamp fields
+- Use original logic (based on `NODE_ENV`) to load cds plugins from `devDependencies`
+- Property `tenant` also available on express' `req` object with basic and mocked auth
+- Empty `req.data` in before `DELETE` handler in draft
+- Loading `cds-plugins` now offers a hook to add more flexible plugin loader, e.g. for corrupt `package.json` files.
+- Ignore default values of associations for draft entities
+- OData: client-side errors (4xx) logged as warnings instead of errors
+- IAS authentication: use `tokenInfo.getClientId()` instead of `payload.azp` as it implements a fallback
+- Deep updates with binary keys
+- Allow `null` values in `cds.env` (example package.json excerpt: `{ "cds": { "features": { "foo": null } } }`)
+- Collection bound actions/functions called via navigation
+
+### Removed
+
+- Deprecated global configuration feature flag `cds.env.features.fetch_csrf`.
+  Instead, please use `csrf` and `csrfInBatch` in the configuration of your remote services.
+  These options will allow to configure CSRF-token handling.
+- Compat for deprecated `cds.env.auth.passport`. Use `cds.env.requires.auth` instead.
+
 ## Version 7.4.2 - 2023-11-30
 
 ### Fixed

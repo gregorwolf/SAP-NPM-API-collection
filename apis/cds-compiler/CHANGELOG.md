@@ -7,6 +7,44 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.5.0 - 2023-12-08
+
+### Added
+
+- parser: `annotate` can now annotate entity parameters, elements and bound actions in one statement.
+- compiler: A single `annotate` statement can now be used to annotate parameters, elements and
+  bound actions in one statement.
+- to.edm(x): Key elements of type `cds.UUID` are annotated with `@Core.ComputedDefaultValue` if they are
+  defined directly in the entity. Elements of type `cds.UUID` that are defined in a named structured type
+  and used to define a key element are not annotated, instead a warning is raised if such elements are
+  not annotated with `@Core.ComputedDefaultValue`.
+- to.sql|hdi: Add option `withHanaAssociations` which, for sqlDialect `hana`, allows suppressing
+  the generation of the `WITH ASSOCIATIONS`.
+
+### Changed
+
+- Update OData Vocabulary: 'Common'.
+- api: Reject CSN as input in backends, if it is a CSN in flavor `parsed` with a non-empty `requires` array.
+  Reason being that the model is not considered a "full" CSN, as dependencies were not resolved.
+
+### Fixed
+
+- compiler:
+  - Fix false positives of cyclic dependencies for calculated elements.
+  - Fix cardinality on source associations when publishing them with a filter (+ different cardinality)
+    in a projection.  The cardinality was incorrectly changed on the source as well.
+- CDL parser:
+  - More numbers that would lose relevant digits due to precision loss are
+    stored as strings in CSN (i.e. `{ "literal":"number", "val": "1.0000000000000001" }`).
+  - Nested table expressions and queries in the FROM clause (with surrounding parentheses)
+    could cause some constructs such as `virtual` to be not properly parsed.
+- to.hdi.migration: Don't drop-create the primary key when only a doc-comment has changed.
+- to.cdl: Fix edge case where `@A.![B#]` was not rendered correctly.
+
+### Removed
+
+- to.edm(x): Remove option `--odata-open-type` introduced with [4.4.0](#version-440---2023-11-09).
+
 ## Version 4.4.4 - 2023-11-24
 
 ### Fixed
@@ -360,6 +398,20 @@ The compiler behavior concerning `beta` features can change at any time without 
   + "Smart type references" such as `Entity.myElement` instead of `Entity:myElement`
     are removed, because since - `Entity.myElement` could also be a definition,
     creating ambiguities. This did not work always, anyway.
+
+## Version 3.9.12 - 2023-12-06
+
+### Fixed
+
+- compiler:
+  + SQL function `STDDEV(*)` was not parsable.
+  + Numbers in scientific notation `-1e1` were sometimes not recognized via CSN input.
+- for.odata: Fix crash when using a projection with associations as action parameter type.
+- for.hana: Fix a bug in association to join translation, expect ON condition operand to be a function without arguments.
+- to.edm(x):
+  + Omit `EntitySet` attribute on `Edm.FunctionImport` and `Edm.ActionImport` that return a singleton.
+  + Don't render `Scale: variable` for `cds.Decimal(scale:0)`.
+- to.sql/hdi/hdbcds: consider `having` predicate for `exists` expansion
 
 ## Version 3.9.10 - 2023-08-25
 
