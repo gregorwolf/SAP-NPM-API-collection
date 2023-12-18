@@ -1,6 +1,6 @@
 # Adaptation Project Yeoman Sub-Generators
 
-WARNING: This package is intended for usage only within SAP Business Application Studio and NOT VSCode
+WARNING: This package is intended for usage within SAP Business Application Studio. VSCode usage is in experimental mode.
 
 Yeoman Generator for creating an Adaptation Project in the SAP Business Application Studio.
 

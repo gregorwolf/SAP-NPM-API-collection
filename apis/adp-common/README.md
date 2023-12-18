@@ -1,5 +1,5 @@
 # Adaptation Project Common Package
 
-WARNING: This package is intended for usage only within SAP Business Application Studio and NOT VSCode
+WARNING: This package is intended for usage within SAP Business Application Studio. VSCode usage is in experimental mode.
 
 The package includes some joint business logic which is used by other Adaptation Project's packages.

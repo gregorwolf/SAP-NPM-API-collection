@@ -1,6 +1,6 @@
 # SAPUI5 Visual Editor extension for BAS
 
-WARNING: This package is intended for usage only within SAP Business Application Studio and NOT VSCode
+WARNING: This package is intended for usage within SAP Business Application Studio. VSCode usage is in experimental mode.
 
 ### Open SAPUI5 Visual Editor
 1. Create or import an Adaptation Project

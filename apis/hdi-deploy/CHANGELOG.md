@@ -1,3 +1,8 @@
+## 4.9.1
+Fixes:
+- fixed npm dependency resolution fault
+- use @sap/hdi@4.5.2
+
 ## 4.9.0
 Features:
 - only log VCAP_SERVICES of hana service or user-provided service with hana tag 

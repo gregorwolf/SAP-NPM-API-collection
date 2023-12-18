@@ -17,6 +17,7 @@
 @sap/artifact-management-mdkplugin
 @sap/artifact-management-mdkplugin-types
 @sap/artifact-management-types
+@sap/asp-middleware
 @sap/async-xsjs
 @sap/audit-logging
 @sap/bas-sdk

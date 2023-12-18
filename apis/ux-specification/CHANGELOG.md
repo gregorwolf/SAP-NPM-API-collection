@@ -8,6 +8,50 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.1] - 2023-11-30
+
+### Added
+
+- OData V2: Added missing `annotationPath` property for table definitions in schema
+
+### Changed
+
+- OVP card settings:
+  - Added missing properties
+  - Removed irrelevant settings from custom card settings
+  - Assignment of settings to card types has been generally aligned with the given capabilities of SAP Fiori elements
+
+- If problems had been posted to the log with regards to annotations, they normally ended with the information `location: webapp/localService/metadata.xml`. This location information might be misleading for edmx projects, as annotation may reside in a different file. It was always wrong for CAP projects.
+Thus the location information is removed for annotation problems
+
+- If no line item annotation is present, no `annotationPath` property gets added to the schemas of OData V2 and V4
+  
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- The check of minUI5Version against the dist tags raised wrong warnings in case of minUI5Version using the pattern 'UI5-xxx'
+- OData V4: Inconsistencies in the JSON schema for macros led to exceptions when generating the overall page schemas. Such exceptions are now caught and indicated in the error log
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades
+
+- axios to 1.6.2
+- yarn to 1.22.21
+- esbuild to 0.19.7
+- eslint to 8.54.0
+- @sap-ux/fe-fpm-writer to 0.24.2
+- @sap-ux/annotation-converter to 0.8.1
+- @sap-ux/vocabularies-types to 0.10.1
+- @types/mem-fs-editor to 7.0.7
+- @types/semver to 7.5.6
+- @types/jquery to 3.5.29
+
 ## [1.120.0] - 2023-11-16
 
 ### Added

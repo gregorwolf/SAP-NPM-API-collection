@@ -1,3 +1,17 @@
+## 1.19.0
+
+### New Features
+
+- Schema privileges on a bound HDI container can be granted via a graphical wizard
+
+### Fixes
+
+- The location ID for XSA connections was determined incorrectly
+- The artifact recovery wizard works with XSA projects
+- Track which application has originally generated the calculation view XML
+- A confirmation message is shown after creating an HDI container service instance
+- The cloud foundry login screen may incorrectly be opened for an XSA project
+
 ## 1.18.0
 
 ### New Features

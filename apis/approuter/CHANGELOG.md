@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+
+## 15.0.0 - 2023-12-13
+
+### Added
+- Support node version 18 and node version 20 instead of node version 16 and node version 18
+
+### Updated dependencies
+- deps: cf-nodejs-logging-support@7.2.0
+- deps: e2e-trace@4.1.0
+- deps: logging@7.1.0
+
 ## 14.4.3 - 2023-12-07
 
 ### Fixed
@@ -14,7 +25,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 ### Updated dependencies
 - deps: @sap/audit-logging@5.8.2
 
-## 14.4.2 - 2023-11-30 
+# 14.4.2 - 2023-11-30
 
 ### Updated dependencies
 - deps: @sap/xssec@3.6.0

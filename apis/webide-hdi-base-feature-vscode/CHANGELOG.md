@@ -1,3 +1,8 @@
+## 1.26.0
+
+### New Features
+- External objects are included when showing column impact across objects
+
 ## 1.25.0
 
 ### New Features

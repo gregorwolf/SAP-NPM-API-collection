@@ -1,5 +1,10 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.20.0
+
+### New Features
+- Object metadata can be displayed from the dependency viewer.
+
 ## 1.19.0
 
 ### New Features

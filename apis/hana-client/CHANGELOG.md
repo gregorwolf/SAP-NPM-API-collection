@@ -8,7 +8,15 @@ For the latest updates please see SAP Note 3393980 - SAP HANA Client 2.19 Releas
 
 https://me.sap.com/notes/3393980
 
-## Version 2.19.13
+## Version 2.19.20
+
+### Changes:
+
+ - Issue Number 317473: Result sets which were not explicitly closed could have caused a crash during garbage collection.
+ - Issue Number 316580: Calling getClientInfo() for automatically-set session variables could have returned an incorrect value.
+ - Issue Number 316439: Incorrect client info values could have been returned after calling exec() after being unset.
+
+## Version 2.19.18
 
 ### Underlying SQLDBC changes:
 

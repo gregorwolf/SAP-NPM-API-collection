@@ -1,3 +1,8 @@
+## 1.12.0
+
+### Fixes
+- Minor bug fixes
+
 ## 1.11.0
 
 ### Fixes

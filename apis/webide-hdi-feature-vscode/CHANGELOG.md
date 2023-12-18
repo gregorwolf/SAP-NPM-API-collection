@@ -1,3 +1,24 @@
+## 1.28.0
+
+### New Features
+- External objects are included when showing column impact across objects
+
+### Fixes
+- A column label may not be saved
+- SQL execution failure does not show error details
+- No hint for label generation failure when logged out of Cloud Foundry
+- A snapshot is lost if mdsCubes is not empty
+- Buttons disappear for larger number of parameters
+- Removing a column from a node created on a link is not working correctly
+- Set the calculation view editor as 'read only' when the XML includes the embedded moonlight
+- Propagate the deletion of a node doesn't work correctly
+- Fixed some issues with propagating recursively adding/deleting columns
+- Track which application has originally generated the XML
+- Cannot add result column for newly created window function nodes
+- Auto layout with join node is not saved
+- The context menu can be out of bounds
+- The length and scale of variables are sometimes set to NaN
+
 ## 1.27.0
 
 ### New Features
