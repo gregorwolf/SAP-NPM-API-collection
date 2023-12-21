@@ -6,6 +6,26 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 
+## Version 7.5.0 - 2023-12-20
+
+### Added
+- Unused imports are reported as warning and grayed out incl. quickfix to remove them
+- Snippet proposals for artifact elements in an `annotate` statement
+- New user setting `cds.contributions.enablement.additionalAnalyticalAnnotations` (default: off) to get
+  annotation support for analytical queries (experimental)
+
+### Fixed
+- CDS schema loading is more robust
+- Removed failing `copy` function for code blocks from `CAP Release Notes`
+- CAP with Typescript (beta): command line for creating types now also works correctly on Windows
+- Padding and highlighting of identifiers with Unicode characters
+- Highlighting of `stored` keyword
+
+### Also see
+- `@sap/cds-lsp` 7.5.0
+- `@sap/cds-compiler` 4.5.0
+
+
 ## Version 7.4.0 - 2023-11-16
 
 ### Changed
@@ -19,7 +39,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - Simplified trace configuration - just use `cds.trace.level`
 
 ### Fixed
-- CDS schema loading is more robust
 - Formatting
   + Padding of quoted identifiers
   + Treat only /** (no additional asterisks) as start of doc comments

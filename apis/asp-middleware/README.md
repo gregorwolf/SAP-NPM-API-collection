@@ -115,4 +115,4 @@ Supported [@sap/approuter](https://www.npmjs.com/package/@sap/approuter) version
 It can be installed using: `npm i @sap/approuter@^8`
 
 ## Getting Support
-Create a BCP Ticket on `BC-CP-ABA-INT`
+Create a BCP Ticket on `BC-CP-ABA-ASP`

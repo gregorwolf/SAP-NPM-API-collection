@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.1] - 2023-12-18
+### Fixed
+- Fixed an issue where invalid CDS files could be created for SAP Fiori applications generated using a CAP data source upon refresh of their development space in SAP Business Application Studio
+
 ## [1.12.0] - 2023-11-29
 ### Added
 - Users can now add deployment configuration for Cloud Foundry to an existing application in a non-interactive mode from the command line or as a child process.

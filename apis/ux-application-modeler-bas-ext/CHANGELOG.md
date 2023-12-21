@@ -5,6 +5,10 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.1] - 2023-12-18
+### Fixed
+- Fixed an issue with duplicate command IDs in SAP Business Application Studio preventing the SAP Visual Editor from working
+
 ## [1.12.0] - 2023-11-29
 ### Changed
 - Changed the parsing of `launch.json` files to be tolerant in regards to using comments
