@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.14.1 - 2023-12-21
+
+## Fixed
+
+- A sidecar setup can be started for local development even with `multitenancy: false`.
+- Additional resilience measures for the new Service Manager APIs if a healthy instance exists, but no binding.
+- `cds.env.requires.['cds.xt.ModelProvideService'].loadSync = true` can be set to skip using worker threads when loading the application model.
+
+### Changed
+
+- `lazyT0` now also works in a sidecar scenario with `multitenancy` not explicitly set to `true`.
+- The default for `cds.requires.multitenancy.jobCleanupIntervalStale` is reduced from one week to two days.
+
 ## Version 1.14.0 - 2023-12-14
 
 ### Changed

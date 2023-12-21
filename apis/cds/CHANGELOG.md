@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.5.1 - 2023-12-21
+
+### Fixed
+
+- Resolving custom authentication implementation pointer
+
 ## Version 7.5.0 - 2023-12-14
 
 ### Added

@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.5.0 - 2023-12-20
+
+### Added
+- unused imports are reported as warning and grayed out incl. quickfix to remove them
+- snippet proposals for artifact elements in an `annotate` statement
+- new user setting `cds.contributions.enablement.additionalAnalyticalAnnotations` (default: off) to get
+  annotation support for analytical queries (experimental)
+
+### Fixed
+- padding and highlighting of identifiers with Unicode characters
+- highlighting of `stored` keyword
 
 ## 7.4.0 - 2023-11-16
 
@@ -26,14 +37,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - highlighting of comments within braced select item lists
 - update of diagnostics could have got lost
 
-## Removed
+### Removed
 - workspace validation modes `OpenEditorsAndDirectSources` and
   `OpenEditorsDirectSourcesAndDirectDependencies` are no longer supported.
   In real-world models they led to high CPU usage and slow responsiveness.
   Any of these user setting values are now treated as `ActiveEditorOnly`
   if supported by IDE, else `OpenEditorsOnly`.
 
-## Added
+### Added
 - (Experimental): `cds-lsp` can now be used in-process. `ServerStarted.start` method has
   new optional `options` parameter which allows to use any
   [supported values](https://github.com/microsoft/vscode-languageserver-node/blob/c4f80308b155d79cc479ec9d33fba254ba93fdd2/client/src/main.ts#L134-L136)
@@ -301,7 +312,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - updated to Language Server Protocol v3.17.0
   + definition request now returns both, name range and scope range
 
-## Fixed
+### Fixed
 - fixed glitches in cds schema support for `package.json`, `.cdsrc.json` and `.cdsrc-private.json`
 - fixed highlighting for empty block comments `/**/`
 
