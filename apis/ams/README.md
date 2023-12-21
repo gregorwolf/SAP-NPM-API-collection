@@ -141,6 +141,69 @@ This transform function will then be recursively applied on the Call object:
 const sqlString = Call.transform(call, transformToSQL);
 ```
 
+### RolesProvider
+
+An instance of the `RolesProvider` class can be used to evaluate the roles (or scopes) of a user based on policies of the following form:
+
+```
+GRANT <role> ON $SCOPES;
+```
+
+To get an `Array<String>` of a user's roles, call `getRoles` on a previously constructed instance of RolesProvider:
+
+```javascript
+const pdp = new PolicyDecisionPoint();
+const rp = new RolesProvider(pdp);
+const principle = new Principle(app_tid, scim_id); // app_tid, scim_id taken from IAS id token
+
+const roles = await rp.getRoles(principle);
+```
+
+Only one RolesProvider instance needs to be constructed and can be used to get roles of different users.
+
+### RolesCache
+A RolesProvider can use an optional `RolesCache` to improve the performance of subsequent role evaluations for the same user.
+It has the following configuration parameters:
+- **TTL** [ms] (time-to-live): the lifetime of cache entries. Specifies how long the cached roles of a given user are used without evaluating them again via the ADC. If set too high, administrative changes of a user's policy assignments or changes in policies might affect the application's behavior with a high delay which reduces overall security.\
+Default: **1 minute**
+- **limit**: maximum number of simultaneous cache entries. The cache follows a FIFO strategy: if necessary, the oldest cache entry is removed to make space for a new entry.\
+Default: **10000**
+
+A RolesCache can be constructed and used by a RolesProvider as follows:
+```javascript
+const rc = new RolesCache(10 * 60 * 1000, 1E6); // 10 min TTL and 100k users max
+const rp = new RolesProvider(pdp).withRolesCache(rc);
+```
+
+#### RolesCache Sizing Guide
+The memory consumed by the RolesCache can be estimated with the following formula:
+
+```
+Memory [Byte] = U*R*(2*S) + 84*U
+
+U: #Users
+R: #Roles per user
+S: String length of role name
+```
+
+It is only an estimate and should be correct up to a factor of 2. Please use it only to get an understanding for the order of magnitude of the memory consumption.
+Use `avg`, `min` or `max` values of the input parameters to get a memory estimation for the scenario that is most important to you.
+
+The following table gives a quick reference of expected memory consumption:
+| U (Users) | R (Roles) | S (String length) | Memory |
+|----------:|----------:|------------------:|-------:|
+|        1k |        10 |                20 |    1MB |
+|        1k |        50 |                30 |    3MB |
+|       10k |        10 |                20 |    5MB |
+|      100k |        15 |                20 |   70MB |
+|      100k |        50 |                10 |  100MB |
+|      100k |        50 |                30 |  300MB |
+|        1m |        25 |                20 |    1GB |
+
+To compute a suitable user limit for your cache given a fixed amount of memory `M`, you can estimate it with the following formula:
+
+$$U = {M \over 2*R*S + 84}$$
+
 ### Express Middleware
 
 The express middleware got introduced to simplify working with web apps in combination with AMS.<br/>
@@ -166,3 +229,18 @@ But theres's a guide on [how to log Policy Decision Point results](doc/Logging/L
 
 - If policies created under a custom package do not work, check if the tenant is set correctly in the attributes
 
+## Resources
+
+### Reporting Incidents
+
+As registered SAP customers, report your issue in creating an incident for component **BC-CP-CF-SEC-LIB** on the [SAP Support Portal][SAPOSS]
+
+See also [Getting Support][SAP_GS] in the SAP BTP documentation.
+
+### Open Source Legal Notices
+
+[SAP Cloud Identity 1.0][SSCI10]
+
+[SAPOSS]: https://support.sap.com/en/index.html
+[SAP_GS]: https://help.sap.com/docs/btp/sap-business-technology-platform/btp-getting-support
+[SSCI10]: https://support.sap.com/content/dam/launchpad/en_us/osln/osln/67837800100900008826_20170821125934.pdf

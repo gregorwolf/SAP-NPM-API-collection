@@ -1,3 +1,9 @@
+## 1.14.0 - 2023-12-20
+
+- add @sap/cds@7.5.0 as optional peer depenency
+- [CAP] bugfix missing await in RolesMiddleware
+- [CAP] several changes for new "cds build --for ams" feature
+
 ## 1.13.1 - 2023-9-12
 
 - support users with empty tenant in CAP

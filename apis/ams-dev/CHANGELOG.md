@@ -1,3 +1,14 @@
+## 0.8.0 - 2023-12-21
+
+- [CAP] integrate AMS DCL generation into the 'cds build' command
+- [CAP] compile DCL into /gen/srv/ams* instead of /ams/*
+- [CAP] move .opa folder away from /ams into user's home directory
+- [CAP] major refactoring and improvements of AMS Dev Plugin
+
+## 0.7.2 - 2023-10-24
+
+- remove (Not restricted) from base policy names generated with CAP Plugin
+
 ## 0.7.1 - 2023-9-8
 
 - bugfix path to policyAssignments file in local OPA configuration of CAP applications running on Windows
