@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 3.6.1 - 2023-12-21
+- better support for older node versions
+
 ## 3.6.0 - 2023-11-24
 - adapt optimized IAS server API
 

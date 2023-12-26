@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 1.8.3 - 2023-12-22
+
+### Added
+
+- Dependency updates
 
 ## 1.8.0 - 2023-12-01
 
