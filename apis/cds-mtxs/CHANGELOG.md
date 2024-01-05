@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.14.2 - 2024-01-04
+
+## Fixed
+
+- `POST /-/model-provider/getEdmx` correctly ad-hoc compiles EDMX files for extended or toggled models.
+- `POST /-/model-provider/getEdmx` re-compiles the EDMX if a `model` is passed.
+- More resilient retry handling for 'authentication failed' errors in HANA deployments.
+
 ## Version 1.14.1 - 2023-12-21
 
 ## Fixed

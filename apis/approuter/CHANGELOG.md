@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.0.1 - 2024-01-05
+
+### Updated dependencies
+- deps: axios@1.6.4
+
+## 16.0.0 - 2023-12-31
+
+### Updated dependencies
+- connect.js removed
 
 ## 15.0.0 - 2023-12-13
 

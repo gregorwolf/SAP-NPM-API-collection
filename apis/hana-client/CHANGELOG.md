@@ -8,6 +8,19 @@ For the latest updates please see SAP Note 3393980 - SAP HANA Client 2.19 Releas
 
 https://me.sap.com/notes/3393980
 
+## Version 2.19.21
+
+### Changes:
+
+ - Issue Number 317176: ResultSet.getValue[s] now uses less memory.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 317535: SQLDBC could have had incorrect behaviour with data containing unpaired surrogate characters.
+ - Issue Number 316861: Unclear cause when a cloud redirection failed.
+ - Issue Number 316837: Node.js, Go, and Ruby used more memory than was required.
+ - Issue Number 313240: The hdbuserstore LIST command could have unnecessarily created the store directory.
+
 ## Version 2.19.20
 
 ### Changes:
