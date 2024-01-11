@@ -8,6 +8,18 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.6.6"></a>
+## 6.6.6 - 2024-01-08
+### Updated
+- Updated axios to v1.6.5.
+
+<a name="6.6.5"></a>
+## 6.6.5 - 2024-01-08
+### Updated
+- Updated audit-logging to v5.8.3.
+### Fixed
+- Perform verification for all credentials required by broker.
+
 <a name="6.6.4"></a>
 ## 6.6.4 - 2023-12-07
 ### Updated

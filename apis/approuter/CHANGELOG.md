@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.0.2 - 2024-01-11
+
+### Updated dependencies
+- deps: axios@1.6.5
+- deps: @sap/xssec@3.6.1
+- deps: @sap/audit-logging@5.8.3
+
 ## 16.0.1 - 2024-01-05
 
 ### Updated dependencies

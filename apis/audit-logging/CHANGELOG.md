@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.8.4 - 2024-01-02
+
+### Fixed
+- Fix BaseMessage property
+
+## 5.8.3 - 2024-01-02
+
+### Updated
+- Updated *xssec* to v3.6.1
+
 ## 5.8.2 - 2023-12-06
 
 ### Updated

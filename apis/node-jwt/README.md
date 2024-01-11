@@ -4,7 +4,7 @@
 JSON Web Token (JWT) offline validation for Node with current binaries
 
 This project contains the JWT binding for Node.js. It also includes the native libraries to run on Windows/Linux.
-If you need another platforms, please write to the author.
+If you need another platforms, please create a SAP support ticket to BC-XS-SEC. The library is supposed to be used for on-premise systems, because for cloud scenarios there is another solution.
 
 # Platforms
 

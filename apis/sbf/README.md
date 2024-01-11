@@ -336,8 +336,6 @@ Edit the _package.json_ file and set the `start` command to execute your start s
   }
 ```
 
-See [examples/node.js/custom-hooks](https://github.wdf.sap.corp/xs2/node-sbf-examples/tree/master/node.js/custom-hooks) for a complete example.
-
 ### Asynchronous broker operations
 
 By default, service broker operations like provisioning and deprovisioning are synchronous,

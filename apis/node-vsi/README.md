@@ -2,7 +2,8 @@
 =============
 
 This project contains the VSI binding for node.js. It also includes the native libraries to run on Windows/Linux.
-If you need another platforms, please create a SAP support ticket to BC-CP-CF-SEC-IAM.
+If you need another platforms, please create a SAP support ticket to BC-XS-SEC. The library is supposed to be used 
+for on-premise systems, because for cloud scenarios there is another solution.
 
 ## Installation
 The module has moved to npmjs.org npm registry. Ultimately all SAP modules will be there soon. 
