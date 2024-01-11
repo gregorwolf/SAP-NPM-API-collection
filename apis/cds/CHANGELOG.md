@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.5.2 - 2024-01-05
+
+### Fixed
+
+- Service-level ETag handling in legacy OData server
+- Only provide model to ModelProvider if extensibility or feature toggles are active
+- OData server driven paging when using feature flags `cds.env.features.odata_new_parser` and `cds.env.features.okra_skip_query_options`
+
 ## Version 7.5.1 - 2023-12-21
 
 ### Fixed
