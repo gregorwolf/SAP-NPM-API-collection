@@ -1,3 +1,8 @@
+## 4.9.2
+Fixes:
+- use @sap/hana-client@2.19.21
+- use @sap/xsenv@4.2.0
+
 ## 4.9.1
 Fixes:
 - fixed npm dependency resolution fault

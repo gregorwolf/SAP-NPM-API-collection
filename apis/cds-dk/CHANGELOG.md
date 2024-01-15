@@ -7,13 +7,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 6.8.3 - 2023-06-15
-
-### Fixed
-
-- `@sap/cds` 6.8.4
-- `@sap/cds-compiler` 3.9.4
-
 ## Version 6.8.2 - 2023-05-31
 
 ### Changed
