@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+## 6.0.0 - 2024-01-15
+
+### Updated dependencies
+- deps: xsenv@4.2.0
+- deps: cf-nodejs-logging-support@7.2.1
+
+### Added
+- nodejs version ^12.0.0 support removed
+- nodejs version ^20.0.0 support added
+
 ## 5.0.2 - 2023-11-29
 
 ### Updated dependencies
