@@ -4,6 +4,24 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.1] - 2023-01-10
+### Added
+- Added an inline warning for duplicate function import validation to the _Add an Action Button_ guide
+- Added functionality that allows the update of existing annotations in the _Configure multiple views for tables_ guide by selecting an existing qualifier
+- Updated code snippets for Overview Page guides based on the installed _specification_ version
+
+### Changed
+- Removed unsupported chart types from the ABAP CDS variant of the _Add a micro chart column to a table_ guide
+- Changed the minimum SAPUI5 version for the ABAP CDS variant of the _Add a smart chart facet to an object page_ guide to 1.71.2
+
+### Fixed
+- Fixed an issue where an extra empty line was added to annotation code snippets
+- Fixed an issue where values were not taken over from previous steps in the _Add a micro chart column to table_ and _Add a key performance indicator (KPI) tag to a page_ guides
+- Fixed an issue where the `Entity Set` parameter was disabled in the _Add a key performance Indicator tag to a page_ guide
+- Fixed an issue where an incorrect inline error message was shown even when the selected entity was correct in the _Add a micro chart column to table_ guide
+- Fixed an issue where the chart type was not updated in the code snippet in the _Add an interactive chart_ guide
+- Fixed minor UX issues (missing icons and highlighting) in _Configure multiple views for tables_ and _Add a micro chart column to table_ guides
+
 ## [1.12.0] - 2023-11-30
 ### Changed
 - Updated guide names to reflect the floorplans the guides can modify.

@@ -244,3 +244,8 @@ See also [Getting Support][SAP_GS] in the SAP BTP documentation.
 [SAPOSS]: https://support.sap.com/en/index.html
 [SAP_GS]: https://help.sap.com/docs/btp/sap-business-technology-platform/btp-getting-support
 [SSCI10]: https://support.sap.com/content/dam/launchpad/en_us/osln/osln/67837800100900008826_20170821125934.pdf
+
+## How to get access to CheckmarxOne (CxONE)
+- Apply for the ARM request via this [Authorization Link](https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site#arm-Create&/createRequest/prefilled?system=ADS_GLB&role=CHECKMARX_Prod_User_Access)
+- Once your request is approved, please ask CxOne app owners to provide authorization to your user in the [CxOne App](https://checkmarx.tools.sap/applications/6d80515f-6466-453c-992b-ed88b8a18b5f/settings)
+- As soon as you have access to CxOne, you can login to the [CxOne Portal](https://checkmarx.tools.sap) and check the scan results based on your branch.

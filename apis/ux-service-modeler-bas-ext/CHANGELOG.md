@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 ​
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.2] - 2024-01-10
+### Added
+- Added the ability to filter and only view the metadata targets that have annotations
+
+### Fixed
+- Fixed an issue with the `Create` and `Cancel` buttons not being accessible in Annotation File Manager if the window is too small
+- Fixed an issue where the 'up' navigation was enabled for the first active file in the Annotation File Manager
 
 ## [1.12.0] - 2023-11-29
 ### Added

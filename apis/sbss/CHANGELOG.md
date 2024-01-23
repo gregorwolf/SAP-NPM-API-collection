@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.2.0 - 2023-11-22
+
+### Updated
+- Update `@sap/hdbext` to 8.0.2
+
 ## 6.1.0 - 2023-11-22
 
 ### Added

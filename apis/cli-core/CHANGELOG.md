@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2024.2.0
+
+### Changed
+
+- The required version of `npm` changes from `^9` to `^10`.
+
+## 2024.1.0
+
+### Fixed
+
+- The `--browser` option introduced with version `2023.25.0` did not apply the default correctly in case the option `--browser` was not explicitly specified.
+
 ## 2023.25.0
 
 ### Added

@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.2] - 2024-01-10
+### Added
+- Added support for previewing adaptation projects
+
 ## [1.12.1] - 2023-12-18
 ### Fixed
 - Fixed an issue preventing reuse libraries from being loaded when previewing with the `start-variants-management` script for creating developer variants

@@ -5,6 +5,23 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.2] - 2024-01-10
+### Added
+- Added support for adaptation projects in VS Code [experimental]
+- Added icons to the folders of the information panel
+
+### Changed
+- Changed the severity indicator of available node module updates in the status section of the Application Information Page from "warning" to "info"
+- Changed the icon of the status section header in the Application Information Page to show the aggregated state of the status checks
+- Enhanced how manifest changes are written to keep existing formatting whenever possible
+
+### Fixed
+- Fixed an issue with wrong schemas being generated for applications with similar names in multi-app projects
+- Fixed an issue with the schema of an application not always being re-generated in case a tool action triggers the creation of an annotation file
+- Fixed an issue where deleting a custom table view was not possible in a CAP application when no `lineitem` annotation was defined
+- Fixed an issue with non-filterable properties showing up in the drop-down lists for filters
+- Fixed an issue with drag & drop placeholders not showing correctly if the Page Editor toolbar wraps to multiple lines
+
 ## [1.12.1] - 2023-12-18
 ### Fixed
 - Fixed an issue with duplicate command IDs in SAP Business Application Studio preventing the SAP Visual Editor from working
@@ -940,7 +957,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Page editor supports create, delete and move entries within array-like properties
 - V4: Migration of OData V4 Fiori applications is now supported
 - Migration of Fiori applications without a datasource in the `manifest.json`
-- Migration of a Fiori applications without a `package.json` or `pom.xml` (requires a `neo-app.json` file)
+- Migration of An SAP Fiori applications without a `package.json` or `pom.xml` (requires a `neo-app.json` file)
 
 ### Changed
 - Fragments and view files are now discovered from all locations

@@ -30,7 +30,7 @@ SUBCOMMANDS:
 | --subtitle    | -s | Subtile displayed on Fiori Launchpad tile |
 | --overwrite   | -f | Overwrite existing FLP config (y/n) |
 
-    flp-embedded-config - Adds the necessary configuration for running a Fiori application in FLP Embedded Mode. Mandatory parameters
+    flp-embedded-config - Adds the necessary configuration for running An SAP Fiori application in FLP Embedded Mode. Mandatory parameters
 |               |    |                            |
 |---------------|----|----------------------------|
 | --bspApplication      |    | The BSP of your application |

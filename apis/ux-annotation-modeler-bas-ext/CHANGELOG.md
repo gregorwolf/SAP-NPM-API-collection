@@ -2,6 +2,11 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.12.2] - 2024-01-10
+### Added
+- Enhanced code completion to restrict the suggestions for annotation terms, complex types and properties to more meaningful based on `Validation.ApplicableTerms` set in OData vocabulary definitions . 
+- Enhanced validation to display warning if the usage of annotation terms, complex types and properties is restricted in OData vocabulary definitions with `Validation.ApplicableTerms`
+
 ## [1.9.4] - 2023-04-17
 ### Added
   - The **Show All References** option for metadata elements such as entity types, properties, and actions displays now also the references to these elements in annotation values.

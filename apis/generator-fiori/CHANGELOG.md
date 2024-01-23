@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.2] - 2024-01-17
+### Added
+- Added a warning message when choosing a service from an ABAP catalog during generation that was not intended for use with SAP Fiori UI development.
+
+### Changed
+- Removed the deprecated freestyle SAPUI5 templates from the SAP Fiori generator.  Customers are encouraged to use the Custom Page template with flexible programming model support or the Basic freestyle SAPUI5 template.  Please note that existing SAP Fiori projects generated with the deprecated templates do not need to be migrated
+
+### Fixed
+- Fixed an issue where the URL displayed after successful ABAP deployment may not detail the correct endpoint URL if the destination references an internal host.  In such a situation, the user will now be warned that they will need to manually replace the host 
+
 ## [1.12.1] - 2023-12-18
 ### Fixed
 - Fixed an issue where invalid CDS files could be created for SAP Fiori applications generated using a CAP data source upon refresh of their development space in SAP Business Application Studio

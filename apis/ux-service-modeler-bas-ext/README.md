@@ -7,7 +7,7 @@ The **SAP Fiori Tools - Service Modeler** is a tool that provides visualization 
 ## Features
 
 - Visualization of OData service based on the local EDMX .xml and CAP CDS file within the project. 
-- View and manage annotations associated to the entities and properties of a service. 
+- View and manage annotations associated with the entities and properties of a service. 
 - Manage services required for Fiori Elements and Fiori FreeStyle applications, for example adding new services to a project or syncing services that already exist to ensure they are up to date. 
 - Manage local annotation files associated to the different services of a Fiori Element project. Users can create local annotation files and set the hierarchy for local annotation for a service.
 
@@ -35,7 +35,7 @@ OR
 
 OR
 
-- Click on 'Service Manager' button from Service Modeler
+- Click the 'Service Manager' button from the Service Modeler
  
 ### How to launch Annotation File Manager
 - From the File Explorer in your project, navigate to `webapp->manifest.json`
@@ -44,17 +44,17 @@ OR
 
 OR
 
-- Click on 'Annotation Hierarchy' button from Service Modeler
+- Click the 'Annotation Hierarchy' button from the Service Modeler
 
 ### Using the Service Modeler
 
-- User can browse and view the OData service in the tree list
+- Users can browse and view the OData service in the tree list
 - Users can view all the entity types, entities and properties included in the service. 
 - Users can select an entity and view the properties/annotations of that entity.
 - Users can select a property and view the annotations of that property.
 - Users can search for entity/property or annotations to filter the displayed data
-- User can override the backend annotations using the Service Modeler.
-- User can navigate to manage the Services and local Annotation files from the Service Modeler
+- Users can override the backend annotations using the Service Modeler.
+- Users can navigate to manage the Services and local Annotation files from the Service Modeler
 - If the Application Modeler or Annotation Modeler extensions are also installed the user can navigate to these tools from 
   the Service Modeler
 
