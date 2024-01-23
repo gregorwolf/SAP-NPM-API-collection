@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 
+## Version 7.5.1 - 2024-01-19
+
+### Fixed
+- Retrieval of `@sap/cds-dk` global installation path is now more robust in SAP Business Application Studio
+- Activate extension also for `jsonc` files
+
 ## Version 7.5.0 - 2023-12-20
 
 ### Added

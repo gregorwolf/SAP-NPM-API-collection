@@ -10,6 +10,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+
+## [1.7.8] - 2023-12-13
+### Fixed
+- safeguard `env.error` method
+
 ## [1.7.7] - 2023-11-02
 ### Changed
 - update yeoman-generator to `5.10.0`

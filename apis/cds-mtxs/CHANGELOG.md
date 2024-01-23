@@ -6,13 +6,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.14.3 - 2024-01-18
+
+### Fixed
+
+- i18n translations missing in some Java setups are now correctly resolved.
+- CSNs loaded in a worker thread are correctly linked. In earlier versions, this could lead to a stack overflow in projects having `cds.requires.db.schema_evolution: false` and cyclic actions such as this:
+  ```cds
+  entity C_Books as projection on Books { * } actions {
+    action returnSelf() returns C_Books;
+  }
+  ```
+- Sync upgrades for `tenants = *` with `clusterSize > 1` are working correctly.
+
+### Changed
+
+- The temporary workaround for `cds.env.requires.['cds.xt.ModelProvideService'].loadSync = true` is removed. This setting won't have an effect for future versions.
+
 ## Version 1.14.2 - 2024-01-04
 
 ## Fixed
 
 - `POST /-/model-provider/getEdmx` correctly ad-hoc compiles EDMX files for extended or toggled models.
 - `POST /-/model-provider/getEdmx` re-compiles the EDMX if a `model` is passed.
-- More resilient retry handling for 'authentication failed' errors in HANA deployments.
+- More resilient retry handling for 'authentication failed' errors in SAP HANA deployments.
 
 ## Version 1.14.1 - 2023-12-21
 

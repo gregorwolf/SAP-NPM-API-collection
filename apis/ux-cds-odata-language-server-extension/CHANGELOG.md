@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.2] - 2024-01-10
+### Added
+- Enhanced code completion to restrict the suggestions for annotation terms, complex types and properties to more meaningful based on `Validation.ApplicableTerms` set in OData vocabulary definitions . 
+- Enhanced validation to display warning if the usage of annotation terms, complex types and properties is restricted in OData vocabulary definitions with `Validation.ApplicableTerms`. 
+
 ## [1.11.5] - 2023-11-15
 ### Added
 - Enhanced code completion and validation to support annotating inline composition

@@ -4,6 +4,17 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.5.3 - 2024-01-23
+
+### Fixed
+
+- `cds.localize` and `cds build` produce `i18n.json` again with keys from all base languages
+- `cds.compile.to.serviceinfo` now correctly parses SpringBoot config with nested objects, e.g. for `cds.odata-v4.endpoint.path`
+- Recommend to use `chai` 4 for the time being, as `chai` 5 doesn't properly work yet (requires ESM, `chai-as-promised` not working)
+- View resolving for entities using property names that are identical to entity names
+- Direct modifications with `cds.fiori.bypass_draft` if `cds.fiori.draft_compat` is not enabled
+- Draft: Field validation error message does not display the name of the field
+
 ## Version 7.5.2 - 2024-01-05
 
 ### Fixed
@@ -37,7 +48,7 @@
         "csrf": { // this configuration implies `csrf: true`
           "method": "get",
           "url": "..."
-        } 
+        }
       }
     }
   }
