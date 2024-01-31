@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.15.0 - 2024-01-30
+
+### Added
+
+- MTXS now supports subscription via Subscription Manager Service also for Node.js applications.
+
+### Fixed
+
+- Additional services needed when using `SERVICE_REPLACEMENTS` for HDI deployment can now also be consumed in Kyma after adding them to the `cds` configuration like
+  ```
+  "requires": {
+        "myuserprovided": {
+            "vcap": {
+                "label": "user-provided",
+                "name": "myuserprovided"
+            }
+        },
+  ```
+  See also https://help.sap.com/docs/SAP_HANA_PLATFORM/4505d0bdaf4948449b7f7379d24d0f0d/a4bbc2dd8a20442387dc7b706e8d3070.html#environment-variables-for-hdi-configuration
+- Temporary files for build and deployment are created in the OS temp directory if file system permissions do not allow the creation in the cds root directory.
+
 ## Version 1.14.4 - 2024-01-24
 
 ### Fixed

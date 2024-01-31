@@ -4,6 +4,52 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.6.1 - 2024-01-30
+
+### Fixed
+
+- Garbage collection of draft is configured with `cds.fiori.draft_deletion_timeout`
+
+## Version 7.6.0 - 2024-01-29
+
+### Added
+
+- `cds.upsert` as shortcut for `cds.db.upsert`
+- Automatic deletion of stale drafts. Feature is enabled if `cds.env.fiori.deletionTimeout` is set to a value of `true`; `true` uses the default timeout of `30d` (30 days).
+- Support for default exports (ESM/TS) in custom authentication
+- Support for executing SAP HANA procedures from SYS schema
+- Support for more complex on-conditions in case of READ requests
+- Best effort mechanism for supporting lambda expressions targeting remote odata-v2 services
+- Support for actions and functions which are bound to singletons
+
+### Changed
+
+- Draft: Standard Sorting Behavior for SAP Fiori List Report Floorplan
+- Use new CDS schema for validation and code completion in `package.json` and `.cdsrc.json` files
+- Media Data Streaming
+  + OData: Large binaries without `@Core.MediaType` annotation were previously returned as base64-encoded buffer. Starting from this `@sap/cds` version also not-annotated large binaries are ignored by OData. It is strongly recommended to annotate all large binary properties with `@Core.MediaType` and use it according to streaming scenarios.
+  + Custom Handlers: `SELECT` with explicitely listed `SELECT.columns` of type `cds.LargeBinary` returns them as Readable streams. Large binary columns requested implicitely by `SELECT` (for example, with `.columns('*')`) are ignored.
+  + Streaming API: `cds.stream()` and `srv.stream()` are deprecated and will be removed with the next major release. Use `SELECT` with a single `cds.LargeBinary` column instead. The resulting object will contain the name of the column and a stream value. For example, `SELECT.one.from(E).columns(['image']).where(...)` returns `{ image: <media stream> }`.
+  + Backward Compatibility: To restore previous behavior use `stream_compat`.
+
+### Fixed
+
+- `cds.minify` returned a shallow clone. When callers like 2sql `cds.linked` that subsequently, this left the passed-in csn in a broken, partially linked state. Now, `cds.minify` doesn't clone anymore, but modifies the passed in csn.
+- Handling of read-only fields in drafts
+- Event Mesh: Better error message for incoming messages without a topic
+- `cds build` now logs a better error message if an incompatible `@sap/cds` version is used.
+- Better error message for runtime requests to non-existing tenants in extensibility scenario.
+- Do not generate UUIDs for association key during `CREATE` operation.
+- OData aggregation with lean draft
+- Sorting in new odata parser with nested select statements. The default sort order is now added to the outer select statement.
+- Server crash in case of misformatted `groupby` transformation in `$apply`
+- Switched EM webhook endpoints to also use new authentication implementation
+- `odata_new_parser`: better error message and code for expand on non-existing elements
+
+### Removed
+
+- Experimental `STREAM` CQN is removed and cannot be used anymore
+
 ## Version 7.5.3 - 2024-01-23
 
 ### Fixed
@@ -34,7 +80,7 @@
 ### Added
 
 - Support for expressions in where clause of `@restrict` annotation.
-  - Example: `@(restrict : [{ grant : ['*'], where : (NAME = $user) }])`
+  + Example: `@(restrict : [{ grant : ['*'], where : (NAME = $user) }])`
 - Function `cds.unboxed(srv)` to get the non-outboxed variant of the service
 - Service implementations can now be provided in .mjs modules.
 - Remote services: advanced configurable `CSRF` token fetching HTTP method and the URL.
@@ -55,9 +101,9 @@
   ```
 - `cds.log`'s built-in JSON formatter:
   + Extract custom fields (`cds.env.log.als_custom_fields`) and categories from args (not only error-like first objects)
-    * Example: `LOG.info('foo', { query: 'SELECT * FROM DUMMY' }, 'bar', { categories: ['baz'] })`
+    + Example: `LOG.info('foo', { query: 'SELECT * FROM DUMMY' }, 'bar', { categories: ['baz'] })`
   + `cds.env.log.mask_headers = [...]` allows to specify a list of matchers for which the header value shall be masked (i.e., printed as `***`)
-    * Default: `['/authorization/i', '/cookie/i']`
+    + Default: `['/authorization/i', '/cookie/i']`
 - `cds.env.fiori.bypass_draft` feature flag, designed to enable direct modifications via `POST` and `PATCH` of
 active instances in lean draft mode (`cds.env.fiori.lean_draft=true`). For example:
 
@@ -68,29 +114,29 @@ POST /Orders
 }
 ```
 
-- Auth kind `ias`: same SAML attr api as auth kind `xsuaa` for easier migration
+- Auth kind `ias`: same SAML attr API as auth kind `xsuaa` for easier migration
 
 ### Changed
 
 - Removed and integrated former `ctx-auth` middleware into `cds.auth` middleware
 - `cds.log`:
   + `cds.env.log.format = 'plain'|'json'` allows to configure which built-in formatter is used. Defaults to `json` in production, `plain` otherwise.
-  + If built-in JSON formatter is used:
-    * Field `tenant_subdomain` is filled if running on CF and information is available through authentication
-    * Additional CF-related fields are filled if running on CF
-    * Custom fields (`cds.env.log.als_custom_fields`) are filled if bound to an instance of Application Logging Service
-    * Field `categories` is filled if bound to an instance of Application Logging Service
-  + Config `cds.env.log.kibana_custom_fields` changed to `cds.env.log.als_custom_fields` (ALS = Application Logging Service) with compatibility until next major
+  + If a built-in JSON formatter is used:
+    + Field `tenant_subdomain` is filled if running on CF and information is available through authentication
+    + Additional CF-related fields are filled if running on CF
+    + Custom fields (`cds.env.log.als_custom_fields`) are filled if bound to an instance of Application Logging Service
+    + Field `categories` is filled if bound to an instance of Application Logging Service
+  + Config `cds.env.log.kibana_custom_fields` changed to `cds.env.log.als_custom_fields` (ALS = Application Logging Service) with compatibility until the next major
 - Package `passport` is no longer required (if `cds.env.requires.middlewares` is not set to `false`)
 - Type definitions for the APIs of this package are now maintained in package [`@cap-js/cds-types`](https://npmjs.com/package/@cap-js/cds-types).
-  - If you used one of the types `CSN`, `Definitions`, `entity` of _@sap/cds/apis/reflect_, use the `Linked` counterparts instead.
-  - If you used the type `CQNQuery` of _@sap/cds/apis/cqn_, use `SELECT` or a union type instead.
-  - This also includes various fixes to Typings for
-    - `req.subject` like `SELECT.from(req.subject)`
-    - `SELECT.columns([...])`
-    - `cds.db`
-    - `cds.util`
-    - `cds.context.features`
+  + If you used one of the types `CSN`, `Definitions`, `entity` of _@sap/cds/apis/reflect_, use the `Linked` counterparts instead.
+  + If you used the type `CQNQuery` of _@sap/cds/apis/cqn_, use `SELECT` or a union type instead.
+  + This also includes various fixes to Typings for
+    + `req.subject` like `SELECT.from(req.subject)`
+    + `SELECT.columns([...])`
+    + `cds.db`
+    + `cds.util`
+    + `cds.context.features`
 - The number of files logged on `cds serve` is now limited to 30 by default. You can run with `DEBUG=serve` to show all files.
 - `express.static` is only mounted if the target folder (`cds.folders.app`) exists
 - `cds.outbox.Messages` no longer uses aspect `cuid` to reduce model size impact in case `@sap/cds/common` is not used otherwise
@@ -108,18 +154,18 @@ POST /Orders
 - Use original logic (based on `NODE_ENV`) to load cds plugins from `devDependencies`
 - Property `tenant` also available on express' `req` object with basic and mocked auth
 - Empty `req.data` in before `DELETE` handler in draft
-- Loading `cds-plugins` now offers a hook to add more flexible plugin loader, e.g. for corrupt `package.json` files.
+- Loading `cds-plugins` now offers a hook to add a more flexible plugin loader, e.g., for corrupt `package.json` files.
 - Ignore default values of associations for draft entities
 - OData: client-side errors (4xx) logged as warnings instead of errors
 - IAS authentication: use `tokenInfo.getClientId()` instead of `payload.azp` as it implements a fallback
 - Deep updates with binary keys
 - Allow `null` values in `cds.env` (example package.json excerpt: `{ "cds": { "features": { "foo": null } } }`)
-- Collection bound actions/functions called via navigation
+- Collection-bound actions/functions called via navigation
 
 ### Removed
 
 - Deprecated global configuration feature flag `cds.env.features.fetch_csrf`.
-  Instead, please use `csrf` and `csrfInBatch` in the configuration of your remote services.
+  Instead, please use `csrf` and `csrfInBatch` to configure your remote services.
   These options will allow to configure CSRF-token handling.
 - Compat for deprecated `cds.env.auth.passport`. Use `cds.env.requires.auth` instead.
 
