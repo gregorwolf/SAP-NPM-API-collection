@@ -282,3 +282,8 @@ To publish a never version in the internal npm repo go to jenkins and enable the
 
 ## Nodejs lib with typescript
 I basically followed this tutorial: https://blog.logrocket.com/publishing-node-modules-typescript-es-modules/
+
+## How to get access to CheckmarxOne (CxONE)
+- Apply for the ARM request via this [Authorization Link](https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site#arm-Create&/createRequest/prefilled?system=ADS_GLB&role=CHECKMARX_Prod_User_Access)
+- Once your request is approved, please ask CxOne app owners to provide authorization to your user in the [CxOne App](https://checkmarx.tools.sap/applications/6d80515f-6466-453c-992b-ed88b8a18b5f/settings)
+- As soon as you have access to CxOne, you can login to the [CxOne Portal](https://checkmarx.tools.sap) and check the scan results based on your branch.

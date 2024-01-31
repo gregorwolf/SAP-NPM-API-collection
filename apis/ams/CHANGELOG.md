@@ -1,3 +1,7 @@
+## 1.14.2 - 2024-01-30
+
+- provide separate README for npmjs release and clean up docs
+
 ## 1.14.1 - 2024-01-23
 
 - [CAP] fix IAS app_tid and scim_id access for @sap/cds 7.5.2 as the information has been removed from user.attr

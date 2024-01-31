@@ -1,3 +1,13 @@
+## 0.8.2 - 2024-01-26
+
+- [CAP] fix plugin quitting early when production profile is active to allow the AMS BuildTask to run during `cds build --production`
+- [CAP] bugfix OPA not getting started when ams.autoCompile config flag is set to *false*
+
+## 0.8.1 - 2024-01-24
+
+- [CAP] necessary adjustments for mocked auth support under @sap/ams 1.14.1 and later
+- [CAP] role names are now quoted in the generated base policies to support special characters like `.` inside role names
+
 ## 0.8.0 - 2023-12-21
 
 - [CAP] integrate AMS DCL generation into the 'cds build' command

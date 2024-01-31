@@ -197,7 +197,7 @@ Parameters:
 ## setTokenInfo
 
 Sets all information that can be retrieved from the token.<br/>
-Expects as parameter a tokenInfo object which can be retrieved by the [xs2sec library](https://github.wdf.sap.corp/CPSecurity/node-xs2sec/blob/061ce9161a9f76bb23dcb02cad60bd6fb4c0e1c5/doc/TokenInfo.md).<br/>
+Expects as parameter a tokenInfo object which is provided by the [@sap/xssec](https://www.npmjs.com/package/@sap/xssec) library.<br/>
 In additions this function stores the token clientId in the attribute to put it in the auditlog message.<br/>
 Sets the following items in the attributes object:
 ```javascript

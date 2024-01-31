@@ -1,27 +1,22 @@
-# cloud-authorization-client-library-nodejs
+<!-- This is the README for npmjs -->
 
-The content of this repository is used to leverage the Cloud Authorization Service (AMS).<br/>
-It offers runtime support to make calls to the AMS service and supports the distribution of policy dcl’s to AMS.<br/>
-More information about the AMS project can be found in the [knowledge base](https://github.wdf.sap.corp/pages/CPSecurity/Knowledge-Base/13_AuthorizationManagementService(AMS)/AMS_basics/) of CP-Security.<br/>
-As policy engine Open Policy Agent ([OPA](https://www.openpolicyagent.org/)) is used.<br/>
-A test application where this library is used can be viewed [here](https://github.wdf.sap.corp/CPSecurity/cloud-authorization-nodejs-testapp).<br/>
-There's also a dedicated section with more documentation about [Node AMS developer tools](doc/DeveloperTools.md), such as features for local development.
+# @sap/ams
 
-## CAP integration
-See [CAP Integration README](./lib/cap/README.md).
+This is the Node.Js runtime library used to perform [authorization checks](https://help.sap.com/docs/identity-authentication/identity-authentication/configuring-authorization-policies?locale=en-US) in applications which authenticate users via the [SAP Cloud Identity Services](https://help.sap.com/docs/identity-authentication?locale=en-US).
+
+The module [@sap/ams-dev](https://www.npmjs.com/package/@sap/ams-dev) provides the corresponding tooling support during application development.
+
+As ADC (Authorization Decision Controller) the policy engine [OPA](https://www.openpolicyagent.org/) (Open Policy Agent) is used.
+
 
 ## Installation
-To install the library:
+Via public [npmjs](https://www.npmjs.com/) repository:
 ```
-npm install git+https://github.wdf.sap.corp/CPSecurity/cloud-authorization-client-library-nodejs
-```
-or
-```
-npm config set @sap:registry https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/
-npm install npm install @sap/ams
+npm install @sap/ams
 ```
 
-## Examples
+
+## Usage examples
 Basic allow request on resource *salesOrders* with action *read*:
 ```javascript
 const pdp = new PolicyDecisionPoint();
@@ -42,11 +37,12 @@ attr.setAction("read")
 const filterClause = await this.pdp.allowFilterClause(attr);
 ```
 
+
 ## API Description
 
 ### Attributes
 
-The [Attributes class](doc/API/Attributes.md) wraps the input data for the OPA.<br/>
+The `Attributes` class (*see* `doc/API/Attributes.md`) wraps the input data for the OPA.\
 Internally a JSON object is created which could look approximately as follows:
 ```json
 {
@@ -70,8 +66,9 @@ Internally a JSON object is created which could look approximately as follows:
 	]
 }
 ```
-More general information about the structure of this JSON can be found [here](https://github.wdf.sap.corp/CPSecurity/cas-dcl-ide/blob/master/documentation/DCLRuntime.md).<br/>
-An Attributes object can be defined as:
+
+
+An Attributes object can be defined as follows:
 ```javascript
 const attr = new Attributes()
 	.setAction("read")
@@ -79,24 +76,22 @@ const attr = new Attributes()
 	.setResource("salesOrder")
 	.setApp({"country": "DE"});
 ```
-Note: Only principal2policies or policies can be set. The other one will be deleted.<br/>
-Further information on how to create Attributes can be viewed in the [tests](https://github.wdf.sap.corp/CPSecurity/cloud-authorization-client-library-nodejs/blob/master/test/unit/attributes_test.js).<br/>
+Note: Only principal2policies **or** policies can be set. The other one will be overridden.\
 
 ### Policy Decision Point
 
-The Policy Decision Point (PDP) is responsible for communicating with the OPA.<br/>
-Per default the URL of the opa is set to *127.0.0.1:8181* otherwise the default URL can be set via the environment variable *OPA_URL*.<br/>
-Lastly the OPA URL can be passed to the constructor of the Policy Decision Point if a connection to multiple different OPA servers is desired.<br/>
-[Here](doc/API/PolicyDecisionPoint.md) is the full API documentation of the PDP.
+The `PolicyDecisionPoint` or PDP (*see* `doc/API/PolicyDecisionPoint.md`) is responsible for communicating with OPA.
+
+Per default, the URL of the OPA server is set to *127.0.0.1:8181*. This URL can be set via the environment variable *OPA_URL*.\
+Alternatively, the URL can be passed to the constructor of the Policy Decision Point if a connection to multiple different OPA servers is desired.
 
 ### AttributeName
 
-[AttributeName](doc/API/AttributeName.md) is a special type to store unknown and ignore values.<br/>
-A more detailed description can be found in the [Attributes documentation](https://github.wdf.sap.corp/CPSecurity/cas-dcl-ide/blob/master/documentation/DCLRuntime.md#attribute-structure-and-naming).
+`AttributeName` (*see* `doc/API/AttributeName.md`) is a special type to store unknown and ignore values.
 
 ### Call
 
-The [Call class](doc/API/Call.md) wraps a condition JSON returned from `pdp.allowFilterClause()`.<br/>
+The `Call` class (*see* `doc/API/Call.md`) wraps a condition JSON returned from `pdp.allowFilterClause()`.\
 In addition it wraps an enum `Call.type`:
 ```javascript
 {
@@ -107,13 +102,13 @@ In addition it wraps an enum `Call.type`:
 	...
 }
 ```
-The Call API contains functionalities which should make working with big condition results easier.<br/>
+The Call API contains functionalities which should make working with big condition results easier.\
 First the allowFilterClause condition is transformed into a `Call` object:
 ```javascript
 const filterClause = await pdp.allowFilterClause(attributes);
 const call = Call.fromCondition(filterClause.condition);
 ```
-In the most common cases one wants to transform the condition into a sql like statement.<br/>
+In the most common cases one wants to transform the condition into a sql like statement.\
 Therefore a transform function has to be defined:
 ```javascript
 function transformToSQL(item) {
@@ -154,12 +149,12 @@ To get an `Array<String>` of a user's roles, call `getRoles` on a previously con
 ```javascript
 const pdp = new PolicyDecisionPoint();
 const rp = new RolesProvider(pdp);
-const principle = new Principle(app_tid, scim_id); // app_tid, scim_id taken from IAS id token
+const principle = new Principle(app_tid, scim_id); // app_tid, scim_id taken from SAP Identity Service token
 
 const roles = await rp.getRoles(principle);
 ```
 
-Only one RolesProvider instance needs to be constructed and can be used to get roles of different users.
+Only one RolesProvider instance needs to be constructed and can be used to subsequently get the roles of different users.
 
 ### RolesCache
 A RolesProvider can use an optional `RolesCache` to improve the performance of subsequent role evaluations for the same user.
@@ -202,32 +197,37 @@ The following table gives a quick reference of expected memory consumption:
 
 To compute a suitable user limit for your cache given a fixed amount of memory `M`, you can estimate it with the following formula:
 
-$$U = {M \over 2*R*S + 84}$$
+$$U = \frac{M}{2 * R * S + 84}$$
 
 ### Express Middleware
 
-The express middleware got introduced to simplify working with web apps in combination with AMS.<br/>
-A full example is described in the [ams node test application](https://github.wdf.sap.corp/CPSecurity/cloud-authorization-nodejs-testapp/blob/master/node-webserver/index.js).<br/>
-To check weather a user has authority read (is there a rule with "GRANT read ON *;" assigned to this user) on the endpoint `/read` the `hasAuthority()` middleware API can be used:
+The authorization checks can be performed by the provided express `middleware` (*see* `doc/API/Middleware.md`).
+
+For example, to restrict the `/read` endpoint to users with `read` authority:
 ```javascript
+const { middleware } = require('@sap/ams');
+
 app.get("/read", [requireAuthentication, middleware.hasAuthority("read")], (req, res) => {
   res.send("User is allowed to read");
 })
 ```
-This is intended to achieve a similar use as in the [ams-java lib](https://github.wdf.sap.corp/CPSecurity/cloud-authorization-client-library-java/tree/acdde19f241832ba6917f322f9215a64948746cf/spring-ams) with spring annotations.<br/>
-Note that the request object has to be extended with authentication tokenInfo before calling `hasAuthority()`.<br/>
-This can be easily achieved when using the passport lib and JWTStrategy from the `@sap/xssec` library.<br/>
-If a middleware returns false or fails an error will be thrown otherwise the next handler is called.<br/>
-Here's the full [middleware API](doc/API/Middleware.md).
+
+Note that the `req` object has to be extended with a `tokenInfo` object from  [@sap/xssec](https://www.npmjs.com/package/@sap/xssec) before calling `hasAuthority`.\
+This can be achieved by registering the middleware after the passport middleware of @sap/xssec.
+
+If a middleware returns false or fails an error will be thrown otherwise the next handler is called.
+
+
+## CAP integration
+
+This module provides a runtime plugin for [CAP](https://cap.cloud.sap/docs/guides/authorization) (Cloud Application Programming Model) applications which is documented in `docs/CapIntegration.md`.
+
 
 ## Logging
 
-The Node AMS library does **no** logging.<br/>
-But theres's a guide on [how to log Policy Decision Point results](doc/Logging/LogPdp.md) and/or perform [auditlogging](doc/Logging/AuditLog.md).
+The Node AMS library does **no** logging.\
+But theres's a guide on **how to log Policy Decision Point results** (*see* `doc/Logging/LogPdp.md`) and/or perform **auditlogging** (*see* `doc/Logging/AuditLog.md`).
 
-## Troubleshoot
-
-- If policies created under a custom package do not work, check if the tenant is set correctly in the attributes
 
 ## Resources
 
@@ -244,8 +244,3 @@ See also [Getting Support][SAP_GS] in the SAP BTP documentation.
 [SAPOSS]: https://support.sap.com/en/index.html
 [SAP_GS]: https://help.sap.com/docs/btp/sap-business-technology-platform/btp-getting-support
 [SSCI10]: https://support.sap.com/content/dam/launchpad/en_us/osln/osln/67837800100900008826_20170821125934.pdf
-
-## How to get access to CheckmarxOne (CxONE)
-- Apply for the ARM request via this [Authorization Link](https://sapit-home-prod-004.launchpad.cfapps.eu10.hana.ondemand.com/site#arm-Create&/createRequest/prefilled?system=ADS_GLB&role=CHECKMARX_Prod_User_Access)
-- Once your request is approved, please ask CxOne app owners to provide authorization to your user in the [CxOne App](https://checkmarx.tools.sap/applications/6d80515f-6466-453c-992b-ed88b8a18b5f/settings)
-- As soon as you have access to CxOne, you can login to the [CxOne Portal](https://checkmarx.tools.sap) and check the scan results based on your branch.

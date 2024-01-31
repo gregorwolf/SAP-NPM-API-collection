@@ -80,5 +80,3 @@ The auditlog message has the following structure:
     "tenant": "idoqi12-1279-4352-a68d-a9a228a4f1e9",
     "customDetails": {}
 }
-```
-[Here](https://github.wdf.sap.corp/CPSecurity/Knowledge-Base/blob/master/13_AuthorizationManagementService(AMS)/AuditLogging.md#audit-log-viewer) are more information about auditlogging in combination with the AMS.
