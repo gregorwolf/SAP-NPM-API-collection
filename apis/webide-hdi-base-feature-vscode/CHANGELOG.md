@@ -1,3 +1,11 @@
+## 1.26.1
+
+### Fixes
+- Synonym name is not added in the hdbsynonym file if generate hdbsynonymconfig is checked during synonym
+- HTTP request url is truncated when search string contains at least one '#'
+- hdbgrants file that is generated during the Add Data Source dialog using an HDI-service does not reference via the service key
+- In Add Data Source dialog when generating hdbgrants file: value help for roles uses application user instead of hdi-service user even in HDI service context
+
 ## 1.26.0
 
 ### New Features

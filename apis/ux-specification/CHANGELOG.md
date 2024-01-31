@@ -8,6 +8,53 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.2] - 2024-01-11
+
+### Added
+
+- UX adjustments of inplace documentation:
+  - Support of Keyboard Navigation
+- OData V2: Support of global table settings for object pages
+- OData V4:
+  - OP: Added support for `Edit` and `Delete` standard actions considering draft support and capabilities annotation
+  - OP: Sequence of actions is now based on criticality annotation
+  - TBD
+  
+### Changed
+
+- Alignment of settings for sap.ovp:  
+The global settings and card specific settings have been compared with the actual status of the documentation and the subschema as available at <https://www.npmjs.com/package/@ui5/manifest>. Missing settings have been added, obsolete settings have been eliminated.
+The assignment of settings to the specific card types has been revised and adjusted.
+- Increased `fe-fpm-writer` api version
+- Increased api version
+- OData V2:  ALP root properties order
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V4:  Empty visualization throws unhandled error during sync
+- Prevent exception in case of illegal annotationPath references of fields or columns
+- OData V2:  ALP not displaying chart and properties
+- OVP:
+  - In case of unknown properties, other card settings like listFlavor or listFlavor could get deleted.
+  - Property "Category" was shown with an initial value as object, although being of type string.
+  - Properties enableAddToInsights, imageSupported, showLineItemDetail, valueSelectionInfo might not have been exported correctly to the manifest.
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades
+
+- eslint to 8.56.0
+- esbuild to 0.19.11
+- reflect-metadata to 0.2.1
+- axios to 1.6.5
+- @sapui5/ts-types-esm to 1.120.4
+
 ## [1.120.1] - 2023-11-30
 
 ### Added

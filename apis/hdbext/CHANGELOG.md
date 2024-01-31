@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.0.3"></a>
+## 8.0.3 - 2024-01-23
+
+### Updated
+- Update *@sap/hana-client* to v2.19.21
+
 <a name="8.0.2"></a>
 ## 8.0.2 - 2023-11-28
 

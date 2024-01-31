@@ -1,3 +1,34 @@
+## 1.28.1
+
+### Fixes
+- Cleaned up refactoring dialog
+- The check impact operation of hangs when propagating renaming a calculation view
+- Disable "where used outside of the calculation view" when multiple parameters are selected
+- Switch the positions of the rename icon with the generate label icon.
+- The message strip for the system time is too wide
+- Remove TEXT and VARBINARY from list of input parameter data types
+- For some data sources the option "Replace With Node" is not visible in the mapping pane, and it is always not visible in the join definition
+- The dialog does not appear when clicking "Replace With Node" option in the mapping pane
+- Refactor dialog doesn't show impacted input parameter in external hdi container
+- Renaming a column without recursive refactoring leads to inconsistent state
+- Output column name may contain colons
+- The editor could generate many popup html element when click validation info button for UDFs
+- Prevent mapping of columns of type VECTOR or BLOB in an aggregation or star-join
+- Option "Evaluate Early" should only be shown when connected to a HANA Cloud database
+- Check calc view name across schema when renaming calc view
+- Fixed more situations where a context menu may display out of bounds of the window
+- Disable scale for String data type
+- Fix texts in column name unique dialog
+- Unclear hint for label generation failure when CF token is expired
+- Info for generate currency column should be improved in non-semantic nodes
+- Duplicate entries for Timestamp datatype in input parameter datatypes list of Calculation view
+- Renaming parameter does not correctly adjust filter expression
+- The Duplicate icon button should be disable when there is no data for Restrictions
+- Replace node breaks join
+- Joins on constants in non-equi-joins do not write operator information to XML
+- Add Data Source dialog of star-join nodes shows also synonyms that point to non-calculation views
+- Propagate Adding fail for the Star Join node
+
 ## 1.28.0
 
 ### New Features
