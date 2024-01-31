@@ -7,7 +7,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
-## [2.6.4] - 2023-11-02
+## [2.6.5] - 2024-01-31
+
+### Fixed
+
+- Performance got improved significantly for projects with many non `.cds` files (like `.js` files)
+
+## [2.6.4] - 2023-10-31
 
 ### Added
 
