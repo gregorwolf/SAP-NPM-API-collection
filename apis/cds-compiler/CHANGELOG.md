@@ -7,13 +7,48 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+
+## Version 4.6.0 - 2024-01-26
+
+### Added
+
+- compiler: Events can now be projections on other structured events and types.
+- to.cdl: `parseCdl` and `gensrc` style CSN (a.k.a. `inferred` and `xtended`) is now supported as input.
+
+### Changed
+
+- Update OData vocabularies: 'Aggregation', 'Validation'
+- to.sql/hdi/hdbcds: Removed warnings for number and type of keys in draft-enabled entities.
+
+### Fixed
+
+- compiler:
+  + ON-conditions of associations with filters in calculated elements were incorrectly rewritten when included
+    in other entities, and the filter was applied twice in some scenarios.
+  + redirecting an association with filter did not rewrite paths relative to the redirection target.
+  + Unknown type references with an explicit named type argument such as `Unknown(length: 10)` crashed.
+- to.edm(x):
+  + `@Core.IsURL` is not rendered in combination with `@Core.MediaType` (V4 only).
+  + No 'odata-navigation' warning for association targets annotated with `@cds.autoexpose: false`.
+  + No empty annotation in API, when a non-existent base annotation is annotated  
+    (eg. `@Common.Label.@Core.Description` without `@Common.Label`).
+  + Don't crash if value for `$Type` is not a string.
+  + Generated foreign keys of type `cds.UUID` that are also primary key are not annotated with
+    `@Core.ComputedDefaultValue`. This is a follow up correction to [4.5.0](#version-450---2023-12-08)
+
+
 ## Version 4.5.0 - 2023-12-08
 
 ### Added
 
-- parser: `annotate` can now annotate entity parameters, elements and bound actions in one statement.
-- compiler: A single `annotate` statement can now be used to annotate parameters, elements and
-  bound actions in one statement.
+- compiler/parser
+  + Annotations can have any expressions as value, like `@Anno: ( ref + 1 )`.
+    References are checked to be valid element references,
+    inherited values might become invalid due to element renaming.
+    This feature is still experimental, and
+    might not be supported by all backends or runtimes at the moment.
+  + A single `annotate` statement can now be used to annotate parameters, elements and
+    bound actions in one statement.
 - to.edm(x): Key elements of type `cds.UUID` are annotated with `@Core.ComputedDefaultValue` if they are
   defined directly in the entity. Elements of type `cds.UUID` that are defined in a named structured type
   and used to define a key element are not annotated, instead a warning is raised if such elements are
@@ -30,13 +65,13 @@ The compiler behavior concerning `beta` features can change at any time without 
 ### Fixed
 
 - compiler:
-  - Fix false positives of cyclic dependencies for calculated elements.
-  - Fix cardinality on source associations when publishing them with a filter (+ different cardinality)
+  + Fix false positives of cyclic dependencies for calculated elements.
+  + Fix cardinality on source associations when publishing them with a filter (+ different cardinality)
     in a projection.  The cardinality was incorrectly changed on the source as well.
 - CDL parser:
-  - More numbers that would lose relevant digits due to precision loss are
+  + More numbers that would lose relevant digits due to precision loss are
     stored as strings in CSN (i.e. `{ "literal":"number", "val": "1.0000000000000001" }`).
-  - Nested table expressions and queries in the FROM clause (with surrounding parentheses)
+  + Nested table expressions and queries in the FROM clause (with surrounding parentheses)
     could cause some constructs such as `virtual` to be not properly parsed.
 - to.hdi.migration: Don't drop-create the primary key when only a doc-comment has changed.
 - to.cdl: Fix edge case where `@A.![B#]` was not rendered correctly.
@@ -349,6 +384,7 @@ The compiler behavior concerning `beta` features can change at any time without 
     we avoid unexpected name resolution effects in combination with built-in `$`-variables.
   + A semicolon is now required after a type definition like `type T : many {} null`.
   + Message ID `duplicate-autoexposed` was changed to `def-duplicate-autoexposed`.
+  + Bare `$projection` are rejected. Use `$self` instead.
 - Update OData vocabularies 'Common', 'UI'.
 - to.sql:
   + Change default `length` for `cds.String` for all SQL dialects except `hana` to 255.

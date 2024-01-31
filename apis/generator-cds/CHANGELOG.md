@@ -6,6 +6,10 @@
 
 
 
+## Version 2.18.6 - 2024-01-29
+### Changed
+- use current version for `cds-dk` in generated project's main `package.json`
+
 ## Version 2.18.5 - 2023-12-05
 ### Changed
 - updating libraries

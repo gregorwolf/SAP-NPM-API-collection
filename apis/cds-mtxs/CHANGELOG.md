@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.14.4 - 2024-01-24
+
+### Fixed
+
+- Fixed a `TypeError` in the credentials cache invalidation for HANA deployments.
+
 ## Version 1.14.3 - 2024-01-18
 
 ### Fixed

@@ -8,6 +8,12 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 4.6.0 - 2024-01-26
+
+### Added `vectorType`
+
+Using this beta flag, the new type `cds.Vector` is available for modeling.
+
 ## Version 4.5.0 - 2023-12-08
 
 ### Added `odataAnnotationExpressions`
