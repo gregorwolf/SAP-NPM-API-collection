@@ -1,1 +1,0 @@
-# OData Protocol Adapter
