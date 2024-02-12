@@ -6,6 +6,30 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 
+
+## Version 7.6.0 - 2024-02-07
+
+### Added
+- hover over import path of `using` statement shows `README.md` or `package.json#description` if absolute (i.e. module) import
+
+### Changed
+- formatting option `alignAfterKey` option now applies to views and projections as well
+
+### Fixed
+- removed padding after unary plus, minus or parameter colon
+- artifact-elements snippet in `annotate` statement now appears regardless of cursor position between braces (or logs reason for not appearing)
+- highlighting after semicolon in certain contexts
+- on Windows editor potentially no longer updated diagnostics for sources with annotations
+- wrong diagnostics about unused imports
+- first code completion could have been slow as workspace was scanned unnessarily
+- code completion for annotations was not shown in certain cases
+- `untitled` i.e. new not yet saved files no longer worked in VSCode
+
+### Also see
+- `@sap/cds-lsp` 7.6.0
+- `@sap/cds-compiler` 4.6.2
+
+
 ## Version 7.5.1 - 2024-01-19
 
 ### Fixed

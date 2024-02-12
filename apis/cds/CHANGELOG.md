@@ -4,6 +4,18 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.6.2 - 2024-02-09
+
+### Fixed
+
+- Introduce i18n `BATCH_TOO_MANY_REQ` key for error message: "Batch request contains too many requests"
+- Properly handle `$orderby` in lean draft
+- View resolving in combination with `@cap-js/cds-db`
+- Allow `cds.requires.someService.outbox` to be a string
+- `cds.log`: errors, when not the first argument, were considered objects carrying custom fields
+- `accept` header parsing for OData requests if quality factor `q` is included
+- Broken links on index page if multiple protocols are configured
+
 ## Version 7.6.1 - 2024-01-30
 
 ### Fixed

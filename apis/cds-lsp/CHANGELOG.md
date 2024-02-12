@@ -6,6 +6,32 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.6.0 - tbd
+
+### Added
+- `format-cds` CLI now supports `--check` which tests given CDS sources if formatted according settings and fails otherwise (for CI/CD).
+  For some erroneous CDS sources which cannot be formatted the exit code is `2`.
+- hover over import path of `using` statement shows `README.md` or `package.json#description` if absolute (i.e. module) import
+
+### Changed
+- formatting option `alignAfterKey` option now applies to views and projections as well
+- supportability: snapshot versions are now shown in log already with `verbose` level
+- cds-lsp is now using `es2022`
+
+### Fixed
+- removed padding after unary plus, minus or parameter colon
+- artifact-elements snippet in `annotate` statement now appears regardless of cursor position between braces (or logs reason for not appearing)
+- highlighting after semicolon in certain contexts
+- on Windows editor potentially no longer updated diagnostics for sources with annotations
+- wrong diagnostics about unused imports
+- first code completion could have been slow as workspace was scanned unnessarily
+- code completion for annotations was not shown in certain cases
+- `untitled` i.e. new not yet saved files no longer worked in VSCode
+
+### Also see
+- `@sap/cds-compiler` 4.6.2
+
+
 ## 7.5.0 - 2023-12-20
 
 ### Added

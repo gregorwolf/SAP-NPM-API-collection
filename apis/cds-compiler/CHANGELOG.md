@@ -8,6 +8,13 @@ Note: `beta` fixes, changes and features are usually not listed in this ChangeLo
 The compiler behavior concerning `beta` features can change at any time without notice.
 
 
+## Version 4.6.2 - 2024-02-02
+
+### Fixed
+
+- compiler: Fix incorrect error about type properties if deprecated flag `ignoreSpecifiedQueryElements` is set.
+- Update OData vocabularies: 'Authorization', 'Common'.
+
 ## Version 4.6.0 - 2024-01-26
 
 ### Added
