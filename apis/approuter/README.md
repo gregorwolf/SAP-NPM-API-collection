@@ -297,7 +297,7 @@ Property  | Additional Property | Description
 -------- |:--------:| -----------
 Type | |only `HTTP` supported.
 Authentication |  | All authentication types are supported. <br>**Note:** `User` and `Password` are mandatory if the authentication type is `basic authentication`.<br>**Note:** if the authentication type set to `principal propagation` the ProxyType have to be `on-premise`.<br>**Note:** if the authentication type set to `OAuth2SAMLBearerAssertion`, `uaa.user` scope in xs-security.json is required.
-ProxyType |   | Supported proxy type : `on-premise`, `internet`, `private-link`.<br> **Note:** if ProxyType set to `on-premise`, binding to SAP Cloud Platform connectivity service is required.<br> **Note:** The `private-link` proxy type is a beta feature and is not meant for productive use. It is only available in Azure landscapes.
+ProxyType |   | Supported proxy type : `on-premise`, `internet`, `private-link`.<br> **Note:** if ProxyType set to `on-premise`, binding to SAP Cloud Platform connectivity service is required.<br> **Note:** To check the availability of the private-link proxy type, see [SAP Private Link ServiceInformation](https://discovery-center.cloud.sap/serviceCatalog/private-link-service?tab=service_plan&region=all&service_plan=standard&commercialModel=cpea) published on SAP site in the SAP Discovery Center.
 
 
 ##### Optional additional properties:
@@ -1919,7 +1919,8 @@ While binding a Business Service instance to application router the following in
   getDependencies callback - Optional
 * grant_type: the grant type that should be used to trigger requests to the Business Service. Allowed values: user_token or client_credentials. 
   Default value, in case this attribute is not provided, user_token - Optional
-* forwardiastoken: flag that indicates if, in addition to the exchanged xsuaa token, the IAS token should be forwarded as well. IAS token is forwarded in request header: `x-ias-token`
+* forwardiastoken: flag that indicates if, in addition to the exchanged SAP Authorization and Trust Management service (xsuaa) JWT token, the OIDC access token created by Identity Authentication service should be forwarded as well. the OIDC token is forwarded in request header: `x-ias-token`
+* forwardiasauthentication: This flag indicates that if the login was performed using Identity Authentication, the application router will not exchange the JWT token created by the SAP Authorization and Trust Management service (xsuaa). Instead, the OIDC access token created by Identity Authentication will be forwarded in the authorization header.
 
 
 The value of `endpoints` should be an object with the following properties:

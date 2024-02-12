@@ -4,7 +4,24 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.12.1] - 2023-01-10
+## [1.12.3] - 2023-01-25
+### Added
+- Added an inline warning to the Entity Type parameter for missing function import in the _Add an Action Button_ guide
+- Added a CAP CDS variant for the _Add Multiple Fields to a Column in Responsive Tables_ guide
+- Added a feature that values of parameters are reset when they are deactivated
+- Added a new input field validation that checks the correctness of the URL and also considers SAP-specific image URLs
+
+### Changed
+- Removed the _Reorder columns in a table_ guide as the functionality is already covered by the _Add and edit table columns_ guide
+- The Page Name parameter is now marked as mandatory
+- The EntityType and Entity Type Property parameters are now marked as mandatory in the _Enable semantic Date range on smart filter bar_ guide
+
+### Fixed
+- Fixed an issue with Guided Development not opening directly for an app in case an SAP CAP project contained multiple apps
+- Fixed an issue where an invalid page type error was shown when clicking the insert snippet in the _Configure multiple views for table_ guide
+- Fixed an issue where an error was shown when inserting a snippet for the CDS Variant of the _Add semantic highlights to line items in a table_ guide
+
+## [1.12.2] - 2023-01-10
 ### Added
 - Added an inline warning for duplicate function import validation to the _Add an Action Button_ guide
 - Added functionality that allows the update of existing annotations in the _Configure multiple views for tables_ guide by selecting an existing qualifier

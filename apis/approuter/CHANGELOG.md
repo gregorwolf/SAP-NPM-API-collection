@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.1.0 - 2024-02-04
+
+### Added
+- IAS/XSUAA hybrid support for business services
+
+### Fixed
+- Root ca corruption when using destination with private link proxy type
+- Fix for working with HTML5 repo - regenerate token if needed
+- Debug logs for backend requests
+- Fixed case sensitivity for headers defined in the xs-app.json file
+
 ## 16.0.2 - 2024-01-11
 
 ### Updated dependencies

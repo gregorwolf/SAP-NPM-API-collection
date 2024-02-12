@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.3] - 2024-01-31
+### Added
+- Added a warning message when choosing to use a service from the SAP Business Accelerator Hub, as these services were not intented for use with SAP Fiori UI development.
+- Added the abillity to launch the SAP Fiori generator directly from an SAP saved system.  When viewing an SAP saved system, a new link `Create SAP Fiori applicaton` will launch the generator and use the selected SAP saved system.
+
+### Fixed
+- Fixed an issue where an incorrect error message would be returned to the user if there were no transport requests available when adding deployment configuration. 
+
 ## [1.12.2] - 2024-01-17
 ### Added
 - Added a warning message when choosing a service from an ABAP catalog during generation that was not intended for use with SAP Fiori UI development.

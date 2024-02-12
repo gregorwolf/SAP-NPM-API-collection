@@ -17,7 +17,7 @@
 <!-- tocstop -->
 
 ## Overview
-The `asp-middleware` is an extension for the [@sap/approuter](https://www.npmjs.com/package/@sap/approuter) that enables usage of the *ABAP Solution* Service offered for the *SAP Cloud Platform, ABAP Environment*.
+The `asp-middleware` is an extension for the [@sap/approuter](https://www.npmjs.com/package/@sap/approuter) that enables usage of the *ABAP Solution* Service offered for the *SAP BTP, ABAP Environment*.
 
 **It takes care of the following:**
 - User onboarding for the initial administrator of a new tenant
@@ -108,11 +108,6 @@ The variable should be configured as a JSON array. E.g.
 ["/path/to/entry_point_1","/path/to/entry_point_2"]
 ```
 
-## Supported Approuter versions
-
-Supported [@sap/approuter](https://www.npmjs.com/package/@sap/approuter) versions are (meaning every minor version of version 8): `^8.0.0`
-
-It can be installed using: `npm i @sap/approuter@^8`
 
 ## Getting Support
 Create a BCP Ticket on `BC-CP-ABA-ASP`

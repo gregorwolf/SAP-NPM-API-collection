@@ -1,3 +1,7 @@
+## 0.8.3 - 2024-02-02
+
+- provide separate README for npmjs release
+
 ## 0.8.2 - 2024-01-26
 
 - [CAP] fix plugin quitting early when production profile is active to allow the AMS BuildTask to run during `cds build --production`

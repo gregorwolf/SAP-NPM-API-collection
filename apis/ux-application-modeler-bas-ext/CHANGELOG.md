@@ -5,6 +5,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.3] - 2024-01-25
+### Added
+- Enabled setting the criticality for actions based on `UI.DataFieldForAnnotations` in List Report table rows and the Object Page header and footer
+
+### Changed
+- Improved the error handling when `i18n` bundles can't be resolved
+
+### Fixed
+- Fixed an issue where the focus in the property panel was not correctly set after moving a node in the outline view
+- Fixed an issue where the custom page schema generation resulted in the Page Editor showing an error
+- Fixed an issue where the application modeler tree view was showing only the first part of an application's name if it contained a period (`.`)
+- Fixed an issue with the Page Editor outline showing wrong content if the annotation path to a table view doesn't exit
+
 ## [1.12.2] - 2024-01-10
 ### Added
 - Added support for adaptation projects in VS Code [experimental]

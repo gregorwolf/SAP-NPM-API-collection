@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.3] - 2024-01-25
+### Changed
+- Switched to using Bearer Token for connecting to ABAP Cloud systems.
+
+### Fixed
+- Fixed an issue with the fallback version of SAPUI5 when a custom source path is specified: the check will now only be performed if the SAPUI5 source is CDN
+
 ## [1.12.2] - 2024-01-10
 ### Added
 - Added support for previewing adaptation projects

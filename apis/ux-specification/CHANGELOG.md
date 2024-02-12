@@ -8,6 +8,34 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.3] - 2024-01-xx
+
+### Added
+
+- OData V4:
+  - View columns set as view nodes
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V4:
+  - Schema is not generated for custom page when namespaces are not defined in view file
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades
+
+- @sap-ux/annotation-converter to 0.8.2
+- @sap-ux/vocabularies-types to 0.10.2
+- @sap-ux/vocabularies-types to 0.10.2
+
 ## [1.120.2] - 2024-01-11
 
 ### Added
