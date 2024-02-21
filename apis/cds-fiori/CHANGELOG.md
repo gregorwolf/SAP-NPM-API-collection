@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.2.3 - 2024-02-15
+
+### Fixed
+
+- Handle services with multiple/no/wrong endpoints. Only show the preview link for OData endpoints.  Also fail with a proper error message if a wrong preview URL is directly called (w/o the link).
+
+### Changed
+
+- Use UI5 version 1.120.6 by default
+
 ## Version 1.2.2 - 2023-12-04
 
 ### Fixed

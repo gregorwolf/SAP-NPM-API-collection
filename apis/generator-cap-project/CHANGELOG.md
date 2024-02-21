@@ -11,6 +11,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+## [1.7.9] - 2024-02-14
+### Added
+- create and open generation log file `.gen/generation.log` and open it in `SAP Business Application Studio` after project creation.
+
+### Changed
+- is Node.js project now
+
 ## [1.7.8] - 2023-12-13
 ### Fixed
 - safeguard `env.error` method

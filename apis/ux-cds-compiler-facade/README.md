@@ -71,7 +71,7 @@ If you don't have CDS compile model available, you can compile the project files
     const cache = getFileCache(projectFiles);
 
     // build CDS artifacts
-    const project = { root: projectRootFolder, sync: false, apps: {}, type: ProjectType.Cap };
+    const project = { root: projectRootFolder, apps: {}, type: ProjectType.Cap };
     const { cdsCompilerFacade } = await getCdsArtifacts(project, 'myService', files, cache);
 
     // Use of facade methods and properties
