@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.1.1 - 2024-02-14
+
+### Fixed
+- Fix for authenticating with IAS and authorizing with XSUAA in SAP Managed Approuter flows
+
 ## 16.1.0 - 2024-02-04
 
 ### Added

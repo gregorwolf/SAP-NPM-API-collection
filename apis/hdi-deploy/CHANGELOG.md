@@ -1,3 +1,19 @@
+## 5.0.1
+Fixes:
+- hana-client dependency issue while using hdb
+
+## 5.0.0
+Features:
+- Moved hana-client and hdb from dependencies to peerDependencies to allow choice of using either hana-client or hdb.
+- hana-client ^2 >= 2.6 support
+- hdb ^0 support
+- use dotenv@16.3.1
+- use handlebars@4.7.8
+- use micromatch@4.0.5
+
+Removed:
+- Node 12.x, 14.x, and 16.x support
+
 ## 4.9.2
 Fixes:
 - use @sap/hana-client@2.19.21

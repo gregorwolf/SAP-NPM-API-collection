@@ -1,166 +1,101 @@
-[![Build Status](https://gkeplatform2.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=swa-for-sapbas-vsx-voter/master)](https://gkeplatform2.jaas-gcp.cloud.sap.corp/job/swa-for-sapbas-vsx-voter/job/master/)
-[![Product PR](https://esm-product-status.cfapps.sap.hana.ondemand.com/swa/badge)](https://esm-product-status.cfapps.sap.hana.ondemand.com/swa/pr)
-[![Quality Gate Status](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=alert_status)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
-[![Coverage](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=coverage)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
-[![Rating](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=sqale_rating)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
-[![Bugs](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=bugs)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
-[![Code Smells](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=code_smells)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
-[![Duplicated Lines Density](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=duplicated_lines_density)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
-[![Security Vulnerabilities](https://sonar.wdf.sap.corp/api/project_badges/measure?project=swa-for-sapbas-vsx&metric=vulnerabilities)](https://sonar.wdf.sap.corp/dashboard?id=swa-for-sapbas-vsx)
+# SAP Web Analytics npm package for VSCode Extensions
 
-
-# SAP Web Analytics npm package for Visual Code Extensions
-Wrapper for SWA meant to be used in Visual code and SAP Application Studio.
+Wrapper for application insights meant to be used in VSCode Extensions running in SAP Bussiness Application Studio.
 
 ## Usage
 
 ### Installation
-npm install @sap/swa-for-sapbas-vsx
 
-### ENV
-Everything in the environment should be set up, if using in AppStudio please make sure [swa-chart](https://github.wdf.sap.corp/app-studio/swa-chart) is installed as a ws-ext
+```typescript
+npm install @sap/swa-for-sapbas-vsx
+```
 
 ### API
-There are only two functions to call for usage
 
-#### Import
-```js
-import { SWATracker } from '@sap/swa-for-sapbas-vsx';
+#### Initialize the client telemetry settings
+
+This can be done in the `activate` stage of a vscode extension.
+
+```typescript
+import { initTelemetrySettings } from "@sap/swa-for-sapbas-vsx";
+
+initTelemetrySettings(extensionName: string, extensionVersion: number);
 ```
 
-#### Constructor
-Has 3 params that are detailed in the constructor call:  
-```js
-/**
- * constructor
- * @param vsxPublisher should be publisher in package.json
- * @param vsxPackageName should be extension package.json name
- * @param errorListener callback for error, one such callback for all the errors we receive via all the track methods err can be string (err.message) or number (response.statusCode)
- */
-var myErrorListener = (err) => { myErrorHandling(err); }
-swa = new SWATracker("My Vscode Ext Publisher","My Package name", myErrorListener)
+Note to take the `extensionName` and the `extensionVersion` dynamically from the `package.json`.
+The `extensionName` is constructed from the vsxPublisher and vsxPackageName: `<vsxPublisher>.<vsxPackageName>`.
+
+#### report API
+
+```typescript
+import { BASClientFactory, BASTelemetryClient } from "@sap/swa-for-sapbas-vsx";
+
+const basTelemetryClient: BASTelemetryClient = BASClientFactory.getBASTelemetryClient();
+
+// Prepare any string/numeric telemetry data to be submitted
+const properties: { [key: string]: string } = {
+  customProperty1: "HIGH",
+  customProperty2: "DEFAULT",
+  customProperty3: "LOW",
+};
+
+const measurements: { [key: string]: number } = {
+  customMeasure1: 100,
+  customMeasure2: 0.73,
+  customMeasure3: 2019,
+};
+
+// Submit telemetry data
+basTelemetryClient.report("eventName", properties, measurements);
 ```
+
 ---
-**NOTE**
 
-The vsxPublisher and vsxPackageName values passed to SWA Tracker constructor must be exact strings as they appear in the extension package.json. Otherwise, the usage data is not reported when extension is running in VS Code.
+#### Example of usage from a VSCode extension
 
----
+```typescript
+import * as vscode from "vscode";
+import { initTelemetrySettings } from "@sap/swa-for-sapbas-vsx";
+import { BASClientFactory, BASTelemetryClient } from "@sap/swa-for-sapbas-vsx";
+const packageJson = require("./package.json");
 
-#### Track
-After creating a new swa class as detailed above usage is pretty simple  
-```js
-/**
- * Send event to SWA for tracking
- * @param eventType string detailing what event are you looking to track (ex. "Generator Success!") 
- * @param {string[]} [custom_events] Optional, can accept up to 4, any more will be ignored
- * @param {int[]} [numericEvents] Optional, can accept up to 2, any more will be ignored
- */
-swa.track("myEvent", ["custom event 1", "custom event 2", "This array is optional"],[1,2]); // numeric events is also optional
-```
-
-#### Example
-```js
-import * as vscode from 'vscode';
-import {SWATracker} from "@sap/swa-for-sapbas-vsx";
 // this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-
 export function activate(context: vscode.ExtensionContext) {
-    const swa = new SWATracker("SAP", "vscode-close-editor", (err : string|number) => {console.log(err);});
-    let cmd_closeActiveEditor = vscode.commands.registerCommand('extension.closeActiveEditor', () => {
-        
-        vscode.commands.executeCommand("workbench.action.closeActiveEditor");
-        // Note that I don't have any custom events so I don't send an extra array
-        swa.track("Close Active Editor");
-    });
-...
-...
+  const extensionName = `${packageJson.publisher}.${packageJson.name}`; // e.g. SAP.vscode-close-editor
+  initTelemetrySettings(extensionName, packageJson.version);
+  void vscode.commands.registerCommand("extension.closeActiveEditor", () => {
+    void vscode.commands.executeCommand("workbench.action.closeActiveEditor");
+
+    const basTelemetryClient: BASTelemetryClient = BASClientFactory.getBASTelemetryClient();
+    // Only eventName is mandatory.
+    basTelemetryClient.report("Close Active Editor");
+  });
+}
 ```
 
-### Usage Comments
-1. If running in Appstudio and SWA chart is not enabled code will throw error into console log that it is unable to track.  
-2. Please take note that if environment is not configured correctly with privacy settings code will not send any tracking.  
+### Configuring Telemetry Settings for BAS Usage Tracking
 
-#### Use Different Target
-SWA can report usage to a different target.
-These reports are always anonymized.
-```js	
-swa.setTarget(<targetUrl>, <targetToken>);
-```
+This module is designed to track usage metrics for BAS, and it requires the VSCode setting `sapbas.telemetryEnabled` to be explicitly set to `true` for telemetry data to be transmitted.
 
-## Enable usage analytics reporting from VS Code
-If you have a VS Code extension that is released to VS Code marketplace and you would like to collect its usage when it runs in VS Code, do the following:
+The tool gathers anonymized information regarding your interaction with the software to enhance its offerings. Should you prefer to opt-out of this data collection, simply adjust the `sapbas.telemetryEnabled` setting to `false`.
 
-1. **Make sure that the vsxPublisher and vsxPackageName parameters initializing SWATracker object are correct.** 
-The vsxPublisher and vsxPackageName values passed to SWA Tracker constructor must be exact strings as they appear in the extension package.json.
+## Utilizing Application Insights Events for Report Generation
 
-```js
-/**
- * constructor
- * @param vsxPublisher should be publisher in package.json
- * @param vsxPackageName should be extension package.json name
- * @param errorListener callback for error, one such callback for all the errors we receive via all the track methods err can be string (err.message) or number (response.statusCode)
- */
-var myErrorListener = (err) => { myErrorHandling(err); }
-swa = new SWATracker("My Vscode Ext Publisher","My Package name", myErrorListener)
+The following fields can be used for creating reports:
 
-```
+| Application Insights Field | Origin                                                                                            |
+| -------------------------- | ------------------------------------------------------------------------------------------------- |
+| **evenName**               | The "eventName" parameter sent via report API. It is constructed by the `extensionName/eventName` |
+| **properties**             | Additional data used to filter events and metrics in the portal. Defaults to empty.               |
+| **measurements**           | Metrics associated with this event. Defaults to empty.                                            |
 
----
-**NOTE**
+You can assume the following properties are automatically being added to each report:
 
-If you need to change vsxPublisher and vsxPackageName values after you already have SWA reports presenting the usage data, do not forget to adjust these reports considering the changed publisher info.
-For example, if you use “Custom event parameter 10” in report filter definition, you should specify both old and new values to see the data from the extension.
-
----
-
-2. **In “configuration” section of your VS code extension** add the settings for user to enable/disable sending the reports. Replace the placeholders with the relevant strings.
-
-```json
-...
-"<Your package name>.enableSapWebAnalytics": {
-					"type": "boolean",
-					"default": true,
-					"description": "Enable collecting usage analytics data for <Your Tool Name>.  If enabled, non-personally identifiable information is used to help understand the product usage and improve the tool.",
-					"scope": "resource"
-				}
-...
-```
-3. **In README file of your extension**, add the following paragraph (do not forget replace the \<Tool Name\> placeholder with your tool name!) :
-
-The tool collects non-personally identifiable information about your usage of the tool to improve its services.
-If you do not want the tool to collect your usage data, you can set the "Enable Sap Web Analytics" setting to "false".
-Go to File > Preferences > Settings (macOS: Code > Preferences > Settings) > Extensions > \<Tool Name\>, and deselect the "Enable Sap Web Analytics" checkbox.
-
-## SWA Reports and Parameter Mapping
-The following fields can be used for creating SWA reports:  
-
-| SWA Field  | Origin |
-| ------------- | ------------- |
-| **eventType**  | The "myEvent" parameter sent via track API    |
-| **user**  | Hashed user ID unless privacy is activated, then "na"    |
-| **Custom event parameter 1**  | Event additional data 1, "custom event 1" sent via track API    |
-| **Custom event parameter 2**  | Event additional data 2, "custom event 2" sent via track API    |
-| **Custom event parameter 3**  | Event additional data 3, "custom event 3" sent via track API    |
-| **Custom event parameter 4**  | Event additional data 4, "custom event 4" sent via track API    |
-| **Custom event parameter 5**  | Event additional data 5, "custom event 5" sent via track API    |
-| **Custom event parameter 6**  | IAAS (aws,ali,azure), set by the lib automatically   |
-| **Custom event parameter 7**  | Datacenter (stg10.int, cry10.int, ap21, prd40), set by the lib automatically    |
-| **Custom event parameter 8**  | Version (currently not supported), set by the lib automatically    |
-| **Custom event parameter 9**  | Tenant Plan (currently supported only for reports from ws manager)    |
-| **Custom event parameter 10**  | The unique caller ID "vsxPublisher.vsxPackageName", set by lib automatically  |
-| **Numeric event parameter 1** | Event additional numeric data 1, "numeric event 1" sent via tack API |
-| **Numeric event parameter 2** | Event additional numeric data 2, "numeric event 2" sent via tack API |
-
-## Contribution
-### Contribute and update version
-1. Commit your contribution
-2. Execute 'npm run set-version <new version>' to set new version for the lib (example: 'npm run set-version 3.2.1')
-3. Execute 'npm install' to update package-lock.json
-4. Add a PR with your changes
-
-### Releasing new version
-2. Add a PR in https://github.wdf.sap.corp/NPMJS/NODE_SWA_FOR_VSC_EXT-1.0 see [example PR](https://github.wdf.sap.corp/NPMJS/NODE_SWA_FOR_VSC_EXT-1.0)
-3. ask project npm project admins (ido goren, asaf dulberg) to approve the PRs
-4. new version should be released soon to npmjs on https://www.npmjs.com/package/@sap/swa-for-sapbas-vsx
+| Property Name              | Value                                                                                                                                                                                                     |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **iaas**                   | Refers to the Infrastructure as a Service provider where the extention is running. This could be a cloud provider like AWS, Azure, Google Cloud, etc., indicating the underlying infrastructure platform. |
+| **landscape**              | The specific environment where the application operates.                                                                                                                                                  |
+| **is_sap_user**            | A boolean flag indicating whether the user is associated with SAP.                                                                                                                                        |
+| **bas_mode**               | Indicates the mode of SAP Business Application Studio. Can be 'free', 'standard', 'buildCodeFree', 'buildCodeStandard'                                                                                    |
+| **extension_run_platform** | Indicates the platform on which the reporting VSCode extension is running.                                                                                                                                |
+| **extension_version**      | Specifies the version of the extension or tool being used                                                                                                                                                 |

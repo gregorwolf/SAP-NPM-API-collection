@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.4] - 2024-02-14
+### Added
+- Added a validation message when trying to use a service from the SAP Business Accelerator Hub with an SAP Fiori template that does not support the service OData version.
+- Added a message after successful deployment if the deploy URL needs to be updated with an internal host reference.
+
+### Fixed
+- Fixed an issue when migrating an Extensibility project that did not contain a manifest.json file.
+- Fixed an issue where an invalid deployment yaml file was not being correctly detected as being invalid.
+
 ## [1.12.3] - 2024-01-31
 ### Added
 - Added a warning message when choosing to use a service from the SAP Business Accelerator Hub, as these services were not intented for use with SAP Fiori UI development.

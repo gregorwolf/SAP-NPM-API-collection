@@ -5,6 +5,22 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.4] - 2024-02-08
+### Added
+- Added the capability to quickly navigate through content groups via keyboard to the Application Info page, the Page Map, and the Page Editor webviews
+- Added an indication to the Page Editor when the annotation API returns an error
+- Added support for custom actions referencing extension controllers with the prefix '.extension' in the 'press' property
+
+### Changed
+- Enhanced the error message in case the minimum SAPUI5 version can't be changed to indicate the reason
+
+### Fixed
+- Fixed an issue with an empty `NavigationPropertyPath` annotation leading to a parsing error in the Page Map
+- Fixed an issue with the application modeler tree view not showing the warning message when something is wrong with the project
+- Fixed an issue with application type detection resulting in an "Invalid application ID" error shown when adding a custom section
+- Fixed multiple issues with `i18n` mass generation
+- Fixed an issue where a warning message was shown about the Variant Management property when adding a table building block in the Page Editor
+
 ## [1.12.3] - 2024-01-25
 ### Added
 - Enabled setting the criticality for actions based on `UI.DataFieldForAnnotations` in List Report table rows and the Object Page header and footer

@@ -8,18 +8,47 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
-## [1.120.3] - 2024-01-xx
+## [1.120.4] - 2024-02-08
 
 ### Added
 
-- OData V4:
-  - View columns set as view nodes
+OData V2:
+
+- Support of "copy" setting for tables in List Report, Analytical List Page and Object Page
 
 ### Changed
 
 ### Removed
 
 ### Deprecated
+
+### Fixed
+
+- Invalid object-like descriptions and keys had been generated into the app-specific schemas if DataFieldForIntentBasedNavigation was defined with a path reference
+- An exception happened during app schema generation if a NavigationProperty pointed to an invalid target annotation
+- OData V4:
+  - Enum for macros table `variantManagement` property
+  - Wrong resolution of contextPath in case of containment as target for a page, leading to an exception during the schema generation
+  - Invalid '/' in app schema definition names replaced by '::'
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades
+
+- esbuild to 0.20.0
+- axios to 1.6.7
+- switch from npm-run-all 4.1.5 to npm-run-all2 5.0.2
+- @sap-ux/fe-fpm-writer to 0.24.4
+- @sap-ux/vocabularies-types to 0.10.4
+
+## [1.120.3] - 2024-01-25
+
+### Added
+
+- OData V4:
+  - View columns set as view nodes
 
 ### Fixed
 

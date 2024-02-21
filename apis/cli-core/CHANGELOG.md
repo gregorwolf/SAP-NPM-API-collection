@@ -5,6 +5,64 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2024.4.0
+
+### Added
+
+- Support for Node versions `18`, `19`, `20`, `21`.
+
+- When using the CLI as a [As a Node.js module dependency](README.md#as-a-nodejs-module-dependency) and running a command which creates an entity where the CLI would print the command to retrieve the result when running the command to create the entity in the terminal, for example:
+
+  ```bash
+  <cli> spaces create -H https://mytenant.eu10.hcs.cloud.sap/ -f ./MY_SPACE.json
+  Use <cli> spaces read --space-id MY_SPACE to retrieve the entity you just created
+  ```
+
+  the CLI now returns the command to execute as an object:
+
+  ```bash
+  const retrieveCommand = await commands["spaces create"]({
+    "--file-path": "MY_SPACE.json",
+    "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+  });
+
+  console.log(retrieveCommand);
+  // {
+  //   command: "spaces read",
+  //   options: {
+  //     "--space-id": "MY_SPACE"
+  //   },
+  // }
+  ```
+
+  You can use the returned response to immediately issue the command to read the entity:
+
+  ```bash
+  const retrieveCommand = await commands["spaces create"]({
+    "--file-path": "MY_SPACE.json",
+    "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+  });
+
+  const response = await commands[retrieveCommand.command]({
+    ...retrieveCommand.options,
+    "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+  });
+
+  console.log(response);
+  // {
+  //   MY_SPACE: {
+  //     version: "1.0.4",
+  //     ...
+  //   }
+  // }
+  ```
+
+- The CLI core module now supports retrieving the discovery documents from multiple endpoints for the same tenant. This allows you to define a list of endpoints from which the discovery documents should be retrieved. Multiple services, reachable through the same tenant, can expose their own, distinct discovery documents. There is no need to have a single service expose the full document for the tenant. The retrieved discovery documents are merged into a single document. All commands are shown to the user, not distinguished by endpoint or service. Only OAuth authentication is supported when specifying multiple endpoints.
+
+### Fixed
+
+- When the host is globally configured via the command `<cli> config host set <host>`, any other host specified via option `-H, --host` was ignored when running a command. This often led to confusion when users specify the host explicitly via option `-H, --host`, but are not aware that the host was globally configured, too. Now, option `-H, --host` always takes precedence over the globally configured host.
+
 ## 2024.2.0
 
 ### Changed

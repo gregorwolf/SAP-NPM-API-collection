@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 ​
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.12.4] - 2024-02-08
+### Added
+- Added the ability for one-click expand and collapse of all the nodes in the tree list to view/hide service metadata 
+- Added the capability to the webview to restore content when the development environment is reloaded
+
 ## [1.12.2] - 2024-01-10
 ### Added
 - Added the ability to filter and only view the metadata targets that have annotations

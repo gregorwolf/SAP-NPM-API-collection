@@ -4,7 +4,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.12.3] - 2023-01-25
+## [1.12.4] - 2024-02-08
+### Added
+- Added support for additional table types in the _Configure table type_ guide based on the SAPUI5 version and project type
+- Added a feature in the _Configure table type_ guide to reflect the table type defined in the project
+
+### Fixed
+- Fixed an issue where existing UI.DataFieldForAnnotation was not considered but duplicated on click of the Insert Snippet button in the _Add a micro chart column to a table_ guide
+- Fixed an issue where the _Related Facets Annotation Term_ parameter was disabled in the _Add a custom section to an object page using extensions_ guide
+- Fixed multiple issues on Step 5 on the _Add a table card to an overview page_ guide to ensure that code snippet is correctly applied
+- Fixed an issue where an incorrect reference to Common Vocabulary was created in the annotations if it didn’t already exist
+
+## [1.12.3] - 2024-01-25
 ### Added
 - Added an inline warning to the Entity Type parameter for missing function import in the _Add an Action Button_ guide
 - Added a CAP CDS variant for the _Add Multiple Fields to a Column in Responsive Tables_ guide
@@ -21,7 +32,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Fixed an issue where an invalid page type error was shown when clicking the insert snippet in the _Configure multiple views for table_ guide
 - Fixed an issue where an error was shown when inserting a snippet for the CDS Variant of the _Add semantic highlights to line items in a table_ guide
 
-## [1.12.2] - 2023-01-10
+## [1.12.2] - 2024-01-10
 ### Added
 - Added an inline warning for duplicate function import validation to the _Add an Action Button_ guide
 - Added functionality that allows the update of existing annotations in the _Configure multiple views for tables_ guide by selecting an existing qualifier

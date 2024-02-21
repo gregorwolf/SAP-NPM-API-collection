@@ -64,6 +64,7 @@ Note: The HDI Deployer assumes ownership of the `src/`, `cfg/`, and `lib/` folde
 
 **Installation**:
 - [Integration into a Database Module](#integration-into-a-database-module)
+- [SAP HANA Client](#sap-hana-client)
 - [Database Connection Details](#database-connection-details)
 - [Deployment via Push and Tasks](#deployment-via-push-and-tasks)
 - [Deployment via Local Run](#deployment-via-local-run)
@@ -101,13 +102,21 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.9.2"
+    "@sap/hdi-deploy": "5.0.1",
+    "@sap/hana-client": "2.19.20",
+    "hdb": "0.19.3"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
   }
 }
 ```
+## SAP HANA Client
+
+As of version 5.0.0 `@sap/hdi-deploy` does not contain `@sap/hana-client` and `hdb` as dependencies. This was done due to the large size of in some cases unnecessary '@sap/hana-client' dependency. To use `@sap/hdi-deploy` 5.0.0 and higher you must install `@sap/hana-client` and/or `hdb` peer dependencies yourself.
+
+To use `@sap/hana-client` you just need to install it. Where as to use `hdb` you need to install `hdb` and either use --use-hdb option in package.json file or set `use_hdb` to `true` in `HDI_DEPLOY_OPTIONS`. You can find detailed information on how to set --use-hdb option here (#options-for-interactive-scenarios).
+
 ## Database Connection Details
 
 Connection details for the database, e.g. host, port, credentials, certificates, hostname_in_certificate, encrypt and validate_certificate, are looked up by the HDI Deployer from the standard CF/XSA `VCAP_SERVICES` environment variable which contains the bound services.
@@ -373,10 +382,10 @@ In this case, the HDI Deployer will ignore the undeploy allowlist `undeploy.json
 When an HDI container service instance is created by the SAP HANA Service Broker, for example, service instance `foo` with schema name `FOO`, the broker creates an HDI container named `FOO` (consisting of the run-time schema `FOO` , the HDI metadata and API schema `FOO#DI` , and the object owner `FOO#OO`) and, in addition, the following roles, which are assigned to the application user:
 
 - FOO::access_role
-  A global access role for the run-time schema. This access role is assigned a set of default permissions for the run-time schema: SELECT, INSERT, UPDATE, DELETE, EXECUTE, CREATE TEMPORARY TABLE, and SELECT CDS METADATA on the run-time schema `FOO`.
+  A global access role that equips the application user with privileges on the run-time schema 'FOO'. This access role is assigned a set of default permissions for the run-time schema: SELECT, INSERT, UPDATE, DELETE, EXECUTE, CREATE TEMPORARY TABLE, and SELECT CDS METADATA on the run-time schema `FOO`.
 
 - FOO::external_privileges_role
-  A role that grants the application user the privileges required to enable access to schemas and objects outside the HDI container, for example, the run-time container `BAR`.
+  A role that grants the application user the privileges required to enable access to schemas and objects outside the HDI container, for example, the run-time container `BAR`. By default, external_privileges_role has no privileges assigned. If the application user requires access to external objects, a user with grant-option privileges on those external objects must first explicitly grant the required privileges to the external_privileges_role. Similarly, any explicitly assigned privileges must also be explicitly revoked.
 
 Note : The roles exist as long as the HDI container exists; they are not lost when the application binding user changes. New binding users are automatically assigned these roles by the broker.
 
@@ -543,7 +552,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "4.9.2",
+    "@sap/hdi-deploy": "5.0.1",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1077,7 +1086,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "4.9.2",
+        "version": "5.0.1",
         "features": {
             "info": 2,
             "verbose": 1,
