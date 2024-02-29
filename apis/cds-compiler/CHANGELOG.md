@@ -8,12 +8,59 @@ Note: `beta` fixes, changes and features are usually not listed in this ChangeLo
 The compiler behavior concerning `beta` features can change at any time without notice.
 
 
+## Version 4.7.6 - 2024-02-29
+
+### Fixed
+
+- OData: Restored compatibility with the Java runtime.
+  Drafts generation was applied twice.
+
+
+## Version 4.7.4 - 2024-02-27
+
+### Fixed
+
+- OData: Fixed infinite recursion in draft handling for nested recursive compositions.
+
+
+## Version 4.7.2 - 2024-02-26
+
+### Fixed
+
+- Restored compatibility with `@sap/cds-dk` for Java runtime
+
+
+## Version 4.7.0 - 2024-02-23
+
+### Added
+
+- compiler: Virtual elements can now be referenced in expressions in annotation
+
+### Changed
+
+- Update OData vocabularies: 'Authorization', 'Common', 'Hierarchy', 'UI'.
+- to.edm(x): `@cds.odata.valuelist` renders all non-key elements of the value help list as `ValueListProperty`.
+
+### Fixed
+
+- CDL parser: a `select` after two or more `(`s in an expression or condition
+  could cause some constructs in that query, such as `virtual`, to be not properly parsed.
+- compiler: published associations with filters sometimes had the filter applied twice
+  if used in inline aspect compositions
+- to.sql|hdi|hdbcds[.migration]:
+  + With `withHanaAssociations`: `false`, remove the association elements from the final CSN in order to correctly detect them during migration scenarios and
+  with generated `hdbcds`.
+  + Skip expensive processing (for calculated elements and nested projections) if the model doesn't use it.
+  + Don't greedily set alias on subqueries if not required.
+  + Remove bound actions and turn all non-database relevant artifacts into dummies to simplify and shrink CSN.
+
 ## Version 4.6.2 - 2024-02-02
 
 ### Fixed
 
 - compiler: Fix incorrect error about type properties if deprecated flag `ignoreSpecifiedQueryElements` is set.
 - Update OData vocabularies: 'Authorization', 'Common'.
+
 
 ## Version 4.6.0 - 2024-01-26
 

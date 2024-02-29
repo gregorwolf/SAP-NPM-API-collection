@@ -6,6 +6,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.16.0 - 2024-02-26
+
+### Added
+
+- `cds-mtx upgrade` now allows to pass `*` to upgrade all tenants.
+
+### Changed
+
+- The Service Manager polling timeout is increased from 60 to 180 seconds.
+- On failing UAA token request, MTXS now responds to client with JSON to enable parsing the passcode URL.
+
+### Fixed
+
+- `upgrade` action is now also provided by `cds.xt.SmsProvisioningService`.
+- Cleanup option of MTXS Migration deletes old `__META__` tenant only if cleanup is triggered for `*` (all tenants).
+- Improved formatting of errors when fetching auth tokens.
+
 ## Version 1.15.0 - 2024-01-30
 
 ### Added
@@ -15,7 +32,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - Additional services needed when using `SERVICE_REPLACEMENTS` for HDI deployment can now also be consumed in Kyma after adding them to the `cds` configuration like
-  ```
+  ```json
   "requires": {
         "myuserprovided": {
             "vcap": {

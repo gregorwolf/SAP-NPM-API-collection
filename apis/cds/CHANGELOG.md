@@ -4,6 +4,34 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.7.0 - 2024-02-26
+
+### Added
+
+- Improved trace output for bootstrap phase. For example try that:
+   ```js
+   DEBUG=trace cds w bookshop | grep trace
+   ```
+- Support for `@odata.draft.bypass` to allow direct modifications of active instances.
+- `req.user.tokenInfo` for `@sap/xssec`-based authentication (`ias`, `jwt`, `xsuaa`)
+- `cds.fiori.draft_lock_timeout` as successor of `cds.drafts.cancellationTimeout`.
+  + Possible values are /^([0-9]+)(h|hrs|min)$/ or a number in milliseconds.
+- There is a new `sap.common.Timezones` entity with a basic time zone definition. There will be accompanying data in package `@sap/cds-common-content`.
+- Deprecation warnings for configuration options `cds.drafts.cancellationTimeout`, `cds.features.serve_on_root`, `cds.features.stream_compat`, `cds.fiori.lean_draft` and `cds.requires.middlewares`, as well as for the properties `req.user.locale` and `req.user.tenant`. The deprecation warnings can be turned off by setting `cds.features.deprecated` to `off`. 
+
+### Changed
+
+- The index page now lists all service endpoints, which is important for services that are exposed through multiple protocols.
+- `cds.deploy` improves error diagnostics with deeper `Query` object inspection.
+- Slightly changed the default export for ESM compatibility. This fixed failing ESM imports in Vitest tests.
+
+### Fixed
+
+- Persistent outbox must not be used for `t0` tenant.
+- Second `await cds.connect.to('X')`, where initialization of `X` results in an error, did not return.
+- Support additional draft requests.
+- `cds.log` with `null` as argument.
+
 ## Version 7.6.4 - 2024-02-21
 
 ### Fixed
@@ -56,7 +84,7 @@
 - Use new CDS schema for validation and code completion in `package.json` and `.cdsrc.json` files
 - Media Data Streaming
   + OData: Large binaries without `@Core.MediaType` annotation were previously returned as base64-encoded buffer. Starting from this `@sap/cds` version also not-annotated large binaries are ignored by OData. It is strongly recommended to annotate all large binary properties with `@Core.MediaType` and use it according to streaming scenarios.
-  + Custom Handlers: `SELECT` with explicitely listed `SELECT.columns` of type `cds.LargeBinary` returns them as Readable streams. Large binary columns requested implicitely by `SELECT` (for example, with `.columns('*')`) are ignored.
+  + Custom Handlers: `SELECT` with explicitly listed `SELECT.columns` of type `cds.LargeBinary` returns them as Readable streams. Large binary columns requested implicitly by `SELECT` (for example, with `.columns('*')`) are ignored.
   + Streaming API: `cds.stream()` and `srv.stream()` are deprecated and will be removed with the next major release. Use `SELECT` with a single `cds.LargeBinary` column instead. The resulting object will contain the name of the column and a stream value. For example, `SELECT.one.from(E).columns(['image']).where(...)` returns `{ image: <media stream> }`.
   + Backward Compatibility: To restore previous behavior use `stream_compat`.
 

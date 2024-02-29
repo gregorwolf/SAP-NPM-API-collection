@@ -6,7 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 7.6.0 - tbd
+
+## 7.6.1 - 2024-02-26
+
+### Fixed
+- elements snippet now works when annotating artifacts in namespaces and/or contexts or if the brace after the elements is still missing
+
+## 7.6.0 - 2024-02-07
 
 ### Added
 - `format-cds` CLI now supports `--check` which tests given CDS sources if formatted according settings and fails otherwise (for CI/CD).

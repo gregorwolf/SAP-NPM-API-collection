@@ -2,11 +2,13 @@
 
 This package holds default content based on the ISO specification for the following [CDS common definitions](https://cap.cloud.sap/docs/cds/common):
 
-- `sap.common.Countries`: [ISO 3166-1](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) 
-- `sap.common.Currencies`: [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
-- `sap.common.Languages`: [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+- [`sap.common.Countries`](https://cap.cloud.sap/docs/cds/common#entity-countries)
+- [`sap.common.Currencies`](https://cap.cloud.sap/docs/cds/common#entity-currencies)
+- [`sap.common.Languages`](https://cap.cloud.sap/docs/cds/common#entity-languages)
+- [`sap.common.Timezones`](https://cap.cloud.sap/docs/cds/common#entity-timezones)
 
-The codes names and descriptions are translated into the most important SAP supported languages. 
+
+The codes names and descriptions are translated into the most important SAP supported languages.
 
 ## Getting Started
 

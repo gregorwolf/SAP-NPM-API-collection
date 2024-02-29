@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 1.4.0 - 2024-02-27
+
+### Added
+
+- Data for `sap.common.Timezones`
+
+### Changed
+
+- Requires `@sap/cds` 7.7 or higher, because of `Timezones` definition
+
 ## Version 1.3.1 - 2023-11-21
 
 ### Fixed

@@ -8,6 +8,12 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 4.x.x - 2024-mm-dd
+
+### Added `v5preview`
+
+Sneak preview into incompatible changes that are about to be shipped with compiler version 5.
+
 ## Version 4.6.0 - 2024-01-26
 
 ### Added `vectorType`
