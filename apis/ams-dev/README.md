@@ -268,20 +268,3 @@ Tests:
 ## CAP integration
 
 This module provides a devtime plugin for [CAP](https://cap.cloud.sap/docs/guides/authorization) (Cloud Application Programming Model) applications which is documented in the docs of [@sap/ams](https://www.npmjs.com/package/@sap/ams).
-
-
-## Updating the library
-In order to update the opa or dcl-compiler version all you have to do is to specify the version in the package.json file:
-```json
-{
-  "version": "0.2.3",
-  "config": {
-    "opaVersion": "0.47.2-sap-0.3.0",
-    "dclCompilerVersion": "0.12.2"
-  },
-}
-```
-When checking out the repo initially there's no dcl-compiler or opa binary.</br>
-To download them use `npm run update` or `npm test`.</br>
-The logic for updating all binaries is in **src/updateBins.ts**.</br>
-To publish a never version in the internal npm repo go to jenkins and enable the option release when starting the pipeline.
