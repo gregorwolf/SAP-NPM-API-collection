@@ -252,23 +252,24 @@ In this setup, you will have to check the html5 application deployer logs to ver
 Using asynchronous upload is specially important when triggering upload of service instance with large content (more than 10 MB). In such cases synchronous upload might cause health check errors or connection timeout during upload.
 
 ## Automatic Creation of Destination Configurations
-When using HTML5 Application Deployer in SAP Managed Approuter flows you can configure the automatic creation of the required instance level destination configurations.
+If you use the HTML5 application deployer together with an application router managed by SAP, you can enable that the required destination configurations pointing to the service instances are created automatically.
 
-To enable the automatic creation of destinations, provide the environment variable SAP_CLOUD_SERVICE.
+To enable the automatic creation of destination configurations, add the environment variable SAP_CLOUD_SERVICE with the value of the sap.cloud.service property in the html5 application manifest.json file of the HTML5 application that you want to deploy. 
+The destination configurations can point to instances of the following services:
 
 To following types of destination configurations can be created:
 
-- A destination pointing to an xsuaa service instance (optional)
-- A destination pointing to an Identity Authentication service instance (optional)
-- A destination pointing to an html5-apps-repo/app-host service instance (mandatory)
-- A destinations pointing to a business  service instance (optional)
-- One or more backend destinations that point to a Cloud or an on- premise backend application. These destinations are modeled using the environment variable BACKEND_DESTINATIONS
+- An HTML5 Application Repository service instance of the app-host service plan (mandatory)
+- An SAP Authorization and Trust Management (XSUAA) service instance (optional)
+  To create a destination that points to an SAP Authorization and Trust Management (XSUAA) service instance, the SAP Authorization and Trust Management (XSUAA) service instance and a destination service instance must be bound to the HTML5 application deployer.
+- A business service instance (optional)
+  To create a destination that points to a business service instance, the business service instance must be bound to the HTML5 application deployer.
+- One or more backend destinations that point to cloud or on-premise backend applications.
+  These destinations are modeled using the environment variable BACKEND_DESTINATIONS
 
-If the creation of a destination pointing to an xsuaa or an Identity Authentication service instance is required, the xsuaa or the Identity Authentication instances should be bound to the HTML5 application deployer.
-In addition a destination instance should be bound to the HTML5 application deployer.
-
-This capability is typically used in Kubernetes where the HTML5 Application Deployer application is previously uploaded as a docker image to Artifactory or dockerhub
-For example (Kubernetes deployment) :
+**Note**: To enable app-to-app navigation, you also have to add the environment variable IAS_DEPENDENCY_NAME and provide the name of the dependency that has been configured for the Identity Authentication token exchange that is required for app-to-app navigation. For more information about how to configure the dependency for app-to-app navigation, see Consume an API from Another Application .
+You would typically use the automatic creation of destination configurations in Kubernetes when the HTML5 application deployer application has been previously uploaded as a docker image to Artifactory or Docker Hub. See, for example, this Kubernetes deployment:
+For example (Kubernetes deployment.yaml) :
 ```
 ---
 apiVersion: apps/v1

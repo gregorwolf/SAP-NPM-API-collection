@@ -5,7 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 6.2.0 - 2023-11-22
+## 7.0.0 - 2024-02-29
+
+### Removed
+- Removed node 12.x, 14.x and 16.x support and tests
+
+## 6.2.0 - 2024-01-19
 
 ### Updated
 - Update `@sap/hdbext` to 8.0.2

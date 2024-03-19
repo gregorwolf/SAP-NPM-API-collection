@@ -1,41 +1,40 @@
 # @sap/ux-specification
 
-This package specifies the structure of SAP Fiori Element templates in form of typescript types and JSON schema files. You can find the JSON schemas under dist/schema.
-It is used by SAP Fiori Tools (see documentation link below) but can also be used independent from this application.
+This package specifies the structure of SAP Fiori elements templates in form of typescript types and JSON schema files. You can find the JSON schemas under dist/schema.
+This package is used by SAP Fiori tools (see documentation link below) but can also be used independently of this application.
 
-The major and minor version of this specification package matches the major and minor version of SAPUI5, which contains Fiori elements.
+Each major version of this specification package corresponds to one or more major versions of SAPUI5. A new major version is usually set up for each SAPUI5 version that has a long-term maintenance. The major versions of @sap/ux-specification differ in the scope of supported properties and capabilities, in analogy with the SAP Fiori elements' capabilities of the SAPUI5 major version.
+The relevant SAPUI5 versions of a specification version are linked by tags.
 
-_Example_:  
-`@sap/ux-specification@1.76.x` specifies the Fiori elements that are delivered with SAPUI5 version 1.76.x
-
-The module supports both the OData V2 and the OData V4 version of the templates (aka FioriElementsVersion), you thus can find two different access points for the typescript definitions:
+The module supports both the OData V2 and the OData V4 version of the templates (aka FioriElementsVersion), so you can find two different access points for the typescript definitions:
 
 - src/v2.ts comprises the OData V2 definitions
 - src/v4.ts comprises the OData V4 definitions
 
-JSON schemas are provided for the following schema types:
+(Generic) JSON schemas are generated from the typescript definitions for the following schema types (enum TemplateType):
 
-- FioriElementsVersion.v2:  Application, ObjectPage, ListReport and OverviewPage
-- FioriElementsVersion.v4:  Application, ObjectPage, ListReport   
+- FioriElementsVersion.v2:  Application, ObjectPage, ListReport, AnalyticalListPage and OverviewPage
+- FioriElementsVersion.v4:  Application, ObjectPage, ListReport, AnalyticalListPage and FreestylePage
 
-Further schema or template types are planned within the next releases.  
 You can retrieve any generic schema via schemaAccess.ts.
 
-Besides the specification, src/api.ts provides functions that can be used with SAP Fiori apps in connection with the JSON schemas:
+Besides the type definitions and schemas, src/api.(d.)ts provides functions that can be used by SAP Fiori apps in connection with the JSON schemas:
 
-- generateSchema: converts one generic schema to an application specific one, enriched by app specific information like annotations.
+- generateSchema: converts one generic schema to an application specific one, enriched by app-specific information such as the annotations (as far as they are relevant for setting up the schematic view of the app, for instance collections like facets, columns, actions).
 - importConfig: imports information from the app, like manifest settings or SAPUI5 flexibility changes, into one JSON configuration file that relates to a given schema (representing the central settings of the app or of a page of the app).
-- exportConfig: exports from one JSON configuration file, returning an updated manifest.json file and a list of SAPUI5 flexibility changes.
+- exportConfig: exports from one JSON configuration file, returning an updated manifest.json file and a complete list of all current SAPUI5 flexibility changes and view or fragments.
+- exportConfigEntityByPath: exports a single property or section from the given config.json that is specified by a path expression, returns only the updated artifacts. Supported for List Report, Object Page and Analytical List Page.
+- deleteConfigEntityByPath: deletes a single property or section from the given config.json that is specified by a path expression. Supported for List Report, Object Page and Analytical List Page.
 - importProject: imports information from the app and generates all schemas and JSON configuration files.
 - importProjectSchema: imports information from the app and generates all schemas but no JSON configuration files.
-- getApiVersion: returns the given API version. The API version starts with 1 and will only be increased in case of incompatible changes where the consumption layer must react on.
-- generateCustomExtension: generates custom extensions, e.g. Custom Page, Custom Column etc. for a V4 application by using the `@sap-ux/fe-fpm-writer`.
+- getApiVersion: returns the given API version. The API version starts with 1 and will be increased in case of incompatible changes to which the consumption layer must react.
+- generateCustomExtension: generates custom extensions, e.g. custom pages, custom Columns etc. for a V4 application by using the `@sap-ux/fe-fpm-writer`.
 
 When calling any API function you may pass a logger instance for collecting any messages. The interface of your logger must fit to the ExtensionLogger definition. If no logger is passed, the output channel for messages is the console.
 
 ## Constraints
 
-The definitions and functions do not handle the OData annotations of the SAP Fiori Element templates.
+The API functions do not modify any OData annotations.
 
 ## Support
 
@@ -44,7 +43,7 @@ Please assign tag: _SAP Fiori tools_.
 
 To log an issue with SAP Fiori tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).
 
-## Documentation 
+## Documentation
 
 - Visit **SAP Help Portal** for [SAP Fiori tools](https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US) documentation. 
 

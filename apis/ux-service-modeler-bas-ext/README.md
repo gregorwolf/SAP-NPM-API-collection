@@ -53,6 +53,7 @@ OR
 - Users can select an entity and view the properties/annotations of that entity.
 - Users can select a property and view the annotations of that property.
 - Users can search for entity/property or annotations to filter the displayed data
+- Users can filter and only view the metadata targets that have annotations
 - Users can override the backend annotations using the Service Modeler.
 - Users can navigate to manage the Services and local Annotation files from the Service Modeler
 - If the Application Modeler or Annotation Modeler extensions are also installed the user can navigate to these tools from 

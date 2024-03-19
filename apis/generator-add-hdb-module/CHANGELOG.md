@@ -1,3 +1,11 @@
+## 1.11.0
+
+### New Features
+- Added a hint how to set the database ID in XS Advanced projects
+
+### Fixes
+- Service key creation fails in XS Advanced
+
 ## 1.10.0
 
 ### New Features

@@ -1,3 +1,8 @@
+## 1.13.0
+
+### Fixes
+- Fixed an incorrect warning about the "target_table" property in hdbtabledata files
+
 ## 1.12.0
 
 ### Fixes

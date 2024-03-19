@@ -2,7 +2,7 @@
 
 Command-Line Interface (CLI) for SAP Datasphere.
 
-[![Node Version](https://img.shields.io/badge/node-18.xx.x-brightgreen)](https://nodejs.org/dist/latest-v18.x/docs/api/#) [![npm version](https://badge.fury.io/js/@sap%2Fdatasphere-cli.svg)](https://badge.fury.io/js/@sap%2Fdatasphere-cli) [![Documentation](https://img.shields.io/badge/docs-online-ff69b4.svg)](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html) [![Command help pages](https://img.shields.io/badge/command-help-lightgrey.svg)](#usage) ![NPM](https://img.shields.io/npm/l/@sap/datasphere-cli?color=%23FFFF00)
+[![Node Version](https://img.shields.io/badge/node-18.xx.x-brightgreen)](https://nodejs.org/dist/latest-v18.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-19.xx.x-brightgreen)](https://nodejs.org/dist/latest-v19.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-20.xx.x-brightgreen)](https://nodejs.org/dist/latest-v20.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-21.xx.x-brightgreen)](https://nodejs.org/dist/latest-v21.x/docs/api/#) [![npm version](https://badge.fury.io/js/@sap%2Fdatasphere-cli.svg)](https://badge.fury.io/js/@sap%2Fdatasphere-cli) [![Documentation](https://img.shields.io/badge/docs-online-ff69b4.svg)](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html) [![Command help pages](https://img.shields.io/badge/command-help-lightgrey.svg)](#usage) ![NPM](https://img.shields.io/npm/l/@sap/datasphere-cli?color=%23FFFF00)
 
 ## Content
 
@@ -286,6 +286,52 @@ await commands["config cache init"](options);
 ```
 
 `options` is a map of available options for the respective command. You have to supply either the short flag or long name of the option, including `-` or `--` for the short flag or long name.
+
+When running a command which creates an entity where the CLI would print the command to retrieve the result when running the command to create the entity in the terminal, for example:
+
+```bash
+datasphere spaces create -H https://mytenant.eu10.hcs.cloud.sap/ -f ./MY_SPACE.json
+Use datasphere spaces read --space-id MY_SPACE to retrieve the entity you just created
+```
+
+the CLI now returns the command to execute as an object:
+
+```bash
+const retrieveCommand = await commands["spaces create"]({
+  "--file-path": "MY_SPACE.json",
+  "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+});
+
+console.log(retrieveCommand);
+// {
+//   command: "spaces read",
+//   options: {
+//     "--space-id": "MY_SPACE"
+//   },
+// }
+```
+
+You can use the returned response to immediately issue the command to read the entity:
+
+```bash
+const retrieveCommand = await commands["spaces create"]({
+  "--file-path": "MY_SPACE.json",
+  "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+});
+
+const response = await commands[retrieveCommand.command]({
+  ...retrieveCommand.options,
+  "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+});
+
+console.log(response);
+// {
+//   MY_SPACE: {
+//     version: "1.0.4",
+//     ...
+//   }
+// }
+```
 
 #### Handle errors during command execution
 

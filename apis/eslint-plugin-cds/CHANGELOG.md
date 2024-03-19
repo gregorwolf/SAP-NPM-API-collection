@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.6.7] - 2024-03-11
+
+### Fixed
+
+- Removed loading of previously removed rule.
+
+## [2.6.6] - 2024-03-11
+
+### Changed
+
+- Removed `require-2many-oncond` rule, as it is now covered by the compiler.
 
 ## [2.6.5] - 2024-01-31
 

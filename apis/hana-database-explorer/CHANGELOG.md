@@ -1,5 +1,20 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.21.0
+
+### New Features
+- The maximum graph depth can be set for the dependency viewer.
+- The dependency viewer indicates how many objects are shown based on settings like filters and graph depth.
+- The dependency viewer allows saving graph snapshots as an SVG image.
+
+### Fixes
+- The mini map was not showing after graph size is changed in the dependency viewer.
+- User name and password can be saved after entering the credentials for a SQL console or database connection.
+- User name and password will be read from the settings if present and stored in the secure store.
+- The statement execution time was calculated incorrectly in some situations.
+- Improved error messages when loading SAP HANA Database Explorer connections.
+- Empty query parameters were handled incorrectly in some situations.
+
 ## 1.20.0
 
 ### New Features

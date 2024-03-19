@@ -3,6 +3,24 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.0] - 2024-03-13
+### Changed
+- SAP Fiori applications generated as part of a full stack application in SAP Build Code will now always launch the page map after generation.
+- Updated the default minimum UI5 version used when generating an SAP Fiori application in non-interactive mode when no minimum UI5 version is supplied in the input.
+
+### Fixed
+- Fixed an issue where an SAP Fiori application could have a linting error after migrating to support SAP Fiori tools.
+- Fixed an issue where a selected service chosen during generation could incorrectly warn that it is not suitable for UI development.
+- Fixed an issue where the SAP Fiori generator could crash if an invalid OData V4 service url was provided.
+
+## [1.12.5] - 2024-02-28
+### Changed
+- Updated deploy error response that returns an xml document to now show the content of the error for easier reading.
+
+### Fixed
+- Fixed an issue where deployment could fail with an invalid http 415 response.
+- Fixed an issue where users could select the group separator in a dropdown in the application wizard.
+
 ## [1.12.4] - 2024-02-14
 ### Added
 - Added a validation message when trying to use a service from the SAP Business Accelerator Hub with an SAP Fiori template that does not support the service OData version.

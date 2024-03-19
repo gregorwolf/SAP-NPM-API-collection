@@ -4,6 +4,34 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.0] - 2024-03-07
+### Added
+- Added support for the UI.DataFieldForAction annotation in CAP variant of the _Add and edit table columns_ guide
+
+### Changed
+- Changed Inline and Determining parameters from required to optional
+- Reference information links now point to https://ui5.sap.com/ and https://sdk.openui5.org/ instead of https://sapui5.hana.ondemand.com/  and https://openui5.hana.ondemand.com/
+
+### Fixed
+- Fixed an issue where duplicate annotations were created even though the annotations already existed
+- Fixed an issue where using **Insert Snippet** led to an error in the case of CAP projects
+- Fixed an issue where the placeholder value was getting inserted into the code in the _Add a custom action to a page using extensions_ guide 
+- Fixed an issue in the building block guides where the **View or Fragment File** parameter was filled only after the **Entity** parameter was selected
+- Fixed an issue where annotations defined in the associated entity were not considered in the _Add a filter bar building block_ guide
+
+## [1.12.5] - 2024-02-22
+### Added
+- Added support for the UI.DataFieldForAction annotation in the _Add and edit table columns_ guide
+- Added OData V2 and OData V4 variants for the _Configure multiple views for tables_ guide
+
+### Changed
+- Changed guide variant name from CDS Annotation to _CAP CDS Annotation_
+- Replaced the Target path with the Chart Annotation Path parameter which lists annotations supported on OData V2 and OData V4 in the _Add a smart chart facet to an object page_ guide
+
+### Fixed
+- Fixed an issue where the hierarchyQualifier parameter was not based on the table’s entity in the _Configure table type_ guide
+- Fixed an issue where UI.LineItem annotations with a qualifier were not considered
+
 ## [1.12.4] - 2024-02-08
 ### Added
 - Added support for additional table types in the _Configure table type_ guide based on the SAPUI5 version and project type

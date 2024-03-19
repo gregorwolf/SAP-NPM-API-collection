@@ -12,7 +12,7 @@
     + [Destination-service](#destination-service)
   * [UAA configuration](#uaa-configuration)
   * [Additional headers configuration](#additional-headers-configuration)
-  * [Additional cookies configuration](#additional-cookies-configuration)
+  * [Additional Cookie Attributes](#additional-cookie-attributes)
   * [Plugins configuration](#plugins-configuration)
   * [Session timeout configuration](#session-timeout-configuration)
   * [X-Frame-Options configuration](#x-frame-options-configuration)
@@ -200,7 +200,7 @@ Configuration | Environment variable                  | Description
 [UAA service name](#uaa-configuration) | `UAA_SERVICE_NAME`                    | Contains the name of the UAA service to be used.
 [Destinations](#destinations) | `destinations`                        | Provides information about the available destinations.
 [Additional headers](#additional-headers-configuration) | `httpHeaders`                         | Provides headers that the application router will return to the client in its responses.
-[Additional cookies](#additional-cookies-configuration) | `COOKIES`                             | Provides cookies that the application router will return to the client in its responses. Currently only SameSite cookie is supported.
+[Additional cookie attributes](#additional-cookie-attributes) | `COOKIES`                             | The application router triggers the generation of the following third-party cookies and sends them to the client:</br> &bull; locationAfterLogin</br>  &bull; fragmentAfterLogin</br> &bull; signature</br> &bull; JSESSIONID</br> To control the behavior and usage of the third-party cookies, you can configure the attributes SameSite and Partitioned.For more information about third-party cookies, please see [KBA 3409306](https://me.sap.com/notes/3409306). 
 [Plugins](#plugins-configuration) | `plugins`                             | A plugin is just like a [*route*](#routes) except that you can't configure some inner properties.
 [Session timeout](#session-timeout-configuration) | `SESSION_TIMEOUT`                     | Positive integer representing the session timeout in minutes. The default timeout is 15 minutes.
 [X-Frame-Options](#x-frame-options-configuration) | `SEND_XFRAMEOPTIONS`, `httpHeaders`   | Configuration for the X-Frame-Options header value.
@@ -232,6 +232,7 @@ Store CSRF token in external session | SVC2AR_STORE_CSRF_IN_EXTERNAL_SESSION | I
 Cache service credentials | CACHE_SERVICE_CREDENTIALS             | If `true`, services credentials are cached in the application router memory
 Enable x-forwarded-host header validation | ENABLE_X_FORWARDED_HOST_VALIDATION | If `true`, x-forwarded-host validation will be performed, allowing letters, digits, hypens (-), underscores (_) and dots (.). As well as it validates hostname length.  
 Add the content security policy headers to the response |ENABLE_FRAME_ANCESTORS_CSP_HEADERS | If `true`,  Approuter will include the content security policy (CSP) header using subaccount trusted domains with frame-ancestors policy.
+Time cache value for frame ancestors CSP header | FRAME_ANCESTORS_CSP_HEADER_CACHE_TIME | Time in seconds for the frame ancestors CSP header to be cached. The default value is 300 seconds.
 **Note:** all those environment variables are optional.
 
 
@@ -368,21 +369,35 @@ If the response header name already exists in the additional http headers list, 
 
 **Caution:** For security reasons, the following headers must not be configured: authorization', 'cookie', and 'set-cookie'.
 
-### Additional cookies configuration
+### Additional Cookie Attributes
 
-If configured, the application router will send additional cookie values in its responses to the client.
-Additional cookie values can be set in the `COOKIES` environment variable.
+If configured, the application router sends additional cookie attributes in its responses to the client. 
+The cookie attributes can be set in the `COOKIES` environment variable.
 
 Example of configuration for cookies in the manifest.yml :
 
 ```json
   env:
    COOKIES: >
-        { "SameSite":"None" }
+     {
+       "SameSite":"None",
+       "Partitioned":
+            {
+               "supportedPartitionAgents":"^Mozilla.*(Chrome|Chromium|)/((109)|(1[1-9][0-9])|([2-9][0-9][0-9]))",
+               "unsupportedPartitionAgents":"PostmanRuntime/7.29.2"
+            }
+     }
 ```
-In this example, the application router sets the SameSite cookie attribute to None for the JSESSIONID cookie in the responses to the client.
+In this example, the application router sets the SameSite attribute of the cookie to "None" and the specifies a Partitioned attribute that is sent in the responses to the client.
+Note: Currently, only the value "None" are supported for the SameSite attribute. The value "Strict" is not supported.
+The Partitioned attribute contains two required regular expressions:
 
-Note: Currently, only the SameSite cookie value is supported. SameSite = "Strict" is not supported.
+ - supportedPartitionAgents for supported agents
+
+ - unsupportedPartitionAgents for unsupported agents
+
+You can use a wildcard '(.*)' in supportedAgents to allow all agents to use the Partitioned attribute.
+Note: unsupportedPartionAgents overwrites the configurations in supportedAgents. If an agent is allowed in supportedPartitionAgents but disallowed in unsupportedPartitionAgents, the Partitioned attribute will not be returned.
 
 ### Plugins configuration
 

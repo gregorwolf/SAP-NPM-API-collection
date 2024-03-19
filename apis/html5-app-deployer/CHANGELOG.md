@@ -4,11 +4,23 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+
+## 6.2.0 - 2024-03-19
+### Added
+- Services bindings can be created with certificate
+
+## 6.1.0 - 2024-03-14
+
+### Added
+- App2App navigation support
+
 ## 6.0.0 - 2024-01-15
 
 ### Updated dependencies
 - deps: xsenv@4.2.0
 - deps: cf-nodejs-logging-support@7.2.1
+- deps: xssec@3.6.1
+- deps: axios@1.6.5
 
 ### Added
 - nodejs version ^12.0.0 support removed

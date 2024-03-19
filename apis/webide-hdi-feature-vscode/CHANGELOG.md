@@ -1,3 +1,19 @@
+## 1.29.0
+
+### New Features
+- Propose pre and post fix to make column names unique
+- New option "deprecate and block queries"
+- The impact of columns is shown across external analytic privileges
+
+### Fixes
+- 'Add to output' option does not work if the source name contains '/'
+- Fix descriptions of execution hint buttons
+- Scale values of decimal datatype is not propagated while mapping input parameters from a user-defined function in a calculation view
+- Refreshing metadata doesn't work in the target view when the changes are made via recursive propagation to the consuming view.
+- The "Where Used" dialog cannot be opened anymore when closed via escape key
+- Fix aggregation attributes hint text
+- Fix some issues deleting nodes in calc view editor
+
 ## 1.28.1
 
 ### Fixes

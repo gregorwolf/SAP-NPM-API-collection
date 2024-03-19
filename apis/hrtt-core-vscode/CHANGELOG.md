@@ -1,3 +1,10 @@
+## 1.29.0
+
+### Fixes
+- Updated HRTT to version 231207-1704382648-a542e12
+- Add data source requires synonym also for local tables on XS Advanced
+- The role editor did not work correctly on XS Advanced
+
 ## 1.28.0
 
 ### Fixes

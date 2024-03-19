@@ -8,6 +8,68 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.6] - 2024-03-07
+
+### Added
+
+- New API functions exportConfigEntityByPath and deleteConfigEntityByPath have been added that allow a selective export or deletion of a single property or section from a config.json. The additional parameter entityPath must be applied. The new functions are released for List Report, Object Page and Analytical List Page of OData V2 and V4.
+- In the API result a change indicator is added that shows if the manifest was changed. In case of the new functions exportConfigEntityByPath and deleteConfigEntityByPath, only updated fragment files are returned (V2 flexibility changes are still returned completely due to compatibility, deletion is indicated by newValue = null).
+
+### Changed
+
+- Increased `fe-fpm-writer` api version to include fix for controller extension namespace
+- Actualization of the README file.
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- An invalid app schema had been generated before, in case of table custom columns
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades
+
+- eslint to v8.57.0
+- @types/semver: obsolete dependency deleted
+- esbuild to v0.20.1
+  
+## [1.120.5] - 2024-02-21
+
+### Added
+
+- OData V2:
+  - Support of Header facets on Object Page
+- UX adjustments of inplace documentation:
+  - Support for Screen Readers and Arrow Navigation
+
+### Changed
+
+- Increased `fe-fpm-writer` api version
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades
+
+- @sapui5/ts-types-esm to v1.120.6
+- @sap-ux/fe-fpm-writer to v0.24.7
+- @sap-ux/vocabularies-types to 0.10.5
+- @sap-ux/annotation-converter to 0.8.6
+- @types/semver to v7.5.7
+- @ui5/manifest to v1.62.1
+
 ## [1.120.4] - 2024-02-08
 
 ### Added

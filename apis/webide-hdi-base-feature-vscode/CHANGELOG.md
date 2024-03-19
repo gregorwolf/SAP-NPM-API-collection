@@ -1,3 +1,13 @@
+## 1.27.0
+
+### New Features
+- The impact of columns is shown across external analytic privileges
+
+### Fixes
+- The "find data sources" dialog filter does not work reliably
+- Rechecking the "generate grants files" option removes the roles assignment while creating synonym during cross container access
+- Not able to select user-defined functions without input parameters in the calculated column expression editor of a calculation view
+
 ## 1.26.1
 
 ### Fixes

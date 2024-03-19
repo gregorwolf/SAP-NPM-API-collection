@@ -5,6 +5,62 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2024.5.0
+
+### Added
+
+- Support for Node versions `18`, `19`, `20`, `21`.
+
+- When using the CLI as a [As a Node.js module dependency](README.md#as-a-nodejs-module-dependency) and running a command which creates an entity where the CLI would print the command to retrieve the result when running the command to create the entity in the terminal, for example:
+
+  ```bash
+  datasphere spaces create -H https://mytenant.eu10.hcs.cloud.sap/ -f ./MY_SPACE.json
+  Use datasphere spaces read --space-id MY_SPACE to retrieve the entity you just created
+  ```
+
+  the CLI now returns the command to execute as an object:
+
+  ```bash
+  const retrieveCommand = await commands["spaces create"]({
+    "--file-path": "MY_SPACE.json",
+    "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+  });
+
+  console.log(retrieveCommand);
+  // {
+  //   command: "spaces read",
+  //   options: {
+  //     "--space-id": "MY_SPACE"
+  //   },
+  // }
+  ```
+
+  You can use the returned response to immediately issue the command to read the entity:
+
+  ```bash
+  const retrieveCommand = await commands["spaces create"]({
+    "--file-path": "MY_SPACE.json",
+    "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+  });
+
+  const response = await commands[retrieveCommand.command]({
+    ...retrieveCommand.options,
+    "--host": "https://mytenant.eu10.hcs.cloud.sap/",
+  });
+
+  console.log(response);
+  // {
+  //   MY_SPACE: {
+  //     version: "1.0.4",
+  //     ...
+  //   }
+  // }
+  ```
+
+### Fixed
+
+- When the host is globally configured via the command `datasphere config host set <host>`, any other host specified via option `-H, --host` was ignored when running a command. This often led to confusion when users specify the host explicitly via option `-H, --host`, but are not aware that the host was globally configured, too. Now, option `-H, --host` always takes precedence over the globally configured host.
+
 ## 2024.3.0
 
 ### Changed
@@ -26,8 +82,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - When printing the help information for the `login` command, the list of options now includes the login-specific options such as `--authorization-url` and `--token-url`. Previously the help showed the following options:
 
   ```bash
-  <CLI> login --help
-  Usage: <CLI> login [options]
+  datasphere login --help
+  Usage: datasphere login [options]
   log in to your account using interactive OAuth authentication
   Options:
     -H, --host <host>  specifies the url where the tenant is hosted (optional)
@@ -37,8 +93,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   With this version, the help looks like this:
 
   ```bash
-  <CLI> login --help
-  Usage: <CLI> login [options]
+  datasphere login --help
+  Usage: datasphere login [options]
   log in to your account using interactive OAuth authentication
   Options:
     -H, --host <host>              specifies the url where the tenant is hosted (optional)

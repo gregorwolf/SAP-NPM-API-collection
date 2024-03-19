@@ -1,3 +1,15 @@
+## 1.20.0
+
+### New Features
+
+- A SQL console can be opened for database modules
+- Roles on a bound HDI container can be granted via a graphical wizard
+- An SAP HANA-specific welcome page with useful information about SAP HANA development is displayed on startup
+
+### Fixes
+
+- Changes saved during deployment are not considered
+
 ## 1.19.0
 
 ### New Features
