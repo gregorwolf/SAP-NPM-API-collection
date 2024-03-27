@@ -1,3 +1,26 @@
+# Hana Client 2.20.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.20 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.20/en-US
+
+For the latest updates please see SAP Note 3427733 - SAP HANA Client 2.20 Release Notes
+
+https://me.sap.com/notes/3427733
+
+## Version 2.20.15
+
+### Changes:
+
+ - Issue Number 318725: Calling server KPI functions could have caused the application to block temporarily.
+ - Issue Number 317039: A small memory leak would have occurred when Connection.onTrace was called.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 319386: Unexpected -10901 error could have occurred.
+ - Issue Number 317050: Some trace messages could have been missing from a connection trace.
+ - Issue Number 304335: Unnecessary "too many session variables" errors could have occurred.
+
 # Hana Client 2.19.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.19 documentation:
