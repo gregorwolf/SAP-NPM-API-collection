@@ -17,7 +17,7 @@ entity Book {
 };
 entity IsbnBook as projection on Book {
   *,
-  isbn as id,
+  isbn as id, // ❌
 };
 ```
 

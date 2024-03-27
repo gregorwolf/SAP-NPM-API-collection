@@ -26,7 +26,7 @@ view View as select from
     Target,
     Target as Duplicate
 {
-    // This redirection can’t be resolved:
+    // ❌ This redirection can’t be resolved:
     Main.toTarget : redirected to View
 };
 ```

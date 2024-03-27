@@ -17,8 +17,8 @@ Erroneous code example:
 
 <!-- cds-mode: ignore -->
 ```cds
-type LengthIsUnsafe : String(9007199254740992);
-type NotAnInteger : String(42.1);
+type LengthIsUnsafe : String(9007199254740992); // ❌
+type NotAnInteger : String(42.1);               // ❌
 ```
 
 In the erroneous example, the string length for the type `LengthIsUnsafe` is

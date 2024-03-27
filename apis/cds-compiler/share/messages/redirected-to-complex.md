@@ -21,7 +21,7 @@ entity Secondary {
 entity CrossJoin as SELECT from Main, Secondary;
 entity RedirectToComplex as projection on Main {
     id,
-    toMain: redirected to CrossJoin,
+    toMain: redirected to CrossJoin, // ❌
 };
 ```
 

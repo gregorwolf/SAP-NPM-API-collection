@@ -31,7 +31,7 @@ entity ns.Base {
   to_second : Composition of many ns.second.Foo;
 }
 service ns.MyService {
-  // (4)
+  // (4) ❌
   entity BaseView as projection on ns.Base;
 };
 ```

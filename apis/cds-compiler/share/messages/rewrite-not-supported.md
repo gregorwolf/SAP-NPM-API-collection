@@ -29,7 +29,7 @@ entity Secondary {
 
 entity View as select from Base {
   id,
-  primary.secondary // Error: The ON condition isn’t rewritten here
+  primary.secondary // ❌ The ON condition isn’t rewritten here
 };
 ```
 

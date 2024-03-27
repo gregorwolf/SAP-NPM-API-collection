@@ -18,7 +18,7 @@ view ViewFoo as select from Foo {
   1+1 as calculatedField @(anno)
 };
 entity Bar {
-  // `e` has no proper type but has the annotation `@anno`.
+  // ❌ `e` has no proper type but has the annotation `@anno`.
   e : ViewFoo:calculatedField;
 };
 ```

@@ -6,6 +6,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.17.0 - 2024-03-25
+
+### Added
+
+- Ignore non-existing container if running upgrade `*` by setting `cds.requires['cds.xt.SaasProvisioning'].upgrade.ignoreNonExistingContainers: true`.
+- `cds-mtx-migrate '*'|<tenant>[,<tenant>] --init-tenant-list [--force] [--dry]` now allows to fill the internal tenant list (e. g. for migration of Dynamic Deployer base applications).
+- `cds-mtx-migrate '*'|<tenant>[,<tenant>] --sync-tenant-list [--force] [--dry]` now allows to sync the internal tenant list with existing containers. Entries without a corresponding HDI container will be removed.
+
+### Changed
+
+- `/-/cds/saas-provisioning/upgrade` sent as an async request with payload `"tenants": ["*"]` will now return job information even if no tenants are found.
+
+### Fixed
+
+- The `dataEncryption` provisioning parameter is disabled for `t0` when using HANA native tenants.
+- Ignore non-existing container if running upgrade `*` by setting `cds.requires['cds.xt.SaasProvisioning'].upgrade.ignoreNonExistingContainers: true`.
+- The built-in Service Manager client filters bindings by `ready = true`.
+
 ## Version 1.16.0 - 2024-02-26
 
 ### Added

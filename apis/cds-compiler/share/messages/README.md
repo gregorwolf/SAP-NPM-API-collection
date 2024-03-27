@@ -41,8 +41,12 @@ Usually mentions the severity.
 
 ## Example
 
+Erroneous code example:
+
+```
 Code which also lead to the current message,
 with an explanation why it is problematic.
+```
 
 ## How to Fix
 

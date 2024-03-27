@@ -8,7 +8,11 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
-## Version 4.x.x - 2024-mm-dd
+## Version 4.8.0 - 2024-03-21
+
+### Removed `vectorType`
+
+It is now always enabled.
 
 ### Added `v5preview`
 

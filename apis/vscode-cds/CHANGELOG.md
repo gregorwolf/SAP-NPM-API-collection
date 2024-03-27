@@ -7,10 +7,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 
 
-## Version 7.6.1 - 2024-02-26
+## Version 7.8.0 - 2024-03-25
 
 ### Added
 - Add preview commands to editor title
+
+### Changed
+- Move menu item `Preview as yaml` to the top of the menu items list indicating its default character
+- Formatting logging now includes whitespace even if it may be reduced to empty string, relative alignment positions, and details on inserting delayed items
+- Minimum supported VSCode version is now 1.86.0
+
+### Fixed
+- Code completion for annotations with ![] identifiers
+
+### Also see
+- `@sap/cds-lsp` 7.8.0
+- `@sap/cds-compiler` 4.8.0
+
+
+## Version 7.6.1 - 2024-02-26
 
 ### Fixed
 - Elements snippet now works when annotating artifacts in namespaces and/or contexts or if the brace after the elements is still missing

@@ -7,6 +7,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 7.8.0 - 2024-03-25
+
+### Changed
+- formatting logging now includes whitespace even if it may be reduced to empty string, relative alignment positions, and details on inserting delayed items
+
+### Fixed
+- code completion for annotations with `![]` identifiers
+
+### Also see
+- `@sap/cds-compiler` 4.8.0
+
 ## 7.6.1 - 2024-02-26
 
 ### Fixed
@@ -30,7 +41,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - highlighting after semicolon in certain contexts
 - on Windows editor potentially no longer updated diagnostics for sources with annotations
 - wrong diagnostics about unused imports
-- first code completion could have been slow as workspace was scanned unnessarily
+- first code completion could have been slow as workspace was scanned unnecessarily
 - code completion for annotations was not shown in certain cases
 - `untitled` i.e. new not yet saved files no longer worked in VSCode
 

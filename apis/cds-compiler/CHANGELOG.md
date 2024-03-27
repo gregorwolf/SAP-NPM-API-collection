@@ -8,6 +8,40 @@ Note: `beta` fixes, changes and features are usually not listed in this ChangeLo
 The compiler behavior concerning `beta` features can change at any time without notice.
 
 
+## Version 4.8.0 - 2024-03-21
+
+### Added
+
+- compiler: Type `cds.Vector` was added.  It is mapped to `REAL_VECTOR` on SAP HANA.
+- Support associations to/from entities with parameters for SAP HANA SQL (hdi/direct).
+- to.sql/to.hdi:
+  + SAP HANA keywords `ABSOLUTE`, `REAL_VECTOR`, and `ST_ASESRIJSON` are now included for smart quoting.
+  +PostgreSQL keyword `SYSTEM_USER` is now included for smart quoting.
+- API: Added `to.sql.postgres.keywords` and `to.sql.h2.keywords`.
+  They contain keywords for the respective SQL dialect.
+
+### Changed
+
+- compiler: Overriding an included element must not change the type to an association
+  if it wasn't an association before and vice versa.
+- Update OData vocabularies: 'Authorization', 'Common', 'UI'.
+
+### Fixed
+
+- compiler: `cast()`s to structured types and associations are now rejected. They could lead to crashes before.
+- to.edm(x):
+  + Reject action/function return types that are declared `many of many`.
+  + Render user defined annotation type `cds.Integer` as `Edm.Int`.
+- to.sql|hdi|hdbcds:
+  + Correctly handle `.list` during flattening.
+  + Improve handling of `.items`.
+- to.sql|hdi.migration:
+  + Turn types and aspects into dummies to reduce CSN size.
+  + Correctly detect a removed `.default` and forcefully set the default to `null`.
+
+### Removed
+
+
 ## Version 4.7.6 - 2024-02-29
 
 ### Fixed
@@ -27,14 +61,15 @@ The compiler behavior concerning `beta` features can change at any time without 
 
 ### Fixed
 
-- Restored compatibility with `@sap/cds-dk` for Java runtime
+- Restored compatibility with `@sap/cds-dk` for Java runtime.
+
 
 
 ## Version 4.7.0 - 2024-02-23
 
 ### Added
 
-- compiler: Virtual elements can now be referenced in expressions in annotation
+- compiler: Virtual elements can now be referenced in expressions in annotation.
 
 ### Changed
 

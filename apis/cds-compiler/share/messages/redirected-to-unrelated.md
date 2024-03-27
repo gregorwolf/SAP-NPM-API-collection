@@ -21,7 +21,7 @@ entity Secondary {
 }
 entity InvalidRedirect as projection on Main {
     id,
-    // Invalid redirection
+    // ❌ Invalid redirection
     toMain: redirected to Secondary,
 };
 ```

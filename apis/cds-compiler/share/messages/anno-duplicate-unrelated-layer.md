@@ -23,7 +23,7 @@ annotate FooBar with @Anno: 'Foo';
 using from './Base';
 annotate FooBar with @Anno: 'Bar';
 
-// (4) All.cds: Combine all files
+// (4) All.cds: Combine all files ❌
 using from './FooAnnotate';
 using from './BarAnnotate';
 ```

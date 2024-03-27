@@ -23,7 +23,7 @@ extend FooBar { foo : Integer; }
 using from './Base';
 extend FooBar { bar : Integer; }
 
-// (4) All.cds: Combine all files
+// (4) ❌ All.cds: Combine all files
 using from './FooExtend';
 using from './BarExtend';
 ```

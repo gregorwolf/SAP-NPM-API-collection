@@ -4,6 +4,29 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.8.0 - 2024-03-25
+
+### Added
+
+- Health check endpoint `/health` in default server
+- Class `cds.service` now provides getters for `entities`, `types`, `events` and `operations`. These return iterable objects, which can be used in `for...of` loops.
+- Class `cds.entity` getters for `keys`, `associations`, `operations` also return `Iterable` objects now
+- Method `compile.to.serviceinfo()` now lists all Node.js service endpoints in cases where multiple protocols are configured. For Java, the list is still limited to the first endpoint. This will be fixed in a future release.
+- More warnings for deprecated features, functions and annotations.
+
+### Fixed
+
+- Reverted `cds.Association` being derived from `cds.struct`; it's now derived from `cds.type` again.
+- Entity definitions using joins were erroneously marked as `_unresolved`
+- Consistent error messages for query options validation with new parser
+- Validation for mandatory associations which target entities with defaulted keys
+- Transaction handling for aborted streaming requests
+- Create/Update over filtered managed compositions
+- Templates are cached at the model (instead of the service)
+- Deprecation warnings use `cds.log()` in production
+- Single quote in a string in `.where` for remote service
+- Escaped characters in double quoted search term when using `odata_new_parser`
+
 ## Version 7.7.3 - 2024-03-18
 
 ### Fixed
@@ -42,7 +65,7 @@
 - `cds.fiori.draft_lock_timeout` as successor of `cds.drafts.cancellationTimeout`.
   + Possible values are /^([0-9]+)(h|hrs|min)$/ or a number in milliseconds.
 - There is a new `sap.common.Timezones` entity with a basic time zone definition. There will be accompanying data in package `@sap/cds-common-content`.
-- Deprecation warnings for configuration options `cds.drafts.cancellationTimeout`, `cds.features.serve_on_root`, `cds.features.stream_compat`, `cds.fiori.lean_draft` and `cds.requires.middlewares`, as well as for the properties `req.user.locale` and `req.user.tenant`. The deprecation warnings can be turned off by setting `cds.features.deprecated` to `off`. 
+- Deprecation warnings for configuration options `cds.drafts.cancellationTimeout`, `cds.features.serve_on_root`, `cds.features.stream_compat`, `cds.fiori.lean_draft` and `cds.requires.middlewares`, as well as for the properties `req.user.locale` and `req.user.tenant`. The deprecation warnings can be turned off by setting `cds.features.deprecated` to `off`.
 
 ### Changed
 
