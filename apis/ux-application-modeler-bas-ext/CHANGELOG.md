@@ -5,6 +5,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.1] - 2024-03-20
+### Added
+- Added the option to toggle between continuous scrolling properties and displaying only the properties of the selected outline node in the property panel of the Page Editor
+
+### Changed
+- Enhanced the error handling for annotations: the Page Editor now disables annotation-related features if annotations are faulty and can't be parsed, to prevent further inconsistencies
+
+### Fixed
+- Fixed an issue with the loading of `@sap/ux-specification` after application generation, which was not fully resolved in version 1.13.0
+- Fixed an issue related to the missing typeahead feature in the "Criticality Source" property dialog of microchart columns
+- Fixed an issue where the "Model" property of overview page cards could not be altered in the Page Editor if it had an incorrect value
+- Fixed an issue in the Configuration Documentation view which prevented it from being opened a second time after the webview was restored during a reload
+
 ## [1.13.0] - 2024-03-07
 ### Added
 - Added support to the Application Info page for SAPUI5 library projects that do not have a `manifest.json` file but have their configuration stored in a `.library` file

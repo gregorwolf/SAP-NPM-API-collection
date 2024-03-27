@@ -1137,8 +1137,8 @@ let broker = new Broker({
       broker.callXsuaa(params.req, options, (err, res, body) => {
         if (err) { return callback(err); }
 
-        if (res.statusCode !== 200) {
-          return callback(new Error(`Status code: ${res.statusCode}. Body: ${body}`));
+        if (res.status !== 200) {
+          return callback(new Error(`Status code: ${res.status}. Body: ${body}`));
         }
 
         try {
@@ -1146,7 +1146,7 @@ let broker = new Broker({
           console.log('XSUAA clone info:', cloneInfo);
           callback();
         } catch (err) {
-          callback(new Error(`Failed to parse UAA response with status code ${res.statusCode} and body ${body}`));
+          callback(new Error(`Failed to parse UAA response with status code ${res.status} and body ${body}`));
         }
       });
     }

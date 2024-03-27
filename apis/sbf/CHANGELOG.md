@@ -8,6 +8,11 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.6.8"></a>
+## 6.6.8 - 2024-03-20
+### Fixed
+- app_host_id enrichment on fetch binding parameters.
+
 <a name="6.6.7"></a>
 ## 6.6.7 - 2024-01-21
 ### Updated

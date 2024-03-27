@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.1] - 2024-03-20
+### Added
+- Added support for using Joule, SAP's AI assistant in SAP Business Application Studio, to enable users to directly translate business requirements into an SAP Fiori elements application within a CAP project. For full details on this feature and the prerequisites, please see the [SAP Fiori tools help portal](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/6845fedbb38c4da7a54a2c76081f3abb.html)
+
 ## [1.13.0] - 2024-03-07
 ### Added
 - Added support for the UI.DataFieldForAction annotation in CAP variant of the _Add and edit table columns_ guide

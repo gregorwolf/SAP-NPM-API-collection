@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.1] - 2024-03-20
+### Fixed
+- Fixed an issue where users were incorrectly being asked if they want to create a standalone `index.html`during deployment configuration even if there was already an `index.html` present in the project.
+- Fixed an issue where users were being asked to provide authentication credentials during deployment without providing details on why they needed to re-authenticate.
+
 ## [1.13.0] - 2024-03-13
 ### Changed
 - SAP Fiori applications generated as part of a full stack application in SAP Build Code will now always launch the page map after generation.
