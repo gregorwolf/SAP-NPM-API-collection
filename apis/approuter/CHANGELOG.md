@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.3.0 - 2024-04-02
+
+### Added
+- Support storing backend cookies in Redis in service2approuter flow
 
 ## 16.2.1 - 2024-03-13
 

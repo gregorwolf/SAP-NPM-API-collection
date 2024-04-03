@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.1.0 - 2024-04-01
+
+### Removed
+- Removed shrinkwrap from preRelease
+
 ## 5.0.0 - 2024-02-29
 
 ### Removed

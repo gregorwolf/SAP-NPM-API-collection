@@ -1,10 +1,9 @@
-## 1.1.2
+## 1.1.3
 
 ### Fixes
 - feat(JIRA-2137): BAS on-premise dev support for SDI plugin eimtools
 - feat(BUG-312684): Recommend user to use single source per reptask
 - fix(Bug-311262): Realtime checkbox not shown when API call fails
-- feature(HANAEIM20PT-2135): Enable Match transform in HANA Cloud
 - Bug 310429 - reptask partition validation error
 
 ## 1.1.1

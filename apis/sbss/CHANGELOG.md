@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.1.0 - 2024-04-01
+
+### Removed
+- Removed shrinkwrap from preRelease
+### Updated
+- Update `@sap/hdbext` to 8.0.3
+
 ## 7.0.0 - 2024-02-29
 
 ### Removed

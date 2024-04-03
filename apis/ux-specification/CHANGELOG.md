@@ -8,6 +8,53 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.7] - 2024-03-20
+
+### Added
+
+- OData V4:
+  - String type to bindable number type properties in macros schema
+- Overview Pages: support three different ways of defining the colors of cards
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades
+
+- @sap-ux/vocabularies-types to 0.10.8
+- @sap-ux/annotation-converter to 0.8.9
+- @sap-ux/edmx-parser to 0.7.1
+- @typescript-eslint/eslint-plugin to 7.1.1
+- @typescript-eslint/parser to 7.1.1
+- @types/jest to 29.5.12
+- @ui5/manifest to v1.63.0
+- cpy-cli to 5.0.0
+- eslint-config-prettier to 9.1.0
+- eslint-plugin-prettier to 5.1.3
+- i18next to 23.10.1
+- jest to 29.5.0,
+- jsdom to 24.0.0
+- patch-package to 8.0.0
+- npm-run-all2 to 6.1.2
+- prettier to 3.2.5
+- ts-jest to 29.1.1
+- ts-node to 10.9.2
+- typescript to 5.3.2
+- uuid to 9.0.1
+- switch from sapui5/ts-types-esm to sapui5/types 1.120.9
+- resolution of ini to 4.0.0
+- resolution of parse-url to 9.0.0
+- cleanup of other resolutions
+
 ## [1.120.6] - 2024-03-07
 
 ### Added

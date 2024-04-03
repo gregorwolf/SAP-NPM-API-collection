@@ -233,6 +233,7 @@ Cache service credentials | CACHE_SERVICE_CREDENTIALS             | If `true`, s
 Enable x-forwarded-host header validation | ENABLE_X_FORWARDED_HOST_VALIDATION | If `true`, x-forwarded-host validation will be performed, allowing letters, digits, hypens (-), underscores (_) and dots (.). As well as it validates hostname length.  
 Add the content security policy headers to the response |ENABLE_FRAME_ANCESTORS_CSP_HEADERS | If `true`,  Approuter will include the content security policy (CSP) header using subaccount trusted domains with frame-ancestors policy.
 Time cache value for frame ancestors CSP header | FRAME_ANCESTORS_CSP_HEADER_CACHE_TIME | Time in seconds for the frame ancestors CSP header to be cached. The default value is 300 seconds.
+Store backend session cookies in external session store | STORE_SESSION_COOKIES_IN_EXTERNAL_SESSION_STORE | If `true`, the application router will store backend session cookies in an external session store in the service-to-application-router flow. In this case the "ARBE" cookie will not be returned to the calling service.
 **Note:** all those environment variables are optional.
 
 

@@ -8,6 +8,11 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.6.9"></a>
+## 6.6.9 - 2024-03-28
+### Updated
+-  Update axios to 1.6.8 and express to 4.19.2.
+
 <a name="6.6.8"></a>
 ## 6.6.8 - 2024-03-20
 ### Fixed

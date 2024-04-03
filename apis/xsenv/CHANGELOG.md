@@ -5,6 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.1.0 - 2024-04-01
+
+### Removed
+- Removed shrinkwrap from preRelease
+
+### Updated
+- Updated `debug` dependency to 4.3.4
+- Updated `verror` dependency to 1.10.1
+
+## 5.0.0 - 2024-03-26
+
+### Removed
+- Removed node 12.x, 14.x, 16.x support and tests
+
 ## 4.2.0 - 2023-11-21
 
 ### Added
