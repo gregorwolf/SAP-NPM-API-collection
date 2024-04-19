@@ -2,6 +2,12 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.13.2] - 2024-04-03
+### Changed
+- Improved the error message displayed during ABAP deployment configuration when the user does not have the correct ADT authorization to retrieve package and transport requests.
+
+### Fixed
+- Fixed an issue where adding a second SAP Fiori application to a CAP project would generate invalid annotation references.
 
 ## [1.13.1] - 2024-03-20
 ### Fixed

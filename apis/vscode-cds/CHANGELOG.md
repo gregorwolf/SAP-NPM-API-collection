@@ -7,6 +7,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 
 
+## Version 7.8.1 - 2024-04-09
+
+### Changed
+- Formatter now puts `actions` keyword after projection or query in a new line
+
+### Fixed
+- Revert json schema to `draft-07` due to unsupported features in `2020-12` and `2019-09`
+- `workspace/symbols` request could have shown interactive popup if LSP plugins are slow
+- Indexing of entities with enum elements that led to wrongly reported unused imports
+- Indexing of namespaces after internal compiler changes
+- Indexing of annotations was slow
+
+### Also see
+- `@sap/cds-lsp` 7.8.2
+
+
 ## Version 7.8.0 - 2024-03-25
 
 ### Added

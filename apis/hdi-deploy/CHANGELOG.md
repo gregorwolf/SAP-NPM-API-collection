@@ -1,3 +1,15 @@
+## 5.1.1
+Fixes:
+- fixed accessing undefined data from readableBuffer when using the --optimise-file-upload option
+
+## 5.1.0
+Features:
+- validation checks to ensure the correctness of privilege names and their properties in .hdbgrants and .hdbrevokes files.
+- enhanced global object privileges with additional support
+
+Fixes:
+- fixed accessing undefined data from readableBuffer when using the --optimise-file-upload option
+
 ## 5.0.1
 Fixes:
 - hana-client dependency issue while using hdb

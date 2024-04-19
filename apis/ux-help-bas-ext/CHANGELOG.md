@@ -4,6 +4,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.2] - 2024-04-03
+### Changed
+- The extension now opens in the user-selected region when the editor is split into multiple regions
+- Replaced images in a few of the guides to better reflect the feature implemented by the guides
+
 ## [1.13.1] - 2024-03-20
 ### Added
 - Added support for using Joule, SAP's AI assistant in SAP Business Application Studio, to enable users to directly translate business requirements into an SAP Fiori elements application within a CAP project. For full details on this feature and the prerequisites, please see the [SAP Fiori tools help portal](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/6845fedbb38c4da7a54a2c76081f3abb.html)

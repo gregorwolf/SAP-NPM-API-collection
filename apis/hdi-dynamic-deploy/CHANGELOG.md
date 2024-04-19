@@ -1,3 +1,15 @@
+# 2.7.4
+Features
+- use @sap/hdi-deploy@4.9.4
+
+# 2.7.3
+Features
+- use @sap/hdi-deploy@4.9.3
+- use @sap/audit-logging@6.1.0
+- use body-parser@1.20.2
+- use express@4.19.2
+- use uuid@9.0.1
+
 # 2.7.2
 Features
 - use @sap/xsenv@4.2.0

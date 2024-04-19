@@ -8,6 +8,22 @@ For the latest updates please see SAP Note 3427733 - SAP HANA Client 2.20 Releas
 
 https://me.sap.com/notes/3427733
 
+## Version 2.20.20
+
+### Changes:
+
+ - Issue Number 322411: Simultaneous connect() calls could have resulted in the open connection count being incorrect.
+ - Issue Number 322388: When processing result sets with DT_BINTEXT columns, the Node.js driver could have crashed.
+ - Issue Number 322340: The Node.js driver’s performance when executing a procedure which returns large table parameters could have been unnecessarily slow.
+ - Issue Number 322336: The Node.js driver could have crashed when API tracing was enabled.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 322293: Wrong octet lengths could have been returned from the ODBC API call SQLColAttributeW.
+ - Issue Number 321317: Tracing with SQL enabled could have crashed the driver.
+ - Issue Number 319620: Unexpected -10901 and/or -10902 errors could have occurred.
+ - Issue Number 319610: SQLDBC trace SSL handshake and packet timestamp information was missing.
+
 ## Version 2.20.15
 
 ### Changes:

@@ -5,6 +5,10 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.2] - 2024-04-03
+### Fixed
+- Fixed issues where the 'Edit in Source Code' action and tooltips explaining the reason were missing for disabled properties
+
 ## [1.13.1] - 2024-03-20
 ### Added
 - Added the option to toggle between continuous scrolling properties and displaying only the properties of the selected outline node in the property panel of the Page Editor

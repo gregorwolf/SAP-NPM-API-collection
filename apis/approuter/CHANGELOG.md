@@ -5,6 +5,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.4.1 - 2024-04-16
+
+### Fixed
+- While getting applications from html5-apps-repo, technical apps will be ignored
+
+## 16.4.0 - 2024-04-14
+
+### Added
+- Support custom headers in business service
+
+### Updated dependencies
+- deps: @sap/audit-logging@6.1.0
+- deps: scmp removed
+- deps: axios@1.6.8
+
+### Fixed
+- Get btp-tenant-api from binding credentials
+- support `req.url` modification from extension, affecting middlewares and routing logic
+- fix subaccount destination handling in wz provider
+
 ## 16.3.0 - 2024-04-02
 
 ### Added

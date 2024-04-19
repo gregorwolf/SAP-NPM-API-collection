@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.7.0] - 2024-04-09
+
+### Added
+
+- Add `getRootPath()` method to `context` object to get the project rootPath.
+
+### Changed
+
+- Rule option "show" now allows inferred rules to rerun/recompile instead of just running once (as is the CLI behavior).
+- Removed `min-node-version` rule, as it is now covered by the cds CLI.
+
+### Fixed
+
+- In _no-db-keywords_, use `getRootPath()` instead of dirname, as wrong paths lead to missing db entries, disabling the rule.
+
 ## [2.6.7] - 2024-03-11
 
 ### Fixed

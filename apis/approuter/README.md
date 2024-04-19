@@ -1937,6 +1937,7 @@ While binding a Business Service instance to application router the following in
   Default value, in case this attribute is not provided, user_token - Optional
 * forwardiastoken: flag that indicates if, in addition to the exchanged SAP Authorization and Trust Management service (xsuaa) JWT token, the OIDC access token created by Identity Authentication service should be forwarded as well. the OIDC token is forwarded in request header: `x-ias-token`
 * forwardiasauthentication: This flag indicates that if the login was performed using Identity Authentication, the application router will not exchange the JWT token created by the SAP Authorization and Trust Management service (xsuaa). Instead, the OIDC access token created by Identity Authentication will be forwarded in the authorization header.
+* URL.headers.`<header-name>`:`header-value` If you provide this information, the application router propagates this attribute as the header to the business service backend. Existing request headers will not be overwritten.
 
 
 The value of `endpoints` should be an object with the following properties:
@@ -1954,7 +1955,8 @@ For example:
     ...
     "credentials": {
      "sap.cloud.service": "com.sap.appbasic.country", 
-     "sap.cloud.service.alias": "country",            
+     "sap.cloud.service.alias": "country",
+     "URL.headers.x-sap-security-session":"header value",             
      "endpoints": {                                   
       "countryservice": { "url": https://icf-countriesapp-test-service.cfapps.sap.hana.ondemand.com/odata/v2/countryservice"},
       "countryconfig":  { 

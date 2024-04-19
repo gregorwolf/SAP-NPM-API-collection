@@ -8,6 +8,33 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.8] - 2024-04-04
+
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+- Update transitive dependencies
+
+Upgrades
+
+- axios to 1.6.8
+- esbuild to 0.20.2
+- semver to 7.6.0
+- yarn to 1.22.22
+- d3 to 7.9.0
+- reflect-metadata to 0.2.2
+- jest to 29.7.0
+- ts-jest to 29.1.2
+
 ## [1.120.7] - 2024-03-20
 
 ### Added
