@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.8.1 - 2024-04-11
+
+### Fixed
+
+- In some cases, `<entity>.drafts` erroneously pointed to a CSN entity stub.
+- Feature vectors including falsy values like `{ ft1: true, ft2: true, ft3: false }`
+
 ## Version 7.8.0 - 2024-03-25
 
 ### Added

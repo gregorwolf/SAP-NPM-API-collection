@@ -7,6 +7,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 7.8.2 - 2024-04-09
+
+### Fixed
+- performance issue with indexing CDS files with many annotations
+
+
+## 7.8.1 - 2024-04-07
+
+### Changed
+- formatter now puts `actions` keyword after projection or query in a new line
+
+### Fixed
+- workspace/symbols request could have shown interactive popup if LSP plugins are slow
+- indexing of entities with enum elements that led to wrongly reported unused imports
+- indexing of namespaces after internal XSN changes
+
+
 ## 7.8.0 - 2024-03-25
 
 ### Changed
