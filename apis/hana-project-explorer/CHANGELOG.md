@@ -1,3 +1,15 @@
+## 1.21.0
+
+### New Features
+
+- Code Toggle for Virtual Table to switch between graphical and text editor
+
+### Fixes
+
+- Improved UI labels in Support mode export
+- Configuration settings have "Workspace" scope
+- DB modules of a CAP project are not visible
+
 ## 1.20.0
 
 ### New Features

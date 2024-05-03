@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.3] - 2024-04-17
+### Fixed
+- Fixed an issue with preview not working with latest `node.js` versions on Windows-based systems ("Command run failed with error : spawn EINVAL")
+
 ## [1.13.1] - 2024-03-20
 ### Changed
 - The `fiori-tools-appreload` middleware now uses [@sap-ux/reload-middleware](https://github.com/SAP/open-ux-tools/tree/main/packages/reload-middleware)

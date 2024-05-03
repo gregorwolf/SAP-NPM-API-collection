@@ -1,3 +1,16 @@
+## 1.30.0
+
+### New Features
+- Propagate adding,deleting, and renaming input parameters through all dependent views
+- Multiple window functions in one window function node
+- Code Toggle for Calculation View and Synonym editors to switch between graphical and text editor
+
+### Fixes
+- While checking column impact across external Analytic Privileges shows Calculation View name instead of Analytic Privilege name
+- Restricted express for a restricted column gets duplicated after rendering
+- Length of string datatype is not propagated on mapping input paramters in a Calculation View from a parameterized SQL view
+- Extract semantic does not work with union node
+
 ## 1.29.0
 
 ### New Features

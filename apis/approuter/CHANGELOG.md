@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.4.2 - 2024-05-02
+
+### Fixed
+- Optimize fetch destinationToken in get applications API
+- In Logout scenario, add support to skip get Application key in case of x-forward-path header exist
+
 ## 16.4.1 - 2024-04-16
 
 ### Fixed

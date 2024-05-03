@@ -74,7 +74,9 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         ```bash
         mdk build --target zip --devtool "source-map"
         ```
+    - bundle-definition-path
 
+        The definition factory path for build purpose. The default path is the 'out' folder in mdk-tools.
 
     ```bash
     mdk build --target js
@@ -116,6 +118,11 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
         In case of deploying MDK bundle zip exproted from SAP Web IDE or Business Application Studio.
         ```
         mdk deploy --target mobile --name "com.mdk.myapp" --zip Your-MDK-bundle-zip-file
+        ```
+
+        In case of deploying MDK Base project with project source zip
+        ```
+        mdk deploy --target mobile --name "com.mdk.myapp" --zip Your-MDK-source-zip-file --source
         ```
 
     - Deploy to Mobile Services on NEO to run it as a mobile application    

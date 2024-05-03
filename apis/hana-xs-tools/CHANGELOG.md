@@ -1,3 +1,9 @@
+## 1.2.0
+
+### New Features
+
+- Updated UI Library
+
 ## 1.1.0
 
 ### New Features

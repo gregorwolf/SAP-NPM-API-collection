@@ -1,5 +1,11 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.22.0
+
+### Fixes
+- All the schemas are not listed under schema filter
+- Tooltip for the export icon in Dependency Viewer
+
 ## 1.21.0
 
 ### New Features

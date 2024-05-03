@@ -2,6 +2,19 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.13.3] - 2024-04-17
+### Added
+- Added the ability to choose a table type when generating an application that contains a list report page.
+- Added a check to ensure that the correct @sap/CDS version is installed before generating an SAP Fiori application for a local Node.JS CAP project.
+
+### Changed
+- Updated the default description generated when creating a transport request for ABAP deployment to now include the name of the ABAP repository.
+- Updated the error messages returned to contain more information when there are issues with deployment to ABAP.
+
+### Fixed
+- Fixed an issue where generating an SAP Fiori application into a CAP Java project could have removed any comments in the projects `pom.xml` file.
+
 ## [1.13.2] - 2024-04-03
 ### Changed
 - Improved the error message displayed during ABAP deployment configuration when the user does not have the correct ADT authorization to retrieve package and transport requests.

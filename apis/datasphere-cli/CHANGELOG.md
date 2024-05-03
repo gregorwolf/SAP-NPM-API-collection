@@ -5,6 +5,18 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2024.8.0
+
+### Fixed
+
+- Fixed two issues about the message `Your local CLI installation is outdated. Run 'npm install @sap/datasphere-cli [-g]' to update`. First, the command to install the latest version was not correct and changed from `npm install @sap/datasphere-cli [-g]` to `npm install @sap/datasphere-cli@latest [-g]`. Second, the error message was shown even though the CLI was already updated.
+
+## 2024.6.0
+
+### Fixed
+
+- Fixed an issue with parsing the discovery document if more than 52 distinct options are defined. Now, the short flags are calculated per command. This allows for having up to 52 options per command. However, the same option used across different commands might not share the same short flag depending on other available options for the commands. It is recommended to always use the option's long name as the long name remains stable.
+
 ## 2024.5.0
 
 ### Added

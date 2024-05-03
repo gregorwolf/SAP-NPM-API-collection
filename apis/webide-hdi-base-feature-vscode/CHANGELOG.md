@@ -1,3 +1,8 @@
+## 1.28.0
+
+### Fixes
+- Minor bug fixes
+
 ## 1.27.0
 
 ### New Features

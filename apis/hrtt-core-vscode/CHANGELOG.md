@@ -1,3 +1,10 @@
+## 1.30.0
+
+### New Features
+
+- Graphical editors can now run locally on VS Code
+- Code toggle for Role editor to switch between graphical and JSON editor
+
 ## 1.29.0
 
 ### Fixes

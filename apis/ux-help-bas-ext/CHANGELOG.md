@@ -4,6 +4,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.3] - 2024-04-17
+### Generative AI
+- Added the capability to generate a CAP project with an SAP Fiori elements application for SAP Build code subscribers in SAP Business Application Studio
+- Added a check to ensure CAP tools are installed in the SAP Business Application Studio dev space before using Fiori tools AI to generate a CAP project
+- Added support for multiple Object Pages in the generated SAP Fiori application
+- Fixed an issue with not being able to accept the project files after regeneration
+
+### Fixed
+- Fixed an issue with the _Add a micro chart column to a table_ guide where an error was shown on the selection of an `Entity Type` parameter even if measures were defined
+
 ## [1.13.2] - 2024-04-03
 ### Changed
 - The extension now opens in the user-selected region when the editor is split into multiple regions

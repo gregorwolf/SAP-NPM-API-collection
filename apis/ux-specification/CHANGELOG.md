@@ -8,17 +8,40 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
-## [1.120.8] - 2024-04-04
+## [1.120.9] - 2024-04-17
 
 ### Added
 
+- Odata V4: Support of SelectionPresentationVariants at Object Page tables
+
 ### Changed
+
+- OData V2:
+  - Documentation for property createMode of OP table adapted
+  - Fragment templates for custom column extensions for AnalyticalTable, GridTable, TreeTable, ResponsiveTable
 
 ### Removed
 
 ### Deprecated
 
 ### Fixed
+
+- V4 Macros. Property 'personalization' exported as XML element instead of attribute into xml file 
+
+### Quality
+
+- Update transitive dependencies
+- cpy-cli replaced by copyfiles
+
+Upgrades
+
+- @sap-ux/annotation-converter to 0.8.10
+- @sap-ux/vocabularies-types to 0.10.9
+- ejs to 3.1.10
+- i18next to 23.11.2
+- new resolution for tar 6.2.1
+
+## [1.120.8] - 2024-04-04
 
 ### Quality
 
@@ -42,14 +65,6 @@ Upgrades
 - OData V4:
   - String type to bindable number type properties in macros schema
 - Overview Pages: support three different ways of defining the colors of cards
-
-### Changed
-
-### Removed
-
-### Deprecated
-
-### Fixed
 
 ### Quality
 
@@ -94,10 +109,6 @@ Upgrades
 - Increased `fe-fpm-writer` api version to include fix for controller extension namespace
 - Actualization of the README file.
 
-### Removed
-
-### Deprecated
-
 ### Fixed
 
 - An invalid app schema had been generated before, in case of table custom columns
@@ -125,12 +136,6 @@ Upgrades
 
 - Increased `fe-fpm-writer` api version
 
-### Removed
-
-### Deprecated
-
-### Fixed
-
 ### Quality
 
 - Update transitive dependencies
@@ -151,12 +156,6 @@ Upgrades
 OData V2:
 
 - Support of "copy" setting for tables in List Report, Analytical List Page and Object Page
-
-### Changed
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 
@@ -222,10 +221,6 @@ The assignment of settings to the specific card types has been revised and adjus
 - Increased api version
 - OData V2:  ALP root properties order
 
-### Removed
-
-### Deprecated
-
 ### Fixed
 
 - OData V4:  Empty visualization throws unhandled error during sync
@@ -265,10 +260,6 @@ Upgrades
 Thus the location information is removed for annotation problems
 
 - If no line item annotation is present, no `annotationPath` property gets added to the schemas of OData V2 and V4
-  
-### Removed
-
-### Deprecated
 
 ### Fixed
 

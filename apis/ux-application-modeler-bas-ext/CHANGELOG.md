@@ -5,6 +5,22 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.3] - 2024-04-17
+### Added
+- Added support for the `Fiori: Archive Project` command to adaptation projects
+- Added a new command "Fiori: Run UI5 Linter" which executes the [@ui5/linter](https://www.npmjs.com/package/@ui5/linter) for the given project
+- Added a warning and confirmation dialog to the command `Fiori: Change the Minimum SAPUI5 Version` in case the newly selected version is lower than the current one
+
+### Fixed
+- Fixed an issue where the Page Editor was failing to resolve `i18n` keys in annotations of CAP Java projects
+- Fixed an issue where the Undo action was not working correctly after adding a custom column to an OData V2-based application
+- Fixed an issue where the creation of custom sections without an event handler would still generate an event handler file
+- Fixed an issue with custom column configurations being created in the wrong place in the `manifest.json` when the `defaultTemplateAnnotationPath` pointed to a line item annotation with a qualifier
+- Fixed an issue with the "Add Basic Columns" table option still being available, even when it was no longer possible to add more properties
+- Fixed an issue with the Application Info Page for library projects showing different project details on refresh
+- Fixed an issue where a @sap/ux-specification version that is no longer available was attempted to be installed from the Application Info Page
+- Fixed issues with warning messages and the visibility of the "Add" button not being consistent in the Page Map when there were no navigation targets 
+
 ## [1.13.2] - 2024-04-03
 ### Fixed
 - Fixed issues where the 'Edit in Source Code' action and tooltips explaining the reason were missing for disabled properties
