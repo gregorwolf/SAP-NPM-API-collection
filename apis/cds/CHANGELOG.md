@@ -4,6 +4,50 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.9.0 - 2024-04-30
+
+### Added
+
+- Option `cds.env.sql.transitive_localized_views: false` to skip generating transitive localized views for entities which don't have own localized elements, but only associations to such. Supported for Java and new database services in Node.js (ignored for old ones).
+- Option `cds.env.sql.native_hana_associations: false` to skip generating native HANA associations.
+- Running `cds compile --to sql` with `@cap-js/sqlite` installed now uses `session_context('$user.locale')` in generated DDL statements instead of generating static localized views for 'en', 'fr', and 'de' (same for `cds.deploy`).
+- `api`: export reserved keywords for postgres via `cds.compiler.to.sql.keywords.postgres`
+- Kind `legacy-hana` and profile `better-hana` for local testing scenarios.
+- Support for PDF files (MIME type `application/pdf`) when the `cds.env.features.odata_new_adapter` flag is set to `true`
+- Lean draft: Support for filtered compositions (remain in the document)
+- Support for `COUNT_DISTINCT` as OData data aggregation default method
+- Better support for `profiles` in cds schema for `package.json` and `.cdsrc.json`
+- Performance improvement for generating `@odata.context` url if `cds.features.odata_new_parser` is enabled
+- Alpha support for SAP Event Broker-based messaging (kind `event-broker`)
+
+### Changed
+
+- Deprecated *INSERT.into(...) **.as** (SELECT...)* → use *INSERT.into(...) **.entries** (SELECT...)* instead.
+- Default value of `cds.env.log.mask_headers` changed to `['/authorization/i', '/cookie/i', '/cert/i', '/ssl/i']` (adding `'/cert/i'` and `'/ssl/i'`)
+- Error messages for entities annotated with '@cds.autoexpose'
+- For Java apps `cds.sql.transitive_localized_views` now defaults to `false` to create less database views.
+- For Java apps `cdsc.betterSqliteSessionVariables` now defaults to `true` to enable session variables on H2 and SQLite by default.
+
+### Fixed
+
+- `cds.compile.to.yaml` produced invalid YAML for compacted lines
+- Handling of If-None-Match header for non-existing entity
+- Revert json schema for cds schemas to `draft-07` to prevent VS Code warnings about unsupported schema features.
+- Remote services: JSON representation of error shall include `request` and `response`
+- Aliasing of associated entity column in case of expand by CQN build with joins.
+- `$apply` scenarios when used alongside `cds.env.features.odata_new_adapter = true` and the new database layer
+- ETag handling combined with where restrictions
+- `cds compile --to hdbtabledata` now correctly supports CSV files using format `.texts_<lang>.csv`. Before the `include_filter` wasn't set in the generated `.hdbtabledata` files.
+- `cds` commands no longer crash when executed in the `@sap/cds` installation dir.
+- `cds.infer`: exposed association of query is inferred as `cds.Association` and not as it's target
+
+## Version 7.8.2 - 2024-04-22
+
+### Fixed
+
+- `.find` and `.filter` in `linked.entities()` now returns values instead of names
+- `cds.app.serve.from(pkg,folder)` did not consider `pkg` for serving static resources
+
 ## Version 7.8.1 - 2024-04-11
 
 ### Fixed

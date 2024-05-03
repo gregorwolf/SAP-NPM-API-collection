@@ -8,6 +8,25 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 4.9.0 - 2024-04-25
+
+## Removed `odataAnnotationExpressions`
+
+It is now enabled by default.
+
+## Removed `odataPathsInAnnotationExpressions`
+
+It is now enabled by default.
+
+## Removed `annotationExpressions`
+
+It is now enabled by default.
+
+## Added `temporalRawProjection`
+
+Enables revocation of temporal where clause in projections of temporal entities if the
+`@cds.valid { from, to }` annotations on the projection elements have falsy values.
+
 ## Version 4.8.0 - 2024-03-21
 
 ### Removed `vectorType`

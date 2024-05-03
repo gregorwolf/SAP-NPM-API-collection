@@ -7,6 +7,33 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.9.0 - 2024-04-25
+
+### Added
+
+- compiler: Annotations with expressions are now rewritten when propagated.
+- for.seal: Added API function that produces a CSN for SEAL.
+- for.odata/to.edm(x): Support annotation path expressions including path flattening.
+
+### Changed
+
+- parser: A space between `.` and `*`/`{` (nested projections) is now a warning.  
+  Use `bin/cds_remove_invalid_whitespace.js` to automatically fix this warning.
+- compiler:
+  + Published compositions with filters are changed to associations.
+  + Expressions as annotation values are rejected for few known annotations that don't expect them.
+- Update OData vocabularies: 'Aggregation', 'Capabilities', 'Common', 'Hierarchy', 'PersonalData', 'Session', 'UI'.
+- to.edm(x): Exposed anonymous parameter types are now prefixed with `ap`, `bap` and `ep` for actions, bound actions and entities.
+
+### Fixed
+
+- compiler:
+  + Deprecated `$parameters` is no longer proposed in code completion.
+  + Duplicate mixin definitions lead to failing name resolution.
+- to.cdl: Types were always rendered for associations with filters, even if it would lead to a compilation failure.
+- to.edm(x):
+  + Fix a recursion bug in entity parameter handling.
+  + Fix event exclusion in service preprocessing.
 
 ## Version 4.8.0 - 2024-03-21
 
@@ -38,9 +65,6 @@ The compiler behavior concerning `beta` features can change at any time without 
 - to.sql|hdi.migration:
   + Turn types and aspects into dummies to reduce CSN size.
   + Correctly detect a removed `.default` and forcefully set the default to `null`.
-
-### Removed
-
 
 ## Version 4.7.6 - 2024-02-29
 
@@ -83,7 +107,8 @@ The compiler behavior concerning `beta` features can change at any time without 
 - compiler: published associations with filters sometimes had the filter applied twice
   if used in inline aspect compositions
 - to.sql|hdi|hdbcds[.migration]:
-  + With `withHanaAssociations`: `false`, remove the association elements from the final CSN in order to correctly detect them during migration scenarios and
+  + With `withHanaAssociations`: `false`, remove the association elements from the final CSN in order
+    to correctly detect them during migration scenarios and
   with generated `hdbcds`.
   + Skip expensive processing (for calculated elements and nested projections) if the model doesn't use it.
   + Don't greedily set alias on subqueries if not required.

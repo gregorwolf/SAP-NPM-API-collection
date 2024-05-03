@@ -6,7 +6,37 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [2.7.0] - 2024-04-09
+## [3.0.2] - 2024-04-29
+
+### Fixed
+
+- Internal parser call now handles `ESLint` version 8 and 9
+
+### Changed
+
+- requires `ESLint` version 8 or above
+
+## [3.0.1] - 2024-04-25
+
+### Fixed
+
+- Add namespace `@sap/cds` to plugin configuration
+
+## [3.0.0] - 2024-04-23
+
+### Added
+
+- Support ESLint flat configurations (`eslint@v9`) and make them available as *recommended*, *all*.
+
+### Changed
+
+- Plugin configurations (*recommended*, *all*) for `eslint@<v9` are now available with the `-legacy` suffix.
+
+### Fixed
+
+- In _latest-cds-version_, get output from `npm outdated` on exit code 1.
+
+## [2.7.0] - 2024-04-12
 
 ### Added
 

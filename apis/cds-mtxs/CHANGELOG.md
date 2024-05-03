@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.18.0 - 2024-04-29
+
+### Added
+
+- `cds-mtx subscribe <tenant> --body <json>` now allows to pass tenant metadata and HDI parameters.
+
+### Changed
+
+- Retries for failed upgrades are more resilient, using an exponential backoff mechanism and more retries.
+
+### Fixed
+
+- Extension linter is now also called if extensions are created via API.
+- The Service Manager credentials cache is correctly invalidated following a resubscription.
+
 ## Version 1.17.0 - 2024-03-25
 
 ### Added
