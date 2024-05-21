@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.0.0 - 2024-05-16
+- new Promise-based API with cleaned up function signatures
+- provide backward-compatibility for callback-based v3 API via `v3` package
+- add JsDoc with type definitions for better IDE support
+- throw detailed hierarchical Error objects for fine-grained exception handling
+- add Proof Token validation for SAP Identity Service tokens
+
 ## 3.6.1 - 2023-12-21
 - better support for older node versions
 

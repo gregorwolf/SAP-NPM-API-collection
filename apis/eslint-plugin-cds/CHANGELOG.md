@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [3.0.3] - 2024-05-08
+
+### Fixed
+
+- Disabling ESLint for the next line via `eslint-disable-next-line` now works properly in _cds_ files
+
 ## [3.0.2] - 2024-04-29
 
 ### Fixed
@@ -14,7 +20,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- requires `ESLint` version 8 or above
+- Requires `ESLint` version 8 or above
 
 ## [3.0.1] - 2024-04-25
 

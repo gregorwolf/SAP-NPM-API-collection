@@ -5,6 +5,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.4] - 2024-05-02
+
+### Fixed
+- Fixed an issue where the environment check would not show the version of the SAP Fiori tools extensions installed in some cases
+- Fixed an issue with a false warning "No navigation targets available" being issued after adding a second object page in the Page Map
+- Fixed an issue with the "Add" button being enabled in the Page Map while there are no navigation targets available
+- Fixed an issue with showing the wrong source for errors in the problems view found by the command "Fiori: Run UI5 Linter" 
+- Fixed an issue where the `manifest.json` can become empty when adding a building block to a custom page when used as the first page of the project
+- Fixed an issue where a custom section is not removed from the `manifest.json` when deleted via the Page Editor
+- Fixed an issue where the `@sap/ux-specification` dependency in the `package.json` was not updated after using `Fiori: Change the Minimum SAPUI5 Version` when the node module was not installed
+- Fixed an issue with Page Editor not updating the UI focus to the new position after dragging & dropping to another parent node in the outline
+- Fixed an issue with custom elements being deleted when removing the next to last table view in multi-view mode instead of being transferred to the table in single table mode
+
 ## [1.13.3] - 2024-04-17
 ### Added
 - Added support for the `Fiori: Archive Project` command to adaptation projects

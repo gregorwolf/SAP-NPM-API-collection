@@ -7,7 +7,7 @@ Compiler facade provides various API methods that allows the user to extract dat
 It supports all the officially supported CAP CDS compiler versions.
 
 ## **Support**
-Join the [SAP Fiori Tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.
+Join the [SAP Fiori Tools Community](https://pages.community.sap.com/topics/fiori-tools). Ask Questions, Read the Latest Blogs, Explore Content.
 Please assign tag: *SAP Fiori tools*
 
 To log an issue with SAP Fiori Tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).
@@ -82,7 +82,7 @@ If you don't have CDS compile model available, you can compile the project files
 
 ## Support
 
-Join the [SAP Fiori tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.  
+Join the [SAP Fiori tools Community](https://pages.community.sap.com/topics/fiori-tools). Ask Questions, Read the Latest Blogs, Explore Content.  
 Please assign tag: _SAP Fiori tools_.
 
 To log an issue with SAP Fiori tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).

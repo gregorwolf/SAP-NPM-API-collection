@@ -47,7 +47,7 @@
 - [CSRF Protection](#csrf-protection)
 - [Support of SAP Statistics](#support-of-sap-statistics)
 - [Connectivity](#connectivity)
-- [SaaS Application Registration in CF](#saas-application-registration-in-cloud-foundry)
+- [SaaS Application Registration in SAP BTP](#saas-application-registration-in-SAP-BTP)
   * [How To Expose Approuter for SaaS Subscription](#how-to-expose-approuter-for-saas-subscription)
 - [Authentication with Identity Service (IAS)](#authentication-with-identity-service-ias)
 - [Mutual TLS Authentication (mTLS) and Certificates Handling](#mutual-tls-authentication-mtls-and-certificates-handling)
@@ -234,6 +234,7 @@ Enable x-forwarded-host header validation | ENABLE_X_FORWARDED_HOST_VALIDATION |
 Add the content security policy headers to the response |ENABLE_FRAME_ANCESTORS_CSP_HEADERS | If `true`,  Approuter will include the content security policy (CSP) header using subaccount trusted domains with frame-ancestors policy.
 Time cache value for frame ancestors CSP header | FRAME_ANCESTORS_CSP_HEADER_CACHE_TIME | Time in seconds for the frame ancestors CSP header to be cached. The default value is 300 seconds.
 Store backend session cookies in external session store | STORE_SESSION_COOKIES_IN_EXTERNAL_SESSION_STORE | If `true`, the application router will store backend session cookies in an external session store in the service-to-application-router flow. In this case the "ARBE" cookie will not be returned to the calling service.
+Own SAP Cloud Service  | OWN_SAP_CLOUD_SERVICE | An array that contains the business solutions ("SAP cloud services") that your HTML5 applications are associated with as values. This configuration enables the standalone application router to use the same standardized format for runtime URLs ("/<sap.cloud.service>.<appId>-<versionId>/") that is also used by the managed application router. If a runtime URL contains one of the defined values in the <sap.cloud.service> section, the application router will recognize the value during the processing of a request.
 **Note:** all those environment variables are optional.
 
 
@@ -1700,7 +1701,7 @@ Each backend sub-component can add its own response header with the duration mea
 
 The application router supports integration with SAP Cloud Platform connectivity service. The connectivity service handles proxy access to SAP Cloud Platform cloud connector, which tunnels connections to private network systems. In order to use connectivity, a connectivity service instance should be created and bound to the Approuter application. In addition, the relevant destination configurations should have `proxyType=OnPremise`. Also, a valid XSUAA login token should be obtained via the login flow.
 
-## SaaS Application Registration in Cloud Foundry
+## SaaS Application Registration in SAP BTP
 
 The application router supports SaaS registration. A SaaS business application based on application router may be registered in the SaaS registry  by creating and binding a SaaS Registry service instance.
 After fulfilling the CIS process to enable application subscription, the SaaS business application will be visible in the SAP Cloud Platform cockpit in the Cloud Foundry environment for all entitled customers. 
@@ -1726,7 +1727,6 @@ SaaS business applications should grant LPS the authorization to invoke the appl
 
 *xs-security.json:*
 ```
-...
  {  
     "name":"$XSAPPNAME.Callback",
     "description":"With this scope set, the callbacks for tenant onboarding, 
@@ -1735,7 +1735,6 @@ SaaS business applications should grant LPS the authorization to invoke the appl
             "$XSAPPNAME(application,sap-provisioning,tenant-onboarding)"
          ]
   }
-...  
 ```
 
 ## Authentication with Identity Service (IAS)
@@ -1754,7 +1753,7 @@ Authentication with IAS should be performed using X.509 certificates. To achieve
 ```
 {
   "credential-type": "X509_GENERATED"
- }
+}
 ```
 
 #### Register an application in SaaS Registry (SaaS Registry Configuration)
@@ -1775,7 +1774,6 @@ Note that the path segment of these urls are configurable however the tenantId u
 	},
 	"providerTenantId" : "<tenant>"  # Approuter provider account tenant ID.
 }   
-
 ```
 
 #### Register an application in Subscription Manager  (Subscription Manager Configuration)
@@ -1804,6 +1802,29 @@ For example:
 ```
 ^(.*).<approuterHost>.(cert.)?<landscapeDomain>
 ```
+
+For Saas Registry and Subscription Manager Service subscription, Application Router supports the provisioning of an application runtime url using the application.url query parameter in the onSubscription callback.
+The application.url query parameter should also contain the provider subdomain to enable replacement by the subscriber subdomain in the returned application url.
+
+
+SMS Configuration example:
+```
+{
+  "iasServiceInstanceName" : "sales-management-provider-ias",
+  "applicationType": "application",
+  "supportApplication" : true,
+  "saasManagerServiceInstanceName": "sales-management-provider-saas-registry",
+  "appCallbacks" : {
+    "dependenciesCallbacks" : {
+      "url" : "https://sales-management-provider.approuter.cert.cfapps.sap.hana.ondemand.com/v1.0/callback/zones/{zoneId}/dependencies"
+    },
+    "subscriptionCallbacks" : {
+      "url" : "https://sales-management-provider.approuter.cert.cfapps.sap.hana.ondemand.com/v1.0/callback/zones/{zoneId}?application.url=https://sales-management-provider.approuter.cfapps.sap.hana.ondemand.com"
+    }
+  }
+}
+```
+In this example the application url does not contain the .cert segment. The provider subdomain is "sales-management-provider" (matching TENANT_HOST_PATTERN configuration). If the subscriber subdomain would be "subscriber1", the returned runtime url will be "https://subscriber1.approuter.cfapps.sap.hana.ondemand.com"
 
 ## Mutual TLS Authentication (mTLS) and Certificates Handling
 The application router supports the use of certificates for the creation of tokens and a mTLS handshake in backend connections.

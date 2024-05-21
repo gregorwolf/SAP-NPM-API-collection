@@ -8,6 +8,53 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.10] - 2024-05-02
+
+### Added
+
+- OData V4:
+  - property widthIncludingColumnHeader on table and column level
+
+### Changed
+
+- In a previous version, the tag `descriptionSrcUrl` (link to the UI5 documentation) was added in form of a JSDoc annotation. It became evident that this annotation was not transferred correctly in all cases to the JSON schema by the to-json-schema generator.
+To overcome this problem, `descriptionSrcUrl` is now placed in form of reflect metadata at all sync classes, and added to the schema by an own post-processing routine `processMetadata` that evaluates the reflect metadata.
+
+### Removed
+
+- Property createMode was removed from the global table settings of OData V2, as it is not supported yet by the run-time.
+
+### Deprecated
+
+### Fixed
+
+OData V4:
+
+- view properties like custom columns or table settings had not been exported, as the anyOf definition of additionalProperties had not been considered during the export.
+- sync rule was missing for ViewToolBarAction.afterExecution
+- partially an invalid annotationPath was added for views, comprising '@@'
+- toolbar actions had partially not been considered during the import
+- the export of table properties had overwritten the export from views
+- the export now supports two different constellations for anyOf definitions in schema:
+  - anyOf directly defined as additionalProperties (of MultiTableMode)
+  - anyOf reachable via $ref, properties defined there.
+- Custom section fragments with event handler. `core:require` attribute is moved from `Button` to wrapper `VBox`
+- Default 'empty' `manifest.json` is returned after export of FPM Custom Page
+- The generation of config files failed with exception if a custom header action was defined with an invalid type, like string.
+- empty `sap.ui5/routing/config` object removed from `manifest.json` during export
+
+OData V2:
+
+- The logic that determines the LineItem and the Chart annotation to be used by ALP was not in sync with the logic implemented in Fiori Elements v2. The logic has been adapted accordingly.
+
+### Quality
+
+- Code comments added in types package that explain the interfaces and refer to their implementation classes
+
+Upgrades:
+
+- @ui5/manifest to 1.64.0
+
 ## [1.120.9] - 2024-04-17
 
 ### Added

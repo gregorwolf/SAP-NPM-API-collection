@@ -655,7 +655,8 @@ Deploys an application to an ABAP frontend server.
 * `--description, -e` - The application description (default: description from `ui5-deploy.yaml`).
 * `--yes, -y` - Deploy without asking for confirmation.
 * `--failfast, -f` - Throw an error if something goes wrong and exit with a return code != 0.
-* `--testMode, -tm` - Shows the results of CRUD operations that would be done in a real deployment to help you make an informed decision.  
+* `--testMode, -tm` - Shows the results of CRUD operations that would be done in a real deployment to help you make an informed decision.
+* `--archive-path, -ap` - The path to the archive that should be deployed. If provided, the archive will be used instead of creating a new one from the dist folder. 
 
 ## [FAQ](#faq)
 
@@ -673,7 +674,7 @@ Most probably the `OpenSSL` package is not installed on your OS. Please install 
 
 ## [Support](#support)
 
-Join the [SAP Fiori Tools Community](https://community.sap.com/search/?by=updated&ct=blog&mt=73555000100800002345). Ask Questions, Read the Latest Blogs, Explore Content.  
+Join the [SAP Fiori Tools Community](https://pages.community.sap.com/topics/fiori-tools). Ask Questions, Read the Latest Blogs, Explore Content.  
 Please assign tag: _SAP Fiori tools_.
 
 To log an issue with SAP Fiori Tools, please see [Contact SAP Support](https://help.sap.com/viewer/1bb01966b27a429ebf62fa2e45354fea/Latest/en-US).

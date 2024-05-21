@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.4] - 2024-05-01
+### Changed
+- The `Tree` table type is no longer provided as an option for the Analytical List Page template during generation, as this table type is not supported for an Analyical List Page with either a V2 or a V4 OData service.
+- The deploy confirmation message now resolves any environment variables from the deploy configuration to show the actual values that will be used during deployment.
+
+### Fixed
+- Fixed the `archive-path` parameter so that it can reference any archive filename and it is no longer required to be called `archive.zip`.
+- Fixed an issue where compiling a local CAP project during generation might fail if the user had already deleted an SAP Fiori application from that CAP project.
+- Fixed an issue where the Fiori generator could crash in SAP Business Application Studio if the system choosen was an invalid ABAP Environment on SAP BTP.
+
 ## [1.13.3] - 2024-04-17
 ### Added
 - Added the ability to choose a table type when generating an application that contains a list report page.

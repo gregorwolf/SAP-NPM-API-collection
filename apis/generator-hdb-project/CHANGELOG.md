@@ -1,3 +1,11 @@
+## 1.12.0
+
+### New Features
+- Updated SAP Developer License
+
+### Fixes
+- Update @sap/generator-add-hdb-module to version 1.12.0
+
 ## 1.11.0
 
 ### Fixes

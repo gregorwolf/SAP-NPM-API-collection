@@ -5,6 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+
+## 16.5.0 - 2024-05-19
+
+### Added
+- Support configuration of OWN_SAP_CLOUD_SERVICE for runtime url harmonization
+- Support providing runtime URL in onSubscription callbacks
+- Provide tenant information when calling html5 apps repo
+
+### Fixed
+- Return subscriber subdomain from user session when writing audit logs
+- Added timeout in `passportUtils.callUaa` call
+- Calculate the locationAfterLogin cookie when the path includes the hostname.
+- Validate zoneInfo API response
+
 ## 16.4.2 - 2024-05-02
 
 ### Fixed

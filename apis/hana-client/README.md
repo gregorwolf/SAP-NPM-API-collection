@@ -14,7 +14,7 @@ This driver communicates with the native HANA libraries, and thus requires
 platform-specific native binaries. The official hosted version includes
 precompiled libraries for Linux, Windows and Mac OS X.
 
-The @sap/hana-client driver supports versions of Node.js 10 and higher.
+The @sap/hana-client driver supports versions of Node.js 14 and higher.
 
 ## Community
 
@@ -227,7 +227,7 @@ conn.rollback(function(err) {
 
 ## License
 
-The HANA Node.js Driver is provided via the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_1.txt).
+The HANA Node.js Driver is provided via the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license.txt).
 
 By using this software, you agree that the following text is incorporated into the terms of the Developer Agreement:
 

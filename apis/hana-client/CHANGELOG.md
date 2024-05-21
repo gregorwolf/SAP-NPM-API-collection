@@ -1,3 +1,26 @@
+# Hana Client 2.21.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.21 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.21/en-US
+
+For the latest updates please see SAP Note 3462517 - SAP HANA Client 2.21 Release Notes
+
+https://me.sap.com/notes/3462517
+
+## Version 2.21.21
+
+### Changes:
+
+ - Issue Number 323078: The ColumnInfo was missing maxSize information.
+ - Issue Number 321375: Node.js could have leaked a small amount of memory on connection close.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 320141: Poco was updated to 1.11.8p2.
+ - Issue Number 320126: Enabling SQL tracing could have caused a crash when using in/out parameters.
+ - Issue Number 310273: When processing dates and/or times with invalid values, SQLDBC-based drivers could have thrown an exception.
+
 # Hana Client 2.20.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.20 documentation:
@@ -7,6 +30,12 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.20/en-US
 For the latest updates please see SAP Note 3427733 - SAP HANA Client 2.20 Release Notes
 
 https://me.sap.com/notes/3427733
+
+## Version 2.20.22
+
+### Changes:
+
+ - Issue Number 323633: The clearPool() method could have blocked other work.
 
 ## Version 2.20.20
 

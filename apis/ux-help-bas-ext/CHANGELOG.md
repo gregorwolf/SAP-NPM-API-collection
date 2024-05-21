@@ -4,6 +4,28 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.4] - 2024-05-02
+### Joule
+- **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
+- Added the capability to generate a CAP project with an SAP Fiori elements application with the Form Entry Object Page floorplan
+- Added the ability to preview the generated SAP Fiori elements application from the staging area before accepting the files into your workspace
+ 
+### Added
+- Added the **CAP CDS Annotation** variant for the _Add semantic colors to visual filters_ guide
+- Added several enhancements to the _Add semantic colors to visual filters_ guide based on the features supported by the SAP Fiori elements framework
+- Added a feature where the Add a new measure, and Add a new dynamic measure button is disabled if not applicable
+
+### Changed
+- Updated ABAP CDS guide variants to use the annotation syntax that is written to the ABAP CDS
+- Updated information links in all guides
+- Split the XML variant of the _Add semantic colors to visual filters_ guide into OData V2 and OData V4
+- Marked Entity Set and Extension Point parameters as mandatory in the _Add a custom section to an object page using extensions_ guide
+
+### Fixed
+- Fixed an issue where the parameter collection table in the case of measures did not delete the values from the annotation files
+- Fixed an issue with the home page not showing the correct error message when Guided Development is opened for Adaptation projects without node_modules
+- Fixed an issue with the _Add and edit table columns_ guide where the screen didn't scroll to the inline error message on the click of Insert Snippet button
+
 ## [1.13.3] - 2024-04-17
 ### Generative AI
 - Added the capability to generate a CAP project with an SAP Fiori elements application for SAP Build code subscribers in SAP Business Application Studio

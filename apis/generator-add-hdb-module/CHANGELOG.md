@@ -1,3 +1,9 @@
+## 1.12.0
+
+### New Features
+- HDI Deployer v5 in new HANA Database modules
+- Updated SAP Developer License
+
 ## 1.11.0
 
 ### New Features
