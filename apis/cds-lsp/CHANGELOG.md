@@ -7,6 +7,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 7.9.0 - 2024-05-03
+
+### Fixed
+- code completion for elements snippet now works when annotating artifacts using paths such as `MyService.SomeEntity` or when triggered at particular positions including line start
+- some installations of IntelliJ on Windows did not work properly due to different URI encoding
+- maintain translation quickfix could have used an existing translation file of a reuse component
+
+### Also see
+- `@sap/cds-compiler` 4.9.0
+
+
 ## 7.8.2 - 2024-04-09
 
 ### Fixed

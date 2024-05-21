@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
+## Version 7.9.0 - 2024-05-03
+
+### Added
+- Commands _CDS: Generate Model Data as JSON/CSV_ to create a number of records with test data for a selected entity.
+- Command _CDS: Generate HTTP Requests_ to create HTTP requests for a selected service or entity.
+- Syntax highlighting for the `cds` language to the markdown editor (not to the _preview_ though).
+
+### Fixed
+- code completion for elements snippet now works when annotating artifacts using paths such as `MyService.SomeEntity` or when triggered at particular positions including line start
+- maintain translation quickfix could have used an existing translation file of a reuse component
+
+### Removed
+- Toolbar button _Open with CDS Text Editor_ from graphical modeler, modeler now handles both directions
+  to switch between graphical and textual editor.
+
+### Also see
+- `@sap/cds-lsp` 7.9.0
+- `@sap/cds-compiler` 4.9.0
 
 
 ## Version 7.8.1 - 2024-04-09
@@ -21,7 +39,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 ### Also see
 - `@sap/cds-lsp` 7.8.2
-
 
 ## Version 7.8.0 - 2024-03-25
 
@@ -233,7 +250,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 ### Added
 - User setting `cds.typeGenerator.localInstallationOnly` has been added to allow more finely grained control for the user over the resolution of the type generation package
-- New command `Record Traces for Support Ticket` to assist creation of support tickets for CDS editor issues 
+- New command `Record Traces for Support Ticket` to assist creation of support tickets for CDS editor issues
 - CAP notebooks: new cell type `CDS Server`, which is also executable for CDS background processes.
 
 ### Changed
@@ -246,7 +263,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 ### Fixed
 - Where-used index could be incomplete with latest OData annotation plugin
 - Formatting of quoted identifiers enclosed in square brackets
-- Extension will no longer crash when using unknown compiler versions, though, compatibility is not guaranteed 
+- Extension will no longer crash when using unknown compiler versions, though, compatibility is not guaranteed
 
 ### Also see
 - `@sap/cds-lsp` 6.8.0

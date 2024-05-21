@@ -6,6 +6,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.18.1 - 2024-05-16
+
+### Added
+
+- The token endpoint now provides a `GET` method with empty query to retrieve the passcode URL.
+
+### Changed
+
+- Extension linter can now be configured for extensions of existing fields.
+- With extensions, the deployment service now uses a separate folder for each deployment to improve parallel upgrade and extension operations.
+- Trailing parts of secrets are not logged in case of errors anymore.
+
+### Fixed
+
+- Callback to saas-registry now works properly with certificate-based binding.
+- The passcode URL returned by the token endpoint no longer contains a 'cert' subdomain.
+
 ## Version 1.18.0 - 2024-04-29
 
 ### Added

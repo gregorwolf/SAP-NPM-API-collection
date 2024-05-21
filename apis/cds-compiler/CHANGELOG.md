@@ -7,6 +7,15 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.9.2 - 2024-05-13
+
+### Fixed
+
+- compiler: Rewriting annotation expression paths in structures of projections has been improved.
+- to.edm(x):
+  + Operator `/` represents `DivBy` operator, explicit `DivBy` is replaced with `Div` as integer division.
+- to.sql: consider all associations in tenant dependent entity for referential constraint generation
+
 ## Version 4.9.0 - 2024-04-25
 
 ### Added

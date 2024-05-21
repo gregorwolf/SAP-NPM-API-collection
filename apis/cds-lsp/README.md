@@ -2,7 +2,8 @@
 
 The CDS language server implements the Language Server Protocol ([LSP](https://github.com/Microsoft/language-server-protocol))
 for SAP's Core Data Services ([CDS](https://cap.cloud.sap/docs/cds/cdl)).
-It can be used in many popular IDEs like, for example, [Visual Studio Code](https://cap.cloud.sap/docs/get-started/tools#vscode)
+It can be used in many popular IDEs like, for example, [Visual Studio Code](https://cap.cloud.sap/docs/get-started/tools#vscode),
+[IntelliJ](https://github.com/cap-js/cds-intellij),
 or [Eclipse](https://cap.cloud.sap/docs/get-started/tools#eclipse).
 It provides many useful features for working with and enjoying CDS sources.
 
@@ -35,25 +36,27 @@ It provides many useful features for working with and enjoying CDS sources.
     - element, associations, and compositions
     - extend and annotate
     - annotations for documentation
+    - annotate all elements of an entity
 
 - Quick fixes to
     - create using statement for unknown artifacts
     - maintain missing translation
-    - convert `@cds.doc` and `@description` annotations to doc comments
+    - convert `@description` annotations to doc comments
 
 - Inventory (symbols) for
-    - current file
+    - current file (Outline)
     - workspace incl. query capabilities to select, for example, artifact types, names, also include reuse models
 
 - Hover information based on
     - doc comments
     - `@title` and `@description` annotations
     - translations
+  - `README.md` and `package.json#description`
 
 - Code formatting
     - whole document
     - selected range
-    - on-the-fly when completing statements using ```;``` or ```}```
+    - on-the-fly when completing statements using `;` or `}`
     - on save (depending on the IDE)
     - on paste (depending on the IDE)
     - with many options, configurable using
@@ -63,15 +66,20 @@ It provides many useful features for working with and enjoying CDS sources.
         - JSON schema for textual support
     - also for markdown in doc comments
 
-- Code formatting via CLI
+- Code formatting via CLI (incl. verification mode)
 
 - Translation support
     - properties, JSON, and CSV files
-    - navigate to translation definitions from translation IDs like ```'{i18n>customerName}'```
+    - navigate to translation definitions from translation IDs like `'{i18n>customerName}'`
     - show translations on hover
     - quickfix to maintain missing translations
 
-- Plugin framework for external handlers of annotation domains
+- Annotation support via external plugin
+    - diagnostics
+    - where-used navigation
+    - hover information
+    - code completion
+    - quick fixes for translations
 
 ## Usage
 

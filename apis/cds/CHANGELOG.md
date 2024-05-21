@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.9.1 - 2024-05-13
+
+### Fixed
+
+- `cds.compile.to.sql` doesn't fail for older compiler versions if `postgres` keywords aren't defined
+- `cds compile --to serviceinfo` no longer detects a Java project if there is a poml.xml file in a subfolder of `app/`
+- `acquireTimeoutMillis` is ensured if custom pool config is provided
+
 ## Version 7.9.0 - 2024-04-30
 
 ### Added

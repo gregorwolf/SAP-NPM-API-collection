@@ -6,15 +6,15 @@ Today, most of the popular IDEs come with support for language servers. Basicall
 ### Specific IDE support
 Often, a plug-in or extension component for a specific language wraps the corresponding language server. For `@sap/cds-lsp` there are specific extensions for
 - [Visual Studio Code](https://cap.cloud.sap/docs/get-started/tools#vscode)
+- [IntelliJ](https://github.com/cap-js/cds-intellij)
 - [Eclipse](https://cap.cloud.sap/docs/get-started/tools#eclipse)
 ### Generic IDE support
 For other IDEs there exist generic client plug-ins for language servers. Examples:
   - [VIM](https://www.vim.org/) has several options, e.g. [ALE](https://github.com/dense-analysis/ale)
-  - [Jetbrain IDEs](https://www.jetbrains.com/products.html#type=ide) (IntelliJ IDEA, WebStorm, ...), e.g. [LSP Support](https://plugins.jetbrains.com/plugin/10209-lsp-support) or [lsp4intellij](https://github.com/ballerina-platform/lsp4intellij) 
   - Emacs, ...
 
 #### Requirements
-`@sap/cds-lsp` is a NodeJS module. As such it requires NodeJS installed on the client machine. Minimum version is 14.19+.
+`@sap/cds-lsp` is a NodeJS module. As such it requires NodeJS installed on the client machine. Minimum version is 18.15.
 
 #### Start-up
 
@@ -112,9 +112,10 @@ For other connection channels see [below](#connection-channels)
 For details see the similar json-language-server integration [docs](https://github.com/vscode-langservers/vscode-json-languageserver#integrate).
 
 #### Syntax Highlighting
-For performance reasons, the language server protocol does not provide support for syntax highlighting.
+For performance reasons, syntax highlighting is not done via the language server protocol.
 A [TextMate grammar](https://macromates.com/manual/en/language_grammars) aside of the language server provides this.
-`@sap/cds-lsp` comes with a TextMate grammar file [included](../syntaxes/cds.tmLanguage.json) for the CDS language. 
+`@sap/cds-lsp` comes with a TextMate grammar file [included](../syntaxes/cds.tmLanguage.json) for the CDS language.
+Additionally `@sap/cds-lsp` supports semantic highlighting. This is a feature of the language server protocol and is supported by some IDEs.
 
 While specific client extensions usually integrate this by default, a generic integration requires to configure this separately.
 Some IDEs have TextMate support built-in. Others require another plug-in, a TextMate client. 
