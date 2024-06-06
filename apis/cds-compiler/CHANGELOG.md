@@ -7,6 +7,14 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 4.9.4 - 2024-05-21
+
+### Fixed
+
+- to.sql:
+  + always include `tenant` column in foreign key references.
+  + reject `tenantDiscriminator` option only if sql dialect is `hana` and if  `withHanaAssociations` option is set.
+
 ## Version 4.9.2 - 2024-05-13
 
 ### Fixed

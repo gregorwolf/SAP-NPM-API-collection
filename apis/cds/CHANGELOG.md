@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 7.9.2 - 2024-05-22
+
+### Fixed
+
+- Server crash in case of certain errors in Cloud SDK
+- Bug in restriction of entities modeled as composition of aspects
+- `$search`: resolve an exception accessing `req.query.elements`
+- Ignore flattened associations in projection on remote entities
+- Falsy keys in `cds.ql` were ignored in usage like `SELECT.from(Books, 0)`
+
 ## Version 7.9.1 - 2024-05-13
 
 ### Fixed
