@@ -3,7 +3,7 @@
 
 `@sap/hdi-deploy` is a [Node.js](https://nodejs.org)-based deployment module for SAP HANA DI (HDI)-based persistence models, HDI Deployer for short. The HDI Deployer can be used in XS Advanced (XSA) and in SAP Business Technology Platform (SAP BTP)/Cloud Foundry (CF), and it is also used by the SAP Web IDE for interactive development scenarios. It can also be used in scenarios without XSA (or SAP BTP), e.g. for deploying HDI persistence models into a SAP HANA database where no XSA is installed.
 
-For more information about SAP HANA DI, please check the [SAP HANA Developer Guide](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.03/en-US/eaa4e37394ea4efba8148d595d025261.html) and the [SAP HANA Administration Guide](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.03/en-US/3ef0ee9da11440e4b01708455b8497a9.html).
+For more information about SAP HANA DI, please check the [SAP HANA Developer Guide](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/latest/en-US/eaa4e37394ea4efba8148d595d025261.html) and the [SAP HANA Administration Guide](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/latest/en-US/3ef0ee9da11440e4b01708455b8497a9.html).
 
 Usually, the HDI Deployer is packaged into a database module, a `db` module, as part of a Multi-Target Application (MTA) and is used to deploy HDI design-time artifacts of the `db` module to the respective HDI container. When an MTA is deployed via the Deploy Service, the `db` module is pushed first so that it can "prepare" the SAP HANA persistence; by the time defined services are started, the HDI container is ready for use.
 
@@ -102,7 +102,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.0.1",
+    "@sap/hdi-deploy": "5.2.0",
     "@sap/hana-client": "2.19.20",
     "hdb": "0.19.3"
   },
@@ -552,7 +552,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.0.1",
+    "@sap/hdi-deploy": "5.2.0",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -656,7 +656,7 @@ In order to access database objects inside other database schemata or other HDI 
                                       X object owner FOO#OO -------------------- SELECT on X.object
 ```
 
-Please also refer to the official [Using Synonyms to Access External Schemas and Objects in XS Advanced](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.02/en-US/bdc9f7ae66134c279a5f3683bba9b361.html) guide.
+Please also refer to the official [Using Synonyms to Access External Schemas and Objects in XS Advanced](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/latest/en-US/bdc9f7ae66134c279a5f3683bba9b361.html) guide.
 
 #### .hdbrevokes Files
 
@@ -1028,6 +1028,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--hana-client-trace`: enable tracing for the SAP HANA client; All interactions with the SAP HANA server will be traced which can lead to a large amount of trace information to be written
 - `--hana-client-packet-trace`: enable PACKET tracing for the SAP HANA client; Must only be used in combination with --hana-client-trace
 - `--[no-]verbose`: [don't] print detailed log messages to the console
+- `--skipped-deleted-files-log <filepath> | local | stdout`: [`filepath`] write skipped deleted files (that are not listed in undeploy.json) to the file indicated by the file path. The file must not exist; [`local`] create a new file called skippedDeletedFiles.json in the deployer working directory and write the deleted files into it. [`stdout`] write the deleted files to the standard output.
 - `--structured-log <file>`: write log messages as JSON objects into the given file; messages are appended if the file already exists
 - `--[no-]exit`: [don't] exit after deployment of artifacts
 - `--[no-]lock-container`: [don't] acquire the container lock while working with the container
@@ -1086,7 +1087,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "5.0.1",
+        "version": "5.2.0",
         "features": {
             "info": 2,
             "verbose": 1,

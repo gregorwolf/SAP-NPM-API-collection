@@ -1,3 +1,13 @@
+## 5.2.0
+Features:
+- added warning message if explicit parameters passed on the command line are overwritten by parameters specified in HDI_DEPLOY_OPTIONS
+- provide `--skipped-deleted-files-log <filepath> | local | stdout` option to log deleted files that are not in undeploy.json
+
+Fixes:
+- use micromatch@4.0.7
+- use dotenv@16.4.5
+- use @sap/xsenv@5.1.0
+
 ## 5.1.1
 Fixes:
 - fixed accessing undefined data from readableBuffer when using the --optimise-file-upload option

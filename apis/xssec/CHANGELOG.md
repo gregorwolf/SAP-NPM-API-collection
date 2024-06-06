@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.0.3 - 2024-06-06
+- export Token class and its subclasses
+
+## 4.0.2 - 2024-06-05
+- Fix failing validation of Identity Service tokens without azp claim
+- Fix wrong JsDoc
+
 ## 4.0.1 - 2024-06-03
 - Fix critical bug in XssecPassportStrategy
 
