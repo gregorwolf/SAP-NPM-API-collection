@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
 
+## 16.5.1 - 2024-06-02
+
+### Fixed
+- Enable modify partition configuration in extension
+- Adding header to disable html5 repo credentials consumption
+- Fixed MIGRATED_DEST flag handling
+- Multiple mtas support in SaaS Approuter
+
 ## 16.5.0 - 2024-05-19
 
 ### Added
@@ -16,7 +24,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 ### Fixed
 - Return subscriber subdomain from user session when writing audit logs
 - Added timeout in `passportUtils.callUaa` call
-- Calculate the locationAfterLogin cookie when the path includes the hostname.
+- Calculate the locationAfterLogin cookie when the path includes the hostname
 - Validate zoneInfo API response
 
 ## 16.4.2 - 2024-05-02

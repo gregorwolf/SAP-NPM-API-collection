@@ -1,3 +1,37 @@
+## 1.31.0
+
+### New Features
+- In window function list, buttons for add duplicate and where used
+- Support for 'Structured Filter'
+- Refresh Calculation View using configurable keyboard shortcut
+- Update node icon based on join type
+- Update SAP Developer License
+- Option to set target value of rank nodes to all
+- Dark Mode Support(Experimental)
+- Validation for non-equi-join expressions
+
+### Fixes
+- Propagation in the consumed view is not allowed if it has multiple parameters and one of those is a mapped parameter
+- Renaming of Calculation View in MDSCube
+- Cardinality for spatial joins are updatable when the properties are disabled
+- Joins can be created for than 2 inputs
+- Incorrectly set cardinality for spatial join results into deployment error
+- "Propagate Adding an Element" fails when the impacted Calculation View has intersect node
+- Propagation of renaming input parameter does not work properly
+- Show tooltip "Where Used Inside Calculation View"
+- Do not show Filter Mapping for select join
+- Mandatory data type should not be blank for successful deployment
+- Counter section is not marked as mandatory when defining a counter
+- Cannot assign MIN/MAX as aggregation option for columns of datatype SECONDDATE
+- Icons are not updated when changing join type and cardinality
+- Improved dialog when changing the display currency
+- Several issues with non-equi join node
+- Copying a node breaks calculated fields
+- Cannot add new column in Node Mapping pane
+- Cannot open expression editor in hierarchy function node
+- Incorrect tooltip message in rank node
+
+
 ## 1.30.0
 
 ### New Features

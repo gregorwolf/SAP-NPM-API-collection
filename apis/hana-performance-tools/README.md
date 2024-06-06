@@ -48,3 +48,6 @@ SQL Analyzer for Visual Studio Code is still under heavy development. Here are s
 ## Feedbacks
 
 Please provide your feedback through [ServiceNow](https://itsm.services.sap/now/workspace/agent/record/u_sap_component/b1b0603e1bb3d4d0ddab74049b4bcbda/params/selected-tab-index/3) using the component HAN-BAS-SA.
+
+## License  
+This extension is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_2.txt).

@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.5] - 2024-05-15
+### Changed
+- Updated the SAP Business Accelerator Hub data source selection to warn that this data source is deprecated.
+- Removed deprecated `synchronizationMode` from the manifest.json file of generated projects with an OData V4 data source if the minimum UI5 version chosen is >= 1.110.
+- Improved the error message and logging when testing connections using the saved systems panel in VSCode. 
+
+### Fixed
+- Fixed an issue where the link to Guided Answers help documentation was not clickable from the terminal.
+- Fixed an issue where the ABAP destination wasn't being passed from the ABAP Development Tools in Eclipse to the SAP Fiori generator when ading deployment configuration.
+- Fixed an issue where deployment would fail when using the `ui5` cli command.
+- 
 ## [1.13.4] - 2024-05-01
 ### Changed
 - The `Tree` table type is no longer provided as an option for the Analytical List Page template during generation, as this table type is not supported for an Analyical List Page with either a V2 or a V4 OData service.

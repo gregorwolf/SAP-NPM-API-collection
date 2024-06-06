@@ -1,3 +1,8 @@
+## 1.29.0
+
+### New Features
+- Updated SAP Developer License
+
 ## 1.28.0
 
 ### Fixes

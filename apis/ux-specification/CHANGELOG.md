@@ -8,6 +8,38 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.11] - 2024-05-16
+
+### Added
+
+- The new API functions exportConfigEntityByPath and deleteConfigEntityByPath from 1.120.6 are now published in the external interface.
+
+### Changed
+
+- The logic for defining the keys of V2 sections in the app schema has been adapted, so that the facet ID is now representing the facet in the key, if defined, instead of the target annotation path.
+
+### Removed
+
+- Properties disableInlineCreateSort and selectionLimit were removed from the global table settings of OData V2, as they are not supported yet by the run-time.
+
+### Deprecated
+
+### Fixed
+
+- V4. Schema generation for object page. Section label is not resolved within target definition and id was presented in "description"
+- V4. Schema generation for building block macros. AnnotationPath was not resolved for macros when absolute path was used in "metaPath" attribute 
+
+### Quality
+
+Upgrades:
+
+- @ui5/manifest to 1.65.0
+- @sap-ux/annotation-converter to 0.8.12
+- @sap-ux/vocabularies-types to 0.10.11
+- @sap-ux/fe-fpm-writer to 0.24.11
+- @types/jquery to 3.5.30
+- i18next to 23.11.4
+
 ## [1.120.10] - 2024-05-02
 
 ### Added

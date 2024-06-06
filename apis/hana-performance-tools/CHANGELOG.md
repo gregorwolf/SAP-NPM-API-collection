@@ -1,3 +1,22 @@
+## 1.4.1
+
+### Timeline Tab (Enhanced)
+- Usability has been significantly improved, resulting in quicker interactions when an operator is clicked from the Plan Graph or the lists on the left sidebar.
+- The previous design had the legend overlapping a portion of the Timeline Chart. It has been replaced with a static display at the top to keep the chart unobstructed. If not required, the legend can easily be deactivated using the Toggle button.
+- By default, the Timeline Tab is now displayed at the bottom after loading the PLV file.
+- Previously, the Timeline Tab was omitted if the Prepared Plan did not provide timeline information or if the Timeline feature was turned off. Now, even under these conditions, the Timeline Tab persists, but with a guide message. You can manage the Timeline feature in VS Code's settings.
+- In order to skip the timeline information, check 'Skip Timeline Parsing' in the Visual Studio Code settings, reload the window and open the file again.
+
+### Additional Enhancements
+- The updated version now supports complete functionality in Safari.
+- Due to security concerns, the Parameter Values Table information, previously displayed in the SQL Tab, will no longer be provided.
+- If a Logical operator had time information before, it was displayed in the Plan Graph via a bar chart. To simplify the identification of Logical Operators, the time bar chart feature for these operators has been removed.
+
+### Bug Fixes
+- The enhancements detailed above have effectively resolved several bugs related to interactions within the timeline.
+- A bug that prevented the first screen of the SQL Plan Execution Monitor view from rendering properly has been fixed.
+- Another bug fix addresses the issue in the Plan Graph where only one edge was displayed even when multiple edges existed.
+
 ## 1.3.18
 ### Overview Tab (Enhanced)
 - Removed the bar graph that previously visualized "Compilation Time", "Execution Time", or "CPU Time" in the Execution Summary card. Instead, these time values are now presented as numerical values under the titles: "Compilation Time", "Execution Time (Elapsed)", and "Execution Time (CPU)", respectively. This enhancement improves the clarity of time-related information in the Execution Summary card.

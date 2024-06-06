@@ -1,3 +1,13 @@
+## 1.31.0
+
+### New Features
+
+- Updated SAP Developer License
+
+### Fixes
+
+- Code toggle icon for Role editor is not visible
+
 ## 1.30.0
 
 ### New Features

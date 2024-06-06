@@ -243,6 +243,10 @@ try {
 }
 ```
 
+:warning: To prevent information overlap from one user's *SecurityContext* to another's, do not re-use the same *contextConfig* object for multiple invocations of `createSecurityContext`!
+Create a new object each time, as in the sample code. Changing the *req* property and then passing the same object a second time is not enough.
+Since version 4.0.1, the module has mechanisms in place to avoid these issues even when used wrongly but you should not willingly trust it.
+
 The createSecurityContext function resolves with a service-specific `SecurityContext` object, e.g. `XsuaaSecurityContext`.
 
 The `SecurityContext` will always have the **token** property that contains a service-specific `Token` object, e.g. `XsuaaToken` that provides access to the decoded information of the token.
@@ -414,7 +418,7 @@ if(identityService.acceptsToken(token)) {
 ### createSecurityContext
 `createSecurityContext(service, contextConfig)` can be called with a single `Service` instance or an array of `Service` instances as first parameter. In the latter case, the service from which the Security Context is created, will be determined based on the audience of the token.
 
-The second parameter is a `contextConfig` object that is used to pass information for the creation of this specific context.
+The second parameter is a [unique (!)](#authentication) `contextConfig` object that is used to pass information for the creation of this specific context.
 
 #### contextConfig 
   **Mandatory** properties:

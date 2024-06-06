@@ -5,8 +5,18 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.13.4] - 2024-05-02
+## [1.13.5] - 2024-05-15
+### Added
+- Added the capability to set the selection variant properties for tables in the object page section if the minimum SAPUI5 version set in manifest.json is 1.121.x or higher
 
+### Changed
+- Updated the migration of adaptation projects from SAP Web IDE to support the latest adaptation project structure
+
+### Fixed
+- Fixed an issue with outline nodes in the Page Editor showing the property name instead of the assigned label text
+- Made the Application Modeler more robust with respect to missing UI annotations
+
+## [1.13.4] - 2024-05-02
 ### Fixed
 - Fixed an issue where the environment check would not show the version of the SAP Fiori tools extensions installed in some cases
 - Fixed an issue with a false warning "No navigation targets available" being issued after adding a second object page in the Page Map

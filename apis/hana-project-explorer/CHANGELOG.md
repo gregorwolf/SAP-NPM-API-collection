@@ -1,3 +1,18 @@
+## 1.22.0
+
+### New Features
+
+- SAP HANA Artifact creation wizard shows additional hint for various table types
+- Parameter com.sap.hana.di.table/try_fast_table_migration is set to true for each deployment
+- Manage users and roles from the context menu of database connection in SAP HANA Project Explorer extension
+- Show error in the "Problems" tab of SAP Business Application Studio if deployer version >= 5 is used without SAP HANA Database client
+- Updated SAP Developer License
+
+### Fixes
+
+- Deployment status synchronisation
+- Procedure inputs i.e. schema and schema does not appear after choosing "Create a procedure grantor" while creating UPS
+
 ## 1.21.0
 
 ### New Features

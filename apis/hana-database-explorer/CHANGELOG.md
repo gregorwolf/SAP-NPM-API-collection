@@ -1,5 +1,13 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.23.0
+### New Features
+- Updated SAP Developer License
+
+### Fixes
+- Several minor SQL console fixes.
+- SQL Console is opened first time via SAP HANA Project Explorer extension
+
 ## 1.22.0
 
 ### Fixes

@@ -31,6 +31,13 @@ For the latest updates please see SAP Note 3427733 - SAP HANA Client 2.20 Releas
 
 https://me.sap.com/notes/3427733
 
+## Version 2.20.23
+
+### Changes:
+
+ - Issue Number 324805: A segmentation fault could have occurred in the Node.js driver when running the build script via npm run on MacOS.
+ - Issue Number 323876: Retrieving connections from the connection pool with poolingCheck enabled could have been slow.
+
 ## Version 2.20.22
 
 ### Changes:

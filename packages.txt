@@ -37,6 +37,11 @@
 @sap/datasphere-cli
 @sap/destination-instance-service-provider
 @sap/dev-cap-tools
+@sap/dwf-core
+@sap/dwf-deploy
+@sap/dwf-dlm-backend
+@sap/dwf-dws-client
+@sap/dwf-ndso-backend
 @sap/e2e-trace
 @sap/eslint-plugin-cds
 @sap/external-service-mashup
@@ -71,6 +76,7 @@
 @sap/node-jwt
 @sap/node-vsi
 @sap/open.fe
+@sap/openapi-specification
 @sap/sbf
 @sap/sbss
 @sap/service-provider-apis

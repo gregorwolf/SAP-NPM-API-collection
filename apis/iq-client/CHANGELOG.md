@@ -16,6 +16,10 @@
 
 - Updated driver code to Client 2.21.16
 
+## Version 2.20.23
+
+- Updated driver code to Client 2.20.23
+
 ## Version 2.20.22
 
 - Updated driver code to Client 2.20.22

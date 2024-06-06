@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.0.1 - 2024-06-03
+- Fix critical bug in XssecPassportStrategy
+
 ## 4.0.0 - 2024-05-16
 - new Promise-based API with cleaned up function signatures
 - provide backward-compatibility for callback-based v3 API via `v3` package

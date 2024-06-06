@@ -4,6 +4,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.5] - 2024-05-15
+### Joule
+- **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
+- Fixed an issue where users could attempt to accept files in the Joule staging area even if the staging area was empty
+- Improved the error message that is displayed when users attempt to use BAS Joule after exceeding their token limit, or when an error occurs in the back end
+- Improved the efficiency of tokens used when generating an SAP Fiori elements application
+
+### Fixed
+- Fixed an issue with an incorrect code snippet in the _Add multiple fields to a column in responsive tables_ guide
+
 ## [1.13.4] - 2024-05-02
 ### Joule
 - **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
