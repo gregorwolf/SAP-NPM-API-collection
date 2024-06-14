@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+### Joule
+- **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
+
+## [1.13.6] - 2024-05-29
+### Changed
+- Object Page Section is now a mandatory parameter in guides
+
+### Fixed
+- Fixed an issue with the parameter collection table not being shown in case of an empty annotation
+- Fixed an issue where guides were not correctly grouped when Group By was set to _Application Artifacts_ and View was set to _All Guides_
+
 ## [1.13.5] - 2024-05-15
 ### Joule
 - **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio

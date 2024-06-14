@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.1.0 - 2024-06-13
+- Provide Typescript .d.ts typings
+- Fix export of XssecPassportStrategyV3 in v3 package. Consumers that already adjusted their import to the "bugged" export structure of prior 4.0.X versions, should not be required to adjust their import again for this fix
+
+## 4.0.4 - 2024-06-12
+- MissingJwtError now inherits from ValidationError instead of ConfigurationError which implicitly changes its recommended statusCode from 500 to 401. Consumers are not expected to validate outside the lib whether requests contain a JWT before passing the request to the lib for validation. Encountering a MissingJwtError is therefore no longer classified as a misconfiguration of the library but as an expected error that may occur during validation.
+
 ## 4.0.3 - 2024-06-06
 - export Token class and its subclasses
 

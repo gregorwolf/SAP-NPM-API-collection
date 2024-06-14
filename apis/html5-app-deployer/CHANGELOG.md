@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.3.1 - 2024-06-14
+
+### Fixed
+- Support for uploading application with a CDM file
+- 
+### Updated dependencies
+- deps: express@4.19.2
+
+## 6.3.0 - 2024-06-09
+### Added
+- Support for uploading application with a CDM file
+
+### Updated dependencies
+- deps: axios@1.6.8
+
 ## 6.2.0 - 2024-03-19
 ### Added
 - Services bindings can be created with certificate

@@ -8,6 +8,41 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.12] - 2024-05-31
+
+### Added
+
+- OData V4: Related Apps button and its manifest settings
+- General: support array-like definition of minUI5Version in manifest
+
+### Changed
+
+OData V4:
+
+- Updated custom sections storage from array to object in schema
+- The showRelatedApps property is moved from the Object Page Header to the new Related Apps button.
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- List Report V2: LineItem should be taken from PV without qualifier when annotationPath points to a SV
+
+### Quality
+
+Upgrades:
+
+- @sap-ux/annotation-converter to 0.8.13
+- @sap-ux/vocabularies-types to 0.10.12
+- semver to 7.6.2
+- i18next to 23.11.5
+- ini to 4.1.3
+- @ui5/manifest to 1.65.1
+- new resolution: micromatch ^4.0.6
+- new resolution: braces ^3.0.3
+
 ## [1.120.11] - 2024-05-16
 
 ### Added
@@ -21,8 +56,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Removed
 
 - Properties disableInlineCreateSort and selectionLimit were removed from the global table settings of OData V2, as they are not supported yet by the run-time.
-
-### Deprecated
 
 ### Fixed
 

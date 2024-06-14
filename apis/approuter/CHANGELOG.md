@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
 
+## 16.5.2 - 2024-06-09
+
+### Fixed
+- Use the target hostname in the 'servername' option in WS requests
+- Enable the nonce attribute by setting INCLUDE_NONCE_ATTR = true (default is nonce disabled)
+- Runtime processing of FDC technical applications
+
 ## 16.5.1 - 2024-06-02
 
 ### Fixed

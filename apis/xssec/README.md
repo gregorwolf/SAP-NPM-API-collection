@@ -205,7 +205,7 @@ Major new features will only be made available for *SAP Cloud Identity Services*
 
 
 ### Migration from XSUAA
-Older applications should consider migrating to *SAP Cloud Identity Services* as soon as possible. The migration process from XSUAA for existing applications is currently in the pilot phase with first stakeholders. There will be guides for different migration stages available soon.
+Migration for older applications from XSUAA to *SAP Cloud Identity Services* with *Authorization Policies* is currently in the pilot phase. There will be guides for different migration stages available soon.
 
 
 

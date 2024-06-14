@@ -412,7 +412,7 @@ server:
 ### Configuration options
 - **`component`** - application component of the SAP Fiori application (value is prefilled when the application is generated with https://www.npmjs.com/package/@sap/generator-fiori).
 - **`ui5Theme`** - SAP Fiori theme of the application (value is prefilled when the application is generated with https://www.npmjs.com/package/@sap/generator-fiori).
-- **`libs`** - a comma separated list of additional libraries that should be loaded, e.g. `libs: my.custom.lib1, my.custom.lib2`
+- **`libs`** - boolean: optional flag to add a generic script that fetches the paths of the libraries used, which are not available in UI5. To disable it, set it to `false`. If the flag is not set, the project will be checked for a `load-reuse-libs` script and if it is available, the libraries will also be fetched.
 
 ## [**Tasks**](#tasks)
 
@@ -529,6 +529,10 @@ For local usage, we recommend to not use the credentials object at all. As resul
 
 - `<string>` (required)
 - Password required to authenticate the previously configured user. IMPORTANT: while technically possible to add the password to your config, we strongly DISCOURAGE that but recommend instead the use of environment variables.
+
+#### authenticationType 
+- `<string>` (optional)
+- Authentication type for the app (e.g. 'basic', 'reentranceTicket'). IMPORTANT: It is required for authentication with reentrance tickets.
 
 ### app
 
@@ -648,6 +652,7 @@ Deploys an application to an ABAP frontend server.
 * `--url, -u` - The url of the service endpoint at the ABAP system (default: url from `ui5-deploy.yaml`).
 * `--username` - Name of environment variable containing a username to authenticate (default: username from `ui5-deploy.yaml`).
 * `--password` - Name of environment variable containing a password to authenticate (default: password from `ui5-deploy.yaml`).
+* `--authenticationType` - Authentication type for the app (e.g. 'basic', 'reentranceTicket'). Required for 'reentranceTicket'.
 * `--client, -l` - The ABAP client (default: client from `ui5-deploy.yaml`).
 * `--transport, -t` - The id of the transport request (default: transport from `ui5-deploy.yaml`).
 * `--name, -n` - The application name (default: name from `ui5-deploy.yaml`).

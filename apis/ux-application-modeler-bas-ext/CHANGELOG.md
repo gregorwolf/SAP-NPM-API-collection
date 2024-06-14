@@ -5,6 +5,15 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.13.6] - 2024-05-29
+### Added
+- Added support for saving an SAP system in Visual Studio Code that uses reentrance tickets for authentication
+- Added support for maintaining semantic objects of the related apps feature to the Page Editor for OData V4-based applications (needs `@sap/ux-specification` versions 1.96.64, 1.108.31, 1.120.12 or higher)
+
+### Fixed
+- Fixed an issue with new key values for custom views erroneously allowing spaces in the creation dialog
+- Fixed an issue with keyboard support in the Page Editor property panel
+
 ## [1.13.5] - 2024-05-15
 ### Added
 - Added the capability to set the selection variant properties for tables in the object page section if the minimum SAPUI5 version set in manifest.json is 1.121.x or higher
