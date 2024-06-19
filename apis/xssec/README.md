@@ -536,9 +536,11 @@ To verify the validity of a token, the library needs to ensure that it was signe
 
 Please note that the JWKS endpoint is parameterized and does additional service-specific validations based on those parameters. For this reason, among others, more than one JWKS is typically cached and individually refreshed under different cache keys that include those parameters.
 
-There are two values that are used to control the cache:
-- `expiration time`: When a JWKS is needed for validation whose cache entry has expired (`time since last refresh` > `expiration_time`), a refresh of the JWKS is performed (if not already in progress) and the token validation of the request needs to wait synchronously until the JWKS has been succesfully refreshed.
-- `refresh period`: When a JWKS is needed for validation whose cache entry is within the refresh period (`time until expiration` < `refresh_period`), the cached JWKS will be used for validation (unless it has expired completely) and the JWKS will be refreshed asynchronously in the background.
+There are three values that are used to control the cache:
+- `expiration time` *(integer)* when a JWKS is needed for validation whose cache entry has expired (`time since last refresh` > `expiration_time`), a refresh of the JWKS is performed (if not already in progress) and the token validation of the request needs to wait synchronously until the JWKS has been succesfully refreshed.
+- `refresh period` *(integer)* When a JWKS is needed for validation whose cache entry is within the refresh period (`time until expiration` < `refresh_period`), the cached JWKS will be used for validation (unless it has expired completely) and the JWKS will be refreshed asynchronously in the background.
+- `shared` *(boolean)* when true, shares the cache with all `Service` instances of the same subclass (e.g. `IdentityService`) created with `shared=true`.\
+The shared cache's configuration will be determined by the first instance created with `shared=true`!
 
 Only **one HTTP request at a time** will be performed to refresh the JWKS.
 
@@ -548,6 +550,7 @@ In effect, productive systems with regular incoming requests should not experien
 ##### Default cache configuration
 ```json
 {
+  "shared": false,
   "expirationTime": 1800000, // 1800000ms = 30min
   "refreshPeriod": 900000, // 900000ms = 15min
 }

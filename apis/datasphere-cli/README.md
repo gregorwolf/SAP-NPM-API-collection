@@ -24,13 +24,13 @@ Command-Line Interface (CLI) for SAP Datasphere.
 ## Installation
 
 ```bash
-$ npm install -g @sap/datasphere-cli
+npm install -g @sap/datasphere-cli
 ```
 
 or
 
 ```bash
-$ yarn global add @sap/datasphere-cli
+yarn global add @sap/datasphere-cli
 ```
 
 ## Update the CLI
@@ -74,7 +74,7 @@ $ datasphere login
 To remove any data stored by running the `login` command, log out again:
 
 ```bash
-$ datasphere logout
+datasphere logout
 ```
 
 To display the locally stored secrets, run the `secrets show` command:
@@ -100,13 +100,13 @@ $ datasphere secrets show
 If you do not want to log in and have the CLI store the secrets in the CLI cache locally, you can also provide the _access_token_ directly on the command line:
 
 ```bash
-$ datasphere config cache init --host <my host> --access-token <access token>
+datasphere config cache init --host <my host> --access-token <access token>
 ```
 
 Alternatively, you can provide the _access_token_ through a `secrets.json` file:
 
 ```bash
-$ datasphere config cache init --host <my host> -secrets-file /path/to/secrets.json
+datasphere config cache init --host <my host> -secrets-file /path/to/secrets.json
 ```
 
 The `secrets.json` file must at least contain a property called `access_token`:
@@ -121,7 +121,7 @@ The `secrets.json` file must at least contain a property called `access_token`:
 
 ### Passcodes
 
-Passcodes are used for authenticating commands sent from the CLI to your SAP Datasphere tenant. Passcodes can be provided explicitly using the `-p, --passcode` option in case the URL to retrieve a passcode is known, or implictly using an interactive session by omitting the `-p, --passcode` option.
+Passcodes are used for authenticating commands sent from the CLI to your SAP Datasphere tenant. Passcodes can be provided explicitly using the `-p, --passcode` option in case the URL to retrieve a passcode is known, or implicitly using an interactive session by omitting the `-p, --passcode` option.
 
 When omitting the `-p, --passcode` option the CLI prompts you to provide a passcode by navigating to the passcode authentication URL for your tenant. The URL is calculated based on the provided `-H, --host` value.
 
@@ -152,7 +152,7 @@ You can either use the CLI from the terminal or command line, or use the module 
 Before you can list and run commands against your SAP Datasphere tenant you need to initialize the CLI first. When initializing the CLI a service document is downloaded from your SAP Datasphere tenant which describes the commands your tenant is able to understand. To initialize the CLI run
 
 ```bash
-$ datasphere config cache init -H https://mytenant.eu10.hcs.cloud.sap/ -p somepasscode
+datasphere config cache init -H https://mytenant.eu10.hcs.cloud.sap/ -p somepasscode
 ```
 
 You can refresh the local copy of the service document by running the `config cache init` command again.
@@ -176,7 +176,7 @@ Command-Line Interface for SAP Datasphere.
 
 Options:
   -v, --version           output the current version
-  -H, --host <host>       specifies the urlspecifies the url host where the tenant is hosted where the tenant is hosted
+  -H, --host <host>       specifies the url host where the tenant is hosted where the tenant is hosted
   -h, --help              display help for command
 
 Commands:
@@ -456,7 +456,7 @@ Options:
 You can use the short flag or long name to supply an option value on the command-line:
 
 ```bash
-$ datasphere config cache init --host <host>
+datasphere config cache init --host <host>
 ```
 
 #### Using environment variables
@@ -464,7 +464,7 @@ $ datasphere config cache init --host <host>
 To provide an option value, the option's long name is translated to CONSTANT_CASE. For example, the option `client-id` can also be provided as follows:
 
 ```bash
-$ CLIENT_ID='<my client id>' HOST='my-host' datasphere config cache init
+CLIENT_ID='<my client id>' HOST='my-host' datasphere config cache init
 ```
 
 #### Provide options file
@@ -483,12 +483,60 @@ You can provide a JSON file with a map of options, using the option's long names
 Then, supply it to the CLI:
 
 ```bash
-$ datasphere config cache init --options-file /path/to/options-file.json
+datasphere config cache init --options-file /path/to/options-file.json
 ```
 
 ### Environment Variables
 
-The CLI supports the following environment variables. You can set the environment variables when calling the CLI according to the local environment. In addition, the CLI supports the [`dotenv`](https://www.npmjs.com/package/dotenv#usage) module, allowing you to place a `.env` file in the CLI working directory.
+The CLI supports the following environment variables. You can set the environment variables when calling the CLI according to your local environment.
+
+#### Mac
+
+See [support.apple.com](https://support.apple.com/de-de/guide/terminal/apd382cc5fa-4f58-4449-b20a-41c53c006f8f/mac).
+
+```bash
+<env>=<value> datasphere <command>
+```
+
+Example:
+
+```bash
+LOG_LEVEL=6 datasphere login
+```
+
+#### Windows (Powershell)
+
+See [learn.microsoft.com](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables?view=powershell-7.4).
+
+```bash
+$Env:<env>=<value>
+datasphere <command>
+```
+
+Example:
+
+```bash
+$Env:LOG_LEVEL=6
+datasphere login
+```
+
+#### On Windows (CMD)
+
+See [learn.microsoft.com](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1).
+
+```bash
+set <env>=<value>
+datasphere <command>
+```
+
+Example:
+
+```bash
+set LOG_LEVEL=6
+datasphere login
+```
+
+In addition, the CLI supports the [`dotenv`](https://www.npmjs.com/package/dotenv#usage) module, allowing you to place a `.env` file in the CLI working directory.
 
 #### `CLI_HTTP_PORT`
 
@@ -498,13 +546,23 @@ Defines the port the CLI starts the HTTP server at when logging in when using OA
 | ------ | -------- | ------- |
 | number | no       | 8080    |
 
+#### `LOG_LEVEL`
+
+Sets the log level when running commands.
+
+| Type   | Required | Default | Allowed Values                                                       |
+| ------ | -------- | ------- | -------------------------------------------------------------------- |
+| number | no       | 1       | 1 (Inactive), 2 (Error), 3 (Warning), 4 (Info), 5 (Debug), 6 (Trace) |
+
 ## Help Documentation
 
 Find the full documentation on [help.sap.com](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html), check out the blog post on [blogs.sap.com](https://blogs.sap.com/2021/09/21/new-command-line-for-sap-data-warehouse-cloud-code-way-to-the-cloud/) or use option `-h, --help`:
 
 ```bash
-$ datasphere <command> -h
+datasphere <command> -h
 ```
+
+Issues experienced with the CLI can be reported in the [SAP Support Launchpad](https://launchpad.support.sap.com/#incident/create) using component **DS-API-CLI**. When creating an incident, please attach a full trace log by enabling the [`LOG_LEVEL environment variable`](#log_level) before running the command (log level is 6 (trace)).
 
 ## Community & Feedback
 

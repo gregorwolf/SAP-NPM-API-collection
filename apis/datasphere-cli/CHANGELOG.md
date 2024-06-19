@@ -5,7 +5,51 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 2024.8.0
+## 2024.12.0
+
+### Fixed
+
+- No short flag could be calculated for an option even though for the command owning the option not all short flags were used.
+
+## 2024.11.0
+
+### Added
+
+- Added a new command `datasphere config secrets refresh` which can be used to refresh the access token of the host defined via option `--host` or set as the global host via `datasphere config host set <host>`.
+
+- Added option `--purge-all` to command `datasphere config cache clean` to enable clients to remove the whole cache if required.
+
+### Fixed
+
+- In case the login failed, the CLI would still store the inconsistent secret information to the CLI cache. This caused issues as following login attempts failed without a good reason. With this version, whenever a login fails, the CLI does not store inconsistent secrets to enable the user to run additional login attempts successfully. Also, the CLI prints a verbose message when the `--verbose` option is added in case an expired access token cannot be refreshed.
+
+- The CLI used the same short flag for different options. For example, the short flag `-f` was used twice for the two different options `--force-definition-deployment` and `--file-path`:
+
+  ```bash
+  Options:
+    -f, --force-definition-deployment     force redeployment of definitions (optional)
+    -n, --no-async                        do not run deployment asynchronously (optional)
+    -e, --enforce-database-user-deletion  to allow deletion of Database users (optional)
+    -f, --file-path <path>                specifies the file to use as input for the command (optional)
+    -i, --input <input>                   specifies input as string to use for the command (optional)
+    -h, --help                            display help for command
+  ```
+
+  With this version the CLI ensures that a short flag is only used once.
+
+  ```bash
+  Options:
+    -f, --force-definition-deployment     force redeployment of definitions (optional)
+    -n, --no-async                        do not run deployment asynchronously (optional)
+    -e, --enforce-database-user-deletion  to allow deletion of Database users (optional)
+    -F, --file-path <path>                specifies the file to use as input for the command (optional)
+    -i, --input <input>                   specifies input as string to use for the command (optional)
+    -h, --help                            display help for command
+  ```
+
+- When using an access token from another tenant, where the user the access token belongs to is not existing in the target tenant, the CLI now prints a warning saying that the used access token is invalid. The login credentials have to be refreshed in this case and a valid access token must be used.
+
+## 2024.9.0
 
 ### Fixed
 

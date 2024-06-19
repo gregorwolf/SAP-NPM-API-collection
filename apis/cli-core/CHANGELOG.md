@@ -5,6 +5,101 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2024.11.0
+
+### Added
+
+- Support for deprecated commands. If a command is to be deprecated, this can be specified in the discovery by setting `deprecated: true` for a given operation object. Also, you can use the following custom properties to provide information about the final version after which the command is removed, a new command to be used, and a link to the respective SAP Help page. Example:
+
+  ```json
+  {
+    "paths": {
+      "/your/api/path": {
+        "get": {
+          "operationId": "command",
+          "deprecated": true,
+          "x-deprecated-with-wave": "2024.11",
+          "x-decommissioned-after-wave": "2024.12",
+          "x-deprecation-new-command": "new command",
+          "x-deprecation-sap-help-url": "https://www.help.sap.com/some/help/page"
+        }
+      }
+    }
+  }
+  ```
+
+  When a user runs a deprecated command, a warning is shown:
+
+  ```bash
+  WARNING: The command 'command' is deprecated from wave 2024.11 onwards. It will be removed after version 2024.11. Please start using the new command 'new command'. See https://www.help.sap.com/some/help/page for more information.
+  ```
+
+- Support for deprecated properties. If a property is deprecated but still used by a client, the server can include the custom response header `x-dsp-api-deprecated-properties` with the following `JSON.stringify`d value:
+
+  ```json
+  [
+    {
+      "name": "deprecated property name",
+      "deprecatedWithWave": "2024.11",
+      "decommissionedAfterWave": "2024.12",
+      "sapHelpUrl": "https://www.help.sap.com/some/help/page",
+      "customMessage": "some custom message."
+    },
+    {
+      ...
+    }
+  ]
+  ```
+
+  All properties are optional except the `name`. When a user sends a deprecated property to the server and the server includes the header `x-dsp-api-deprecated-properties` in the response, the following warning is shown to the user:
+
+  ```bash
+  WARNING: the following properties are deprecated:
+    deprecated property name. Deprecated since version 2024.11. Decommissioned after version 2024.12. See the SAP Help documentation at https://www.help.sap.com/some/help/page for more information. some custom message.
+  ```
+
+### Fixed
+
+- No short flag could be calculated for an option even though for the command owning the option not all short flags were used.
+
+## 2024.10.0
+
+### Added
+
+- Added a new command `<cli> config secrets refresh` which can be used to refresh the access token of the host defined via option `--host` or set as the global host via `<cli> config host set <host>`.
+
+- Added option `--purge-all` to command `<cli> config cache clean` to enable clients to remove the whole cache if required.
+
+### Fixed
+
+- In case the login failed, the CLI would still store the inconsistent secret information to the CLI cache. This caused issues as following login attempts failed without a good reason. With this version, whenever a login fails, the CLI does not store inconsistent secrets to enable the user to run additional login attempts successfully. Also, the CLI prints a verbose message when the `--verbose` option is added in case an expired access token cannot be refreshed.
+
+- The CLI used the same short flag for different options. For example, the short flag `-f` was used twice for the two different options `--force-definition-deployment` and `--file-path`:
+
+```bash
+Options:
+  -f, --force-definition-deployment     force redeployment of definitions (optional)
+  -n, --no-async                        do not run deployment asynchronously (optional)
+  -e, --enforce-database-user-deletion  to allow deletion of Database users (optional)
+  -f, --file-path <path>                specifies the file to use as input for the command (optional)
+  -i, --input <input>                   specifies input as string to use for the command (optional)
+  -h, --help                            display help for command
+```
+
+With this version the CLI ensures that a short flag is only used once.
+
+```bash
+Options:
+  -f, --force-definition-deployment     force redeployment of definitions (optional)
+  -n, --no-async                        do not run deployment asynchronously (optional)
+  -e, --enforce-database-user-deletion  to allow deletion of Database users (optional)
+  -F, --file-path <path>                specifies the file to use as input for the command (optional)
+  -i, --input <input>                   specifies input as string to use for the command (optional)
+  -h, --help                            display help for command
+```
+
+- When using an access token from another tenant, where the user the access token belongs to is not existing in the target tenant, the CLI now prints a warning saying that the used access token is invalid. The login credentials have to be refreshed in this case and a valid access token must be used.
+
 ## 2024.8.0
 
 ### Fixed

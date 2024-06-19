@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.1.1 - 2024-06-19
+- add new service configuration flag for JWKS cache: 'validation.jwks.shared' (boolean)
+- use shared cache in v3 compatibility layer, otherwise compat layer has effectively NO caching as internally new Service instances are created for each request that each begin with an empty cache
+
 ## 4.1.0 - 2024-06-13
 - Provide Typescript .d.ts typings
 - Fix export of XssecPassportStrategyV3 in v3 package. Consumers that already adjusted their import to the "bugged" export structure of prior 4.0.X versions, should not be required to adjust their import again for this fix
