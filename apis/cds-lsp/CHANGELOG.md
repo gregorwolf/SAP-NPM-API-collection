@@ -7,6 +7,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 7.9.1 - 2024-05-06
+
+### Fixed
+- `annotate` elements snippet now functions correctly near annotations to elements
+
 ## 7.9.0 - 2024-05-03
 
 ### Fixed
