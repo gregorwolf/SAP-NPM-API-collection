@@ -4,6 +4,18 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## Version 7.9.3 - 2024-06-27
+
+### Fixed
+
+- `cds compile --to serviceinfo` returns the correct URL path for Java applications.
+- Prevent HANA deadlocks when processing outbox table
+- Invalid cache for `SiblingEntity` requests
+- `cds.test` recommends version 7 of `chai-as-promised`.  Version 8 is ESM-only and does not work with `cds.test` at the moment.
+- Loading of `cds.plugins` now respects the (internal!) property `cds.env.plugins` again.
+- `req.data` and `req.INSERT.entries` were not pointing to same object if it contains more than one entry.
+
 ## Version 7.9.2 - 2024-05-22
 
 ### Fixed
@@ -19,7 +31,7 @@
 ### Fixed
 
 - `cds.compile.to.sql` doesn't fail for older compiler versions if `postgres` keywords aren't defined
-- `cds compile --to serviceinfo` no longer detects a Java project if there is a poml.xml file in a subfolder of `app/`
+- `cds compile --to serviceinfo` no longer detects a Java project if there is a pom.xml file in a subfolder of `app/`
 - `acquireTimeoutMillis` is ensured if custom pool config is provided
 
 ## Version 7.9.0 - 2024-04-30

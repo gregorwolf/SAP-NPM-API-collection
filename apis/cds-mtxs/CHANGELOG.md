@@ -6,11 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 1.18.2 - 2024-06-24
+
+### Changed
+
+- All requests to Service Manager are now retried 3 times by default. This value can be modified by setting `cds.requires.mulitenancy.serviceManager.retries`.
+
+### Fixed
+
+- Certificate check for sms subscription now also compatible with kyma.
+- Feature toggles can contain `.` again.
+- Extension field limit check now correctly accepts `0` as no fields to be extended.
+
 ## Version 1.18.1 - 2024-05-16
-
-### Added
-
-- The token endpoint now provides a `GET` method with empty query to retrieve the passcode URL.
 
 ### Changed
 

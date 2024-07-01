@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.2.5 - 2024-06-21
+
+### Fixed
+
+- A `400` error log is no longer written for Fiori's `.../appconfig/fioriSandboxConfig.json` request.
+
 ## Version 1.2.4 - 2024-06-14
 
 ### Changed
