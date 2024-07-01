@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.1.3 - 2024-06-27
+- add zid as optional parameter to XsuaaService token fetch requests
+- minor JsDoc fixes
+
+## 4.1.2 - 2024-06-21
+- fix for IdentityService token fetch requests: app_tid is now properly sent with the request
+
 ## 4.1.1 - 2024-06-19
 - add new service configuration flag for JWKS cache: 'validation.jwks.shared' (boolean)
 - use shared cache in v3 compatibility layer, otherwise compat layer has effectively NO caching as internally new Service instances are created for each request that each begin with an empty cache

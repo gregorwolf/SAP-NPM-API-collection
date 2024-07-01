@@ -1,3 +1,7 @@
+# 2.8.1
+Fixes
+- add hdb client for backwards compatibility
+
 # 2.8.0
 Features
 - use @sap/hdi-deploy@5.2.0

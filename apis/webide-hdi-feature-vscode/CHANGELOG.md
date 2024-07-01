@@ -1,3 +1,28 @@
+## 1.32.0
+
+### New Features
+- Calculated columns can be copied to other nodes within the same calculation view
+- Expressions containing user-defined functions can be validated
+- Enhanced information in generated calculation view documents
+- Use "engineAggregation" if "xscCompatibilityMode" is set to "true" and the view is not a star-join
+- Use frames to flexibly select scope of window function calculation
+
+### Fixes
+- The data type of mapped calculated columns not updated correctly
+- "Where Used Outside Current View" for input parameter could hang
+- No attributes are displayed for views added in analytic privilege
+- Unable to add parent and child nodes in hierarchy function node in a calculation view when the the type is updated to generated.
+- Fix spacing in "Generate Rank Column :" in rank node Definition
+- Multi-join node: filter expressions not saved when sources are not connected
+- Calculation view field mapping search loses focus
+- Cannot select input parameter for the Target Value in Rank node
+- Conversion date (referenceDate) is lost after re-open
+- Can't add new column from input with alias in Mapping pane
+- Input parameters and calculated columns should not offer Length and Scale for SMALLDECIMAL
+- Remove option to propose join cardinality from non equi joins
+- Execution Hint tab under Extract Semantics should show Value instead of New Name
+- Column Renaming not working reliably for larger set of columns
+
 ## 1.31.0
 
 ### New Features

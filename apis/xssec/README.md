@@ -397,7 +397,8 @@ It also supports the following service-specific options:
 **XSUAA**: 
 
 `scope` (*string|string[]*) requested scope(s)\
-`tenant` (string) tenant/subdomain\
+`tenant` (string) the *subdomain* of a tenant on the same subaccount from which to fetch a token. *Note*: this parameter does **not** accept a zone ID. Use the zid parameter instead to pass a zone ID.\
+`zid` (string) the zone id from which to fetch a token\
 `authorities` (object) additional [authorities](https://github.com/cloudfoundry/uaa/blob/24c0c23fa36d7c604e365e1be4df658d55dcb211/docs/UAA-APIs.rst#support-for-additional-authorization-attributes) that can be freely chosen during token fetch and will be put into the token under *az_attr* claim
 
 **Identity Service**:

@@ -1,3 +1,11 @@
+## 1.30.0
+
+### New Features
+- The last choice of data source types used in the "Add Data Source" dialog is persisted
+
+### Fixes
+- Synonyms created for Scalar functions are also getting listed as datasource in CV though they are not supported
+
 ## 1.29.0
 
 ### New Features

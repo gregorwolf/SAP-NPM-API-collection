@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.6.0 - 2024-06-25
+
+### Added
+- Support tenants/app_tid in SMS subscription callbacks
+
+### Updated dependencies
+- deps: ws@7.5.10
+
+### Fixed
+- Replace zoneId by app_tid in IAS calls
+- Check that MIGRATED_DEST flag is true 
 
 ## 16.5.2 - 2024-06-09
 

@@ -5,6 +5,15 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.0] - 2024-06-12
+### Added
+- Enabled setting and modifying roles for chart dimensions
+- Added support for creating custom actions within custom sections (needs `@sap/ux-specification` versions 1.96.65, 1.108.32, 1.120.13 or higher)
+
+### Fixed
+- Fixed issues where input values were missing tooltip texts
+- Fixed an issue where custom sections couldn't be created when no anchor section was available
+
 ## [1.13.6] - 2024-05-29
 ### Added
 - Added support for saving an SAP system in Visual Studio Code that uses reentrance tickets for authentication

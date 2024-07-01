@@ -1,3 +1,11 @@
+## 1.14.0
+
+### New Features
+- Updated SAP Developer License
+
+### Fixes
+- "DROP" not in global_object_privileges suggestions in role text editor
+
 ## 1.13.0
 
 ### Fixes

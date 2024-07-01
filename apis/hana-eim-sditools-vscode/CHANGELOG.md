@@ -1,10 +1,17 @@
-## 1.1.3
+## 1.2.0
+
+### New Features
+- BAS on-premise dev support for SDI plugin eimtools
+- Recommend user to use single source per reptask
 
 ### Fixes
-- feat(JIRA-2137): BAS on-premise dev support for SDI plugin eimtools
-- feat(BUG-312684): Recommend user to use single source per reptask
-- fix(Bug-311262): Realtime checkbox not shown when API call fails
-- Bug 310429 - reptask partition validation error
+- Fix null error in promise chain for reptask execution
+- Improve error handling when sql call fails
+- Add promise chaining in Reptask execution code to prevent error
+- Add missing code for "Realtime checkbox not shown when API call fails"
+- Change WATT framework extension ID
+- Remove the virtual table file format editor provided by eimtools plugin
+- Reptask partition validation error
 
 ## 1.1.1
 

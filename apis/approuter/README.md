@@ -1711,7 +1711,7 @@ When a tenant is subscribed/unsubscribed to/from an application, the tenant will
 * In the reuse services (e.g.: destination ), if the application is dependent on the reuse service. 
 Also, onboarding and offboarding callbacks will be triggered for the subscribed/unsubscribed application and for the reuse services.
 
-If you use IAS by binding a multi-tenant application router to an identity service instance, the subscription manager service (SMS) should be used to enable the subscription to a subscriber zone and an IAS tenant.
+If you use IAS by binding a multi-tenant application router to an identity service instance, the subscription manager service (SMS) should be used to enable the subscription to a subscriber subaccount and an IAS tenant.
 
 
 ### How To Expose Approuter for SaaS Subscription
@@ -1788,10 +1788,10 @@ Note that the path segments of these urls are configurable.
   "xsuaaSaasApplicationServiceInstanceId": "88afb2a5-5ab3-409a-9c0c-b70e2b86b1cf", #SaaS Registry service instance id
   "appCallbacks" : {
     "dependenciesCallbacks" : {
-      "url" : "https://<providerSubdomain>.<approuterHost>.cert.<landscapeDomain>/v1.0/callback/zones/{zoneId}/dependencies"
+      "url" : "https://<providerSubdomain>.<approuterHost>.cert.<landscapeDomain>/v1.0/callback/tenants/{app_tid}/dependencies"
     },
     "subscriptionCallbacks" : {
-      "url" : "https://<providerSubdomain>.<approuterHost>.cert.<landscapeDomain>/v1.0/callback/zones/{zoneId}"
+      "url" : "https://<providerSubdomain>.<approuterHost>.cert.<landscapeDomain>/v1.0/callback/tenants/{app_tid}"
     }
   }
 }
@@ -1816,10 +1816,10 @@ SMS Configuration example:
   "saasManagerServiceInstanceName": "sales-management-provider-saas-registry",
   "appCallbacks" : {
     "dependenciesCallbacks" : {
-      "url" : "https://sales-management-provider.approuter.cert.cfapps.sap.hana.ondemand.com/v1.0/callback/zones/{zoneId}/dependencies"
+      "url" : "https://sales-management-provider.approuter.cert.cfapps.sap.hana.ondemand.com/v1.0/callback/tenants/{app_tid}/dependencies"
     },
     "subscriptionCallbacks" : {
-      "url" : "https://sales-management-provider.approuter.cert.cfapps.sap.hana.ondemand.com/v1.0/callback/zones/{zoneId}?application.url=https://sales-management-provider.approuter.cfapps.sap.hana.ondemand.com"
+      "url" : "https://sales-management-provider.approuter.cert.cfapps.sap.hana.ondemand.com/v1.0/callback/tenants/{app_tid}?application.url=https://sales-management-provider.approuter.cfapps.sap.hana.ondemand.com"
     }
   }
 }

@@ -8,6 +8,38 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.13] - 2024-06-13
+
+### Added
+
+OData V4:
+
+- Custom actions support within custom sections
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+OData V4:
+
+- FilterBar macro with SelectionField annotation with qualifier is not resolved(annotationPath is missing)
+- Exception in case of line item annotations having an ID starting with "LineItems"
+
+### Quality
+
+Upgrades:
+
+- rimraf to 5.0.7
+- ts-jest to 29.1.4
+- @sap-ux/fe-fpm-writer to v0.24.15
+- jsdom to 24.1.0
+- axios to 1.7.2
+- @sapui5/types to 1.125.0
+
 ## [1.120.12] - 2024-05-31
 
 ### Added
@@ -21,10 +53,6 @@ OData V4:
 
 - Updated custom sections storage from array to object in schema
 - The showRelatedApps property is moved from the Object Page Header to the new Related Apps button.
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 

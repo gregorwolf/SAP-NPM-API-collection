@@ -8,6 +8,12 @@ For the latest updates please see SAP Note 3462517 - SAP HANA Client 2.21 Releas
 
 https://me.sap.com/notes/3462517
 
+## Version 2.21.26
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 325067: The client IP address could have been erroneously reported as 0.0.0.0 on Windows.
+
 ## Version 2.21.21
 
 ### Changes:

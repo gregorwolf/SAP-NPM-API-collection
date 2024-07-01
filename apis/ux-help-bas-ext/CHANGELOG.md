@@ -7,6 +7,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Joule
 - **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
 
+## [1.14.0] - 2024-06-12
+### Added
+- Added support for the UI.DataFieldForAction annotation in the CAP CDS variant of the _Add and edit table columns_ guide
+
+### Changed
+- The toolbar now spans across the guide list and guide content so that the Group By, View, and Search options are easily accessible and provide an improved and consistent user experience in alignment with other SAP Fiori tools features
+
+### Fixed
+- Fixed an issue where no error message was shown when a user tried to add an already existing function import to the UI.DataFieldForAction annotation in the _Add and edit table columns_ guide
+- Fixed an issue where the code snippet in Step 2 was not updated based on the selected Page Type parameter in the OData V2 variant of the _Add a custom action to a page using extensions_ guide
+
 ## [1.13.6] - 2024-05-29
 ### Changed
 - Object Page Section is now a mandatory parameter in guides
