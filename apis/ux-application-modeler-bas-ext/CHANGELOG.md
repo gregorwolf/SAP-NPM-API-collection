@@ -5,6 +5,14 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.1] - 2024-06-27
+### Fixed
+- Fixed an issue where a discrepancy between the internal representation and `manifest.json` of custom pages led to the creation of unnecessary undo steps
+- Fixed an issue where building blocks defined on a page could get lost after undo of the page's deletion
+
+### Changed
+- Updated the migration of adaptation projects so that existing adaptation projects that have already been migrated to support Fiori tools can now be migrated again to support the new adaptation project structure
+
 ## [1.14.0] - 2024-06-12
 ### Added
 - Enabled setting and modifying roles for chart dimensions

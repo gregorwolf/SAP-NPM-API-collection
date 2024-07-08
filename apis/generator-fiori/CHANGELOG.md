@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.1] - 2024-06-26
+### Changed
+- Updated to the latest library versions for adding code assist libraries during project generation
+
+### Fixed
+- Fixed an issue where adding ABAP deployment configuration using the command line could fail under certain circumstances
+
 ## [1.14.0] - 2024-06-12
 ### Changed
 - Updated the generated SAP Fiori Basic template to not automatically enable SAPUI5 flexibility during UI5 bootstrap, as no SAPUI5 flexibility features will be used after initial generation

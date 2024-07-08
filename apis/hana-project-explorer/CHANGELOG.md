@@ -1,3 +1,9 @@
+## 1.23.0
+
+### New Features
+
+- Graphical editor for hdbgrants files
+
 ## 1.22.0
 
 ### New Features

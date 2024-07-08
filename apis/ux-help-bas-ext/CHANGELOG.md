@@ -7,6 +7,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Joule
 - **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
 
+## [1.14.1] - 2024-06-26
+### Added
+- Added two new ways to open the _Request a New Guide_ form: via the command palette entry "Fiori: Request New Guide" and through "Guide Requests for Guided Development" under the Useful Links section in the information panel
+
+### Changed
+- Removed the special UI for rendering tooltips when the "Add a new dynamic measure" button is disabled
+
+### Fixed
+- Fixed an issue where the toolbar would go out of view and become invisible when scrolling in the guide
+- Fixed an issue in Step 1 of the _Configure multiple views for tables_ guide where the 'Visualization Qualifier' field was not disabled when the variant type was set to UI.SelectionVariant
+- _Request a New Guide_ form now opens directly when accessed from the info icon, eliminating the need for an additional click
+
 ## [1.14.0] - 2024-06-12
 ### Added
 - Added support for the UI.DataFieldForAction annotation in the CAP CDS variant of the _Add and edit table columns_ guide

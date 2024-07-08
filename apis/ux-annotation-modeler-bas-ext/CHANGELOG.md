@@ -2,6 +2,11 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.14.1] - 2024-06-27
+### Changed
+  - Updated to support changes in OData annotation vocabularies.
+
+
 ## [1.12.2] - 2024-01-10
 ### Added
 - Enhanced code completion to restrict the suggestions for annotation terms, complex types and properties to more meaningful based on `Validation.ApplicableTerms` set in OData vocabulary definitions . 

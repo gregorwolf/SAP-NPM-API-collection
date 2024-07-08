@@ -75,6 +75,7 @@
 @sap/mdk-tools
 @sap/node-jwt
 @sap/node-vsi
+@sap/open-resource-discovery
 @sap/open.fe
 @sap/openapi-specification
 @sap/sbf
@@ -83,6 +84,7 @@
 @sap/site-app-server
 @sap/site-content-deployer
 @sap/site-entry
+@sap/sql-interface-specification
 @sap/subaccount-destination-service-provider
 @sap/swa-for-sapbas-vsx
 @sap/textbundle

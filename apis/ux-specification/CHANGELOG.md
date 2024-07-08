@@ -8,6 +8,33 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.14] - 2024-06-26
+
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- Property fitContainer is no longer provided for change in v2 LR and ALP apps.
+- v4. Route pattern is not used during export which leads to different key generation after undo in page map
+
+### Quality
+
+Upgrades:
+
+- esbuild to 0.21.5
+- npm-run-all2 to 6.2.0
+- prettier to 3.3.2
+- ts-jest to 29.1.5
+- resolution for ws 8.17.1
+- @sap-ux/annotation-converter to 0.8.14
+- @sap-ux/vocabularies-types to 0.10.13
+
 ## [1.120.13] - 2024-06-13
 
 ### Added
@@ -15,12 +42,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 OData V4:
 
 - Custom actions support within custom sections
-
-### Changed
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 

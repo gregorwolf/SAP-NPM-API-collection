@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.1] - 2024-06-26
+### Fixed
+- Fixed an issue where run configurations were loading the SAPUI5 version from the default location, even though a different source location was specified
+
 ## [1.13.6] - 2024-05-29
 ### Fixed
 - Fixed an issue with the preview of adaptation projects using reuse libraries

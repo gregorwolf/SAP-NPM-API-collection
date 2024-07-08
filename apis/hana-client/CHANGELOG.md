@@ -8,6 +8,10 @@ For the latest updates please see SAP Note 3462517 - SAP HANA Client 2.21 Releas
 
 https://me.sap.com/notes/3462517
 
+## Version 2.21.28
+
+No relevant changes made.
+
 ## Version 2.21.26
 
 ### Underlying SQLDBC changes:

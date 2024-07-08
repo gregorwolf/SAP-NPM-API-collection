@@ -1,5 +1,14 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.24.0
+
+### New Features
+- The metadata of tables and indexes can be visualized graphically by clicking on a table or index in the catalog browser.
+
+### Fixes
+- Dependency Viewer: Auto-collapse external dependencies by default
+- The SQL console correctly displays SQLScript print output for local connections
+
 ## 1.23.0
 ### New Features
 - Updated SAP Developer License
