@@ -52,7 +52,7 @@
     "@sap/cds-common-content": "1.4.0",
     "@sap/cds-compiler": "4.9.4",
     "@sap/cds-dk": "7.9.4",
-    "@sap/cds-fiori": "1.2.6",
+    "@sap/cds-fiori": "1.2.7",
     "@sap/cds-foss": "5.0.1",
     "@sap/cds-hana": "2.0.0",
     "@sap/cds-lsp": "7.9.1",

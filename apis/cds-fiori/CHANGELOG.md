@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.2.7 - 2024-07-08
+
+### Fixed
+
+- Custom protocol paths, like for OData v2 installed by `@cap-js-community/odata-v2-adapter`, are honored again.
+- Services with overlapping URLs, like `/foo` and `/foo-foo`, are routed properly again.
+
 ## Version 1.2.6 - 2024-07-02
 
 ### Changed
