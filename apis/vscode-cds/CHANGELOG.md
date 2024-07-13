@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
+## Version 8.0.1 - 2024-07-12
+
+### Added
+- Commands _CDS: Preview as diagram_ to create a _Mermaid_ class diagram. `@sap/cds-dk 8` is required.
+- If trace is enabled via `cds.trace.level` the trace file location is shown in the `vscode-cds` _Output_ view.
+
+### Changed
+- Dropped official support for CDS compilers <4. The extension likely still works with older versions, but compatibility is not guaranteed.
+- Minimum VSCode version is now 1.89.1
+
+### Also see
+- `@sap/cds-lsp` 8.0.0
+- `@sap/cds-compiler` 5.0.6
+
+
 ## Version 7.9.0 - 2024-05-03
 
 ### Added

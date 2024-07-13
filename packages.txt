@@ -22,6 +22,7 @@
 @sap/audit-logging
 @sap/bas-sdk
 @sap/cds
+@sap/cds-attic
 @sap/cds-common-content
 @sap/cds-compiler
 @sap/cds-dk

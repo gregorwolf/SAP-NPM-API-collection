@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 2.0.0 - tbd
+
+### Removed
+
+- All `ZZZ` entries for `sap.common.Countries` are removed.  `ZZZ` could denote an 'unknown' country, but also caused confusion for users.  Check your existing DB content for foreign keys to these entries and adjust them if needed, e.g. if referential constraints would be violated.
+
+
 ## Version 1.4.0 - 2024-02-27
 
 ### Added

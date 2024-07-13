@@ -7,6 +7,72 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.0.6 - 2024-07-10
+
+### Fixed
+
+- for.seal: Don't generate DRAFT artifacts.
+
+## Version 5.0.4 - 2024-06-26
+
+### Fixed
+
+- CDL parser: an `extend entity` and `extend aspect` with an extensions for the
+  same element now correctly leads to an error, because it resulted in part of the
+  extension being simply dropped.  Remark: an `extend type` and the recommended
+  plain `extend` led to an error in that situation already before.
+- to.sql: Conditions inside filters in combination with foreign key aliases were
+          not properly translated in rare cases.
+- Update OData Vocabularies: 'PDF', 'UI'.
+
+## Version 5.0.2 - 2024-06-14
+
+### Changed
+
+- API `CompilationError` will serialize the first compiler error in `e.message`
+- cdsc: `--without-hana-associations` is changed to `--with-hana-associations`
+
+### Fixed
+
+- to.edm(x):
+  + Respect `AppliesTo` specification in term definitions for actions and functions.
+  + Make message `odata-spec-violation-namespace` a warning again.
+
+## Version 5.0.0 - Pre-release version - 2024-05-29
+
+This is a preview version for the major release and contains breaking changes. It should not be used for production.
+
+### Changed
+
+- Node 18 is now the minimum required version.
+- API `CompilationError`s will no longer serialize all compiler messages into `e.message`.
+  Use `e.messages[]` instead or `e.toString()` to serialize errors into a string.
+- CDL parser: Annotations that can't be applied are now rejected.
+- compiler:
+  + `extend` statements on "namespaces" (paths that are not definitions) are now always errors.
+  + non-structured events are rejected
+  + `$self` references in JOINs are rejected if they could lead to issues in SQL rendering.
+  + non-string enum definitions must have a value.
+  + A top-level definition `$self` is rejected. `$self` is considered a reserved name.
+  + `$at.from`/`$at.to` are deprecated; use `$valid.from`/`$valid.to` instead.
+- to.hdbcds: The HDBCDS backend is now considered deprecated.
+- to.edm(x):
+  + Set default nullability to `true` for collection like properties (was `false` before).
+  + Raise message ids `odata-spec-violation-namespace`, `odata-spec-violation-no-key` from warning to error.
+- to.sql:
+  + `@cds.persistence.exists` is _not_ propagated to generated localization views (`localized.*`)
+  + Option `fewerLocalizedViews` is now enabled by default.
+  + Option `betterSqliteSessionVariables` is now enabled by default.
+
+### Fixed
+
+- for.odata: Propagate all `@odata { Type, MaxLength, Precision, Scale, SRID }` to generated foreign keys.
+
+### Removed
+
+- API: Deprecated functions `preparedCsnToEdmx` and `preparedCsnToEdm` were removed.
+  Use `to.edm(x)` instead.
+
 ## Version 4.9.4 - 2024-05-21
 
 ### Fixed

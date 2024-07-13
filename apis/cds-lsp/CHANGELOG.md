@@ -7,7 +7,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
-## 7.9.1 - 2024-05-06
+## 8.0.0 - 2024-06-25
+
+### Changed
+- cds-lsp will use embedded cds-compiler (v5) if compiler in workspace is < v5
+
+### Fixed
+- highlighting of annotations after bracketed expressions
+- exception in graphical file dependency analysis
+- node version check now runs outside bundle
+
+### Also see
+- `@sap/cds-compiler` 5.0.4
+
+
+## 7.9.1 - 2024-05-10
 
 ### Fixed
 - `annotate` elements snippet now functions correctly near annotations to elements

@@ -7,6 +7,669 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 8.0.2 - 2024-07-12
+
+### Added
+
+- `cds add malware-scanner` adds configurations for `SAP Malware Scanning service`.
+
+### Changed
+
+- `cds add http` stores `http` files in a folder `test/http/` by default. Previously, this was `http/`.
+- `cds add helm` removed `saasRegistryParameters` key and moved parameters to `saas-registry`.
+- `cds init` no longer creates a `.cdsrc.json` for Node.js projects.
+- `cds build` configuration cleanup for `data.model` and `service.model` to only support configuration of a single model folder.
+
+### Fixed
+
+
+## Version 8.0.1 - 2024-07-09
+
+### Added
+
+- `cds add hana` and `cds build` now support the HANA artifact type `.hdbeshconfig` required for enterprise search integration.
+- `cds init` adds simplistic `eslint.config.mjs` file to newly created projects.
+- Running any `cds` command in a TypeScript project will print a hint to `cds-ts`.
+- The `cds.build.Plugin` class now supports a `baseModel()` method that returns a CSN that doesn't include features when feature toggles are enabled.
+- `cds add workzone` adds support for SAP BTP Work Zone, Standard Edition.
+- `cds add helm` now supports using external destinations in `backendDestinations` key.
+- `cds add` supports the `--java:mvn` option.
+
+### Changed
+
+- `cds add multitenancy` now adds the `java` profile in the MTX sidecar config, in addition to `mtx-sidecar`.
+- `cds init` uses Maven Java archetype version 2.10.1 for creating Java projects.
+- `cds init --add java` and other `cds add` commands use Java 21 by default.
+- `cds add helm` now adds env variables directly in _values.yaml_ file instead of mtxs-configmap ref.
+- `cds init` for a Node.js project adds `@cap-js/cds-types` to its `devDependencies`.
+- `cds login` now informs about command-line options ignored when fetching a token.
+- `cds login` now exits with an error in case of clashing parameters.
+- cds shell completion now suggests files/folders when called directly after cds command, e.g. `cds pac<tab>` will return files/folders starting with `pac`.
+
+### Fixed
+
+- `cds add` is failing if one of the `canRun` conditions in the plugin isn't satisfied.
+- `cds version` and other CLI commands no longer color their output if e.g. stdout is redirected.
+- `CHANGELOG.md` is part of npm package.
+- `cds build` determines the correct feature names if a `.cds` file path contains the name `fts`.
+- `cds watch` now ignores `.git/**`
+
+## Version 8.0.0 - 2024-06-20
+
+### Added
+
+- `cds init --add` now also allows the shortcut `cds init -a`.
+- `cds add audit-logging` adds configuration for `@cap-js/audit-logging`.
+- `cds add typescript` initializes a bare CDS project with TypeScript nature.
+- `cds add containerize` generates `containerize.yaml` file with configuration required to build the container images by `ctz` CLI.
+- Setting `FORCE_COLOR=1` will now force colored log output.
+- `cds add --package/-p` allows you to specify remote packages (in `npm add` format).
+- `cds add helm` asks prompts to fill in data at first execution.
+- `cds add http` can now generate requests for entities annotated with `odata.draft.enabled`.
+- `cds import` will now support references in `requestBody` for openapi files.
+- Multitenancy-related commands now always print the HTTP status on request errors.
+- `cds add helm` added `HorizontalPodAutoscaler` which can be enabled by `srv.hpa.enabled`.
+- `cds add attachments` adds configurations for `@cap-js/attachments`.
+- Shell completion now supports `fish` shell.
+- `cds add portal` creates configuration for the SAP Cloud Portal service.
+- `compile --to mermaid` exports a CDS model as a mermaid diagram.
+
+### Fixed
+
+- `cds add mta` correctly adds the logging service with `@sap/cds >= 7.5`, if not explicitly disabled.
+- `cds add` doesn't fail for Java projects if `srv/pom.xml` doesn't exist.
+- `cds login` now prints the App URL, reports HTTP 404 errors correctly and gives better mitigation hints.
+- `cds deploy` consistently resolves configured service models, where previously the db model had priority.
+- `cds build` checks for the existence of a package.json file in the root folder of Node.js projects.
+- `cds add` sets `cds.cli` before plugins are loaded.
+- `cds add http` supports custom keys, including composite keys.
+- `cds add approuter` will not create a `router` subfolder if an `xs-app.json` is found in the `app` directory.
+
+### Changed
+
+- `cds deploy --to hana` uses `@sap/hdi-deploy` version 5.
+- `cds deploy` resolves existing binding for deployment.
+- `cds import` will not generate `ON condition` for association or composition.
+- `cds import` will not add the `@cds.ambiguous` annotation for association or composition.
+- `cds import` now supports OData V2 EDMX file with empty or missing `EntityContainer`.
+- `cds init` will now initialize a cds 8 project.
+- `cds add approuter` will not add XSUAA under the hood any longer.
+- `cds add hana` and `cds build` use `@sap/hdi-deploy` version 5.
+- `cds add hana` now uses `@cap/js-hana`.
+- `cds add multitenancy` uses `@sap/cds-mtxs` version 2.
+- `cds add multitenancy` does not add the `UIFlexDeveloper` role any more.
+- `cds add helm` doesn't expose srv and sidecar workload in multi tenant mode if approuter is present.
+- `cds add helm` changed `values.yaml` structure.
+- `cds add helm` command doesn't generate static files (subcharts and templates) when `cds add` is executed. Instead, it generates the `chart` folder containing all the static data in the `gen` folder when `cds build` is executed.
+- `cds add xsuaa` now uses `@sap/xssec` version 4.
+- `cds add tiny-sample` uses the same `schema.cds` file name as `cds add sample`.
+- `cds add html5-repo` now adds the `deploy_mode: html5-repo` parameter to the _mta.yaml_.
+- `cds add html5-repo` uses `gen` (Node.js) or `.` (Java) for the app deployer `path`.
+- `cds add mta` now creates an _mta.yaml_ with schema version 3.3.0.
+- `cds login` no longer falls back to a legacy URL or a GET request for tokens.
+- `cds login` now enforces HTTPS when contacting remote URLs.
+- `cds login` no longer saves Refresh Tokens by default for security reasons. (Use `--save-refresh-token` to enable this feature.)
+- `cds build` cleanup of build task property `use`.
+- `cds add helm` default value of `xsappname` will contain Release Namespace as well.
+- `cds build` allows custom plugins to be executed after the built-in plugins.
+- `cds login` eagerly fetches the passcode URL (if supported by `@sap/cds-mtxs`) and prints it on prompt.
+- `cds extend` and `cds activate` have been deprecated and are now removed. (You can still migrate and download projects, see `cds migrate --help` and `cds extend --help`.)
+- Remove obsolete classic MTX checks and enforce `@sap/cds` >= 7.
+- `cds build` uses cds.compile.to.hana API with `@sap/cds` 8.
+- `cds bind` and `cds deploy` use direct http requests instead of `cf curl`.
+- `cds build --for java` no longer generates localized EDMX files by default. It can be enabled using `contentLocalizedEdmx` build task option.
+- `@cap-js/sqlite`/`better-sqlite3` is used in dependencies instead of `sqlite3`.
+- `cds add sample` now generates comma-separated CSV files, instead of semicolon-separated, in order to be more consistent with `cds add data`.
+- `cds build` no longer supports the deprecated register API for custom plugins.
+- `cds init` no longer adds `devDependencies` for `eslint` and `@sap/eslint-plugin-cds` when creating a new project.
+- `cds init` now creates `eslint.config.mjs` file with reference to `@sap/cds/eslint.config.mjs`.
+
+### Removed
+
+- `cds add notebook` is removed.  CAP Jupyter Notebooks have been replaced by custom CAP Notebooks for VS Code which are now part of the CDS Editor.  See https://cap.cloud.sap/docs/tools/#add-cds-editor for more.
+
+
+## Version 7.9.5 - 2024-07-12
+
+### Added
+
+- `cds add hana` and `cds build` now support the HANA artifact type `.hdbeshconfig` required for enterprise search integration.
+
+### Fixed
+
+- `cds add` is failing if one of the `canRun` conditions in the plugin isn't satisfied.
+- `cds watch` now ignores `.git/**`
+
+## Version 7.9.4 - 2024-06-19
+
+### Fixed
+
+- Dependency update to fix CVE-2024-37890
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 2.10.1 for creating Java projects.
+- `cds bind` and `cds deploy` use direct http requests instead of `cf curl`.
+
+## Version 7.9.3 - 2024-06-07
+
+### Fixed
+
+- `cds add data` now has a more precise foreign key type conversion from CSV data, covering edge cases.
+
+## Version 7.9.2 - 2024-05-15
+
+### Fixed
+
+- `cds add data` now uses the correct JSON type for foreign keys from CSV data, e.g. number instead of string
+- `cds bind` now calls resolve in sequence to avoid file access exceptions
+
+## Version 7.9.1 - 2024-05-02
+
+### Fixed
+
+- `eslint` 9 doesn't crash anymore if called in a project created with `cds init`
+
+### Changed
+
+- `cds add mta` will now use the new `sap_java_buildpack_jakarta` buildpack configuration in the `mta.yaml`.
+
+## Version 7.9.0 - 2024-04-30
+
+### Added
+
+- Shell completion in Linux, macOS, Windows for cds commands and parameters (beta)
+- `cds bind` supports shared service instances. Service keys are created in the space where a service instance was shared from.
+- `cds add data` now can generate actual data (not only a header line), both as `csv` and `json` structure.
+- `cds subscribe` now allows to pass tenant metadata and HDI parameters using parameter `--body <json>`.
+- `cds add http` has a `--dry` flag to write the generated http requests to stdout.
+- `cds add hana` and `cds build` support undeploy of calculation views by default.
+- `cds bind` supports custom credentials to overwrite cloud service credentials.
+- Better support for `profiles` in cds schema for `package.json` and `.cdsrc.json`.
+- `cds bind` supports custom credentials to overwrite cloud credentials of multiple services.
+
+### Fixed
+
+- Revert json schema for cds schemas to `draft-07` to prevent VS Code warnings about unsupported schema features.
+- `cds add` doesn't fail for projects with a minimal `package.json` w/o `name` and `version` fields
+- `cds add data` can be executed in projects w/o `package.json` and `.cdsrc.json` files.
+- `cds add sample` does not fail if the `srv` folder doesn't exist.
+- `cds add helm` fixed xsuaa tenant-mode not updating on adding `multitenancy`
+- `cds watched` cannot be called from command line anymore.
+- `cds login` now correctly handles the case of an expired refresh token and gives more information about token-request errors.
+- `cds login` now refreshes the token URL if it had previously reverted to a legacy URL.
+- Command retrieval during cds bootstrap is now more robust.
+- `cds watch` now ignores all `gen`-folder content to allow tenant subscription in hybrid mode.
+- `cds build` doesn't copy `.cdsrc-private.json` file into the deployment folder.
+
+### Changed
+
+- `cds deploy --to hana` warns about using custom service name, e.g `--to hana:myService` and `--vcap-file` at the same time.
+- `cds compile` to `openapi` now throws an error when `@protocol : 'none'` is given.
+- `--data:for` of `cds add data` is now deprecated in favor of `--filter`.
+- `cds add data` sorts columns with own elements first, assuming they are more significant than the inherited/included elements.
+- `cds add http --filter` accepts a service/entity/action name or a regex instead of a path.
+- `cds deploy` and `cds bind` both use Cloud Foundry client for backend communication.
+- Changes in the `package-lock.json` file don't restart the server e.g. during `cds watch`
+- `cds init --add java` uses the currently installed Java version for the `pom.xml`.
+- `cds add mta` derives the JDK version from the `pom.xml` version.
+- `cds add helm` update default gateway to `kyma-system/kyma-gateway`
+- `cds lint` supports both legacy (`@eslint@^8`) and flat (`@eslint@^9`) ESLint configurations.
+- `cds add lint` adds flat ESLint configurations with `@eslint@^9`, `@sap/eslint-plugin-cds@^3.0.0`.
+- `cds add lint` now requires `ESLint` version 8 or above.
+
+## Version 7.8.2 - 2024-04-15
+
+### Added
+
+- `cds compile` to `openapi` now maps `@ODM.oidReference.entityName` annotation to generate `x-sap-odm-oid-reference-entity-name`.
+
+### Fixed
+
+- `cds run/serve --resolve-bindings` correctly work with the new runtime authentication middleware.
+- `cds add helm-unified-runtime` fixed backend destinations urls for deployments that aren't exposed.
+
+### Changed
+
+- New versions of `@sap/cds` and `@sap/eslint-plugin-cds`
+- `cds add helm` moved `TENANT_HOST_PATTERN` key from configmap to `values.yaml`.
+- `cds add helm` `web-application` subchart now supports controlling the health probe timings and updated default gateway to `kyma-system/kyma-gateway`
+
+## Version 7.8.1 - 2024-04-02
+
+### Added
+
+- `cds add` plugins now support custom flags.
+- `cds add kafka` is also enabled for Helm deployments.
+- `cds add enterprise-messaging` and `cds add enterprise-messaging-shared` now support a `--cloudevents` flag which automatically adds `cds.requires.messaging.format = 'cloudevents'`.
+
+### Fixed
+
+- `cds build` does no longer add the model _@sap/cds-mtxs/srv/bootstrap_ for Java projects by mistake if the `--ws` option is set.
+
+## Version 7.8.0 - 2024-03-27
+
+### Added
+
+- `cds add mta` configures readiness health checks via http to `/` for Java and `/health` for Node.js.
+- `cds add` facets can now also be space-separated, e.g. `cds add mta mtx pipeline`.
+- `cds add http` adds an `http` folder with `.http` files generated for all services.
+- `cds add http --filter [path to dir or file]` generates `.http` files only for the specified file or directory. The shortcut is `-f`.
+- `cds add http --for-app [app name]` uses the hostname and the auth of the specified deployed app.
+- `cds add http --out` allows to specify the output folder for the http files. The shortcut is `-o`.
+- `cds build` reclassifies compilation warnings as info messages for extension projects in case they are caused by the SaaS application base model. `cds build --log-level info` logs all messages. Reclassification of message IDs can be customized.
+- `cds version` now also prints the version of the CAP Java SDK as well as the Java and Maven versions
+- `cds build` now uses argument `--ws-pack` instead of `--ws` to enable tarball based packaging of npm workspace dependencies for Node.js apps (beta).
+- `cds import` can now import the Action/Function with binding parameter type of different schema in the scope of a document.
+
+### Changed
+
+- `cds add helm` uses `/health` for liveness and readiness checks for Node.js.
+- `cds pull` now uses an NPM workspace folder (default: .base) for the base model to enable committing it (link it to node_modules with `npm install`).
+
+### Fixed
+
+- `cds deploy` always included models from existing `fts/*` folders. Now, it only does so if `cds.requires.toggles` is switched on.
+- `cds build` now adds the correct HANA tenant database artifacts for a multitenant application in case a second shared database exists.
+- `cds bind --to-app-services` will throw a better error message if no app name is supplied.
+
+## Version 7.7.2 - 2024-03-08
+
+### Added
+
+- `cds import` now has `beta` flag which can be used to import beta functionality in the CSN/CDS.
+
+### Fixed
+
+- `cds deploy --to hana` environment entries from `--vcap-file` option now overwrite environment entries.
+- `cds add helm` `web-application` subchart now allows annotations to be added to the K8s services and `content-deployment` subchart now allows to set `imagePullPolicy`.
+
+## Version 7.7.1 - 2024-03-01
+
+### Fixed
+
+- `cds build` now allows the SaaS application base model to be located in a subfolder of the mtx extension project using npm workspace setup. Before, such a scenario caused duplicate model definitions.
+- `cds init` shows better error message if project name contains unsupported characters.
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 2.7.0 for creating Java projects.
+
+## Version 7.7.0 - 2024-02-26
+
+### Added
+
+- Schema support for declaring schema contributions in cds plugins.
+- `cds import` now supports `ref` in schema properties for AsyncAPI files.
+- `cds add html5-repo` is now supported for Cloud Foundry (beta).
+
+### Changed
+
+- `cds add mta` will add `npm ci` to its `before-all` build scripts to make `mbt build` more self-contained.
+
+### Fixed
+
+- `cds build` for MTX extensions no longer fails in case of duplicate model definitions.
+- `cds version -i` now prints the same versions in MD form as `cds version`
+
+## Version 7.6.1 - 2024-02-14
+
+### Changed
+
+- `cds login` now automatically discards invalid refresh tokens and retries instead of exiting with an error.
+- `cds login` now saves the passcode URL received from a failing token request and prints it along with the error and any subsequent passcode prompt.
+- `cds login` now hints at missing user role as the cause of an error, if applicable.
+
+### Fixed
+
+- `cds import` now fixed the `AnnotationPath` attribute value import for Annotation in OData V4 EDMX correctly in the CSN.
+- `cds import` will now move the imported EDMX file to `srv/external` only if the import is successful.
+- `cds import` now captures the annotations present within EntityContainer for OData V4 EDMX in the CSN.
+- `cds deploy` allows usage of `SERVICE_REPLACEMENTS` without specifying `VCAP_SERVICES`.
+- `cds deploy` gives an error if its service key corresponds to a Service Manager instance.
+
+## Version 7.6.0 - 2024-01-31
+
+### Added
+
+- `cds add application-logging` is now supported for Java.
+- `cds add` and `cds init` help shows a more complete list of available commands.
+- `cds bind -2 <service-name>` automatically creates service key named `<service-name>-key` on Cloud Foundry.
+- `cds bind --to-app-services <app-name>` binds to all services of a deployed app.
+- `cds build` supports npm workspace setups (beta).
+
+### Changed
+
+- Json schemas for `build` and `deploy` moved here from `@sap/cds`.
+- `cds build` plugins can provide additional json schemas, including root nodes (beta).
+- `cds add helm` doesn't expose srv workload in single tenant mode if approuter is present.
+- `cds add hana` also adds draft tables to the `undeploy.json`.
+- `cds build` uses existing `.npmrc` file from project root for the MTX sidecar build, precedence has `.npmrc` in sidecar folder.
+- `cds logout --clear-invalid` also deletes expired tokens.
+- `cds build` requires feature toggles to be switched-on in order to get the corresponding features generated.
+
+### Fixed
+
+- `cds build` no longer throws `maximum call stack size exceeded` error when building SaaS extensions.
+- `cds add approuter` no longer adds `SUBSCRIPTION_URL` configuration to Java projects in some scenarios.
+- `cds add html5-repo` in combination with `cds add helm` or `cds add helm-unified-runtime` correctly adds HTML5 repo runtime configuration.
+
+## Version 7.5.1 - 2024-01-09
+
+### Changed
+
+- Bump of dependencies
+- MTXS commands will now use a request timeout to avoid hanging on invalid URLs.
+- Error messages for invalid URLs have been improved.
+- Reverting the fix from `7.5.0`: `cds compile` to `openapi` now adds correct schema `$ref` for patch operation.
+
+## Version 7.5.0 - 2023-12-14
+
+### Added
+
+- `cds add` plugin support (beta).
+- `cds compile` to `openapi` now creates readonly endpoints for entities annotated with `@cds.autoexpose(d)`.
+- `cds compile` to `openapi` now supports deepInsert and deepUpdate incase of entity property containing a composition.
+- `cds add liquibase` support for Java.
+
+### Changed
+
+- `cds add application-logging` can now be used in place of `cds add kibana`. `cds add kibana` is deprecated.
+- `cds add application-logging` now uses the `standard` service plan in the `mta.yaml`, instead of `lite`.
+- `cds add application-logging` doesn't add the `cds.features.kibana_formatter` flag any more.
+- `cds v -i` will now insert a default placeholder if `repository` or `repository.url` is undefined in your `package.json`.
+- Use supported node versions in SAP HANA database modules.
+- `cds build` uses console.log to correctly format log output.
+- Retrofit `cds build` plugin register API.
+- `cds build` log output has been streamlined.
+
+
+### Fixed
+
+- `cds add postgres` for Java now uses the `default` profile when called without the `--for` option.
+- `cds compile` to `openapi` now adds `title` and `description` from `@Core.Description` and `@Core.LongDescription` respectively to reduce duplicate descriptions.
+- `cds build --production` now loads cds plugins from `devDependencies`.
+- Less redundant messages on request errors.
+- Avoid empty error message when `cds push` fails.
+- Better type definitions for programmatic APIs provided by `cds-dk`.
+- Better error message if old `@sap/cds` versions <= 5 are used.
+- Calls from Yeoman generator are now handled correctly.
+- `cds compile` to `openapi` now adds correct schema `$ref` for patch operation.
+
+## Version 7.4.1 - 2023-11-30
+
+### Fixed
+
+- `semver` is bumped to version `^7` to mitigate [CVE-2022-25883](https://github.com/advisories/GHSA-c2qf-rxjj-qqgw)
+
+### Changed
+
+- `cds push` uses the synchronous server API by default again due to stability problems. Use `--async` for the asynchronous call.
+- `cds add enterprise-messaging` will now correctly replace all `_` by `-`.
+
+## Version 7.4.0 - 2023-11-14
+
+### Changed
+
+- `cds build` plugins can now require their APIs directly from `@sap/cds` (instead of `@sap/cds-dk`).
+- `cds init` uses latest Maven Java archetype version 2.4.0 for creating Java projects.
+
+### Added
+
+- `cds init` for Node.js now has `@cds-models` for `@cap-js/cds-typer` in its `.gitignore`.
+- `cds add local-messaging` is now supported for Node.js.
+- `cds add postgres` is now supported for Java.
+- `cds build` now supports the command line argument `--no-clean` (beta). Clients need to clean the output folder(s) manually for consistent build results.
+- `cds build` now supports the build task option `flavorLocalizedEdmx` to generate localized instead of non-localized edmx files for Java apps - default is `false`.
+- `cds subscribe`, `cds unsubscribe`, `cds upgrade` now also support the `--resolve-bindings` flag.
+- `cds build` now supports the command line argument `--ws` to enable tarball based packaging of npm workspace dependencies for Node.js apps. (beta)
+- `cds build` now supports SAP HANA schema evolution for draft tables.
+
+### Fixed
+
+- `cds deploy --to hana --dry` now prints out the SAP HANA SQL files which will be deployed if `--dry` is not specified.
+- `cds build` no longer fails if multiple service protocols are configured in object notation.
+- `cds build` now uses configured compiler options when building Node.js projects.
+- `cds pull` when amending package.json applies the original indentation
+- `cds watch --profile hybrid` no longer produces a value `hybrid,hybrid` for `process.env.CDS_ENV`
+- `cds.schema` now loads lazily.
+- `cds init` does not print `cd` hint if creating a project in current folder.
+
+### Removed
+
+- `cds repl` no longer loads `cds.plugins` on startup to keep `cds` lazy.
+
+## Version 7.3.1 - 2023-10-19
+
+### Changed
+
+- `cds watch --livereload` now reload the client w/o a server restart, so that for e.g. an `.html` file, a reload event is sent, but the server is not restarted.  Previously, the two events were coupled.
+- `cds build` now provides a programmatic plugin API instead of the former configuration based one.
+
+### Added
+
+- `cds build` supports the option `contentLocalizedEdmx` to enable/disable the generation of localized edmx files for Java apps - default is `true`.
+- `cds repl` now loads `cds.plugins` on startup.
+- `cds add enterprise-messaging-shared` also supports Kyma deployment.
+- `cds add notifications` adds configurations for notifications plugin.
+
+### Fixed
+
+- `cds` commands will now respect the `NO_COLOR` environment variable.
+- `cds init` no longer adds comments to file `.vscode/launch.json`
+- `cds bind` prints correct command line recommendation to start spring-boot application
+- `cds compile` to `openapi` now generates correct query options with `$` prefix.
+- `cds build` no longer causes `duplicate assignment` compilation errors for specific feature toggle scenarios.
+- `cds watch` now loads missing service bindings when called from a directory other than cwd.
+- Multitenant `cds` commands now have any trailing slashes removed from app URLs, fixing certain request failures.
+- Multitenant `cds` commands now handle request errors more robustly.
+- `cds build` no longer fails for cds services supporting multiple protocols.
+- `cds build` uses the correct deployment folder for CSV files.
+
+## Version 7.3.0 - 2023-10-06
+
+### Changed
+
+- `cds login` now eagerly detects expired token and asks for a new passcode if applicable
+- `cds login` now presents the passcode URL as early as possible
+- `cds env` now requires `@sap/cds` >= 7.3 to resolve configuration contributed by cds plugins
+- `cds add connectivity` does not add `connectivity: true` to your `package.json` any more.
+- `cds watch` now ignores more files/folders: `app/(webapp|dist|target)`, `app/*/(webapp|dist|target)`, `tsconfig.json`, `*.tsbuildinfo`
+- `cds build` now uses `compile.to.hdbtable` if no migration tables exist.
+- Refactoring `cds build plugin` API
+
+### Fixed
+
+- `cds login` now prints shorter errors. (Set `DEBUG=req` in env to see all details again.)
+- Fixed issue when creating a CAP project in SAP Business Application Studio's template wizard.
+- `cds import` now handles name collision within a Schema for OData V4 EDMX.
+- `cds build` for mtx extension projects no longer creates CSN containing unresolved model associations.
+- `cds build` no longer creates new migration versions by mistake after schema evolution changes have been manually resolved.
+- `cds add approuter` creates the `xs-app.json` in the `app` folder again, instead of in `app/router`.
+- `cds watch` no longer restarts itself in an endless loop (happened in some Typescript scenarios on Windows)
+
+### Added
+
+- `cds push` now uses the asynchronous server API by default. Use `--sync` for the synchronous one.
+- `cds activate` and `cds push` now support the `-2` shortcut for the `--to` option.
+- Improved error logging for failed HTTP requests.
+- `cds build` support for custom build plugins.
+- `cds compile` support for custom compile plugins.
+- `cds build` creates non-localized edmx files for the nodejs apps. Translations will be applied at runtime.
+- `cds.schema.overlay4` gets the cds default schema plus overlays from cds-dk.
+- `cds build` creates non-localized edmx files for the java apps. Translations will be applied at runtime.
+- `cds import` now introduces new option `--config` to add custom configuration data in the package.json.
+- `cds add helm` now adds `html5-apps-repo-runtime` binding for `approuter` if `html5-repo` is present.
+- (BETA) `cds add postgres` adds configuration for PostgreSQL. This requires `@cap-js/postgres` 1.3.0.
+
+## Version 7.2.0 - 2023-09-04
+
+### Fixed
+
+- `cds build` adds feature toggles to existing custom build task model options.
+- `cds import` adds the `kind` based on the type of the input file while updating the `package.json`.
+
+### Added
+
+- `cds add h2` adds H2 configuration for Java projects.
+- `cds add sqlite` now has full support for Java projects.
+- `cds gen` creates models or data using a descriptive prompt (beta)
+- `cds bind` auto detects 'ias-auth' service bindings
+- `cds compile` to `openapi` now introduces new option `--odata-version` to add the OData version functionality to generate the OpenAPI document.
+- `cds add` comes with more templates/facets in the wizard of SAP Business Application Studio: approuter, XSUAA, Kibana logging, enterprise messaging, multinenancy, helm charts, and extended sample files.
+
+### Changed
+
+- `cds add approuter` creates the `xs-app.json` in a dedicated `app/router` folder, instead of in `app`.
+- `cds add multitenancy` now sets up the `cds-feature-mt` dependency in your `pom.xml` for Java projects.
+- `cds watch` ignores all frontend resources in `app/**/webapp/**`. Previously, only `app/**/(*.js|ts)` was ignored.
+
+### Removed
+
+- Undocumented facet `cds add auditlog`
+
+## Version 7.1.1 - 2023-08-10
+
+### Fixed
+
+- When setting `CDS_CONFIG` from the command line, that value is no longer overridden by other env values. Setting `CDS_CONFIG` from the command line in combination with additional command line args, like `--odata`, is not supported at this point.
+- Installing `@sap/cds-dk` now produces a shrinkwrapped layout again if used against NPM registries like Artifactory that don't serve the `_hasShrinkwrap` option.
+- `cds import` for OData V4 EDMX imports `Edm.Decimal` data type considering `Precision` and `Scale` facet correctly.
+- `cds import` for OData V4 EDMX imports `DefaultValue="0"` in CSN.
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 2.1.0 for creating Java projects.
+- `cds build` correctly logs build messages based on their severity.
+- `cds build` creates OData EDMX for configured fiori build tasks.
+
+## Version 7.1.0 - 2023-07-31
+
+### Fixed
+
+- Calls from Business Application Studio `New Project from Template` wizard are now handled correctly.
+- `cds add cf-manifest` correctly generates the XSUAA instance name.
+- `cds build` always uses the configured hana build task when building the MTX sidecar.
+- `cds import` OData V4 EDMX fix for Annotation Alias and Namespace value replacement.
+
+### Changed
+
+- `cds build` now fails if HANA schema evolution changes exist that need to be manually resolved.
+- `cds build` now throws an error for Java apps using the mtx build task in combination with `@sap/cds-dk` version >= 7.
+- `cds import` now supports OData V4 EDMX file with empty or missing `EntityContainer`.
+
+## Version 7.0.3 - 2023-07-21
+
+### Fixed
+
+- `cds deploy` writes settings under profile `hybrid` as default in `.cdsrc-private.json`
+- `cds add sample` uses default `/odata/v4/` service paths and data source paths in UI5 `manifest.json` files.
+- When a request fails, shorter errors are printed and secret data is hidden. (Set `DEBUG=req` in env to see all details again.)
+- Now shows all commands when a given command on the command line is not found
+- `cds import --from edmx` fixes rendering of nested annotations in the CSN.
+
+### Changed
+
+- `cds add` adheres to existing indentation style when changing JSON files.
+- `cds add typer` no longer adds `checkJs: true` to your configuration.
+- `cds init` uses latest Maven Java archetype version 2.0.2 for creating Java projects.
+- `cds build` now throws an error if MTX sidecar and application db configuration is inconsistent.
+- `cds watch --open` now delays the opening of the URL by 1s to allow the server to start up. This is needed for plugins that register routes asynchronously.
+
+## Version 7.0.2 - 2023-07-06
+
+### Changed
+
+- `cds add kibana-logging` is (compatibly) renamed to `cds add kibana`.
+
+### Fixed
+
+- `cds` commands do not swallow error stack traces in some cases any more.
+- `cds watch` does not swallow compiler errors in some cases any more.
+- `cds add sample` has modernized configuration for Fiori-related files in the `app` folder.
+- `cds add sample` now also contains a read-only service for browsing books.
+- `cds add kibana-logging` now also adds the logging service to the MTX sidecar and approuter, if available.
+- `cds build` preferably creates i18n bundle at default location `_i18n` for custom i18n folder configurations.
+- `cds watch` no longer fails if `@sap/cds-dk` is installed as dependency along with `cds-swagger-ui-express`.
+- `cds build` ensures that `@sap/cds` version >= 6 is installed.
+
+## Version 7.0.1 - 2023-06-30
+
+### Changed
+
+- `cds add` has a slightly revamped CLI UX.
+- `cds init` and `cds add sqlite` add the new package `@cap-js/sqlite`, which uses `better-sqlite` instead of `sqlite3`.
+- `cds add sample-tiny` is (compatibly) renamed to `cds add tiny-sample`.
+
+### Fixed
+
+- `cds import --from asyncapi` now maps `@topic` annotation to the event key.
+- `cds build` now copies the contents of MTX sidecar subfolders to the deployment layout.
+- `cds compile --to xsuaa` can be used again if `@sap/cds` 6 is installed.
+- `cds env` output is again JSON in non-interactive terminals. This restores the behavior from `@sap/cds-dk` 6.
+
+## Version 7.0.0 - 2023-06-22
+
+### Added
+
+- `cds add connectivity` now supports MTA-based deployment.
+- `cds add destination` now supports MTA-based deployment.
+- `cds add enterprise-messaging` creates scopes for `emcallback` and `emmanagement` in the `xs-security.json` if XSUAA is enabled.
+- `cds add hana` adds the new package `@sap/cds-hana` instead of the direct `hdb` dependency.
+- `cds add mta` writes an `event-mesh.json` if the Event Mesh is set up.
+- `cds add typer` adds type generation support for projects using the Node runtime.
+- `cds add sample` creates a bookshop application incl. Fiori UI.
+- `cds add samples` is deprecated. Use `cds add tiny-sample` instead.
+- `cds env` supports new options `--keys`, `--list`, `-json`, and `--raw`. See `cds env ?` for details.
+- `cds import --from asyncapi` now adds `@topic` annotation for specifying the channel name for the event.
+- `cds import --from asyncapi` now updates the `package.json` for multiple services.
+- `cds init --add java` prints a more specific error message when not using Java 17 in SAP Business Application Studio.
+- New property `cds.cli` allows reflecting on the CLI command and arguments.
+
+### Changed
+
+- `--production` as a global flag now sets `CDS_ENV` to `production` instead of `NODE_ENV`.
+- `cds add typer` is now allowed to be used, even if the runtime considers the project to be of Java nature.
+- `cds add typer` now generates to `@cds-models`, which will also be `.gitignore`d by the facet.
+- `cds add typer` now properly handles TypeScript projects, if possible.
+- `cds add connectivity` now supports MTA-based deployment.
+- `cds add data --for` is dropped in favor of `--data:for`.
+- `cds add destinations` is renamed to `cds add destination`.
+- `cds add enterprise-messaging` changes the default for the `topicRules.publish-filter` to `${namespace}/*`.
+- `cds add enterprise-messaging` uses a more unique default (`default/<app-name>/1`) as its `namespace`.
+- `cds add hana` uses a plain `cds.requires.db = 'hana'`, also for multitenancy scenarios.
+- `cds bind` parameter `--for` replaces `--profile` to specify the profile to store connection information in `.cdsrc-private.json`; `cds bind --exec` still uses `--profile`.
+- `cds build` moved to `@sap/cds-dk`.
+- `cds build` no longer supports `@sap/cds-mtx`. Migrate to `@sap/cds-mtxs`, see https://cap.cloud.sap/docs/guides/multitenancy/old-mtx-migration.
+- `cds build` no longer supports the classic CAP Java runtime. Migrate to the current CAP Java runtime SDK, see https://cap.cloud.sap/docs/java/migration.
+- `cds deploy` moved to `@sap/cds-dk`.
+- `cds deploy` now supports `--for` to specify the profile to store connection information in `.cdsrc-private.json`.
+- `cds deploy` parameter `--no-save` is default.
+- `cds import --from asyncapi` now takes event name from key `name` in the message.
+- `cds init` uses latest Maven Java archetype version `2.0.1` for creating Java projects. This also requires Java 17 or higher.
+- `cds watch` and `cds run` don't display stack traces any more if no models are found.
+- `cds login` (and other commands implicitly logging in) now use the POST method to transmit credentials to @sap/cds-mtxs.
+
+### Fixed
+
+- `cds add mta` now correctly generates the `mta.yaml` following a `cds add enterprise-messaging-shared`.
+- `cds add typer` now correctly defaults to `…/cds-models`, instead of `…/cds-modules` as output path for generated types.
+- `cds build` ignores invalid entries in an `undeploy.json` file.
+- `cds build` now correctly copies CAP Node.js service handler implementations contained in different service modules. The service handlers will now be loaded correctly in local as well as in cloud deployment scenarios.
+- `cds build` now correctly copies JavaScript files located in nested folders of a Node.js app into the deployment folder.
+- `cds build` now correctly resolves model files of complex mtx extension projects.
+- `cds build` now correctly supports shortcut options
+- `cds-ts watch` no longer fails with strange compilation errors if called in combination w/ `ts-node`.
+- `cds login` no longer echoes output from an NPM subprocess.
+- `cds build` now creates the correct deployment layout for Node.js applications.
+
+## Version 6.8.3 - 2023-06-15
+
+### Fixed
+
+- `@sap/cds` 6.8.4
+- `@sap/cds-compiler` 3.9.4
+
 ## Version 6.8.2 - 2023-05-31
 
 ### Changed

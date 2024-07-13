@@ -8,6 +8,13 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+
+## Version 5.0.0 - 2024-05-29
+
+## Removed `v5preview`
+
+It is now enabled by default.
+
 ## Version 4.9.0 - 2024-04-25
 
 ## Removed `odataAnnotationExpressions`

@@ -6,6 +6,47 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.0.2 - 2024-07-11
+
+### Changed
+
+- Calls to Service Manager now include the `Client-ID` and `Client-Version` headers.
+
+### Fixed
+
+- Reduced number of Service Manager requests to `service_instances` in the error case.
+
+## Version 2.0.1 - 2024-07-04
+
+### Added
+
+- Added HANA build plugin mappings `.hdbeshconfig` and `.hdbcalculationview` required for enterprise search and embedded analytics integration.
+- The Service Manager client reports the container state on timeouts.
+
+### Fixed
+
+- Improved robustness in case of temporary extension inconsistencies.
+- The Service Manager client now stores instance and binding locations used for async polling in-memory, allowing parallel subscriptions for single-instance applications.
+- The Service Manager client automatically recreates instances in "creation failed" state on subscription.
+
+### Removed
+
+- `@sap/instance-manager` is not supported any longer as a fallback to the built-in Service Manager client.
+
+## Version 2.0.0 - 2024-06-19
+
+### Added
+
+- Additional endpoint to get the passcode URL.
+- Dependencies for the SAP BTP Connectivity, Audit Logging, and Destinations services are automatically added if `cds.requires.[connectivity|audit-log|destinations]` properties are set, respectively.
+
+### Changed
+
+- `@sap/cds-mtxs` now requires `@sap/hdi-deploy >= 4`.
+- Deprecated endpoint `upgradeAll` has been removed from `SaasProvisioningService`.
+- Use the `cds.compile.to.hana` API to support cds plugins such as embedded analytics.
+- When pushing an extension, the extension is blocked if it contains critical annotations.
+
 ## Version 1.18.2 - 2024-06-24
 
 ### Changed
@@ -17,6 +58,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Certificate check for sms subscription now also compatible with kyma.
 - Feature toggles can contain `.` again.
 - Extension field limit check now correctly accepts `0` as no fields to be extended.
+
 
 ## Version 1.18.1 - 2024-05-16
 
@@ -57,6 +99,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Changed
 
 - `/-/cds/saas-provisioning/upgrade` sent as an async request with payload `"tenants": ["*"]` will now return job information even if no tenants are found.
+- Default restrictions for code extensions and security annotations are now aways applied.
 
 ### Fixed
 
