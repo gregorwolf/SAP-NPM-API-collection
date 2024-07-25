@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.2.0 - 2024-07-15
+
+### Updated 
+- eslint to v9.7.0
+- mocha to 10.6.0
+- filter-node-package to 4.0.0
+
 ## 5.1.0 - 2024-04-01
 
 ### Removed

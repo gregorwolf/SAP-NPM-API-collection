@@ -1,16 +1,16 @@
 # Adaptation Project Yeoman Sub-Generators
 
-WARNING: This package is intended for usage within SAP Business Application Studio. VSCode usage is in experimental mode.
+WARNING: This package is intended for usage within SAP Business Application Studio. For more information, see [Extending SAP Fiori Applications](https://help.sap.com/docs/bas/developing-sap-fiori-app-in-sap-business-application-studio/extending-sap-fiori-application?locale=en-US).  VSCode usage is in experimental mode. For more information, see [Adapting an Application](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/802f01cb252746468038b856b6c56c56.html?locale=en-US).
 
 Yeoman Generator for creating an Adaptation Project in the SAP Business Application Studio.
 
-Six sub-generators that are included in the repository under the main generator:
+There are six sub-generators that are included in the repository under the main generator:
 
-- **Deployment Wizard** (Generator used for deploying Adaptation Projects)
-- **Replace OData Service** (Generator used to create Application descriptor changes by adding an OData Service changes to an Adaptation Project)
-- **Change Inbound** (Generator used to create Application descriptor changes by adding a Change Inbound to an Adaptation Project)
-- **Add Annotation File** (Generator used to create Application descriptor changes by adding an annotation file to the Adaptation Project)
-- **Add New SAPUI5 Model and Add ОData Service** (Generator used to create Application descriptor changes by adding an OData Service and new SAPUI5 model to the Adaptation Project)
-- **Add SAPUI5 Component Usages** (Generator used to create Application descriptor changes by adding SAPUI5 Component Usages change to the Adaptation Project)
+- **Deployment Wizard:** Generator used for deploying adaptation projects.
+- **Replace OData Service:** Generator used to create application descriptor changes by adding an OData Service changes to an adaptation project.
+- **Change Inbound:** Generator used to create application descriptor changes by adding a Change Inbound to an adaptation project.
+- **Add Annotation File:** Generator used to create application descriptor changes by adding an annotation file to the adaptation project.
+- **Add New SAPUI5 Model and Add ОData Service:** Generator used to create application descriptor changes by adding an OData service and new SAPUI5 model to the adaptation project.
+- **Add SAPUI5 Component Usages:** Generator used to create application descriptor changes by adding SAPUI5 Component Usages change to the adaptation project.
 
 All sub-generators can be started from the context menu by clicking on the `manifest.appdescr_variant`.

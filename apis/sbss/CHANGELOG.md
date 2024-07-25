@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.2.0 - 2024-07-22
+
+### Updated
+- Update `mocha` to ^10.4.0
+- Update `eslint` to 8.57.0
+
 ## 7.1.0 - 2024-04-01
 
 ### Removed

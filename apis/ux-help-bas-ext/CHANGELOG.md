@@ -7,6 +7,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Joule
 - **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
 
+## [1.14.2] - 2024-07-10
+### Added
+- Added functionality to choose existing UI.Chart annotations in the _Add a micro chart column to a table_ guide
+- Reworked Step 4 of the _Add an analytical card to an overview page_ guide by adding a parameter collection table for easy editing, and the possibility to work with the existing UI.Identification annotation
+
+### Changed
+- Removed the Determining property for the UI.DataFieldForAction annotation in the _Add and edit table columns_ guide, as it not recommended by the SAP Fiori elements framework
+- Removed the editing capabilities for the _Group By_ and _View_ options in the extension toolbar, as it lead to incorrect guide filtering on edit
+
+### Fixed
+- Fixed an issue with the tooltip of the button not being updated when switching the guide to full-screen mode. Additionally, the tooltips of the icons were renamed to `Expand view` and `Split view`
+
 ## [1.14.1] - 2024-06-26
 ### Added
 - Added two new ways to open the _Request a New Guide_ form: via the command palette entry "Fiori: Request New Guide" and through "Guide Requests for Guided Development" under the Useful Links section in the information panel

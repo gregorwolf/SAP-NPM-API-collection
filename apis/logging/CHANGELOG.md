@@ -5,6 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.2.0 - 2024-07-19
+
+### Updated
+- updated `moment`dependency to 2.30.1
+- updated `async`dependency to 3.2.5
+- updated `c8`dependency to 10.1.2
+- updated `chai`dependency to 4.4.1
+- updated `eslint`dependency to 8.57.0
+- updated `got`dependency to 14.0.0
+- updated `mocha`dependency to 7.2.0
+- updated `should`dependency to 13.2.3
+- updated `sinon`dependency to 18.0.0
+- updated `supertest`dependency to 7.0.0
+
 ## 8.1.0 - 2024-04-01
 
 ### Removed

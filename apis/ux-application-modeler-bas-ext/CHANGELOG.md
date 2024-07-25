@@ -5,6 +5,17 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.2] - 2024-07-10
+### Added
+- Added the "Display as Image" property for basic columns and fields, allowing image URLs to be displayed as images in OData V4 applications
+
+### Fixed
+- Fixed an issue where the Page Map stopped working due to a 'RangeError: Maximum call stack size exceeded' error when routing referenced the same page again
+- Fixed an issue where the Application Modeler erroneously monitored the `.git` folder
+- Fixed an issue where the Page Editor reported a missing `lineitem` annotation when a table was defined through views and selection presentation variants
+- Fixed an issue where saved systems with trailing or leading spaces in the system URL would cause the saved system to not be usable
+- Fixed an issue with the environment check tool where it could return incorrect results for a saved system in Visual Studio Code
+
 ## [1.14.1] - 2024-06-27
 ### Fixed
 - Fixed an issue where a discrepancy between the internal representation and `manifest.json` of custom pages led to the creation of unnecessary undo steps

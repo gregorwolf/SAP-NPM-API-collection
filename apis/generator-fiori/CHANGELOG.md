@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.2] - 2024-07-10
+### Changed
+- Updated the minimum UI5 version to be 1.120.13 when creating an SAP Fiori application for a CAP project with SAP Build Code productivity tools
+- Updated the SAP Fiori generator to automatically add reference to the notes reuse library component (sap.nw.core.gbt.notes.lib.reuse) if a service is annotated with UI.Note
+
 ## [1.14.1] - 2024-06-26
 ### Changed
 - Updated to the latest library versions for adding code assist libraries during project generation

@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.2.0 - 2024-07-22
+
+### Added
+- Redacted sensitive information in debug console for cf services
+
+### Updated
+- Updated `debug` dependency to 4.3.5
+- Updated `eslint` dependency to 8.57.0
+- Updated `c8` dependency to 10.1.2
+- Updated `mocha` dependency to 10.7.0
+
 ## 5.1.0 - 2024-04-01
 
 ### Removed

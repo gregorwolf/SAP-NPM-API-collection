@@ -74,10 +74,10 @@ ar.start();
 The application router defines the following slots where you can insert custom middleware:
 * `first` - right after the _connect_ application is created, and before any
 application router middleware.
-At this point security checks are not performed yet.
+At this point security checks are not performed yet. For websockets extensions use *firstWS*. 
 __Tip:__ This is a good place for infrastructure logic like logging and monitoring.
 * `beforeRequestHandler` - before standard application router request handling,
-that is static resource serving or forwarding to destinations.
+that is static resource serving or forwarding to destinations.  For websockets extensions use *beforeRequestHandlerWS*.
 __Tip:__ This is a good place for custom REST API handling.
 * `beforeErrorHandler` - before standard application router error handling.
 __Tip:__ This is a good place to capture or customize error handling.

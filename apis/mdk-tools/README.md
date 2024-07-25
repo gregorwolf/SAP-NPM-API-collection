@@ -175,3 +175,13 @@ It provides the CLI to assist Mobile Development Kit (MDK) application developer
     ```bash
     mdk migrate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt
     ```
+- Validator
+You can validate MDK project through the below command:
+    ```bash
+    mdk validate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt
+    ```
+    The option '--log-file' is not required, you can use it to output the logs to a file.
+    You can use option '--log-level' to specify which logs can be output. The acceptable values are: 0 (Debug), 1 (Info), 2 (Warn), 3 (Error). Default value is 3.
+    ```bash
+    mdk validate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt --log-level 1
+    ```

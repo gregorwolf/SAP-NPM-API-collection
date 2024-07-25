@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.2.0 - 2024-07-22
+- move credential validation from Service constructors to fine-grained property validation upon use to support token fetches with partial credentials
+- add type definitions for the configuration of the JWKS cache to the Service configuration
+- include information about original http client error in both RequestError objects and debug log to allow analysis of the root cause of HTTP requests that cannot be sent
+
 ## 4.1.3 - 2024-06-27
 - add zid as optional parameter to XsuaaService token fetch requests
 - minor JsDoc fixes

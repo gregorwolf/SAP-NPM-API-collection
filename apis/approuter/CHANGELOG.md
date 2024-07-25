@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.6.1 - 2024-07-22
+
+### Added
+- Support firstWS and beforeRequestHandlerWS websocket extensions 
+
+### Fixed
+- clear jwtRefreshStarted when fetching session from redis
+- enforce url tenant and jwt tenant are the same in IAS scenario.
+- Added timeout for `sendStateParameter`.
+- Login issue that occurred during the transition from unpartitioned to partitioned cookies.
+- Changed the log level for Websocket outgoing connection log msg with a 200 response code from "Error" to "Warning".
+
 ## 16.6.0 - 2024-06-25
 
 ### Added

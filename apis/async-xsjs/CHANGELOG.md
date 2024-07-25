@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.0.1"></a>
+## 2.0.1 - 2024-07-23
+
+### Fixed
+- Fixed executePromise and executeBatch function in the hdb connection interface
+
+### Updated
+- Dependent node module versions updated to latest versions to support Node 20.
+- Updated hana-client to v2.21.28
+- Updated express version to 4.19.2 to fix the security vulnerability.
+- Updated @sap/node-jwt version to 1.6.23 to fix the security vulnerability.    
+- Updated @sap/node-vsi version to 1.4.27 to fix the security vulnerability.
+- Updated nodemailer version to 6.9.9 to fix the security vulnerability.
+- Updated moment-timezone version to 0.5.35 to fix the security vulnerability.
+      
 <a name="2.0.0"></a>
 ## 2.0.0 - 2023-12-08
 

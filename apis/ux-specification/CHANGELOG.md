@@ -8,6 +8,32 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.15] - 2024-07-11
+
+### Added
+
+### Changed
+
+- The API function getApiVersion now also returns the module version of the given ux-specification module.
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- An error message "UI.Lineitem annotation has not been defined" was incorrectly returned in cases where the app uses views with (Selection)PresentationVariants leading to valid Lineitem annotations with a qualifier.
+
+### Quality
+
+Upgrades:
+
+- @sap-ux/fe-fpm-writer to 0.25.0
+- @ui5/manifest to 1.66.0
+- npm-run-all2 to 6.2.2
+- rimraf to 5.0.8
+- @sapui5/types to 1.125.1
+
 ## [1.120.14] - 2024-06-26
 
 ### Added
