@@ -6,4 +6,4 @@ This module is intended to be used only within the [SAP Business Application Stu
 See the [documentation](https://help.sap.com/viewer/product/HANA_CLOUD/latest/en-US?task=develop_task) for more details.
 
 ## License
-This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_1.txt).
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_2.txt).

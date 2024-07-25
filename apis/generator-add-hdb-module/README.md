@@ -9,4 +9,4 @@ The SAP HANA Database Module Generator simplifies the process of adding an SAP H
 * The SAP HANA Database Module Generator works by default with [SAP Business Application Studio](https://help.sap.com/viewer/9d1db9835307451daa8c930fbd9ab264/Cloud/en-US/8f46c6e6f86641cc900871c903761fd4.html), the XS advanced command-line interface,  and the Cloud Foundry command-line interface. No additional configuration is required.
 * To use a graphical UI for the SAP HANA Database Module Generator in Visual Studio Code, install the [Application Wizard](https://marketplace.visualstudio.com/items?itemName=SAPOS.yeoman-ui) extension.
 ## License
-This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_1.txt).
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_2.txt).

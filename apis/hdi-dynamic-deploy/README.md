@@ -27,7 +27,7 @@ Usually, `@sap/hdi-dynamic-deploy` gets installed via a `package.json`-based dep
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-dynamic-deploy": "2.7.2"
+    "@sap/hdi-dynamic-deploy": "2.8.1"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-dynamic-deploy/"

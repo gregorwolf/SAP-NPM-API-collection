@@ -27,7 +27,7 @@ An overview of available options is given in what follows.
 
 | Option Key                           | Default Value | Description                                                                                                                                    | Parent Option                 |
 |--------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
-| alignAfterKey                        | true          | Align _element identifiers_ after optional `key` keyword                                                                                       |                               |
+| alignAfterKey                        | true          | Align _element identifiers_ and `select` items after optional `key` keyword                                                                    |                               |
 | alignAnnotations                     | true          | Align _annotations_                                                                                                                            |                               |
 | alignPreAnnotations                  | true          | Align annotations before items. If multiple annotations exist in a line, they are aligned in a tabular way                                     | alignAnnotations              |
 | alignPostAnnotations                 | true          | Align annotations after items                                                                                                                  | alignAnnotations              |

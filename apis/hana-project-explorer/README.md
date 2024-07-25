@@ -8,4 +8,4 @@ See the [documentation](https://help.sap.com/viewer/product/HANA_CLOUD/latest/en
 
 ## License
 
-This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_1.txt).
+This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_2.txt).

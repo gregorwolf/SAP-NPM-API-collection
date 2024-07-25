@@ -1,4 +1,4 @@
-## 1.4.1
+## 1.4.3
 
 ### Timeline Tab (Enhanced)
 - Usability has been significantly improved, resulting in quicker interactions when an operator is clicked from the Plan Graph or the lists on the left sidebar.
