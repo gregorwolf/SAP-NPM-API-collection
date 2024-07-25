@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.0.3 - 2024-07-19
+
+- `cdsc` options from the main application are not propagated to the t0 tenant any longer.
+
 ## Version 2.0.2 - 2024-07-11
 
 ### Changed

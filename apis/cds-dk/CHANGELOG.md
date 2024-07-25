@@ -7,6 +7,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 8.0.3 - 2024-07-20
+
+### Fixed
+
+- `cds build --ws` no longer creates migration tables in shared db if already existing in a workspace.
+- `cds add destination` adds the destination service as an MTX SaaS dependency.
+- `cds add html5-repo` adds the HTML5 repo runtime as an MTX SaaS dependency.
+- `cds add html5-repo` does not add a destination service any more if not required by other services.
+- `cds add workzone` runs `cds add destination` as a dependent facet.
+- `cds add` plugins don't fail if custom options are provided via the `options` API.
+- `cds add data` can now correctly handle circular associations. The maximum depth of associations is increased to 5.
+- `cds add redis` is separated from `cds add redis-messaging` to allow for separate consumption.
+- `cds add redis` uses the `standard` service plan by default.
+- `cds watch` no longer leads to a warning `'@sap/cds' was loaded from different installations` when local project dependencies are installed.
+- `cds init` uses latest Maven Java archetype version 3.0.0 for creating Java projects.
+
+
 ## Version 8.0.2 - 2024-07-12
 
 ### Added
@@ -19,9 +36,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - `cds add helm` removed `saasRegistryParameters` key and moved parameters to `saas-registry`.
 - `cds init` no longer creates a `.cdsrc.json` for Node.js projects.
 - `cds build` configuration cleanup for `data.model` and `service.model` to only support configuration of a single model folder.
-
-### Fixed
-
 
 ## Version 8.0.1 - 2024-07-09
 
@@ -128,6 +142,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - `cds add notebook` is removed.  CAP Jupyter Notebooks have been replaced by custom CAP Notebooks for VS Code which are now part of the CDS Editor.  See https://cap.cloud.sap/docs/tools/#add-cds-editor for more.
 
+
+## Version 7.9.6 - 2024-07-19
+
+### Fixed
+
+- `cds add data` can now correctly handle circular associations. The maximum depth of associations is increased to 5.
 
 ## Version 7.9.5 - 2024-07-12
 

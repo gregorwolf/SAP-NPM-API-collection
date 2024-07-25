@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 8.0.4 - 2024-07-19
+
+### Fixed
+
+- Atomicity group handling in `$batch`
+- `$batch` im combination with `commit` hooks
+- `continue-on-error` preference for JSON `$batch`
+
 ## Version 8.0.3 - 2024-07-12
 
 ### Added
