@@ -176,6 +176,6 @@
     "@sap/xsjs-test": "3.2.2",
     "@sap/xsodata": "8.1.2",
     "@sap/xss-secure": "5.1.0",
-    "@sap/xssec": "4.2.0"
+    "@sap/xssec": "4.2.1"
   }
 }

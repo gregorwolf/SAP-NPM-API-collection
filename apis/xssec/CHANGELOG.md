@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.2.1 - 2024-07-25
+- fix JWKS URL construction for XSA service bindings whose url contains already a path
+
 ## 4.2.0 - 2024-07-22
 - move credential validation from Service constructors to fine-grained property validation upon use to support token fetches with partial credentials
 - add type definitions for the configuration of the JWKS cache to the Service configuration
