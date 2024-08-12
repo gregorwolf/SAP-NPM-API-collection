@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.3] - 2024-07-24
+### Added
+- Added more flexibility to the `fiori-tools-preview` middleware to support all possible configuration options provided by the open source `@sap-ux/preview-middleware`
+
+### Fixed
+- Fixed an issue with preview of adaptation projects not working
+
 ## [1.14.1] - 2024-06-26
 ### Fixed
 - Fixed an issue where run configurations were loading the SAPUI5 version from the default location, even though a different source location was specified

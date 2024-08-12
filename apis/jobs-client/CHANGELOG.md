@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+## 1.8.5 - 2024-07-29
+
+### Changed
+
+- developer license file name changed from developer-license-3.2 to LICENSE reffering to SAP Developer License
+
+## 1.8.4 - 2024-07-24
+
+### Changed
+
+- developer license version from 3.1 to 3.2 reffering to SAP Developer License
 
 ## 1.8.3 - 2023-12-22
 

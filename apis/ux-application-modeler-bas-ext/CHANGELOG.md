@@ -5,6 +5,11 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.3] - 2024-07-24
+### Changed
+- Updated the format of the environment check results when checking a destination on SAP Business Application Studio so that the most relevant information is displayed first
+- Refactored various sections of code to prepare for improvements to the app schema handling, and moved code to open source
+
 ## [1.14.2] - 2024-07-10
 ### Added
 - Added the "Display as Image" property for basic columns and fields, allowing image URLs to be displayed as images in OData V4 applications

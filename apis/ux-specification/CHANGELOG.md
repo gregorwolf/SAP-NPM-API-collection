@@ -8,6 +8,29 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.16] - 2024-07-24
+
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+Upgrades:
+
+- @sap-ux/annotation-converter to 0.8.15
+- @sap-ux/vocabularies-types to 0.10.14
+- prettier to 3.3.3
+- rimraf to 5.0.9
+- semver to 7.6.3
+- jsdom to 24.1.1
+
 ## [1.120.15] - 2024-07-11
 
 ### Added

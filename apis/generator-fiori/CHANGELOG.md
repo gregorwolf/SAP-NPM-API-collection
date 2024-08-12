@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.3] - 2024-07-24
+### Changed
+- Improved the error message text that appears when a user attempts to load the SAP Fiori generator in SAP Business Application Studio directly from ABAP Development Tools in Eclipse when the provided destination cannot retrieve the required service details
+
 ## [1.14.2] - 2024-07-10
 ### Changed
 - Updated the minimum UI5 version to be 1.120.13 when creating an SAP Fiori application for a CAP project with SAP Build Code productivity tools

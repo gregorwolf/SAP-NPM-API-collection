@@ -7,6 +7,21 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Joule
 - **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
 
+## [1.14.3] - 2024-07-24
+### Changed
+- Improved the visualization of parameter collection tables by doing the following:
+  - increasing the table width to reduce empty horizontal space
+  - ensuring the label is always the first parameter and has a fixed width
+  - displaying an ellipsis for the parameter name in case it exceeds the available space
+  - displaying the hand icon when hovering, to indicate that a row supports the drag-and-drop functionality
+
+### Fixed
+- Fixed an issue with the _Enable a Show Related Apps button_ guide where the list report page was shown even though the guide is only applicable to object pages
+- Fixed an issue with the "Guide Requests for Guided Development" link in the SAP Fiori Information panel where the _Request a new guide_ form did not open if a workspace contained only one project
+- Fixed an issue related to scrolling to an error in any guide: now scrolling to an error only takes place if the error is not already visible on the screen
+- Fixed an issue where the info icon was not visually aligned with the bubble icon that is used to mark parameters filled with values from the previous action
+- Fixed an issue with guides not opening in full-screen mode when using a small screen
+
 ## [1.14.2] - 2024-07-10
 ### Added
 - Added functionality to choose existing UI.Chart annotations in the _Add a micro chart column to a table_ guide

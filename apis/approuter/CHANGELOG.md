@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.6.2 - 2024-07-31
+
+### Fixed
+- Don't use filter by subdomain when getting destinations from subscriber
+- Add id_token after refresh IAS token
+- Forward authToken when calling backend in logout flow
+
 ## 16.6.1 - 2024-07-22
 
 ### Added

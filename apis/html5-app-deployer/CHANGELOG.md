@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.4.2 - 2024-08-04
+
+### Fixed
+- Service name calculation in GACD client
+
+## 6.4.1 - 2024-07-28
+
+### Fixed
+- Passing cdm.json in GACD client
+
 ## 6.4.0 - 2024-07-01
 
 ### Added

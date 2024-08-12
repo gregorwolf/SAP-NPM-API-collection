@@ -394,13 +394,50 @@ server:
 ```
 
 ### [**4. Preview**](#4-preview)
-The `fiori-tools-preview` middleware enables the developer variant creation for SAP Fiori applications.
+The preview middleware provides the capability to preview an application in a local Fiori launchpad. It hosts a local Fiori launchpad based on your configuration and offers an API to modify flex changes in your project. The middleware is a wrapper for the open source middleware `@sap-ux/preview-middleware` (https://www.npmjs.com/package/@sap-ux/preview-middleware) with a handful of default settings that are useful for the Fiori application development.
 
-### Example configuration
-Executing `npx fiori run --open preview.html` in your project with the configuration below in the `ui5.yaml` opens a new browser tab with the application switched to UI adaptation mode for variant creation. The file `preview.html` is created dynamically at runtime by the `fiori-tools-preview` middleware.
+#### [Configuration Options](#configuration-options-2)
 
+The full list of configuration options is described at https://www.npmjs.com/package/@sap-ux/preview-middleware. 
+
+The following properties are the most important:
+
+- `flp:`
+  - `path:` optional mount point of the local Fiori launchpad default is `/test/flp.html`
+  - `theme:` optional flag for setting the UI5 Theme
+  - `libs:` boolean: optional flag to add a generic script that fetches the paths of the libraries used, which are not available in UI5. To disable it, set it to `false`. If the flag is not set, the project will be checked for a `load-reuse-libs` script and if it is available, the libraries will also be fetched.
+- `adp:`
+  - `target:` required configuration for adaptation projects defining the connected backend
+- `debug:` boolean: enables debug output
+
+
+#### [Minimal configuration](#minimal-configuration)
+With no configuration provided, the local Fiori launchpad will be available at `/test/flp.html` and the log level is info. Additionally, an editor in UI adaptation mode for variant creation will be hosted at `/preview.html`.
+
+```yaml
+  customMiddleware:
+  - name: fiori-tools-preview
+    afterMiddleware: fiori-tools-appreload
 ```
-server:
+
+#### [Configuring path and theme](#configuring-path-and-theme)
+With the following configuration, the local Fiori launchpad will be available at `/test/flpSandbox.html`, the used theme will be SAP Horizon and the log level is debug. Additionally, an editor in UI adaptation mode for variant creation will be hosted at `/preview.html`.
+
+```yaml
+  customMiddleware:
+  - name: fiori-tools-preview
+    afterMiddleware: fiori-tools-appreload
+      configuration:
+        flp:
+          path: /test/flpSandbox.html
+          theme: sap_horizon
+        debug: true
+```
+
+#### [Deprecated configuration](#deprecated-configuration)
+The initial version of the middleware allowed setting the theme and required to set an application component. The component is not required anymore and the theme property has move to `flp-theme`, however, for backward compatibility, the following configuration is deprecated but still supported.
+
+```yaml
   customMiddleware:
   - name: fiori-tools-preview
     afterMiddleware: fiori-tools-appreload
@@ -408,11 +445,21 @@ server:
       component: myapp
       ui5Theme: sap_fiori_3
 ```
+This configuration is internally converted to following.
 
-### Configuration options
-- **`component`** - application component of the SAP Fiori application (value is prefilled when the application is generated with https://www.npmjs.com/package/@sap/generator-fiori).
-- **`ui5Theme`** - SAP Fiori theme of the application (value is prefilled when the application is generated with https://www.npmjs.com/package/@sap/generator-fiori).
-- **`libs`** - boolean: optional flag to add a generic script that fetches the paths of the libraries used, which are not available in UI5. To disable it, set it to `false`. If the flag is not set, the project will be checked for a `load-reuse-libs` script and if it is available, the libraries will also be fetched.
+```yaml
+  customMiddleware:
+  - name: fiori-tools-preview
+    afterMiddleware: fiori-tools-appreload
+      configuration:
+        flp:
+          path: /test/flpSandbox.html
+          intent:
+            object: preview
+            action: app
+          theme: sap_fiori_3
+```
+
 
 ## [**Tasks**](#tasks)
 
