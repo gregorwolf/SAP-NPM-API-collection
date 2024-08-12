@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## Version 2.0.5 - 2024-08-06
+
+### Fixed
+
+- The server startup no longer yields the `WARNING: Package '@sap/cds' was loaded from different installations:` message in PNPM setups with `--global-bin-dir` on. This happened in BAS, for example on `cds watch/serve` etc.
+- Setting `HDI_DEPLOY_OPTIONS` to `'{"use_hdb": false}'` now works correctly for `@sap/hana-client` fallbacks.
+
+## Version 2.0.4 - 2024-07-31
+
+### Added
+
+- `cds.requires['cds.xt.SaasProvisioningService'].alwaysUpgradeModel = false` will omit a model upgrade for SaaS registry updates.
+
+### Fixed
+
+- Better error message when Service Manager credentials cannot be resolved.
+- `/-/cds/saas-provisioning/upgrade` will ignore tenants that do not exist in Service Manager any more and print out a warning.
+- `cds.requires.html5-repo: true` will correctly set the subscription dependency out of the box.
+- Scope check for `cds.xt.JobService.enqueue()´ is now more restrictive.
+
 ## Version 2.0.3 - 2024-07-19
 
 - `cdsc` options from the main application are not propagated to the t0 tenant any longer.

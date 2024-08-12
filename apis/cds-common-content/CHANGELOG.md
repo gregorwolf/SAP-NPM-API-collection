@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
-## Version 2.0.0 - tbd
+## Version 2.1.0 - 2024-07-31
+
+### Added
+
+- Translations for new languages: bg (Bulgarian), el (Greek), he (Hebrew), hr (Croatian), kk (Kazakh), sk (Slovak), sl (Slovenian), sr (Serbian), uk (Ukrainian)
+
+## Version 2.0.0 - 2024-06-18
 
 ### Removed
 

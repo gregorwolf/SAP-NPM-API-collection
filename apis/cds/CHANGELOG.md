@@ -4,10 +4,47 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 8.1.1 - 2024-08-08
+
+### Fixed
+
+- For `accept-language`, ignore additional options
+- Global `describe`, `before`, `beforeAll`, `afterAll` hooks are now writable again. They were accidentally made read-only in 8.0.0.
+- Expand to `DraftAdministrativeData` for active instances of draft-enabled entities over drafts
+- Deduplication of columns for certain on conditions for the legacy database driver
+- For legacy-sqlite/-hana: Add keys to expands with only non-key elements to ensure not returning null for expand.
+- New parser was to restrictive regarding an empty line at the end of batch body.
+- Error target for operations with complex parameters
+- Remote services: JWT gets found in authorization header
+- Search with invalid characters
+- Invoke `srv.on('error')` for each failing batch subrequest
+
+## Version 8.1.0 - 2024-07-26
+
+### Added
+
+- Streaming of data with content type 'application/json'
+- Service annotation `@cds.server.body_parser.limit` and global config option `cds.server.body_parser.limit` allow to configure the maximum request body size in bytes. The default value by express' body parser middleware is 100 kb. See [express docs](https://expressjs.com/en/resources/middleware/body-parser.html) for details.
+- Translations for new languages: bg (Bulgarian), el (Greek), he (Hebrew), hr (Croatian), kk (Kazakh), sk (Slovak), sl (Slovenian), sr (Serbian), uk (Ukrainian)
+
+### Changed
+
+- Event Broker: Standardize behaviour for cloud events and header propagation
+
+### Fixed
+
+- Erroneous authentication of `enterprise-messaging`
+- `@odata.context` for actions/functions returning an array of <type>
+- `cds-deploy` script terminates if deployment fails
+- Allow backslashes, quotation marks and ampersands in search terms
+- Search compatibility for new parser and old db
+- The server startup no longer yields the `WARNING: Package '@sap/cds' was loaded from different installations:` message in PNPM setups with `--global-bin-dir` on. This happened in BAS, for example on `cds watch/serve` etc.
+
 ## Version 8.0.4 - 2024-07-19
 
 ### Fixed
 
+- Localized views like `localized_de_Books` where accidentially generated for new sqlite service.
 - Atomicity group handling in `$batch`
 - `$batch` im combination with `commit` hooks
 - `continue-on-error` preference for JSON `$batch`
@@ -38,6 +75,7 @@
 
 ### Fixed
 
+- `cds.log(…, 0)` now properly changes log level to `SILENT` if called after the respective logger had already been created.
 - `cds.test` recommends version 7 of `chai-as-promised`.  Version 8 is ESM-only and does not work with `cds.test` at the moment.
 - Loading of `cds.plugins` now respects the (internal!) property `cds.env.plugins` again.
 - Proper error handling for invalid draft requests in combination with `$apply`
@@ -137,6 +175,15 @@
 - Deprecated built-in `cds.compile.to.gql` and `cds.compile.to.graphql` compile targets. These are provided by `@cap-js/graphql` plugin versions >= 0.9.0.
 - Deprecated API `srv.stream`. Use `SELECT` with a single `cds.LargeBinary` column instead.
 
+## Version 7.9.4 - 2024-07-18
+
+### Fixed
+
+- View resolving for `cds.features.lean_draft`
+- Error in `enterprise-messaging` deploy script
+- Properly forward path expression infront of lamda functions for `odata-v2` remote services
+- OData queries selecting the same column with `$count=true`
+- Closed higher end of version range for dependency on `cds-types`
 
 ## Version 7.9.3 - 2024-06-27
 

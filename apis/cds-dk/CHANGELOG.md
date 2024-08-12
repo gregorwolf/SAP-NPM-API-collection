@@ -7,6 +7,56 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 8.1.1 - 2024-08-07
+
+### Added
+
+- Add more features to CAP project creation wizard in SAP Business Application Studio.
+- `cds.add.merge` now you specify a `key` in its `deletions` semantics.
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 3.1.0 for creating Java projects.
+
+### Fixed
+
+- `cds import` now gives proper error message for OData import in case of invalid OData version or invalid encoding.
+- `cds import` now able to ignore invalid escape sequence in the description of properties for OData V2.
+- `cds add mta` does not error when the `app/router` folder was deleted.
+- `cds version -i` does not show a globally installed version when none is installed or linked.
+- `cds compile --to openapi` no longer fails with `Error: Unknown protocol: graphql`.
+- `cds add data` can now correctly handle circular dependencies in entities that point to themselves via associations and compositions.
+- `cds add` returns correct suggestions for shell completion.
+- `cds version` reports correct `@sap/cds-compiler` version.
+- `cds deploy` falls back correctly to `@sap/hana-client` when `HDI_DEPLOY_OPTIONS='{"use_hdb":false}'` is set.
+
+## Version 8.1.0 - 2024-07-26
+
+### Added
+
+- `cds compile --to mermaid` can be configured with a layout direction like `LR`.
+- `cds deploy --to hana` now shows the `hdi-deploy` version when running.
+
+### Changed
+
+- Better generation of http files with `cds add http`, especially for draft requests.
+
+### Fixed
+
+- `cds add` recognizes `hasCfManifest` as inactive unless a `manifest.yml` file exists.
+- `cds add` help and suggestions are only shown when the `help` method is implemented.
+- `cds add sample` does not include the deprecated `synchronizationMode` property in `manifest.json` files any more.
+- `cds compile --to mermaid` no longer produces empty `namespace` blocks that would lead to rendering errors.
+- `cds compile --to mermaid` no longer fails for complex queries like joins.
+- `cds build --for mtx-sidecar` now correctly supports different `srv` folder name.
+- `cds add audit-log` in combination with `cds add multitenancy` correctly adds the audit-log dependency to the MTX sidecar.
+- `cds build` adds the correct hdbtabledata file paths to the hana result set.
+- `cds add` plugins can now correctly interpret `cds.cli` properties.
+- `cds deploy --to hana --dry` now shows correct files with their content.
+- `cds version` now reports the correct version of `@sap/cds` if this one is installed locally along with a local `@sap/cds-dk` installation.
+- Shell completion now works correctly for `cds init --add`.
+- `cds build --for mtx-sidecar` no longer fails if the severity of a compilation error has been downgraded from `Error` to `Warning`.
+
 ## Version 8.0.3 - 2024-07-20
 
 ### Fixed
@@ -36,6 +86,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - `cds add helm` removed `saasRegistryParameters` key and moved parameters to `saas-registry`.
 - `cds init` no longer creates a `.cdsrc.json` for Node.js projects.
 - `cds build` configuration cleanup for `data.model` and `service.model` to only support configuration of a single model folder.
+- `cds build` now fully supports default model definitions for custom build plugins.
 
 ## Version 8.0.1 - 2024-07-09
 
@@ -141,7 +192,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Removed
 
 - `cds add notebook` is removed.  CAP Jupyter Notebooks have been replaced by custom CAP Notebooks for VS Code which are now part of the CDS Editor.  See https://cap.cloud.sap/docs/tools/#add-cds-editor for more.
-
 
 ## Version 7.9.6 - 2024-07-19
 
