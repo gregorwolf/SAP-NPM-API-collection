@@ -1,3 +1,8 @@
+## 1.15.0
+
+### New Features
+- Use DBX extension API to adjust to HRTT URL changes.
+
 ## 1.14.0
 
 ### New Features

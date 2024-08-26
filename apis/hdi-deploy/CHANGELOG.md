@@ -1,3 +1,12 @@
+## 5.2.1
+Features:
+- added option `--treat-deployer-warnings-as-errors` to enable deployer-side feature for treating warnings as errors
+- enhanced liveness ping status messages
+
+Fixes:
+- fixed error message truncation in hdicallback
+- use @sap/xsenv@5.2.0
+
 ## 5.2.0
 Features:
 - added warning message if explicit parameters passed on the command line are overwritten by parameters specified in HDI_DEPLOY_OPTIONS

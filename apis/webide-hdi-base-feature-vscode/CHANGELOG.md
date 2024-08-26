@@ -1,3 +1,9 @@
+## 1.31.0
+
+### Fixes
+- When filtering UDFs with multiple return values these return values are not shown
+- Duplicate synonym is not detected during Add Data Source dialog if target container service is not added
+
 ## 1.30.0
 
 ### New Features

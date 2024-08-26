@@ -1,3 +1,9 @@
+## 1.33.0
+
+### New Features
+
+- Update DBX UI
+
 ## 1.32.0
 
 ### Fixes

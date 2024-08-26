@@ -7,6 +7,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Joule
 - **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
 
+## [1.14.4] - 2024-08-08
+### Fixed
+- Fixed an issue where incorrect validation messages were shown on certain input fields
+- Fixed an issue where guide titles were truncated when there wasn't enough horizontal space: we now show ellipsis instead
+
+### Changed
+- Changed the warning message to "Guides are not available. Please open a supported SAP Fiori project or a workspace containing SAP Fiori projects to proceed." when Guided Development is opened without any project context
+
 ## [1.14.3] - 2024-07-24
 ### Changed
 - Improved the visualization of parameter collection tables by doing the following:

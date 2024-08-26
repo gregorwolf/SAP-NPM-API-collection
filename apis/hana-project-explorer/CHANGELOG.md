@@ -1,3 +1,15 @@
+## 1.24.0
+
+### New Features
+
+- Support SQL Notebooks
+- HDI Container Content Management
+
+### Fixes
+
+- hdbgrants editor - can not add the second item under Object Privileges
+- Binding cross-container does not add proxy for XS advanced
+
 ## 1.23.0
 
 ### New Features

@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.4] - 2024-08-08
+### Changed
+- Updated the title of the SAP Fiori generator tab to `SAP Fiori generator` rather than using the generic `Template Wizard` title
+
+### Fixed
+- Fixed an issue where deprecated warning messages were shown when installing the node libraries during generation
+
 ## [1.14.3] - 2024-07-24
 ### Changed
 - Improved the error message text that appears when a user attempts to load the SAP Fiori generator in SAP Business Application Studio directly from ABAP Development Tools in Eclipse when the provided destination cannot retrieve the required service details

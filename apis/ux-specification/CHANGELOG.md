@@ -8,6 +8,32 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.120.17] - 2024-08-07
+
+### Added
+
+OData V4:
+
+- Specification API - support 'prompts' api using class "PromptsAPI" from "@sap-ux/fe-fpm-writer"
+- Adds required `sap.fe.*` libraries to manifest.json on page creation  
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+Upgrades:
+
+- "@sap-ux/fe-fpm-writer" to "0.26.4"
+- "axios" to "1.7.4"
+- "esbuild" to "0.23.0"
+- "i18next" to "23.12.2"
+
 ## [1.120.16] - 2024-07-24
 
 ### Added

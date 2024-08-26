@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.4.3 - 2024-08-15
+
+### Updated dependencies
+- deps: axios@1.7.4
+- deps: jszip@3.8.0
+
 ## 6.4.2 - 2024-08-04
 
 ### Fixed

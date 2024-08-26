@@ -5,6 +5,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 16.7.1 - 2024-08-23
+
+### Fixed
+- Send custom business service headers in managed approuter
+- Support the call to business service with credentials stored in the HTML5 repository
+
+## 16.7.0 - 2024-08-15
+
+## Added
+- Dynamic IDP support for IAS
+- Allow skip redirect to IAS/XSUAA service on logout
+
+### Fixed
+- Handle Portal destination name fallback in destination-token-handler
+- Frame ancestor CSP headers method consumption
+- Missing roleCollection message
+- Caching not configured trusted domains
+
+### Updated dependencies
+- deps: axios@1.7.4
+
 ## 16.6.2 - 2024-07-31
 
 ### Fixed

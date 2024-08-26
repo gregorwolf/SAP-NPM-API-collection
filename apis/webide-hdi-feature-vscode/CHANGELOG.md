@@ -1,3 +1,37 @@
+## 1.33.0
+
+### New Features
+- Deleting nodes in a flow should not break mapping
+- Show aggregation type of calculated measure if no "Enable client side aggregation" is selected
+- Transparent filter should be automatically propagated to Semantics
+- Allow space and hyphen for names and document space
+
+### Fixes
+- Join cardinality not cleared after changing node
+- Cannot modify frame if there are multiple window functions
+- Unable to click on the Create Join In Hana Calculation View
+- Join mappings are not correctly created when replacing data source with node
+- Cannot open Window Function Pane
+- Remove data types that are not supported by HC, and sort the list of data types alphabetically
+- Allow generation of documents on folder level
+- Replace with node not working reliably
+- Validate syntax does not accept (input parameter) for (input parameter>) of type multiple entries
+- Referential join with referential integrity Left not recognized initially for MDS Cube blocking decision
+- Table item of Mass Import in Synonym Editor is dark on dark mode
+- Replace node - search loses focus
+- Copy and Paste a calculated column fails if it is removed before Pasting
+- Replace with node join maintenance issue
+- Error: Adding element with duplicate id 'aggregation-attributes-multiInput-dialog'
+- Remove existing parameter mappings for the replaced data source when it is replaced by a view node
+- Can not delete one node
+- After changing the name of the newly created input parameter, the input parameters of the function node of the function node cannot be correctly mapped
+- When filtering UDFs with multiple return values these return values are not shown
+- Procedure mode in generated document has wrong description
+- Generated currency columns cannot be added as Dimension attributes to MDS Cubes
+- Nothing happens when clicked on generate documents on src folder at the second time
+- Disable buttons of Input Parameters in read-only mode
+- Creation of calculation views of type time fails if time table has non-standard name
+
 ## 1.32.0
 
 ### New Features

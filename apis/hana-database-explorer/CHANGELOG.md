@@ -1,5 +1,20 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.25.0
+
+### New Features
+- The dependency viewer can check for cycles in a dependency graph
+- The graph direction can be configured in the dependency viewer
+- The dependency viewer graph can be limited to a single schema
+
+### Fixes
+- Table metadata link not shown in dependency viewer
+- SQL statements are deleted unexpectedly
+- The cursor could jump to the end of the SQL console
+- The SQL console result format settings are more consistent
+- The SQL Plan Execution Monitor is opened only once
+- Improved zoom settings in the dependency viewer
+
 ## 1.24.0
 
 ### New Features

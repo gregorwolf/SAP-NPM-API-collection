@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.2.0 - 2024-08-14
+
+### Updated
+- Override axios dependency to v1.7.4
+
 ## 6.1.0 - 2024-03-27
 
 ### Removed

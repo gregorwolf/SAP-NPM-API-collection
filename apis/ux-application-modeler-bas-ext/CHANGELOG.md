@@ -5,6 +5,17 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.14.4] - 2024-08-08
+### Added
+- Added support for SAPUI5 freestyle applications to Page Map and Application Modeler tree view (experimental)
+- Added support for the `sap.ui5/dependencies/libs` section of the `manifest.json` to the Page Map: libraries are added, when required by the type of the newly added page
+- Added support to the _Run Configurations_ dialog for the preview HTML endpoints exposed by the `fiori-tools-preview` middleware in [@sap/ux-ui5-tooling](https://www.npmjs.com/package/@sap/ux-ui5-tooling) for versions 1.14.3 or higher
+
+### Fixed
+- Fixed an issue with the _Run Configurations_ copy function which sometimes resulted in duplicate configuration names
+- Fixed an issue where a newly added page wasn't shown in the Page Map
+- Fixed an issue where changing the endpoint in the _Run Configurations_ dialog didn't change the associated URL hash fragment 
+
 ## [1.14.3] - 2024-07-24
 ### Changed
 - Updated the format of the environment check results when checking a destination on SAP Business Application Studio so that the most relevant information is displayed first

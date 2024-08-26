@@ -582,12 +582,13 @@ Here is a sample content for the NodeJS minimal logging level environment variab
 
 ## Dynamic Identity Provider configuration
 
-If `dynamicIdentityProvider` is `true`, the end user can set the identity provider (IDP) for the application’s login process by filling the request query parameter `sap_idp` with the IDP Origin Key. If `IdentityProvider` property is defined in the route, its value will be overwritten by the `sap_idp` query parameter value. The default value for `dynamicIdentityProvider` is `false`.
+If dynamicIdentityProvider is set to true, the end user can set the identity provider (IDP) for the application’s login process. If SAP Authorization and Trust Management is used, the request query parameter sap_idp must be filled with the IDP origin key. If Identity Authentication is used, the sap_idp request query parameter must be filled with the name of the corporate identity provider configured in the administration console. 
+If the IdentityProvider property is defined in the route, its value will be overwritten by the sap_idp query parameter value. The default value for dynamicIdentityProvider is false.
 This configuration is relevant for a standalone approuter scenario and it is set for all routes.
 
 Here is a sample content for the dynamic identity provider environment variable:
 
-```json
+```yaml
   env:
     DYNAMIC_IDENTITY_PROVIDER: true
 ```
@@ -1188,6 +1189,14 @@ In addition, a page to which the user will be redirected by the UAA after logout
 It may hold:
 
 - URL path - the UAA will redirect the user back to the application router and the path will be interpreted according the configured [routes](#routes).
+
+The  `logoutEndpoint` can be called with the `skip-redirect` or `skip-redirect=true` query parameter to prevent the application router from redirecting to the Identity Authentication for logout after ending the application router user session. Use this configuration if the logout process is initiated by Identity Authentication. In this case, the end user initiates the single logout flow of the Identity Authentication, and subsequently, the application router logout endpoint is called. The application router logout endpoint must not redirect to Identity Authentication logout endpoint in this case.
+For more details see [Handle Single Logout Request from Identity Authentication](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/configure-your-application-for-single-logout?q=front-channel).
+
+For example:
+```javascript
+window.location.replace('/my/logout?skip-redirect');
+```
 
 The `logoutEndpoint` can be called with query parameters. For example:
 ```javascript
