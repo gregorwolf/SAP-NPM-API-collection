@@ -7,6 +7,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 8.1.2 - 2024-08-17
+
+### Fixed
+
+- Dependency update for `axios` to fix CVE-2024-39338
+- `cds login` now fetches the passcode URL for the subscriber tenant if the subdomain is given.
+- `cds build` now correctly generates migration tables for `CodeList` entities.
+
 ## Version 8.1.1 - 2024-08-07
 
 ### Added

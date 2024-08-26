@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
+## Version 8.0.2 - 2024-08-15
+
+### Added 
+- Mermaid: add option for layout direction
+
 ## Version 8.0.1 - 2024-07-12
 
 ### Added

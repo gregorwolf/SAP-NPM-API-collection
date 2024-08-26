@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.0.6 - 2024-08-15
+
+### Fixed
+
+- Subscription Manager service subscriptions are now working again.
+- The `cds.features.assertIntegrity` is correctly added to the compiler options for HANA builds.
+- The job status now always returns a non-null value also when using `@cap-js/hana`.
+- The passcode URL now reflects the subscriber subdomain, if such is received from the client.
 
 ## Version 2.0.5 - 2024-08-06
 
