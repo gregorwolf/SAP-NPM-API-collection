@@ -4,6 +4,154 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 8.4.1 - 2024-11-07
+
+### Fixed
+
+- Validate request method for operations
+- Correctly generate CQN for lambda expressions in new OData adapter
+- `req.diff()` on old database with property transitions
+
+## Version 8.4.0 - 2024-10-29
+
+### Added
+
+- Set the maximum allowed size of HTTP headers in bytes for `$batch` subrequests via flag `cds.env.odata.max_batch_header_size` (default: 64 KiB)
+- New OData flag `cds.env.odata.context_with_columns` that adds selected and expanded columns to `@odata.context`. Default is `false`
+- New experimental option `--workers` to `cds watch/run/serve` that allows running a `cds.server` cluster
+  (process env variable `WORKERS` or `CDS_WORKERS` can be used alternatively)
+
+### Changed
+
+- For remote service calls to OData v2 services, less conversions are performed on the returned data
+- Internal API `srv.endpoints` now always is an array of endpoint objects, an empty one if the service is not served to any protocol
+
+### Fixed
+
+- Commands like `cds deploy` now fail with a clear error message if called with an invalid value for `cds.features.assert_integrity` (like `true`)
+- Authentication validation errors (e.g., expired token, wrong audience) are logged as warning
+- Requests using `$apply` will always apply implicit sorting on best effort mechanism
+- Properly handle empty content-type in new OData adapter
+- Error/crash with `cds.features.odata_new_parser` for requests containing `$expand=*` and `$select`, which selects individual columns and star, e.g. `$select=ID,*`
+- Referencing new entities in `$batch` with new OData adapter did not work properly when using non integer content IDs in multipart/mixed
+- `cds.compile.to.serviceinfo` to ignore unknown protocols
+- New OData adapter and `cds.spawn` did not crash on programming errors (for example TypeError)
+
+## Version 8.3.1 - 2024-10-08
+
+### Fixed
+
+- Erroneous caching in `cds.validate`
+- Precedence of request headers for `cds.context.id`
+- For `quoted` names, overwrite `@cds.persistence.name` for drafts and localized views properly
+- Do not use hana error code as http status code
+
+## Version 8.3.0 - 2024-09-30
+
+### Added
+
+- `cds.deploy` can now also write its DDL statements to a separate log
+- Symlinks are followed in `cds test`
+
+### Changed
+
+- Unknown protocols in `@protocol` annotations formerly prevented server starts; they are merely ignored now with a warning in the logs.
+- Deprecated configuration flag `cds.env.features.keys_in_data_compat` because of incompatibility with data validation in new OData adapter.
+- `@cds.api.ignore` doesn't suppress an association, the annotation is propagated to the (generated) foreign keys.
+- Where clauses of restrictions for bound actions and functions defined by `@restrict` are now enforced and no longer ignored.
+- `@cap-js/telemetry` is now loaded before other plugins to allow better instrumentation.
+
+### Fixed
+
+- When modifying active children of of draft-enabled entities directly (`bypass_draft`), the error message was misleading.
+- Cleaning up drafts calls `CANCEL` handlers
+- Allow to call `CANCEL` on draft entities programmatically
+- Encoding of `@odata.nextLink` path
+- Computed fields are ignored in projections
+- Consider `id` in a `ref` step for mapping of service elements to their name on the db.
+- Feature toggles with new OData adapter.
+- Target entity was incorrectly calculated for some actions in new OData adapter.
+- `req.diff()` does not manipulate existing queries anymore.
+- New OData adapter: normalize on commit error in `/$batch`
+
+### Removed
+
+- Alpha support for SAP Event Broker-based messaging (kind `event-broker`). Use CDS plugin `@cap-js/event-broker` instead.
+
+## Version 8.2.3 - 2024-09-20
+
+### Changed
+
+- All annotations in input data are skipped and removed from the input by `cds.validate()` - as we did in legacy OData adapter
+
+### Fixed
+
+- Unmanaged associations are excluded from `@mandatory` checks
+- Properly reject direct requests to `DraftAdministrativeData`
+- Virtual elements annotated with `@Core.MediaType`
+- OData Requests targeting a specific instance and custom handler returns empty array
+- `cds-serve` and `cds-deploy` now set `cds.cli` information
+
+## Version 8.2.2 - 2024-09-13
+
+### Fixed
+
+- Erroneous caching in `cds.validate`
+- Properly check `$filter` element types across navigations
+
+## Version 8.2.1 - 2024-09-04
+
+### Fixed
+
+- Date validation of legacy OData protocol adapter
+- Content-Length headers in multipart batch request body
+- Streaming requests with virtual properties
+- Bring back support for `x-correlationid`
+- Validation of inlined elements
+- multipart `$batch` parsing with _--_ as part of payload
+
+## Version 8.2.0 - 2024-08-30
+
+### Added
+
+- Allow `cds.connect.to (SomeService)` where `SomeService` is a class
+- Lean draft: support CDS orderBy in `list status: all`
+- Support where not in as object in `cds.ql` expressions like: `where({ID:{not:{in:[...]}}})`
+- Unbound CDS functions now show up in the server's index page along with an exemplary call signature
+- `cds.log`'s JSON formatter:
+  + Field `w3c_traceparent` is filled based on request header `traceparent` (cf. W3C Trace Context) for improved correlation
+  + Custom fields `cds.env.log.cls_custom_fields` are filled if bound to an instance of SAP Cloud Logging
+  + Default `cds.env.log.als_custom_fields` enhanced by `{ reason: 3 }` (project config takes precedence)
+- Support for `cds.hana` types like `cds.hana.ST_POINT` in `cds.builtin`
+- Internal `cds.debug()` API now always returns a logger instance, which allows switching on debugging subsequently, e.g. by the like of `cds.log('sql','debug')`
+- New config flag `cds.server.shutdown_on_uncaught_errors` allows to control whether the server should shut down on uncaught errors. Default is `true`
+
+### Changed
+
+- Revert workaround from 8.1.0 for server startup message `WARNING: Package '@sap/cds' was loaded from different installations`. This is now addressed in `@sap/cds-mtxs` 2.0.5.
+- When parsing CSV files, `cds.deploy` no longer doubles a literal `\` character (backslash) with a second backslash (`\\`), but retains it as-is.  This caused unwanted data changes.
+- Optimized handling of large binaries (BLOBs) in case of drafts. Unchanged BLOBs are not copied into the draft entity. If those BLOBs from draft entities are requested, the unchanged BLOBs will be fetched from the corresponding active entity. Note that this change may require adjustment of custom logic, if large binaries from draft entities are requested (for example, using `ql.SELECT` statement). To restore previous behavior use `cds.features.binary_draft_compat`.
+
+### Fixed
+
+- Resolving views with path expression renamings
+- Set content-type-header in batch for actions with 204 No Content
+- URI encoding of `@odata.nextLink` in OData response
+- Requests reading media data streams did not provide `req.params`
+- `cds.compile.to.hana` for legacy hana service with `@cap-js/sqlite` as dev dependency
+- Better redaction of debug output
+- Instance-based authorization using functions
+- Fixed flaws in `cds.connect.to()` that lead to deadlocks in case of errors due to invalid service configurations or initializations.
+- Navigation with backlink as key can now omit backlink keys for new OData adapter
+
+### Removed
+
+- Array methods `forEach`, `filter`, `find`, `map`, `some`, `every` from [`LinkedDefinitions`](https://cap.cloud.sap/docs/node.js/cds-reflect#iterable). Convert linked definitions into arrays before using these methods, for example:
+
+   ```js
+   [...linked.definitions].map(d => d.name)
+   ```
+
 ## Version 8.1.1 - 2024-08-08
 
 ### Fixed
@@ -13,7 +161,7 @@
 - Expand to `DraftAdministrativeData` for active instances of draft-enabled entities over drafts
 - Deduplication of columns for certain on conditions for the legacy database driver
 - For legacy-sqlite/-hana: Add keys to expands with only non-key elements to ensure not returning null for expand.
-- New parser was to restrictive regarding an empty line at the end of batch body.
+- New parser was too restrictive regarding an empty line at the end of batch body.
 - Error target for operations with complex parameters
 - Remote services: JWT gets found in authorization header
 - Search with invalid characters
@@ -58,6 +206,9 @@
 ### Fixed
 
 - Empty feature set by switched off feature toggles
+- Allow programmatic operations on draft-enabled entities (`NEW`, `CREATE`, `UPDATE`, `DELETE`)
+
+### Removed
 - Allow deviating response types for `$batch`, e. g. input `multipart` and output `json`
 
 ## Version 8.0.2 - 2024-07-09

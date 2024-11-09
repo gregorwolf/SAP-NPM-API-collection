@@ -1,3 +1,38 @@
+## 1.35.0
+
+### New Features
+- The vector functions COSINE_SIMILARITY and L2DISTANCE are available in the expression editor.
+- Ability to add a workload-class hint with the dialog "Select Execution Hint from List", with only hints attached to the topmost calculation view as effective
+- Modeling help in Joule (only available in SAP Build Code)
+
+### Fixes
+- Some menus and buttons might not work
+- Functions/Operatore/UDFs should change to enable state in Restricted Columns for Expression
+- Validate Syntax fails for a correct statement in Window Function node
+- Column names unique dialog pops up when no propagations are needed
+- Columns are added more than once during propagating
+- Columns are wrongly added if a column forks then joins after different depths
+- Wrong dimensionUri written to XML for source Currency
+- Sort columns can't be updated
+
+## 1.34.0
+
+### New Features
+- Graphical editor for structured filters
+- When propagating columns to semantics it can be chosen how to make the column names unique
+- Nodes can be dragged and dropped into another node replacing the existing source
+- Improved labels for empty union behavior
+- Improved labels of union node properties
+
+### Fixes
+- Synonym refactoring can fail if a calculation view name contains a space or hyphen
+- Database connections are not automatically connected when displaying the connection list
+- Generating documents on folder level does not display all folders
+- Selection of parent folder without all children should be prevented when generating documents on folder level
+- Calculated columns of type ST_GEOMETRY could produce an error out after changing type back to attribute
+- Fail to validate expression syntax using column engine
+- Replace existing source doesn't work when the target node is NonEquiJoin node
+
 ## 1.33.0
 
 ### New Features

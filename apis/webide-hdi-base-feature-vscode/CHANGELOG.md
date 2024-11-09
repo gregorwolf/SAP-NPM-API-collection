@@ -1,3 +1,13 @@
+## 1.33.0
+
+### Fixes
+- Security fixes
+
+## 1.32.0
+
+### Fixes
+- Security fixes
+
 ## 1.31.0
 
 ### Fixes

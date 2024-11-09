@@ -1,9 +1,79 @@
 # Change Log
+
 All notable changes to this project are documented in this file.
 
 Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.15.4] - 2024-10-30
+
+### Added
+
+### Changed
+
+- Descriptions of properties at Page Map and Page Editor have been reviewed and adjusted.
+
+### Fixed
+
+- Fixed incorrect tooltips for some fields and buttons in the Properties pane
+- Fixed an issue with disabled "Add Chart Column" option for the table when chart columns of Line type still could be built based on associated property
+- Fixed issues with regards to accessibility
+
+## [1.15.3] - 2024-10-16
+
+### Added
+
+- Added a link to the Page Map in the pages section of the Application Info page
+
+### Fixed
+
+- Fixed a missing icon on the Add Item button for quick variant selection paths
+- Fixed an issue where Application Modeler accessed the wrong `i18n` file when a non-default location was specified in `manifest.json`
+
+## [1.15.2] - 2024-10-03
+
+### Added
+- Added support for translatable texts to building block text properties
+
+### Fixed
+
+- Fixed an issue where the Page Map repeatedly prompted to reload when changes were made in a Full-Stack Application Using Productivity Tools dev space
+- Fixed an issue where SAPUI5 freestyle apps were not supported by the `Fiori: Delete Application from CAP Project` command
+
+## [1.15.1] - 2024-09-19
+### Added
+- Enabled the ability to move form sections from the object page content area to the header and the other way around
+- Enabled the direct creation of building blocks in the Page Editor without the need to use Guided Development
+- Added support for `sap.fe.macros`, which is now automatically added to the `sap.ui5/dependencies/libs` section of the `manifest.json`, when a building block is added to the application using the Page Editor
+
+### Fixed
+- Fixed an issue where applications that had an invalid `package.json` were silently ignored; they now trigger an error message in the Application Modeler log
+- Fixed an issue where the screen reader would read out the wrong text for the documentation button in the property panel
+- Fixed an accessibility issue where button zones overlapped in the Page Map's Add Page popup
+- Fixed an issue where the screen reader would read out the wrong text for the status in the Application Info page
+- Fixed a missing tooltip for the Add Item button in the Quick Variant Selection property
+- Fixed an issue where the Controller Extensions table in the Page Map was not reachable using a keyboard
+
+## [1.15.0] - 2024-09-05
+### Fixed
+- Fixed an issue where the Page Map didn't allow the creation of a first page; this fix requires [@sap/ux-specification](https://www.npmjs.com/package/@sap/ux-specification) patch versions 1.71.117, 1.84.97, 1.96.71, 1.108.38, 1.120.19, 1.124.1, or higher
+- Fixed an issue where the `i18n` properties were created in the global `i18n` file of a CAP project instead of the app's local `i18n` file
+- Fixed an issue where SAPUI5 freestyle apps were not recognized in CAP projects if there were no other SAP Fiori elements apps in the project
+- Added missing tooltip texts to the actions in the Controller Extensions table
+- Added a missing tooltip text to the refresh action of the Application Info page
+- Added missing keyboard support for using splitter controls
+
+## [1.14.5] - 2024-08-22
+### Fixed
+- Added the missing tile "Run UI5 Linter" to the Application Info Page of library projects
+- Fixed an issue where the controller extension creation silently failed because of the missing library `sap.fe.templates`; the library is now added to the `sap.ui5/dependencies/libs` section of the `manifest.json`
+- Fixed an issue where the validation was missing when a new custom section or view was created with the same name as an already existing section or view 
+- Fixed an issue with the text of the success message for the creation of new custom pages
+- Fixed an issue with the "Edit in source code" feature not working on building block nodes in the Page Editor outline
+- Fixed an issue with the command "Fiori: Change the Minimum SAPUI5 Version" not working when the value in the `manifest.json` was an array
+- Fixed an issue with the command "Fiori: Add Configuration for Variants Creation" adding unnecessary spaces to the `package.json`
+- Fixed an issue with the Page Map writing incorrect entries into the `routing` section of the `manifest.json` for SAPUI5 freestyle applications; this fix requires [@sap/ux-specification](https://www.npmjs.com/package/@sap/ux-specification) patch versions 1.124.0, 1.120.18, 1.108.37, 1.96.70, 1.84.96, 1.71.116 or higher
 
 ## [1.14.4] - 2024-08-08
 ### Added

@@ -31,14 +31,15 @@ view View as select from
 };
 ```
 
-Entity `Target` exists more than once in `View`.  In the previous example, this
-happens through the *direct* sources in the select clause.
+Entity `Target` exists more than once in `View` under different table aliases.
+In the previous example, this happens through the *direct* sources in the
+select clause.
 Because the original target exists twice in the redirected target, the compiler
 isn’t able to correctly resolve the redirection due to ambiguities.
 
 This can also happen through *indirect* sources.  For example if entity `Main`
-were to include `Target` then selecting from `Target` just once would be enough
-to trigger this error.
+were to include `Target`, then selecting from `Target` just once would be
+enough to trigger this error.
 
 ## How to Fix
 

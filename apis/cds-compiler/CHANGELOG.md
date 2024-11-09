@@ -7,11 +7,96 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.4.2 - 2024-11-06
+
+### Fixed
+
+- to.sql: For SQLite, map `cds.Map` to `JSON_TEXT` to ensure text affinity.
+
+## Version 5.4.0 - 2024-10-24
+
+### Added
+
+- to.edm(x): `cds.Map` as empty open complex type with name `cds_Map` or if the definition
+  has been assigned `@open: false` as empty open complex type `cds_Map_closed` in OData V4.
+
+### Changed
+
+- Update OData vocabularies: 'Capabilities', 'Common', 'Core', 'PersonalData', 'PDF', 'UI'.
+- to.cdl: Identifiers using non-ASCII unicode characters, as introduced in v4.4.0, are no longer quoted.
+- For propagated expressions as annotation values, the `=` is changed as well, if it is a simple identifier.
+
+### Fixed
+
+- compiler: Some invalid CDL snippets could crash the parser and compiler.
+- to.edm(x): OData V2: `Core.Links` watermark annotation has a `xmlns` attribute now.
+- for.seal: Remove unapplied extensions from CSN.
+- to.sql.migration: Handle `ALTER COLUMN` for columns with `NOT NULL` and a default value.
+
+
+## Version 5.3.2 - 2024-10-08
+
+### Fixed
+
+- to.sql|hdi|hdbcds|effective: Handle subexpressions in conjunction with exists predicate.
+
+
+## Version 5.3.0 - 2024-09-25
+
+### Added
+
+- compiler:
+  + A warning is emitted if a string enum's values are longer than the specified length.
+  + ON-condition rewriting has been improved and now supports secondary associations.
+- to.edm(x): Support optional action and function parameters in OData V4. The following rules apply:
+  + A parameter declared `not null` without default value is mandatory.
+  + A **function** parameter declared `null` without default value is mandatory.
+  + An **action** parameter declared `null` without default value is optional as it is equivalent to
+    `@Core.OptionalParameter { DefaultValue: null }`.
+  + A parameter with a default value is optional and the default value is rendered as
+    `@Core.OptionalParameter { DefaultValue: <value> }` regardless of its nullability.
+  + `@Core.OptionalParameter: true` can be used to turn a mandatory parameter into an optional parameter
+    (especially function parameters) and to signal an unspecified default value in the API if the parameter
+    has no default clause.
+  + `@Core.OptionalParameter: false` turns the creation of a `@Core.OptionalParameter: { Default: ... }`
+    annotation off.
+  + A default clause or `@Core.OptionalParameter: <bool>` have no effect on an explicit binding parameter.
+  + Mandatory and optional **action** parameters may appear in any order.
+  + Optional **function** parameters must not be followed by mandatory parameters.
+- to.edm: Forward `@OpenAPI {...}` into EDM Json with option `--odata-openapi-hints`.
+- cdsc: Option `--transitive-localized-views` was added.
+
+### Fixed
+
+- CDL parser: Issue warning if annotation assignments have been written
+  at an invalid position inside a type expressions.
+- CDL parser: Issue warning for arrayed parameter with default value.
+- to.cdl: Arrayed parameters with default values were not rendered correctly.
+
+## Version 5.2.0 - 2024-08-27
+
+### Added
+
+- to.edm(x): Add `@Core.Links { rel: 'author', href: 'https://cap.cloud.sap' };` as watermark to lead schema.
+- to.sql.migration: Introduce option `script` to aid in generation of manual migration scripts by not aborting when encountering lossy changes.
+
+### Changed
+
+- for.odata: No longer reject default values on action/function parameters.
+- to.edm(x): Raise warning for default values on action/function parameters that they are ignored.
+
+### Fixed
+
+- compiler: Fix extensions with bound actions using an explicit binding parameter in `parseCdl` CSN.
+- for.odata, to.edm(x): Fix some issues with resolving annotation expressions in nested objects and
+  reliably replace value of `=` attribute with `true` after processing.
+
 ## Version 5.1.2 - 2024-08-05
 
 ### Fixed
 
 - compiler: In parseCdl mode, bound actions specifying the binding parameter with `$self` did not work.
+
 
 ## Version 5.1.0 - 2024-07-25
 
@@ -104,6 +189,13 @@ This is a preview version for the major release and contains breaking changes. I
 - API: Deprecated functions `preparedCsnToEdmx` and `preparedCsnToEdm` were removed.
   Use `to.edm(x)` instead.
 
+
+## Version 4.9.8 - 2024-07-29
+
+### Fixed
+
+- compiler: Fix extensions with bound actions using an explicit binding parameter in `parseCdl` CSN.
+- to.edm(x): No `Nullable` attribute for `$ReturnType` of `Collection(<entity type>)` [OData V4 CSDL, section 12.8 Return Type](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_ReturnType)
 
 ## Version 4.9.6 - 2024-07-15
 

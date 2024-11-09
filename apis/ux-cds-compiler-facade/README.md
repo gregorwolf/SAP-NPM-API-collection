@@ -35,46 +35,16 @@ Create compiler facade object from existing CDS compile model.
 If you don't have CDS compile model available, you can compile the project files and obtain compiler facade.
 
 ```Typescript
-    import { readFile } from 'fs/promises';
-    import { getCdsArtifacts } from '@sap/ux-cds-compiler-facade';
+import { getCdsFiles } from '@sap-ux/project-access';
+import { createCdsCompilerFacadeForRoot } from '@sap/ux-cds-compiler-facade';
 
-    const getFile = async (path: string): Promise<AdapterFile> => {
-        const relativeUri = path.split('/').join(pathSeparator);
-        const fileContent = await readFile(join(projectRootFolder, relativeUri));
-        return { relativeUri, fileContent };
-    };
+const root = projectRootFolder;
+const files = await getCdsFiles(root);
+const cdsCompilerFacade = createCdsCompilerFacadeForRoot(root, files);
 
-    const getProjectFiles = async (): Promise<AdapterFile[]> => {
-        return Promise.all([
-            getFile('db/schema.cds'),
-            getFile('srv/admin-service.cds'),
-            getFile('app/common.cds')
-        ]);
-    };
-
-    const getFileCache = (files: AdapterFile[]): Map<string, FileSystemFile> => {
-        const cache = new Map<string, FileSystemFile>();
-        for (const file of files) {
-            cache.set(file.relativeUri, {
-                fileContent: file.fileContent,
-                fileUri: file.relativeUri,
-                isDirty: false
-            });
-        }
-        return cache;
-    };
-
-    const projectFiles = await getProjectFiles();
-    const files = projectFiles.map((file) => file.relativeUri);
-    const cache = getFileCache(projectFiles);
-
-    // build CDS artifacts
-    const project = { root: projectRootFolder, apps: {}, type: ProjectType.Cap };
-    const { cdsCompilerFacade } = await getCdsArtifacts(project, 'myService', files, cache);
-
-    // Use of facade methods and properties
-    const metadata: MetadataElementMap = cdsCompilerFacade.getMetadata('myService');
-    const errors = cdsCompilerFacade.getCompilerErrors();
+// Use of facade methods and properties
+const metadata = cdsCompilerFacade.getMetadata('myService');
+const errors = cdsCompilerFacade.getCompilerErrors();
 
 ```
 

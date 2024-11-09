@@ -11,7 +11,7 @@ You can even create a custom app that runs on the SAP Fiori elements framework, 
 	<img src="images/blob-03.svg" class="blob">
 </div>
 <div>
-  <img id="fpm" class="img border sapUiHideOnPhone" src="images/FPM.jpg" alt="flexible programming model" />
+  <img id="fpm" class="img border sapUiHideOnPhone" src="images/FPM.png" alt="flexible programming model" />
 </div>
 
 # Flexible Programming Model Explorer

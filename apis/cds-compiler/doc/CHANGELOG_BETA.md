@@ -8,6 +8,11 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 5.3.0 - 2024-09-25
+
+### Removed `optionalActionFunctionParameters`
+
+It is now enabled by default.
 
 ## Version 5.0.0 - 2024-05-29
 
@@ -17,19 +22,19 @@ It is now enabled by default.
 
 ## Version 4.9.0 - 2024-04-25
 
-## Removed `odataAnnotationExpressions`
+### Removed `odataAnnotationExpressions`
 
 It is now enabled by default.
 
-## Removed `odataPathsInAnnotationExpressions`
+### Removed `odataPathsInAnnotationExpressions`
 
 It is now enabled by default.
 
-## Removed `annotationExpressions`
+### Removed `annotationExpressions`
 
 It is now enabled by default.
 
-## Added `temporalRawProjection`
+### Added `temporalRawProjection`
 
 Enables revocation of temporal where clause in projections of temporal entities if the
 `@cds.valid { from, to }` annotations on the projection elements have falsy values.
@@ -300,9 +305,9 @@ This is now the default - see CHANGELOG entry for 2.6.0
 - `toSql`/`toHdbcds`: omit constraint generation if the option `skipDbConstraints` is set
 - If the database constraints are switched off by the global option,
   render constraints nevertheless if an association / composition
-  is annotated with `@cds.persistency.assert.integrity: true`
+  is annotated with `@cds.persistence.assert.integrity: true`
 - omit constraint generation if an association / composition
-  is annotated with `@cds.persistency.assert.integrity: false`
+  is annotated with `@cds.persistence.assert.integrity: false`
   -> for managed compositions, the `up_` link in the compositions target entity
   will not result in a constraint if the composition is annotated as described
 

@@ -1,3 +1,11 @@
+## 4.6.0
+Features:
+- Add range dependencies in package.json
+
+Removed:
+- Node 12.x, 14.x and 16.x support
+- Removed shrinkwrap
+
 ## 4.5.2
 Fixes:
 - Fix to use hdi_user instead of user when xsa environment variables are passed

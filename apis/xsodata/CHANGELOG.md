@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [8.2.0] - 2024-10-23
+
+* Add support for Node 22
+
+## [8.1.3] - 2024-10-03
+
+* FOSS related security updates
+
 ## [8.1.1] - 2023-11-30
 
 * Add support for node 20

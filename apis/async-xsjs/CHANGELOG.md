@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.0.3"></a>
+## 2.0.3 - 2024-10-04
+
+### Updated
+- Updated body-parser version to 1.20.3 to fix the security vulnerability.
+- Updated express version to 4.21.0 to fix the security vulnerability.
+
+<a name="2.0.2"></a>
+## 2.0.2 - 2024-09-04
+
+### Updated
+- Updated axios version to 1.7.7 to fix the security vulnerability.
+
 <a name="2.0.1"></a>
 ## 2.0.1 - 2024-07-23
 

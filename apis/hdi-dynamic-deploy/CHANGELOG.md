@@ -1,3 +1,24 @@
+# 2.9.0
+Features:
+- Add range dependencies in package.json
+
+Removed:
+- Removed shrinkwrap
+
+# 2.8.3
+Fixes
+- use @sap/hdi-deploy@5.2.2
+
+# 2.8.2
+Fixes
+- use @sap/hdi-deploy@5.2.1
+- use @sap/hana-client@2.21.28
+- use @sap/audit-logging@6.2.0
+- use @sap/xsenv@5.2.0
+- use cookie-signature@1.2.1
+- use hdb@0.19.9
+- use uuid@10.0.0
+
 # 2.8.1
 Fixes
 - add hdb client for backwards compatibility

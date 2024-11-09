@@ -1,3 +1,32 @@
+## 1.5.2
+
+### Bug Fixes
+
+- Improved Plan Graph Layout: Fixed an issue that caused operator overlaps in the plan graph when expanding or collapsing container nodes.
+- Enhanced File Handling: Implemented a notification system to alert users when attempting to open unavailable files (deleted or inaccessible UNC paths). This resolves the issue of the tool seemingly hanging in such scenarios.
+- Plan Graph Panel Reliability: Addressed a problem that prevented the plan graph panel from opening or reloading correctly when attempting to open another plan graph panel.
+
+## 1.5.0
+
+### Overview Tab (Enhanced)
+- Renamed the "Dominant Plan Operators" section to "Dominant Plan Operators (CPU Time)" for HEX execution plans, providing clearer insight into the time mode used to determine dominant operators.
+- Updated the "Peak Memory" label to "Total Allocated Memory" in the Execution Summary section for greater accuracy in reflecting the displayed information.
+
+### Plan Graph Tab (Enhanced)
+- Removed the critical paths for HEX execution plans.
+
+### Timeline Tab (Enhanced)
+- Renamed the "Pop" (Plan Operator) operation to "Process" for improved clarity.
+- Excluded sleep time from inclusive time calculations to offer more accurate query performance insights.
+- Resolved discrepancies in exclusive time between the Top 5 Dominant Operators and Top 10 Critical Path Operators views and the Plan Graph, ensuring consistent exclusive time across all views.
+
+### SQL Analyzer Tool Configuration via VS Code Settings (Enhanced)
+- Introduced new parsing options: "Skip Operator and Edge Detailed Information" and "Skip Execution Time Calculation", to improve performance with large PLV files. When enabled, you are notified that these processes have been bypassed. This enhancement addresses previous issues that prevented large files from opening, streamlining the handling of complex plan visualizations.
+
+### Bug Fixes
+- Improved CSV export for the operator list, enhancing readability and compatibility with external tools.
+- Updated placeholder text in the search fields of several tabs (Operators, Properties, Recommendations, Compilation) to reduce confusion with other filtering options.
+
 ## 1.4.3
 
 ### Timeline Tab (Enhanced)

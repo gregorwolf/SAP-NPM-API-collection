@@ -102,7 +102,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.2.1",
+    "@sap/hdi-deploy": "5.3.2",
     "@sap/hana-client": "2.19.20",
     "hdb": "0.19.3"
   },
@@ -552,7 +552,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.2.1",
+    "@sap/hdi-deploy": "5.3.2",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1088,7 +1088,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "5.2.1",
+        "version": "5.3.2",
         "features": {
             "info": 2,
             "verbose": 1,

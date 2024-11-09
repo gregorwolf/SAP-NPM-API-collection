@@ -1,7 +1,21 @@
 # Change Log
 All notable changes to this project are documented in this file.
-​
+
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.15.1] - 2024-09-19
+### Fixed
+- Fixed an issue where the screen reader would read out the wrong text for the checkbox status in the Annotation File Manager
+- Fixed an issue where the screen reader would read out the wrong text for the row count in the Annotation File Manager
+- Fixed an issue where the focus was incorrect after navigating using a keyboard in the Service Manager
+
+## [1.15.0] - 2024-09-05
+### Changed
+- Changed the message for the indication of services that are unsuitable for UI development from error to warning and included services that don't have a classification
+
+### Fixed
+- Fixed an issue where the keyboard focus didn't stay on the table row after the row moved when selecting a checkbox in the Annotation File Manager
+- Fixed an issue where the Service Manager failed to add a service if the [@sap-ux/ui5-middleware-fe-mockserver](https://www.npmjs.com/package/@sap-ux/ui5-middleware-fe-mockserver) configuration was incorrect
 
 ## [1.12.5] - 2024-02-22
 ### Added

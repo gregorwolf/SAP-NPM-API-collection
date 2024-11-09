@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.0.8"></a>
+## 8.0.8 - 2024-10-23
+
+### Updated
+- Added Hana Cloud support to createConnection and createConnectionPromise
+- Update *@sap/hana-client* to 2.22.29
+
+<a name="8.0.7"></a>
+## 8.0.7 - 2024-09-18
+
+### Updated
+- Update *async* to 3.2.6
+
 <a name="8.0.6"></a>
 ## 8.0.6 - 2024-07-08
 

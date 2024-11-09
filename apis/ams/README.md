@@ -6,7 +6,10 @@ This is the Node.Js runtime library used to perform [authorization checks](https
 
 The module [@sap/ams-dev](https://www.npmjs.com/package/@sap/ams-dev) provides the corresponding tooling support during application development.
 
-As ADC (Authorization Decision Controller) the policy engine [OPA](https://www.openpolicyagent.org/) (Open Policy Agent) is used.
+
+As ADC (Authorization Decision Controller) an in-process engine based on DCN (Data Control Notation) files is used in versions >= 1.17.0. Follow the migration guide in the CHANGELOG of @sap/ams-dev for version 1.0.0 to update your local test setup from OPA to DCN Engine.
+
+:warning: For the time being, the OPA buildpack is still required for deployment to CF in order to push DCL policies to the AMS server. Replacements are currently discussed that will make it obsolete in future releases. 
 
 
 ## Installation
@@ -42,7 +45,7 @@ const filterClause = await this.pdp.allowFilterClause(attr);
 
 ### Attributes
 
-The `Attributes` class (*see* `doc/API/Attributes.md`) wraps the input data for the OPA.\
+The `Attributes` class (*see* `doc/API/Attributes.md`) wraps the input data for an authorization check.\
 Internally a JSON object is created which could look approximately as follows:
 ```json
 {
@@ -76,14 +79,11 @@ const attr = new Attributes()
 	.setResource("salesOrder")
 	.setApp({"country": "DE"});
 ```
-Note: Only principal2policies **or** policies can be set. The other one will be overridden.\
+Note: Only principal2policies **or** policies can be set. The other one will be overridden.
 
 ### Policy Decision Point
 
-The `PolicyDecisionPoint` or PDP (*see* `doc/API/PolicyDecisionPoint.md`) is responsible for communicating with OPA.
-
-Per default, the URL of the OPA server is set to *127.0.0.1:8181*. This URL can be set via the environment variable *OPA_URL*.\
-Alternatively, the URL can be passed to the constructor of the Policy Decision Point if a connection to multiple different OPA servers is desired.
+The `PolicyDecisionPoint` or PDP (*see* `doc/API/PolicyDecisionPoint.md`) is the primary API for consumers and is responsible for performing authorization checks using the ADC.
 
 ### AttributeName
 

@@ -53,9 +53,12 @@ CrossJoin
 
 ## How to Fix
 
-Ensure that the redirected association points to an entity that is a reasonable
-redirection target.  That means, the redirection target shouldn't accidentally
-make it a to-many association.
+First, ensure that the redirected association points to an entity that is
+a reasonable redirection target.  That means, the redirection target shouldn't
+accidentally make it a to-many association.
+
+Then add an explicit ON-condition or explicit foreign keys to the redirected
+association.  That will silence the compiler message.
 
 ## Related Messages
 

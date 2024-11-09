@@ -5,6 +5,83 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
+## Version 8.4.1 - 2024-11-05
+
+### Fixed
+- Deleting CDS files now also suggests to remove `using` statements without artifacts
+
+### Also see
+- `@sap/cds-lsp` 8.4.3
+
+
+## Version 8.4.0 - 2024-11-02
+
+### Added
+- Rename or move of CDS files and folders will update all `using` statements to the renamed file
+- Deletion of CDS files or folders will show all `using` statements to the renamed file with possibility to remove those.
+  Note: The referencing files will likely have compilation errors afterward.
+- Telemetry reporting in SAP Business Application Studio
+
+### Changed
+- Improve handling of fall back cds-lsp version 7.9.0
+- Improve dynamic schema loading for `package.json` and `cds-rc.json`
+- Improve size and start-up time by bundling
+
+### Fixed
+- Preview uses text document listener for refreshing preview file
+- highlighting of escaped identifiers and parameter lists
+- `using` path proposals could have been suggesting JS files instead of CDS files in certain cases
+- on Windows if client mixes upper- and lowercase drive letters some requests could have failed
+- CDS Typer was called when deleting a file which led to a misleading error output
+- Analysis of dependencies failed when handling non-npm `package.json` files (e.g. from `pnpm` lacking `name` property)
+
+### Also see
+- `@sap/cds-lsp` 8.4.2
+- `@sap/cds-compiler` 5.4.0
+
+
+## Version 8.3.0 - 2024-10-01
+
+### Added
+- Preview of `mta.yaml` via Mermaid diagram
+- show absolute name and kind of artifact in hover and completion details
+
+### Changed
+- Visualize dependencies:
+  + no longer need to install 3rd party extension
+  + no longer need to show `.dot` text file first to render the graph i.e. less flickering
+  + removed clumsy zoom buttons. Use mouse wheel or touchpad gestures to zoom in/out, mouse drag to move
+- Improved UI code formatter settings: better usage of horizontal space, number settings are now shown in same line
+
+### Fixed
+- highlighting of CASE-statement keywords when put in their own line
+- analysis of dependencies for certain cases
+
+### Also see
+- `@sap/cds-lsp` 8.3.2
+- `@sap/cds-compiler` 5.3.0
+
+
+## Version 8.2.0 - 2024-09-02
+
+### Added
+- code completion for artifacts within `using` statements now also completes single name segments with complete name
+
+### Changed
+- hover and completion proposal details now show artifact kind
+- Minimum VSCode version is now 1.90.2
+
+### Fixed
+- highlighting of element names in annotate statements and of special element names `entity`, `type`, `event`
+- completion: rename of source folders led to wrong using path proposals
+- completion: using path proposals did not work in multi-line using statements
+- maintain translation quickfix sent wrong document version
+
+### Also see
+- `@sap/cds-lsp` 8.2.1
+- `@sap/cds-compiler` 5.2.0
+
+
 ## Version 8.0.2 - 2024-08-15
 
 ### Added 

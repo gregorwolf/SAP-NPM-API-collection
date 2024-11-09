@@ -8,33 +8,6 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-<a name="6.6.9"></a>
-## 6.6.9 - 2024-03-28
-### Updated
--  Update axios to 1.6.8 and express to 4.19.2.
-
-<a name="6.6.8"></a>
-## 6.6.8 - 2024-03-20
-### Fixed
-- app_host_id enrichment on fetch binding parameters.
-
-<a name="6.6.7"></a>
-## 6.6.7 - 2024-01-21
-### Updated
-- Updated dependencies to support node20.
-
-<a name="6.6.6"></a>
-## 6.6.6 - 2024-01-08
-### Updated
-- Updated axios to v1.6.5.
-
-<a name="6.6.5"></a>
-## 6.6.5 - 2024-01-08
-### Updated
-- Updated audit-logging to v5.8.3.
-### Fixed
-- Perform verification for all credentials required by broker.
-
 <a name="6.6.4"></a>
 ## 6.6.4 - 2023-12-07
 ### Updated

@@ -1,8 +1,9 @@
 # Adaptation Project Yeoman Sub-Generators
 
-WARNING: This package is intended for usage within SAP Business Application Studio. For more information, see [Extending SAP Fiori Applications](https://help.sap.com/docs/bas/developing-sap-fiori-app-in-sap-business-application-studio/extending-sap-fiori-application?locale=en-US).  VSCode usage is in experimental mode. For more information, see [Adapting an Application](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/802f01cb252746468038b856b6c56c56.html?locale=en-US).
+For more information about using this package in SAP Business Application Studio, see [Extending SAP Fiori Applications](https://help.sap.com/docs/bas/developing-sap-fiori-app-in-sap-business-application-studio/extending-sap-fiori-application?locale=en-US).  
+For more information about using this package in VSCode, see [Adapting an Application](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/802f01cb252746468038b856b6c56c56.html?locale=en-US).
 
-Yeoman Generator for creating an Adaptation Project in the SAP Business Application Studio.
+Yeoman Generator for creating an Adaptation Project in the SAP Business Application Studio and MS VSCode.
 
 There are six sub-generators that are included in the repository under the main generator:
 

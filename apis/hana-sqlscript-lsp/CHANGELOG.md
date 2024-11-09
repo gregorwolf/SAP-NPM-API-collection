@@ -1,3 +1,13 @@
+## 1.16.0
+
+### New Features
+- Add syntax highlighting for Fabric Virtual Table (hdbfabricvirtualtable)
+- Add syntax highlighting for Collection Adjacency Index (hdbcollectionadjindex)
+- Add syntax highlighting for Structured Filter (hdbstructuredfilter)
+
+### Fixes
+- The login button was missing on the "not logged in to Cloud Foundry" message.
+
 ## 1.15.0
 
 ### New Features

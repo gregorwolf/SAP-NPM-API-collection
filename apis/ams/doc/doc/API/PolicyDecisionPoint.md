@@ -39,7 +39,7 @@ Just like in the allow function it is no longer possible to specify a dcl packag
 
 ## isReachable
 
-As health endpoint <code>pdp.isReachable()</code> can be used since this function only returns true or false depending on wether the opa is up and running.<br/>
+As health endpoint <code>pdp.isReachable()</code> can be used since this function only returns true or false depending on whether the DCN engine has loaded an authorization bundle already or not.<br/>
 This method does not throw any. If the reason for a failure needs to be known use [ping](#ping) with the required DCL package of your application.
 
 * returns Boolean
@@ -50,7 +50,7 @@ Determines the health status of the pdp
 * return {Promise<PolicyDecisionPoint.HealthState>}
 
 ## startupCheck
-Resolves when pdp is healthy (getHealthStatus = "OK")
+Resolves when pdp is healthy (getHealthStatus === "OK")
 
 * Parameters:
 

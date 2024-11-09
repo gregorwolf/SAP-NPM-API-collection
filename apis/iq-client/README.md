@@ -234,7 +234,7 @@ conn.rollback(function(err) {
 
 ## License
 
-The SAP HANA Cloud, Data Lake Relational Engine Node.js Driver is provided via the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_1.txt).
+The SAP HANA Cloud, Data Lake Relational Engine Node.js Driver is provided via the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_2.txt).
 
 By using this software, you agree that the following text is incorporated into the terms of the Developer Agreement:
 

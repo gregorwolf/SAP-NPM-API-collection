@@ -7,6 +7,7 @@ Command-Line Interface (CLI) for SAP Datasphere.
 ## Content
 
 1. [Installation](#installation)
+1. [Available Commands](#available-commands)
 1. [Update the CLI](#update-the-cli)
 1. [Versioning](#versioning)
 1. [Authentication](#authentication)
@@ -32,6 +33,10 @@ or
 ```bash
 yarn global add @sap/datasphere-cli
 ```
+
+## Available Commands
+
+Find the full overview of available commands on [help.sap.com](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html). See [Usage](#usage) below for instructions how to use the commands in the CLI.
 
 ## Update the CLI
 

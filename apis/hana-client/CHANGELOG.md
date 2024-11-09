@@ -1,3 +1,44 @@
+# Hana Client 2.22.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.22 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.22/en-US
+
+For the latest updates please see SAP Note 3516970 - SAP HANA Client 2.22 Release Notes
+
+https://me.sap.com/notes/3516970
+
+## Version 2.22.32
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 332467: An error could have occurred when a HANA worker node was removed and later a worker node added.
+
+## Version 2.22.29
+
+### Changes:
+
+ - Issue Number 331842: ConnectionPool's getConnection() method did not support passing in username and password at the TypeScript level.
+
+## Version 2.22.27
+
+### Changes:
+
+ - Issue Number 327000: The Node.js Client could have thrown an error if a statement had JavaScript BigInt parameters.
+ - Issue Number 326888: The getPooledConnectionCount method could have returned an incorrect value.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 328241: Cancel could have failed after a password change.
+ - Issue Number 326648: LZ4 was upgraded to 1.9.4.
+ - Issue Number 326534: In rare cases an extra round trip could have occurred when statement routing.
+ - Issue Number 325189: Batch executes may have reported an incorrect row status.
+ - Issue Number 324892: Per-request communication timeout values may not have always been respected.
+ - Issue Number 324714: A reconnect after a fork could have taken an extra five seconds.
+ - Issue Number 324665: Minor SQLDBC tracing added for System Replication.
+ - Issue Number 325144: SQLDBC SQL=INFO tracing could have included too much detail.
+ - Issue Number 308971: Session cookies are now enabled for all authentication methods.
+
 # Hana Client 2.21.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.21 documentation:
@@ -7,6 +48,15 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.21/en-US
 For the latest updates please see SAP Note 3462517 - SAP HANA Client 2.21 Release Notes
 
 https://me.sap.com/notes/3462517
+
+## Version 2.21.31
+
+### Changes:
+
+ - Issue Number 326882: Node.js could have crashed after a call to the getData method.
+ - Issue Number 327431: Resolved an SAP-assigned security vulnerability in nestTables (CVE-2024-45277). Released on (2024-08-30).
+ - Issue Number 327072: When multiple requests were being processed in parallel and tracing was enabled, memory leaks could have occurred.
+ - Issue Number 324539: The VSCode extension could have crashed when two different versions of @sap/hana-client were used simultaneously.
 
 ## Version 2.21.28
 

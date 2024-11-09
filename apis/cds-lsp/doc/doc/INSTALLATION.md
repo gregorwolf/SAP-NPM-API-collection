@@ -14,7 +14,7 @@ For other IDEs there exist generic client plug-ins for language servers. Example
   - Emacs, ...
 
 #### Requirements
-`@sap/cds-lsp` is a NodeJS module. As such it requires NodeJS installed on the client machine. Minimum version is 18.15.
+`@sap/cds-lsp` is a NodeJS module. As such it requires NodeJS installed on the client machine. Minimum version is 20.15.1
 
 #### Start-up
 

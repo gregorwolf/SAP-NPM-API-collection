@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+## [1.7.13] - 2024-09-16
+### Changed
+- internal refactorings
+
 ## [1.7.12] - 2024-07-09
 ### Fixed
 - more robust validate-function assignment

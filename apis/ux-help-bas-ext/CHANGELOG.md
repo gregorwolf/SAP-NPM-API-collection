@@ -5,7 +5,59 @@ All notable changes to this project are documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Joule
-- **Note**: Joule capabilities are available for SAP Build Code subscribers in SAP Business Application Studio
+- **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
+
+## [1.15.4] - 2024-10-31
+### Changed
+- Filter values are now in title case to improve consistency
+
+### Fixed
+- Fixed an issue in Step 1 of the _Configure multiple views for tables_ guide where the existing UI.LineItem and UI.Chart annotations were not being read, which rendered the guide unusable
+- Fixed a UX issue where the filename above the code snippet was displayed differently on macOS and Windows
+- Fixed a UX issue where the values in the dropdown control were not vertically aligned when selected
+- Fixed an accessibility issue where field validation errors were not conveyed to screen readers
+- Fixed an accessibility issue where the focus moved out of the dropdown control when the escape key was pressed
+- Fixed an accessibility issue where the screen reader did not read out group and field labels
+
+## [1.15.3] - 2024-10-16
+### Fixed
+- Fixed an issue with the search field where clicking on the x icon removed the filters, the parameters, and closed the guide
+- Fixed an issue where the filename in the code snippet section was not updated correctly after changing the annotation file in CAP projects
+
+## [1.15.2] - 2024-10-03
+### Joule
+- Updated Joule support for SAP Fiori generation to now use the LLM `GPT-4o` instead of `GPT-3.5`
+
+### Changed
+- Updated the following building block guides to use the new prompts architecture using Inquirer.js and added several enhancements:
+  - Add a table building block
+  - Add a chart building block
+  - Add a filter bar building block
+- Updated the minimum SAPUI5 version in all the guides to ensure that only relevant guides are shown based on the project's minimum SAPUI5 version
+
+### Fixed
+- Fixed an accessibility issue where some guide variants could not be accessed when the view was set to All Guides and the horizontal space was narrow
+- Fixed an issue with the validation of certain fields in specific Overview Page guides
+
+## [1.15.1] - 2024-09-19
+### Joule
+- Added the ability to upload a document with business requirements and use it as the basis for a Joule request; users can now upload a document and enter a prompt in Joule such as "create my application from the attached document" to generate an application
+- Added Page Map and Application Information buttons after the generated application has been accepted in Joule
+
+### Fixed
+- Fixed a UX issue related to the display of the info message for unsupported properties in the parameter collection table
+- Fixed an issue where the hand icon indicating drag and drop also appeared on icons and texts in the parameter collection table
+- Fixed an accessibility issue with the Expand view/Split view and Hide code snippet/Show code snippet toggle buttons where the screen reader did not read their new values when the buttons were toggled
+- Fixed an issue where the `UI.DataFieldForAnnotation` referred to non-UI annotations like `Communication.Contact` and `Communication.Address`, and they were not rendered in the _Add and edit table columns_ guide
+
+## [1.15.0] - 2024-09-05
+### Fixed
+- Fixed an accessibility issue with the keyboard focus: the focus now moves to the beginning of the corresponding step when the `Start Guide`, `Back` or `Next` buttons are used
+- Improved the accessibility experience by providing an `aria-label` and tooltip to the show/hide code snippet icon
+
+## [1.14.5] - 2024-08-22
+### Changed
+- Building block guides now show an error notification if both `sap.fe.templates` and `sap.fe.core` libraries are missing in the `manifest.json`
 
 ## [1.14.4] - 2024-08-08
 ### Fixed

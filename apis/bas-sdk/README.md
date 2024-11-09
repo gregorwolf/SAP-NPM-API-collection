@@ -17,4 +17,3 @@ To install the relevant SDK with npm, use the following:
 ```
   npm install @sap/bas-sdk --save
 ```
-

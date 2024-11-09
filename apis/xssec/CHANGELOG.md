@@ -1,6 +1,29 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.2.7 - 2024-11-08
+- fix v3 compatibility layer to allow to configure new features like prooftoken validation there too
+- fix service plan name handling
+
+## 4.2.6 - 2024-10-17
+- fix typescript definitions
+- document and add a sample for  an automatic token exchange method
+
+## 4.2.5 - 2024-10-16
+- add TimeoutError Exception to provide a way to identify a timeout error
+
+## 4.2.4 - 2024-09-05
+- fix missing x-zid header in XSUAA token fetches via v3 compatibility requests with zoneId parameter
+- add clientsecret as optional property to type XsuaaServiceCredentials
+
+## 4.2.3 - 2024-09-03
+- bugfix passport v3 wrapper so it does not call the error callback twice in specific scenario
+- add certurl as optional property to type XsuaaServiceCredentials
+
+## 4.2.2 - 2024-08-29
+- export some more internal classes for better test support
+- remove node-fetch dependency and use native https module instead
+
 ## 4.2.1 - 2024-07-25
 - fix JWKS URL construction for XSA service bindings whose url contains already a path
 

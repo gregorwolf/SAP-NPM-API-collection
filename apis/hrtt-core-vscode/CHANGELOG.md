@@ -2,7 +2,19 @@
 
 ### New Features
 
-- Update DBX UI
+- Updated HRTT to version 240912-1727732846-4e39f27
+
+## 1.33.0
+
+### New Features
+
+- Updated HRTT to version 240718-1722751423-f692058
+
+## 1.33.0
+
+### New Features
+
+- Updated HRTT to version 240523-1719121887-aac3634
 
 ## 1.32.0
 

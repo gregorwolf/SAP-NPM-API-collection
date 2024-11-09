@@ -1,5 +1,30 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.27.0
+
+### New Features
+- The database list can be sorted via the setting "SAP HANA Database Explorer.DatabaseListSortOrder".
+- The combined schema and object filter in the catalog browser has been split into separate filters for schemas and objects, respectively.
+
+### Fixes
+- Performance improvements.
+- Fixed an issue that could lead to users not being able to connect if a password change is required.
+- "Open" context menu entry is missing for tables and indexes.
+- New SQL consoles are opened backed by a file without a path.
+- The type of indexes shown in the dependency viewer is wrong.
+- The colums of database objects in the dependency viewer is in the same order as in the metadata dialog.
+- Some objects were missing metadata in the dependency viewer.
+- Objects in the dependency viewer under the minimap area can't be moved.
+
+## 1.26.0
+
+### New Features
+- Objects shown in the dependency viewer can be set as the root object via the object's details pane
+
+### Fixes
+- SQL files can be opened with the SQL console
+- Add an option to disable result formatting in the SQL console
+
 ## 1.25.0
 
 ### New Features

@@ -5,20 +5,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 5.1.0 - 2024-03-27
-
-### Removed
-- Removed shrinkwrap from preRelease
-
-### Updated
-- filter-node-package to 4.0.0
-
-## 5.0.0 - 2024-02-14
-
-### Removed
-- Support for Node.js 12.x, Node.js 14.x and Node.js 16.x
-- updated dependencies 
-
 ## 4.1.0 - 2023-11-07
 
 ### Added

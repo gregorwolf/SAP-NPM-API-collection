@@ -6,9 +6,72 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [3.1.2] - 2024-10-31
+
+### Fixed
+
+- run inferred rules correctly on Microsoft Windows
+
+
+## [3.1.1] - 2024-10-08
+
+### Changed
+
+- `no-db-keywords` is no longer part of the 'recommended' rules,
+  as the cds-compiler takes care of quoting SQL keywords, if they are used as identifiers.
+
+### Fixed
+
+- `auth-restrict-grant-service` can now handle invalid values for `@restrict`
+- `auth-use-requires` now handles `null` values for `@restrict.grant.to`
+- `auth-valid-restrict-to` is now more robust against invalid properties such as `__proto__`
+  and reduces the number of false positives
+- `auth-valid-restrict-where` now handles and reports invalid value `@restrict: [{where: null}]`
+- `auth-no-empty-restrictions` now handles invalid value `@restrict: [null]`
+
+
+## [3.1.0] - 2024-09-26
+
+### Added
+
+- api:
+  + rules now have a `name` property, containing the rule name
+  + new exported property `parser`
+- rules: there is now an `experimental` rule group, containing new rules that can be tested
+- new experimental rules were added:
+  + `@sap/cds/sql-null-comparison`
+  + `@sap/cds/no-java-keywords`
+- `auth-valid-restrict-grant` now proposes '*' when incorrect `@restrict.grant` value 'any' is used
+
+### Removed
+
+- api: `genDocs` was removed
+
+### Fixed
+
+- cli: Running `eslint` on the command line now runs `inferred` rules again
+- `start-entities-uppercase` no longer reports false positives for elements
+- Typescript errors in `lib/types.d.ts` were fixed
+- Rule property `hasSuggestions: true` was removed from rules that did not have suggestions
+- Custom rule tests using `runRuleTester` did not catch errors in files inside `valid/`.
+  Tests can now also be run with other test runners such as `mocha` and `node --test` instead of just `jest`
+- `auth-` lint rules have been reworked to reduce the number of false positives and negatives
+  + `auth-valid-restrict-where` no longer runs in quadratic time and now handles "expressions as annotation values"
+  + `auth-no-empty-restrictions` now runs for actions and functions, too
+  + `auth-use-requires` will not propose `@requires` anymore, if the `@restrict` has a `where` condition
+  + `auth-valid-restrict-grants` incorrectly proposed to use `WRITE` instead of other events; it no longer crashes for invalid value types and now runs on all CSN artifacts
+  + `auth-valid-restrict-keys` has improved reporting about misspelled vs unknown properties; it now runs on all CSN artifacts
+
+## [3.0.5] - 2024-09-11
+
+### Fixed
+
+- Inferred rules did not run when executed via `eslint` or `cds lint`.
+
 ## [3.0.4] - 2024-06-19
 
 ### Changed
+
 - Internal refactorings
 
 ## [3.0.3] - 2024-05-08

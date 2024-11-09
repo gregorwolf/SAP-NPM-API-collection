@@ -1,3 +1,27 @@
+## 5.3.2
+Fixes:
+- Removed postinstall check for SAP HANA clients
+
+## 5.3.1
+Fixes:
+- Fixed logging client version
+
+## 5.3.0
+Features:
+- Add range dependencies in package.json
+
+Removed:
+- Removed shrinkwrap
+
+## 5.2.3
+Fixes:
+- added reference property to validation checks of privilege names and their properties in .hdbgrants and .hdbrevokes files
+
+## 5.2.2
+Fixes:
+- use micromatch@4.0.8
+- use async@3.2.6
+
 ## 5.2.1
 Features:
 - added option `--treat-deployer-warnings-as-errors` to enable deployer-side feature for treating warnings as errors
@@ -44,6 +68,21 @@ Features:
 
 Removed:
 - Node 12.x, 14.x, and 16.x support
+
+## 4.9.5
+Fixes:
+- use micromatch@4.0.7
+- use @sap/hana-client@2.20.22
+- use hdb@0.19.8
+
+## 4.9.4
+Fixes:
+- fixed accessing undefined data from readableBuffer when using the --optimise-file-upload option
+- use @sap/hana-client@2.20.15
+
+## 4.9.3
+Fixes:
+- fixed accessing undefined data from readableBuffer when using the --optimise-file-upload option
 
 ## 4.9.2
 Fixes:

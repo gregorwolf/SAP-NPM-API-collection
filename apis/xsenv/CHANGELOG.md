@@ -5,6 +5,31 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.4.0 - 2024-10-24
+
+### Added
+- Added node 22.x support
+
+### Updated
+- Updated `filter-node-package` dependency to 5.0.0
+- Updated `mock-fs` dependency to 5.4.0
+- Updated `@eslint/js` dependency to ^9.12.0
+- Updated `@eslint/eslintrc` dependency to ^3.1.0
+- Updated `@babel/eslint-parser` dependency to 7.25.8
+
+## 5.3.0 - 2024-09-19
+
+### Added
+- Redacted sensitive information in debug console for k8s services
+
+### Updated
+- Updated `debug` dependency to 4.3.7
+- Updated `node-cache` dependency to 5.1.2
+- Updated `eslint` dependency to 8.57.1
+- Updated `filter-node-package` dependency to 4.1.0
+- Updated `mocha` dependency to 10.7.3
+- Updated `node-build` dependency to 3.0.0
+
 ## 5.2.0 - 2024-07-22
 
 ### Added

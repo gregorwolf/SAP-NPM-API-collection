@@ -1,3 +1,26 @@
+## 1.26.0
+
+### New Features
+
+- Fabric virtual tables (hdbfabricvirtualtable) can be created by the artifact creation wizard
+- Collection adjacency indexes (hdbcollectionadjindex) can be created by the artifact creation wizard
+- Structured filters (hdbstructuredfilter) can be created by the artifact creation wizard
+- New SAP HANA welcome page layout
+- The grants editor supports multiple services in one file
+
+### Fixes
+
+- An out of memory error can happen when performing a support mode export
+- Only SAP HANA Cloud database connections are listed in SQL notebooks
+- The schema is set correctly when connecting via the credentials in a .env file in SQL notebooks
+- Deleting a database connection in a CAP project results in an error message when binding to a service
+
+## 1.25.0
+
+### New Features
+
+- GenAI assisted project generation
+
 ## 1.24.0
 
 ### New Features

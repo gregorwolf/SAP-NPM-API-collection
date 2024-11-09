@@ -5,6 +5,64 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 17.0.0 - 2024-10-28
+
+### Fixed
+- Adopting the standard definitions for cookies as defined in [RFC-6265](https://www.ietf.org/rfc/rfc6265.txt) and [RFC 2616](https://www.rfc-editor.org/rfc/rfc2616.txt)
+- Use of env destinations after cache timeout in managed approuter
+
+### Updated dependencies
+- deps: cookie@0.7.2
+- deps: cookie-parser@1.4.7
+- deps: express-session@1.18.1
+
+## 16.9.0 - 2024-10-10
+
+### Added
+- UGW session support 
+
+### Fixed 
+- Using xsuaa authorizationType when xsuaa not bound
+- Undefined when html5 metadata misses credentials
+- Token exchange of reuse services in SaaS Approuter
+- Missing service credentials in get dependencies call
+
+## 16.8.2 - 2024-09-29
+
+### Fixed 
+- mTLS support in websockets connection
+
+## 16.8.1 - 2024-09-24
+
+### Updated dependencies
+- deps: serve-static@1.16.2
+
+## 16.8.0 - 2024-09-16
+
+### Added
+- Server request timeout configuration
+- Own SAP Cloud Service support for app-host id in url
+
+### Fixed
+- Support app keys containing app-host guid in local approuter
+- Mask auth code from logs.
+
+### Updated dependencies
+- deps: send@1.19.0
+- deps: serve-static@1.16.0
+- deps: body-parser@1.20.3
+
+## 16.7.3 - 2024-09-05
+
+### Fixed
+- service2approuter middleware token check
+
+## 16.7.2 - 2024-09-04
+
+### Fixed
+- Improved Missing zone information" error message
+- Request input validation.
+
 ## 16.7.1 - 2024-08-23
 
 ### Fixed
@@ -13,7 +71,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
 ## 16.7.0 - 2024-08-15
 
-## Added
+### Added
 - Dynamic IDP support for IAS
 - Allow skip redirect to IAS/XSUAA service on logout
 

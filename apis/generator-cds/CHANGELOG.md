@@ -6,6 +6,16 @@
 
 
 
+
+## Version 2.18.8 - 2024-10-30
+### Changed
+- new `start` script in generated `package.json`
+- output version when starting
+
+## Version 2.18.7 - 2024-09-05
+### Changed
+- dependency updates
+
 ## Version 2.18.6 - 2024-01-29
 ### Changed
 - use current version for `cds-dk` in generated project's main `package.json`

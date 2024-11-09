@@ -7,13 +7,75 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 8.4.3 - 2024-11-05
+
+### Fixed
+- deleting CDS files will now suggest to remove `using` statements without artifacts
+
+## 8.4.2 - 2024-11-02
+
+### Added
+- Rename or move of CDS files and folders will update all `using` statements to the renamed file
+- Deletion of CDS files or folders will show all `using` statements to the renamed file with possibility to remove those.
+  Note: The referencing files will likely have compilation errors afterward.
+
+### Fixed
+- highlighting of escaped identifiers and parameter lists
+- `using` path proposals could have been suggesting JS files instead of CDS files in certain cases
+- on Windows if client mixes upper- and lowercase drive letters some requests could have failed
+- CDS Typer was called when deleting a file which led to a misleading error output 
+- Analysis of dependencies failed when handling non-npm `package.json` files (e.g. from `pnpm` lacking `name` property)
+
+### Changed
+- minimum required NodeJS version is now (back to) 20.9.0
+
+### Also see
+- `@sap/cds-compiler` 5.4.0
+
+## 8.3.2 - 2024-10-01
+
+### Added
+- support for annotation modeler to remove certain code completions from compiler in favor of more suitable ones 
+- show absolute name and kind of artifact in hover and completion details
+- analyze-dependencies command now supports rendering to `svg` or `json` string
+
+### Fixed
+- highlighting of CASE-statement keywords when put in their own line
+- analysis of dependencies for certain cases
+
+### Changed
+- minimum required NodeJS version is now 20.15.1
+
+### Also see
+- `@sap/cds-compiler` 5.3.0
+
+
+## 8.2.1 - 2024-08-30
+
+### Added
+- code completion for artifacts within `using` statements now also completes single name segments with complete name
+
+### Changed
+- minimum required NodeJS version is now 20.9.0
+- hover and completion proposal details now show artifact kind
+
+### Fixed
+- highlighting of element names in annotate statements and of special element names `entity`, `type`, `event`
+- completion: rename of source folders led to wrong using path proposals
+- completion: using path proposals did not work in multi-line using statements
+- maintain translation quickfix sent wrong document version
+
+### Also see
+- `@sap/cds-compiler` 5.2.0
+
+
 ## 8.0.0 - 2024-06-25
 
 ### Changed
 - cds-lsp will use embedded cds-compiler (v5) if compiler in workspace is < v5
 
 ### Fixed
-- highlighting of annotations after bracketed expressions
+- highlighting of annotations after bracketed expressions and comments in parameter lists
 - exception in graphical file dependency analysis
 - node version check now runs outside bundle
 

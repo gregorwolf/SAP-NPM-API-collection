@@ -3,6 +3,73 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.15.4] - 2024-10-31
+### Added
+- Added the ability to automatically add table columns to the list page and sections to the object page from the command line generator
+- The Application Info page now automatically launches after a reusable library has been generated successfully
+
+### Changed
+- Updated the SAP Fiori generator to prohibit the user from attempting to add a deployment configuration to a non-Fiori tools supported project
+- Updated the deployment generator so that it will prevent configuration for an SAP Fiori application in a CAP project if it does not already contain an `mta.yaml` file
+
+### Fixed
+- Fixed an issue where the generator would crash if not connected to the internet when trying to retrieve the list of SAPUI5 versions
+- Fixed an issue where the SAPUI5 version from the selected ABAP back end wasn't displayed in the list of SAPUI5 versions when there was no connection to the internet
+- Fixed an issue where the UI Service Generator in VS Code would not correctly authenticate with a saved system that uses reentrance ticket authentication
+- Fixed an issue where launching the SAP Fiori generator directly from ADT in Eclipse could fail if the authentication was using a reentrance ticket
+
+## [1.15.3] - 2024-10-16
+### Changed
+- Updated the UI Service Generator so that it no longer asks for a confirmation when launching the SAP Fiori Generator after the UI Service is generated
+
+### Fixed
+- Fixed an issue where SAP Fiori applications generated as part of SAP Build Code incorrectly added deployment configurations that were not necessary
+- Fixed an issue where an invalid semantic object name could be provided as part of SAP Fiori launchpad configuration
+
+## [1.15.2] - 2024-10-03
+### Added
+- Added an option to the UI Service Generator to automatically launch the SAP Fiori Generator to create an application with the newly generated service
+
+### Changed
+- Updated the SAP Fiori Application Generator to prevent users from selecting a CAP project folder for an SAP Fiori application that didn't use a CAP data source
+
+### Fixed
+- Fixed an issue where the UI Service Generator crashed when launched directly from the Service Center in SAP Business Application Studio
+
+## [1.15.1] - 2024-09-19
+### Changed
+- Updated the SAP Fiori Generator to validate that the selected project folder path does not already contain an SAP Fiori application
+
+### Fixed
+- Fixed an issue where the annotation sources for an OData V2 service were not correctly retrieved and included in an SAP Fiori application generated with the basic template
+- Fixed an issue with the SAP Fiori Generator where completed fields were reset when modifying other fields within the same section
+
+## [1.15.0] - 2024-09-05
+### Added
+- Added the ability to launch the UI Service Generator from the Service Center in SAP Business Application Studio and to add the generated service to an existing storyboard project
+- Added support for launching the UI Service Generator from the Service Center in SAP Business Application Studio for destinations that require authentication
+
+### Changed
+- Updated the warning message for A2X services that are unsuitable for SAP Fiori UI applications and included services that don't have a classification
+
+### Fixed
+-  Fixed an issue where the UX specification library would not install when using NPM workspaces with a CAP project during the installation of an SAP Fiori application
+
+## [1.14.5] - 2024-08-22
+### Added
+- Added the ability to create a new UI service for an ABAP system, with the new service then being available for generating SAP Fiori applications
+- Added the option to open an existing SAP Fiori project from your workspace when you launch from ABAP Development Tools (ADT), if an SAP Fiori project in your workspace already exists that matches the system and service binding from ADT
+
+### Changed
+- Improved support for storing saved system credentials in Visual Studio Code
+- Updated the Custom page template to remove unnecessary dependencies
+- Optimized the dependencies created when adding a deployment configuration to an SAP Fiori application
+
+### Fixed
+- Fixed an issue where the SAP saved system could not be found when launching the SAP Fiori generator from the ABAP Development Tools environment
+- Fixed an issue where the deployment of your SAP Fiori application could fail if it was created using TypeScript
+- Fixed an issue where the generation of your SAP Fiori project could fail when being generated from the command line
+
 ## [1.14.4] - 2024-08-08
 ### Changed
 - Updated the title of the SAP Fiori generator tab to `SAP Fiori generator` rather than using the generic `Template Wizard` title

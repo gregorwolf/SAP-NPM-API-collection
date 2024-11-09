@@ -4,13 +4,15 @@
 This module allows Node.js applications to authenticate users via JWT tokens issued by [SAP Business Technology Platform (BTP)](https://www.sap.com/products/technology-platform.html) security services (SAP Cloud Identity Services and XSUAA). It also provides an API for fetching tokens from these services.
 
 ## Recommendation
-**We recommend developing new applications for SAP BTP with the new SAP Cloud Identity Service using Authorization Policies ([Details](#recommendation--sap-cloud-identity-services)).**
+**We recommend developing new applications for SAP BTP with the SAP Cloud Identity Service using Authorization Policies ([Details](#recommendation--sap-cloud-identity-services)).**
 
 ## Table of Contents
 1. [Version 4](#version-4)
+    - [Breaking Changes](#breaking-changes)
 1. [Installation](#installation)
 1. [Maintenance](#maintenance)
 1. [Example](#example)
+    - [Passport Strategy](#passport-strategy)
 1. [Usage](#usage)
     - [Authentication](#authentication)
     - [Authorization](#authorization)
@@ -26,6 +28,7 @@ This module allows Node.js applications to authenticate users via JWT tokens iss
     - [JWKS Cache](#jwks-cache)
     - [x5t Validation](#x5t-validation)
     - [Proof Token Validation](#proof-token-validation)
+    - [IAS -> XSUAA Token Exchange](#ias---xsuaa-token-exchange)
 1. [Troubleshooting](#troubleshooting)
     - [Common Issues](#common-issues)
     - [Debug Logs](#debug-logs)
@@ -54,15 +57,8 @@ securityContext.token instanceof XsuaaToken // or: IdentityServiceToken, XsaToke
 ```js 
 const hdbToken = securityContext.token.payload.ext_cxt?.['hdb.nameduser.saml'] || securityContext.token.payload['hdb.nameduser.saml'] || securityContext.token.jwt;
 ```
-- Configuration option `IAS_XSUAA_XCHANGE_ENABLED` has been removed. If your application needs to exchange Identity Service JWTs to XSUAA JWTs, make this call first using the provided API of the new `Service` subclasses and then open a SecurityContext with that JWT. To check for which service a JWT is issued, you can use the new `acceptsToken` method on `Service` instances:
-```js
-let jwt = ... // extract JWT from req object
-const token = new Token(jwt);
-if(!xsuaaService.acceptsToken(token) && identityService.acceptsToken(token)) {
-  // in this case, some hybrid systems want to exchange the Identity Service JWT for an XSUAA JWT before opening a SecurityContext
-  jwt = xsuaaService.fetchJwtBearerToken(jwt);
-}
-```
+- Configuration option `IAS_XSUAA_XCHANGE_ENABLED` has been removed because it was unclear from which service instance to which service instance the exchange should be made when multiple instances of the same type were present. Applications can implement the exchange themselves with the new API as described [here](#ias---xsuaa-token-exchange).
+- Configuration option `disableCache` has been removed. It is also not supported by implementations from the v3 compatibility package.
 - `isInForeignMode` has been removed.
 
 ## Installation
@@ -170,7 +166,7 @@ const { XssecError, ValidationError } = require("@sap/xssec");
 ...
 
 // configure passport to failWithError to be able to catch ValidationErrors.
-// Otherwise it will swallow the ValidationError and directly send a 401 response
+// Otherwise it will swallow the ValidationError and directly send a 401/403 response
 app.use(passport.authenticate('JWT', { session: false, failWithError: true }));
 
 // in your express error handler, check for errors passed on by XssecPassportStrategy and handle accordingly
@@ -277,7 +273,7 @@ The API of this module throws instances of `XssecError` or hierarchical subclass
 
 ```js
 try {
-  xsuaaService.fetchClientCredentialsToken()
+  await xsuaaService.fetchClientCredentialsToken()
 } catch(e) {
   if(e instanceof XssecError) {
     // it is an error thrown by this module
@@ -533,7 +529,7 @@ app.use(passport.authenticate('JWT', { session: false, scope: ["read", "write"] 
 ```
 
 ### JWKS Cache
-To verify the validity of a token, the library needs to ensure that it was signed with a *public key* from the authentication server's [JWKS](https://datatracker.ietf.org/doc/html/rfc7517) (JSON Web Key Set). The application retrieves the JWKS via HTTP from the authentication server. It is cached to reduce both the load on the server and the latency of requests introduced by the signature validation.
+To verify the validity of a token, the library needs to ensure that it was signed with a *private key* belonging to one of the *public key*s from the authentication server's [JWKS](https://datatracker.ietf.org/doc/html/rfc7517) (JSON Web Key Set). The application retrieves the JWKS via HTTP from the authentication server. It is cached to reduce both the load on the server and the latency of requests introduced by the signature validation.
 
 Please note that the JWKS endpoint is parameterized and does additional service-specific validations based on those parameters. For this reason, among others, more than one JWKS is typically cached and individually refreshed under different cache keys that include those parameters.
 
@@ -568,23 +564,23 @@ To overwrite cache parameters, you need to specify them as key/value pairs in `<
 ```js
 const authService = new IdentityService(identityServiceCredentials,
   {
-    // override one default value or both
+    // override one default value or many
     validation: {
       jwks: {
-        expirationTime: 3600000, // 3600000ms = 60min
-        // refreshPeriod: 1800000, // 1800000ms = 30min
+        expirationTime: 3600000,
+        // refreshPeriod: 1800000,
+        // shared: true
       }
     }
   });
 ```
-Please note that the cache parameters are configured in `ms` (milliseconds).
 
 ### X.509 certificate support
 #### X509_GENERATED
 If your authentication service instance is configured to manage certificates and keys on its own, there will be `certificate` and `key` properties in the service credentials that work out-of-the-box with this module when you use it for authenticated requests to the authentication service, e.g. when [fetching tokens](#fetching-tokens).
 
 #### X509_PROVIDED
-If your authentication service instance is configured to use an externally managed certificate/key you need to add them to the service credentials before passing the credentials to the `Service` constructor:
+If your authentication service instance is configured to use an externally managed certificate/key you might need to add them to the service credentials before passing the credentials to the `Service` constructor:
 
 ```js
 const { XsuaaService } = require("@sap/xssec");
@@ -640,6 +636,15 @@ const securityContext = await createSecurityContext(identityService, { reqWithFo
 // service plans are available via securityContext.servicePlans
 ```
 
+#### IAS -> XSUAA Token Exchange
+Some applications need to exchange incoming Identity Service user tokens to XSUAA user tokens.
+The correct token flow for this is the [JWT Bearer](#token-flows) flow.
+
+The token exchange is not a fully fletched feature of the library and needs to be implemented **and tested** via application coding.
+
+However, [this snippet](./src/util/iasXsuaaTokenExchange.js) should give a good idea how the API of the library can be used to achieve this.
+It implements an express middleware that can be registered *before* the authentication middleware to exchange the IAS token in the request header to an XSUAA token.\
+If you decide to base your implementation on the snippet, you need to copy it to your source files and implement logging and error handling as required by the application.
 
 
 ## Troubleshooting
@@ -655,7 +660,7 @@ SyntaxError: Unexpected token '??='
 ```
 
 ### Debug Logs
-To enable debug logging, set the environment variable DEBUG as follows when starting your application: `DEBUG=xssec:*`.
+To enable debug logging, set the environment variable DEBUG as follows when starting your application: `DEBUG=xssec`. Note that `DEBUG=xssec:*` works only for xssec 3.
 
 
 ### How to get support

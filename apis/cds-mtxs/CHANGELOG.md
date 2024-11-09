@@ -6,7 +6,62 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## Version 2.0.6 - 2024-08-15
+## Version 2.3.0 - 2024-10-28
+
+### Added
+
+- If extensibility is disabled, the upgrade operation now checks if extensions exist to avoid potential data loss. If intended the check can be disabled by setting `cds.requires['cds.xt.DeploymentService'].upgrade.skipExtensionCheck: true`.
+- Requests to Service Manager now forward the correlation ID.
+
+### Fixed
+
+- Migration command `cds-mtx-migrate --syncTenantList` is now more robust.
+- `DEBUG=mtx` redacts Service Manager credentials.
+- When deleting a tenant HDI container, all of its service bindings are deleted – not just the ones labeled with the tenant ID.
+- Extension linter now checks `@mandatory` and `@readonly` more accurately.
+- `cds.xt.JobsService` inserts jobs and tasks in one transaction.
+
+## Version 2.2.0 - 2024-09-30
+
+### Added
+
+- `PUT /-/cds/saas-provisioning/tenant` and `POST /-/cds/saas-provisioning/subscribe` accept additional environment variables to the HDI deployment via the generic options `_`, e. g. additional `VCAP_SERVICES`:
+  ```jsonc
+  "_": {
+    "hdi": {
+      "deployEnv": {
+        "VCAP_SERVICES": { ... },
+        "SOMETHING_ELSE": "something"
+      },
+      ...
+    }
+  }
+  ```
+
+### Changed
+
+- HANA deployments without `resources.tgz` will now skip the deployment instead of failing with an error.
+- Debug logs for HANA deployments can be set using `DEBUG=deploy`.
+- The error about an invalid scope when fetching a token now contains the expected scope.
+- Logs for enqueued jobs are not colored in non-TTY environments any more.
+
+### Fixed
+
+- `/-/cds/saas-provisioning/dependencies` show a better error message when it can't resolve its configured SaaS dependencies.
+- The Service Manager client re-fetches the authorization token on retries.
+- Better error handling in `cds.xt.JobsService`.
+
+
+## Version 2.1.0 - 2024-08-29
+
+### Fixed
+
+- On-the-fly CSN calculations are only done with `extensibility: true` in the main app.
+- The request correlation ID is appended to generic HDI deployment error messages.
+- Asynchronous extension activation now reverts faulty extensions correctly.
+- Parallel extension activation calls do no longer create inconsistent extension states.
+
+## Version 2.0.6 - 2024-08-16
 
 ### Fixed
 
@@ -33,7 +88,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Better error message when Service Manager credentials cannot be resolved.
 - `/-/cds/saas-provisioning/upgrade` will ignore tenants that do not exist in Service Manager any more and print out a warning.
 - `cds.requires.html5-repo: true` will correctly set the subscription dependency out of the box.
-- Scope check for `cds.xt.JobService.enqueue()´ is now more restrictive.
+- Scope check for `cds.xt.JobService.enqueue()` is now more restrictive.
 
 ## Version 2.0.3 - 2024-07-19
 

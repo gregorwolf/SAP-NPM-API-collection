@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2024.17.0
+
+### Added
+
+- Support for binary files. Binary files can be specified as input for a command. The content is send as a buffer to the server. The `Content-Type` header is set to `multipart/form-data`.
+
 ## 2024.15.0
 
 ### Changed
