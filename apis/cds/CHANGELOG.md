@@ -4,6 +4,44 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 8.5.0 - 2024-11-25
+
+### Added
+
+- New `cds.i18n` module used consistently for both, UI labels and runtime messages.
+- Enhanced `cds.validate` to support open intervals for: `@assert.range:[(0),(Infinity)]` -> `0 < x < ∞`
+- `package.json` validation and suggestions for messaging services.
+- `cds.log()`: Detect binding to SAP Cloud Logging via user provided service. The user provided service must have tag `cloud-logging`.
+- Support for function parameters via query component (example: `GET /foo?bar=baz` instead of `GET /foo(bar='baz')`)
+- Experimental support for programmatic draft actions `srv.new(MyEntity, data)`, `srv.cancel(MyEntity.drafts, keys)`, `srv.edit(MyEntity, data)` and `srv.save(MyEntity.drafts, keys)`
+
+### Changed
+
+- `cds-deploy` script has a non-zero exit code on deployment failure
+- Properties of type `cds.Binary` in URLs as well as request payload are converted to `Buffer`s.
+  Properties of type `cds.LargeBinary` in request payload are converted to `Readable`s.
+  Previously, both were provided as Base64-encoded strings.
+  This change can be deactivated via `cds.env.features.base64_binaries = true`, which is set by default for profile `attic`.
+
+### Fixed
+
+- `cds.validate` should not delete readonly keys from `req.data`
+- `cds.validate` should not reject imported associations
+- Readonly fields must not be set when creating draft entities
+- Validation of mandatory properties caused streams to be rejected for new OData adapter
+- `cds.log` with null parameters and JSON format
+- `cds.compile.to.sql` proper replacement for sqlite session variables in java projects
+- `cds.compile.to.serviceinfo` ignores only the `endpoints` property for unknown protocols
+- `Preference-Applied` header is returned in OData adapter if requested
+- No location header is returned on OData update requests if `minimal` preference is set
+- Handling of invalid requests for views with parameters
+
+## Version 8.4.2 - 2024-11-13
+
+### Fixed
+
+- `cds.compile.to.edmx` if using the new builtin type `cds.Map`
+
 ## Version 8.4.1 - 2024-11-07
 
 ### Fixed
@@ -23,8 +61,9 @@
 
 ### Changed
 
+- Internal API `srv.endpoints` now always is an array of endpoint objects, an empty one if the service is not served to any protocol.
+- Property `.cmd` of `cds.ql.Query` (and subclasses thereof) is deprecated → use `.kind` instead
 - For remote service calls to OData v2 services, less conversions are performed on the returned data
-- Internal API `srv.endpoints` now always is an array of endpoint objects, an empty one if the service is not served to any protocol
 
 ### Fixed
 
@@ -209,6 +248,7 @@
 - Allow programmatic operations on draft-enabled entities (`NEW`, `CREATE`, `UPDATE`, `DELETE`)
 
 ### Removed
+
 - Allow deviating response types for `$batch`, e. g. input `multipart` and output `json`
 
 ## Version 8.0.2 - 2024-07-09

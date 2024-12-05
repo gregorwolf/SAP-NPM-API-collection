@@ -12,7 +12,8 @@ Commands:
   [ui5theme] [terminal]
   dev-cap-tools update-xsuaa-service        update XSUAA service for local run
   [path]                                    with roles defined in the project
-
+  dev-cap-tools show-manifest [path]        Show project manifest
+  [terminal]
 Options:
   --version  Show version number                                       [boolean]
   --help     Show help                                                 [boolean]

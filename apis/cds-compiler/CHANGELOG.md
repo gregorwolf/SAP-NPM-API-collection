@@ -7,18 +7,46 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.5.2 - 2024-12-02
+
+### Fixed
+
+- to.hdi|sql|edm[x]: Correctly handle `cds.Map`, ensure that it does not have `.elements` yet.
+
+## Version 5.5.0 - 2024-11-22
+
+### Added
+
+- CDL parser: when the new experimental option `newParser` is used, the compiler
+  uses a CDL parser with a significantly smaller footprint (among other things).
+- to.sql|hdi.migration: For SAP HANA, render `ALTER` statements as one big statement to improve performance.
+- to.sql.migration: Give more helpful comments when using option `script`.
+
+### Changed
+
+- Update OData vocabularies: 'Common', 'PersonalData', 'UI'.
+
+## Version 5.4.4 - 2024-11-14
+
+### Fixed
+
+- Re-allow referring to mixins (and table aliases) in added columns
+- Re-add foreign keys of named aspects to the OData CSN.
+
+
 ## Version 5.4.2 - 2024-11-06
 
 ### Fixed
 
 - to.sql: For SQLite, map `cds.Map` to `JSON_TEXT` to ensure text affinity.
 
+
 ## Version 5.4.0 - 2024-10-24
 
 ### Added
 
 - to.edm(x): `cds.Map` as empty open complex type with name `cds_Map` or if the definition
-  has been assigned `@open: false` as empty open complex type `cds_Map_closed` in OData V4.
+  has been assigned `@open: false` as empty closed complex type `cds_Map_closed` in OData V4.
 
 ### Changed
 

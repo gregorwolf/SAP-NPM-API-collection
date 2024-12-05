@@ -7,6 +7,49 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 8.5.1 - 2024-12-02
+
+### Changed
+- enabling `newParser` via `cds.env` will no longer interfer with language server
+- improved telemetry messages
+
+### Also see
+- `@sap/cds-compiler` 5.5.2
+
+
+## 8.5.0 - 2024-11-26
+
+### Added
+- Report request statistics via `telemetry/event` notification to client. Enable via process env var `CDS_LSP_TELEMETRY_FEATURE=true`
+
+### Removed
+- With `@sap/cds 8.5.0` one of the default locations for translation folders (`assets/i18n`) was removed
+
+### Also see
+- `@sap/cds-compiler` 5.5.0
+
+
+## 8.4.5 - 2024-11-13
+
+### Added
+- refactoring `using` statements when renaming/deleting files or folders now considers ignore files (.cdsignore or .gitignore) and will not refactor ignored files
+
+### Changed
+- (performance) expensive workspace scanning is only done during renaming/deleting files or folders if those contain CDS files
+
+
+## 8.4.4 - 2024-11-08
+
+### Added
+- user setting to disable refactoring support when renaming/deleting CDS files (`cds.refactoring.files.rename.enabled` and `cds.refactoring.files.delete.enabled`)
+
+### Changed
+- performance improved when scanning the workspace and calculating refactorings when renaming/deleting CDS files
+
+### Also see
+- `@sap/cds-compiler` 5.4.2
+
+
 ## 8.4.3 - 2024-11-05
 
 ### Fixed

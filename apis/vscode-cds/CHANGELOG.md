@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
+## Version 8.5.1 - 2024-12-02
+
+### Changed
+- enabling `newParser` via `cds.env` will no longer interfere with CDS editor
+
+### Removed
+- obsolete support for CAP Notebook urls
+
+### Also see
+- `@sap/cds-lsp` 8.5.1
+- `@sap/cds-compiler` 5.5.2
+
+
+## Version 8.5.0 - 2024-11-29
+
+### Also see
+- `@sap/cds-lsp` 8.5.0
+- `@sap/cds-compiler` 5.5.0
+
+
+## Version 8.4.3 - 2024-11-13
+
+### Added
+- refactoring `using` statements when renaming/deleting files or folders now considers ignore files (.cdsignore or .gitignore) and will not refactor ignored files
+
+### Changed
+- (performance) expensive workspace scanning is only done during renaming/deleting files or folders if those contain CDS files
+
+### Also see
+- `@sap/cds-lsp` 8.4.5
+
+
+## Version 8.4.2 - 2024-11-08
+
+### Added
+- user setting to disable refactoring support when renaming/deleting CDS files (`cds.refactoring.files.rename.enabled` and `cds.refactoring.files.delete.enabled`)
+
+### Changed
+- performance improved when scanning the workspace and calculating refactorings when renaming/deleting CDS files
+
+### Also see
+- `@sap/cds-lsp` 8.4.4
+- `@sap/cds-compiler` 5.4.2
+
+
 ## Version 8.4.1 - 2024-11-05
 
 ### Fixed

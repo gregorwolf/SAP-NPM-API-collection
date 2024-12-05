@@ -8,6 +8,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+## [1.8.2] - 2024-12-03
+### Added
+- console output when installing npm dependencies is finished
+
+## [1.8.1] - 2024-11-25
+### Fixed
+- Run `npm install` after project creation
+
+## [1.8.0] - 2024-11-21
+### Added
+- support for project creation from Lobby
+
 ## [1.7.13] - 2024-09-16
 ### Changed
 - internal refactorings

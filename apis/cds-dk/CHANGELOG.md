@@ -7,14 +7,55 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 8.5.0 - 2024-11-26
+
+### Changed
+
+-  `cds import` now generates generic action/function in case of bound action/function collision and unbound function collision with @cds.validate = false.
+- `cds add typescript` creates projects with `cds-tsx` to run apps instead of former `cds-ts`.
+- `cds deploy` writes error output to `stderr`.
+- `cds add http` now evaluates mocks users when creating `Authorization` headers
+
+### Added
+
+- `cds debug` lets you debug Node.js applications running locally or in Cloud Foundry.
+- `cds watch --inspect` and `cds watch --inspect-brk` activate the debugger in the same way as the standard Node.js CLI options, i.e. they accept a `host:port` combination and `0` as values.
+- The existing `cds watch --debug` is now an alias to `cds watch --inspect`.
+- `cds add cloud-logging` adds cloud-logging as an alternative for application logging in Kyma.
+- `cds add cloud-logging --with-telemetry` or `cds add telemetry` adds cloud-logging as well as support for `cap-js/telemetry` plugin in Kyma.
+- `cds add handler` now also works for Node.js projects. It creates an implementation file for each service with event handlers for all entites and actions.
+- `cds add esm` creates ESM-compatible Node.js projects. Sample code added by `add sample` and `add handler` will respect this setting if added aftwards. Existing code will not be adjusted by `cds add esm`, though.
+
+### Fixed
+
+- `cds import` throws proper error message if Annotation element doesn't have Term attribute.
+- `cds add approuter` no longer enforces Node.js 22, which is not supporter by current `@sap/approuter` version 17. The previous Node.js version 20 is used again.
+- `cds add http` works for actions without parameters.
+- `cds add workzone` includes the `updateManifestJson` task on initial generation.
+- `cds build --ws` no longer creates migration tables in shared database or wrong workspace.
+
+## Version 8.4.2 - 2024-11-19
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 3.4.1 for creating Java projects.
+
+### Fixed
+
+- `cds add -p/--package` correctly parse plugin-contributed options.
+- `cds add side-by-side-extensibility` does not throw an error.
+- fix method name in `cds bind` credential handling.
+- `cds add --help` no longer has missing line breaks in help text.
+- `cds` commands no longer fail with an error `cds.extend is not a function` with very old versions of `@sap/cds`.
+- `cds add hana` adds the `requires.db` entry to `.cdsrc.json` for Java projects.
+- `cds add data` creates decimal values with correct scale `0` if only precision is given, like in `Decimal(15)`.
+
 ## Version 8.4.1 - 2024-11-08
 
 ### Added
 
 - `cds deploy --no-build` lets you skip the implicit `cds build`.
 - `cds add data/http` supports new type `cds.Map`.
-
-### Changed
 
 ### Fixed
 
