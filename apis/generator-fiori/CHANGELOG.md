@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.15.6] - 2024-11-14
+### Fixed
+- Fixed an issue where deployment to an ABAP system failed if it was connected using a proxy
+- Fixed an issue where invalid error messages were displayed in the console when trying to connect to a saved system in Visual Studio Code
+- Fixed an issue where un-deployment of an application failed if the application was generated using TypeScript
+- Fixed an issue where an SAP Fiori reusable library written in TypeScript was not detected when trying to add it as a reference in an SAP Fiori application
+- Fixed an issue where users were not prompted for connection credentials when adding a deployment configuration for an ABAP system
+
 ## [1.15.4] - 2024-10-31
 ### Added
 - Added the ability to automatically add table columns to the list page and sections to the object page from the command line generator

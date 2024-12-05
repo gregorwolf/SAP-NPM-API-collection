@@ -181,7 +181,24 @@ You can validate MDK project through the below command:
     mdk validate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt
     ```
     The option '--log-file' is not required, you can use it to output the logs to a file.
-    You can use option '--log-level' to specify which logs can be output. The acceptable values are: 0 (Debug), 1 (Info), 2 (Warn), 3 (Error). Default value is 3.
+    You can use option '--log-level' to specify which logs can be output. The acceptable values are: 0 (Debug), 1 (Info), 2 (Warn), 3 (Error). Default value is 1.
     ```bash
-    mdk validate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt --log-level 1
+    mdk validate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt --log-level 3
     ```
+    You can use option '--config-file' to specify a JSON format file that includes some exclusion configurations for the validation. By default, .project.json file in the root path of MDK project is used. Below is an example:
+    ```
+    {
+        "validation": {
+            "exclude": {
+                "ui": [
+                    "#Page:myFormCell", // exclude page name "myFormCell"
+                    "#Control:myControl" // exclude control name "myControl"
+                ],
+                "i18n": [
+                    "test" // exclude i18n key "test"
+                ]
+            }
+        }
+    }
+    ```
+    The MDK Validator supports hook for git commit. If there is no validation errors the command exit with zero, otherwise the command exit with non-zero. You can use option '--show-warnings' to include warnings in the validation result, this option is set to false by default.

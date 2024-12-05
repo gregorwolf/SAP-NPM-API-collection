@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+
+## 17.1.0 - 2024-11-12
+
+### Added
+- Caching support in get applications API
+- Max size check for cache
+- Use of XS_BIND_ADDRESS env var for address binding.
+- Support for backward compatible cookie validation
+
+### Fixed
+- Dynamic log level setting in managed approuter
+- Get tenant name correctly for ias authentication
+
 ## 17.0.0 - 2024-10-28
 
 ### Fixed

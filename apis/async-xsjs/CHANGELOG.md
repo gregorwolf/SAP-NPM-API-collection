@@ -5,6 +5,56 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.0.7"></a>
+## 2.0.7 - 2024-12-03
+
+### Updated
+- Pinned @sap/hdbext version to 8.0.8 to fix the security vulnerability.
+
+<a name="2.0.6"></a>
+## 2.0.6 - 2024-11-27
+
+### Updated
+- Updated @sap/e2e-trace version to 5.3.0 to fix the security vulnerability.
+- Updated @sap/hdbext version to 8.0.8 to fix the security vulnerability.
+- Updated @sap/instance-manager version to 5.2.1 to fix the security vulnerability.
+- Updated @sap/jobs-client version to 1.8.5 to fix the security vulnerability.
+- Updated @sap/logging version to 8.3.0 to fix the security vulnerability.
+- Updated @sap/textbundle version to 5.3.0 to fix the security vulnerability.
+- Updated @sap/xsenv version to 5.4.0 to fix the security vulnerability.
+- Updated @sap/xss-secure version to 5.2.0 to fix the security vulnerability.
+- Updated big.js version to 6.2.2 to fix the security vulnerability.
+- Updated compression version to 1.7.5 to fix the security vulnerability.
+- Updated content-type version to 1.0.5 to fix the security vulnerability.
+- Updated cookie version to 1.0.2 to fix the security vulnerability.
+- Updated nodemailer version to 6.9.16 to fix the security vulnerability.
+- Updated passport version to 0.7.0 to fix the security vulnerability.
+- Updated sax version to 1.4.1 to fix the security vulnerability.
+- Updated verror version to 1.10.1 to fix the security vulnerability.
+- Updated yauzl version to 3.2.0  to fix the security vulnerability.
+- Updated axios version to 1.7.8 to fix the security vulnerability.
+- Updated markdown-toc version to 1.2.0 to fix the security vulnerability.
+- Updated mocha version to 10.2.0 to fix the security vulnerability.
+- Updated moment-timezone version to 0.5.46 to fix the security vulnerability.
+
+
+<a name="2.0.5"></a>
+## 2.0.5 - 2024-11-20
+
+### Updated
+- Updated @sap/hana-client version to 2.22.32 to fix the security vulnerability.
+- Updated @sap/xsodata version to 8.2.0 to fix the security vulnerability.
+
+<a name="2.0.4"></a>
+## 2.0.4 - 2024-11-12
+
+### Updated
+- Updated cookie version to 1.0.1 to fix the security vulnerability.
+- Updated cookie-parser version to 1.4.7 to fix the security vulnerability.
+- Updated express version to 4.21.1 to fix the security vulnerability.
+- Updated @sap/node-jwt version to 1.6.26 to fix the security vulnerability.
+- Updated @sap/node-vsi version to 1.4.30 to fix the security vulnerability.
+
 <a name="2.0.3"></a>
 ## 2.0.3 - 2024-10-04
 

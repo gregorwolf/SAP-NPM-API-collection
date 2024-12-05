@@ -7,6 +7,20 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Joule
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.15.6] - 2024-11-14
+### Added
+- Improved the following chart guides by adding an additional step to create and edit a dynamic measure:
+  - _Add a micro chart column to a table_
+  - _Add a smart chart facet to an object page_
+  - _Add an interactive chart to a list page_
+  - _Add a key performance indicator (KPI) tag to a page_
+  - _Add a new visual filter to the filter bar_
+
+### Fixed
+- Fixed an issue with CAP guides where the service selection dropdown displayed all services in a project instead of the service the app was built on
+- Fixed an accessibility issue where the focus moved out of the filter by tags control when the escape key was pressed on Windows
+- Fixed an issue where the properties in a dropdown did not update based on the selected navigation path
+
 ## [1.15.4] - 2024-10-31
 ### Changed
 - Filter values are now in title case to improve consistency

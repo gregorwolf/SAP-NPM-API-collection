@@ -236,6 +236,7 @@ Add the content security policy headers to the response | ENABLE_FRAME_ANCESTORS
 Time cache value for frame ancestors CSP header | FRAME_ANCESTORS_CSP_HEADER_CACHE_TIME           | Time in seconds for the frame ancestors CSP header to be cached. The default value is 300 seconds.
 Store backend session cookies in external session store | STORE_SESSION_COOKIES_IN_EXTERNAL_SESSION_STORE | If `true`, the application router will store backend session cookies in an external session store in the service-to-application-router flow. In this case the "ARBE" cookie will not be returned to the calling service.
 Own SAP Cloud Service  | OWN_SAP_CLOUD_SERVICE                           | An array that contains the business solutions ("SAP cloud services") that your HTML5 applications are associated with as values. This configuration enables the standalone application router to use the same standardized format for runtime URLs ("/<sap.cloud.service>.<appId>-<versionId>/") that is also used by the managed application router. If a runtime URL contains one of the defined values in the <sap.cloud.service> section, the application router will recognize the value during the processing of a request.
+Cookie backward compatibilty  | COOKIE_BACKWARD_COMPATIBILITY                           | If 'true', cookie serialization will preserve previous cookie library version serialization algorithm.
 **Note:** all those environment variables are optional.
 
 
@@ -392,7 +393,7 @@ Example of configuration for cookies in the manifest.yml :
      }
 ```
 In this example, the application router sets the SameSite attribute of the cookie to "None" and the specifies a Partitioned attribute that is sent in the responses to the client.
-Note: Currently, only the value "None" are supported for the SameSite attribute. The value "Strict" is not supported.
+Note: Currently, only the values "None" and "Lax" are supported for the SameSite attribute. The value "Strict" is not supported.
 The Partitioned attribute contains two required regular expressions:
 
  - supportedPartitionAgents for supported agents

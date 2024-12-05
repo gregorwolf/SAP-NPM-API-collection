@@ -5,6 +5,77 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2024.25.0
+
+### Added
+
+- Support for Node v22.
+
+- New command `<cli> config secrets check` has been added to the CLI. This command allows you to verify whether the secrets file used to run commands is consistent.
+
+  Examples for inconsistent secrets files:
+
+  ```bash
+  $ datasphere config secrets check
+  ✔ Please enter the path to the secrets file: … secrets.json
+  the provided secrets file is not consistent. the secrets file is missing either property access_token or properties refresh_token, client_id and client_secret
+  Failed to check secrets file consistency
+  ```
+
+  ```bash
+  $ datasphere config secrets check
+  ✔ Please enter the path to the secrets file: … secrets.json
+  the provided secrets file is not consistent. the secrets file is missing either property tenantUrl or properties authorization_url and token_url
+  Failed to check secrets file consistency
+  ```
+
+  Example for consistent secrets file:
+
+  ```bash
+  $ datasphere config secrets check
+  ✔ Please enter the path to the secrets file: … secrets.json
+  the secrets file is consistent
+  ```
+
+- Support for the authorization flow `client_credentials`. When logging in, users can now explicitly use the `client_credentials` flow. The help shows the available option to specify the authorization flow.
+
+  ```bash
+  % datasphere login --help
+  Usage: datasphere login [options]
+
+  log in to your account using interactive OAuth authentication
+
+  Options:
+    -H, --host <host>                              specifies the url where the tenant is hosted (optional)
+    -A, --authorization-url <url>                  authorization url for interactive oauth session authentication (optional)
+    -t, --token-url <url>                          token url for interactive oauth session authentication (optional)
+    -c, --client-id <id>                           client id for interactive oauth session authentication (optional)
+    -C, --client-secret <secret>                   client secret for interactive oauth session authentication (optional)
+    -a, --access-token <token>                     access token for interactive oauth session authentication (optional)
+    -b, --code <code>                              code for oauth token retrieval (optional)
+    -r, --refresh-token <token>                    refresh token for interactive oauth session authentication (optional)
+    -s, --secrets-file <file>                      path to secrets file (optional)
+    -B, --browser <browser>                        specifies the browser to open (optional) (choices: "chrome", "firefox", "edge", default: "chrome")
+    -d, --authorization-flow <authorization-flow>  specifies the authorization flow to use (optional) (choices: "authorization_code", "client_credentials", default: "authorization_code")
+    -h, --help                                     display help for command
+
+  Only command-specific options are listed here. To learn more about available generic options, visit https://tinyurl.com/yck8vv4w
+  ```
+
+  There's a new option `-d, --authorization-flow <authorization-flow>  specifies the authorization flow to use (optional) (choices: "authorization_code", "client_credentials", default: "authorization_code")`.
+
+  By default, the authorization flow `authorization_code` is used which was also the implicit default before. If users create a technical OAuth client, they must set the authorization flow to `client_credentials` explicitly.
+
+  `% datasphere login --authorization-flow client_credentials ...`
+
+- When using option `--secrets-file` and the file containing the secrets does not exist or is not in a valid JSON format, the CLI now shows an error to the user: `The secrets file at location /path/to/secrets.json could not be read and JSON.parse'd. Does the file exist and is it a valid JSON file?`
+
+## 2024.23.0
+
+### Fixed
+
+- Issues with option `--input` which would not set the request body correctly. As a workaround, option `--file-path` can be used.
+
 ## 2024.18.0
 
 ### Added

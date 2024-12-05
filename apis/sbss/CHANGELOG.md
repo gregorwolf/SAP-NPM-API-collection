@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.3.0 - 2024-12-04
+
+### Added
+- Added node 22.x support
+
+### Updated
+- Update `debug` to 4.3.7
+- Update `verror` to 1.10.1
+- Update `c8` to 10.1.2
+- Update `chai` to 4.5.0
+- Update `filter-node-package` to ^5.0.0
+- Update `node-fetch` to ^2.7.0
+- Update `proxyquire` to 2.1.3
+- Update `sinon` to ^19.0.2
+
 ## 7.2.0 - 2024-07-22
 
 ### Updated

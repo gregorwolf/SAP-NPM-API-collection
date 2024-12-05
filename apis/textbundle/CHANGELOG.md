@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.3.0 - 2024-11-13
+
+### Added
+- Node.js 22.x support
+
+### Updated 
+- updated `@eslint/js` dependency to ^9.14.0
+- updated `chai` dependency to 4.5.0
+- updated `filter-node-package` dependency to 5.0.0
+- updated `gulp-istanbul` dependency to 1.1.3
+- updated `mocha` dependency to 10.8.2
+
 ## 5.2.0 - 2024-07-15
 
 ### Updated 

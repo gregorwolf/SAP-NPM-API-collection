@@ -6,38 +6,41 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.15.4] - 2024-10-30
-
-### Added
-
+## [1.15.6] - 2024-11-14
 ### Changed
+- Removed the Adaptation Editor start script from the quick pick for adaptation projects because the Adaptation Editor is started using a dedicated command
+- Changed the default binding context for building blocks added to a custom page to `absolute`
 
+### Fixed
+- Fixed an issue where the focus border was missing in the Add Controller Extension button
+- Fixed an issue where annotation feature support did not work within building blocks in subsections
+- Fixed an issue where the focus was incorrect after navigating using a keyboard in input fields when the mouse cursor was placed manually
+- Fixed incorrect tooltips for Add buttons
+- Fixed an issue where the archive option for projects of type library were not displayed and did not work correctly
+- Fixed various accessibility issues
+
+## [1.15.4] - 2024-10-30
+### Changed
 - Descriptions of properties at Page Map and Page Editor have been reviewed and adjusted.
 
 ### Fixed
-
 - Fixed incorrect tooltips for some fields and buttons in the Properties pane
 - Fixed an issue with disabled "Add Chart Column" option for the table when chart columns of Line type still could be built based on associated property
 - Fixed issues with regards to accessibility
 
 ## [1.15.3] - 2024-10-16
-
 ### Added
-
 - Added a link to the Page Map in the pages section of the Application Info page
 
 ### Fixed
-
 - Fixed a missing icon on the Add Item button for quick variant selection paths
 - Fixed an issue where Application Modeler accessed the wrong `i18n` file when a non-default location was specified in `manifest.json`
 
 ## [1.15.2] - 2024-10-03
-
 ### Added
 - Added support for translatable texts to building block text properties
 
 ### Fixed
-
 - Fixed an issue where the Page Map repeatedly prompted to reload when changes were made in a Full-Stack Application Using Productivity Tools dev space
 - Fixed an issue where SAPUI5 freestyle apps were not supported by the `Fiori: Delete Application from CAP Project` command
 

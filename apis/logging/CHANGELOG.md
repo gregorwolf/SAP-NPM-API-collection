@@ -5,26 +5,42 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.3.0 - 2024-11-13
+
+### Added
+- Node.js 22.x support and tests
+
+### Updated
+- updated `@sap/e2e-trace` dependency to ^5.3.0
+- updated `async` dependency to 3.2.6
+- updated `chai` dependency to 4.5.0
+- updated `express` dependency to 4.21.1
+- updated `filter-node-package` dependency to ^5.0.0
+- updated `@eslint/js` dependency to ^9.14.0
+- updated `got` dependency to 14.4.4
+- updated `mocha` dependency to 10.8.2
+- updated `sinon` dependency to 18.0.1
+
 ## 8.2.0 - 2024-07-19
 
 ### Updated
-- updated `moment`dependency to 2.30.1
-- updated `async`dependency to 3.2.5
-- updated `c8`dependency to 10.1.2
-- updated `chai`dependency to 4.4.1
-- updated `eslint`dependency to 8.57.0
-- updated `got`dependency to 14.0.0
-- updated `mocha`dependency to 7.2.0
-- updated `should`dependency to 13.2.3
-- updated `sinon`dependency to 18.0.0
-- updated `supertest`dependency to 7.0.0
+- updated `moment` dependency to 2.30.1
+- updated `async` dependency to 3.2.5
+- updated `c8` dependency to 10.1.2
+- updated `chai` dependency to 4.4.1
+- updated `eslint` dependency to 8.57.0
+- updated `got` dependency to 14.0.0
+- updated `mocha` dependency to 7.2.0
+- updated `should` dependency to 13.2.3
+- updated `sinon` dependency to 18.0.0
+- updated `supertest` dependency to 7.0.0
 
 ## 8.1.0 - 2024-04-01
 
 ### Removed
 - Removed shrinkwrap from preRelease
 ### Updated
-- updated `@sap/e2e-trace`dependency to 5.1.0 
+- updated `@sap/e2e-trace` dependency to 5.1.0 
 
 ## 8.0.0 - 2024-02-29
 

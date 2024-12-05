@@ -8,6 +8,34 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.6] - 2024-11-13
+
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V2: flex changes had not been written for table columns of type DataField that use a navigationPath.
+
+### Quality
+
+Upgrades:
+
+- npm-run-all2 to v7
+- typescript-eslint to 8.13.0
+- uuid to 11.0.2
+- @sap-ux/fe-fpm-writer to 0.31.16
+- @sap-ux/annotation-converter to 0.9.9
+- @sap-ux/vocabularies-types to 0.11.6
+- @sap-ux/edmx-parser to 0.8.2
+- i18next to 23.16.5
+- [Security] - upgrade cross-spawn to 7.0.5
+
 ## [1.124.5] - 2024-10-30
 
 ### Added
