@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.0.9"></a>
+## 8.0.9 - 2024-12-11
+
+### Updated
+- Provided minor fix w.r.to HANA Cloud Support
+
 <a name="8.0.8"></a>
 ## 8.0.8 - 2024-10-23
 

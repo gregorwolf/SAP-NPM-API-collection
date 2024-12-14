@@ -5,6 +5,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 18.0.0 - 2024-12-09
+
+### Added
+- Enhanced error handling for approuter errors
+- Support cookie partitioning via secure storage api
+- Start state propagation before login re-direction
+- Trigger the deletion of stale session cookies via a browser redirect when state is enabled, or partitioning is enabled, or DELETE_STALE_COOKIES is set to 'true'
+- Custom attributes for IAS users
+
+### Fixed
+- Parse SAAS_APPROUTER_EXCLUDED_PATH on startup
+- Use Redis scan keys instead of keys
+- Currently the cookie validation has become more lenient (specifically to allow commas), backward compatible cookie validation can still be supported by setting the COOKIE_BACKWARD_COMPATIBILITY environment variable configuration to 'true' if necessary.
+- Updated the cookie validation error message to show where the problematic cookie value is.
+- Set applications metadata cache also in case of empty response
+
+### Updated dependencies
+- deps: ioredis@5.4.1
+- deps: node-cache@5.1.2
+- deps: cookie@1.0.2
+- deps: agentkeepalive@4.5.0
 
 ## 17.1.0 - 2024-11-12
 
@@ -49,6 +70,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
 ### Updated dependencies
 - deps: serve-static@1.16.2
+- deps: passport@0.7.0
 
 ## 16.8.0 - 2024-09-16
 

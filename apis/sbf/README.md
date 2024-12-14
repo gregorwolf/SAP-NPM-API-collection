@@ -53,6 +53,9 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
       - [SBSS on SAP HANA](#sbss-on-sap-hana)
       - [SBSS on PostgreSQL](#sbss-on-postgresql)
     + [XSUAA](#xsuaa)
+      - [XSUAA Service Selection Priority](#xsuaa-service-selection-priority)
+      - [XSUAA Plans Support](#xsuaa-plans-support)
+      - [Available XSUAA Plans](#available-xsuaa-plans)
       - [Creating reuse service instances](#creating-reuse-service-instances)
       - [Updating reuse service instances](#updating-reuse-service-instances)
       - [Authentication with X.509 client certificates](#authentication-with-x509-client-certificates)
@@ -65,6 +68,7 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
       - [Creating an IAS instance](#creating-an-ias-instance)
       - [Binding an IAS instance to the broker application](#binding-an-IAS-instance-to-the-broker-application)
       - [Unsupported Features](#unsupported-features)
+    + [Multiple Credentials Provider Support](#multiple-credentials-provider-support)
   * [Unique service broker](#unique-service-broker)
   * [Secure outgoing connections](#secure-outgoing-connections)
   * [Stateless](#stateless)
@@ -416,7 +420,7 @@ SBF provides an HTTP endpoint (on path `/health`) whose purpose is to serve as a
 It does not require authentication and can process HTTP GET requests only.
 Currently, it returns a static response with the status `200` and body `OK`.
 
-By default, Cloud Foundry uses `port` as a health check type ([documentation for health check types](https://docs.cloudfoundry.org/devguide/deploy-apps/healthchecks.html#types)). To use the health endpoint provided by SBF:
+By default, Cloud Foundry uses `port` as a health check type ([documentation for health check ]](https://docs.cloudfoundry.org/devguide/deploy-apps/healthchecks.html#types)). To use the health endpoint provided by SBF:
 - Configure the health check type to `http`. In `manifest.yml`, you do this via the property `health-check-type`.
 - Configure the path of the health endpoint, by default it's `/`. In `manifest.yml`, you do this via the property `health-check-http-endpoint`.
 
@@ -518,13 +522,56 @@ Here you can use arbitrary values for `restricted-dbuser-name` and `restricted-d
 You should bind the same service instance to SBSS installer application when deploying SBSS on Postgres.
 For details see the SBSS documentation.
 
-**Note:** You should bind _both_ service instances to the service broker application.
+> **Note:** You should bind _both_ service instances to the service broker application.
+### XSUAA
 
-#### XSUAA
+The `node-sbf` library supports XSUAA **broker** plan as a credentials provider.
+The core implementation relies on a **broker** plan, there is also the option to use a **reference-instance** that points back to a XSUAA **broker** instance, allowing greater adaptability in authentication setups.
+
+- **xsuaa:broker** - Traditional service broker configuration and the primary base for XSUAA integration.
+- **xsuaa:reference-instance** - Allows flexibility by referencing an existing broker instance, useful for complex setups that may involve [multiple credentials providers](#multiple-credentials-provider-support).
+
+##### XSUAA Service Selection Priority
+
+The `node-sbf` library follows a priority-based logic to choose the most suitable credentials provider. If explicit names are not provided via `SBF_CREDENTIALS_PROVIDER_SERVICE` (Read more: [Credentials Provider Service](#credentials-provider-service)), the library automatically searches `VCAP_SERVICES` objects using labels with the following priority order:
+
+1. **xsuaa:broker** - The library prioritizes the first broker instance found.
+2. **xsuaa:reference-instance** - If no broker instance is found, it then looks for the first reference-instance plan.
+
+> **Note:** If multiple matching instances exist, only the first is selected.
+
+##### XSUAA Plans Support
+
+The `node-sbf` library now supports additional XSUAA plan types, allowing for flexible configurations based on your application’s authentication needs. You can now work with either a single provider or [multiple credentials providers](#multiple-credentials-provider-support), depending on the configuration.
+
+##### Available XSUAA Plans
+
+- **xsuaa:broker** - Designed for traditional service broker configurations, ideal when operating with a single XSUAA provider.
+- **xsuaa:reference-instance** - Offers flexibility to use either a single or [multiple credentials providers](#multiple-credentials-provider-support) setup, allowing greater adaptability for complex authentication landscapes.
+
+**Note:** When using [multiple credentials providers](#multiple-credentials-provider-support), ensure that each request is routed to a valid provider through the `xsuaaCredentialsDecider` hook. Failing to return a valid provider can cause request delivery issues due to improper authentication ([Read more about multiple credentials providers](#multiple-credentials-provider-support)).
+
+##### XSUAA Service Selection Priority
+
+When initializing authentication services, the library follows a priority-based selection logic to ensure the most suitable credentials provider is chosen based on the available configurations, which prioritizes services in the following order:
+
+
+1. **XSUAA (broker)** - If available, the `broker` plan is prioritized as the primary credentials provider.
+2. **XSUAA (reference-instance)** - If the `broker` plan is unavailable, the library will then attempt to use the `reference-instance` plan. This allows applications to connect with a single credentials provider for simpler configurations.
+
+This prioritized order is applied when `SBF_CREDENTIALS_PROVIDER_SERVICE` is not explicitly provided with specific service names. In this case, the `node-sbf` library will automatically choose values from `VCAP_SERVICES` according to the order mentioned above.
+
+> **Note:** For more details on configuring multiple credentials providers, refer to the [Multiple Credentials Provider Support](#multiple-credentials-provider-support) section.
 
 Create XSUAA instance of plan _broker_ (example):
 ```sh
 cf create-service xsuaa broker <service-instance> -c xs-security.json  --wait
+```
+
+Create XSUAA instance of plan _reference-instance_ (example):
+> **Note:** must include a 'broker' tag in the service instance definition. The reference-instance must point to a XSUAA broker instance.
+```sh
+cf create-service xsuaa reference-instance <service-instance> -t broker -c xs-security.json  --wait
 ```
 
 ##### Creating reuse service instances
@@ -636,7 +683,7 @@ Authentication with X.509 client certificates can be enabled with the following 
 }
 ```
 
-`credential-types` is an array of allowed credential types, where allowed values are `binding-secret`, `x509`. <br><br>
+`credential-types` is an array of allowed credential types, where allowed values are `binding-secret`, `x509`, `x509_attested`. <br><br>
 If `x509` is not the only type in the array AND not the first item (e.g `"credential-types": ["binding-secret", x509"]`), in order to enable X.509 authentication, you MUST specify it explicitly during bind (see below).
 
 X.509 client certificate authentication can be separately configured on **3 levels**:
@@ -796,6 +843,63 @@ The following [Additional Service Configuration](#additional-service-configurati
     * `saasregistryenabled`
     
 You can still choose to extend the response with these parameters within the [onBind hook](#onbindparams-callback).
+
+#### Multiple Credentials Provider Support
+
+##### Overview
+The `node-sbf` library has been enhanced to support multiple credentials providers, enabling improved workload migration across different landscapes in BTP CF. This update allows service broker developers to distribute their solutions across landscapes using dedicated credentials providers for each landscape.
+
+##### Use Case
+As a service provider, this enhancement allows you to distribute workloads across different landscapes, each with a dedicated credentials provider, ensuring secure and efficient authentication management.
+
+##### Key Features
+1. **Multiple Credentials Provider Initialization:** Developers can now initialize and manage more than one credentials provider instance within their applications.
+2. **Custom Credential Provider Selection Hook:** A dedicated hook, `xsuaaCredentialsDecider`, is available to implement custom logic for selecting the appropriate credentials provider based on business needs.
+3. **Credential Usage:** The `node-sbf` library utilizes the credentials provider returned by the hook's callback to issue credentials, ensuring secure and context-aware authentication for each request.
+4. **Flexible and Scalable Authentication Management:** The multiple credentials provider feature enhances the scalability of service broker applications, enabling seamless workload migration across different landscapes.
+5. **Environment Variable Configuration:** Developers can configure the desired credentials provider by setting the `SBF_CREDENTIALS_PROVIDER_SERVICE` environment variable.
+
+##### Configuration
+To enable the multiple credentials provider feature, the following environment variables need to be set:
+- `SBF_USE_MULTIPLE_XSUAA_CREDENTIALS`: Set this to `TRUE` to activate the multiple credentials provider functionality. <br /> **Note:** when enabling this feature, the `xsuaaCredentialsDecider` hook must be implemented to select the desired credentials provider.
+- `SBF_CREDENTIALS_PROVIDER_SERVICE`:  Provide a comma-separated list of credentials provider names to use. When working with multiple XSUAA credential providers it is mandatory to explicity provide the instance name by using the `SBF_CREDENTIALS_PROVIDER_SERVICE` property (See: [Environment variables](#environment-variables)).
+  - Example:
+    `SBF_CREDENTIALS_PROVIDER_SERVICE=xsuaa1,xsuaa2`
+- `xsuaaCredentialsDecider`: Define this hook in the service broker to return the desired credentials provider.
+  - **Important**: The `xsuaaCredentialsDecider` is an `async` function, and developers must `await` its result to avoid unexpected issues.
+  - Example:
+    ```javascript
+    const Broker = require('@sap/sbf');
+    let broker = new Broker({
+      hooks: {
+        xsuaaCredentialsDecider: async (config, req) => {
+          // Implement logic to select the desired credentials provider.
+          // For example: 
+              try {
+                console.log(`*** decider hook ***`)
+                // Developer can implement custom logic to select the desired credentials provider.
+                let name = await hooks.getCorrectUAAProvider(req);
+                // Developer can save the name of the selected credentials provider in the request object for future use.
+                req.params.uaaProviderName = name;
+                console.log(`*** xsuaa name requested: ${name} ***`)
+                // Return the selected credentials provider using the xsuaaCredentialsProviders map.
+                return config.xsuaaCredentialsProviders.get(`${name}`);
+            } catch (error) {
+                let message = `xsuaaCredentialsDecider hook failed: ${error}`;
+                logger.error(message);
+                throw (message);
+            }
+        }
+      }
+    });
+    ```
+  
+> **Note:** Developer Responsibilities
+When enabling the `SBF_USE_MULTIPLE_XSUAA_CREDENTIALS` environment variable, it is the developer's responsibility to ensure that the `xsuaaCredentialsDecider` hook returns a valid credentials provider for each request. Failing to do so could lead to failed requests due to missing credential provider.
+
+##### Scope and Limitations
+- **XSUAA Only:** This feature currently supports only XSUAA credentials providers.
+- **IAS and SBSS:** These services are out of scope for this enhancement.
 
 ### Unique service broker
 
@@ -1775,12 +1879,15 @@ Otherwise the broker will return HTTP status code 500 with a generic error messa
 - `SBF_CREDENTIALS_PROVIDER_SERVICE` - the name of the credentials provider service instance, see [Credentials provider service](#credentials-provider-service)
 - `SBF_SBSS_RESTRICTED_USER_SERVICE` - the name of the service containing restricted user credentials (SBSS on PostgreSQL case), see [Credentials provider service](#credentials-provider-service)
 - `SBF_UAA_TIMEOUT` - timeout in milliseconds for requests to XSUAA, default is 20 seconds.
+- `SBF_UAA_RETRY_TIMEOUT` - maximum allocated time (in milliseconds) to connect to XSUAA, including retries. Defaults to 30 seconds (30000 ms).
+- `SBF_UAA_RETRY_MAX_NUMBER` - maximum connection attempts to XSUAA. Allowed values: 0-5 (0 = no retries). Defaults to 3.
 - `SBF_SECURE_OUTGOING_CONNECTIONS` - if set to false `false`, unencrypted outgoing connections will be allowed, see [Secure outgoing connections](#secure-outgoing-connections)
 - `SBF_SECURE_INCOMING_CONNECTIONS` - if set to true `true`, a [secured connection](#mtls-authentication) is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate, you also have to configure the `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` environment variable.
 - `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` - the Service Manager client certificate's subject. This variable has to be configured so that the Service Manager [client certificate](#out-of-the-box-mtls) is verified. Also, set `SBF_SECURE_INCOMING_CONNECTIONS` to true. You can retrieve the Service Manager certificate's subject at `https://service-manager.cfapps.<landscape domain>/v1/info` from the `service_manager_certificate_subject` field. The URL changes depending on your landscape domains. For example, https://service-manager.cfapps.eu10.hana.ondemand.com/v1/info.
 - `SBF_ENABLE_AUDITLOG` - if `false` disable audit logging, otherwise it is enabled.
 - `SBF_TENANT_ID` - Mandatory if the broker application is running on Cloud Foundry and audit logging is *enabled*.
 - `SBF_SECURE_UAA_SCOPES` - Relevant for [XSUAA as a credentials provider](#xsuaa). When set to `true` and no `authorities` section was provided in [Additional service configuration](#additional-service-configuration) (`extend_xssecurity`), SBF will pass an empty `authorities` array in create/update requests to XSUAA, regardless of the `authorities` provided by the consumer. Default: `true`.<br/> **Note: This behavior and environment variable form an incompatible change from release v6.4.9**.
+- `SBF_USE_MULTIPLE_XSUAA_CREDENTIALS` - Enables the multiple credentials provider feature. Enabling this variable, required implementation of the `xsuaaCredentialsDecider` hook. It is the developer's responsibility to ensure that the `xsuaaCredentialsDecider` hook returns a valid credentials provider for each request (See: [Multiple Credentials Provider Support](#multiple-credentials-provider-support)).
 - `PORT` - the port on which the service broker will listen for requests, default is 8080.
 
 ### `gen-catalog-ids`

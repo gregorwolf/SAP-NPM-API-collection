@@ -75,7 +75,7 @@ Option   | Type | Description
 
 Some session variables are handled in a special way.
 
-* `XS_APPLICATIONUSER` - can be set to a user token (SAML/JWT) to associate the application user with the database connection
+* `XS_APPLICATIONUSER` - can be set to a user token (SAML/JWT) to associate the application user with the database connection, If your database is Hana Cloud, please configure the [JWT Environment](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-data-access-guide/set-up-jwt-environment), else SET command: XS_APPLICATIONUSER will be failed.
 * `SAP_PASSPORT` - used to propagate SAP passport to SAP HANA, used for end-to-end tracing
 * `APPLICATION` - the name of the application initiating the database connection
 

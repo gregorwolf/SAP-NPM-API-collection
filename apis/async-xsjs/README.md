@@ -93,6 +93,8 @@ Here is a list of options you can provide:
 | redirectUrl | | If specified, a redirect to this URL is triggered when the root path is requested. <br> **Note**: When _async-xsjs_ is performed behind a reverse proxy (for example, Application Router), the value of this property should be aligned with the path rewriting rules that may apply. |
 | xsApplicationUser | true | If set to false, the session variable `XS_APPLICATIONUSER` will not be set. | 
 
+**Note:** If xsApplicationUser is true or anonymous is false and your database is Hana Cloud, please configure the [JWT Environment](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-data-access-guide/set-up-jwt-environment), else SET command: XS_APPLICATIONUSER will be failed and process will be stopped.
+
 **Note:** When there are several `rootDirs` (for example, **repo1** and **repo2**) and their file structures are identical (_/repo1/hello.xsjs_ and _/repo2/hello.xsjs_), then:
 * The file from the first directory, as listed in the `rootDirs` property, will be used (_/repo1/hello.xsjs_).
 * The file from the second directory (_/repo2/hello.xsjs_) will be ignored with a warning message in the logs.

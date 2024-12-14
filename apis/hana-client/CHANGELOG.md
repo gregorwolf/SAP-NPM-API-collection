@@ -1,3 +1,37 @@
+# Hana Client 2.23.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.23 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.23/en-US
+
+For the latest updates please see SAP Note 3534473 - SAP HANA Client 2.23 Release Notes
+
+https://me.sap.com/notes/3534473
+
+## Version 2.23.24
+
+### Changes:
+
+ - Issue Number 334725: Connection.clean() could have resulted in a crash with a concurrent Connection.prepare().
+ - Issue Number 334287: Running a batch execute with extremely large parameter values could have resulted in a crash.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 334927: A CONNECT request through an HTTP Proxy was missing the "Host:" HTTP header.
+
+## Version 2.23.20
+
+### Changes:
+
+ - Issue Number 332528: Connection.exec with an Array parameter value would have resulted in a binding error.
+ - Issue Number 329339: In rare timing-dependant cases, the driver could have crashed with an exception.
+ - Issue Number 328746: The Node.js client could have thrown an error if a statement had JavaScript Date parameters.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 332748: FDA may have output an invalid ITAB without raising an error while reading a result.
+ - Issue Number 329475: Converting a string to a single precision float could have resulted in a rounding error.
+
 # Hana Client 2.22.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.22 documentation:

@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.0.8"></a>
+## 2.0.8 - 2024-12-12
+
+### Updated
+- Pinned @sap/hdbext version to 8.0.9 to fix the security vulnerability.
+- Updated express version to 4.21.2  to fix the security vulnerability.
+
+
 <a name="2.0.7"></a>
 ## 2.0.7 - 2024-12-03
 
