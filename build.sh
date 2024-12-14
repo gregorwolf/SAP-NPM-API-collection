@@ -1,9 +1,9 @@
 npm config rm @sap:registry
 # rm -rf node_modules 
 # mkdir node_modules
-npm install
 cp package.json package-original.json
-cp new-package.json package.json
+cp package-template.json package.json
+npm install
 node update-package-json.js
 jq '.' new-package.json > package.json
 cp package.json new-package.json

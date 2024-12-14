@@ -2,6 +2,7 @@ const search = require("libnpmsearch");
 const fs = require("fs");
 
 (async () => {
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   var packageDotJson = "package.json";
   var packagesTxt = "";
   let from = 0;
@@ -14,18 +15,21 @@ const fs = require("fs");
     total += packagesSearchResult.length;
     for (let i in packagesSearchResult) {
       var package = packagesSearchResult[i];
-      if (
-        // No matching version found for mta-lib@0.0.1
-        package.name !== "@sap/wing-service-binding" &&
-        // Verification failed while extracting @sap/textbundle@2.0.6
-        package.name !== "@sap/textbundle" &&
-        // Verification failed while extracting @sap/logging@3.0.0:
-        package.name !== "@sap/logging"
-      ) {
+      // console.log(`Found ${package.name} with version ${package.version}`);
+      // package name must start with @sap/
+      if (package === undefined) {
+        continue;
+      }
+      if (package.name === undefined) {
+        continue;
+      }
+      if (!package.name.startsWith("@sap/")) {
+        continue;
       }
       packages[package.name] = package.version;
     }
     from = from + limit;
+    await delay(1000);
   } while (packagesSearchResult.length > 0);
   console.log(`Found ${total} package(s)`);
   // console.log(packages);
