@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 8.5.1 - 2024-12-06
+
+### Fixed
+
+- `cds deploy --dry --model-only` no longer tries to load a SQLite database
+- Requests with HTTP methods other than `POST` to the `/$batch` endpoint are now rejected when using the new OData adapter
+
 ## Version 8.5.0 - 2024-11-25
 
 ### Added

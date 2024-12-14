@@ -3,9 +3,20 @@
 
 All notable changes to this project will be documented in this file.
 
-This project adheres to [Semantic Versioning](http://semver.org/).
+This project adheres to [Semantic Versioning](https://semver.org/).
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
+
+## Version 8.5.1 - 2024-12-05
+
+### Added
+
+- `cds watch` now detects a TypeScript project and tries to run with `tsx` if this is installed locally or globally. Otherwise a warning message is emitted.  `CDS_TYPESCRIPT=false` can be used to opt out of this behavior.
+
+### Fixed
+
+- `cds add html5-repo` adds an `index.html` as `welcomePage` to the `xs-app.json`, if available.
+- `cds build` now logs existing plugin build messages if a BuildError is thrown.
 
 ## Version 8.5.0 - 2024-11-26
 
@@ -30,6 +41,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - `cds import` throws proper error message if Annotation element doesn't have Term attribute.
 - `cds add approuter` no longer enforces Node.js 22, which is not supporter by current `@sap/approuter` version 17. The previous Node.js version 20 is used again.
+- `cds add -p` with custom options now works if the entry was not in the `package.json` beforehand.
 - `cds add http` works for actions without parameters.
 - `cds add workzone` includes the `updateManifestJson` task on initial generation.
 - `cds build --ws` no longer creates migration tables in shared database or wrong workspace.
