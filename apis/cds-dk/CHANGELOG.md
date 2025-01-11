@@ -7,15 +7,41 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 8.5.1 - 2024-12-05
+## Version 8.6.1 - 2024-12-18
+
+### Fixed
+
+- `cds add ams` now creates correct dependencies for Java projects.
+
+## Version 8.6.0 - 2024-12-17
 
 ### Added
 
+- `cds repl` got new option `--run` to run a server; also available through `.run` command within the REPL.
+- `cds repl` got new option `--use` to make the features of a `cds` available as globals.
+- `cds repl` got new builtin `.inspect` command to inspect object with configurable depth, e.g. `.inspect cds .depth=1`.
 - `cds watch` now detects a TypeScript project and tries to run with `tsx` if this is installed locally or globally. Otherwise a warning message is emitted.  `CDS_TYPESCRIPT=false` can be used to opt out of this behavior.
+- `cds import --group` to allow RFC importer to organize imported modules under a logical name.
+- `cds init/add` for Java projects automatically create a `package-lock.json`.
+- `cds add ias` adds IAS configuration (beta).
+- `cds add ams` adds AMS configuration (beta).
+
+### Changed
+
+- Running `cds init` in the user's home dir w/o a project name now fails. This is to prevent creation of configuration that would act as global (user) configuration leading to follow-up problems with later projects.
 
 ### Fixed
 
 - `cds add html5-repo` adds an `index.html` as `welcomePage` to the `xs-app.json`, if available.
+- `cds bind` fixes the recursive call to `mergeCredentials`.
+- `cds add` won't add a duplicated `SUBSCRIPTION_URL` if it doesn't match the template specification.
+- `cds watch` gives a better error message for TypeScript projects started with if `tsx` isn't installed.
+- `cds build` no longer throws an undefined error when processing build plugin messages.
+
+## Version 8.5.1 - 2024-12-05
+
+### Fixed
+
 - `cds build` now logs existing plugin build messages if a BuildError is thrown.
 
 ## Version 8.5.0 - 2024-11-26
@@ -34,8 +60,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - The existing `cds watch --debug` is now an alias to `cds watch --inspect`.
 - `cds add cloud-logging` adds cloud-logging as an alternative for application logging in Kyma.
 - `cds add cloud-logging --with-telemetry` or `cds add telemetry` adds cloud-logging as well as support for `cap-js/telemetry` plugin in Kyma.
-- `cds add handler` now also works for Node.js projects. It creates an implementation file for each service with event handlers for all entites and actions.
-- `cds add esm` creates ESM-compatible Node.js projects. Sample code added by `add sample` and `add handler` will respect this setting if added aftwards. Existing code will not be adjusted by `cds add esm`, though.
+- `cds add handler` now also works for Node.js projects. It creates an implementation file for each service with event handlers for all entities and actions.
+- `cds add esm` creates ESM-compatible Node.js projects. Sample code added by `add sample` and `add handler` will respect this setting if added afterwards. Existing code will not be adjusted by `cds add esm`, though.
 
 ### Fixed
 

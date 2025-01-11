@@ -1,15 +1,21 @@
 # Change Log
 
 - All notable changes to this project are documented in this file.
-- The format is based on [Keep a Changelog](http://keepachangelog.com/).
-- This project adheres to [Semantic Versioning](http://semver.org/).
+- The format is based on [Keep a Changelog](https://keepachangelog.com/).
+- This project adheres to [Semantic Versioning](https://semver.org/).
+
+## Version 1.3.0 - 2024-12-12
+
+### Added
+
+- Support for Principal Propagation
+- Imported services are now marked with `@protocol: 'rfc'`.
 
 ## Version 1.2.1 - 2024-11-26
 
 ### Added
 
 - Link to documentation for the usage in SAP Business Application Studio.
-
 
 ## Version 1.2.0 - 2024-09-26
 

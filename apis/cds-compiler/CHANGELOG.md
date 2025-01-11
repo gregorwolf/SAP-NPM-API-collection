@@ -7,6 +7,17 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.6.0 - 2024-12-12
+
+### Added
+
+- Allow to refer to draft state element `HasActiveEntity` and `HasDraftEntity` via variable `$draft` in annotation path expressions.
+- for.odata|to.edm(x): Introduce annotating the generated foreign keys
+
+### Changed
+
+- Update OData vocabularies: 'Common', 'EntityRelationship', 'UI'
+
 ## Version 5.5.2 - 2024-12-02
 
 ### Fixed
@@ -131,7 +142,7 @@ The compiler behavior concerning `beta` features can change at any time without 
 ### Added
 
 - cdsc: Option `--stdin` was added to support input via standard input, e.g. `cat file.cds | cdsc --stdin`
-- Allow to refer to draft state element `IsActiveEntity` via magic variable `$draft.IsActiveEntity` in annotation path expressions.
+- Allow to refer to draft state element `IsActiveEntity` via variable `$draft.IsActiveEntity` in annotation path expressions.
   + for.odata: During draft augmentation `$draft.IsActiveEntity` is rewritten to `$self.IsActiveEntity` for all draft enabled
     entities (root and sub nodes but not for named types or entity parameters).
   + to.edm(x): (V4 only) Allow to refer to an entity element in a bound action via `$self` and not only via explicit binding parameter

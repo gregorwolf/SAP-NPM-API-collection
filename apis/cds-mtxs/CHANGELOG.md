@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 2.4.2 - 2024-12-18
+
+### Fixed
+
+- The annotation check of the extension linter can now properly handle extensions like `extend service CatalogService with @cds.query.limit;`
+
 ## Version 2.4.1 - 2024-12-05
 
 ### Fixed

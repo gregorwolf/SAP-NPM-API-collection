@@ -1,8 +1,61 @@
 # Change Log
 
 - All notable changes to this project are documented in this file.
-- The format is based on [Keep a Changelog](http://keepachangelog.com/).
-- This project adheres to [Semantic Versioning](http://semver.org/).
+- The format is based on [Keep a Changelog](https://keepachangelog.com/).
+- This project adheres to [Semantic Versioning](https://semver.org/).
+
+## Version 8.6.1 - 2025-01-10
+
+### Fixed
+
+- `default-env.json` was not loaded anymore when in production mode.
+- i18n texts like `1` or `true` were returned as numbers, or booleans instead of strings
+- CSN files produced by `cds build` now again contain information to resolve handler files. That was broken in case of reflected/linked models set by e.g. plugins.
+- `average` aggregation used with draft enabled entities
+
+## Version 8.6.0 - 2024-12-17
+
+### Added
+
+- `SELECT.from` now supports full-query tagged template literals, e.g.: ``` SELECT.from`Books where ID=${201}` ```
+- `cds.ql` enhanced by functions to facilitate construction of CQN objects.
+- `cds.ql` became a function to turn CQN objects, CQL strings, or tagged template literals into instances of the respective `cds.ql` class.
+- New `cds` events to allow multitenant plugins: `compile.for.runtime`, `compile.to.dbx`, `compile.to.edmx`.
+- `cds.env` now supports `.cdsrc.js` and `.cdsrc.yaml` files, also in plugins.
+- `cds.env` now supports profile-specific `.env` files, e.g. `.hybrid.env` or `.attic.env`.
+- Experimental OData parsing for hierarchy requests (`descendants`, `ancestors`, `TopLevels`)
+- The new OData adapter now supports `cds.odata.containment`. Contained entities can only be accessed via their parents and do not show up as EntitySets in $metadata and the service document.
+
+### Changed
+
+- `CDL`, `CQL`, and `CXL` globals are deprecated => use respective functions from `cds.ql` instead.
+- `CREATE`, and `DROP` globals are deprecated => use respective functions from `cds.ql` instead.
+- Zulu time zone information is stripped from `cds.DateTime` properties when querying Odata V2 remote services
+- Processing of `@restrict.where` was aligned with CAP Java:
+  + Instance-based authorization on app service calls does not consider custom `WHERE` clauses of `UPDATE`/`DELETE` queries
+    + Until `@sap/cds^9`, this change can be deactivated via `cds.env.features.compat_restrict_where = true`
+  + Simple static clauses (e.g., `$user.level > 5`) are no longer evaluated by the server but added to the respective SQL regardless. As a result, requests may receive a response of `2xx` with an empty body instead of a `403`.
+    + Until `@sap/cds^9`, this change can be deactivated via `cds.env.features.compat_static_auth = true`
+  + Read restrictions on the entity are no longer taken into consideration when evaluating restrictions on bound actions/ functions
+    + Until `@sap/cds^9`, this change can be deactivated via `cds.env.features.compat_restrict_bound = true`
+
+### Fixed
+
+- ETag calculation if column was provided as Javascript Date
+- Forwarding of `/$count` queries while mocking the external service
+- Resolving of implicit function parameters (e.g `GET .../test.foo?x='bar'`)
+- Arrayed elements are not part of response unless explicitly selected with `$select`
+- In case of nonexistent user attributes (`$user.X`), only the subclause gets substituted with `false`
+- `@odata.context` in new OData adapter:
+  + Fixed crash for requests to actions/functions when `cds.env.odata.context_with_columns` is enabled
+  + Aggregation functions with `$apply` are now returned when `cds.env.odata.context_with_columns` is enabled
+  + `@odata.context` is now the first property in the response values of `concat` requests
+  + Binary key values are now properly encoded and formatted
+  + Fixed keys appearing as `(undefined)` for updates via navigation to-one
+  + Fixed key value pairs being returned as `undefined=undefined` for property access of aspects
+  + Backlinks no longer appear as keys for property access of aspects
+  + Non-anonymous structured types are now prefixed with the service name
+  + Structured types no longer end with `/$entity`
 
 ## Version 8.5.1 - 2024-12-06
 
@@ -522,7 +575,7 @@
 - Support for `@odata.draft.bypass` to allow direct modifications of active instances.
 - `req.user.tokenInfo` for `@sap/xssec`-based authentication (`ias`, `jwt`, `xsuaa`)
 - `cds.fiori.draft_lock_timeout` as successor of `cds.drafts.cancellationTimeout`.
-  + Possible values are /^([0-9]+)(h|hrs|min)$/ or a number in milliseconds.
+  + Possible values are `/^([0-9]+)(h|hrs|min)$/` or a number in milliseconds.
 - There is a new `sap.common.Timezones` entity with a basic time zone definition. There will be accompanying data in package `@sap/cds-common-content`.
 - Deprecation warnings for configuration options `cds.drafts.cancellationTimeout`, `cds.features.serve_on_root`, `cds.features.stream_compat`, `cds.fiori.lean_draft` and `cds.requires.middlewares`, as well as for the properties `req.user.locale` and `req.user.tenant`. The deprecation warnings can be turned off by setting `cds.features.deprecated` to `off`.
 
