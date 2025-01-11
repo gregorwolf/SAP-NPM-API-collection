@@ -1,3 +1,21 @@
+## 1.36.0
+
+### New Features
+- Support wildcards in analytic privileges
+- Greedy pruning for non-equi joins
+- Option to use referential join with non-equi joins
+- Offer Dropdown to select time of currency conversion
+
+### Fixes
+- Too much space in Order Column section
+- Duplicated order columns in window function node
+- Maximum call stack size exceeded error
+- Only up to 100 schemas are listed in the 'Select Database with Users' dialog.
+- Value help search should be case-insensitive
+- Persist choice of selected column properties doesn't work
+- MDS Cube with conversion setting Query Execution must have identical and fixed client values
+- Remove and Copy button are inactive when multiple nodes selected
+
 ## 1.35.0
 
 ### New Features

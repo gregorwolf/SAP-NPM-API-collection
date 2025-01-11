@@ -479,6 +479,7 @@ Depending on the type of the service that provides credentials: SBSS (for SAP HA
 The same object will appear also in the `credentials` section for the respective service in the `VCAP_SERVICES` environment variable in bound applications. You can find some examples below.
 
 #### SBSS
+**Note**: SBSS support will be removed on 01/25 following SBSS deprecation by XSUAA.
 
 SBSS (Service Broker Security Support) can generate, store, and verify usernames and passwords in a secure way. It is accessed via the SQL API.
 

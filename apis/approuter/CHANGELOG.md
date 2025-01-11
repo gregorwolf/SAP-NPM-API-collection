@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 18.0.1 - 2025-01-08
+
+### Fixed
+- IAS token expiration calculation
+- CSRF token length validation
+- Fix race condition caused by external session updates
+
 ## 18.0.0 - 2024-12-09
 
 ### Added
@@ -20,6 +27,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 - Currently the cookie validation has become more lenient (specifically to allow commas), backward compatible cookie validation can still be supported by setting the COOKIE_BACKWARD_COMPATIBILITY environment variable configuration to 'true' if necessary.
 - Updated the cookie validation error message to show where the problematic cookie value is.
 - Set applications metadata cache also in case of empty response
+- Fetch destination tokens in chunks to avoid rate limiting
 
 ### Updated dependencies
 - deps: ioredis@5.4.1

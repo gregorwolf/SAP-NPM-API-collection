@@ -4,8 +4,21 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-### Joule
+### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
+
+## [1.16.0] - 2024-12-05
+### Project Accelerator
+- Added a new section to the `Fiori Tools` panel that allows users to generate SAP Fiori applications with a CAP project using Joule capabilities. The Project Accelerator enables you to provide text, images, or text and images, to generate an application. For more information, see [Generating an Application with the Project Accelerator or Joule Using SAP Fiori Tools AI](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/6845fedbb38c4da7a54a2c76081f3abb.html)
+
+### Joule
+- Queries in Joule that relate to SAP Fiori project generation are now transferred to the Project Accelerator
+
+### Fixed
+- Fixed an issue where i18n entries were not created in the correct files in CAP projects
+- Fixed an issue where guides did not scroll to error messages
+- Fixed an issue that caused the Annotation Path property to be permanently disabled in the _Add a new section to an object page_ guide
+- Fixed a UX issue where the underline of the currently active guide variant was positioned incorrectly
 
 ## [1.15.6] - 2024-11-14
 ### Added

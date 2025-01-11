@@ -644,6 +644,7 @@ It supports the following properties with the following [`default`]:
 
 - **generateDcl** / **autoCompile** *true/false* [`true`]: unless set to `false`, generates `basePolicies.dcl` and `schema.dcl` from the cds model (see [Base Policy Generaiton](#base-policy-generation))
 - **dclRoot** / **dclFolder** *string* [`ams/dcl`]: the root DCL folder (containing the `schema.dcl`) which is used for generating DCL, compiling DCL to DCN during development, uploading DCL etc.
+- **dclGenerationPackage** *string* [`cap`]: name of the DCL package to which basePolicies.dcl is generated
 - **dcnRoot** *string* [`gen/dcn` / `srv/src/gen/ams/dcn` (Java)]:  folder for DCL to DCN compilation results during development (see [Testing Policies](#testing-policies))
 - **policyDeployerRoot** *string* [`gen/policies` / `srv/src/gen/policies` (Java)]:  folder of the ams policy deployer application created during `cds build` (see [Base Policy Upload](#base-policy-upload))
 - **cache** *object*: Properties for of cache for user roles and role-based attribute filters

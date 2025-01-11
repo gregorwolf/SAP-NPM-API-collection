@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.0] - 2024-12-05
+### Added
+- Added the option to navigate to the source file from the Annotation File Manager
+
 ## [1.15.1] - 2024-09-19
 ### Fixed
 - Fixed an issue where the screen reader would read out the wrong text for the checkbox status in the Annotation File Manager

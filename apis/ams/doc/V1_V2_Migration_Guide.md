@@ -4,7 +4,7 @@ Follow these steps to migrate from `@sap/ams 1` to `@sap/ams 2`.
 
 1. Update both `@sap/ams` and `@sap/ams-dev` simultaneously to version 2.
 1. Replace the `package.json` in your AMS DCL policy deployer application with `/ams-dcl-content-deployer/package.json`.
-1. Create a feature request in case you used some of the exports that have been removed from `index.js` (we not expect any customer to have used them).
+1. Create a feature request in case you used some of the exports that have been removed from `index.js` (we do not expect any customer to have used them).
 
 Additionally, follow the steps below depending on the nature of your project.
 
@@ -21,7 +21,7 @@ To migrate a CAP project which used the DCL generation of `@sap/ams-dev 1` with 
 1. Replace `@ams.publicFields` annotations with `@ams.attributes` annotations
 1. Ensure the attribute names in `@ams.attributes` annotations are fully qualified AMS attribute names if you use a schema generated with the old algorithm (e.g. `BookService.Books.descr` instead of just `descr`)
 
-**Important**: If multiple microservices share an AMS instance, you need to keep the old `GRANT * ON <service>.<entity> WHERE <attribute> IS NOT RESTRICTED` grants alongside the adjusted role assignment grant from step 2 in your base policies until each microservice has been migrated. Once they are all on `@sap/ams 2`, those grants can be removed from the base policies.
+**Important**: If multiple microservices share an AMS instance, you need to keep the old `GRANT * ON <service>.<entity> WHERE <service>.<entity>.<attribute> IS NOT RESTRICTED` grants alongside the adjusted role assignment grant from step 2 in your base policies until each microservice has been migrated. Once they are all on `@sap/ams 2`, those grants can be removed from the base policies.
 
 For greenfield projects or projects in which the AMS schema can still be changed without breaking admin policies of customers, we recommend to use simple, short names for schema attributes. In case you used fully generated DCL files before, delete the old DCL files and generate new ones after migrating the annotations. Follow the [greenfield project example](#project-as-new-greenfield-project) for such projects.
 
@@ -73,8 +73,6 @@ POLICY "Reader" {
     key ID : Integer;
     descr  : localized String(1111);
 ```
-
-*Hint*: You can annotate a field with `@ams` without specifying a value for the `attribute` property of the `@ams` annotation. In this case, the AMS attribute name will default to the cds field name.
 
 schema.dcl
 ```sql

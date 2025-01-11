@@ -1,5 +1,13 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.28.0
+
+### Fixes
+- Statement explanations should be wrapped to fit into the available SQL console space.
+- The SAP HANA Database Explorer web application can be opened via an icon at the top of the database list.
+- Vector data is shown as a string instead of binary values in result sets in the SQL console.
+- When the session variables are captured in a plan graph, they should be set before re-executing the query.
+
 ## 1.27.0
 
 ### New Features

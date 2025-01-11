@@ -1,3 +1,16 @@
+## 1.27.0
+
+### New Features
+
+- SQL notebooks: reuse connection over multiple cells
+- Modules can be bound to SAP HANA Cloud tenants
+
+### Fixes
+
+- The grants editor does not work for CAP projects
+- Support mode export improvements and bug fixes
+- Fixed a command naming conflict when running in a productivity tools dev space
+
 ## 1.26.0
 
 ### New Features

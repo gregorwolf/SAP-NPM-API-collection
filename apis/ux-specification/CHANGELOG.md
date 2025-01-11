@@ -8,6 +8,37 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.7] - 2024-12-04
+
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- Description for config doc and excel sheet fixed
+
+### Quality
+
+Upgrades:
+
+- @sap-ux/annotation-converter (source)	devDependencies	patch	0.9.9 -> 0.9.11
+- @sap-ux/vocabularies-types (source)	devDependencies	minor	0.11.6 -> 0.12.0
+- @sap-ux/vocabularies-types (source)	dependencies	minor	0.11.6 -> 0.12.0
+- @sap-ux/vocabularies-types (source)	resolutions	minor	0.11.6 -> 0.12.0 
+- typescript (source)	devDependencies	minor	5.6.3 -> 5.7.2
+- i18next (source)	devDependencies	patch	23.16.5 -> 23.16.8
+- @sap-ux/fe-fpm-writer (source)	devDependencies	patch	0.31.18 -> 0.31.21
+- @sap-ux/fe-fpm-writer (source)	dependencies	patch	0.31.18 -> 0.31.21
+- @typescript-eslint/eslint-plugin (source)	devDependencies	minor	8.13.0 -> 8.15.0
+- @typescript-eslint/parser (source)	devDependencies	minor	8.13.0 -> 8.15.0
+- uuid devDependencies patch 11.0.2 -> 11.0.3
+- axios source devDependencies patch 1.7.7 -> 1.7.9
+
 ## [1.124.6] - 2024-11-13
 
 ### Added

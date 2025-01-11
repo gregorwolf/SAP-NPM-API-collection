@@ -6,6 +6,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.0] - 2024-12-05
+### Changed
+- Updated the labels for properties representing Boolean values in the Properties pane
+
+### Fixed
+- Fixed an issue where a migrated adaptation project failed to load in the Adaptation Editor if the application name contained an uppercase character
+- Fixed an issue where an unsupported type view could be selected for custom sections with OData V4
+- Fixed an issue where moving multiple sections at once would not place them in the correct position
+- Fixed multiple usability and accessibility issues within the Page Map and Page Editor UI
+- Fixed an issue with Page Map not starting automatically after the generation of an SAP Fiori elements application with SAP Build Code
+- Fixed an issue with the Application Info page not showing the minimum SAPUI5 version defined for a reusable library project
+- Fixed an issue with the `Archive Project` command covering only the `webapp` folder and not the entire project when started from its context men
+
 ## [1.15.6] - 2024-11-14
 ### Changed
 - Removed the Adaptation Editor start script from the quick pick for adaptation projects because the Adaptation Editor is started using a dedicated command

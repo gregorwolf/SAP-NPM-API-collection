@@ -1,3 +1,13 @@
+## 1.15.0
+
+### New Features
+- Support Fabric Virtual Table (hdbfabricvirtualtable) in new projects
+- Support Collection Adjacency Index (hdbcollectionadjindex) in new projects
+- Support Structured Filter (hdbstructuredfilter) in new projects
+
+### Fixes
+- Security fixes
+
 ## 1.14.0
 
 ### Fixes

@@ -3,6 +3,26 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.0] - 2024-12-05
+### Added
+- Added the label `S4HC` to system connections that point to an SAP S/4HANA Cloud system
+
+### Changed
+- Moved the option to generate the application with TypeScript out of advanced options and into the main project attributes step
+- Updated the deployment configuration to no longer ask for a transport request if a local package is provided
+- Updated the connectivity error messages to be more descriptive
+- Removed the system connectivity option for SAP Business Accelerator Hub from the SAP Fiori generator in SAP Business Application Studio, as this connection type is supported directly from the Service Center
+
+### Fixed
+- Fixed a bug that caused the UI Service Generator to crash if `Draft Enabled` was set to `No`
+- Fixed an issue where the SAP Fiori generator crashed if an invalid service path was added to a partial URL destination
+- Fixed an issue where using a saved system in Visual Studio Code asked for authentication credentials even though they were contained in the saved system
+- Fixed an issue where using a full service URL with the SAP Fiori generator created an invalid entry in the generated `manifest.json` file for the service
+- Fixed an issue where SAP Fiori applications generated with SAP S/4HANA Cloud destinations in SAP Business Application Studio could not be used in Visual Studio Code
+- Fixed an issue where the target destination in the deployment configuration was not correctly populated if the application was generated directly using ADT Tools in Eclipse
+- Fixed an issue where Cloud Foundry was not provided as a deployment target if the application was added to a project with a managed app router
+- Fixed an issue where launching the SAP Fiori generator directly from a saved system would not automatically select the saved system during generation
+ 
 ## [1.15.6] - 2024-11-14
 ### Fixed
 - Fixed an issue where deployment to an ABAP system failed if it was connected using a proxy

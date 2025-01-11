@@ -1,3 +1,9 @@
+## 1.17.0
+
+### Fixes
+- Security fixes
+- Performance optimization
+
 ## 1.16.0
 
 ### New Features

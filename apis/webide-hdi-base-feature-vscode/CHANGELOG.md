@@ -1,3 +1,8 @@
+## 1.34.0
+
+### New Features
+- Support wildcards in analytic privileges
+
 ## 1.33.0
 
 ### Fixes

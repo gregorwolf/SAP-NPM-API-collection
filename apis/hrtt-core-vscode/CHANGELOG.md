@@ -1,10 +1,16 @@
-## 1.33.0
+## 1.36.0
+
+### New Features
+
+- Updated HRTT to version 241010-1730917736-51fc879
+
+## 1.35.0
 
 ### New Features
 
 - Updated HRTT to version 240912-1727732846-4e39f27
 
-## 1.33.0
+## 1.34.0
 
 ### New Features
 
