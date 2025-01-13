@@ -17,6 +17,7 @@ while read package; do
   mkdir "apis$packageNoPrefix"
   rsync -zarv  --include "*/" --include="*.md" --exclude="*" "node_modules/$package/" "apis$packageNoPrefix"
   cp node_modules/$package/LICENS* apis$packageNoPrefix
+  cp node_modules/$package/npm-shrinkwrap.json apis$packageNoPrefix
   cp -r node_modules/$package/doc apis$packageNoPrefix/doc
 done <packages.txt
 #mkdocs build -f mkdocs.yml

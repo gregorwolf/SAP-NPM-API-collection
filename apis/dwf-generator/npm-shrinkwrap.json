@@ -1,0 +1,235 @@
+{
+  "name": "@sap/dwf-generator",
+  "version": "2.2.1",
+  "lockfileVersion": 1,
+  "dependencies": {
+    "@sap/e2e-trace": {
+      "version": "1.1.2",
+      "integrity": "sha1-6riGxxhPi8qDGhHCRPngsSQTQpw=",
+      "dependencies": {
+        "lodash": {
+          "version": "4.13.1",
+          "integrity": "sha1-g+SxCRP0hJbU0W/sSlYK8u50S2g="
+        }
+      }
+    },
+    "@sap/logging": {
+      "version": "3.0.0",
+      "integrity": "sha1-DIy7SMF1/lO7h80hm4sE8DpJ0BI=",
+      "dependencies": {
+        "lodash": {
+          "version": "4.13.1",
+          "integrity": "sha1-g+SxCRP0hJbU0W/sSlYK8u50S2g="
+        }
+      }
+    },
+    "@sap/textbundle": {
+      "version": "2.0.6",
+      "integrity": "sha1-lTHHYQjJDQeoe3QcAa+myOHr8X4="
+    },
+    "align-text": {
+      "version": "0.1.4",
+      "integrity": "sha1-DNkKVhCT810KmSVsIrcGlDP60Rc="
+    },
+    "amdefine": {
+      "version": "1.0.1",
+      "integrity": "sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU="
+    },
+    "argparse": {
+      "version": "1.0.9",
+      "integrity": "sha1-c9g7wmP4bpf4zE9rrhsOkKfSLIY="
+    },
+    "async": {
+      "version": "2.4.0",
+      "integrity": "sha1-SZAgDxjqW4N8LMT4wDGmmFw4VhE="
+    },
+    "camelcase": {
+      "version": "1.2.1",
+      "integrity": "sha1-m7UwTS4LVmmLLHWLCKPqqdqlijk=",
+      "optional": true
+    },
+    "center-align": {
+      "version": "0.1.3",
+      "integrity": "sha1-qg0yYptu6XIgBBHL1EYckHvCt60=",
+      "optional": true
+    },
+    "cliui": {
+      "version": "2.1.0",
+      "integrity": "sha1-S0dXYP+AJkx2LDoXGQMukcf+oNE=",
+      "optional": true,
+      "dependencies": {
+        "wordwrap": {
+          "version": "0.0.2",
+          "integrity": "sha1-t5Zpu0LstAn4PVg8rVLKF+qhZD8=",
+          "optional": true
+        }
+      }
+    },
+    "colors": {
+      "version": "1.0.3",
+      "integrity": "sha1-BDP0TYCWgP3rYO0mDxsMJi6CpAs="
+    },
+    "commander": {
+      "version": "2.9.0",
+      "integrity": "sha1-nJkJQXbhIkDLItbFFGCYQA/g99Q="
+    },
+    "cycle": {
+      "version": "1.0.3",
+      "integrity": "sha1-IegLK+hYD5i0aPN5QwZisEbDStI="
+    },
+    "decamelize": {
+      "version": "1.2.0",
+      "integrity": "sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=",
+      "optional": true
+    },
+    "esprima": {
+      "version": "3.1.3",
+      "integrity": "sha1-/cpRzuYTOJXjyI1TXOSdv/YqRjM="
+    },
+    "eyes": {
+      "version": "0.1.8",
+      "integrity": "sha1-Ys8SAjTGg3hdkCNIqADvPgzCC8A="
+    },
+    "graceful-readlink": {
+      "version": "1.0.1",
+      "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
+    },
+    "handlebars": {
+      "version": "4.0.10",
+      "integrity": "sha1-PTDHGLCaPZbyPqTMH0A8TTup/08=",
+      "dependencies": {
+        "async": {
+          "version": "1.5.2",
+          "integrity": "sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo="
+        }
+      }
+    },
+    "http-headers": {
+      "version": "3.0.1",
+      "integrity": "sha1-HLxpHEXN9tbB3GO/NoslBfVu+Dk="
+    },
+    "is-buffer": {
+      "version": "1.1.5",
+      "integrity": "sha1-Hzsm72E7IUuIy8ojzGwB2Hlh7sw="
+    },
+    "isstream": {
+      "version": "0.1.2",
+      "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
+    },
+    "js-yaml": {
+      "version": "3.8.4",
+      "integrity": "sha1-UgtFZPhlc7qWZir4Woyvp7S1pvY="
+    },
+    "kind-of": {
+      "version": "3.2.2",
+      "integrity": "sha1-MeohpzS6ubuw8yRm2JOupR5KPGQ="
+    },
+    "lazy-cache": {
+      "version": "1.0.4",
+      "integrity": "sha1-odePw6UEdMuAhF07O24dpJpEbo4=",
+      "optional": true
+    },
+    "lodash": {
+      "version": "4.17.4",
+      "integrity": "sha1-eCA6TRwyiuHYbcpkYONptX9AVa4="
+    },
+    "longest": {
+      "version": "1.0.1",
+      "integrity": "sha1-MKCy2jj3N3DoKUoNIuZiXtd9AJc="
+    },
+    "minimist": {
+      "version": "0.0.10",
+      "integrity": "sha1-3j+YVD2/lggr5IrRoMfNqDYwHc8="
+    },
+    "moment": {
+      "version": "2.15.2",
+      "integrity": "sha1-G/3t9qbjRfMi/pVtXfW9CKjOhNw="
+    },
+    "next-line": {
+      "version": "1.1.0",
+      "integrity": "sha1-/K5XhTBStqm66CCOQN19PC0wRgM="
+    },
+    "once": {
+      "version": "1.4.0",
+      "integrity": "sha1-WDsap3WWHUsROsF9nFC6753Xa9E="
+    },
+    "optimist": {
+      "version": "0.6.1",
+      "integrity": "sha1-2j6nRob6IaGaERwybpDrFaAZZoY="
+    },
+    "pkginfo": {
+      "version": "0.3.1",
+      "integrity": "sha1-Wyn2qB9wcXFC4J52W76rl7T4HiE="
+    },
+    "repeat-string": {
+      "version": "1.6.1",
+      "integrity": "sha1-jcrkcOHIirwtYA//Sndihtp15jc="
+    },
+    "request-stats": {
+      "version": "2.0.1",
+      "integrity": "sha1-7ZpjgVZq9rvWD+LVz69G+RK4sD4="
+    },
+    "right-align": {
+      "version": "0.1.3",
+      "integrity": "sha1-YTObci/mo1FWiSENJOFMlhSGE+8=",
+      "optional": true
+    },
+    "source-map": {
+      "version": "0.4.4",
+      "integrity": "sha1-66T12pwNyZneaAMti092FzZSA2s="
+    },
+    "sprintf-js": {
+      "version": "1.0.3",
+      "integrity": "sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw="
+    },
+    "stack-trace": {
+      "version": "0.0.10",
+      "integrity": "sha1-VHxws0fo0ytOEI6hoqFZ5f3eGcA="
+    },
+    "uglify-js": {
+      "version": "2.8.29",
+      "integrity": "sha1-KcVzMUgFe7Th913zW3qcty5qWd0=",
+      "optional": true,
+      "dependencies": {
+        "source-map": {
+          "version": "0.5.6",
+          "integrity": "sha1-dc449SvwczxafwwRjYEzSiu19BI=",
+          "optional": true
+        }
+      }
+    },
+    "uglify-to-browserify": {
+      "version": "1.0.2",
+      "integrity": "sha1-bgkk1r2mta/jSeOabWMoUKD4grc=",
+      "optional": true
+    },
+    "window-size": {
+      "version": "0.1.0",
+      "integrity": "sha1-VDjNLqk7IC76Ohn+iIeu58lPnJ0=",
+      "optional": true
+    },
+    "winston": {
+      "version": "1.1.2",
+      "integrity": "sha1-aO3Xaf951PlSjPDl2AAhqt5nSAw=",
+      "dependencies": {
+        "async": {
+          "version": "1.0.0",
+          "integrity": "sha1-+PwEyjoTeErenhZBr5hXjPvWR6k="
+        }
+      }
+    },
+    "wordwrap": {
+      "version": "0.0.3",
+      "integrity": "sha1-o9XabNXAvAAI03I0u68b7WMFkQc="
+    },
+    "wrappy": {
+      "version": "1.0.2",
+      "integrity": "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8="
+    },
+    "yargs": {
+      "version": "3.10.0",
+      "integrity": "sha1-9+572FfdfB0tOMDnTvvWgdFDH9E=",
+      "optional": true
+    }
+  }
+}

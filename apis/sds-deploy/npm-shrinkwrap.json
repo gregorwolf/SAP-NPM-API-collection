@@ -1,0 +1,85 @@
+{
+  "version": "2.0.5", 
+  "name": "@sap/sds-deploy", 
+  "dependencies": {
+    "async": {
+      "version": "2.6.0", 
+      "dependencies": {
+        "lodash": {
+          "version": "4.17.11"
+        }
+      }
+    }, 
+    "@sap/xsenv": {
+      "version": "1.2.9", 
+      "dependencies": {
+        "core-util-is": {
+          "version": "1.0.2"
+        }, 
+        "assert-plus": {
+          "version": "1.0.0"
+        }, 
+        "ms": {
+          "version": "2.0.0"
+        }, 
+        "debug": {
+          "version": "3.1.0"
+        }, 
+        "verror": {
+          "version": "1.10.0"
+        }, 
+        "extsprintf": {
+          "version": "1.4.0"
+        }
+      }
+    }, 
+    "jszip": {
+      "version": "3.1.4", 
+      "dependencies": {
+        "core-js": {
+          "version": "2.3.0"
+        }, 
+        "es6-promise": {
+          "version": "3.0.2"
+        }, 
+        "pako": {
+          "version": "1.0.8"
+        }, 
+        "readable-stream": {
+          "version": "2.0.6", 
+          "dependencies": {
+            "inherits": {
+              "version": "2.0.3"
+            }, 
+            "isarray": {
+              "version": "1.0.0"
+            }, 
+            "core-util-is": {
+              "version": "1.0.2"
+            }, 
+            "string_decoder": {
+              "version": "0.10.31"
+            }, 
+            "process-nextick-args": {
+              "version": "1.0.7"
+            }, 
+            "util-deprecate": {
+              "version": "1.0.2"
+            }
+          }
+        }, 
+        "lie": {
+          "version": "3.1.1", 
+          "dependencies": {
+            "immediate": {
+              "version": "3.0.6"
+            }
+          }
+        }
+      }
+    }, 
+    "commander": {
+      "version": "2.12.2"
+    }
+  }
+}

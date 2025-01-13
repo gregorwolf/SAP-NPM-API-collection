@@ -1,0 +1,12 @@
+{
+  "name": "@sap/odata-v4",
+  "version": "1.9.0",
+  "dependencies": {
+    "big.js": {
+      "version": "5.2.2"
+    },
+    "xmlbuilder": {
+      "version": "10.1.0"
+    }
+  }
+}
