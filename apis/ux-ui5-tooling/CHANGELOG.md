@@ -3,7 +3,7 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.15.4] - 2024-10-30
+## [1.15.6] - 2024-10-30
 ### Changed
 - Refactored the command to add configuration for variants creation and moved it from `@sap/ux-ui5-tooling` to the open source `@sap-ux/create` package
 
