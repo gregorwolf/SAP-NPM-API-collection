@@ -4,7 +4,17 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Version 1.2.7 - 2024-11-25
+## Version 1.2.9 - 2025-01-15
+
+### Fixed
+
+- Support for `cds.odata.containment`
+
+### Changed
+
+- Use UI5 version 1.131.0 by default
+
+## Version 1.2.8 - 2024-11-25
 
 ### Changed
 

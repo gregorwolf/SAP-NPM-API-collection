@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.1.1"></a>
+## 8.1.1 - 2025-01-20
+
+### Updated
+- Added node22 support.
+
 <a name="8.1.0"></a>
 ## 8.1.0 - 2024-12-17
 

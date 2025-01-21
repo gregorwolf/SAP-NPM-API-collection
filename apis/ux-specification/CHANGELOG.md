@@ -8,6 +8,39 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.8] - 2025-01-08
+
+### Added
+
+### Changed
+
+### Removed
+
+- OData V4: removed `noData` aggregation on `sap.fe.macros.Table`, since there is no UI support for it.
+
+### Deprecated
+
+### Fixed
+
+- OData V4:  
+  - Allow to delete last custom filter field
+  - `noData` aggregations on `sap.fe.macros.Table` will not be shown, since there is no UI support for it.
+  - Avoid deletion of unknown properties in custom page settings
+  - Allow the modification of custom page properties using the API method `exportConfigEntityByPath`.
+- General:  Deletion requests, via the api method deleteConfigEntityByPath, had not been recognized as such in all cases. The path was considered, but then updates happened, per underlying property.
+
+### Quality
+
+Upgrades:
+- | [uuid](https://github.com/uuidjs/uuid) | devDependencies | patch | [`11.0.3` -> `11.0.4`](https://renovatebot.com/diffs/npm/uuid/11.0.3/11.0.4) |
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | devDependencies | minor | [`8.18.2` -> `8.19.1`](https://renovatebot.com/diffs/npm/@typescript-eslint%2feslint-plugin/8.18.2/8.19.1) |
+- | [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | devDependencies | minor | [`8.18.2` -> `8.19.1`](https://renovatebot.com/diffs/npm/@typescript-eslint%2fparser/8.18.2/8.19.1) |
+
+- @sap-ux/fe-fpm-writer to 0.31.23
+- prettier to 3.4.2
+- esbuild to 0.24.2
+- npm-run-all2 to 7.0.2
+
 ## [1.124.7] - 2024-12-04
 
 ### Added

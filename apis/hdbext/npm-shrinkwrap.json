@@ -1,12 +1,12 @@
 {
   "name": "@sap/hdbext",
-  "version": "8.1.0",
+  "version": "8.1.1",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/hdbext",
-      "version": "8.1.0",
+      "version": "8.1.1",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
         "@sap/e2e-trace": "^4.1.0",
@@ -30,7 +30,7 @@
         "supertest": "^6.3.3"
       },
       "engines": {
-        "node": "^12.0.0 || ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0"
+        "node": "^12.0.0 || ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0 || ^22.x"
       }
     },
     "node_modules/@ampproject/remapping": {
@@ -61,9 +61,9 @@
       }
     },
     "node_modules/@babel/compat-data": {
-      "version": "7.26.3",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/compat-data/-/compat-data-7.26.3.tgz",
-      "integrity": "sha512-nHIxvKPniQXpmQLb0vhY3VaFb3S0YrTAwpOWJZh1wn3oJPjJk9Asva204PsBdmAE8vpzfHudT8DB0scYvy9q0g==",
+      "version": "7.26.5",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/compat-data/-/compat-data-7.26.5.tgz",
+      "integrity": "sha512-XvcZi1KWf88RVbF9wn8MN6tYFloU5qX8KjuF3E1PVBmJ9eypXfs4GRiJwLuTZL0iSnJUKn1BFPa5BPZZJyFzPg==",
       "dev": true,
       "engines": {
         "node": ">=6.9.0"
@@ -106,13 +106,13 @@
       "dev": true
     },
     "node_modules/@babel/generator": {
-      "version": "7.26.3",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/generator/-/generator-7.26.3.tgz",
-      "integrity": "sha512-6FF/urZvD0sTeO7k6/B15pMLC4CHUv1426lzr3N01aHJTl046uCAh9LXW/fzeXXjPNCJ6iABW5XaWOsIZB93aQ==",
+      "version": "7.26.5",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/generator/-/generator-7.26.5.tgz",
+      "integrity": "sha512-2caSP6fN9I7HOe6nqhtft7V4g7/V/gfDsC3Ag4W7kEzzvRGKqiv0pu0HogPiZ3KaVSoNDhUws6IJjDjpfmYIXw==",
       "dev": true,
       "dependencies": {
-        "@babel/parser": "^7.26.3",
-        "@babel/types": "^7.26.3",
+        "@babel/parser": "^7.26.5",
+        "@babel/types": "^7.26.5",
         "@jridgewell/gen-mapping": "^0.3.5",
         "@jridgewell/trace-mapping": "^0.3.25",
         "jsesc": "^3.0.2"
@@ -122,12 +122,12 @@
       }
     },
     "node_modules/@babel/helper-compilation-targets": {
-      "version": "7.25.9",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/helper-compilation-targets/-/helper-compilation-targets-7.25.9.tgz",
-      "integrity": "sha512-j9Db8Suy6yV/VHa4qzrj9yZfZxhLWQdVnRlXxmKLYlhWUVB1sB2G5sxuWYXk/whHD9iW76PmNzxZ4UCnTQTVEQ==",
+      "version": "7.26.5",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/helper-compilation-targets/-/helper-compilation-targets-7.26.5.tgz",
+      "integrity": "sha512-IXuyn5EkouFJscIDuFF5EsiSolseme1s0CZB+QxVugqJLYmKdxI1VfIBOst0SUu4rnk2Z7kqTwmoO1lp3HIfnA==",
       "dev": true,
       "dependencies": {
-        "@babel/compat-data": "^7.25.9",
+        "@babel/compat-data": "^7.26.5",
         "@babel/helper-validator-option": "^7.25.9",
         "browserslist": "^4.24.0",
         "lru-cache": "^5.1.1",
@@ -208,12 +208,12 @@
       }
     },
     "node_modules/@babel/parser": {
-      "version": "7.26.3",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/parser/-/parser-7.26.3.tgz",
-      "integrity": "sha512-WJ/CvmY8Mea8iDXo6a7RK2wbmJITT5fN3BEkRuFlxVyNx8jOKIIhmC4fSkTcPcf8JyavbBwIe6OpiCOBXt/IcA==",
+      "version": "7.26.5",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/parser/-/parser-7.26.5.tgz",
+      "integrity": "sha512-SRJ4jYmXRqV1/Xc+TIVG84WjHBXKlxO9sHQnA2Pf12QQEAp1LOh6kDzNHXcUnbH1QI0FDoPPVOt+vyUDucxpaw==",
       "dev": true,
       "dependencies": {
-        "@babel/types": "^7.26.3"
+        "@babel/types": "^7.26.5"
       },
       "bin": {
         "parser": "bin/babel-parser.js"
@@ -237,16 +237,16 @@
       }
     },
     "node_modules/@babel/traverse": {
-      "version": "7.26.4",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/traverse/-/traverse-7.26.4.tgz",
-      "integrity": "sha512-fH+b7Y4p3yqvApJALCPJcwb0/XaOSgtK4pzV6WVjPR5GLFQBRI7pfoX2V2iM48NXvX07NUxxm1Vw98YjqTcU5w==",
+      "version": "7.26.5",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/traverse/-/traverse-7.26.5.tgz",
+      "integrity": "sha512-rkOSPOw+AXbgtwUga3U4u8RpoK9FEFWBNAlTpcnkLFjL5CT+oyHNuUUC/xx6XefEJ16r38r8Bc/lfp6rYuHeJQ==",
       "dev": true,
       "dependencies": {
         "@babel/code-frame": "^7.26.2",
-        "@babel/generator": "^7.26.3",
-        "@babel/parser": "^7.26.3",
+        "@babel/generator": "^7.26.5",
+        "@babel/parser": "^7.26.5",
         "@babel/template": "^7.25.9",
-        "@babel/types": "^7.26.3",
+        "@babel/types": "^7.26.5",
         "debug": "^4.3.1",
         "globals": "^11.1.0"
       },
@@ -264,9 +264,9 @@
       }
     },
     "node_modules/@babel/types": {
-      "version": "7.26.3",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/types/-/types-7.26.3.tgz",
-      "integrity": "sha512-vN5p+1kl59GVKMvTHt55NzzmYVxprfJD+ql7U9NFIfKCBkYE55LYtS+WtPlaYOyzydrKI8Nezd+aZextrd+FMA==",
+      "version": "7.26.5",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/@babel/types/-/types-7.26.5.tgz",
+      "integrity": "sha512-L6mZmwFDK6Cjh1nRCLXpa6no13ZIioJDz7mdkzHv399pThrTa/k0nUlNaenOeh2kWu/iaOQYElEpKPUswUa9Vg==",
       "dev": true,
       "dependencies": {
         "@babel/helper-string-parser": "^7.25.9",
@@ -909,9 +909,9 @@
       "dev": true
     },
     "node_modules/browserslist": {
-      "version": "4.24.3",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/browserslist/-/browserslist-4.24.3.tgz",
-      "integrity": "sha512-1CPmv8iobE2fyRMV97dAcMVegvvWKxmq94hkLiAkUGwKVTyDLw33K+ZxiFrREKmmps4rIw6grcCFCnTMSZ/YiA==",
+      "version": "4.24.4",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/browserslist/-/browserslist-4.24.4.tgz",
+      "integrity": "sha512-KDi1Ny1gSePi1vm0q4oxSF8b4DR44GF4BbmS2YdhPLOEqd8pDviZOGH/GsmRwoWJ2+5Lr085X7naowMwKHDG1A==",
       "dev": true,
       "funding": [
         {
@@ -1030,9 +1030,9 @@
       }
     },
     "node_modules/caniuse-lite": {
-      "version": "1.0.30001689",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/caniuse-lite/-/caniuse-lite-1.0.30001689.tgz",
-      "integrity": "sha512-CmeR2VBycfa+5/jOfnp/NpWPGd06nf1XYiefUvhXFfZE4GkRc9jv+eGPS4nT558WS/8lYCzV8SlANCIPvbWP1g==",
+      "version": "1.0.30001695",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/caniuse-lite/-/caniuse-lite-1.0.30001695.tgz",
+      "integrity": "sha512-vHyLade6wTgI2u1ec3WQBxv+2BrTERV28UXQu9LO6lZ9pYeMk34vjXFLOxo1A4UBA8XTL4njRQZdno/yYaSmWw==",
       "dev": true,
       "funding": [
         {
@@ -1431,9 +1431,9 @@
       "dev": true
     },
     "node_modules/electron-to-chromium": {
-      "version": "1.5.74",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/electron-to-chromium/-/electron-to-chromium-1.5.74.tgz",
-      "integrity": "sha512-ck3//9RC+6oss/1Bh9tiAVFy5vfSKbRHAFh7Z3/eTRkEqJeWgymloShB17Vg3Z4nmDNp35vAd1BZ6CMW4Wt6Iw==",
+      "version": "1.5.83",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/electron-to-chromium/-/electron-to-chromium-1.5.83.tgz",
+      "integrity": "sha512-LcUDPqSt+V0QmI47XLzZrz5OqILSMGsPFkDYus22rIbgorSvBYEFqq854ltTmUdHkY92FSdAAvsh4jWEULMdfQ==",
       "dev": true
     },
     "node_modules/emoji-regex": {
@@ -1470,9 +1470,9 @@
       }
     },
     "node_modules/es-object-atoms": {
-      "version": "1.0.0",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/es-object-atoms/-/es-object-atoms-1.0.0.tgz",
-      "integrity": "sha512-MZ4iQ6JwHOBQjahnjwaC1ZtIBH+2ohjamzAO3oaHcXYup7qxjF2fixyH+Q71voWHeOkI2q/TnJao/KfXYIZWbw==",
+      "version": "1.1.1",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/es-object-atoms/-/es-object-atoms-1.1.1.tgz",
+      "integrity": "sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==",
       "dev": true,
       "dependencies": {
         "es-errors": "^1.3.0"
@@ -1794,9 +1794,9 @@
       "dev": true
     },
     "node_modules/fastq": {
-      "version": "1.17.1",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/fastq/-/fastq-1.17.1.tgz",
-      "integrity": "sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==",
+      "version": "1.18.0",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/fastq/-/fastq-1.18.0.tgz",
+      "integrity": "sha512-QKHXPW0hD8g4UET03SdOdunzSouc9N4AuHdsX8XNcTsuz+yYFILVNIX4l9yHABMhiEI9Db0JTTIpu0wB+Y1QQw==",
       "dev": true,
       "dependencies": {
         "reusify": "^1.0.4"
@@ -2100,21 +2100,21 @@
       }
     },
     "node_modules/get-intrinsic": {
-      "version": "1.2.6",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/get-intrinsic/-/get-intrinsic-1.2.6.tgz",
-      "integrity": "sha512-qxsEs+9A+u85HhllWJJFicJfPDhRmjzoYdl64aMWW9yRIJmSyxdn8IEkuIM530/7T+lv0TIHd8L6Q/ra0tEoeA==",
+      "version": "1.2.7",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/get-intrinsic/-/get-intrinsic-1.2.7.tgz",
+      "integrity": "sha512-VW6Pxhsrk0KAOqs3WEd0klDiF/+V7gQOpAvY1jVU/LHmaD/kQO4523aiJuikX/QAKYiW6x8Jh+RJej1almdtCA==",
       "dev": true,
       "dependencies": {
         "call-bind-apply-helpers": "^1.0.1",
-        "dunder-proto": "^1.0.0",
         "es-define-property": "^1.0.1",
         "es-errors": "^1.3.0",
         "es-object-atoms": "^1.0.0",
         "function-bind": "^1.1.2",
+        "get-proto": "^1.0.0",
         "gopd": "^1.2.0",
         "has-symbols": "^1.1.0",
         "hasown": "^2.0.2",
-        "math-intrinsics": "^1.0.0"
+        "math-intrinsics": "^1.1.0"
       },
       "engines": {
         "node": ">= 0.4"
@@ -2130,6 +2130,19 @@
       "dev": true,
       "engines": {
         "node": ">=8.0.0"
+      }
+    },
+    "node_modules/get-proto": {
+      "version": "1.0.1",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/get-proto/-/get-proto-1.0.1.tgz",
+      "integrity": "sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==",
+      "dev": true,
+      "dependencies": {
+        "dunder-proto": "^1.0.1",
+        "es-object-atoms": "^1.0.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
       }
     },
     "node_modules/glob": {
@@ -2472,12 +2485,15 @@
       }
     },
     "node_modules/is-generator-function": {
-      "version": "1.0.10",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/is-generator-function/-/is-generator-function-1.0.10.tgz",
-      "integrity": "sha512-jsEjy9l3yiXEQ+PsXdmBwEPcOxaXWLspKdplFUVI9vq1iZgIekeC0L167qeu86czQaxed3q/Uzuw0swL0irL8A==",
+      "version": "1.1.0",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/is-generator-function/-/is-generator-function-1.1.0.tgz",
+      "integrity": "sha512-nPUB5km40q9e8UfN/Zc24eLlzdSf9OfKByBw9CIdw4H1giPMeA0OIJvbchsCu4npfI2QcMVBsGEBHKZ7wLTWmQ==",
       "dev": true,
       "dependencies": {
-        "has-tostringtag": "^1.0.0"
+        "call-bound": "^1.0.3",
+        "get-proto": "^1.0.0",
+        "has-tostringtag": "^1.0.2",
+        "safe-regex-test": "^1.1.0"
       },
       "engines": {
         "node": ">= 0.4"
@@ -2534,6 +2550,24 @@
         "node": ">=8"
       }
     },
+    "node_modules/is-regex": {
+      "version": "1.2.1",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/is-regex/-/is-regex-1.2.1.tgz",
+      "integrity": "sha512-MjYsKHO5O7mCsmRGxWcLWheFqN9DJ/2TmngvjKXihe6efViPqc274+Fx/4fYj/r03+ESvBdTXK0V6tA3rgez1g==",
+      "dev": true,
+      "dependencies": {
+        "call-bound": "^1.0.2",
+        "gopd": "^1.2.0",
+        "has-tostringtag": "^1.0.2",
+        "hasown": "^2.0.2"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
     "node_modules/is-stream": {
       "version": "2.0.1",
       "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/is-stream/-/is-stream-2.0.1.tgz",
@@ -2547,12 +2581,12 @@
       }
     },
     "node_modules/is-typed-array": {
-      "version": "1.1.13",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/is-typed-array/-/is-typed-array-1.1.13.tgz",
-      "integrity": "sha512-uZ25/bUAlUY5fR4OKT4rZQEBrzQWYV9ZJYGGsUmEJ6thodVJ1HX64ePQ6Z0qPWP+m+Uq6e9UugrE38jeYsDSMw==",
+      "version": "1.1.15",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/is-typed-array/-/is-typed-array-1.1.15.tgz",
+      "integrity": "sha512-p3EcsicXjit7SaskXHs1hA91QxgTw46Fv6EFKKGS5DRFLD8yKnohjF3hxoju94b/OcMZoQukzpPpBE9uLVKzgQ==",
       "dev": true,
       "dependencies": {
-        "which-typed-array": "^1.1.14"
+        "which-typed-array": "^1.1.16"
       },
       "engines": {
         "node": ">= 0.4"
@@ -2874,9 +2908,9 @@
       }
     },
     "node_modules/math-intrinsics": {
-      "version": "1.0.0",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/math-intrinsics/-/math-intrinsics-1.0.0.tgz",
-      "integrity": "sha512-4MqMiKP90ybymYvsut0CH2g4XWbfLtmlCkXmtmdcDCxNB+mQcu1w/1+L/VD7vi/PSv7X2JYV7SCcR+jiPXnQtA==",
+      "version": "1.1.0",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/math-intrinsics/-/math-intrinsics-1.1.0.tgz",
+      "integrity": "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==",
       "dev": true,
       "engines": {
         "node": ">= 0.4"
@@ -3851,6 +3885,23 @@
         }
       ]
     },
+    "node_modules/safe-regex-test": {
+      "version": "1.1.0",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/safe-regex-test/-/safe-regex-test-1.1.0.tgz",
+      "integrity": "sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==",
+      "dev": true,
+      "dependencies": {
+        "call-bound": "^1.0.2",
+        "es-errors": "^1.3.0",
+        "is-regex": "^1.2.1"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
     "node_modules/safer-buffer": {
       "version": "2.1.2",
       "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/safer-buffer/-/safer-buffer-2.1.2.tgz",
@@ -4404,9 +4455,9 @@
       }
     },
     "node_modules/update-browserslist-db": {
-      "version": "1.1.1",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/update-browserslist-db/-/update-browserslist-db-1.1.1.tgz",
-      "integrity": "sha512-R8UzCaa9Az+38REPiJ1tXlImTJXlVfgHZsglwBD/k6nj76ctsH1E3q4doGrukiLQd3sGQYu56r5+lo5r94l29A==",
+      "version": "1.1.2",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/update-browserslist-db/-/update-browserslist-db-1.1.2.tgz",
+      "integrity": "sha512-PPypAm5qvlD7XMZC3BujecnaOxwhrtoFR+Dqkk5Aa/6DssiH0ibKoketaj9w8LP7Bont1rYeoV5plxD7RTEPRg==",
       "dev": true,
       "funding": [
         {
@@ -4424,7 +4475,7 @@
       ],
       "dependencies": {
         "escalade": "^3.2.0",
-        "picocolors": "^1.1.0"
+        "picocolors": "^1.1.1"
       },
       "bin": {
         "update-browserslist-db": "cli.js"
@@ -4515,15 +4566,16 @@
       "dev": true
     },
     "node_modules/which-typed-array": {
-      "version": "1.1.16",
-      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/which-typed-array/-/which-typed-array-1.1.16.tgz",
-      "integrity": "sha512-g+N+GAWiRj66DngFwHvISJd+ITsyphZvD1vChfVg6cEdnzy53GzB3oy0fUNlvhz7H7+MiqhYr26qxQShCpKTTQ==",
+      "version": "1.1.18",
+      "resolved": "https://int.repositories.cloud.sap/artifactory/api/npm/build-releases-npm/which-typed-array/-/which-typed-array-1.1.18.tgz",
+      "integrity": "sha512-qEcY+KJYlWyLH9vNbsr6/5j59AXk5ni5aakf8ldzBvGde6Iz4sxZGkJyWSAueTG7QhOvNRYb1lDdFmL5Td0QKA==",
       "dev": true,
       "dependencies": {
         "available-typed-arrays": "^1.0.7",
-        "call-bind": "^1.0.7",
+        "call-bind": "^1.0.8",
+        "call-bound": "^1.0.3",
         "for-each": "^0.3.3",
-        "gopd": "^1.0.1",
+        "gopd": "^1.2.0",
         "has-tostringtag": "^1.0.2"
       },
       "engines": {

@@ -7,6 +7,22 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.16.2] - 2025-01-08
+
+### Project Accelerator
+- Fixed an issue where the text of an uploaded requirements document in the application requirements text window was not editable
+
+### Added
+- Added a CAP CDS variant for the _Add a new contact view column to a table_ guide
+
+### Changed
+- Updated the guide description of the OData V4 variant of the _Configure variant management for controls and pages_ guide to align with the implementation
+
+### Fixed
+- Enhanced the error handling by displaying the global warning page more quickly and providing hyperlinks for easy navigation to the error details and actionable steps
+- Fixed an issue where Guided Development did not display any guides if there were no supported SAP Fiori projects in the workspace
+- Fixed an issue with the _Add a new contact view column to a table_ guide where clicking on the "Reset" button or selecting an `Entity Type` removed the initial code snippet 
+
 ## [1.16.0] - 2024-12-05
 ### Project Accelerator
 - Added a new section to the `Fiori Tools` panel that allows users to generate SAP Fiori applications with a CAP project using Joule capabilities. The Project Accelerator enables you to provide text, images, or text and images, to generate an application. For more information, see [Generating an Application with the Project Accelerator or Joule Using SAP Fiori Tools AI](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/6845fedbb38c4da7a54a2c76081f3abb.html)

@@ -37,4 +37,3 @@ SUBCOMMANDS:
 | --config      |    | Path to the YAML file from which to copy the backend configuration |
 | --flp         |    | Path to the FLP in the backend, e.g. sap/bc/ui5_ui5/ui2/ushell/shells/abap/Fiorilaunchpad.html |
 
-    variants-config - Adds the necessary configuration for enabling Variant Management for your Fiori application

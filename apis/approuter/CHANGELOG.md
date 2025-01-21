@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 18.0.2- 2025-01-20
+
+### Fixed
+- Run the state parameter flow and delete stale cookies only in browser requests
+- Avoid duplicate app id in get applications compact response
+
 ## 18.0.1 - 2025-01-08
 
 ### Fixed

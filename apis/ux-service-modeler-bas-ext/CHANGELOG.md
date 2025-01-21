@@ -3,6 +3,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.2] - 2025-01-08
+### Fixed
+- Fixed an issue where the system is not updated on a service change
+- Fixed an issue where an incorrect hostname is shown after adding a service and refresh
+- Fixed an issue where the dropdown of available SAP systems is not updated after a new system was added 
+
 ## [1.16.0] - 2024-12-05
 ### Added
 - Added the option to navigate to the source file from the Annotation File Manager

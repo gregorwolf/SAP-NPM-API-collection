@@ -3,6 +3,23 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.2] - 2025-01-08
+### Change
+- Updated the system connectivity error messages to be more descriptive
+
+### Fixed
+- Fixed an issue where the generator crashed if an invalid service path was provided during data source connectivity
+- Fixed an issue where SAP Fiori elements applications using an OData V4 service from a catalog were incorrectly being generated as an OData V2 service application
+- Fixed an issue where the saved systems in Visual Studio Code incorrectly updated an On Premise system after editing
+- Fixed a security vulnerability reported with the generated /webapp/test/locate-reuse-libs.js file
+- Fixed an issue where the Application Router Generator crashed on completion
+- Fixed an issue with the deployment where the failFast parameter was not set correctly.
+- Fixed an issue where the "(Source system version)" suffix was not added to the SAPUI5 version that was used in the selected data source back-end system
+- Fixed an issue where the deployment configuration was not correctly pre-set when launching the SAP Fiori generator from the ABAP Development Tools in Eclipse
+- Fixed an issue where launching the SAP Fiori generator from the ABAP Development Tools in Eclipse failed if the ABAP system used re-entrance tickets
+- Fixed an issue with the deployment configuration where it was not possible to choose an existing package or transport if the application had a namespace defined
+- Fixed an issue where the SAPUI5 Linter failed for a generated reusable library
+
 ## [1.16.0] - 2024-12-05
 ### Added
 - Added the label `S4HC` to system connections that point to an SAP S/4HANA Cloud system

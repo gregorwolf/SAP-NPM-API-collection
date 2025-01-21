@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.4.0 - 2024-12-09
+ 
+### Added
+- Added nodejs v22 support for .x minor versions
+
+### Removed
+- Removed @sap/hdbext due to unsupported node 22
+
 ## 6.3.0 - 2024-11-28
  
 ### Added

@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.2.8 - 2025-01-14
+- fix token keys cache handling for error responses from server
+- fix backward compatibility for getAdditionalAuthAttribute method for XSUAA
+
 ## 4.2.7 - 2024-11-08
 - fix v3 compatibility layer to allow to configure new features like prooftoken validation there too
 - fix service plan name handling

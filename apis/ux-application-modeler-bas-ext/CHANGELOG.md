@@ -6,6 +6,14 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.2] - 2025-01-08
+### Added
+- Added a command `Fiori: Convert Preview Config` to convert the application preview to use virtual endpoints. Requires `@sap/ux-ui5-tooling` version 1.15.4 or higher
+
+### Fixed
+- Fixed an issue where the preview fails with the error: `Error while starting preview. Details: AggregateError`. Requires Visual Studio Code version 1.96.0 or higher
+- Fixed various accessibility issues
+
 ## [1.16.0] - 2024-12-05
 ### Changed
 - Updated the labels for properties representing Boolean values in the Properties pane

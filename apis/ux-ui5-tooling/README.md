@@ -699,14 +699,14 @@ Deploys an application to an ABAP frontend server.
 * `--url, -u` - The url of the service endpoint at the ABAP system (default: url from `ui5-deploy.yaml`).
 * `--username` - Name of environment variable containing a username to authenticate (default: username from `ui5-deploy.yaml`).
 * `--password` - Name of environment variable containing a password to authenticate (default: password from `ui5-deploy.yaml`).
-* `--authenticationType` - Authentication type for the app (e.g. 'basic', 'reentranceTicket'). Required for 'reentranceTicket'.
+* `--authenticationType` - Authentication type for the app (e.g. 'basic', 'reentranceTicket'). Required for 'reentranceTicket' flows.
 * `--client, -l` - The ABAP client (default: client from `ui5-deploy.yaml`).
 * `--transport, -t` - The id of the transport request (default: transport from `ui5-deploy.yaml`).
 * `--name, -n` - The application name (default: name from `ui5-deploy.yaml`).
 * `--package, -p` - The ABAP package (default: package from `ui5-deploy.yaml`).
 * `--description, -e` - The application description (default: description from `ui5-deploy.yaml`).
 * `--yes, -y` - Deploy without asking for confirmation.
-* `--failfast, -f` - Throw an error if something goes wrong and exit with a return code != 0.
+* `--failFast, -f` - Throw an error if something goes wrong and exit with a return code != 0.
 * `--testMode, -tm` - Shows the results of CRUD operations that would be done in a real deployment to help you make an informed decision.
 * `--archive-path, -ap` - The path to the archive that should be deployed. If provided, the archive will be used instead of creating a new one from the dist folder. 
 

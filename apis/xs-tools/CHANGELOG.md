@@ -1,3 +1,9 @@
+## 1.3.1
+
+### Fixes
+- Some calls did not work on Windows
+- Security fixes
+
 ## 1.3.0
 
 ### Fixes

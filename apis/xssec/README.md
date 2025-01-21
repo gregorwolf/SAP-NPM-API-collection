@@ -98,7 +98,7 @@ This will print a dependency tree that shows which versions of the module are in
 The following example gives an overview of the most important APIs of this module for user authentication in [express](https://www.npmjs.com/package/express):
 
 ```js
-const { createSecurityContext, XsuaaService, ValidationError} = require("@sap/xssec");
+const { createSecurityContext, XsuaaService, errors: { ValidationError }} = require("@sap/xssec");
 
 const credentials = { clientid, ... } // access service credentials, e.g. via @sap/xsenv
 const authService = new XsuaaService(credentials) // or: IdentityService, XsaService, UaaService ...
@@ -161,7 +161,7 @@ app.get('/helloWorld', (req, res) => {
 **However**: Once you need access to [ValidationErrors](#error-handling) for logging or analyzing requests with invalid authentication, using the passport strategy becomes more or less the same effort as writing a middleware yourself:
 
 ```js
-const { XssecError, ValidationError } = require("@sap/xssec");
+const { errors: { XssecError, ValidationError }} = require("@sap/xssec");
 
 ...
 
@@ -316,7 +316,7 @@ The Error classes contain error-specific properties as details:
 
 *Example*:
 ```js
-const { UnsupportedAlgorithmError } = require("@sap/xssec");
+const { errors: { UnsupportedAlgorithmError }} = require("@sap/xssec");
 
 catch(e) {
   if(e instanceof UnsupportedAlgorithmError) {
