@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.1.2"></a>
+## 8.1.2 - 2025-01-22
+
+### Updated
+- Provided fix for shrinkwrap issue by making its value as true in xmake.cfg & removal of shrinkwrap command from package json
+
 <a name="8.1.1"></a>
 ## 8.1.1 - 2025-01-20
 

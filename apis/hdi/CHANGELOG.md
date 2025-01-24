@@ -1,3 +1,7 @@
+## 4.7.0
+Features:
+- Added node >=18 support
+
 ## 4.6.0
 Features:
 - Add range dependencies in package.json

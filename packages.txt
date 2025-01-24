@@ -108,6 +108,7 @@
 @sap/open.fe
 @sap/openapi-specification
 @sap/opentelemetry-exporter-for-sap-cloud-logging
+@sap/oyster-metadata
 @sap/pdms-sdk
 @sap/portal-cf-content-deployer
 @sap/sbf
