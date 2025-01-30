@@ -19,9 +19,9 @@ expect from version updates.
 ## Public API
 
 According to [§1] of SemVer, a public API must be made available.  Our public
-API is available through `lib/main.js` which can be used by
-`const compiler = require('@sap/cds-compiler');` in NodeJS or, if you use
-ES modules, with `import compiler from "@sap/cds-compiler";`
+API is available through `lib/main.js` which can be used via
+`const compiler = require('@sap/cds-compiler');` in Node.js or, if you use
+ES modules, via `import compiler from "@sap/cds-compiler";`
 
 Furthermore, any exported property in `lib/main.js` whose name starts with `$`
 is _not_ part of the public API.
@@ -48,7 +48,7 @@ only later upgraded to errors.
 “patch versions” can be applied.
 
 We may introduce new compiler-checks that might make your compilation fail if
-we detect invalid CDS code.
+we detect invalid CDS code.  OData vocabularies may be updated.
 
 ## Beta Flags
 

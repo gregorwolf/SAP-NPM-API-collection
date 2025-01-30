@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.3.0 - 2025-01-27
+
+### Added
+
+- UI5 themes for Fiori preview can be configured through `cds.fiori.preview.ui5.theme.light/dark`.  Default is `sap_horizon`/`sap_horizon_dark`.
+- UI5 themes for Fiori preview are automatically switched between light and dark mode.  This can be disabled with `cds.fiori.preview.ui5.theme.switch: false`.
+
 ## Version 1.2.9 - 2025-01-15
 
 ### Fixed

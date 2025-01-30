@@ -7,6 +7,31 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 8.7.0 - 2025-01-28
+
+### Added
+
+- `cds watch` supports `--exclude` and `--include` options to specify additional paths to include or exclude. Alternatively, set `cds.watch.[include|exclude]` in your CDS config.
+- `cds import` now updates configuration for Java projects (in `application.yaml` etc.)
+- `cds import --config` now also accepts a string with flat key-value pairs (like `--config "credentials.destination=foo"`), which is easier to write than the current JSON string (`--config "{\"credentials\": {\"destination\": \"foo\"}}"`).
+- `cds debug` now supports Java applications, both local and remote.
+- `cds import` can now import an odata-V4 file with external dependencies(odata-V4 file). Dependencies has to be provided with -d/--dependencies option and must not have any external dependencies. 
+
+### Changed
+
+- `cds add mta` sets backend and MTX `parameters.instances` to a default of `1` for improved discoverability.
+- `cds add sample` generates sample .ts files if the project is a TypeScript project
+- `cds import` now doesn't need beta flag to populate default value for optional action and function parameters as compiler now supports default value for @Core.OptionalParameters.
+- `cds add portal` now uses a more generic sample translated title instead of "Bookshop".
+
+### Fixed
+
+- `cds add mta` in combination with `cds add ias` correctly adds all routes to the backend module.
+- `cds add mta` adds the DB deployer module without prior installation of `@cap-js/hana`.
+- `cds add mta` adds the npm-ci builder for nodejs modules to use fixed package-lock versions for dependency vendoring.
+- `cds build --ws` will no longer require a `db/` folder in the root directory of the project.
+- `cds import` doesn't throw error while importing odata-V4 file with com.sap.vocabularies.
+
 ## Version 8.6.1 - 2024-12-18
 
 ### Fixed

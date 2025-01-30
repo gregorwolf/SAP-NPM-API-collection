@@ -4,10 +4,46 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.7.0 - 2025-01-28
+
+### Added
+
+- Allow usage of tar library (https://www.npmjs.com/package/tar) as a workaround to solve remaining issues by extension build on Windows. The tar library should be installed by app developers.
+- `cds.ql` supports limit with an optional offset, e.g. `limit(10, 5)`
+- Basic support for new built-in type `cds.Map`
+- Normalization of DateTime and Timestamp payloads in new OData adapter
+
+### Changed
+
+- Cleanse immutable values in draft modifications
+- Do not use compatibility mode of @sap/xssec 4, can be reverted with `cds.env.features.xssec_compat = true`
+- `cds.Float` is now correctly deprecated in `cds.builtin.types`.
+- Input provided via protocol adapter for elements annotated with `@cds.api.ignore` are rejected. Previously, they were ignored.
+
+### Fixed
+
+- Narrowed down peer dependency version of `express` to `^4`
+- OData, REST: Responses are only written in case that the response object is not already closed, which allows responding to requests directly in custom handlers.
+  + Note: Responses sent directly are not transactionally safe! Further, subsequent errors can no longer be communicated to the client!
+  + Note: Only respond directly in non-`$batch` requests!
+
+## Version 8.6.2 - 2025-01-27
+
+### Fixed
+
+- Crash during requests to actions with parameter `array of <type>`
+- Instance based restriction using `is null`
+- Filtering of grouped result on default aggregate
+- Multipart batch response for failed changesets
+- Handling of invalid parentheses in OData property access
+- Resolve view: Mixins are not in elements of projection target
+- Input provided via protocol adapter for elements annotated with `@cds.api.ignore` can be rejected with `cds.features.reject_ignored: true`.
+
 ## Version 8.6.1 - 2025-01-10
 
 ### Fixed
 
+- find draft root in authorization checks when entity has recursive compositions
 - `default-env.json` was not loaded anymore when in production mode.
 - i18n texts like `1` or `true` were returned as numbers, or booleans instead of strings
 - CSN files produced by `cds build` now again contain information to resolve handler files. That was broken in case of reflected/linked models set by e.g. plugins.

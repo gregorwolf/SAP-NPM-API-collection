@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+
+## Version 1.4.0 - 2025-01-27
+
+### Added
+
+- More information on the needed entitlements for the library.
+- `cds import --group <name>` allows to import multiple modules under the given name.  This could be the function group name, application component, or any other string.
+
 ## Version 1.3.0 - 2024-12-12
 
 ### Added

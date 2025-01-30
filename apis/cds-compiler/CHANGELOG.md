@@ -7,6 +7,37 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.7.0 - 2025-01-24
+
+### Added
+
+- Analyze enum symbols like `#ENUM_SYMB`; support starts at the following places:
+  + used as sole `default` value or `select` column expression
+    if the element/column has a specified enum type, or
+  + used as sole value (in parentheses) of an annotation assignment
+    if there is a definition for that annotation having an enum type;
+  + effects in compiler: complain if enum symbol is undefined
+  + effects in the IDE with an upcoming version of cds-lsp when compiler option `newParser` is set:
+    offer code completion and hover information,
+  + effects in backends like `to.sql` (and potentially runtimes): enum symbol
+    is replaced by corresponding string/integer value when appropriate.
+- for.seal: Process foreign key annotations similar to to.edm(x)
+
+### Changed
+
+- CDL parser: it is now recommended to set the option `newParser` to make the compiler
+  use a CDL parser with a significantly smaller footprint (among other things).
+  New features might only work if this option is set, see above.
+
+### Fixed
+
+- CDL parser: doc comment parser was susceptible to ReDos
+- to.sql/hdi: Paths inside calculated elements that are simple functions were not properly rewritten.
+- for.odata: Re-add foreign keys in property `targetAspect` in the OData CSN.
+- to.edm(x): In annotation translation, by default map `SemanticObjectMappingAbstract` to `SemanticObjectMappingType` to avoid regreessions.
+- to.cdl: Fix quoting of identifier `many` in `Composition of`/`Association to`
+- for.seal: Allow annotation paths to end in `many`-elements, not just scalar, liek we allow in for.odata
+
 ## Version 5.6.0 - 2024-12-12
 
 ### Added

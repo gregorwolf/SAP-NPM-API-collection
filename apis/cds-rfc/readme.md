@@ -13,15 +13,18 @@ Currently this is not yet available.
 ## Supported Platforms and Download Channels
 
 This modules uses package `@sap-rfc/node-rfc-library` for the low-level RFC communication.  That package is not available on the standard `npmjs.com` registry and only available for Linux and Windows.
-- SAP customers can get it through a dedicated NPM registry. Refer to the [SAP documentation](https://help.sap.com/docs/RBSC/0a64be17478d4f5ba45d14ab62b0d74c/7e83dfc309834942b441fc2106c5b7f5.html) for how to get access.
 
-   Your `.npmrc` should effectively look like this, with `_authToken` holding credentials for the `...repositories.cloud.sap` host:
-   ```
-   //...repositories.cloud.sap/:_authToken=...
-   @sap-rfc:registry=https://...repositories.cloud.sap
-   ```
 -  macOS users need to use it in a Docker container.
+- Only SAP customers can get it through a dedicated NPM registry. In short:
+  - An S-user and a license for the _SAP Build Code_ product is required.
+  - With this entitlement, you can download NPM credentials for the _NODE RFC LIBRARY_ in the [_Repository Based Shipment Channel_](https://ui.repositories.cloud.sap).
+  - Your `.npmrc` file should effectively look like this, with `<token>` holding the downloaded credentials for the `...repositories.cloud.sap` host:
+      ```
+      @sap-rfc:registry=https://...repositories.cloud.sap/
+      //...repositories.cloud.sap/:_auth=<token>
+      ```
 
+   Refer to the [documentation for the _Repository Based Shipment Channel_](https://help.sap.com/docs/RBSC/0a64be17478d4f5ba45d14ab62b0d74c/175673b12feb41739df4f041db52fe76.html) for more, incl. how to get [technical users](https://help.sap.com/docs/RBSC/0a64be17478d4f5ba45d14ab62b0d74c/7e83dfc309834942b441fc2106c5b7f5.html) and [NPM registry endpoints](https://help.sap.com/docs/RBSC/0a64be17478d4f5ba45d14ab62b0d74c/74a9a6cd668842cc88e623ed39d8373c.html).
 
 ## Setup
 
