@@ -5,6 +5,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 19.0.0 - 2025-01-30
+
+### Added
+- Support node version 20 and node version 22 instead of node version 18 and node version 20
+- Use html5 repo queries in embedded credentials flow
+- Improved error logging for cookie validation debugging
+- Back-Channel Logout
+
+### Fixed
+- Remove slash from certurl in single-use token flow if XSUAA contains a certificate
+
+### Updated dependencies
+- deps: @sap/audit-logging@6.4.0
+- deps: @sap/e2e-trace@5.3.0
+- deps: @sap/logging@8.3.0
+- deps: @sap/xsenv@5.4.0
+
+## 18.0.3- 2025-01-23
+
+### Fixed
+- check if state parameter exists in response from xsuaa/ias
+
 ## 18.0.2- 2025-01-20
 
 ### Fixed

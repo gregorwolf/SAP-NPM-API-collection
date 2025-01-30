@@ -1,3 +1,14 @@
+## 1.36.1
+
+### New Features
+
+- Updated HRTT to version 241205-1735452266-bff06e2
+
+### Fixes
+
+- Load service URLs from SAP BTP destinations
+- Proxy fixes
+
 ## 1.36.0
 
 ### New Features

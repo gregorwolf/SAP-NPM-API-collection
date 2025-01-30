@@ -1,5 +1,13 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.28.1
+
+### Fixes
+- SAP HANA XS Advanced connection were not loaded correctly
+- The database list could be loaded multiple times in certain situations when using SAP HANA XS Advanced connections
+- Running "Explain Plan" of a parameterized SQL select statement did not work correctly
+- Minor UI improvements
+
 ## 1.28.0
 
 ### Fixes

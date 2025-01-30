@@ -8,6 +8,29 @@ For the latest updates please see SAP Note 3534473 - SAP HANA Client 2.23 Releas
 
 https://me.sap.com/notes/3534473
 
+## Version 2.23.26
+
+### Changes:
+
+ - Issue Number 337408: The Node.js driver could have crashed when Node.js was exiting.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 337076: Reconnects could have used the wrong password.
+ - Issue Number 332319: SQLDBC-based clients were unable to load OpenSSL libraries on macOS.
+
+## Version 2.23.25
+
+### Changes:
+
+ - Issue Number 336584: Node.js API exit tracing for some methods was missing information.
+ - Issue Number 335634: Concurrent disconnect and cleanPool async calls could have crashed.
+ - Issue Number 336134: Using @sap/hana-client with jest could have caused errors.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 336532: Display more information if a "Crash at ... Reason ..." abort occurs.
+
 ## Version 2.23.24
 
 ### Changes:

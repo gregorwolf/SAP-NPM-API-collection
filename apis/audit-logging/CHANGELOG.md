@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.5.0 - 2025-27-01
+ 
+### Added
+- Added UTF-8 Encoding
+
 ## 6.4.0 - 2024-12-09
  
 ### Added

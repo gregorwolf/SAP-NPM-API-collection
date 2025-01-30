@@ -1,3 +1,33 @@
+## 1.36.2
+
+### Fixes
+- Value help in filter expression is not available for measure
+- Swap Table doesn't work for Filter mapping in Join node
+- Non Equi Join: Renamed Column not updated in non equi join expression
+- Non Equi Join: Added Projection Node is not updated in non equi join expression
+- A star-join node could be defined in a dimension view
+- Prevent mapping of columns of type CLOB or NCLOB in an aggregation or star-join
+- Show NVARCHAR with length >5000 as invalid for calculated columns
+- A currency conversion definition of last aggregation node overwrites definition in Semantics node
+- Non Equi Join: Expression is incorrect when edit it from propertiesPane
+- Wrong aggregation function when switching column with data type spatial or NCLOB to measure
+- Move Workload class hint into own section "Workload"
+- Properties of two data sources are not independent if e.g., the same table is used
+- Vector columns are added to the output columns if there is any duplicate name present in cube type calculation view with respect to the data source
+- Messages are repeated in MDS cubes
+- Syntax Validation Error in Hierarchy Function Node
+- Missing value of label when copying calculated columns from Star Join node to projection node
+- Replace schema selection combo box with input in the Data Preview With Other Database User dialog
+- Value help should be disabled for columns with data type LOB or REAL_VECTOR
+- Change colour of the Name during adding the Execution Hints in the Calculation View Editor
+- Wrong objects are offered in MDS Cube dimension selection
+- Fixed some typos
+
+## 1.36.1
+
+### Fixes
+- Fix circular dependency error
+
 ## 1.36.0
 
 ### New Features

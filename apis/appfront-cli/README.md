@@ -2,6 +2,9 @@
  
 Application Frontend Command Line Interface (appfront-cli / afctl)
 
+## Link to release repository
+https://github.wdf.sap.corp/NPMJS/SAP_APPFRONT_CLI-1.0
+
 ## Description
 
 The Application Frontend Command Line Interface (appfront-cli) provides easy access to APIs exposed by Application Frontend service.
@@ -12,6 +15,7 @@ It allows you to:
 - See the runtime logs of frontend applications
 
 Application Frontend Command Line Interface is licensed under the Apache License, Version 2.0 - see [LICENSE](LICENSE).
+The [Open Source Legal Notice](OpenSourceLegalNotice.pdf) is part of the package contents.
 
 ## Prerequisites
 
@@ -109,13 +113,14 @@ Arguments:
 </details>
 
 ```
-Delete deployed application
+Delete deployed application or application version
 
 Usage:
-  afctl delete APPLICATION
+  afctl delete APPLICATION [VERSION]
 
 Arguments:
   APPLICATION  Name of the deployed application
+  VERSION      Name of the application version
 ```
 
 #### list

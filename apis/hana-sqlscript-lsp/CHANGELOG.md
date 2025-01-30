@@ -1,3 +1,8 @@
+## 1.17.1
+
+### Fixes
+- Switch to new proxy host
+
 ## 1.17.0
 
 ### Fixes
