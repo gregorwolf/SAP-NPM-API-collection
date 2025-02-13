@@ -8,6 +8,17 @@ For the latest updates please see SAP Note 3534473 - SAP HANA Client 2.23 Releas
 
 https://me.sap.com/notes/3534473
 
+## Version 2.23.27
+
+### Changes:
+
+ - Issue Number 336580: A Node.js application could have hung if tracing was enabled.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 337457: When the SQL tracing level was set to INFO or higher, sensitive information could have been traced.
+ - Issue Number 337017: Reconnect to HANA Cloud after a "Connection Down" error could have taken an extra 5 seconds.
+
 ## Version 2.23.26
 
 ### Changes:

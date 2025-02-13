@@ -460,7 +460,8 @@ if(secContext.checkLocalScope("READ")) {
 - `checkFollowingInstanceScope(scope)` Checks if the scopes of the token include `<followingInstanceXsAppName>.<scope>`, where *followingInstanceXsAppName* is the *xsappname* of the XSUAA clone instance for which the token was issued. This is a quality-of-life function to check for scopes of following XSUAA instances.
 
 #### IdentityServiceSecurityContext
-- **servicePlans** (*string[]*) contains the service plans of the caller when authenticated with [proof token validation](#proof-token-validation) enabled
+- **servicePlans** (*string[]*) [requires [proof token validation](#proof-token-validation)] contains the service plans of the caller when authenticated with [proof token validation](#proof-token-validation) enabled
+- **isInternal()** (*boolean*) [requires  [x5t validation](#x5t-validation)] Checks whether the token from which this context was created is a token fetched by the OAuth 2.0 client for internal use. It returns true if the token was fetched via client credentials flow with the credentials of this context's IdentityService instance, false otherwise.
 
 ### Token
 In production, only trust information of `Token` instances returned by `createSecurityContext` (see [Authentication](#authentication)).

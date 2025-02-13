@@ -8,6 +8,31 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.9] - 2025-01-22
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | devDependencies | patch | [`0.31.23` -> `0.31.25`](https://renovatebot.com/diffs/npm/@sap-ux%2ffe-fpm-writer/0.31.23/0.31.25) |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | dependencies | patch | [`0.31.23` -> `0.31.25`](https://renovatebot.com/diffs/npm/@sap-ux%2ffe-fpm-writer/0.31.23/0.31.25) |
+| [typescript](https://www.typescriptlang.org/) ([source](https://github.com/microsoft/TypeScript)) | devDependencies | patch | [`5.7.2` -> `5.7.3`](https://renovatebot.com/diffs/npm/typescript/5.7.2/5.7.3) |
+| [uuid](https://github.com/uuidjs/uuid) | devDependencies | patch | [`11.0.4` -> `11.0.5`](https://renovatebot.com/diffs/npm/uuid/11.0.4/11.0.5) |
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | devDependencies | minor | [`8.19.1` -> `8.20.0`](https://renovatebot.com/diffs/npm/@typescript-eslint%2feslint-plugin/8.19.1/8.20.0) |
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | devDependencies | minor | [`8.19.1` -> `8.20.0`](https://renovatebot.com/diffs/npm/@typescript-eslint%2fparser/8.19.1/8.20.0) |
+| [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) | devDependencies | patch | [`5.2.1` -> `5.2.3`](https://renovatebot.com/diffs/npm/eslint-plugin-prettier/5.2.1/5.2.3) |
+
 ## [1.124.8] - 2025-01-08
 
 ### Added

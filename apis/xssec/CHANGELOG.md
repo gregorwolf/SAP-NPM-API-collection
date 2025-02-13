@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.3.0 - 2025-02-11
+- improved Typescript typings: The return type of `createSecurityContext` called with a single `Service` instance should now be a specific subclass of `SecurityContext`, e.g. `IdentityServiceSecurityContext` when called with an `IdentityService` instance. Consequently, the `token` and `service` properties of the security context will also be typed to service-specific subclasses, e.g. `IdentityServiceToken`.
+- default `timeout` of *JWT bearer* token fetches increased to 10s from 2s to account for typical response times of this flow (restores default value from `@sap/xssec 3`)
+- maximum allowed value for `timeout` option of token fetch configuration increased to 10s
+- IdentityServiceToken#consumedApis is a new getter to get the consumed Identity Service APIs in technical communication scenarios
+- IdentityServiceSecurityContext#isInternal is a new function that can be used to check whether the token from which this context was created is a token fetched by the OAuth 2.0 client for internal use. It returns true if the token was fetched via client credentials flow with the credentials of this context's IdentityService instance, false otherwise.
+- `Service` instances now use a common cache for OIDC configurations indexed by `url` of `Service` instances to improve performance in credential rotation scenarios
+
 ## 4.2.8 - 2025-01-14
 - fix token keys cache handling for error responses from server
 - fix backward compatibility for getAdditionalAuthAttribute method for XSUAA

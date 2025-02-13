@@ -339,6 +339,9 @@ spec:
 ```
 ### Deploying HTML5 Applications with Service Instances Binding to the HTML5 Application Deployer
 If you use the HTML5 application deployer together with an application router managed by SAP, you can bind the required service instances directly to the HTML5 application deployer application.
+These service instance bindings can refer to the following service types: XSUAA (for authentication/authorization), destination service (for backend destination configuration on instance level) and other business solutions, such as SBPA or document service. 
+
+**Important**: a precondition for this modelling to work is that the ASYNC_UPLOAD environment variable is set to true. For more details see [asynchronous upload](#asynchronous-upload).
 
 ### Additional Configuration Options for the HTML5 Application Deployer
 You can make additional configurations using environment variables for the HTML5 application deployer.
@@ -385,6 +388,8 @@ spec:
           env:
             - name: PORT
               value: "5000"
+            - name: ASYNC_UPLOAD
+              value: "true"
             - name: destinations
               value: "[{
               \"name\":\"myapp-backend\",

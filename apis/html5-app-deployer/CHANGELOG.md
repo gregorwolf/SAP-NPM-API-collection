@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.0.0 - 2025-02-02
+
+### Updated dependencies
+- deps: axios@1.7.9
+- deps: xsenv@5.4.0
+- deps: file-type@19.6.0
+- deps: read-chunk@5.0.0
+
+### Added
+- nodejs version ^14.0.0 and ^16.0.0 support removed
+- nodejs version ^22.0.0 support added
+
+### Fixed
+- Service binding documentation
+
 ## 6.4.3 - 2024-08-15
 
 ### Updated dependencies
@@ -30,7 +45,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 - Support for uploading application with a CDM file
-- 
+
 ### Updated dependencies
 - deps: express@4.19.2
 

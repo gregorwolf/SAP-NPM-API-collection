@@ -2,7 +2,7 @@
 
 Command-Line Interface (CLI) for SAP Datasphere.
 
-[![Node Version](https://img.shields.io/badge/node-18.xx.x-brightgreen)](https://nodejs.org/dist/latest-v18.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-19.xx.x-brightgreen)](https://nodejs.org/dist/latest-v19.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-20.xx.x-brightgreen)](https://nodejs.org/dist/latest-v20.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-21.xx.x-brightgreen)](https://nodejs.org/dist/latest-v21.x/docs/api/#) [![npm version](https://badge.fury.io/js/@sap%2Fdatasphere-cli.svg)](https://badge.fury.io/js/@sap%2Fdatasphere-cli) [![Documentation](https://img.shields.io/badge/docs-online-ff69b4.svg)](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html) [![Command help pages](https://img.shields.io/badge/command-help-lightgrey.svg)](#usage) ![NPM](https://img.shields.io/npm/l/@sap/datasphere-cli?color=%23FFFF00)
+[![Node Version](https://img.shields.io/badge/node-18.xx.x-brightgreen)](https://nodejs.org/dist/latest-v18.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-19.xx.x-brightgreen)](https://nodejs.org/dist/latest-v19.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-20.xx.x-brightgreen)](https://nodejs.org/dist/latest-v20.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-21.xx.x-brightgreen)](https://nodejs.org/dist/latest-v21.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-22.xx.x-brightgreen)](https://nodejs.org/dist/latest-v22.x/docs/api/#) [![npm version](https://badge.fury.io/js/@sap%2Fdatasphere-cli.svg)](https://badge.fury.io/js/@sap%2Fdatasphere-cli) [![Documentation](https://img.shields.io/badge/docs-online-ff69b4.svg)](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html) [![Command help pages](https://img.shields.io/badge/command-help-lightgrey.svg)](#usage) ![NPM](https://img.shields.io/npm/l/@sap/datasphere-cli?color=%23FFFF00)
 
 ## Content
 
@@ -25,13 +25,13 @@ Command-Line Interface (CLI) for SAP Datasphere.
 ## Installation
 
 ```bash
-npm install -g @sap/datasphere-cli
+npm install [-g] @sap/datasphere-cli[@latest]
 ```
 
 or
 
 ```bash
-yarn global add @sap/datasphere-cli
+yarn [global] add @sap/datasphere-cli[@latest]
 ```
 
 ## Available Commands
@@ -46,7 +46,7 @@ In case of structural changes applied to the service document (see [Initialize t
 
 ```bash
 $ datasphere <command>
-Your local CLI installation is outdated. Run 'npm install @sap/datasphere-cli [-g]' to update
+Your local CLI installation is outdated. Run 'npm install @sap/datasphere-cli@latest [-g]' to update
 ```
 
 ## Versioning
@@ -58,7 +58,7 @@ $ datasphere -v
 2021.21.0
 ```
 
-For an in-depth explanation see the blog post on [blogs.sap.com](https://blogs.sap.com/2021/09/21/new-command-line-for-sap-data-warehouse-cloud-code-way-to-the-cloud/).
+For an in-depth explanation see the blog post on [blogs.sap.com](https://community.sap.com/t5/technology-blogs-by-sap/new-command-line-interface-for-sap-datasphere-code-your-way-to-the-cloud/ba-p/13513481).
 
 ## Authentication
 
@@ -69,7 +69,7 @@ You can create an [OAuth Client for Interactive Usage](https://help.sap.com/docs
 To log in, run the `login` command and provide the _Client ID_, _Client Secret_, _Authentication URL_, and _Token URL_, available from your SAP Datasphere tenant ([SAP Help](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/3f92b46fe0314e8ba60720e409c219fc.html)).
 
 ```bash
-$ datasphere login
+$ datasphere login [--authorization-flow client_credentials|authorization_code]
 ✔ Please enter your client ID: … <Client ID>
 ✔ Please enter your client secret: … ****
 ✔ Please enter your authorization URL: … <Authorization URL>
@@ -114,19 +114,20 @@ Alternatively, you can provide the _access_token_ through a `secrets.json` file:
 datasphere config cache init --host <my host> -secrets-file /path/to/secrets.json
 ```
 
-The `secrets.json` file must at least contain a property called `access_token`:
+The `secrets.json` file must at least contain the properties `access_token`, or `refresh_token` and `client_id` and `client_secret`, as well as the `tenantUrl`, or `authorization_url` and `token_url`.
 
 ```json
 // secrets.json
 
 {
+  "tenantUrl": "https://mytenant.eu10.hcs.cloud.sap",
   "access_token": "<access token>"
 }
 ```
 
 ### Passcodes
 
-Passcodes are used for authenticating commands sent from the CLI to your SAP Datasphere tenant. Passcodes can be provided explicitly using the `-p, --passcode` option in case the URL to retrieve a passcode is known, or implicitly using an interactive session by omitting the `-p, --passcode` option.
+It is recommended to use the [OAuth Interactive Usage](#oauth-interactive-usage) login instead of Passcodes. Passcodes are used for authenticating commands sent from the CLI to your SAP Datasphere tenant. Passcodes can be provided explicitly using the `-p, --passcode` option in case the URL to retrieve a passcode is known, or implicitly using an interactive session by omitting the `-p, --passcode` option.
 
 When omitting the `-p, --passcode` option the CLI prompts you to provide a passcode by navigating to the passcode authentication URL for your tenant. The URL is calculated based on the provided `-H, --host` value.
 
@@ -154,7 +155,7 @@ You can either use the CLI from the terminal or command line, or use the module 
 
 #### Initialize the CLI
 
-Before you can list and run commands against your SAP Datasphere tenant you need to initialize the CLI first. When initializing the CLI a service document is downloaded from your SAP Datasphere tenant which describes the commands your tenant is able to understand. To initialize the CLI run
+You can omit this step when using the [OAuth Interactive Usage](#oauth-interactive-usage) login. This step is only required when working with [Passcodes](#passcodes). Before you can list and run commands against your SAP Datasphere tenant you need to initialize the CLI first. When initializing the CLI a service document is downloaded from your SAP Datasphere tenant which describes the commands your tenant is able to understand. To initialize the CLI run
 
 ```bash
 datasphere config cache init -H https://mytenant.eu10.hcs.cloud.sap/ -p somepasscode
@@ -409,7 +410,7 @@ console.log(result);
 
 #### Provide custom passcode retrieval function
 
-You can also provide a custom passcode retrieval function which is called every time before a command is executed. The function is expected to return a promise resolving into a string, the passcode. This way you can, for example, make use of programmatic passcode retrieval as described in [this blog](https://blogs.sap.com/2021/09/27/automatically-add-members-to-spaces-in-sap-data-warehouse-cloud-using-sap-datasphere-cli/) using a headless browser and can omit the `--passcode` option when executing commands. The function needs to be configured only once before executing the first command.
+You can also provide a custom passcode retrieval function which is called every time before a command is executed. The function is expected to return a promise resolving into a string, the passcode. This way you can, for example, make use of programmatic passcode retrieval as described in [this blog](https://community.sap.com/t5/technology-blogs-by-sap/automatically-add-members-to-spaces-in-sap-datasphere-using-sap-datasphere/ba-p/13512444) using a headless browser and can omit the `--passcode` option when executing commands. The function needs to be configured only once before executing the first command.
 
 ```javascript
 const logger = {
@@ -561,7 +562,7 @@ Sets the log level when running commands.
 
 ## Help Documentation
 
-Find the full documentation on [help.sap.com](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html), check out the blog post on [blogs.sap.com](https://blogs.sap.com/2021/09/21/new-command-line-for-sap-data-warehouse-cloud-code-way-to-the-cloud/) or use option `-h, --help`:
+Find the full documentation on [help.sap.com](https://help.sap.com/docs/SAP_DATASPHERE/d0ecd6f297ac40249072a44df0549c1a/3f9a42ccde6b4b6aba121e2aab79c36d.html), check out the blog post on [blogs.sap.com](https://community.sap.com/t5/technology-blogs-by-sap/sap-datasphere-cli-command-line-interface-for-sap-datasphere-overview/ba-p/13531596) or use option `-h, --help`:
 
 ```bash
 datasphere <command> -h
@@ -573,7 +574,7 @@ Issues experienced with the CLI can be reported in the [SAP Support Launchpad](h
 
 SAP Community provides a forum where you can ask and answer questions, and comment and vote on the questions of others and their answers.
 
-See [SAP Datasphere community](https://community.sap.com/topics/data-warehouse-cloud) for more details and use the tag _datasphere-cli_ for questions concerning the CLI.
+See [SAP Datasphere community](https://pages.community.sap.com/topics/datasphere) for more details and use the tag _datasphere-cli_ for questions concerning the CLI.
 
 ## License
 

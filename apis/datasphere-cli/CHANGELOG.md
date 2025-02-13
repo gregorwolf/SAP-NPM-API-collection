@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- New command `<cli> config secrets check` has been added to the CLI. This command allows you to verify whether the secrets file used to run commands is consistent.
+- New command `datasphere config secrets check` has been added to the CLI. This command allows you to verify whether the secrets file used to run commands is consistent.
 
   Examples for inconsistent secrets files:
 

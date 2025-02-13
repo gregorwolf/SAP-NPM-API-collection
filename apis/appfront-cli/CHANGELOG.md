@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2025-02-06
+
+### Added
+- Support application directories with `xs-app.json` in the parent folder
+
+### Changed
+- Delete of application or version now requires confirmation or `-f` flag
+
+### Fixed
+- Error message for `403` (policy -> role)
+
+## [1.4.0] - 2025-02-02
+
+### Added
+- Always display deployment logs in case of failure
+
+### Fixed
+- Format of the deployment logs on failure
+- Fix the `--logs` option of `push` command
+
 ## [1.3.0] - 2025-01-22
 
 ### Added

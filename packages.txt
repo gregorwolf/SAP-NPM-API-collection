@@ -40,6 +40,7 @@
 @sap/consume-services
 @sap/consume-services-types
 @sap/create-hana-database-artifact
+@sap/csn-interop-specification
 @sap/datasphere-cli
 @sap/destination-instance-service-provider
 @sap/dev-cap-tools
@@ -55,6 +56,7 @@
 @sap/dwf-generator
 @sap/dwf-ndso-backend
 @sap/e2e-trace
+@sap/eslint-config
 @sap/eslint-plugin-cds
 @sap/eslint-plugin-ui5-jsdocs
 @sap/eslint-plugin-webide-feature
@@ -128,7 +130,6 @@
 @sap/pdms-sdk
 @sap/portal-cf-content-deployer
 @sap/sbf
-@sap/sbss
 @sap/sds-deploy
 @sap/service-provider-apis
 @sap/service-providers

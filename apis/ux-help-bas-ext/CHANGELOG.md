@@ -7,6 +7,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.16.3] - 2025-01-23
+
+### Project Accelerator
+- Users can now drag image and text files from their local file system and drop them in the Project Accelerator window for use as their application requirements
+- Fixed an issue where uppercase filenames were not accepted in the Project Accelerator
+- Fixed an issue where clicking on the "Generate" button in the Project Accelerator caused a delay before starting generation
+
+### Fixed
+- Fixed an issue where the "Request New Guide" form was not responsive
+- Fixed an accessibility issue where the focus moved out of the "Project" dropdown when opening the dropdown using keyboard shortcuts
+- Fixed an issue with Step 2 of the _Add a micro chart column to a table_ guide where the `Common.Label` annotation was written incorrectly
+
 ## [1.16.2] - 2025-01-08
 
 ### Project Accelerator

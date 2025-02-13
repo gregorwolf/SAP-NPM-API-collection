@@ -3,8 +3,21 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.3] - 2025-01-23
+### Added
+- Added a warning when the back-end annotations for an OData V2 catalog service cannot be retrieved
+
+### Changed
+-  Updated the deployment configuration for SAP S/4HANA Cloud Public Edition and SAP S/4HANA Cloud Private Edition systems to support Cloud Foundry deployment
+
+### Fixed
+- Fixed an issue where an aggregation alias defined in the metadata was not considered when generating an OData V4 ALP application
+- Fixed an issue where deployment for a reuse library failed when overwriting an existing deployment
+- Fixed an issue where deployment for a reuse library failed if the option to generate a standalone `index.html` file during deployment was chosen
+- Fixed an issue where generating an SAP Fiori application with TypeScript as part of a CAP project caused an error when previewed
+
 ## [1.16.2] - 2025-01-08
-### Change
+### Changed
 - Updated the system connectivity error messages to be more descriptive
 
 ### Fixed

@@ -6,6 +6,14 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.3] - 2025-01-23
+### Fixed
+- Fixed an issue where the context menu incorrectly showed the `Archive Project` command on every node
+- Fixed an issue where extension projects were wrongly identified as freestyle projects in the "Application Info" page
+- Fixed an issue where migrating a freestyle SAP Fiori application that had no data source failed to be supported with SAP Fiori tools
+- Fixed an issue where migration of a SAP Fiori application failed if there was no `webapp` folder already defined in the application
+- Fixed an issue where annotation features were disabled in CAP-based projects with large CDS files.
+
 ## [1.16.2] - 2025-01-08
 ### Added
 - Added a command `Fiori: Convert Preview Config` to convert the application preview to use virtual endpoints. Requires `@sap/ux-ui5-tooling` version 1.15.4 or higher
