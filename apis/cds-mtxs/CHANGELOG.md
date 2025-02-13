@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 2.5.1 - 2025-01-31
+
+### Fixed
+
+- Schema evolution for the `t0` tenant with `lazyT0: true`
+- Parallel extension requests for different tenants are now handled correctly.
+
 ## Version 2.5.0 - 2025-01-27
 
 ### Added
@@ -27,56 +34,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Better resilience when deleting tenants.
 - HANA encryption parameters are now properly supported also for applications using Subscription Manager.
 - Limit check for field extensions now correctly sums up all separately added fields.
-
-## Version 2.4.2 - 2024-12-18
-
-### Fixed
-
-- The annotation check of the extension linter can now properly handle extensions like `extend service CatalogService with @cds.query.limit;`
-
-## Version 2.4.1 - 2024-12-05
-
-### Fixed
-
-- `cds-mtx upgrade "*"` correctly parses metadata supplied by the `--body` parameter.
-
-## Version 2.4.0 - 2024-11-25
-
-### Added
-
-- Deployment logs written by HDI to `stderr` are now attached to deployment error messages.
-- For HANA, the initial job status for asynchronous tenant upgrades is now `QUEUED`.
-- Annotation in extensions that are blocked by default can now be allow-listed:
-  ```jsonc
-  "requires": {
-    "cds.xt.ExtensibilityService": {
-        "extension-allowlist": [
-          {
-            "for": ["my.bookshop.Books"],
-            "annotations": ["@mandatory", "@cds.api.ignore"]
-          }
-        ]
-    }
-  }
-  ```
-
-### Fixed
-
-- Status codes for parallel async requests are always reported correctly.
-
-## Version 2.3.1 - 2024-11-14
-
-### Added
-
-- The `X-Correlation-ID` header is set for requests to Service Manager.
-- Extension projects can now be tested using `cds w` even if the application base model contains `@impl` annotations.
-
-### Fixed
-
-- The access token coming from Service Manager is redacted with `DEBUG` output on.
-- The Service Manager client will now poll the ongoing operation for containers which are on "in progress" if it can find an existing instance instead of erroring out.
-- `cds login --client` works correctly with client credentials from a service key.
-- Synchronous upgrades don't fail for all tenants when there's a tenant for which the upgrade fails.
 
 ## Version 2.4.2 - 2024-12-18
 

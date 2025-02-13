@@ -1,12 +1,12 @@
 {
   "name": "@sap/cds-dk",
-  "version": "8.7.0",
+  "version": "8.7.1",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/cds-dk",
-      "version": "8.7.0",
+      "version": "8.7.1",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@cap-js/asyncapi": "^1.0.0",
@@ -109,10 +109,10 @@
       }
     },
     "node_modules/@eslint/config-array": {
-      "version": "0.19.1",
+      "version": "0.19.2",
       "license": "Apache-2.0",
       "dependencies": {
-        "@eslint/object-schema": "^2.1.5",
+        "@eslint/object-schema": "^2.1.6",
         "debug": "^4.3.1",
         "minimatch": "^3.1.2"
       },
@@ -159,7 +159,7 @@
       }
     },
     "node_modules/@eslint/object-schema": {
-      "version": "2.1.5",
+      "version": "2.1.6",
       "license": "Apache-2.0",
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -258,7 +258,7 @@
       }
     },
     "node_modules/@sap/cds-compiler": {
-      "version": "5.7.0",
+      "version": "5.7.2",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "antlr4": "4.9.3"
@@ -294,7 +294,7 @@
       }
     },
     "node_modules/@sap/cds-mtxs": {
-      "version": "2.5.0",
+      "version": "2.5.1",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@sap/hdi-deploy": ">=4",
@@ -1443,7 +1443,7 @@
       }
     },
     "node_modules/import-fresh": {
-      "version": "3.3.0",
+      "version": "3.3.1",
       "license": "MIT",
       "dependencies": {
         "parent-module": "^1.0.0",
@@ -1699,7 +1699,7 @@
       "license": "MIT"
     },
     "node_modules/node-abi": {
-      "version": "3.73.0",
+      "version": "3.74.0",
       "license": "MIT",
       "optional": true,
       "dependencies": {
@@ -2012,7 +2012,7 @@
       "license": "ISC"
     },
     "node_modules/semver": {
-      "version": "7.6.3",
+      "version": "7.7.0",
       "license": "ISC",
       "bin": {
         "semver": "bin/semver.js"

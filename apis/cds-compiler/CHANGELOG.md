@@ -7,6 +7,21 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.7.4 - 2025-02-05
+
+### Fixed
+
+- New CDL Parser (option `newParser: true`)
+  + Improve code completion
+  + Fix further edge cases in error recovery
+
+## Version 5.7.2 - 2025-01-30
+
+### Fixed
+
+- Fix edge case in error recovery of the new CDL parser (option `newParser: true`)
+
+
 ## Version 5.7.0 - 2025-01-24
 
 ### Added

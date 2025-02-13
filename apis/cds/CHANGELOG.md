@@ -4,6 +4,17 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.7.1 - 2025-02-04
+
+### Fixed
+
+- Loading of CAP Plugins implemented in Typescript
+- `Location` header if read after write returns empty result due to missing read authentication
+- Enable accessing `req.params` when handling requests on parameterized views
+- `cds.connect.to(class {...})` did not call the `init` function
+- Generic Paging/Sorting was run twice for non-draft requests
+- Service implementation loaded from `node_modules`
+
 ## Version 8.7.0 - 2025-01-28
 
 ### Added

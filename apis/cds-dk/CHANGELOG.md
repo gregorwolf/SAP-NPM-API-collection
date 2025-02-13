@@ -7,6 +7,17 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 8.7.1 - 2024-02-04
+
+### Fixed
+
+- `cds add mta` now sets `parameters.instances` explicitly to `1` in Java projects, same as for Node.js projects.
+- `cds add mta` does not add the `readiness-health-check-type` and `readiness-health-check-http-endpoint` properties to the `mta.yaml` any more.
+- `cds add -p` correctly parses plugin-contributed options.
+- `cds watch` correctly escapes its default ignored directories on Windows.
+- `cds compile` correctly uses `--service=all` as its default.
+- `cds add ias` correctly writes MTX sidecar config in combination with `cds add multitenancy`.
+
 ## Version 8.7.0 - 2025-01-28
 
 ### Added
@@ -15,7 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `cds import` now updates configuration for Java projects (in `application.yaml` etc.)
 - `cds import --config` now also accepts a string with flat key-value pairs (like `--config "credentials.destination=foo"`), which is easier to write than the current JSON string (`--config "{\"credentials\": {\"destination\": \"foo\"}}"`).
 - `cds debug` now supports Java applications, both local and remote.
-- `cds import` can now import an odata-V4 file with external dependencies(odata-V4 file). Dependencies has to be provided with -d/--dependencies option and must not have any external dependencies. 
+- `cds import` can now import an odata-V4 file with external dependencies(odata-V4 file). Dependencies has to be provided with -d/--dependencies option and must not have any external dependencies.
 
 ### Changed
 
