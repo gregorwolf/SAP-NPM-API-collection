@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+## 1.8.6 - 2025-02-25
+
+### Added
+
+- Node.js v22 support
+- Dependency updates
+  - @sap/request to version 1.8.6
+  - @sap/xsenv to version 5.4.0
+  - filter-node-package to version 5.0.0
+
 ## 1.8.5 - 2024-07-29
 
 ### Changed

@@ -3,6 +3,23 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.5] - 2025-02-20
+### Fixed
+- Fixed an issue where the Deployment Configuration Wizard would not launch successfully for migrated SAPUI5 extension projects
+
+## [1.16.4] - 2025-02-06
+### Changed
+- Updated the deployment logic: now, if there is a timeout, the deployment logic is considered to have failed
+- Updated the SAP Fiori UI Service Generator to remove the restriction which only showed business objects that are prefixed with "I_"
+
+### Fixed
+- Fixed an issue where the SAP Fiori generator crashed if the data source referenced a CAP project that used websockets
+- Fixed an issue where adding an SAP Fiori launchpad configuration to an existing SAP Fiori project overwrote the title and subtitle for all existing SAP Fiori launchpad configurations
+- Fixed an issue where a reusable library that uses TypeScript failed to deploy to ABAP landscapes
+- Fixed an issue where generated applications that used an OData V2 data source could not be previewed successfully when started using local SAPUI5 library sources
+- Fixed an issue where the UI Service Generator did not create a draft-enabled service when requested
+- Fixed an issue where the UI Service Generator crashed when a validation error occurred in the system connection
+
 ## [1.16.3] - 2025-01-23
 ### Added
 - Added a warning when the back-end annotations for an OData V2 catalog service cannot be retrieved

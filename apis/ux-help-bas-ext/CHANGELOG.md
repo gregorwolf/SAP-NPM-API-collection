@@ -7,8 +7,40 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
-## [1.16.3] - 2025-01-23
+## [1.16.5] - 2025-02-20
+### Project Accelerator
+- Fixed a number of accessibility issues with the Project Accelerator to improve screen reader usability and contrast ratio
+- Fixed an issue where the Project Accelerator was visible in SAP Business Application Studio when users did not have an SAP Build Code subscription with Joule
 
+### Added
+- Added a validation message to the _Add a stack card to an overview page_ guide when an OData V4 model is selected
+
+### Changed
+- Improved the UX of links by adding an underline that disappears on hover to align with SAP Accessibility standards
+
+### Fixed
+- Removed empty space that appeared below the guide variants when in "All Guides" mode
+- Fixed an issue where the message "There are no applicable guides" was displayed when guides were loading
+- Fixed an issue where validation messages were displayed immediately when a parameter was enabled
+- Fixed a UX issue where a vertical line appeared too close to the "Start" button
+
+## [1.16.4] - 2025-02-06
+### Project Accelerator
+- Added a description to the Project Accelerator that details how you can drag and drop files from your local file system
+- Fixed an issue where a generated SAP Fiori project would not have default annotations defined where needed when using the Project Accelerator
+- Fixed an issue where an incorrect error message was being displayed when attempting to generate a UI for an existing CAP project and no CAP project is defined
+
+### Changed
+- When using overview page guides, if only one model is defined in an overview page application, it is now selected by default
+
+### Fixed
+- Fixed an issue with the overview page guides where code snippets were not updated according to the OData version of the selected model
+- Fixed an issue with the code snippet in the _Create and edit dynamic measures_ step of several CAP CDS guides where the value of `AggregatableProperty` was incorrectly wrapped in quotes
+- Fixed an issue where overview page guides were incorrectly shown as supported for an overview page application created in a CAP project
+- Fixed an issue with overview page guides where the annotation file was not retrieved upon changing the `Model` property
+- Fixed an accessibility issue where the values of "Project", "Group by", and "View" dropdowns were read aloud twice by screen readers
+
+## [1.16.3] - 2025-01-23
 ### Project Accelerator
 - Users can now drag image and text files from their local file system and drop them in the Project Accelerator window for use as their application requirements
 - Fixed an issue where uppercase filenames were not accepted in the Project Accelerator

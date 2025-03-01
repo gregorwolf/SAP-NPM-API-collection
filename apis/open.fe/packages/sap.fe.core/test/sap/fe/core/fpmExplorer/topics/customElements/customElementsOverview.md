@@ -39,5 +39,5 @@ The manifest-based extension points provided by SAP Fiori elements are:
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/5fb9f57fcf12401bbe39a635e9a32a4e" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/ecdf1d6b2bda47b2accd369046c4936d" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/eb37203f2b884b5097c3c858107cae1f" target="_blank">Documentation</a></li>
-    <li style="list-style-type: none"><a style="font-size: 0.75em" href="" target="_blank">Documentation</a></li>
+    <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/topic/88743992c11d4fb7bb5d39a667ff9f79" target="_blank">Documentation</a></li>
 </ul>

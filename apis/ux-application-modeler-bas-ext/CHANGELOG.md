@@ -6,6 +6,31 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.5] - 2025-02-20
+### Added
+- Added support for `component` type projects
+  
+### Fixed
+- Fixed an issue when using Windows where the `webapp` folder was not moved to the correct location after migrating an application to support SAP Fiori tools
+- Fixed an issue where a project migrated to support SAP Fiori tools could not be previewed using the `start-local` target
+- Fixed an issue where the Main Service field on the "Application Info" page was not fully visible and ended abruptly
+
+### Changed
+- Improved the performance of initializing the Page Map by implementing a caching mechanism
+  
+## [1.16.4] - 2025-02-06
+### Added
+- Enabled sorting micro chart data for line and area chart types in object page header sections
+
+### Fixed
+- Fixed an issue where deletion of `quickVariantSelectionX` did not work in a list report application with multiple views
+- Fixed an issue where the `getWebappPath` method did not resolve the correct path for CAP projects
+
+### Changed
+- Improved Page Map initialization performance
+- Improved behavior of editable tree dropdown on the Page Editor
+- Improved language consistency of tiles on the Application Info page
+  
 ## [1.16.3] - 2025-01-23
 ### Fixed
 - Fixed an issue where the context menu incorrectly showed the `Archive Project` command on every node

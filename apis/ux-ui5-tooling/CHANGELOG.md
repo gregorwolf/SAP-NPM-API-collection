@@ -3,6 +3,26 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.5] - 2025-02-20
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/adp-tooling](https://github.com/SAP/open-ux-tools/tree/main/packages/adp-tooling) | devDependencies | minor | [`0.12.122` -> `0.12.136`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools/tree/main/packages/backend-proxy-middleware) | devDependencies | minor | [`0.8.32` -> `0.8.35`] |
+| [@sap-ux/btp-utils](https://github.com/SAP/open-ux-tools/tree/main/packages/btp-utils) | devDependencies | minor | [`1.0.0` -> `1.0.1`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools/tree/main/packages/deploy-tooling) | devDependencies | minor | [`0.15.41` -> `0.15.44`] |
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools/tree/main/packages/preview-middleware) | dependencies | minor | [`0.17.18` -> `0.17.44`] |
+| [@sap-ux/reload-middleware](https://github.com/SAP/open-ux-tools/tree/main/packages/reload-middleware) | devDependencies | minor | [`0.2.15` -> `0.2.17`] |
+| [@sap-ux/serve-static-middleware](https://github.com/SAP/open-ux-tools/tree/main/packages/serve-static-middleware) | devDependencies | minor | [`0.2.2` -> `0.2.3`] |
+| [@sap-ux/ui5-proxy-middleware](https://github.com/SAP/open-ux-tools/tree/main/packages/ui5-proxy-middleware) | devDependencies | minor | `1.4.14` -> [`1.4.16`] |
+
+## [1.16.4] - 2025-02-06
+### Fixed
+- Fixed an issue where changes of applications generated with an older version of SAP Fiori tools were not reflected on the preview due to missing the `sap-ui-xx-viewCache=false` parameter
+
 ## [1.16.2] - 2025-01-08
 ### Fixed
 - Fixed an issue where preview with 'start-embedded' runs only with the first parameter

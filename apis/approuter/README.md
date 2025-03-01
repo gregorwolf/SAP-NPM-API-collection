@@ -1169,8 +1169,9 @@ Property | Type | Optional | Description
 backChannelLogoutEndpoint | String | x | The path to be used when logging out from the application router via Identity Authentication back channel logout.
 logoutEndpoint | String |  | The path to be used when logging out from application router.
 logoutPage | String | x | The logout page url path.
-logoutMethod | String | x | Could be POST or GET. The default value is GET.
+logoutMethod | String | x | Could be POST or GET. The default value is GET. If no logout method is defined for an HTML5 application in the xs-app.json file of the application, the application router uses the logout method that is defined in the central xs-app.json file of the application router. The logout method for the managed application router has been defined as POST. Therefore, if you use the managed application router and have not defined a logout method in the xs-app.json of your HTML5 applications, the POST method will be used for your applications.
 csrfProtection | Boolean | x | Can only be defined if logoutMethod is POST. If logoutMethod is POST and this property is not defined, default is true. It can be set to false – for example if csrfProtection is implemented in backend application.
+
 
 For example, if somewhere in your *xs-app.json* you have:
 
@@ -1185,6 +1186,12 @@ Changing the browser location from the client-side JavaScript code:
 
 ```javascript
 window.location.replace('/my/logout');
+```
+
+When using the managed application router, you should use the relative path (without the leading slash):
+
+```javascript
+window.location.replace('my/logout');
 ```
 
 will trigger client initiated central Logout.

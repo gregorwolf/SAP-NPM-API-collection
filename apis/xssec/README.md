@@ -363,6 +363,18 @@ const serviceConfig = {
 const identityService = new IdentityService(credentials, serviceConfig);
 ```
 
+#### Certificate Rotation
+It is possible to update the `cert` and `key` of a `Service` instance by calling `Service#setCertificateAndKey(cert, key)` with PEM-encoded values that will be used in subsequent calls to the server.
+
+*Note: Updating the `cert` and `key` property of the `credentials` object passed in the `Service` constructor is not enough because the `Service` makes a copy of the credentials for internal use and then discards the original reference.*
+
+This method is useful in different scenarios, e.g:
+- applications using ZTIS to manage their SAP Identity Service certificate. Whenever ZTIS provides a new pair of `cert` and `key`, the application can update the credentials of the `Service` instance via this method.
+- credential rotation without application re-start: In SAP BTP Kyma, it is possible to rotate service bindings of a running application. Typically, this is used to refresh certificates. In that case, the method can be used to update the `Service` instance.
+
+##### Full Credential Rotation
+Applications that expect their credentials to be rotated with other properties besides `cert` and `key` changing, must construct a fresh new `Service` instance whenever new credentials are received.
+
 #### Token Flows
 The subclasses of `Service` provide the following service-specific methods that can be used to fetch tokens:
 

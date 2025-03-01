@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.4.0 - 2025-02-13
+- Service#setCertificateAndKey is a new setter that can be used to update the certificate and key of a service's credentials. Possible scenarios include ZTIS managed certificates and client certificate rotation scenarios in a running application.
+- fix circular dependency between `Service` and `WrongAudienceError`
+- fixes the return type of `createSecurityContext` in the exported typing changes from 4.3.0
+- various typing improvements
+- export `Service` and `ServiceContext` base classes
+
 ## 4.3.0 - 2025-02-11
 - improved Typescript typings: The return type of `createSecurityContext` called with a single `Service` instance should now be a specific subclass of `SecurityContext`, e.g. `IdentityServiceSecurityContext` when called with an `IdentityService` instance. Consequently, the `token` and `service` properties of the security context will also be typed to service-specific subclasses, e.g. `IdentityServiceToken`.
 - default `timeout` of *JWT bearer* token fetches increased to 10s from 2s to account for typical response times of this flow (restores default value from `@sap/xssec 3`)

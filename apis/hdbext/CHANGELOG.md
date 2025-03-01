@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.1.3"></a>
+## 8.1.3 - 2025-02-17
+
+### Updated
+- Updated @sap/e2e-trace module version to 5.3.0
+
 <a name="8.1.2"></a>
 ## 8.1.2 - 2025-01-22
 

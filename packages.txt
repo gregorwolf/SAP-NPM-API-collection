@@ -106,7 +106,6 @@
 @sap/node-jwt
 @sap/node-vsi
 @sap/odata-v4
-@sap/open-resource-discovery
 @sap/open.fe
 @sap/openapi-specification
 @sap/opentelemetry-exporter-for-sap-cloud-logging

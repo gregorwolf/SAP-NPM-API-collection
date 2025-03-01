@@ -8,7 +8,59 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.11] - 2025-02-19
+
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | devDependencies | patch | [`0.33.0` -> `0.33.4`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | dependencies | patch | [`0.33.0` -> `0.33.4`] |
+| [prettier](https://prettier.io) ([source](https://github.com/prettier/prettier)) | devDependencies | minor | [`3.4.2` -> `3.5.1`] |
+| [esbuild](https://github.com/evanw/esbuild) | devDependencies | minor | [`0.24.2` -> `0.25.0`] |
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | devDependencies | minor | [`8.23.0` -> `8.24.0`] |
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | devDependencies | minor | [`8.23.0` -> `8.24.0`] |
+
+## [1.124.10] - 2025-02-05
+### Added
+
+### Changed
+
+- OData V4: A chart presentation variant header facet of an Object page is now displayed analog to a micro chart header facet with no additional subnode `Chart`.
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- OData V2: Fixed deletion issue for `quickVariantSelectionX` variants.
+
+### Quality
+
+Upgrades:
+
+Package	Type	Update	Change
+semver	devDependencies	minor	7.6.3 -> 7.7.1
+@sap-ux/fe-fpm-writer (source)	devDependencies	minor	0.31.25 -> 0.32.2
+@sap-ux/fe-fpm-writer (source)	dependencies	minor	0.31.25 -> 0.32.2
+@typescript-eslint/eslint-plugin (source)	devDependencies	minor	8.20.0 -> 8.23.0
+@typescript-eslint/parser (source)	devDependencies	minor	8.20.0 -> 8.23.0
+
 ## [1.124.9] - 2025-01-22
+
 ### Added
 
 ### Changed

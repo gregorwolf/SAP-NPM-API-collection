@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.16.5] - 2025-02-20
+### Added
+- Added support for `component` type projects
+
+### Fixed
+- Fixed an issue where icons in the Annotation File Manager and Service Manager were split over two lines
+- Fixed an issue where the Annotation File Manager and Service Manager could not be opened in SAP Business Application Studio
+  
+## [1.16.4] - 2025-02-06
+### Fixed
+- Fixed an issue where the `mainService` model was overwritten in the `manifest.json` file when a new service was added
+- Fixed an issue where the commands `Fiori: Open Annotation File Manager` and `Fiori: Open Service Manager` caused an error
+
 ## [1.16.2] - 2025-01-08
 ### Fixed
 - Fixed an issue where the system is not updated on a service change

@@ -2,7 +2,7 @@
 
 ## Features
 
-The **SAP Fiori application generator** provides a single entry point to generate both SAP Fiori elements applications and SAP Fiori freestyle applications. Users can choose the type of template required, along with the relevant data source, and an application will be generated into the specified folder.
+The **SAP Fiori application generator** provides a single entry point to generate SAP Fiori applications. Users can choose the type of template required, along with the relevant data source, and an application will be generated into the specified folder.
 
 The generated application conforms to the [Fiori Design guidelines](https://experience.sap.com/fiori-design-web/floorplans/floorplan-overview/) and SAP best practices.
 
@@ -46,15 +46,13 @@ OR
 
 - Additionally you can use the Yeoman Application Wizard for a more feature rich user experience.
 - Download the latest release of the Yeoman Application Wizard from the VSCode marketplace.  Search for 'Application Wizard' in the marketplace.
-- Invoke the Yeoman UI Wizard in VSCode by calling `CMD + Shift + P -> Open Application Wizard`
-- This will show all Yeoman templates that have been installed on the user's machine, and should include an option for the `SAP Fiori application`
+- Invoke the Yeoman UI Wizard in VSCode by calling `CMD + Shift + P -> Open Template Wizard`
+- This will show all Yeoman templates that have been installed on the user's machine, and should include an option for the `SAP Fiori generator`
 - Alternatively, if you have the SAP Fiori tools pack installed, you can call `CMD + Shift + P -> Fiori: Open Application Generator`.  This will launch the Yeoman UI Wizard but restrict it to just work with with the SAP Fiori Tools Application Generator.
 
 ## Usage for Fiori elements application
 
-Once SAP Fiori application generator is launched successfully, a user is asked to choose the application type. The user can choose between Fiori
-elements and Fiori freestyle applications. The templates (floorplans) of the selected application type are then listed for user to
-choose.
+Once SAP Fiori application generator is launched successfully, the available templates (floorplans) are then listed for user to choose.
 
 ### Generator Wizard Steps
 
@@ -62,16 +60,13 @@ choose.
 
 Select the required template type to use when generating your application. The generator currently supports the following templates:
 
-**SAP Fiori elements**
+- Basic freestyle
+- Custom page based on the flexible programming model
 - List Report Object Page
-- Worklist
-- Analytical List Page
 - Overview Page
-
-**SAP Fiori freestyle**
-- SAP Fiori Worklist Application
-- SAP Fiori Master-Detail Application
-- SAPUI5 Application
+- Analytical List Page
+- Form Entry Object Page
+- Worklist Page
 
 #### 2. Select Data Source
 
@@ -89,10 +84,6 @@ Currently, the generator supports the following methods to provide the Data Sour
 - **Connect to an OData service**
 
   Enter the OData endpoint URL you wish to use in your generated application. Currently, the generator supports an OData endpoint that is either unauthenticated or authenticated with Basic authentication. For an authenticated OData endpoint, you will be asked to provide a username and password.
-
-- **Connect to SAP Business Accelerator Hub**
-
-  You can use any of the services available in the SAP Business Accelerator Hub by providing your authentication details and choosing the relevant service.
 
 - **Use a Local CAP Project**
 
@@ -113,19 +104,20 @@ Once the data source has been supplied, the **SAP Fiori application generator** 
 In the next step, provide the following information:
 
 - **Module name** Required.  Must be alpha-numberic and cannot contain spaces.  The generated NodeJS application will use the module name as its package name.  Will also be used as the folder name of the generated application.
-- **App Title** Required.  This will be the title in the header of the generated application
-- **Namespace** Required.  The UI5 project namespace to be used.  Must start with a letter and contain letters, digits and periods only.
-- **Description** Required. The text description of the application.
-- **Parent Folder** Required.  The parent folder into which the new application will be generated.  The new application will be generated in a new folder with the `Module Name` as detailed above.  If there already exists a folder with the same name, the user must choose a new Module name.
+- **Application title** Required.  This will be the title in the header of the generated application
+- **Application namespace** Required.  The UI5 project namespace to be used.  Must start with a letter and contain letters, digits and periods only.
+- **Description** Optional. The text description of the application.
+- **Project folder path** Required.  The folder into which the new application will be generated.  The new application will be generated in a new folder with the `Module Name` as detailed above.  If there already exists a folder with the same name, the user must choose a new Module name.
+- **Minimum SAPUI5 version** Required. The minimum version of SAPUI5 that the generated application requires.
+- **Enable TypeScript** Optional.  If selected, the application will be generated using TypeScript rather than JavaScript.
+- **Add deployment configuration** Optional.  If selected, an extra step will be added to the generator for adding deployment configuration using either ABAP or Cloud Foundry
+- **Add FLP configuration** Optional.  If selected, an extra step will be added to the generator for adding Fiori launchpad configuration to the generated application.
 
 - **Advanced Configuration** Optional.  The user can choose to customise the generated application with the following options:
 
   - **UI5 CSS Theme**
-  - **UI5 Javascript Library Version**
-
-- **Deployment Configuration** Optional.  If selected, an extra step will be added to the generator for adding deployment configuration using either ABAP or Cloud Foundry
-
-- **FLP Configuration** Optional.  If selected, an extra step will be added to the generator for adding Fiori launchpad configuration to the generated application.
+  - **ESLint library for code analysis**
+  - **Code assist libray for code completion**
 
 ### Running the generated app
 

@@ -5,6 +5,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 19.0.1 - 2025-02-27
+
+### Fixed
+- Improve readme logout documentation
+- add support for session stickiness test
+- make identityProvider with authenticationType ias valid
+- Improve error handling in single token flow (refresh token)
+- Reuses embedded credentials for dependent business services
+- Compact response for get applications API - reuse libs fix
+- Copy shared token if jti is changed
+- STATE_CACHE env convert to number
+- remove cache control header if set-cookie header is not set
+
+### Updated dependencies
+- deps: axios@1.7.9
+- deps: axios-cookiejar-support@5.0.5
+
 ## 19.0.0 - 2025-01-30
 
 ### Added
@@ -119,7 +136,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 - Mask auth code from logs.
 
 ### Updated dependencies
-- deps: send@1.19.0
+- deps: send@0.19.0
 - deps: serve-static@1.16.0
 - deps: body-parser@1.20.3
 
@@ -132,7 +149,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
 ### Fixed
 - Improved Missing zone information" error message
-- Request input validation.
+- Resolved SAP-assigned security vulnerability in ([CVE-2025-24876](https://www.cve.org/CVERecord?id=CVE-2025-24876)):please upgrade to 16.7.2 or higher.
 
 ## 16.7.1 - 2024-08-23
 

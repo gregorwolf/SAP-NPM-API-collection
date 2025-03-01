@@ -108,6 +108,8 @@ Arguments:
 
 | Version  | Changes                                                  |
 |----------|----------------------------------------------------------|
+| `v1.5.0` | Prompt before deletion and `-f` flag added               |
+| `v1.3.0` | Support of version deletion added                        |
 | `v1.0.0` | Added                                                    |
 
 </details>
@@ -116,11 +118,12 @@ Arguments:
 Delete deployed application or application version
 
 Usage:
-  afctl delete APPLICATION [VERSION]
+  afctl delete APPLICATION [VERSION] [-f]
 
 Arguments:
   APPLICATION  Name of the deployed application
   VERSION      Name of the application version
+  --force, -f  Force deletion without prompt
 ```
 
 #### list
