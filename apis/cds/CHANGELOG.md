@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.7.2 - 2025-02-14
+
+### Fixed
+
+- Strip `Z` suffix of values of `cds.Timestamp` with OData type `Edm.DateTime`
+- Skip validation for mandatory fields in update scenarios for entities in draft activation
+- `cds.compile.to.yaml` escapes strings including colons if necessary
+
 ## Version 8.7.1 - 2025-02-04
 
 ### Fixed

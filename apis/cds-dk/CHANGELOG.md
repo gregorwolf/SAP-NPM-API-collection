@@ -7,7 +7,31 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 8.7.1 - 2024-02-04
+## Version 8.7.3 - 2025-02-19
+
+### Fixed
+
+- `cds compile -o` fixes the output file name in `-o <service>.json`.
+- `cds lint` won't stumble over scalar config objects anymore.
+- `cds init` uses latest Maven Java archetype version 3.7.2 for creating Java projects.
+- `cds deploy --to hana --dry` doesn't exit with a `TypeError` if there are no models.
+- `cds add ias` fixes a few scenarios in combination with multitenancy.
+
+## Version 8.7.2 - 2025-02-14
+
+### Fixed
+
+- `cds compile -o` with a file name such as `cds c srv/cat-service.cds -o srv/cat-service.json`.
+- `cds compile` without `-o` doesn't print the file name header for single services any more.
+- `cds add workzone` in combination with multitenancy doesn't throw an error any more.
+- `cds import --from rfc` stores the input file again in `srv/external/<destination>/...` instead of `srv/external/...`.
+- `cds import --name` no longer crashes with a `TypeError`.
+- `cds import --out <filename>` no longer crashes with a `Error: EEXIST`.
+- `BuildError` no longer cuts off its stack.
+- `cds bind -a` doesn't concurrently try to check the Cloud Foundry version or OAuth token.
+- `cds import` now resolves target of association/composition correctly for multiple schema files.
+
+## Version 8.7.1 - 2025-02-04
 
 ### Fixed
 
