@@ -4,6 +4,15 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.4.0 - 2025-03-03
+
+### Changed
+
+- The generated UI5 manifest prefers navigation properties over entity names to access entities (using `settings.contextPath` instead of `settings.entitySet`). This supports the new `cds.odata.containment` setting.
+- Use UI5 version 1.132.0 by default
+
+### Added
+
 ## Version 1.3.0 - 2025-01-27
 
 ### Added

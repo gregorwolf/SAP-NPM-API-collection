@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 2.6.0 - 2025-03-03
+
+### Added
+
+- `html5-runtime: true` and `html5-host: true` are shortcuts in `cds.requires` to specify SAP BTP HTML5 Repository service SaaS dependencies.
+- `ExtensibilityService` now supports draft extensions, allowing to separately validate and activate extensions.
+- `ExtensibilityService.activate` now allows to pass HDI deployment parameters.
+- `cds.env.odata.containment` is respected when compiling to EDMX.
+
+### Fixed
+
+- `cds.xt.SaasProvisioningService` is still served for Java projects with `subscription-manager` profile.
+
 ## Version 2.5.1 - 2025-01-31
 
 ### Fixed

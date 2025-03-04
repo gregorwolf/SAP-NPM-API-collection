@@ -7,6 +7,57 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.8.0 - 2025-02-27
+
+### Added
+
+- Type definitions can now be projections on other types, i.e. `type Proj : projection on OtherType { elem }`.  
+  Use it to create types based on other types, e.g. by selecting only certain elements.  
+  Only available with the new parser (`newParser: true`)
+- Analyze enum symbols like `#ENUM_SYMB` in all (sub) expressions and conditions.
+  It can be validated if the compiler can deduce its `enum` type from its use context:
+  + when the enum symbol is used as `default` value, `select` column expression,
+    argument when navigating along an association to an entity with a parameter,
+    or argument of a `cast` function call, or
+  + when the enum symbol is compared to a reference or `cast` function call; we
+    consider the operators `=`, `<>`, `!=`, `in`, `not in` and also analyze enum
+    symbols as `when` operands if the `case` operand is a reference/`cast`.
+  + We not only consider simple enum symbols, but also lists of enum symbols (on
+    the right side of `in`/`not in`), and a `case … end` (sub) expression with
+    enum symbols after the `then`s and/or the `else`.
+  + An enum symbol can be validated if the deduced type is a direct or indirect
+    `enum` type, or an managed association with one foreign key having an `enum` type.
+  + For the effects in the compiler, IDE and backends, see the changelog entry for v5.7.0.
+    Hint: the deprecated hdbcds backend does not support enum symbols.
+  + Remark: the support for enum symbols used as annotation values is still limited.
+- to.sql.migration: Allow extending `precision` of `cds.Decimal` and allow extending
+  `scale` if `precision` is increased by at least the same amount.
+- to.edm(x): `@assert.range` now supports "exclusive" values by writing values
+  in parentheses such as `[ (1), (2) ]`, as well as "infinite" by using `[ _, _ ]`.
+- for.odata/to.edm(x)/for.seal: Propagate annotation expressions from managed associations
+  to the foreign keys
+
+
+### Changed
+
+- Top-level CSN property `csnInteropEffective` is ignored and no longer warned about.
+- Update OData vocabularies: 'Analytics', 'Common', 'Hierarchy', 'UI'
+
+### Fixed
+
+- New CDL parser: parse all entity definitions using `projection on` without a
+  terminating `;` if they had been accepted by the old parser, i.e. for compatibility,
+  we gave up the idea of removing the existing special handling in this case.
+- Old and new parser: issue a warning for an ignored filter on the result
+  of a function or method call.
+- CSN annotation expressions with value `true` for `=` were not checked.
+- Annotation `@Core.Computed` was not set for select items that are paths into structured parameters.
+- Annotation expression path rewriting has been improved.
+  + Paths on foreign keys are rewritten.
+- for.seal:
+  + References into structured parameters were incorrectly flattened.
+  + Set `@cds.persistence.name` only on persistence-relevant things.
+
 ## Version 5.7.4 - 2025-02-05
 
 ### Fixed
@@ -14,6 +65,7 @@ The compiler behavior concerning `beta` features can change at any time without 
 - New CDL Parser (option `newParser: true`)
   + Improve code completion
   + Fix further edge cases in error recovery
+
 
 ## Version 5.7.2 - 2025-01-30
 
@@ -49,9 +101,9 @@ The compiler behavior concerning `beta` features can change at any time without 
 - CDL parser: doc comment parser was susceptible to ReDos
 - to.sql/hdi: Paths inside calculated elements that are simple functions were not properly rewritten.
 - for.odata: Re-add foreign keys in property `targetAspect` in the OData CSN.
-- to.edm(x): In annotation translation, by default map `SemanticObjectMappingAbstract` to `SemanticObjectMappingType` to avoid regreessions.
+- to.edm(x): In annotation translation, by default map `SemanticObjectMappingAbstract` to `SemanticObjectMappingType` to avoid regressions.
 - to.cdl: Fix quoting of identifier `many` in `Composition of`/`Association to`
-- for.seal: Allow annotation paths to end in `many`-elements, not just scalar, liek we allow in for.odata
+- for.seal: Allow annotation paths to end in `many`-elements, not just scalar, like we allow in for.odata
 
 ## Version 5.6.0 - 2024-12-12
 

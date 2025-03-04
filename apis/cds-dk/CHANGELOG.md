@@ -7,6 +7,32 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 8.8.0 - 2025-03-03
+
+### Added
+
+- `cds add xsuaa` lets you pass a `--plan` option, e.g. for `cds add xsuaa --plan broker`.
+- `cds add workzone` and `cds add workzone-standard` support for Kyma.
+- `cds add typer` now adds a `before:cds-watch` script to run cds-typer before starting `cds watch`.
+- `cds watch` supports a `before:cds-watch` npm script in your `package.json`, executed once before the initial `cds watch` startup.
+
+### Changed
+
+- Running `cds deploy` in dry mode with an output file specified will now only produce a warning in stderr and will not exit with an error code.
+- `cds deploy --out …` will not generate the specified output file if it would end up empty.
+- `cds add workzone` adds a transpilation task for UI5 deployment descriptors in TypeScript projects.
+- `cds add workzone` does not use the deprecated `webide-extension-task-updateManifestJson` task any more.
+
+### Fixed
+
+- `cds add approuter` doesn't create entries for `app` and `appconfig` local directories any more.
+- `cds add telemetry` for Java doesn't erroneously add `cds` configuration or `dependencies` to the `package.json`.
+- `cds add sample` adds the workzone-specific configuration if `cds.requires.workzone` is `true`.
+- `cds compile -o` uses the correct file suffix if explicitly specified in the file name.
+- `cds bind` caches the promise of its `cf -v` call to prevent race conditions.
+- `cds import --out <folder>` does not fail if executed in a folder with a `.`.
+- `cds add workzone` has improved support for multitenancy.
+
 ## Version 8.7.3 - 2025-02-19
 
 ### Fixed
@@ -1584,7 +1610,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `cds init` uses latest Maven Java archetype version 1.22.2 for creating Java projects.
 - `cds import` modified documentation for namespace option.
 - `cds import` does not create bound function imports key parameters in CSN for OData V2.
-- `cds import` now when `--keep-namespace` option is not given validates the file name and then converts it to complier supported format as service name .
+- `cds import` now when `--keep-namespace` option is not given validates the file name and then converts it to compiler supported format as service name .
 - add new methods from `FsUtil` to typescript interface.
 
 ### Fixed

@@ -8,6 +8,13 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 5.8.0 - 2025-02-27
+
+### Added `v6preview`
+
+Use this beta flag to enable features that will be available for cds-compiler v6.
+It also enables new warnings and errors that are intended for the next version.
+
 ## Version 5.3.0 - 2024-09-25
 
 ### Removed `optionalActionFunctionParameters`

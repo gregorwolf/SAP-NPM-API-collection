@@ -4,6 +4,39 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.8.0 - 2025-03-03
+
+### Added
+
+- `cds.ql` method `SELECT.hints()` which passes hints to the database query optimizer that can influence the execution plan
+- Schema updates for MTX configuration
+- Deprecate `cds.requires.db.database` in JSON schema
+- Service level restrictions for application service calls can be enforced with `cds.features.service_level_restrictions=true`
+  + With `@sap/cds^9`, this becomes the new default.
+- Support implicit function parameters calls with @prefix
+- `cds.test` now uses package `@cap-js/cds-test` if installed, otherwise prints a hint to install it. With cds 9, this package will be required.
+- Operation response streaming
+  + OData: Operations returning `cds.LargeBinary` annotated with `@Core.MediaType` may send stream responses. 
+  + REST: Operations may send stream responses. 
+  + Annotations `@Core.MediaType`, `@Core.ContentDisposition.Filename` and `@Core.ContentDisposition.Type` on operation return types will be considered. 
+
+### Changed
+
+- The default index page now shows links to CDS functions with their parameter names but no default values anymore.
+
+### Fixed
+
+- Order by virtual fields in draft-related requests
+- Erroneous cleansing when draft activation is invoked programmatically
+- Skip validation for mandatory fields in update scenarios for entities in draft activation
+- Simplified default configuration: `cds.requires.messaging = true`
+- `cds.connect` called with options erroneously filled in `cds.services`
+- Mocked users won't have a tenant in single-tenant mode
+- Allow usage of latest versions of `chai` and `chai-as-promised` on Node >= 23 with the built-in test runner and `mocha`. The `jest` runner is not able though to load these ESM modules.
+- Reject navigations in expand
+- Activation of drafts for entities using `@cds.api.ignore`
+- Prevent uncaught type error during validation of composition entries
+
 ## Version 8.7.2 - 2025-02-14
 
 ### Fixed

@@ -54,3 +54,8 @@ entity View as select from Base {
 In the corrected view above, the association `secondary` gets an explicit ON
 condition.  For this to work it is necessary to add `secondary_id` to the
 selection list, that means, we have to explicitly use the foreign key.
+
+
+## Related Messages
+
+- `rewrite-undefined-key`
