@@ -2,9 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
-This project adheres to [Semantic Versioning](http://semver.org/).
+This project adheres to [Semantic Versioning](https://semver.org/).
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
+
+## [3.2.0] - 2025-03-03
+
+### Changed
+
+- Rules `@sap/cds/sql-null-comparison` and `@sap/cds/no-java-keywords` are moved from the `experimental` rule set to `all`.
+
+### Fixed
+
+- Rules `@sap/cds/sql-null-comparison` will not warn about `!= null`, as it may be supported by future CDS compiler versions.
+- Some rules had `docs` meta property `recommended: true`, but were not part of the recommended rules list.
+- When determining a CDS project's root directory, we now consider package.json's with `@sap/cds` as `devDependency` or `peerDependency`
 
 ## [3.1.2] - 2024-10-31
 

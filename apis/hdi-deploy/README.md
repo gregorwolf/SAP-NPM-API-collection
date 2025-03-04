@@ -102,7 +102,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.3.2",
+    "@sap/hdi-deploy": "5.4.1",
     "@sap/hana-client": "2.19.20",
     "hdb": "0.19.3"
   },
@@ -115,7 +115,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 
 As of version 5.0.0 `@sap/hdi-deploy` does not contain `@sap/hana-client` and `hdb` as dependencies. This was done due to the large size of in some cases unnecessary '@sap/hana-client' dependency. To use `@sap/hdi-deploy` 5.0.0 and higher you must install `@sap/hana-client` and/or `hdb` peer dependencies yourself.
 
-To use `@sap/hana-client` you just need to install it. Where as to use `hdb` you need to install `hdb` and either use --use-hdb option in package.json file or set `use_hdb` to `true` in `HDI_DEPLOY_OPTIONS`. You can find detailed information on how to set --use-hdb option here (#options-for-interactive-scenarios).
+To make use of the `@sap/hana-client` or `hdb` clients, simply install the desired client. If both clients are installed, the deployer will give priority to the `@sap/hana-client` client. Where as to use `hdb` use --use-hdb option in package.json file or set `use_hdb` to `true` in `HDI_DEPLOY_OPTIONS`. You can find detailed information on how to set --use-hdb option here (#options-for-interactive-scenarios).
 
 ## Database Connection Details
 
@@ -552,7 +552,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.3.2",
+    "@sap/hdi-deploy": "5.4.1",
     "module1": "1.3.1",
     "module2": "1.7.0"
   },
@@ -1052,6 +1052,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--lock-container-timeout <ms>`: number of milliseconds to wait for the container lock
 - `--exclude-filter [<path> ..]`: exclude the given paths during: file walk, delta detection and when explicitly scheduled via --(un)deploy
 - `--[no-]optimise-file-upload` : [don't] perform delta detection via local SHA256 calculation instead of DELETE and WRITE calls. Will not have any positive effect when used along with --treat-unmodified-as-modified.
+- `--[no-]delta-detection` : [don't] perform delta detection. The `--no-delta-detection` deploys only what passed in --deploy parameter and undeploys what passed in --undeploy parameter. The `--no-delta-detection` can be combined with the `--exclude-filter`. However, it will not have any beneficial effect when used with the `--optimise-file-upload`, `--include-filter`, or `--treat-unmodified-as-modified` options. 
 - `--[no-]treat-wrong-ownership-as-errors`: [don't] treat wrong ownership of objects as errors, not enabled by default
 - `--[no-]migrationtable-development-mode`: [don't] pass the development mode flag for migration tables to HDI, if the parameter is supported by the server, not enabled by default
 - `--[no-]liveness-ping`: [don't] send a sign of life from time to time, by default, a sign of life will be sent
@@ -1088,7 +1089,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "5.3.2",
+        "version": "5.4.1",
         "features": {
             "info": 2,
             "verbose": 1,

@@ -1,3 +1,20 @@
+## 5.4.1
+Fixes:
+- The --use-hdb flag did not take effect in some situations
+
+## 5.4.0
+Features:
+- Set `--optimise-file-upload` option to true by default 
+- Added option `--[no-]delta-detection` to enable [don't] perform delta detection
+- Added implicit fallback to hdb client
+- Node >=18.x support
+- use @sap/hdi@^4.7.0
+
+Fixes:
+- Merge parameters from command line and HDI_DEPLOY_OPTIONS
+- Log skipped delted filepath instead of filename
+- Added support for HANA Cloud tenants credential format
+
 ## 5.3.2
 Fixes:
 - Removed postinstall check for SAP HANA clients
