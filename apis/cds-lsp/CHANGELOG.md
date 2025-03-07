@@ -2,9 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
-This project adheres to [Semantic Versioning](http://semver.org/).
+This project adheres to [Semantic Versioning](https://semver.org/).
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
+
+
+## 8.8.0 - 2025-03-05
+
+### Added
+- `format-cds` CLI now considers ignore files like `.cdsignore` and `.gitignore`
+- preparation to support new CDS parser
+- support documentLink resolution for `LSP4IJ`-based IDE integrations
+
+### Changed
+- minimum required NodeJS version is now 20.15.1
+
+### Also see
+- `@sap/cds-compiler` 5.8.0
 
 
 ## 8.5.1 - 2024-12-02

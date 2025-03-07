@@ -2,10 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
-This project adheres to [Semantic Versioning](https://semver.org/).
-The format is based on [Keep a Changelog](https://keepachangelog.com/)
+The format is based on [Keep a Changelog](https://keepachangelog.com),
+and this project adheres to [Semantic Versioning](https://semver.org).
 
-## Version 8.5.1 - 2024-12-02
+
+## [8.8.0] - 2025-03-06
+
+### Changed
+- preparation to use new CDS parser
+- minimum VSCode version is now 1.96.0
+
+### Fixed
+- removed rendering issues in `CAP Release Notes` view
+- `Generate data model` now also works for `schema.cds` files in subfolders.
+
+### Also see
+- `@sap/cds-lsp` 8.8.0
+- `@sap/cds-compiler` 5.8.0
+
+
+## [8.5.1] - 2024-12-02
 
 ### Changed
 - enabling `newParser` via `cds.env` will no longer interfere with CDS editor
@@ -18,14 +34,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 5.5.2
 
 
-## Version 8.5.0 - 2024-11-29
+## [8.5.0] - 2024-11-29
 
 ### Also see
 - `@sap/cds-lsp` 8.5.0
 - `@sap/cds-compiler` 5.5.0
 
 
-## Version 8.4.3 - 2024-11-13
+## [8.4.3] - 2024-11-13
 
 ### Added
 - refactoring `using` statements when renaming/deleting files or folders now considers ignore files (.cdsignore or .gitignore) and will not refactor ignored files
@@ -37,7 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-lsp` 8.4.5
 
 
-## Version 8.4.2 - 2024-11-08
+## [8.4.2] - 2024-11-08
 
 ### Added
 - user setting to disable refactoring support when renaming/deleting CDS files (`cds.refactoring.files.rename.enabled` and `cds.refactoring.files.delete.enabled`)
@@ -50,7 +66,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 5.4.2
 
 
-## Version 8.4.1 - 2024-11-05
+## [8.4.1] - 2024-11-05
 
 ### Fixed
 - Deleting CDS files now also suggests to remove `using` statements without artifacts
@@ -59,7 +75,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-lsp` 8.4.3
 
 
-## Version 8.4.0 - 2024-11-02
+## [8.4.0] - 2024-11-02
 
 ### Added
 - Rename or move of CDS files and folders will update all `using` statements to the renamed file
@@ -85,7 +101,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 5.4.0
 
 
-## Version 8.3.0 - 2024-10-01
+## [8.3.0] - 2024-10-01
 
 ### Added
 - Preview of `mta.yaml` via Mermaid diagram
@@ -107,7 +123,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 5.3.0
 
 
-## Version 8.2.0 - 2024-09-02
+## [8.2.0] - 2024-09-02
 
 ### Added
 - code completion for artifacts within `using` statements now also completes single name segments with complete name
@@ -127,12 +143,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 5.2.0
 
 
-## Version 8.0.2 - 2024-08-15
+## [8.0.2] - 2024-08-15
 
-### Added 
+### Added
 - Mermaid: add option for layout direction
 
-## Version 8.0.1 - 2024-07-12
+## [8.0.1] - 2024-07-12
 
 ### Added
 - Commands _CDS: Preview as diagram_ to create a _Mermaid_ class diagram. `@sap/cds-dk 8` is required.
@@ -147,7 +163,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 5.0.6
 
 
-## Version 7.9.0 - 2024-05-03
+## [7.9.0] - 2024-05-03
 
 ### Added
 - Commands _CDS: Generate Model Data as JSON/CSV_ to create a number of records with test data for a selected entity.
@@ -167,7 +183,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 4.9.0
 
 
-## Version 7.8.1 - 2024-04-09
+## [7.8.1] - 2024-04-09
 
 ### Changed
 - Formatter now puts `actions` keyword after projection or query in a new line
@@ -182,7 +198,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 ### Also see
 - `@sap/cds-lsp` 7.8.2
 
-## Version 7.8.0 - 2024-03-25
+## [7.8.0] - 2024-03-25
 
 ### Added
 - Add preview commands to editor title
@@ -200,13 +216,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 4.8.0
 
 
-## Version 7.6.1 - 2024-02-26
+## [7.6.1] - 2024-02-26
 
 ### Fixed
 - Elements snippet now works when annotating artifacts in namespaces and/or contexts or if the brace after the elements is still missing
 
 
-## Version 7.6.0 - 2024-02-07
+## [7.6.0] - 2024-02-07
 
 ### Added
 - Hover over import path of `using` statement shows `README.md` or `package.json#description` if absolute (i.e. module) import
@@ -229,13 +245,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 4.6.2
 
 
-## Version 7.5.1 - 2024-01-19
+## [7.5.1] - 2024-01-19
 
 ### Fixed
 - Retrieval of `@sap/cds-dk` global installation path is now more robust in SAP Business Application Studio
 - Activate extension also for `jsonc` files
 
-## Version 7.5.0 - 2023-12-20
+## [7.5.0] - 2023-12-20
 
 ### Added
 - Unused imports are reported as warning and grayed out incl. quickfix to remove them
@@ -255,7 +271,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 4.5.0
 
 
-## Version 7.4.0 - 2023-11-16
+## [7.4.0] - 2023-11-16
 
 ### Changed
 - Formatting
@@ -286,7 +302,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 4.4.0
 
 
-## Version 7.3.0 - 2023-10-09
+## [7.3.0] - 2023-10-09
 
 ### Added
 - support for `cdsc.moduleLookupDirectories`
@@ -308,7 +324,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 4.3.0
 
 
-## Version 7.2.0 - 2023-09-04
+## [7.2.0] - 2023-09-04
 
 ### Added
 - CAP with Typescript (beta): add setting to customize type generation command
@@ -330,7 +346,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 4.2.2
 
 
-## Version 7.0.2 - 2023-07-14
+## [7.0.2] - 2023-07-14
 
 ### Fixed
 - CDS Welcome Page does not show an error message if page is not reachable during start up
@@ -341,7 +357,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - CAP notebooks: add support for backslash in shell and terminal cells for multiline scripts
 - CAP notebooks: Shell-type syntax highlighting for Terminal cells
 
-## Version 7.0.1 - 2023-06-27
+## [7.0.1] - 2023-06-27
 
 ### Changed
 - Changed default output for generated types to `@cds-models`
@@ -350,7 +366,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 ### Added
 - CAP notebooks: CDS server cell reacts to regular expression `/started application/i`.
 
-## Version 7.0.0 - 2023-06-13
+## [7.0.0] - 2023-06-13
 
 ### Added
 - CAP with Typescript (beta): generate TS typings from CDS model files upon save - requires `@cap-js/cds-typer` to be installed in project
@@ -369,7 +385,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 4.0.0
 
 
-## Version 6.8.2 - 2023-05-31
+## [6.8.2] - 2023-05-31
 
 ### Added
 - CAP notebooks: magic command can also be written inside of line- and block-comments
@@ -378,7 +394,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 ### Fixed
 - Links on CAP Release Notes page are now pointing to correct locations in Capire.
 
-## Version 6.8.1 - 2023-05-12
+## [6.8.1] - 2023-05-12
 ### Changed
 - CAP notebooks: improved Java cell example notebook
 ### Fixed
@@ -388,7 +404,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - Fix CAP Release Notes page
 - `Report issues` url now points to correct SAP Answers location
 
-## Version 6.8.0 - 2023-05-03
+## [6.8.0] - 2023-05-03
 
 ### Added
 - User setting `cds.typeGenerator.localInstallationOnly` has been added to allow more finely grained control for the user over the resolution of the type generation package
@@ -412,7 +428,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 3.9.2
 
 
-## Version 6.7.0 - 2023-03-31
+## [6.7.0] - 2023-03-31
 ### Added
 - Code completion for `using` paths now
   + supports mono repos
@@ -440,7 +456,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 3.8.2
 
 
-## Version 6.6.0 - 2023-03-02
+## [6.6.0] - 2023-03-02
 
 ### Added
 - CAP notebooks: Uri handler to open notebooks coming from Capire in local VS Code workspaces.
@@ -463,7 +479,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 3.7.2
 
 
-## Version 6.5.1 - 2023-02-20
+## [6.5.1] - 2023-02-20
 
 ### Added
 - The special `up_` element is now supported in navigation
@@ -486,7 +502,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 3.6.2
 
 
-## Version 6.5.0 - 2023-01-30
+## [6.5.0] - 2023-01-30
 
 ### Added
 
@@ -511,7 +527,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 3.6.0
 
 
-## Version 6.4.0 - 2022-12-15
+## [6.4.0] - 2022-12-15
 
 ### Added
 - CAP notebooks:
@@ -532,7 +548,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-lsp` 6.4.0
 - `@sap/cds-compiler` 3.5.0
 
-## Version 6.3.0 - 2022-11-01
+## [6.3.0] - 2022-11-01
 
 ### Added
 - CAP notebook magic command '%%extendjson' can be used to extend and overwrite existing JSON files
@@ -551,7 +567,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 3.4.0
 
 
-## Version 6.2.1 - 2022-10-17
+## [6.2.1] - 2022-10-17
 
 ### Fixed
 - syntax highlighting of comments
@@ -560,7 +576,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-lsp` 6.2.2
 
 
-## Version 6.2.0 - 2022-09-30
+## [6.2.0] - 2022-09-30
 
 ### Added
 - document link resolution of 'folder' using paths to csn index files
@@ -585,20 +601,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 3.3.2
 
 
-## Version 6.1.1 - 2022-08-08
+## [6.1.1] - 2022-08-08
 ### Fixed
 - fixed error when text editor is not found in CAP notebook decoration
 
-## Version 6.1.0 - 2022-08-01
+## [6.1.0] - 2022-08-01
 ### Added
 - load cds based json schemas for `package.json`, `.cdsrc.json` and `.cdsrc-private.json` dynamically based on project's cds version
 
-## Version 6.0.4 - 2022-07-13
+## [6.0.4] - 2022-07-13
 
 ### Fixed
 - show not-supported warning when opening CAP Notebook page in SAP Business Application Studio
 
-## Version 6.0.3 - 2022-07-08
+## [6.0.3] - 2022-07-08
 
 ### Changed
 - support the latest release of cds-compiler 3.0.2
@@ -608,7 +624,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-lsp` 6.0.3
 - `@sap/cds-compiler` 3.0.2
 
-## Version 6.0.0 - 2022-07-01
+## [6.0.0] - 2022-07-01
 
 ### Added
 - using native `notebook` support for `cap-notebook`
@@ -633,7 +649,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 3.0.0
 
 
-## Version 4.5.6 - 2022-05-09
+## [4.5.6] - 2022-05-09
 
 ### Added
 - file icon for CDS files
@@ -645,7 +661,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-lsp` 5.5.9
 
 
-## Version 4.5.5 - 2022-05-05
+## [4.5.5] - 2022-05-05
 
 ### Added
 
@@ -659,7 +675,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-lsp` 5.5.8
 
 
-## Version 4.5.4 - 2022-04-05
+## [4.5.4] - 2022-04-05
 
 ### Changed
 - `CAP Release Notes` page now persists its state
@@ -671,7 +687,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 2.13.8
 
 
-## Version 4.5.3 - 2022-03-31
+## [4.5.3] - 2022-03-31
 
 ### Changed
 - Consume `package.json` and `.cdsrc.json` schemas from `@sap/cds-lsp`
@@ -685,7 +701,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-compiler` 2.13.6
 
 
-## Version 4.5.2 - 2022-03-03
+## [4.5.2] - 2022-03-03
 
 ### Added
 
@@ -715,7 +731,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - `@sap/cds-lsp` 5.5.5
 
 
-## Version 4.5.1 - 2022-02-04
+## [4.5.1] - 2022-02-04
 
 ### Fixed
 
@@ -725,7 +741,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - @sap/cds-lsp 5.5.2
 
 
-## Version 4.5.0 - 2022-01-28
+## [4.5.0] - 2022-01-28
 
 ### Added
 
@@ -757,7 +773,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - @sap/cds-compiler 2.12.0
 
 
-## Version 4.4.0 - 2021-12-03
+## [4.4.0] - 2021-12-03
 
 ### Added
 - progress monitor for long runners like References and WorkspaceSymbols
@@ -773,7 +789,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - @sap/cds-lsp 5.4.0
 - @sap/cds-compiler 2.11.0
 
-## Version 4.3.0 - 2021-09-23
+## [4.3.0] - 2021-09-23
 
 ### Added
 
@@ -796,7 +812,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - user setting cds.workspace.scanCsn has now three modes: Off, ByFileExtension (new default) and InspectJson
 
 
-## Version 4.2.0 - 2021-07-30
+## [4.2.0] - 2021-07-30
 
 ### Added
 
@@ -812,7 +828,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
 - consume cds-lsp 5.2.0
 - consume cds-compiler 2.5.0
 
-## Version 4.1.1 - 2021-07-05
+## [4.1.1] - 2021-07-05
 
 ### Changed
 
@@ -828,7 +844,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/)
     - to include definitions from nodejs dependent modules in workspace symbols this option needs to be enabled
 
 
-## Version 4.1.0 - 2021-06-22
+## [4.1.0] - 2021-06-22
 
 ### Note
 
@@ -859,7 +875,7 @@ Until a further change, reference calculation is resonably fast.
     + cds.quickfix.importArtifact new setting with default off (before implicitly on)
 - command `Install CDS Development Kit (@sap/cds-dk) globally` will now show a progress dialog as long as it is running
 
-## Version 4.0.4 - 2021-05-11
+## [4.0.4] - 2021-05-11
 
 ### Changed
 - uses `@sap/cds-lsp@5.0.5`
@@ -868,20 +884,20 @@ Until a further change, reference calculation is resonably fast.
 ### Fixed
 - asynchronous scanning of workspace blocked and led to high cpu usage (mostly on Linux/macOS)
 
-## Version 4.0.2 - 2021-05-06
+## [4.0.2] - 2021-05-06
 
 ### Changed
 - uses `@sap/cds-lsp@5.0.3`
 - uses `@sap/cds-compiler@2.2.4`
 
-## Version 4.0.1 - 2021-04-22
+## [4.0.1] - 2021-04-22
 
 ### Changed
 - now requires Visual Studio Code `>=1.54`
 - entry `Preview as hdbtable` replaces `Preview as hana` in `CDS Preview` menu
 - uses `@sap/cds-lsp@5.0.1` which includes fixes for namespace handling
 
-## Version 4.0.0 - 2021-03-31
+## [4.0.0] - 2021-03-31
 
 ### Note
 This is a major release which comes with @sap/cds-compiler v2.
@@ -895,7 +911,7 @@ or via global @sap/cds-dk.
 ### Changed
 - consume cds-compiler 2.1.4
 
-## Version 3.4.0 - 2021-03-25
+## [3.4.0] - 2021-03-25
 
 ### Added
 - preliminary support for cds-compiler 2.x
@@ -905,7 +921,7 @@ or via global @sap/cds-dk.
 - uses `@sap/cds-lsp@4.4.1`
 - uses `@sap/cds-compiler@1.50.0`
 
-## Version 3.3.0 - 2021-02-01
+## [3.3.0] - 2021-02-01
 ### Added
 - find references for annotations
 
@@ -923,7 +939,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - temporary folder for `CDS Preview` commands is no longer part of project to avoid files being checked in
 - revalidates workspace after an initial annotation plugin installation to show annotation errors w/o the need of manual code edit
 
-## Version 3.2.0 - 2020-11-27
+## [3.2.0] - 2020-11-27
 
 ### Added
 - quickfix for deprecated identifiers
@@ -940,7 +956,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - improvements to the `cds section` scheme used in `.cdsrc.json` and `package.json`
 - bug fixes for annotation handler and others
 
-## Version 3.1.4 - 2020-11-12
+## [3.1.4] - 2020-11-12
 
 ### Fixed
 - file system watching no longer worked with latest VSCode
@@ -949,12 +965,12 @@ until now this functionality was enabled by default and now needs to be enabled 
 - updated npm modules
   + `cds-lsp 4.1.2`
 
-## Version 3.1.3 - 2020-11-10
+## [3.1.3] - 2020-11-10
 
 ### Fixed
 - internal refactoring and bug fixes
 
-## Version 3.1.2 - 2020-11-09
+## [3.1.2] - 2020-11-09
 
 ### Fixed
 - support for mono repo file system layouts did not work in certain cases
@@ -965,7 +981,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - updated npm modules
   + `cds-lsp 4.1.1`
 
-## Version 3.1.0 - 2020-11-02
+## [3.1.0] - 2020-11-02
 
 ### Added
 - release notes page shows loading text while loading content
@@ -989,7 +1005,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - bug fixes
 
 
-## Version 3.0.1 - 2020-10-23
+## [3.0.1] - 2020-10-23
 
 ### Changed
 - release notes page uses longer timeout (30sec) when waiting for content
@@ -999,7 +1015,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - `preview as...` commands only fail when `cds compile` returned with exit code != 0 (severe error)
 
 
-## Version 3.0.0 - 2020-09-30
+## [3.0.0] - 2020-09-30
 
 ### Added
 - Plugin support for domain specific annotation handlers, featuring
@@ -1025,7 +1041,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - bug fixes
 
 
-## Version 2.6.1 - 2020-09-24
+## [2.6.1] - 2020-09-24
 
 ### Changed
 - using `axios` for https access to CAP release notes
@@ -1038,7 +1054,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - command `install cds-dk` now available to install `CDS Development Kit (@sap/cds-dk)` globally
 
 
-## Version 2.6.0 - 2020-09-01
+## [2.6.0] - 2020-09-01
 
 ### Added
 - various commands for generating preview files from a cds file
@@ -1054,7 +1070,7 @@ until now this functionality was enabled by default and now needs to be enabled 
     + `cds-compiler 1.39.0`
 
 
-## Version 2.5.0 - 2020-08-05
+## [2.5.0] - 2020-08-05
 
 ### Added
 - various commands for generating preview files from a cds file
@@ -1066,7 +1082,7 @@ until now this functionality was enabled by default and now needs to be enabled 
     + `cds-compiler 1.35.0`
 
 
-## Version 2.4.2 - 2020-07-29
+## [2.4.2] - 2020-07-29
 
 ### Added
 - issue reporting url pointing to `https://answers.sap.com/`
@@ -1078,13 +1094,13 @@ until now this functionality was enabled by default and now needs to be enabled 
     + `cds-compiler 1.34.0`
 - internal refactorings
 
-## Version 2.4.1 - 2020-07-13
+## [2.4.1] - 2020-07-13
 
 ### Changed
 - extension is now hosted on Visual Studio Marketplace and updates from there
   + update configuration and update command have been removed
 
-## Version 2.4.0 - 2020-07-10
+## [2.4.0] - 2020-07-10
 
 ### Added
 
@@ -1115,7 +1131,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - annotations of extensions were not indexed
 - bug fixes
 
-## Version 2.3.3 - 2020-06-26
+## [2.3.3] - 2020-06-26
 
 ### Added
 - added properties `dest` and `mtx` to code completion list for `tasks` and `for` in cap project package.json files
@@ -1125,20 +1141,20 @@ until now this functionality was enabled by default and now needs to be enabled 
 - minor clean up in welcome page handling
 
 
-## Version 2.3.2 - 2020-06-17
+## [2.3.2] - 2020-06-17
 
 ### Changed
 - using new npm modules
     + got 11.1.4
 
 
-## Version 2.3.1 - 2020-05-25
+## [2.3.1] - 2020-05-25
 
 ### Added
 - add a welcome page with current release information
 
 
-## Version 2.3.0 - 2020-04-26
+## [2.3.0] - 2020-04-26
 
 ### Added
 - use global @sap/cds/common if locally not available
@@ -1154,7 +1170,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - Minor fixes and improvements
 
 
-## Version 2.2.0
+## [2.2.0]
 
 ### Added
 - install/update global cds-dk
@@ -1170,7 +1186,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - global npm root for Business App Studio was not found with compiler origin option ProjectThenGlobalThenBuiltIn
 
 
-## Version 2.1.4
+## [2.1.4]
 
 ### Changed
 - using new npm modules
@@ -1181,7 +1197,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - pick up compiler and env via global cds-dk if cds not (yet) in project
 
 
-## Version 2.1.3
+## [2.1.3]
 
 ### Changed
 - using new npm modules
@@ -1198,13 +1214,13 @@ until now this functionality was enabled by default and now needs to be enabled 
 - in some cases csn files with .json extension where not detected and thus workspace symbols were incomplete
 
 
-## Version 2.1.2
+## [2.1.2]
 
 ### Fixed
 - Minor bugs and improvements
 
 
-## Version 2.1.1
+## [2.1.1]
 
 ### Changed
 - using new npm modules
@@ -1221,7 +1237,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - formatting options were taken from homedir instead of preferring from project
 
 
-## Version 2.1.0
+## [2.1.0]
 
 ### Changed
 - using new npm modules
@@ -1255,7 +1271,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - file watching for cds related files did no longer work in recent versions of VSCode e.g. package.json, .cdsrc.json, all supported translation file formats, ignore files
 
 
-## Version 2.0.0
+## [2.0.0]
 Official support for code formatting
 
 ### Changed
@@ -1276,7 +1292,7 @@ Official support for code formatting
     - safely identify unreserved keywords
 
 
-## Version 1.4.0
+## [1.4.0]
 
 ### Changed
 - **requires `Visual Studio Code` version `1.40.0` or higher**
@@ -1296,13 +1312,13 @@ Official support for code formatting
     - Improve alignment of bracketed conditions
 
 
-## Version 1.3.1
+## [1.3.1]
 - fix reloading formatting options in config UI
 - consume cds-lsp 2.1.19
     - fixes and enhancements for code formatting
 - consume cds-compiler 1.20.0
 
-## Version 1.3.0
+## [1.3.0]
 - configuration UI for formatting options
 - consumes cds-lsp 2.1.17
     - fixes and enhancements for code formatting
@@ -1311,15 +1327,15 @@ Official support for code formatting
 - consume cds-compiler 1.19.2
 - requires `Visual Studio Code` version `1.38.0` or higher
 
-## Version 1.2.12
+## [1.2.12]
 - deprecate `updatesite` setting
 - requires `Visual Studio Code` version `1.36.0` or higher
 
-## Version 1.2.11
+## [1.2.11]
 - consumes cds-lsp 2.1.10
     - fixes and enhancements in syntax highlighting and code formatting
 
-## Version 1.2.10
+## [1.2.10]
 - requires `Visual Studio Code` version `1.35.0` or higher.
 - consumes cds-lsp 2.1.9
     - Syntax highlighting now uses different classifications (=colors) for annotations and comments
@@ -1331,7 +1347,7 @@ Official support for code formatting
     - Fixes and enhancements in source formatting
 - consume cds-compiler 1.17.3
 
-## Version 1.2.9
+## [1.2.9]
 - consume cds-lsp 2.1.8
     - code formatting - many fixes and enhancements
         - now on by default but still experimental
@@ -1342,29 +1358,29 @@ Official support for code formatting
     - other fixes and improvements
 - consume cds-compiler 1.17.0
 
-## Version 1.2.8
+## [1.2.8]
 - consume cds-lsp 2.1.7
   - consume cds-compiler 1.16.2
 
-## Version 1.2.7
+## [1.2.7]
 - consume cds-lsp 2.1.6
 
-## Version 1.2.6
+## [1.2.6]
 - consume cds-lsp 2.1.5
 - take syntax file form LSP
 
-## Version 1.2.5
+## [1.2.5]
 - use internal extension install command instead of command line call to `code` executable to install vsix file.
 - requires `Visual Studio Code` version `1.33.0` or higher.
 - consume cds-lsp 2.1.4
   - consume cds-compiler 1.15.0
   - experimental support for beautify
 
-## Version 1.2.3
+## [1.2.3]
 - consume cds-lsp 2.1.3
   - consume cds-compiler 1.14.0
 
-## Version 1.2.2
+## [1.2.2]
 - consume cds-lsp 2.1.2
   - consume cds-compiler 1.13.4
 - Use cds-compiler from project workspace by default (option now called 'cds.compiler.origin' with default 'Project_Then_BuiltIn')
@@ -1372,34 +1388,34 @@ Official support for code formatting
 - minor fixes
 
 
-## Version 1.2.1
+## [1.2.1]
 - consume cds-lsp 2.1.1
   - consume compiler 1.13.1
   - performance improvements (less compilations and reduced memory footprint)
   - Links to folders in using statement are now resolved
 
-## Version 1.2.0
+## [1.2.0]
 - consume cds-lsp 2.1.0
   - consume compiler 1.12.1
   - new where-used index with less memory consumption and support for references of custom annotations, built-in types, string constants and better tracking of identifiers in CQL
   - targets of using statement now rendered as links (via documentLink request)
 
-## Version 1.1.5
+## [1.1.5]
 - Updated cds-lsp to 2.0.8
   - performance optimizations for translation support
   - consume cds-compiler 1.10.0
 - Updated json schema to reflect latest cap config changes.
 - Use json schema also for `.cdsrc.json` file.
 
-## Version 1.1.4
+## [1.1.4]
 - Updated cds-lsp to 2.0.7
     - new user setting: cds.compiler.markMissingI18nDefault (default: off) to show problem markers for unresolved i18n references
 
-## Version 1.1.3
+## [1.1.3]
 - Updated cds-lsp to 2.0.6 - bugfixes plus
 - Updated cds-compiler to 1.9.0
 
-## Version 1.1.2
+## [1.1.2]
 - Updated cds-lsp to 2.0.5 with
     - suggest @sap/cds/common as default path in using snippet if dependency to @sap/cds is present
 - Updated cds-compiler to 1.8.1
@@ -1408,7 +1424,7 @@ Official support for code formatting
 - Changes of `@sap/cds-lsp@2.0.5`
 - Changes of `@sap/cds-compiler@1.8.1`
 
-## Version 1.1.1
+## [1.1.1]
 - Updated cds-lsp to 2.0.3 with
     - doc support (snippet for localization, hover on translation id)
 - Updated cds-compiler to 1.8.0
@@ -1417,7 +1433,7 @@ Official support for code formatting
 - Changes of `@sap/cds-lsp@2.0.3`
 - Changes of `@sap/cds-compiler@1.8.0`
 
-## Version 1.1.0
+## [1.1.0]
 ### Added
 Support for documentation and translation in CDS source files
 
@@ -1425,7 +1441,7 @@ Support for documentation and translation in CDS source files
 - Changes of `@sap/cds-lsp@2.0.0`
 - Changes of `@sap/cds-compiler@1.6.0`
 
-## Version 1.0.37
+## [1.0.37]
 - Updated cds-lsp to 1.4.25 with
     - support for documentation tags and translation
         - show documentation when hovering
@@ -1437,11 +1453,11 @@ Support for documentation and translation in CDS source files
 - Updated compiler to 1.6.0
     - especially with support for code completion of items in using statement
 
-## Version 1.0.36
+## [1.0.36]
 - Updated cds-lsp to 1.4.24
 - Updated compiler to 1.5.0
 
-## Version 1.0.35
+## [1.0.35]
 - New icon
 - Updated cds-lsp to 1.4.23
 - Updated compiler to 1.3.0
@@ -1456,15 +1472,15 @@ Support for documentation and translation in CDS source files
 - Check for updates when user changes update config
 - Bug fixes
 
-## Version 1.0.34
+## [1.0.34]
 - Updated compiler to 1.1.3
 - bug fixes
 
-## Version 1.0.33
+## [1.0.33]
 - Updated compiler to 1.1.2
 - bug fixes
 
-## Version 1.0.32
+## [1.0.32]
 - Snippets now with language documentation
 - New snippets for annotate and enum type
 - Add json validator for cds entry in package.json
@@ -1473,36 +1489,36 @@ Support for documentation and translation in CDS source files
 - Robustness
 - No more logging from LSP to CDS console
 
-## Version 1.0.31
+## [1.0.31]
 - Support for multiple workspace folders
 - Editor now detects much more identifiers
 - Compiler 1.1.0
 - Improve error handling when update site is invalid or incorrectly configured
 
-## Version 1.0.30
+## [1.0.30]
 - Bug fixes (update, ...)
 
-## Version 1.0.29
+## [1.0.29]
 - Use cds-lsp 1.4.12
 
-## Version 1.0.28
+## [1.0.28]
 - Use cds-lsp 1.4.10
 
-## Version 1.0.27
+## [1.0.27]
 - Use os environment proxy settings as fallback when available (http_proxy, https_proxy, no_proxy)
 
-## Version 1.0.26
+## [1.0.26]
 - Use cds-lsp 1.4.8
 - Proxy settings (http.proxy, http.proxyAuthorization, http.proxyStrictSSL) will be used when downloading update
 - Bug fixes
 
-## Version 1.0.25
+## [1.0.25]
 - Use cds-lsp 1.4.7
 
-## Version 1.0.24
+## [1.0.24]
 - Bug fixes (installation, ...)
 
-## Version 1.0.23
+## [1.0.23]
 - Use cds-lsp 1.4.4
     - New setting: cds.workspaceValidationMode
         - OpenEditorsOnly
@@ -1511,5 +1527,5 @@ Support for documentation and translation in CDS source files
 - Show compiler version on status bar when it changes for 10secs
 - Bug fixes (code completion, ...)
 
-## Version 1.0.22
+## [1.0.22]
 - Add external update mechanism

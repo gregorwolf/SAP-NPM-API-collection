@@ -4,6 +4,11 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 1.4.1 - 2025-03-05
+
+### Fixed
+
+- Local setup for `client` starting with 0
 
 ## Version 1.4.0 - 2025-01-27
 
