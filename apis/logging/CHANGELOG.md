@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 8.4.0 - 2025-03-06
+
+### Updated
+- updated `@sap/e2e-trace` dependency to ^5.4.0
+- updated `filter-node-package` dependency to ^5.1.0
+- updated `express` dependency to 4.21.2
+- updated `chai` dependency to 5.2.0
+- updated `c8` dependency to 10.1.3
+- updated `sinon` dependency to 19.0.2
+- updated `mocha` dependency to 11.1.0
+- updated `@babel/eslint-parser` dependency to 7.26.8
+
+
 ## 8.3.0 - 2024-11-13
 
 ### Added

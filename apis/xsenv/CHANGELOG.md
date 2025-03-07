@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.5.0 - 2024-03-06
+
+### Updated
+- Updated `filter-node-package` dependency to 5.1.0
+- Updated `mock-fs` dependency to 5.5.0
+- Updated `mocha` dependency to 11.1.0
+- Updated `@babel/eslint-parser` dependency to 7.26.8
+- Updated `c8` dependency to 10.1.3
+- Updated `debug` dependency to 4.4.0
+
 ## 5.4.0 - 2024-10-24
 
 ### Added

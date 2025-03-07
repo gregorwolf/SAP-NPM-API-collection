@@ -5,6 +5,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.4.0 - 2025-03-06
+
+### Added
+- added `babel/eslint-parser` dependency to 7.26.8
+- added `eslint/eslintrc` dependency to ^3.1.0
+- added `del` dependency to 8.0.0
+- added `c8` dependency to ^10.0.0
+
+### Updated 
+- updated `chai` dependency to 5.2.0
+- updated `eslint` dependency to ^9.9.0
+- updated `filter-node-package` dependency to 5.1.0
+- updated `mocha` dependency to 11.1.0
+
+### Removed
+-  removed `gulp`
+-  removed `gulp-concat`
+-  removed `gulp-eslint`
+-  removed `gulp-istanbul`
+-  removed `gulp-mocha`
+-  removed `gulp-sonar`
+-  removed `gulp-util`
+
+
 ## 5.3.0 - 2024-11-13
 
 ### Added

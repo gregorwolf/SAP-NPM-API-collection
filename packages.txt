@@ -40,6 +40,7 @@
 @sap/consume-services
 @sap/consume-services-types
 @sap/create-hana-database-artifact
+@sap/csn-interop-renderer
 @sap/csn-interop-specification
 @sap/datasphere-cli
 @sap/destination-instance-service-provider
