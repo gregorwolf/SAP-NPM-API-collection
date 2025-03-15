@@ -731,7 +731,7 @@ await message.logFailure();
 ```
 
 * `update` - takes a JavaScript object which identifies the object which contains the data being updated. Should have `type` and `id` properties.
-* `attribute(attribute)` - takes an object which describes an attribute. Should have a `name` property and optionally - `old` and `new` properties. It is **mandatory** to provide at least one attribute.
+* `attribute(attribute)` - takes an object which describes an attribute. Should have a `name`, `old` and `new` properties. It is **mandatory** to provide at least one attribute.
 * `dataSubject` - takes an object describing the owner of the personal data. Should have `type` and `id` properties. The `role` property is optional. `dataSubject` is **mandatory**.
 * `tenant` - takes a string which specifies the tenant id.
 * `by` - takes a string which identifies the *user* performing the action. This is **mandatory**.
@@ -775,7 +775,7 @@ await message.logFailure();
 ```
 
 * `update` - takes a JavaScript object which identifies the object which contains the data being updated. Should have `type` and `id` properties.
-* `attribute(attribute)` - takes an object which describes an attribute. Should have a `name` property and optionally - `old` and `new` properties. It is **mandatory** to provide at least one attribute.
+* `attribute(attribute)` - takes an object which describes an attribute. Should have a `name`, `old` and `new` properties. It is **mandatory** to provide at least one attribute.
 * `dataSubject` - takes an object describing the owner of the personal data. Should have `type` and `id` properties. The `role` property is optional. `dataSubject` is **mandatory**.
 * `by` - takes a fixed string '$USER' that is a placeholder replaced by the service. This is **mandatory**.
 * `tenant` - takes a specific string placeholder ('$PROVIDER' or '$SUBSCRIBER') that is replaced by the service. This is **mandatory**. `subdomain` is an optional value used only with '$SUBSCRIBER'.

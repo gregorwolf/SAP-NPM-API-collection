@@ -10,7 +10,6 @@ It can be used in the Cloud Foundry environment of SAP Cloud Platform or on-prem
 **Note**:  SBF Rejects requests for which the `X-Broker-API-Version` header is not set or its value is outside the supported interval [2.4, 3).
 
 SBF can generate service credentials for the following authentication mechanisms:
-* Basic authentication for technical users (via SBSS)
 * OAuth2 authentication with JSON Web Tokens (JWT) (via XSUAA _broker_ plan)
   * Named user via *user_token* flow
   * Technical user via *client_credentials* flow
@@ -49,9 +48,6 @@ In the shell commands below replace `cf` with `xs` when working on XS advanced.
     + [Update service with custom parameters](#update-service-with-custom-parameters)
     + [Bind service with custom parameters](#bind-service-with-custom-parameters)
   * [Credentials providers](#credentials-providers)
-    + [SBSS](#sbss)
-      - [SBSS on SAP HANA](#sbss-on-sap-hana)
-      - [SBSS on PostgreSQL](#sbss-on-postgresql)
     + [XSUAA](#xsuaa)
       - [XSUAA Service Selection Priority](#xsuaa-service-selection-priority)
       - [XSUAA Plans Support](#xsuaa-plans-support)
@@ -460,70 +456,25 @@ The same goes for CF service-keys:
 cf create-service-key <service-instance> <key-name> -c parameters.json
 ```
 
-**Note**: Binding for reuse service instace when XSUAA is the credentials' provider, allows for specific configuration in order to support certificate credentials, as specified here: [Authentication with X.509 client certificates](#authentication-with-x509-client-certificates)
+**Note**: Binding for reuse service instance when XSUAA is the credentials' provider, allows for specific configuration in order to support certificate credentials, as specified here: [Authentication with X.509 client certificates](#authentication-with-x509-client-certificates)
 
 ### Credentials providers
 
-By default, this modul searches for a bound service instance which is responsible for generating credentials for the services offered by a service broker. The framework attempts to find a suitable service with the following properties in the following order:
-1. SAP HANA Service Instance (A service with label `hana` and plan `sbss`)
-2. PostgreSQL Service Instance (A service with label `postgresql` and tag `sbss`)
-3. XSUAA Service Instance (A service with label `xsuaa` and plan `broker`)
-4. IAS Service Instance (A service with the label `identity` and plan `application`)
+By default, this module searches for a bound service instance which is responsible for generating credentials for the services offered by a service broker. The framework attempts to find a suitable service with the following properties in the following order:
+1. XSUAA Service Instance (A service with label `xsuaa` and plan `broker`)
+2. IAS Service Instance (A service with the label `identity` and plan `application`)
 
 If no such service is found in the environment of the broker, an error is returned.
 
 You can disable this behavior by [setting the credentials provider service explicitly](#credentials-provider-service). When running on K8S you must always set the credentials provider service explicitly.
 
 
-Depending on the type of the service that provides credentials: SBSS (for SAP HANA and PostgreSQL), XSUAA, or IAS, this module generates credentials and merges them to the `credentials` object received in the response to *bind* operation.
+Depending on the type of the service that provides credentials: XSUAA, or IAS, this module generates credentials and merges them to the `credentials` object received in the response to *bind* operation.
 The same object will appear also in the `credentials` section for the respective service in the `VCAP_SERVICES` environment variable in bound applications. You can find some examples below.
 
 #### SBSS
-**Note**: SBSS support will be removed on 01/25 following SBSS deprecation by XSUAA.
+**Note**: SBSS support was removed on 01/25 following SBSS deprecation by XSUAA.
 
-SBSS (Service Broker Security Support) can generate, store, and verify usernames and passwords in a secure way. It is accessed via the SQL API.
-
-##### SBSS on SAP HANA
-
-Create SBSS service instance (example):
-```sh
-cf create-service hana sbss hana-sbss
-```
-Here `hana-sbss` is an arbitrary service instance name.
-
-Generated credentials example:
-```json
-{
-  "username": "SBSS_00536748842276225491856140796794258250872406624126918117591330539",
-  "password": "Aa_12905484905134285946159829260519429913717511989397057274381675342",
-}
-```
-
-**Note**: Since version 4 of _@sap/sbf_, broker applications that use SBSS on HANA need to explicitly specify
-a dependency to the _@sap/hdbext_ package.
-
-##### SBSS on PostgreSQL
-
-SBSS on PostgreSQL credentials provider requires 2 services to be bound to the service broker application. One is the actual PostrgeSQL service instance and additional user-provided service containing restricted DB user to be used for credentials generation.
-
-Create SBSS service instance (example):
-```sh
-cf cs postgresql-db development pg-sbss -t sbss
-```
-Here `pg-sbss` is an arbitrary service instance name. Notice that the command attaches the tag `sbss` to the service instance. **This tag is mandatory.** It can also be set after the service instance has been created like this:
-```sh
-cf update-service pg-sbss -t sbss
-```
-
-Create restricted DB user service (example):
-```sh
-cf create-user-provided-service sbss-configuration -p "{\"tag\":\"sbss-config\",\"restricted-dbuser-name\":\"<dbuser>\",\"restricted-dbuser-password\":\"<dbpassword>\"}"
-```
-Here you can use arbitrary values for `restricted-dbuser-name` and `restricted-dbuser-password`.
-You should bind the same service instance to SBSS installer application when deploying SBSS on Postgres.
-For details see the SBSS documentation.
-
-> **Note:** You should bind _both_ service instances to the service broker application.
 ### XSUAA
 
 The `node-sbf` library supports XSUAA **broker** plan as a credentials provider.
@@ -899,8 +850,8 @@ To enable the multiple credentials provider feature, the following environment v
 When enabling the `SBF_USE_MULTIPLE_XSUAA_CREDENTIALS` environment variable, it is the developer's responsibility to ensure that the `xsuaaCredentialsDecider` hook returns a valid credentials provider for each request. Failing to do so could lead to failed requests due to missing credential provider.
 
 ##### Scope and Limitations
-- **XSUAA Only:** This feature currently supports only XSUAA credentials providers.
-- **IAS and SBSS:** These services are out of scope for this enhancement.
+- **XSUAA:** This feature currently supports only XSUAA credentials providers.
+- **IAS:** This service is out of scope for this enhancement.
 
 ### Unique service broker
 
@@ -937,7 +888,7 @@ This will append the suffix "xyz" to each service name, ID and plan ID in the ca
 
 ### Secure outgoing connections
 
-By default all outgoing connections from the service broker must be encrypted or the broker will fail to start (this is not the case with SBSS connections).
+By default all outgoing connections from the service broker must be encrypted or the broker will fail to start.
 This behavior can be changed using the `secureOutgoingConnections` option or the environment variable `SBF_SECURE_OUTGOING_CONNECTIONS`.
 If one of them is set to *false*, unencrypted connections will be allowed.
 
@@ -985,7 +936,7 @@ Still if your services provide a web-based management user interface, you can ex
 
 ### Security
 To ensure ISO/SOC compliance, certain security requirements should be fulfilled:
-* Minimum password length of 15 characters (fulfilled by passwords generated by SBSS, XSUAA and deploy service)
+* Minimum password length of 15 characters (fulfilled by passwords generated by XSUAA and deploy service)
 * Regular password rotation
 
 #### Password rotation
@@ -1066,7 +1017,7 @@ Example:
 
 These credentials can be provided via the option `brokerCredentialsHash` or the environment variable `SBF_BROKER_CREDENTIALS_HASH`.
 
-**Note:** Service broker credentials must be provided either in [plain text](#servic-broker-plain-text-credentials) or hashed format. 
+**Note:** Service broker credentials must be provided either in [plain text](#service-broker-plain-text-credentials) or hashed format. 
 
 **Note:** To generate such hashed credentials, you can use the [hash-broker-password](#hash-broker-password) script.
 #### mTLS Authentication
@@ -1164,7 +1115,6 @@ Creates a new ServiceBroker instance.
   * [`hooks`](#hooks) *Object* Contains callback functions that can extend or customize service broker operations.
   * [`autoCredentials`](#automatic-credentials-generation) *Boolean* Enable automatic credentials generation.
   * [`credentialsProviderService`](#credentials-provider-service) *String* The name of the credentials provider service instance.
-  * [`sbssRestrictedUserService`](#credentials-provider-service) *String* The name of the service containing SBSS restricted user credentials.
   * [`catalogSuffix`](#unique-service-broker) *String* Suffix which will be appended to each service name, ID and plan ID in the service catalog to make them unique across Cloud Foundry.
   * [`enableAuditLog`](#audit-logging) *Boolean* Enable/Disable audit logging. Defaults to **true**.
   * [`tenantId`](#auditlog-viewer) *String* Tenant ID of the broker application. It is used for audit logging. Mandatory if the broker is running on CF and audit logging is enabled.
@@ -1242,13 +1192,10 @@ Disabling [automatic credentials generation](#automatic-credentials-generation) 
 
 **Note**: This approach requires implementing the relevant hooks (`onProvision`, `onBind`, `onUnbind` and `onDeprovision`) and calling the respective method on the created provider.
 
-* `credentials` *Object* Credentials for a UAA or an SBSS service.
-
-**Note**: If using SBSS on PostgreSQL, the restricted user properties should be provided in the `restrictedUser` property of `credentials`. Example:
+* `credentials` *Object* Credentials for a UAA service.
 
 ```js
-const credentials = xsenv.cfServiceCredentials('postgre-service-name');
-credentials.restrictedUser = xsenv.cfServiceCredentials('restricted-user-service-name');
+const credentials = xsenv.cfServiceCredentials('xsuaa-service-name');
 const provider = Broker.createCredentialsProvider(credentials);
 ```
 
@@ -1281,7 +1228,7 @@ Performs operations associated with service deprovisioning.
   * `req` *Object* Details can be found [here](#req).
   * `callback` *function(error)* An error is received in the callback in case of operations' failure.
 
-In addition, a UAA credentials provider has the following method:
+UAA credentials provider has the following method too:
 
 * `callXsuaa(req, options, callback)`
 See [this section](#servicebrokercallxsuaareq-options-callback) for more information.
@@ -1541,8 +1488,6 @@ In this case the `onBind` hook must be implemented as it is responsible for prov
 
 It is possible to explicitly specify the credentials provider service name when [automatic credentials generation](#automatic-credentials-generation) is enabled. This could be achieved via the `credentialsProviderService` option or via the environment variable `SBF_CREDENTIALS_PROVIDER_SERVICE`.
 
-The same applies for providing restricted user credentials (SBSS on PostgreSQL case) where the service name can be provided via the `sbssRestrictedUserService` option or via the environment variable `SBF_SBSS_RESTRICTED_USER_SERVICE`.
-
 Notice that when running on K8S you should also provide a path to the volume where you have mounted those credentials unless you're relying on the default one. See k8sSecretsPath option [here](#new-servicebrokeroptions).
 
 ### Business Service Support
@@ -1767,7 +1712,7 @@ The `credentials` object in the response will be produced by merging:
 
 Here each object overwrites common properties in the next one.
 
-**Note:** The default SBF operation is executed _before_ this hook is called. For example, if SBSS is used, the binding credentials are already created.
+**Note:** The default SBF operation is executed _before_ this hook is called.
 
 **Note:** Implementing `onBind` hook is mandatory, if `autoCredentials` option is `false`.
 In this case `onBind` must provide the necessary credentials in `reply.credentials`.
@@ -1793,7 +1738,6 @@ Called when the broker receives an *unbind* request.
     * `operation` *String* (Optional) For asynchronous responses, service brokers MAY return an identifier representing the operation. The value of this field SHOULD be provided by the broker client with requests to the Binding Last Operation endpoint in a URL encoded query parameter.
 
 **Note:** The default SBF operation is executed right _after_ this hook and before the HTTP response is returned.
-For example, if SBSS is used, the binding credentials will be deleted right after this hook, even in case of an async operation (`reply.async == true`).
 
 **Note:** This hook should be repeatable (idempotent), i.e. if it completes successfully once, any subsequent invocations with the same parameters should be successful too. This is necessary in case the default SBF operation fails. Then it should be possible to repeat the whole operation to complete the cleanup. Also the platform may execute _unbind_ after a failed _bind_ operation as part of [orphan mitigation](https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#orphans). So `onUnbind` hook may be called even when the service binding and associated resources do not exist.
 
@@ -1878,7 +1822,6 @@ Otherwise the broker will return HTTP status code 500 with a generic error messa
 - `SBF_BROKER_CREDENTIALS_HASH` - JSON object with credentials in hashed format for calling the service broker, see [Service Broker Hashed Credentials](#service-broker-hashed-credentials)
 - `SBF_SERVICE_CONFIG` - provides additional deploy-time configuration, see [Additional service configuration](#additional-service-configuration)
 - `SBF_CREDENTIALS_PROVIDER_SERVICE` - the name of the credentials provider service instance, see [Credentials provider service](#credentials-provider-service)
-- `SBF_SBSS_RESTRICTED_USER_SERVICE` - the name of the service containing restricted user credentials (SBSS on PostgreSQL case), see [Credentials provider service](#credentials-provider-service)
 - `SBF_UAA_TIMEOUT` - timeout in milliseconds for requests to XSUAA, default is 20 seconds.
 - `SBF_UAA_RETRY_TIMEOUT` - maximum allocated time (in milliseconds) to connect to XSUAA, including retries. Defaults to 30 seconds (30000 ms).
 - `SBF_UAA_RETRY_MAX_NUMBER` - maximum connection attempts to XSUAA. Allowed values: 0-5 (0 = no retries). Defaults to 3.

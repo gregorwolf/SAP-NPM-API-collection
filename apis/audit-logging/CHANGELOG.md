@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.6.0 - 2025-12-03
+
+### Added
+- Request timeout functionality with editable env variable: 'REQ_TIMEOUT_MS' - working with milliseconds.
+
+### Closed
+- NGPBUG-427809
+- NGPBUG-413403
+- Github issue: #297
+
 ## 6.5.0 - 2025-27-01
  
 ### Added

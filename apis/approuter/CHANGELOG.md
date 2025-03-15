@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 19.0.4 - 2025-03-12
+
+### Fixed
+- Set empty cache for the /applications API in runtime flow (embedded creds)
+
+## 19.0.3 - 2025-03-12
+
+### Fixed
+- Cache key for subaccount level destinations
+- Fix connectivity proxy client credentials for UAA flow.
+- add s3bcl_header_value in /login/callback request (back-channel logout)
+- add destination trust certificate to http-agent
+
+### Updated dependencies
+- deps: axios@1.8.2
 
 ## 19.0.2 - 2025-03-04
 
