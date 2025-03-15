@@ -4,6 +4,30 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.8.2 - 2025-03-13
+
+### Fixed
+
+- Consuming REST actions returning anonymous structures
+- `i18n.labels/messages` were occasionally missing
+
+## Version 8.8.1 - 2025-03-07
+
+### Fixed
+
+- Requests violating `cds.odata.max_batch_header_size` are terminated with `431 Request Header Fields Too Large` instead of `400 - Bad Request`
+- `cds.parse.<x>` writing directly to `stdout`
+- Instance-based authorization for programmatic action invocations
+- Implicit function parameter calls with Array or Object values
+- OData: Throw an error by `POST` with payload that contains array of entity representation
+- `cds.validate` filters out annotations according to OData V4 spec
+- Crash for requests with invalid time data format
+- Add missing 'and' between conditions in object notation of QL
+- Multiline payloads in `$batch` sub requests
+- Instance-based authorization for modeling like `$user.<property> is null`
+- Respect `cds.odata.contextAbsoluteUrl` in new OData adapter 
+- `cds.odata.context_with_columns` also applies to singletons
+
 ## Version 8.8.0 - 2025-03-03
 
 ### Added

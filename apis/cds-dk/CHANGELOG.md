@@ -7,6 +7,15 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 8.8.1 - 2025-03-11
+
+### Fixed
+
+- `cds init` uses latest Maven Java archetype version 3.8.0 for creating Java projects.
+- `cds import` json schema now contains correct references.
+- `cds init --add lint` writes complete eslint.config.mjs.
+- `cds import` no longer fails with an `EXDEV` error in `docker` containers.
+
 ## Version 8.8.0 - 2025-03-03
 
 ### Added

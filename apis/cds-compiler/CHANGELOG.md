@@ -7,6 +7,12 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.8.2 - 2025-03-07
+
+### Fixed
+
+- for.odata: Generate foreign key elements for events again.
+
 ## Version 5.8.0 - 2025-02-27
 
 ### Added

@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 2.6.1 - 2025-03-13
+
+### Fixed
+
+- Compatibility with cds 7 is enabled again.
+- Asynchronous jobs now properly handle errors exceeding 5000 characters.
+
 ## Version 2.6.0 - 2025-03-03
 
 ### Added
