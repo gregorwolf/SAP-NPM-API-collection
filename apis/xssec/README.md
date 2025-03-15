@@ -1,566 +1,162 @@
-@sap/xssec: SAP BTP Security Services Node.js Integration Library
+@sap/xssec: XS Advanced Container Security API for node.js
 ==========================================================
 
-This module allows Node.js applications to authenticate users via JWT tokens issued by [SAP Business Technology Platform (BTP)](https://www.sap.com/products/technology-platform.html) security services (SAP Cloud Identity Services and XSUAA). It also provides an API for fetching tokens from these services.
+## XS Advanced Authentication Primer
 
-## Recommendation
-**We recommend developing new applications for SAP BTP with the SAP Cloud Identity Service using Authorization Policies ([Details](#recommendation--sap-cloud-identity-services)).**
+Authentication for node applications in XS Advanced relies on a special usage of the OAuth 2.0 protocol, which is based on central authentication at the UAA server that then vouches for the authenticated user's identity via a so-called OAuth Access Token. The current implementation uses as access token a JSON web token (JWT), which is a signed text-based token following the JSON syntax.
 
-## Table of Contents
-1. [Version 4](#version-4)
-    - [Breaking Changes](#breaking-changes)
-1. [Installation](#installation)
-1. [Maintenance](#maintenance)
-1. [Example](#example)
-    - [Passport Strategy](#passport-strategy)
-1. [Usage](#usage)
-    - [Authentication](#authentication)
-    - [Authorization](#authorization)
-    - [Token Fetches](#fetching-tokens)
-    - [Error Handling](#error-handling)
-    - [Testing](#testing)
-1. [API](#api)
-    - [Service](#service)
-    - [SecurityContext](#securitycontext)
-    - [Token](#token)
-1. [Configuration](#configuration)
-    - [Passport Strategy](#passport-strategy-1)
-    - [JWKS Cache](#jwks-cache)
-    - [x5t Validation](#x5t-validation)
-    - [Proof Token Validation](#proof-token-validation)
-    - [IAS -> XSUAA Token Exchange](#ias---xsuaa-token-exchange)
-1. [Troubleshooting](#troubleshooting)
-    - [Common Issues](#common-issues)
-    - [Debug Logs](#debug-logs)
-    - [How to get support](#how-to-get-support)
+Normally, your node application will consist of several parts, that appear as separate applications in your manifest file, e.g. one application part that is responsible for the HANA database content, one application part for your application logic written e.g. in node.js (this is the one that can make use of this XS Advanced Container Security API for node.js), and finally one application part that is responsible for the UI layer (this is the one that may make use of the application router functionality). The latter two applications (the application logic in node.js and the application router) should be bound to one and the same UAA service instance. This has the effect, that these two parts can use the same OAuth client credentials.
 
-## Version 4
-Version 4 represents a major rework of the module with the following changes and benefits:
-- Modern Promise-based API with cleaned up function signatures
-- JsDoc with type definitions for better IDE support
-- Detailed hierarchical Errors for fine-grained exception handling of ValidationError, ConfigurationError, NetworkError, ...
-- Support for new and upcoming features, e.g. App2App and App2Service communication via SAP Cloud Identity Services
-- Easier configuration and testing via mocking
-- Backward-compatibility via `v3` package
+When your business users access your application UI with their browser, the application router redirects the browser to the UAA where your business users need to authenticate. After successful authentication, the UAA sends - again via the business user's browser - an OAuth authorization code back to the application router. Now the application router sends this authorization code directly (not via the browser) to the UAA to exchange it into an OAuth access token. If the access token is obtained successfully, the business user has logged on to the UI part of your application already. In order to enable your UI to pass this authentication on to the node.js application part, you need to ensure that the destination to your node.js application part is configured such that the access token is actually sent to the node.js part ("forwardAuthToken": true).
 
-### Breaking Changes
-- Minimum Node.js version is now 18.
-- The v3 API has moved to the `v3` package. While we strongly recommend to migrate to the new API, backward-compatibility should be achievable by changing the import to this package:
-```js
-const { createSecurityContext, requests, constants, TokenInfo, JWTStrategy } = require("@sap/xssec").v3;
-```
-- `isTokenIssuedByXSUAA`, `getConfigType` have been removed. Replace with class check:
-```js 
-securityContext.token instanceof XsuaaToken // or: IdentityServiceToken, XsaToken, UaaToken
-```
-- `getHdbToken` has been removed. It should be replaceable with the following code:
-```js 
-const hdbToken = securityContext.token.payload.ext_cxt?.['hdb.nameduser.saml'] || securityContext.token.payload['hdb.nameduser.saml'] || securityContext.token.jwt;
-```
-- Configuration option `IAS_XSUAA_XCHANGE_ENABLED` has been removed because it was unclear from which service instance to which service instance the exchange should be made when multiple instances of the same type were present. Applications can implement the exchange themselves with the new API as described [here](#ias---xsuaa-token-exchange).
-- Configuration option `disableCache` has been removed. It is also not supported by implementations from the v3 compatibility package.
-- `isInForeignMode` has been removed.
+In order to authenticate this request, which arrives at the node.js backend, sap-xssec offers two mechanisms: Firstly, you can use the XS Advanced Container Security API directly to validate the access token. Secondly, you can make use of the passport strategy that is contained in module sap-xssec as another convenient way how to handle the access token. In the following, both options are described followed by the sap-xssec API description.
 
-## Installation
-Add a dependency to `@sap/xssec` to your package.json, e.g. via:
-```bash
-npm i @sap/xssec
-```
-We strongly recommend to declare the version of this dependency with a `^` (caret) to consume future minor and hotfix releases when you update your dependencies (also see [Maintenance](#maintenance)):
+sap-xssec offers an offline validation of the access token, which requires no additional call to the UAA. The trust for this offline validation is created by binding the XS UAA service instance to your application. Inside the credentials section in the environment variable VCAP_SERVICES, the key for validation of tokens is included. By default, the offline validation check will only accept tokens intended for the same OAuth2 client in the same UAA identity zone. This makes sense and will cover the vast majority of use cases. 
 
-```json
-"dependencies": {
-    "@sap/xssec": "^4"
+If you want to enable another (foreign) application to use some of your application's scopes, you can add a ```granted-apps``` marker to your scope in the ```xs-security.json``` file (as in the following example). The value of the marker is a list of applications that is allowed to request a token with the denoted scope.
+
+```JSON
+{
+  "xsappname"     : "sample-leave-request-app",
+  "description"   : "This sample application demos leave requests",
+  "scopes"        : [ { "name"                : "$XSAPPNAME.createLR",
+                        "description"         : "create leave requests" },
+                      { "name"                : "$XSAPPNAME.approveLR",
+                        "description"         : "approve leave requests",
+                        "granted-apps"        : ["MobileApprovals"] }
+                    ],
+  "attributes"    : [ { "name"                : "costcenter",
+                        "description"         : "costcenter",
+                        "valueType"           : "string"
+                    } ],
+  "role-templates": [ { "name"                : "employee",
+                        "description"         : "Role for creating leave requests",
+                        "scope-references"    : [ "$XSAPPNAME.createLR","JobScheduler.scheduleJobs" ],
+                        "attribute-references": [ "costcenter"] },
+                      { "name"                : "manager",
+                        "description"         : "Role for creating and approving leave requests",
+                        "scope-references"    : [ "$XSAPPNAME.createLR","$XSAPPNAME.approveLR","JobScheduler.scheduleJobs" ],
+                        "attribute-references": [ "costcenter" ] }
+                    ]
 }
 ```
 
-**Important**: @sap/xssec requires at least Node.js 18 which is the current LTS version.
+## Usage of the XS Advanced Container Security API in your node.js Application
 
+In order to use the capabilities of the XS Advanced container security API, add the module "sap-xssec" to the dependencies section of your application's package.json.
 
-## Maintenance
-Keep the version of this dependency up-to-date as it is a **crucial part of your application's security**, e.g. by regularly running:
+To enable tracing, you can set the environment variable DEBUG as follows: `DEBUG=xssec:*`.
 
-```bash
-npm update @sap/xssec # or: npm update
-```
-This is especially important when you deploy your application with a `package-lock.json` that locks the version that gets installed to a fixed version, until the next `npm update`.
+### Direct Usage with existing Access Token
 
-When in doubt, check which version of the module is installed via 
+For the usage of the XS Advanced Container Security API it is necessary to pass a JWT token. If you have such a token, you may use the API as follows. The examples below rely on users and credentials that you should substitute with the ones in your context. The code below is based on version v0.0.9 (if you use another version, the coding might differ).
 
-```bash
-npm list @sap/xssec
-```
-This will print a dependency tree that shows which versions of the module are installed, including transitive dependencies.
-
-
-
-## Example
-The following example gives an overview of the most important APIs of this module for user authentication in [express](https://www.npmjs.com/package/express):
+The typical use case for calling this API lies from within a container when an HTTP request is received. In an authorization header (with keyword `bearer`) an access token is contained already. You can remove the prefix `bearer` and pass the remaining string (just as in the following example as `access_token`) to the API.
 
 ```js
-const { createSecurityContext, XsuaaService, errors: { ValidationError }} = require("@sap/xssec");
-
-const credentials = { clientid, ... } // access service credentials, e.g. via @sap/xsenv
-const authService = new XsuaaService(credentials) // or: IdentityService, XsaService, UaaService ...
-
-async function authMiddleware(req, res, next) {
-  try {
-    const secContext = await createSecurityContext(authService, { req });
-    // user is authenticated -> tie the SecurityContext to this req object
-    req.securityContext = secContext;
-    return next();
-  } catch (e) {
-    // user could not be authenticated
-    if(e instanceof ValidationError) {
-      // request has invalid authentication (e.g. JWT expired, wrong audience, ...)
-      LOG.debug("Unauthenticated request: ", e);
-      return res.sendStatus(401);
-    } else {
-      // authentication could not be validated due to Error
-      LOG.error("Error while authenticating user: ", e);
-      return res.sendStatus(500);
+xssec.createSecurityContext(access_token, xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa, function(error, securityContext, tokenInfo) {
+    if (error) {
+        console.log('Security Context creation failed');
+        return;
     }
-  }
-}
-app.use(authMiddleware);
-
-// access SecurityContext in endpoint handlers
-app.get('/helloWorld', (req, res) => {
-  if (!req.securityContext.checkLocalScope('read')) {
-    return res.sendStatus(403);
-  }
-  
-  // access token information via SecurityContext
-  return res.send("Hello " + req.securityContext.token.givenName);
-};
-```
-
-### Passport Strategy
-As an alternative to writing the middleware manually, you can use the provided `XssecPassportStrategy` for [passport](https://www.npmjs.com/package/passport):
-
-```js
-const { XssecPassportStrategy, XsuaaService } = require("@sap/xssec");
-
-const credentials = { clientid, ... } // access service credentials, e.g. via @sap/xsenv
-const authService = new XsuaaService(credentials) // or: IdentityService, XsaService, UaaService ...
-
-passport.use(new XssecPassportStrategy(authService));
-app.use(passport.initialize());
-app.use(passport.authenticate('JWT', { session: false }));
-
-app.get('/helloWorld', (req, res) => {
-  if (!req.authInfo.checkLocalScope('read')) { // access SecurityContext via req.authInfo
-    return res.sendStatus(403);
-  }
-  
-  return res.send("Hello " + req.authInfo.token.givenName) // access token via SecurityContext or ...
-  // return res.send("Hello " + req.user.name.givenName); // access passport user via req.user
-};
-```
-
-**However**: Once you need access to [ValidationErrors](#error-handling) for logging or analyzing requests with invalid authentication, using the passport strategy becomes more or less the same effort as writing a middleware yourself:
-
-```js
-const { errors: { XssecError, ValidationError }} = require("@sap/xssec");
-
-...
-
-// configure passport to failWithError to be able to catch ValidationErrors.
-// Otherwise it will swallow the ValidationError and directly send a 401/403 response
-app.use(passport.authenticate('JWT', { session: false, failWithError: true }));
-
-// in your express error handler, check for errors passed on by XssecPassportStrategy and handle accordingly
-app.use((err, req, res, next) => {
-  if(e instanceof ValidationError) {
-    // request with invalid authentication (e.g. JWT expired, wrong audience, ...)
-    LOG.debug("Unauthenticated request: ", e);
-    return res.sendStatus(401);
-  } else if (e instanceof XssecError) {
-    // authentication could not be validated due to an Error
-    LOG.error("Error while authenticating user: ", e);
-    return res.sendStatus(500);
-  } else {
-    // ToDo: handle other errors ...
-  }
+    console.log('Security Context created successfully');
+    console.log(tokenInfo.getPublicClaims());
 });
 ```
 
-Unless you have a reason to use passport, we suggest to write the middleware yourself. This gives you full control with comparable effort.
+Note that the example above uses module `xsenv` to retrieve the configuration of the default services (which are read from environment variable `VCAP_SERVICES` or if not set, from the default configuration file). However, it passes only the required `uaa` configuration to the method `createSecurityContext`. As default the UAA configuration is searched with tag `xsuaa` by `xsenv`. For details we refer to module @sap/xsenv. The `xsenv` documentation also helps if you want to provide the credentials from e.g. a user provided service.
 
+The creation function `xssec.createSecurityContext` is to be used for an end-user token (e.g. for grant_type `password` or grant_type `authorization_code`) where user information is expected to be available within the token and thus within the security context.
 
+`createSecurityContext` also accepts a token of grant_type `client_credentials`. This leads to the creation of a limited SecurityContext where certain functions are not available. For more details please consult the API description below or your documentation.
 
-## Recommendation:  SAP Cloud Identity Services
-For new SAP BTP applications, we recommend to directly start with [SAP Cloud Identity Services](https://help.sap.com/docs/cloud-identity-services) and [Authorization Policies](#sap-cloud-identity-service) instead of the other services supported by this module to get the following benefits:
+With version 3.1.0 there is a support for multiple configuration objects for one SecurityContext. For more details have a look [here](doc/MultiConfiguration.md).
 
-- SAP BTP Landscape independent integrations
-- Support for custom domains
-- Fine granular (instance-based) authorization concept
-- Avoid future migration effort: as customer data needs to be migrated, this migration will not be possible fully automated lateron
+### Support for X-Correlation-ID header
 
-Major new features will only be made available for *SAP Cloud Identity Services*. Also, it allows consumption of XSUAA-based services that have not yet migrated.
-
-
-### Migration from XSUAA
-Migration for older applications from XSUAA to *SAP Cloud Identity Services* with *Authorization Policies* is currently in the pilot phase. There will be guides for different migration stages available soon.
-
-
-
-## Usage
-As a basis for all usage scenarios, instantiate a new [Service](#service) instance of one of the following classes exported by the module that corresponds to the authentication service your application is bound to:
-
-- `IdentityService`
-- `XsuaaService`
-- `XsaService` (*legacy systems*)
-- `UaaService` (*legacy systems*)
-
-Pass the service credentials as parsed object:
-
-```js 
-const { IdentityService } = require("@sap/xssec");
-
-const credentials = { clientid ...} // access service credentials, e.g. via @sap/xsenv
-const authService = new IdentityService(credentials);
-```
-
-If your application is bound to more than one authentication service, create multiple instances using the corresponding class and credentials for each service.
-
-### Authentication
-To authenticate users, use the [createSecurityContext](#createsecuritycontext) function.
+The xssec library internally calls REST APIs of the XSUAA.
+Now it's possible to set a `correlationId` during context creation and for token exchange calls.
+For this you have to restructe the configuration object.
 
 ```js
-try {
-  const secContext = await createSecurityContext(authService, { req });
-  // user is authenticated
-} catch (e) {
-  // user could not be authenticated
-  if(e instanceof XssecError) {
-    // e was thrown intentionally by this module with details for the cause of the failure
-  }
-}
-```
-
-:warning: To prevent information overlap from one user's *SecurityContext* to another's, do not re-use the same *contextConfig* object for multiple invocations of `createSecurityContext`!
-Create a new object each time, as in the sample code. Changing the *req* property and then passing the same object a second time is not enough.
-Since version 4.0.1, the module has mechanisms in place to avoid these issues even when used wrongly but you should not willingly trust it.
-
-The createSecurityContext function resolves with a service-specific `SecurityContext` object, e.g. `XsuaaSecurityContext`.
-
-The `SecurityContext` will always have the **token** property that contains a service-specific `Token` object, e.g. `XsuaaToken` that provides access to the decoded information of the token.
-
-
-
-### Authorization
-The library can also be used for authorization checks.
-
-#### XSUAA
-An `XsuaaSecurityContext` provides [different methods](#xsuaasecuritycontext) to check if the token contains a specific scope.
-
-#### SAP Cloud Identity Service
-The recommended way to perform authorization for tokens issued by SAP Cloud Identity Service, is to use [Authorization Policies](https://help.sap.com/docs/identity-authentication/identity-authentication/configuring-authorization-policies). After authenticating requests with this module, the authorization checks are done with a dedicated module called [@sap/ams](https://www.npmjs.com/package/@sap/ams).
-
-### Fetching Tokens
-Each `Service` subclass has [dedicated methods](#token-flows) that can be used to fetch tokens via the following flows:
-
-- Client Credentials: `fetchClientCredentialsToken({ options })`
-- Password: `fetchPasswordToken(username, password, { options })`
-- JWT Bearer: `fetchJwtBearerToken(assertion, { options })`
-
-
-
-
-## Error Handling
-The API of this module throws instances of `XssecError` or hierarchical subclasses thereof that can be identified like so:
-
-```js
-try {
-  await xsuaaService.fetchClientCredentialsToken()
-} catch(e) {
-  if(e instanceof XssecError) {
-    // it is an error thrown by this module
-  }
-}
-```
-
-There are three important subclasses of `XssecError` that divide the Errors into different categories like so:
-
-```bash
-XssecError
-├── ConfigurationError
-    ├── InvalidCredentialsError
-    ├── ...
-├── NetworkError
-│   ├── ResponseError
-    ├── ...
-├── ValidationError
-    ├── ExpiredTokenError
-    ├── ...
-```
-
-- `ConfigurationError` indicates that your application is not using this library correctly or the authentication service is not correctly configured. You should not encounter this Error outside of development as these Errors require fixing.\
-*Examples:*
-  - passing credentials to a `Service` constructor that are missing mandatory properties
-  - fetching a token via a *grant_type* that is not supported by the authentication server because it is disabled in the server configuration etc.
-- `NetworkError` means the authentication server was unreachable or responded with an unexpected error. This is not necessarily an issue of this module.\
-*Examples:*
-  - the authentication server is down
-  - a token fetch uses invalid credentials resulting in a response error etc.
-- `ValidationError` occurs during authentication when the request did not contain valid authentication information. This is the most common type of Error thrown by this module. It has many subclasses that provide detailed information about the reason why the validation result was negative.
-*Examples:*
-  - the request contained no JWT
-  - the JWT in the request was expired
-  - the JWT was not issued for this application audience
-  - the JWT was forged by an attacker with an invalid signature
-  - the JWT is valid but its x5t thumbprint does not match the client's certificate (see [x5t validation](#x5t-validation)) etc.
-
-The Error classes contain error-specific properties as details:
-
-*Example*:
-```js
-const { errors: { UnsupportedAlgorithmError }} = require("@sap/xssec");
-
-catch(e) {
-  if(e instanceof UnsupportedAlgorithmError) {
-    // e.token contains the token whose algorithm is not supported
-    // e.alg contains the algorithm of the token that is not supported, e.g. "HS256"
-  }
-}
-```
-
-## Testing
-We discourage application developers from basing their integration tests against BTP Security Services on a local setup that feeds this module with self-signed JWTs and a self-hosted JWKS on localhost. This was a common strategy in the past but has several problems:
-
-- **it provides a false sense of safety**: Due to additional validations done by real BTP JWKS endpoints (that you will not be able to mock), the test may suceed for token payloads that would be considered invalid in productive environments. This is especially true for multi-tenant applications and micro-service based applications with inter-service communication.
-- **JWKS hosted via http is not supported anymore**: To improve the security of the module, only URLs beginning with **https** scheme are supported for JWKS fetching.
-- **it is wasted development effort**: there is no value in knowing if this module can validate signatures of tokens that you signed yourself.
-Testing the signature validation capabilities of this module is already well covered by the test pipeline of this module.
-
-If you need to weaken the validation mechanisms of this module for testing, you should commit fully to this strategy.
-Consider using a simpler authentication strategy like Basic Auth with mocked users or creating mocked `SecurityContext` or `Token` instances of this module for local tests.
-Cloud application frameworks typically offer mechanisms to configure different strategies in test and production profiles ([CAP Example](https://cap.cloud.sap/docs/node.js/authentication#strategies)).\
-In addition, complement your local tests with *proper* integration tests against real service instances on a dedicated test cloud landscape.
-
-
-## API
-This section describes the public API of v4 of this module.
-
-:warning: Accessing other properties and methods is discouraged as they may change during minor and hotfix releases of this module, even if they are not marked *private* via **#** (ECMAScript private fields/methods) or **@private** (JsDoc)
-
-### Service
-Instances of `Service(credentials, serviceConfig)` are created from parsed service credentials and an optional configuration:
-
-```js 
-const { IdentityService } = require("@sap/xssec");
-
-const credentials = { clientid ...} // access service credentials, e.g. via @sap/xsenv
-const serviceConfig = {
-  // optional, service-specific configuration object...    
-  validation: {
-    x5t: {  
-      enabled: true // enables token ownership validation via x5t signature thumbprint
-    }
-  }
+const config = {
+  credentials: xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa,
+  correlationId: "1111-1111-11111111"
 };
-const identityService = new IdentityService(credentials, serviceConfig);
+
+//now you can call the createSecurityContext method as always
+xssec.createSecurityContext(access_token, config, function(error, securityContext, tokenInfo) {
+    if (error) {
+        console.log('Security Context creation failed');
+        return;
+    }
+    console.log('Security Context created successfully');
+    console.log(tokenInfo.getPublicClaims());
+});
 ```
 
-#### Certificate Rotation
-It is possible to update the `cert` and `key` of a `Service` instance by calling `Service#setCertificateAndKey(cert, key)` with PEM-encoded values that will be used in subsequent calls to the server.
+### Usage with Passport Strategy
 
-*Note: Updating the `cert` and `key` property of the `credentials` object passed in the `Service` constructor is not enough because the `Service` makes a copy of the credentials for internal use and then discards the original reference.*
+If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.
 
-This method is useful in different scenarios, e.g:
-- applications using ZTIS to manage their SAP Identity Service certificate. Whenever ZTIS provides a new pair of `cert` and `key`, the application can update the credentials of the `Service` instance via this method.
-- credential rotation without application re-start: In SAP BTP Kyma, it is possible to rotate service bindings of a running application. Typically, this is used to refresh certificates. In that case, the method can be used to update the `Service` instance.
-
-##### Full Credential Rotation
-Applications that expect their credentials to be rotated with other properties besides `cert` and `key` changing, must construct a fresh new `Service` instance whenever new credentials are received.
-
-#### Token Flows
-The subclasses of `Service` provide the following service-specific methods that can be used to fetch tokens:
-
-- Client Credentials: `fetchClientCredentialsToken({ options })`
-- Password: `fetchPasswordToken(username, password, { options })`
-- JWT Bearer: `fetchJwtBearerToken(assertion, { options })`
-
-They resolve with the parsed JSON response from the authentication server. Typically, the desired token is the one under property `access_token`. However, for user-specific IdentityService tokens (Password, JWT Bearer), the desired token is typically `id_token`:
+Since version 3.1.1 the JWTStratgy also supports the scope validation specified in [passport](http://www.passportjs.org/docs/oauth/#scope).
 
 ```js
-const accessTokenJwt = (await xsuaaService.fetchClientCredentialsToken()).access_token;
-const idTokenJwt = (await identityService.fetchPasswordToken(username, password)).id_token;
+var express = require('express');
+var passport = require('passport');
+var JWTStrategy = require('@sap/xssec').JWTStrategy;
+var xsenv = require('@sap/xsenv');
+
+...
+
+var app = express();
+
+...
+
+passport.use(new JWTStrategy(xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa));
+
+app.use(passport.initialize());
+app.use(passport.authenticate('JWT', { session: false }));
 ```
 
-Of course, the other properties of the response, for example `refresh_token`, are also accessible.
+If JWT token is present in the request and it is successfully verified, following objects are created:
+* request.user - according to [User Profile](http://passportjs.org/docs/profile) convention
+  * id
+  * name
+    * givenName
+    * familyName
+  * emails `[ { value: <email> } ]`
+* request.authInfo - the [Security Context](#api-description)
+* request.tokenInfo - the [TokenInfo](doc/TokenInfo.md) object
 
-The methods are annotated with service-specific JSDoc type definitions that should provide IDE-support for the function signatures and following options.
+If the `client_credentials` JWT token is present in the request and it is successfully verified, following objects are created:
+* request.user - empty object
+* request.authInfo - the [Security Context](#api-description)
+* request.tokenInfo - the [TokenInfo](doc/TokenInfo.md) object
 
-##### options
-The `options` parameter is optional. It supports:
 
-`correlationId` (*string*) a correlation id that allows tracing debug logs and Errors thrown by this module to the request\
- `token_format` (*jwt|opaque*) can be used to explicitly specify token format \
- `timeout` (*number*) maximum time in *ms* to wait for a response
- 
-It also supports the following service-specific options:
+#### Session
 
-**XSUAA**: 
+It is recommended to _disable the session_ as in the example above.
+In XSA each request comes with a JWT token so it is authenticated explicitly and identifies the user.
+If you still need the session, you can enable it but then you should also implement [user serialization/deserialization](http://passportjs.org/guide/configure/) and some sort of [session persistency](https://github.com/expressjs/session).
 
-`scope` (*string|string[]*) requested scope(s)\
-`tenant` (string) the *subdomain* of a tenant on the same subaccount from which to fetch a token. *Note*: this parameter does **not** accept a zone ID. Use the zid parameter instead to pass a zone ID.\
-`zid` (string) the zone id from which to fetch a token\
-`authorities` (object) additional [authorities](https://github.com/cloudfoundry/uaa/blob/24c0c23fa36d7c604e365e1be4df658d55dcb211/docs/UAA-APIs.rst#support-for-additional-authorization-attributes) that can be freely chosen during token fetch and will be put into the token under *az_attr* claim
 
-**Identity Service**:
+### JWKS cache configuration
+To verify the validity of a token, the library needs to ensure that it was signed with a `public key` from the authorization server's [JWKS](https://datatracker.ietf.org/doc/html/rfc7517) (JSON Web Key Set). The application retrieves the JWKS via HTTP from the authorization server. It is cached to reduce both the load on the authorization server and the latency of requests introduced by the token validation.
 
-`resource` (*string|string[]*) name(s) of API dependency to another application that shall be consumed with this token in the format urn:sap:identity:application:provider:name:\<dependencyName\>
-
-#### acceptsToken
-Furthermore, each subclass of `Service` offers the method `acceptsToken(token)` which checks if a `Token` is accepted by this service instance:
-
-```js
-const jwt = ... // extract JWT from req object
-const token = new Token(jwt);
-if(identityService.acceptsToken(token)) {
-  // the JWT was issued for an application bound to this Identity Service instance but it MUST still be validated!
-}
-```
-
-### createSecurityContext
-`createSecurityContext(service, contextConfig)` can be called with a single `Service` instance or an array of `Service` instances as first parameter. In the latter case, the service from which the Security Context is created, will be determined based on the audience of the token.
-
-The second parameter is a [unique (!)](#authentication) `contextConfig` object that is used to pass information for the creation of this specific context.
-
-#### contextConfig 
-  **Mandatory** properties:
-  - `req` request object from which the JWT will be extracted as Bearer token from `req.headers.authorization`. Additionally, if present, the client's certificate will be extracted from `req.headers["x-forwarded-client-cert"]` where it is typically put by Cloud Foundry after SSL termination.
-  
-  *or*:
-  - `jwt` manually provided JWT token as String
-  
-  *Optional* properties:
-  - `correlationId` a correlation id that allows tracing debug logs and Errors thrown by this module to the request
-  - `clientCertificatePem` manually provided client certificate in PEM format
-
-The client certificate is only required in features such as [x5t validation](#x5t-validation) or [proof token validation](#proof-token-validation) for SAP Cloud Identity Service.
-
-### SecurityContext
-`SecurityContext` instances are returned by [createSecurityContext](#createsecuritycontext). They have the following properties:
-
-- **service** (*Service*) the [Service](#service) on which the security context was opened
-- **token** (*Token*)  the parsed [Token](#token) (previously `TokenInfo`) instance with getters for its header, payload and most important claims
-- **config** (*object*) the (sanitized) `contextConfig` from which the `SecurityContext` was created
-- legacy methods for v3 backward-compatibility, e.g. `getAppToken()`, `getUserInfo()`
-
-The service-specific subclasses of `SecurityContext` extend this class as follows.
-
-#### XsuaaSecurityContext
-Instances of `XsuaaSecurityContext` additionally have methods for authorization checks:
-
-- `checkScope(scope)` Checks if the scopes of the token include the given *scope* exactly as provided to the function. As the scopes of the token begin with the *xsappname* of the Xsuaa service instance, this means, the provided *scope* parameter must include this prefix:
-```js 
-if(secContext.checkScope(`${authService.credentials.xsappname}.READ`)) {
-  // user is authorized
-}
-```
-
-- `checkLocalScope(scope)` Checks if the scopes of the token include `<xsappname>.<scope>`, where the *xsappname* comes from the credentials of the service that was used to create the SecurityContext. This is a quality-of-life function to check for scopes without passing this *xsappname* to the function:
-```js 
-if(secContext.checkLocalScope("READ")) {
-  // user is authorized
-}
-```
-
-- `checkFollowingInstanceScope(scope)` Checks if the scopes of the token include `<followingInstanceXsAppName>.<scope>`, where *followingInstanceXsAppName* is the *xsappname* of the XSUAA clone instance for which the token was issued. This is a quality-of-life function to check for scopes of following XSUAA instances.
-
-#### IdentityServiceSecurityContext
-- **servicePlans** (*string[]*) [requires [proof token validation](#proof-token-validation)] contains the service plans of the caller when authenticated with [proof token validation](#proof-token-validation) enabled
-- **isInternal()** (*boolean*) [requires  [x5t validation](#x5t-validation)] Checks whether the token from which this context was created is a token fetched by the OAuth 2.0 client for internal use. It returns true if the token was fetched via client credentials flow with the credentials of this context's IdentityService instance, false otherwise.
-
-### Token
-In production, only trust information of `Token` instances returned by `createSecurityContext` (see [Authentication](#authentication)).
-
-However, for the purposes of testing, instances of `Token` can be constructed directly from a raw **jwt** or a combination of parsed header and payload like so:
-
-```js 
-const jwt = "eyJraWQiOi...."
-let token = new IdentityServiceToken(jwt);
-
-const header = { alg: "RS256" };
-const payload = { foo: "bar" };
-token = new IdentityServiceToken(null, { header, payload });
-```
-
-:warning: The resulting token object is created **without** validating the **jwt** for authenticity, integrity, expiration etc.
-
-The `Token` class provides easier access to the most common claims of the **jwt**, as well as its parsed header and payload:
-
-- **audiences** (*string[]*) or [] if token has no audiences
-- **azp** (*string*) 
-- **clientId** (*string*) 
-- **email** (*string*) 
-- **expired** (*boolean*) 
-- **expirationDate** (*Date*) 
-- **familyName** (*string*) 
-- **givenName** (*string*) 
-- **grantType** (*string*) 
-- **header** (*object*)
-- **issuer** (*string*) 
-- **issueDate** (*Date*) 
-- **jwt** (*string*) from which this `Token` instance was created
-- **notYetValid** (*boolean*) based on the optional **nbf** (*no use before*) claim. If true, the token must not be accepted yet
-- **origin** (*string*) 
-- **payload** (*object*)
-- **remainingTime** (*integer*) in seconds based on claim **exp** (*expiration time*)
-- **subject** (*string*) 
-- legacy methods for v3 backward-compatibility, e.g. `getAudiencesArray()`, `getTokenValue()`
-
-#### IdentityServiceToken
-Instances of `IdentityServiceToken` additionally have
-
-- **appTid** (*string*) application tenant id
-- **customIssuer** (*string*) or *null* if no custom issuer has been configured
-- **scimId** (*string*)
-
-#### XsuaaToken, XsaToken, UaaToken
-Instances of `XsuaaToken`, `XsaToken`, `UaaToken` additionally have
-
-- **azAttributes** (*object*) *az_attr* claim
-- **extAttributes** (*object*) *ext_attr* claim
-- **scopes** (*string[]*) or [] if token has no scope(s)
-- **serviceInstanceId** (*string*) from *ext_attr*
-- **subAccountId** (*string*) from *ext_attr* or *zid*
-- **xsUserAttributes** (*object*) *xs.user.attributes* from *ext_ctx* or direct claim
-- **xsSystemAttributes** (*object*) *xs.system.attributes* from *ext_ctx* or direct claim
-- **zid** (*string*) zone id
-
-## Configuration
-### Passport Strategy
-It is possible to configure the [XssecPassportStrategy](#passport-strategy) with *scope(s)* such that incoming requests must have at least one of them. Otherwise, a response with code 403 is returned:
-
-```js
-app.use(passport.authenticate('JWT', { session: false, scope: "read" }));
-app.use(passport.authenticate('JWT', { session: false, scope: ["read", "write"] }));
-```
-
-### JWKS Cache
-To verify the validity of a token, the library needs to ensure that it was signed with a *private key* belonging to one of the *public key*s from the authentication server's [JWKS](https://datatracker.ietf.org/doc/html/rfc7517) (JSON Web Key Set). The application retrieves the JWKS via HTTP from the authentication server. It is cached to reduce both the load on the server and the latency of requests introduced by the signature validation.
-
-Please note that the JWKS endpoint is parameterized and does additional service-specific validations based on those parameters. For this reason, among others, more than one JWKS is typically cached and individually refreshed under different cache keys that include those parameters.
-
-There are three values that are used to control the cache:
-- `expiration time` *(integer)* when a JWKS is needed for validation whose cache entry has expired (`time since last refresh` > `expiration_time`), a refresh of the JWKS is performed (if not already in progress) and the token validation of the request needs to wait synchronously until the JWKS has been succesfully refreshed.
-- `refresh period` *(integer)* When a JWKS is needed for validation whose cache entry is within the refresh period (`time until expiration` < `refresh_period`), the cached JWKS will be used for validation (unless it has expired completely) and the JWKS will be refreshed asynchronously in the background.
-- `shared` *(boolean)* when true, shares the cache with all `Service` instances of the same subclass (e.g. `IdentityService`) created with `shared=true`.\
-The shared cache's configuration will be determined by the first instance created with `shared=true`!
+There are two values that are used to control the cache:
+- `expiration time`: When a JWKS is needed for validation whose cache entry has expired (`time since last refresh` > `X`), a refresh of the JWKS is performed (if not already in progress) and the token validation of the request needs to wait synchronously until the JWKS has been succesfully refreshed.
+- `refresh period`: When a JWKS is needed for validation whose cache entry is within the refresh period (`time until expiration` < `Y`), the cached JWKS will be used for validation (unless it has expired completely) and the JWKS will be refreshed asynchronously in the background.
 
 Only **one HTTP request at a time** will be performed to refresh the JWKS.
 
-In effect, productive systems with regular incoming requests should not experience delays from refreshing a JWKS after the initial fetch of that JWKS. Delays will only happen when the JWKS could not be refreshed during the refresh period, e.g. due to a prolonged outage of the JWKS endpoint or when no requests were received during the refresh period that would have triggered an asynchronous refresh.
+In effect, productive systems with regular incoming requests should not experience delays from refreshing the JWKS (apart from the first request). Delays will only happen when the JWKS could not be refreshed during the refresh period, e.g. due to a prolonged outage of the JWKS endpoint or when no requests were received during the refresh period that would trigger a refresh.
 
 
 ##### Default cache configuration
 ```json
 {
-  "shared": false,
   "expirationTime": 1800000, // 1800000ms = 30min
   "refreshPeriod": 900000, // 900000ms = 15min
 }
@@ -568,125 +164,313 @@ In effect, productive systems with regular incoming requests should not experien
 
 ##### Manual cache configuration
 In rare situations you might need to change the cache configuration.
-The `expiration time` is important to support key rotation scenarios and should not be too high. Otherwise, the security of the application is impacted.
+The expiration time is important to support key rotation scenarios and should not be too high. Otherwise, the security of the application is impacted.
 
 :exclamation: **Normally you don't need to overwrite the default values!**
 
-To overwrite cache parameters, you need to specify them as key/value pairs in `<serviceConfiguration>.validation.jwks`:
+To overwrite cache parameters you need to specify them as key/value pairs under `<serviceCredentialJSON>.jwksCache`.
+Please note that the cache parameters are configured in `ms` (milliseconds).
+
+***Example code:***
 
 ```js
-const authService = new IdentityService(identityServiceCredentials,
-  {
-    // override one default value or many
-    validation: {
-      jwks: {
-        expirationTime: 3600000,
-        // refreshPeriod: 1800000,
-        // shared: true
-      }
-    }
-  });
+// load service config
+let config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
+
+// add a jwksCache object to the config
+config.jwksCache = {
+  expirationTime: 3600000
+  refreshPeriod: 1800000,
+};
+
+// you can also overwrite only one value:
+config.jwksCache = {
+  refreshPeriod: 1200000,
+};
+
+// pass the config object to createSecurityConfig ...
+xssec.createSecurityContext(access_token, config, function(error, securityContext, tokenInfo) {
+   ...
+});
+
+// ... or if you use passport:
+passport.use(new JWTStrategy(config));
+...
 ```
 
-### X.509 certificate support
-#### X509_GENERATED
-If your authentication service instance is configured to manage certificates and keys on its own, there will be `certificate` and `key` properties in the service credentials that work out-of-the-box with this module when you use it for authenticated requests to the authentication service, e.g. when [fetching tokens](#fetching-tokens).
-
-#### X509_PROVIDED
-If your authentication service instance is configured to use an externally managed certificate/key you might need to add them to the service credentials before passing the credentials to the `Service` constructor:
-
-```js
-const { XsuaaService } = require("@sap/xssec");
-
-const credentials = { clientid, ... } // access service credentials, e.g. via @sap/xsenv
-credentials.key = <yourExternallyManagedKey> // in PEM format
-credentials.certificate = <yourExternallyManagedCertificate> // in PEM format
-
-const authService = new XsuaaService(credentials) // or IdentityService ...
-```
-
-
-
-### Identity Service
-The following are Identity Service specific configuration options.
-
-#### x5t Validation
-The library optionally supports token ownership validation via x5t thumbprint ([RFC 8705](https://datatracker.ietf.org/doc/html/rfc8705)) for tokens issues by SAP Cloud Identity Service.
+### x5t Token Validation
+The library optionaly supports token ownership validation via x5t thumbprint ([RFC 8705](https://datatracker.ietf.org/doc/html/rfc8705)) for tokens issues by SAP Identity service.
 
 :grey_exclamation: x5t token validation should only be enabled for applications using mTLS because the x5t validation will fail when there is no client certificate used for the request. SAP BTP will automatically put the client certificate in the `x-forwarded-client-cert` header of requests performed against `cert` application routes. From there it will be picked up by this lib to do the validation against the fingerprint claim from the token payload.
 
-To enable x5t validation, set `<serviceConfiguration>.validation.x5t.enabled>` flag to true:
+To enable x5t validation, pass a truthy value for the `x5tValidation` flag in the configuration object:
 
 ```js
-const authService = new IdentityService(identityServiceCredentials,
-  {
-    validation: {
-      x5t: {
-        enabled: true
-      }
+// when creating securityContext manually
+xssec.createSecurityContext(access_token,
+{ x5tValidation: true, x509Certificate: ... // PEM or DER encoded certificate as string
+}, function(error, securityContext, tokenInfo) { ... });
+
+// when using passport
+app.use(passport.authenticate('JWT', { x5tValidation: true }));
+```
+
+### Test Usage without having an Access Token
+
+For test purposes, you may retrieve the token for a certain user (whose credentials you know) from the UAA as in the following code-snippet.
+
+```js
+var http = require("http");
+var xssec = require("@sap/xssec");
+var xsenv = require('@sap/xsenv');
+var request = require('request');
+
+var uaaService = xsenv.getServices( { uaa: 'uaa' } ).uaa;
+var testService = xsenv.getServices( { test : { label : 'test' } } ).test;
+process.env.XSAPPNAME = testService.test.xsappname;
+
+var options = {
+    url : uaaService.url + '/oauth/token?client_id=' + uaaService.clientid
+            + '&grant_type=password&username=' + testService.userid + '&password='
+            + testService.usersecret
+};
+request.get(
+    options,
+    function(error, response, body) {
+        if (error || response.statusCode !== 200) {
+            console.log('Token request failed');
+            return;
+        }
+
+        var json = null;
+        try {
+            json = JSON.parse(body);
+        } catch (e) {
+        	return callback(e);
+        }
+
+        xssec.createSecurityContext(json.access_token, uaaService, function(error, securityContext, tokenInfo) {
+            if (error) {
+                console.log('Security Context creation failed');
+                return;
+            }
+            console.log('Security Context created successfully');
+            console.log(tokenInfo.getPublicClaims());
+        });
     }
-  });
+).auth(uaaService.clientid, uaaService.clientsecret, false);
+```
+Note that this example assumes additional test configuration in the file `default-services.json`.
+
+```json
+{
+  "uaa": {
+    "url"             : "<UAA URL>",
+    "clientid"        : "<your application's OAuth client id>",
+    "clientsecret"    : "<your application's OAuth client secret>",
+    "xsappname"       : "<your application's name>",
+    "identityzone"    : "<desired UAA identity zone>",
+    "tags"            : ["xsuaa"],
+    "verificationkey" : "<verification key for offline validation>"
+  },
+  "test": {
+    "userid"          : "marissa",
+    "usersecret"      : "koala"
+  }
+}
 ```
 
-#### Proof Token Validation
-To enable proof token validation, set `<serviceConfiguration>.validation.proofToken.enabled>` flag to true:
 
+
+### Support for X.509 authentication for token exchange
+XSUAA offers the possibility to use X.509 authentication.
+Since version 3.2.2 the node-xssec library supports to use this.
+
+As a developer you normally do not need to do something differently. You create a SecurityContext with the configuration object you get from the environment.
+If the XSUAA is configured to use X.509 the config object does not contain a `clientsecret`. Instead of this, there are a `certificate` and a `key` attributes.
+The library will use these attributes during token exchanges to fetch the tokens from xsuaa using mtls.
+
+#### X.509 with XSUAA managed certificates
+If your XSUAA instance is configured to manage certificates and keys on its own, you can take the configuration object from VCAP services and pass it to the `createSecurityContext` method.
+The needed `certificate` and `key` attributes are already filled.
+
+There is no difference to client-credential based token exchange.
+
+#### X.509 with external certificates
+If you configured your XSUAA instance to use an external managed certificate/key you need to provide the `key` attribute to the configuration object.
+
+For this you take the JSON from VCAP-Services and add the PEM encoded key as a string to the configuration.
 ```js
-const authService = new IdentityService(identityServiceCredentials,
-  {
-    validation: {
-      proofToken: {
-        enabled: true
-      }
-    }
-  });
+//read xsuaa config from VCAP
+const config = xsenv.getServices({xsuaa:{tag:'xsuaa'}}).xsuaa;
+
+const myExternalManagedKey = "-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----\n";
+config.key = myExternalManagedKey;
+
+//if using passport
+passport.use(new JWTStrategy(config));
+
+//or create a security context directly
+xssec.createSecurityContext(access_token, config, function(error, securityContext, tokenInfo) {
+    //now you can run a tokenExchange with the provided key    
+    xssec.requestToken(config, constants.TYPE_USER_TOKEN, null, function(err, data) {
+
+    })    
+});
 ```
 
-After creating a SecurityContext on a service with proof token validation enabled, the service plans of the caller can be retrieved:
+### Usage in Docker
 
-```js
-const securityContext = await createSecurityContext(identityService, { reqWithForwardedClientCertificate });
-// service plans are available via securityContext.servicePlans
+In versions <= 3.0.0 there was **no** support for alpine base images.
+But since verion >= 3.0.0 the xssec library has no dependency to a native library anymore. So it is now **fully compatible** with alpine images.
+
+## API Description
+
+### createSecurityContext
+
+This function creates the Security Context by validating the received access token against credentials put into the application's environment via the UAA service binding.
+
+Usually, the received token must be intended for the current application. More clearly, the OAuth client id in the access token needs to be equal to the OAuth client id of the application (from the application's environment).
+
+Parameters:
+
+* `access token` ... the access token as received from UAA in the "authorization Bearer" HTTP header
+* `config` ... a structure with mandatory elements url, clientid and clientsecret or cache configuration. Since version 3.1.0 it may also be an array of these structures (have a look [here](doc/MultiConfiguration.md))
+* `callback(error, securityContext, tokenInfo)`
+
+### getLogonName
+
+not available for tokens of grant_type `client_credentials`, returns the logon name
+
+### getGivenName
+
+not available for tokens of grant_type `client_credentials`, returns the given name
+
+### getFamilyName
+
+not available for tokens of grant_type `client_credentials`, returns the family name
+
+### getEmail
+
+not available for tokens of grant_type `client_credentials`, returns the email
+
+### getUserName
+
+returns unique principal name of a user `user/<origin>/<logon name>` or client id that the access token has been issued for `client/<client id>`
+
+### getUniquePrincipalName
+
+not available for tokens of grant_type `client_credentials`, returns unique principal name of a user. `user/<origin>/<logon name>`
+
+### getOrigin
+
+* returns the user origin. The origin is an alias that refers to a user store in which the user is persisted. For example, users that are authenticated by the UAA itself with a username/password combination have their origin set to the value uaa.
+
+### checkLocalScope
+
+checks a scope that is published by the current application in the xs-security.json file.
+
+Parameters:
+
+* `scope` ... the scope whose existence is checked against the available scopes of the current user. Here, no prefix is required.
+* returns `true` if the scope is contained in the user's scopes, `false` otherwise
+
+### checkFollowingInstanceScope
+
+checks a instance specific scope that is published by the current application in the xs-security.json file. Use this to check a scope from a service instance.
+
+Parameters:
+
+* `scope` ... the scope whose existence is checked against the available scopes of the current user. Here, no prefix is required.
+* returns `true` if the scope is contained in the user's scopes, `false` otherwise
+
+### checkScope
+
+checks a scope that is published by an application.
+
+Parameters:
+
+* `scope` ... the scope whose existence is checked against the available scopes of the current user.  Here, the prefix is required, thus the scope string is "globally unique".
+* returns `true` if the scope is contained in the user's scopes, `false` otherwise
+
+### getAppToken
+
+* returns the token of the application that can be used e.g. for token forwarding to another app.
+
+### getHdbToken
+
+* returns a token that can be used for contacting the HANA database. If the token, that the security context has been instantiated with, is a foreign token (meaning that the OAuth client contained in the token and the OAuth client of the current application do not match), `null` is returned instead of a token.
+
+### getTokenInfo
+* returns the [TokenInfo](doc/TokenInfo.md) object, containing all information received from token.
+
+### requestToken
+
+Requests a token based on the given type. The type can be `constants.TYPE_USER_TOKEN` or `constants.TYPE_CLIENT_CREDENTIALS_TOKEN`.
+
+* `serviceCredentials` ... the credentials of the service as JSON object. The attributes `clientid`, `clientsecret` and `url` (UAA) are mandatory. Note that the subdomain of the `url` will be adapted to the subdomain of the application token if necessary.
+* `type` ... allowed values are `constants.TYPE_USER_TOKEN` and `constants.TYPE_CLIENT_CREDENTIALS_TOKEN`
+* `additionalAttributes` ... the attributes that should be included into the JWT token as JSON object (key-value list), e.g. `{"attr1" : "value1", "attr2" : "value2"}` 
+* `cb(error, token)` ... callback function
+
+also have a look on how to initiate the [token flows](doc/TokenFlows.md) directly
+### hasAttributes
+
+not available for tokens of grant_type `client_credentials`.
+
+* returns `true` if the token contains any xs user attributes, `false` otherwise.
+
+### getAttribute
+
+not available for tokens of grant_type `client_credentials`.
+
+Parameters:
+
+* `name` ... The name of the attribute that is requested.
+* returns the attribute exactly as it is contained in the access token. If no attribute with the given name is contained in the access token, `null` is returned. If the token, that the security context has been instantiated with, is a foreign token (meaning that the OAuth client contained in the token and the OAuth client of the current application do not match), `null` is returned regardless of whether the requested attribute is contained in the token or not.
+
+### getAdditionalAuthAttribute
+
+Parameters:
+
+* `name` ... The name of the additional authentication attribute that is requested.
+* returns the additional authentication attribute exactly as it is contained in the access token. If no attribute with the given name is contained in the access token, `null` is returned. Note that additional authentication attributes are also returned in foreign mode (in contrast to getAttribute).
+
+### isInForeignMode
+
+* returns `true` if the token, that the security context has been instantiated with, is a foreign token that was not originally issued for the current application, `false` otherwise.
+
+### getSubdomain
+
+* returns the subdomain that the access token has been issued for.
+
+### getClientId
+
+* returns the client id that the access token has been issued for.
+
+### getSubaccountId
+
+* returns the subaccount id that the access token has been issued for.
+
+### getZoneId
+
+* returns the identity zone that the access token has been issued for.
+
+### getExpirationDate
+
+* returns the expiration date of the access token as javascript Date object.
+
+### getCloneServiceInstanceId
+
+* returns the service instance id of the clone if the XSUAA broker plan is used.
+
+### getGrantType
+
+* returns the grant type of the JWT token, e.g. `authorization_code`, `password`, `client_credentials` or `urn:ietf:params:oauth:grant-type:saml2-bearer`.
+
+## Latest published Version
+Use this command to check for the latest version that is published to the NPM repository:
+
 ```
-
-#### IAS -> XSUAA Token Exchange
-Some applications need to exchange incoming Identity Service user tokens to XSUAA user tokens.
-The correct token flow for this is the [JWT Bearer](#token-flows) flow.
-
-The token exchange is not a fully fletched feature of the library and needs to be implemented **and tested** via application coding.
-
-However, [this snippet](./src/util/iasXsuaaTokenExchange.js) should give a good idea how the API of the library can be used to achieve this.
-It implements an express middleware that can be registered *before* the authentication middleware to exchange the IAS token in the request header to an XSUAA token.\
-If you decide to base your implementation on the snippet, you need to copy it to your source files and implement logging and error handling as required by the application.
-
-
-## Troubleshooting
-### Common Issues
-#### Requests get unexpectedly declined with 401/403
-Analyze the [ValidationError](#error-handling) thrown by [createSecurityContext](#createsecuritycontext) or passed on by the [passport strategy](#passport-strategy) to find the cause for this, e.g. by logging its message or if possible, by inspecting it in the debugger.
-
-#### SyntaxErrors
-@sap/xssec 4 uses ECMAScript 2020 syntax. This means it requires at least Node.js 18 which is the current LTS version. Version 4 does not support Node.js versions that are out of maintenance. If you try, you will encounter SyntaxErrors such as 
-
+npm view --registry https://npm.sap.com @sap/xssec versions
 ```
-SyntaxError: Unexpected token '??='
-```
-
-### Debug Logs
-To enable debug logging, set the environment variable DEBUG as follows when starting your application: `DEBUG=xssec`. Note that `DEBUG=xssec:*` works only for xssec 3.
-
-
-### How to get support
-Please use official SAP support channels to get support under component `BC-CP-CF-SEC-LIB` or `Security Client Libraries`.\
-Before opening support tickets, please check the [Troubleshooting](#troubleshooting) section first.
-
-Make sure to include the following mandatory information:
-
-- Installed version of @sap/xssec, preferrably full output of `npm list @sap/xssec`
-- Auth service set-up of your application (XSUAA, IAS, XSUAA+IAS, IAS+AMS, etc.)
-- For exceptions: Stack trace that includes the executed code locations of this library that lead to the exception
-- For unexpected 401 / 403 response codes: relevant log output of this library with environment variable DEBUG=xssec:* set to enable debug output
-- Steps you have tried to fix the problem
-- Reason why you believe a bug in this library is causing your problem
-
-Unfortunately, we can *NOT* offer consulting via support channels.
