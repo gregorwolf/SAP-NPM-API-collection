@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.0] - 2025-03-05
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/adp-tooling](https://github.com/SAP/open-ux-tools/tree/main/packages/adp-tooling) | devDependencies | minor | [`0.12.137` -> `0.13.7`] |
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools/tree/main/packages/preview-middleware) | dependencies | minor | [`0.17.47` -> `0.18.7`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools/tree/main/packages/deploy-tooling) | devDependencies | minor | [`0.15.44` -> `0.15.45`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools/tree/main/packages/backend-proxy-middleware) | devDependencies | minor | [`0.8.35` -> `0.8.36`] |
+
 ## [1.16.5] - 2025-02-20
 ### Quality
 

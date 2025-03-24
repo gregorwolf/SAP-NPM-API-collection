@@ -8,6 +8,37 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.12] - 2025-03-05
+
+### Added
+
+OData V2:
+- Support of `cloudDevAdaptionStatus` internal setting
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | dependencies | patch | [`0.33.4` -> `0.33.14`]
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | devDependencies | patch | [`0.33.4` -> `0.33.14`]
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | devDependencies | minor | [`8.24.0` -> `8.26.0`]
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | devDependencies | minor | [`8.24.0` -> `8.26.0`]
+| [axios](https://axios-http.com) ([source](https://github.com/axios/axios)) | devDependencies | minor | [`1.7.9` -> `1.8.1`]
+| [prettier](https://prettier.io) ([source](https://github.com/prettier/prettier)) | devDependencies | patch | [`3.5.1` -> `3.5.3`]
+| [ts-jest](https://kulshekhar.github.io/ts-jest) ([source](https://github.com/kulshekhar/ts-jest)) | devDependencies | patch | [`29.2.5` -> `29.2.6`]
+| [typescript](https://www.typescriptlang.org/) ([source](https://github.com/microsoft/TypeScript)) | devDependencies | minor | [`5.7.3` -> `5.8.2`]
+| [uuid](https://github.com/uuidjs/uuid) | devDependencies | minor | [`11.0.5` -> `11.1.0`]
+
 ## [1.124.11] - 2025-02-19
 
 ### Added

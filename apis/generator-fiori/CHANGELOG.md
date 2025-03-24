@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.0] - 2025-03-05
+### Fixed
+- Fixed an issue where Cloud Foundry deployment configuration did not add managed application router support when selected
+- Fixed an issue where the "Reference Library" generator crashed on launch
+- Fixed an issue where deployment configuration for SAP S/4HANA Cloud used an incorrect ABAP package name
+- Fixed an issue where connecting to a Cloud Foundry environment on SAP BTP while using the generator crashed if the user did not have the required permissions
+
 ## [1.16.5] - 2025-02-20
 ### Fixed
 - Fixed an issue where the Deployment Configuration Wizard would not launch successfully for migrated SAPUI5 extension projects
@@ -48,7 +55,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Fixed an issue where the deployment configuration was not correctly pre-set when launching the SAP Fiori generator from the ABAP Development Tools in Eclipse
 - Fixed an issue where launching the SAP Fiori generator from the ABAP Development Tools in Eclipse failed if the ABAP system used re-entrance tickets
 - Fixed an issue with the deployment configuration where it was not possible to choose an existing package or transport if the application had a namespace defined
-- Fixed an issue where the SAPUI5 Linter failed for a generated reusable library
+- Fixed an issue where the UI5 Linter failed for a generated reusable library
 
 ## [1.16.0] - 2024-12-05
 ### Added

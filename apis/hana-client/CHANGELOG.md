@@ -1,3 +1,35 @@
+# Hana Client 2.24.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.24 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.24/en-US
+
+For the latest updates please see SAP Note 3566142 - SAP HANA Client 2.24 Release Notes
+
+https://me.sap.com/notes/3566142
+
+## Version 2.24.21
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 337842: SQLDBC Distribution trace could have missed information.
+ - Issue Number 337380: The driver could have crashed after a failed attempt to open a connection.
+ - Issue Number 338181: Improve Workload Class routing to an ECN error text.
+ - Issue Number 334115: Changing the tcpQuickAck, tcpSynCnt and tcpUserTimeout connection properties may not have affected the corresponding socket options.
+
+## Version 2.24.19
+
+### Changes:
+
+ - Issue Number 332916: getConnection() could have retrieved a pooled connection with wrong user information if user switching had happened.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 336486: In rare cases, on an out of memory error, the ODBC driver could have reported empty error text.
+ - Issue Number 333554: lz4 was updated to 1.10.0.
+ - Issue Number 332829: A memory leak could have occurred doing a put data operation with prepared statements.
+ - Issue Number 332758: When the statementRoutingWarnings connection property was enabled, it could have missed reporting some warnings.
+
 # Hana Client 2.23.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.23 documentation:

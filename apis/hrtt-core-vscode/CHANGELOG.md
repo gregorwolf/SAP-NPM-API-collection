@@ -1,3 +1,13 @@
+## 1.37.0
+
+### New Features
+
+- Updated HRTT to version 250130-1739686255-d0b8f7f
+
+### Fixes
+
+- Proxy fixes
+
 ## 1.36.1
 
 ### New Features

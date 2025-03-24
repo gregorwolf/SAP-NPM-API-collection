@@ -1,3 +1,18 @@
+## 1.28.0
+
+### New Features
+
+- Upgrade .hdiconfig to the latest version from the context menu
+
+### Fixes
+
+- Invalid schema name generated when makeUniqueName is true
+- Refresh list of databases in SQL Notebook
+- Welcome page doesn't display image
+- Cannot pick object name in Virtual Table
+- Help documentation URL for "hdbfabricvirtualtable", "hdbcollectionadjindex", and "hdbstructuredfilter"
+-
+
 ## 1.27.0
 
 ### New Features

@@ -1,3 +1,18 @@
+## 1.37.0
+
+### New Features
+- A new hint "HIERARCHY_REMOVE_DUPLICATE_EDGES" in available in the execution hint wizard
+- The "VECTOR_EMBEDDING" function can be selected in the expression editor
+
+### Fixes
+- Using Restore for Column Sequence produces surprising results
+- Referential Join Right and Both Integrity Constraints Defaulting to Left After Deployment
+- Unclear error message when creating an interface Calculation View from a Calculation View snapshot
+- Properties are not displayed when toggled between inner and outer non equi-join node
+- Renaming of Calculation View file results into an error
+- the Add MenuButton of Hierarchies of star join is disabled when opened first time
+- Measures can be copied as Counter columns and aggregation attributes
+
 ## 1.36.2
 
 ### Fixes

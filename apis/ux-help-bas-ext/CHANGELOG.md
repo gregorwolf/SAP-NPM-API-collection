@@ -7,6 +7,27 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.17.0] - 2025-03-05
+
+🚀 Added a new brand icon for the Guided Development extension to better align with the SAP Brand
+
+### Project Accelerator
+- Added a validation check to the `/fiori-gen-cap-ui` command in Joule to ensure that the user prompt to generate an SAP Fiori UI can be used with the existing services and entities in the CAP project
+- Fixed an issue where the preview of the generated SAP Fiori application from the storyboard using the `/fiori-gen-cap-ui` Joule command failed to launch
+
+### Added
+- Added a validation check for OData V4 services to the "Model" parameter across all the steps in the _Add a stack card to an overview page_ guide
+
+### Changed 
+- Enhanced the user experience for steps containing multiple code snippets. Instead of scrolling to the relevant snippet, clicking on a file now opens it directly
+- Enhanced the _Add a custom action to a page using extensions_ guide to ensure custom files are created in the following folders:
+  - view XML files are placed in the `ext/view` folder
+  - fragment XML files are placed in the `ext/fragment` folder
+  - single controller files are placed in the `ext/controller` folder
+
+### Fixed
+- Fixed an issue in guides with multiple parameter collection tables where reordering or deleting rows on a table other than the first parameter collection table caused the view to scroll to a row in the first parameter collection table
+
 ## [1.16.5] - 2025-02-20
 ### Project Accelerator
 - Fixed a number of accessibility issues with the Project Accelerator to improve screen reader usability and contrast ratio

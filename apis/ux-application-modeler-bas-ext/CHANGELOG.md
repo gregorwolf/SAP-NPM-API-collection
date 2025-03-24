@@ -6,6 +6,18 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.0] - 2025-03-05  
+### Fixed
+- Fixed an issue where SAP Fiori projects being migrated to support SAP Fiori tools failed to migrate successfully on Windows
+- Fixed an issue where SAP Fiori applications using a OData V2 source failed to migrate if using a version of SAPUI5 older than 1.71
+- Fixed an issue where the Page Map failed to open after app generation when the specification module failed to load from the `.fioritools\module-cache` file
+- Fixed an issue where the Application Info Status was shown as green for the CAP project when no local or global CDS was installed
+- Fixed an issue where the "Expand Table Column" icon was not visible on the Page Map
+
+### Changed
+- The "Application Info" page has been refactored. The new version comes with smaller tiles that are reorganized into groups based on usage and function
+
+
 ## [1.16.5] - 2025-02-20
 ### Added
 - Added support for `component` type projects

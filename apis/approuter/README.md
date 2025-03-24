@@ -2171,6 +2171,7 @@ The variable value must be defined in the JSON format and provide the following 
 * **sessionSecret (mandatory)** - a secret to be used to generate a session cookie. Please generate a unique string with at least 64 characters.
 * **defaultRetryTimeout** - the maximum duration for automatic retries of failed Redis operations in milliseconds. The default value is 2000 ms.
 * **backOffMultiplier** - a multiplier of the Redis-defined pause that determines the time between consecutive automatic retries of failed Redis operations. The default value is 50.
+* **skipCertHostnameValidation** - a flag that indicates whether the hostname validation of the Redis certificate should be skipped. The default value is false.
 
 For example: 
 ```json
@@ -2179,11 +2180,14 @@ For example:
     "storageType": "redis",
     "sessionSecret": "someuniquesessionsecret",
     "defaultRetryTimeout": 10000,
-    "backOffMultiplier": 10
+    "backOffMultiplier": 10,
+    "skipCertHostnameValidation": true
 }
 ```
 
 > **_NOTE:_** Currently, the application router supports only a Redis store
+
+> **_NOTE:_** CCEE provided Redis, currently only supports self signed certificates. To skip the hostname validation, set the `skipCertHostnameValidation` to `true`.
 
 ### Configuration of a Custom Storage Driver
 For information about the configuration of a custom storage driver, see [Configuring a custom storage driver](doc/sessionManagement.md#custom-storage-driver)

@@ -1,5 +1,18 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.29.0
+
+### New Features
+- New connections can be added to "SAP HANA Database Explorer Connections" and "SAP HANA XS Advanced Connections" in the database list
+- Show EPM query sources and EPM models in the catalog browser
+- Create and analyze prepared plans of SQL queries for "SAP HANA Database Explorer Connections"
+
+
+### Fixes
+- Error "Statement library is not found" occurs after SAP Business Application Studio is refreshed
+- SQL formatting causes performance issues in the SQL console editor
+- Table metadata dialog filter does not work correctly
+
 ## 1.28.1
 
 ### Fixes

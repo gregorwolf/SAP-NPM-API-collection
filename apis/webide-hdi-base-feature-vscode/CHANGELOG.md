@@ -1,3 +1,8 @@
+## 1.35.0
+
+### Fixes
+- Security fixes
+
 ## 1.34.0
 
 ### New Features

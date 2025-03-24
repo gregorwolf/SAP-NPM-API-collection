@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.0] - 2025-03-05
+### Fixed
+- Fixed an issue where adding multiple services from the same "Destination" or "Hostname" in Service Manager caused the URLs to be added multiple times to the `ui5.yaml` file
+- Fixed an issue where the "Destination" was not prefilled and the "Hostname" was not taken from the corresponding service when "Edit and Refresh" was clicked
+- Fixed an issue where a `webapp/annotations/.xml` file was added as a copy of the existing `annotation.xml` when "Edit and Refresh" was clicked
+- Fixed an issue where longer services were truncated in the "Select Service" dropdown
+
 ## [1.16.5] - 2025-02-20
 ### Added
 - Added support for `component` type projects

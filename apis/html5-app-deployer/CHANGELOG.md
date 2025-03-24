@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.0.1 - 2025-03-18
+
+### Updated dependencies
+- deps: axios@1.8.3
+
 ## 7.0.0 - 2025-02-02
 
 ### Updated dependencies

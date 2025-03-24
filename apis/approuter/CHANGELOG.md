@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.0.0 - 2025-03-20
+
+### Added
+- Support provisioning of application key via x-application-key header
+- Support CCEE Redis
+
+### Updated dependencies
+- deps: sap/xssec@4.4.0
+- deps: axios@1.8.3
+
 ## 19.0.4 - 2025-03-12
 
 ### Fixed
