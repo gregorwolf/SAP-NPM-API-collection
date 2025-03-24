@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [8.8.1] - 2025-03-17
+
+### Changed
+- using native Node.js `fetch` for https requests
+
+### Fixed
+- use lowercase `cdsjsonschema` as protocol for cds schema urls.
+- user setting `cds.useOldParser` did not work correctly
+
+### Also see
+- `@sap/cds-lsp` 8.8.1
+- `@sap/cds-compiler` 5.8.2
+
+
 ## [8.8.0] - 2025-03-06
 
 ### Changed

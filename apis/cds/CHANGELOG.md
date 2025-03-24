@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.8.3 - 2025-03-20
+
+### Fixed
+
+- Event Mesh: Reconnect in case of error in AMQP connection
+
 ## Version 8.8.2 - 2025-03-13
 
 ### Fixed

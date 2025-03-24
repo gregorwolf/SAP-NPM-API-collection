@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 1.4.2 - 2025-03-12
+
+### Fixed
+
+- import: Disambiguate ABAP Type `p` - could mean `RFCTYPE_BCD` or `RFCTYPE_UTCLONG`
+- import: Don't set `SY-<...>` system variables as default values - they look like a `cds.String` and can cause inconsistent modeling
+- import: Correctly import table types with one anonymous element - resulting in things like `many Integer` etc.
+
 ## Version 1.4.1 - 2025-03-05
 
 ### Fixed

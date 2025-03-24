@@ -1,12 +1,12 @@
 {
   "name": "@sap/cds-dk",
-  "version": "8.8.1",
+  "version": "8.8.2",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/cds-dk",
-      "version": "8.8.1",
+      "version": "8.8.2",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@cap-js/asyncapi": "^1.0.0",
@@ -235,7 +235,7 @@
       }
     },
     "node_modules/@sap/cds": {
-      "version": "8.8.2",
+      "version": "8.8.3",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@sap/cds-compiler": ">=5.1",
@@ -481,7 +481,7 @@
       "license": "MIT"
     },
     "node_modules/axios": {
-      "version": "1.8.3",
+      "version": "1.8.4",
       "license": "MIT",
       "dependencies": {
         "follow-redirects": "^1.15.6",
@@ -513,7 +513,7 @@
       "optional": true
     },
     "node_modules/better-sqlite3": {
-      "version": "11.8.1",
+      "version": "11.9.1",
       "hasInstallScript": true,
       "license": "MIT",
       "optional": true,

@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 8.8.1 - 2025-03-17
+- new CDS parser is used
+
+### Also see
+- `@sap/cds-compiler` 5.8.2
+
 
 ## 8.8.0 - 2025-03-05
 
@@ -19,7 +25,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Also see
 - `@sap/cds-compiler` 5.8.0
-
 
 ## 8.5.1 - 2024-12-02
 

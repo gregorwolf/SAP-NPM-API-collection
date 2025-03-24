@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 8.8.2 - 2025-03-21
+
+### Fixed
+
+- Bump axios to 1.8.4, fixing CVE-2025-27152
+
 ## Version 8.8.1 - 2025-03-11
 
 ### Fixed
