@@ -1,3 +1,8 @@
+## 1.16.0
+
+### New Features
+- Support headless module generation
+
 ## 1.15.0
 
 ### New Features

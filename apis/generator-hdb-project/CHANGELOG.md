@@ -1,3 +1,11 @@
+## 1.16.0
+
+### New Features
+- Support headless project generation
+
+### Fixes
+- Update @sap/generator-add-hdb-module to version 1.16.0
+
 ## 1.15.0
 
 ### Fixes
