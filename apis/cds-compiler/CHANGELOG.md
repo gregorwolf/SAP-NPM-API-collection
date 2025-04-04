@@ -7,11 +7,42 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.9.0 - 2025-03-28
+
+### Added
+
+- compiler:
+  + Generated entities for compositions of named aspects now have an `include` on the named aspect,
+    inheriting actions from the aspect.  This can be disabled via option `compositionIncludes: false`.
+  + A warning is emitted for selected elements that are explicitly `virtual`, whose
+    behavior will change in cds-compiler v6.
+  + New warning for structures having a scalar default value.
+  + New warning for localized structures, as they are not fully supported by the compiler.
+  + The new parser (`newParser: true`) now supports operator `==`.
+- to.cdl:
+  + Definitions can now be rendered nested in services. A common namespace can be extracted, too.
+    To use it, enabled options `renderCdlDefinitionNesting` and `renderCdlCommonNamespace`.
+  + Annotation array values are pretty-printed to reduce whitespace.
+- for.effective: Property `namespace` is no longer part of effective CSN.
+- for.sql/hdi:
+  - The new operator `==` is rendered as `IS NOT DISTINCT FROM` or an equivalent expression.
+  - Using option `booleanEquality`, operator `!=` is rendered as `IS DISTINCT FROM` or an equivalent expression.
+
+### Changed
+
+- Update OData vocabularies: 'Common', 'Hierarchy'
+
+### Fixed
+
+- to.odata: Annotation expressions using `LabeledElement` were not correctly rendered into EDMX.
+
+
 ## Version 5.8.2 - 2025-03-07
 
 ### Fixed
 
 - for.odata: Generate foreign key elements for events again.
+
 
 ## Version 5.8.0 - 2025-02-27
 

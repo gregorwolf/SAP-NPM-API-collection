@@ -7,6 +7,38 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 8.9.1 - 2025-04-04
+
+### Fixed
+
+- `cds build` restores compatibility with `@sap/cds` 7, no more crashing there with `TypeError: Cannot read properties of undefined (reading 'enabled')`.
+- `cds add containerize` works if run before `cds add helm`.
+- `cds add http` no longer writes headers starting with a placeholder (IntelliJ compatibility)
+- `cds init --force` overwrites existing files.
+
+## Version 8.9.0 - 2025-03-31
+
+### Added
+
+- `cds import` now adds Cloud SDK dependencies to package.json if an OData service is imported.
+- `cds deploy --to hana --on k8s` is now supported.
+- `cds up` automates freezing dependencies, building, and deploying your application.
+- `cds pull` includes existing extensions if the server is configured accordingly.
+
+### Changed
+
+- `cds build` logging is simplified.
+- `cds add html5-repo` ignores folders in `app/` starting with `.`
+
+### Fixed
+
+- `cds add telemetry` is order-independent with other `cds add` commands for Java.
+- Build task `mtx-extension` now fails with exit code 1 in case of build errors.
+
+### Removed
+
+- Removed `before:cds-watch` script.
+
 ## Version 8.8.2 - 2025-03-21
 
 ### Fixed
@@ -18,9 +50,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Fixed
 
 - `cds init` uses latest Maven Java archetype version 3.8.0 for creating Java projects.
-- `cds import` json schema now contains correct references.
 - `cds init --add lint` writes complete eslint.config.mjs.
 - `cds import` no longer fails with an `EXDEV` error in `docker` containers.
+- `cds import` json schema now contains correct references.
 
 ## Version 8.8.0 - 2025-03-03
 

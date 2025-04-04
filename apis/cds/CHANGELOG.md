@@ -4,6 +4,50 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.9.1 - 2025-04-03
+
+### Fixed
+
+- `cds.env` merging for `null` values
+- Best-effort mechanisms for lambda support on OData V2 remote services (usage of functions in lambda expressions)
+- Use extended model in `enterprise-messaging` inbound handlers
+
+## Version 8.9.0 - 2025-03-31
+
+### Added
+
+- Support for parallel multi-instance processing of outbox entries
+- Remote services: ensure request correlation by guaranteeing outgoing header `x-correlation-id`
+- Support for `@odata.bind` to reference foreign keys
+- Support for plugins in ESM format
+- Dependency to `@eslint/js` so that `eslint` works w/o the application having to install it.
+- IAS: In the `client_credentials` flow, the array of `ias_apis` (if present) is added to the technical user's roles
+- Opt-in feature `cds.features.consistent_params` for `req.params` always being an array of objects
+  + That is, no more plain values for single-keyed entities with key `ID`
+  + Will become the default in `@sap/cds^9`
+
+### Changed
+
+- Invalid draft requests now have status code 400
+- Allow ESM loading of handler files (`.js`, `.ts`) in all situations, incl. test runs with Jest's `--experimental-vm-modules` option.
+- Application and remote services now throw the error `Target <yourTarget> cannot be resolved for service <yourService>` when the query cannot be resolved to the service entity. Setting the feature flag `cds.env.features.restrict_service_scope` to false disables this.
+- Accept 2xx status codes set in custom operation handlers
+- Implicit orderby elements are marked as such and are no longer considered for requests to remote services
+
+### Fixed
+
+- Lean draft: Proper navigation to the service entity of draft-administrative data
+- Unprocessed foreign keys from expressions of semi join conditions in `UPDATE.data`
+- Kafka: Each topic will have a dedicated consumer-group id (configurable with `consumerGroup`)
+- Foreign-key calculation based on navigation path
+- `cds.env` shortcuts like `cds.requires.db === 'hana'` are normalized to `cds.requires.db.kind === 'hana'` when combined from multiple sources
+- Error handling for invalid access of an entity that does not have a key, by key, through REST
+- `cds.validate` crashed with unknown target
+- `cds.parse.expr` parsed SAP HANA native functions like `current_utctimestamp` erroneously as `ref`
+- `null` values in logger if `custom_fields` are configured
+- User-provided instances of SAP Cloud Logging should have either tag `cloud-logging` or `Cloud Logging`
+- The `@odata.context` for entities and views with parameters should refer to the EntityType with `/Set` at the end e.g. `../$metadata#ViewWithParamType(1)/Set`
+
 ## Version 8.8.3 - 2025-03-20
 
 ### Fixed
@@ -31,7 +75,7 @@
 - Add missing 'and' between conditions in object notation of QL
 - Multiline payloads in `$batch` sub requests
 - Instance-based authorization for modeling like `$user.<property> is null`
-- Respect `cds.odata.contextAbsoluteUrl` in new OData adapter 
+- Respect `cds.odata.contextAbsoluteUrl` in new OData adapter
 - `cds.odata.context_with_columns` also applies to singletons
 
 ## Version 8.8.0 - 2025-03-03
@@ -46,9 +90,9 @@
 - Support implicit function parameters calls with @prefix
 - `cds.test` now uses package `@cap-js/cds-test` if installed, otherwise prints a hint to install it. With cds 9, this package will be required.
 - Operation response streaming
-  + OData: Operations returning `cds.LargeBinary` annotated with `@Core.MediaType` may send stream responses. 
-  + REST: Operations may send stream responses. 
-  + Annotations `@Core.MediaType`, `@Core.ContentDisposition.Filename` and `@Core.ContentDisposition.Type` on operation return types will be considered. 
+  + OData: Operations returning `cds.LargeBinary` annotated with `@Core.MediaType` may send stream responses.
+  + REST: Operations may send stream responses.
+  + Annotations `@Core.MediaType`, `@Core.ContentDisposition.Filename` and `@Core.ContentDisposition.Type` on operation return types will be considered.
 
 ### Changed
 

@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [8.9.0] - 2025-04-01
+
+### Changed
+- use new CDS parser by default
+
+### Fixed
+- Auto update of **Annotation Modeler** plugin did not work
+- _Document highlights_ could show wrong ranges for namespaces
+
+### Also see
+- `@sap/cds-lsp` 8.9.0
+- `@sap/cds-compiler` 5.9.0
+
+
+## [8.8.2] - 2025-03-19
+
+### Fixed
+- _Welcome Page_ was shown after each restart
+
+
 ## [8.8.1] - 2025-03-17
 
 ### Changed

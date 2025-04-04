@@ -1,12 +1,12 @@
 {
   "name": "@sap/cds-dk",
-  "version": "8.8.2",
+  "version": "8.9.1",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/cds-dk",
-      "version": "8.8.2",
+      "version": "8.9.1",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@cap-js/asyncapi": "^1.0.0",
@@ -14,7 +14,7 @@
         "@sap/cds": ">=7",
         "@sap/cds-foss": "^5.0.0",
         "@sap/cds-mtxs": ">=1.9.0",
-        "@sap/eslint-plugin-cds": "^3.0.1",
+        "@sap/eslint-plugin-cds": ">=3.0.1",
         "@sap/hdi-deploy": "^5",
         "axios": "^1",
         "eslint": "^9",
@@ -43,7 +43,7 @@
       }
     },
     "node_modules/@cap-js/db-service": {
-      "version": "1.18.0",
+      "version": "1.19.1",
       "license": "SEE LICENSE",
       "optional": true,
       "dependencies": {
@@ -64,11 +64,11 @@
       }
     },
     "node_modules/@cap-js/sqlite": {
-      "version": "1.9.0",
+      "version": "1.10.0",
       "license": "SEE LICENSE",
       "optional": true,
       "dependencies": {
-        "@cap-js/db-service": "^1.18.0",
+        "@cap-js/db-service": "^1.19.0",
         "better-sqlite3": "^11.0.0"
       },
       "peerDependencies": {
@@ -121,7 +121,7 @@
       }
     },
     "node_modules/@eslint/config-helpers": {
-      "version": "0.1.0",
+      "version": "0.2.1",
       "license": "Apache-2.0",
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -138,7 +138,7 @@
       }
     },
     "node_modules/@eslint/eslintrc": {
-      "version": "3.3.0",
+      "version": "3.3.1",
       "license": "MIT",
       "dependencies": {
         "ajv": "^6.12.4",
@@ -159,7 +159,7 @@
       }
     },
     "node_modules/@eslint/js": {
-      "version": "9.22.0",
+      "version": "9.23.0",
       "license": "MIT",
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -173,11 +173,21 @@
       }
     },
     "node_modules/@eslint/plugin-kit": {
-      "version": "0.2.7",
+      "version": "0.2.8",
       "license": "Apache-2.0",
       "dependencies": {
-        "@eslint/core": "^0.12.0",
+        "@eslint/core": "^0.13.0",
         "levn": "^0.4.1"
+      },
+      "engines": {
+        "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+      }
+    },
+    "node_modules/@eslint/plugin-kit/node_modules/@eslint/core": {
+      "version": "0.13.0",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "@types/json-schema": "^7.0.15"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -235,7 +245,7 @@
       }
     },
     "node_modules/@sap/cds": {
-      "version": "8.8.3",
+      "version": "8.9.1",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@sap/cds-compiler": ">=5.1",
@@ -245,13 +255,13 @@
       "bin": {
         "cds-deploy": "lib/dbs/cds-deploy.js",
         "cds-serve": "bin/serve.js",
-        "cds-test": "bin/test.js",
-        "chest": "bin/test.js"
+        "cds-test": "bin/test.js"
       },
       "engines": {
         "node": ">=18"
       },
       "peerDependencies": {
+        "@eslint/js": "^9",
         "express": "^4",
         "tar": "^7"
       },
@@ -265,7 +275,7 @@
       }
     },
     "node_modules/@sap/cds-compiler": {
-      "version": "5.8.2",
+      "version": "5.9.0",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "antlr4": "4.9.3"
@@ -280,7 +290,7 @@
       }
     },
     "node_modules/@sap/cds-fiori": {
-      "version": "1.4.0",
+      "version": "1.4.1",
       "license": "SEE LICENSE IN LICENSE",
       "peerDependencies": {
         "@sap/cds": ">=7.6",
@@ -301,7 +311,7 @@
       }
     },
     "node_modules/@sap/cds-mtxs": {
-      "version": "2.6.1",
+      "version": "2.7.0",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@sap/hdi-deploy": ">=4",
@@ -349,7 +359,7 @@
       }
     },
     "node_modules/@sap/hdi-deploy": {
-      "version": "5.4.1",
+      "version": "5.4.2",
       "license": "See LICENSE file",
       "dependencies": {
         "@sap/hdi": "^4.7.0",
@@ -388,7 +398,7 @@
       }
     },
     "node_modules/@types/estree": {
-      "version": "1.0.6",
+      "version": "1.0.7",
       "license": "MIT"
     },
     "node_modules/@types/json-schema": {
@@ -926,16 +936,16 @@
       }
     },
     "node_modules/eslint": {
-      "version": "9.22.0",
+      "version": "9.23.0",
       "license": "MIT",
       "dependencies": {
         "@eslint-community/eslint-utils": "^4.2.0",
         "@eslint-community/regexpp": "^4.12.1",
         "@eslint/config-array": "^0.19.2",
-        "@eslint/config-helpers": "^0.1.0",
+        "@eslint/config-helpers": "^0.2.0",
         "@eslint/core": "^0.12.0",
-        "@eslint/eslintrc": "^3.3.0",
-        "@eslint/js": "9.22.0",
+        "@eslint/eslintrc": "^3.3.1",
+        "@eslint/js": "9.23.0",
         "@eslint/plugin-kit": "^0.2.7",
         "@humanfs/node": "^0.16.6",
         "@humanwhocodes/module-importer": "^1.0.1",
@@ -2476,7 +2486,7 @@
       }
     },
     "node_modules/yaml": {
-      "version": "2.7.0",
+      "version": "2.7.1",
       "license": "ISC",
       "bin": {
         "yaml": "bin.mjs"

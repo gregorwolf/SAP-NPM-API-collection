@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 1.4.1 - 2025-04-03
+
+### Changed
+
+- Use UI5 version 1.133.0 by default
+
+### Fixed
+
+- Allow installation with upcoming cds 9
+
 ## Version 1.4.0 - 2025-03-03
 
 ### Changed

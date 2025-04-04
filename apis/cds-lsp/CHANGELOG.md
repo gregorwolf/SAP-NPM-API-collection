@@ -6,7 +6,24 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 8.9.0 - 2025-04-01
+
+### Fixed
+- Auto update of **Annotation Modeler** plugin did not work
+- _Document highlights_ could show wrong ranges for namespaces
+
+### Changed
+- _Initialize_ request now accepts _initializationOptions_ with top-level `cds` child.
+  Previously only the direct children of the `cds` user settings node were 
+  accepted - this is now deprecated and will be removed in next major.
+
+### Also see
+- `@sap/cds-compiler` 5.9.0
+
+
 ## 8.8.1 - 2025-03-17
+
+### Changed
 - new CDS parser is used
 
 ### Also see

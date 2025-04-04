@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 2.7.0 - 2025-03-31
+
+### Added
+
+- Database deployment of extensions can now be supressed by setting
+  ```jsonc
+    "requires": {
+      "cds.xt.ExtensibilityService": {
+        "activate": {
+          "skip-db": true
+        }
+      }
+    }
+  ```
+- `cds.xt.ExtensibilityService.pull` now returns csn including existing extensions if `check-existing-extensions` is configured (see below)
+- Beta: Event `cds.xt.ExtensibilityService.activated` is sent if an asynchronous call of `cds.xt.ExtensibilityService.activate` is finished.
+
+### Fixed
+
+- Synchronous calls to `/-/cds/saas-provisioning/upgrade` for non-existing tenants are now handled properly.
+
 ## Version 2.6.1 - 2025-03-13
 
 ### Fixed
