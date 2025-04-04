@@ -1140,6 +1140,13 @@ It may have the following values:
 
 The default value is `route`.
 
+### *stateProtection* property
+
+The stateProtection property is used to enable or disable the state protection mechanism.
+The state protection mechanism is used to prevent CSRF attacks.
+
+The default value is true.
+
 ### *routes* property
 
 It holds an array of route configuration objects. The order of the configurations is important for the application router.

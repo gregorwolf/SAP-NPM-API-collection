@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.1] - 2025-03-20
+### Changed
+- Optimized the file size for images in the SAP Fiori Generator
+
+### Fixed
+ - Fixed an issue where the required destination was not populated when adding a deployment configuration during generation. This occurred when users launched the SAP Fiori Generator from the ABAP Development Tools in Eclipse
+- Fixed an issue where only the SAP Fiori application folder was opened after generation, instead of also opening the CAP project that contained the SAP Fiori application
+
 ## [1.17.0] - 2025-03-05
 ### Fixed
 - Fixed an issue where Cloud Foundry deployment configuration did not add managed application router support when selected

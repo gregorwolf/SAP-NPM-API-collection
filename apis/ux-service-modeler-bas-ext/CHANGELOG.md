@@ -3,6 +3,11 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.1] - 2025-19-05
+### Fixed
+- Fixed an issue where deleting a service in Service Manager led to the wrong service being removed
+- Fixed an issue where Service Manager did not update the OData Service URI
+
 ## [1.17.0] - 2025-03-05
 ### Fixed
 - Fixed an issue where adding multiple services from the same "Destination" or "Hostname" in Service Manager caused the URLs to be added multiple times to the `ui5.yaml` file

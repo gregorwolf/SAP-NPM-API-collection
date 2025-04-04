@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.1.0"></a>
+## 2.1.0 - 2025-03-26
+
+### Updated
+- Added node22 support
+- Updated "@sap/audit-logging" version to "^6.3.0
+- Updated "@sap/hdbext" to "8.1.3"
+- Updated "@sap/xsodata" to "^8.2.1"
+- Updated "axios" to "^1.8.3"
+- Updated "filter-node-package" to "^5.0.0"
+
 <a name="2.0.9"></a>
 ## 2.0.9 - 2024-12-18
 

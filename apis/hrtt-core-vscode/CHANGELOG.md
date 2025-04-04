@@ -1,3 +1,13 @@
+## 1.38.0
+
+### New Features
+
+- Updated HRTT to version 250227-1741718923-c2c3ad3
+
+### Fixes
+
+- Proxy: CF/XS token is cached after logout/region change
+
 ## 1.37.0
 
 ### New Features

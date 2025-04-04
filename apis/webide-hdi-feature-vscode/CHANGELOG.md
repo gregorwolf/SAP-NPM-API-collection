@@ -1,3 +1,30 @@
+## 1.38.0
+
+### New Features
+- Intermediate calculation views created by the intermediate data preview feature can be listed and cleaned up if necessary
+- Improved syntax display of the expression editor
+- The currency conversion dialog supports "Decfloat" in the "Data Type" field
+- Measures with aggregation type "Count" can be added to an MDS Cube
+- The execution hint "conversion_result_type_downcast_after_aggregation" has been added to the available execution hint list.
+- Calculated columns, restricted columns, and input parameters can be copied between calculation views
+- The "Dynamic" option for analytical privileges has been renamed to "Procedure Based"
+- The feature version of a specific SAP HANA Cloud release can be selected for a development project
+
+### Fixes
+- No warning when copying restricted columns with missing input parameters
+- MDS Cube dimension selection does not offer local hierarchies as dimensions
+- Missing "Go To Code" button for analytic privilege editor
+- Inconsistencies between expression editor and column editor in Non-equi Join nodes
+- An HTTP link is getting inserted in the expression editor on drag and drop of the input parameter
+- Columns are not getting added or no warning message in fuzzy search filter when no fuzzy parameter
+- Irrelevant values get added in calculation view xml for restricted measures
+- Value help doesn't work when no semantic type is selected in input parameter of type direct
+- Previous preview of CV shown when previewing changed CV
+- Unable to rename the input parameter when replace is done for all matching names
+- Calculation view with table function node stuck during loading
+- Projection node in calculationview holding the older column after making changes and deploying the table
+- Columns in expressions are not validated when pasting
+
 ## 1.37.0
 
 ### New Features

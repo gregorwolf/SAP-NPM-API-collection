@@ -8,6 +8,20 @@ For the latest updates please see SAP Note 3566142 - SAP HANA Client 2.24 Releas
 
 https://me.sap.com/notes/3566142
 
+## Version 2.24.24
+
+### Changes:
+
+ - Issue Number 339294: Connection.clean() could have not cleared session variables set with Connection.setClientInfo().
+ - Issue Number 337897: In rare circumstances, the driver could have crashed under heavy asynchronous usage.
+ - Issue Number 325190: An exception could have been thrown when the Node.js driver was unable to allocate sufficient memory.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 340122: There was a security issue with reconnect.
+ - Issue Number 338856: Float values may have suffered a double rounding error during conversion on 32-bit Windows.
+ - Issue Number 338362: Reconnect could have failed for a SAML or JWT authenticated connection.
+
 ## Version 2.24.21
 
 ### Underlying SQLDBC changes:

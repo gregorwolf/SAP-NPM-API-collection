@@ -7,6 +7,29 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.17.1] - 2025-03-20
+
+### Project Accelerator
+- Fixed an issue where the `/fiori-gen-cap-ui` command in Joule was visible even if there was no project in the current workspace
+
+### Added
+- Added a parameter collection table to "Step 1" of the _Add multiple fields to a column in responsive tables_ guide helping users to do the following:
+  - modify an existing `UI.FieldGroup` annotation
+  - work with multiple parameters at once
+
+### Changed
+- Standardized file labeling to improve clarity in guides with multiple code snippets by replacing "Files to be updated/created" with "Files"
+- Introduced UX adjustments to indicate existing files as opposed to newly created files in guides with multiple code snippets
+- Enhanced the i18n popup's visibility and design by doing the following:
+  - implementing an inverted theme
+  - correcting spacing and grammar issues
+  - refining button labels
+  - ensuring the popup was centered relative to the trigger button
+
+### Fixed
+- Fixed an issue where an unintended "undefined" variant was added after viewing a guide variant with subvariants and navigating between guides
+- Fixed an issue where guides were not scrollable when using SAP Business Application Studio in the Mozilla Firefox browser, preventing code snippets from being visible
+
 ## [1.17.0] - 2025-03-05
 
 🚀 Added a new brand icon for the Guided Development extension to better align with the SAP Brand

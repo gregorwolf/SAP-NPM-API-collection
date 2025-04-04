@@ -1,3 +1,10 @@
+## 5.4.2
+Features:
+- Added support for certificate authentication
+
+Fixes:
+- `--optimise-file-upload` error: *"Cannot read properties of undefined (reading 'digest')"*
+
 ## 5.4.1
 Fixes:
 - The --use-hdb flag did not take effect in some situations

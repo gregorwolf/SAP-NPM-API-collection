@@ -1,3 +1,8 @@
+## 1.36.0
+
+### New Features
+- Allow selecting feature versions of a certain cloud release
+
 ## 1.35.0
 
 ### Fixes

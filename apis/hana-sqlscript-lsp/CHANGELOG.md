@@ -1,3 +1,8 @@
+## 1.18.0
+
+### Fixes
+- Fix 404 error during auto-completion
+
 ## 1.17.1
 
 ### Fixes

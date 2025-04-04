@@ -8,6 +8,35 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.13] - 2025-03-19
+
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+### Fixed
+
+- Fixed an issue with annotations `path` property containing custom alias
+
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/annotation-converter](https://github.com/SAP/open-ux-odata) ([source](https://github.com/SAP/open-ux-odata/tree/HEAD/packages/annotation-converter)) | devDependencies | minor | [`0.9.11` -> `0.10.3`]
+| [axios](https://axios-http.com) ([source](https://github.com/axios/axios)) | devDependencies | patch | [`1.8.1` -> `1.8.2`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | devDependencies | patch | [`0.33.14` -> `0.33.16`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | dependencies | patch | [`0.33.14` -> `0.33.16`] |
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | devDependencies | patch | [`8.26.0` -> `8.26.1`] |
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | devDependencies | patch | [`8.26.0` -> `8.26.1`] |
+| [esbuild](https://github.com/evanw/esbuild) | devDependencies | patch | [`0.25.0` -> `0.25.1`] |
+
+
 ## [1.124.12] - 2025-03-05
 
 ### Added

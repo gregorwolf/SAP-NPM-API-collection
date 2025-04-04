@@ -1,12 +1,26 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.30.0
+
+### New Features
+- New settings for the SQL console: auto-pair characters, display null values as, maximum number of open results, command separator.
+- Local connections can be organized into folders.
+
+### Fixes
+- The table metadata dialog could not open in some situations.
+- SAP HANA XS Advanced connections could not work when using a self-signed certificate.
+- Changing the password of a database user could fail silently.
+- Adding a remote database connection fails with "Parameter validation failed".
+- The dependency viewer did not show analytical privileges in some situations.
+- UX improvements for the dependency viewer.
+- Metadata dialog performance improvements.
+
 ## 1.29.0
 
 ### New Features
 - New connections can be added to "SAP HANA Database Explorer Connections" and "SAP HANA XS Advanced Connections" in the database list
 - Show EPM query sources and EPM models in the catalog browser
 - Create and analyze prepared plans of SQL queries for "SAP HANA Database Explorer Connections"
-
 
 ### Fixes
 - Error "Statement library is not found" occurs after SAP Business Application Studio is refreshed

@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2025-03-26
+
+### Added
+- The `--service-key` option added to `login` command
+- The `--activate` and `--no-activate` options added to `push` command
+- The `AFCTL_ACTIVATE` configuration added
+- Documentation for Global Flags added to README.md
+
+### Fixed
+- Documentation (README.md) broken links fixed
+
 ## [1.5.1] - 2025-02-16
 
 ### Fixed

@@ -6,6 +6,10 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.1] - 2025-19-05  
+### Fixed
+- Fixed an issue where the "Page Editor" did not display tables in an object page when they used `Selection Presentation Variants`
+
 ## [1.17.0] - 2025-03-05  
 ### Fixed
 - Fixed an issue where SAP Fiori projects being migrated to support SAP Fiori tools failed to migrate successfully on Windows

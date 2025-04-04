@@ -1,3 +1,14 @@
+## 1.29.0
+
+### New Features
+
+- The virtual table editor supports defining columns for a virtual table
+
+### Fixes
+
+- The grants editor did not clear errors after 'Delete unsupported content' was clicked
+- HDI container management UI improvements
+
 ## 1.28.0
 
 ### New Features
@@ -11,7 +22,6 @@
 - Welcome page doesn't display image
 - Cannot pick object name in Virtual Table
 - Help documentation URL for "hdbfabricvirtualtable", "hdbcollectionadjindex", and "hdbstructuredfilter"
--
 
 ## 1.27.0
 

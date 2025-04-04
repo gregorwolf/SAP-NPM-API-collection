@@ -1,18 +1,18 @@
 {
   "name": "@sap/async-xsjs",
-  "version": "2.0.9",
+  "version": "2.1.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/async-xsjs",
-      "version": "2.0.9",
+      "version": "2.1.0",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
-        "@sap/audit-logging": "^5.7.1",
+        "@sap/audit-logging": "^6.3.0",
         "@sap/e2e-trace": "^5.3.0",
         "@sap/hana-client": "2.22.32",
-        "@sap/hdbext": "8.1.0",
+        "@sap/hdbext": "8.1.3",
         "@sap/instance-manager": "^5.2.1",
         "@sap/jobs-client": "^1.8.5",
         "@sap/logging": "^8.3.0",
@@ -20,11 +20,11 @@
         "@sap/node-vsi": "^1.4.30",
         "@sap/textbundle": "^5.3.0",
         "@sap/xsenv": "^5.4.0",
-        "@sap/xsodata": "^8.2.0",
+        "@sap/xsodata": "^8.2.1",
         "@sap/xss-secure": "^5.2.0",
         "@sap/xssec": "^3.6.0",
         "accept-language": "2.0.16",
-        "axios": "^1.7.8",
+        "axios": "^1.8.3",
         "big.js": "6.2.2",
         "body-parser": "1.20.3",
         "callsite": "1.0.0",
@@ -47,26 +47,26 @@
         "yazl": "2.4.1"
       },
       "engines": {
-        "node": "^18.x || ^20.x"
+        "node": "^18.x || ^20.x || ^22.x"
       }
     },
     "node_modules/@sap/audit-logging": {
-      "version": "5.8.4",
+      "version": "6.6.0",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
         "@sap/xssec": "^3.6.1",
-        "debug": "4.3.4",
-        "fetch-retry": "4.1.0",
+        "debug": "4.3.5",
+        "fetch-retry": "6.0.0",
         "lodash": "4.17.21",
         "node-cache": "5.1.2",
         "node-fetch": "2.7.0"
       },
       "engines": {
-        "node": "^12.0.0 || ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0"
+        "node": "^18.0.0 || ^20.0.0 ||  ^22.x"
       }
     },
     "node_modules/@sap/e2e-trace": {
-      "version": "5.3.0",
+      "version": "5.4.0",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
         "request-stats": "3.0.0"
@@ -98,10 +98,10 @@
       "license": "MIT"
     },
     "node_modules/@sap/hdbext": {
-      "version": "8.1.0",
+      "version": "8.1.3",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
-        "@sap/e2e-trace": "^4.1.0",
+        "@sap/e2e-trace": "5.3.0",
         "@sap/hana-client": "2.23.24",
         "accept-language": "2.0.16",
         "async": "3.2.6",
@@ -110,17 +110,17 @@
         "verror": "1.10.0"
       },
       "engines": {
-        "node": "^12.0.0 || ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0"
+        "node": "^12.0.0 || ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0 || ^22.x"
       }
     },
     "node_modules/@sap/hdbext/node_modules/@sap/e2e-trace": {
-      "version": "4.1.0",
+      "version": "5.3.0",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
         "request-stats": "3.0.0"
       },
       "engines": {
-        "node": "^12.0.0 || ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0"
+        "node": "^18.0.0 || ^20.0.0 || ^22.0.0"
       }
     },
     "node_modules/@sap/hdbext/node_modules/@sap/hana-client": {
@@ -173,7 +173,7 @@
       }
     },
     "node_modules/@sap/instance-manager": {
-      "version": "5.2.2",
+      "version": "5.2.3",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
         "@sap/xssec": "^3.6.1",
@@ -184,7 +184,7 @@
         "uuid": "10.0.0"
       },
       "engines": {
-        "node": "^18 || ^20"
+        "node": "^18 || ^20 || ^22.0.0"
       }
     },
     "node_modules/@sap/instance-manager/node_modules/debug": {
@@ -207,32 +207,32 @@
       "license": "MIT"
     },
     "node_modules/@sap/jobs-client": {
-      "version": "1.8.5",
+      "version": "1.8.6",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
-        "@sap/xsenv": "4.2.0"
+        "@sap/xsenv": "5.4.0"
       },
       "engines": {
-        "node": "^14 || ^16 || ^18 || ^20"
+        "node": "^14 || ^16 || ^18 || ^20 || ^22"
       }
     },
     "node_modules/@sap/jobs-client/node_modules/@sap/xsenv": {
-      "version": "4.2.0",
+      "version": "5.4.0",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
-        "debug": "4.3.3",
-        "node-cache": "^5.1.0",
-        "verror": "1.10.0"
+        "debug": "4.3.7",
+        "node-cache": "^5.1.2",
+        "verror": "1.10.1"
       },
       "engines": {
-        "node": "^12.0.0 || ^14.0.0 || ^16.0.0 || ^18.0.0 || ^20.0.0"
+        "node": "^18.0.0 || ^20.0.0  || ^22.0.0"
       }
     },
     "node_modules/@sap/jobs-client/node_modules/debug": {
-      "version": "4.3.3",
+      "version": "4.3.7",
       "license": "MIT",
       "dependencies": {
-        "ms": "2.1.2"
+        "ms": "^2.1.3"
       },
       "engines": {
         "node": ">=6.0"
@@ -243,23 +243,15 @@
         }
       }
     },
-    "node_modules/@sap/jobs-client/node_modules/verror": {
-      "version": "1.10.0",
-      "engines": [
-        "node >=0.6.0"
-      ],
-      "license": "MIT",
-      "dependencies": {
-        "assert-plus": "^1.0.0",
-        "core-util-is": "1.0.2",
-        "extsprintf": "^1.2.0"
-      }
+    "node_modules/@sap/jobs-client/node_modules/ms": {
+      "version": "2.1.3",
+      "license": "MIT"
     },
     "node_modules/@sap/logging": {
-      "version": "8.3.0",
+      "version": "8.4.0",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
-        "@sap/e2e-trace": "^5.3.0",
+        "@sap/e2e-trace": "^5.4.0",
         "lodash": "4.17.21",
         "moment": "2.30.1"
       },
@@ -291,17 +283,17 @@
       }
     },
     "node_modules/@sap/textbundle": {
-      "version": "5.3.0",
+      "version": "5.4.0",
       "license": "SEE LICENSE IN LICENSE file",
       "engines": {
         "node": "^18.0.0 || ^20.0.0 || ^22.0.0"
       }
     },
     "node_modules/@sap/xsenv": {
-      "version": "5.4.0",
+      "version": "5.5.0",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
-        "debug": "4.3.7",
+        "debug": "4.4.0",
         "node-cache": "^5.1.2",
         "verror": "1.10.1"
       },
@@ -310,7 +302,7 @@
       }
     },
     "node_modules/@sap/xsenv/node_modules/debug": {
-      "version": "4.3.7",
+      "version": "4.4.0",
       "license": "MIT",
       "dependencies": {
         "ms": "^2.1.3"
@@ -329,17 +321,17 @@
       "license": "MIT"
     },
     "node_modules/@sap/xsodata": {
-      "version": "8.2.0",
+      "version": "8.2.1",
       "license": "SEE LICENSE IN developer-license-3.1.txt",
       "dependencies": {
-        "@sap/xsenv": "5.3.0",
-        "@sap/xssec": "3.6.0",
+        "@sap/xsenv": "5.5.0",
+        "@sap/xssec": "3.6.2",
         "async": "3.2.6",
         "big.js": "6.2.2",
         "body-parser": "1.20.3",
-        "hdb": "0.19.10",
+        "hdb": "0.19.12",
         "lodash": "4.17.21",
-        "negotiator": "0.6.3",
+        "negotiator": "1.0.0",
         "rwlock": "5.0.0",
         "xml-writer": "1.7.0"
       },
@@ -347,59 +339,15 @@
         "node": "^18 || ^20 || ^22"
       }
     },
-    "node_modules/@sap/xsodata/node_modules/@sap/xsenv": {
-      "version": "5.3.0",
-      "license": "SEE LICENSE IN LICENSE file",
-      "dependencies": {
-        "debug": "4.3.7",
-        "node-cache": "^5.1.2",
-        "verror": "1.10.1"
-      },
-      "engines": {
-        "node": "^18.0.0 || ^20.0.0"
-      }
-    },
-    "node_modules/@sap/xsodata/node_modules/@sap/xssec": {
-      "version": "3.6.0",
-      "license": "SAP DEVELOPER LICENSE AGREEMENT",
-      "dependencies": {
-        "axios": "^1.6",
-        "debug": "^4.3.4",
-        "jsonwebtoken": "^9.0.2",
-        "node-rsa": "^1.1.1"
-      },
-      "engines": {
-        "node": ">=18"
-      }
-    },
-    "node_modules/@sap/xsodata/node_modules/debug": {
-      "version": "4.3.7",
-      "license": "MIT",
-      "dependencies": {
-        "ms": "^2.1.3"
-      },
-      "engines": {
-        "node": ">=6.0"
-      },
-      "peerDependenciesMeta": {
-        "supports-color": {
-          "optional": true
-        }
-      }
-    },
-    "node_modules/@sap/xsodata/node_modules/ms": {
-      "version": "2.1.3",
-      "license": "MIT"
-    },
     "node_modules/@sap/xss-secure": {
-      "version": "5.2.0",
+      "version": "5.3.0",
       "license": "SEE LICENSE IN LICENSE file",
       "engines": {
         "node": "^18.0.0 || ^20.0.0 || ^22.0.0"
       }
     },
     "node_modules/@sap/xssec": {
-      "version": "3.6.1",
+      "version": "3.6.2",
       "license": "SAP DEVELOPER LICENSE AGREEMENT",
       "dependencies": {
         "axios": "^1.6",
@@ -425,6 +373,13 @@
         "mime-types": "~2.1.34",
         "negotiator": "0.6.3"
       },
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/accepts/node_modules/negotiator": {
+      "version": "0.6.3",
+      "license": "MIT",
       "engines": {
         "node": ">= 0.6"
       }
@@ -456,7 +411,7 @@
       "license": "MIT"
     },
     "node_modules/axios": {
-      "version": "1.7.9",
+      "version": "1.8.4",
       "license": "MIT",
       "dependencies": {
         "follow-redirects": "^1.15.6",
@@ -534,7 +489,7 @@
       }
     },
     "node_modules/call-bind-apply-helpers": {
-      "version": "1.0.1",
+      "version": "1.0.2",
       "license": "MIT",
       "dependencies": {
         "es-errors": "^1.3.0",
@@ -545,11 +500,11 @@
       }
     },
     "node_modules/call-bound": {
-      "version": "1.0.3",
+      "version": "1.0.4",
       "license": "MIT",
       "dependencies": {
-        "call-bind-apply-helpers": "^1.0.1",
-        "get-intrinsic": "^1.2.6"
+        "call-bind-apply-helpers": "^1.0.2",
+        "get-intrinsic": "^1.3.0"
       },
       "engines": {
         "node": ">= 0.4"
@@ -676,7 +631,7 @@
       "license": "MIT"
     },
     "node_modules/debug": {
-      "version": "4.3.4",
+      "version": "4.3.5",
       "license": "MIT",
       "dependencies": {
         "ms": "2.1.2"
@@ -757,10 +712,23 @@
       }
     },
     "node_modules/es-object-atoms": {
-      "version": "1.0.0",
+      "version": "1.1.1",
       "license": "MIT",
       "dependencies": {
         "es-errors": "^1.3.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/es-set-tostringtag": {
+      "version": "2.1.0",
+      "license": "MIT",
+      "dependencies": {
+        "es-errors": "^1.3.0",
+        "get-intrinsic": "^1.2.6",
+        "has-tostringtag": "^1.0.2",
+        "hasown": "^2.0.2"
       },
       "engines": {
         "node": ">= 0.4"
@@ -854,7 +822,7 @@
       "license": "MIT"
     },
     "node_modules/fetch-retry": {
-      "version": "4.1.0",
+      "version": "6.0.0",
       "license": "MIT"
     },
     "node_modules/finalhandler": {
@@ -910,11 +878,12 @@
       }
     },
     "node_modules/form-data": {
-      "version": "4.0.1",
+      "version": "4.0.2",
       "license": "MIT",
       "dependencies": {
         "asynckit": "^0.4.0",
         "combined-stream": "^1.0.8",
+        "es-set-tostringtag": "^2.1.0",
         "mime-types": "^2.1.12"
       },
       "engines": {
@@ -943,25 +912,36 @@
       }
     },
     "node_modules/get-intrinsic": {
-      "version": "1.2.6",
+      "version": "1.3.0",
       "license": "MIT",
       "dependencies": {
-        "call-bind-apply-helpers": "^1.0.1",
-        "dunder-proto": "^1.0.0",
+        "call-bind-apply-helpers": "^1.0.2",
         "es-define-property": "^1.0.1",
         "es-errors": "^1.3.0",
-        "es-object-atoms": "^1.0.0",
+        "es-object-atoms": "^1.1.1",
         "function-bind": "^1.1.2",
+        "get-proto": "^1.0.1",
         "gopd": "^1.2.0",
         "has-symbols": "^1.1.0",
         "hasown": "^2.0.2",
-        "math-intrinsics": "^1.0.0"
+        "math-intrinsics": "^1.1.0"
       },
       "engines": {
         "node": ">= 0.4"
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/get-proto": {
+      "version": "1.0.1",
+      "license": "MIT",
+      "dependencies": {
+        "dunder-proto": "^1.0.1",
+        "es-object-atoms": "^1.0.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
       }
     },
     "node_modules/gopd": {
@@ -984,6 +964,19 @@
         "url": "https://github.com/sponsors/ljharb"
       }
     },
+    "node_modules/has-tostringtag": {
+      "version": "1.0.2",
+      "license": "MIT",
+      "dependencies": {
+        "has-symbols": "^1.0.3"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
     "node_modules/hasown": {
       "version": "2.0.2",
       "license": "MIT",
@@ -995,7 +988,7 @@
       }
     },
     "node_modules/hdb": {
-      "version": "0.19.10",
+      "version": "0.19.12",
       "license": "Apache-2.0",
       "dependencies": {
         "iconv-lite": "^0.4.18"
@@ -1131,7 +1124,7 @@
       }
     },
     "node_modules/math-intrinsics": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "license": "MIT",
       "engines": {
         "node": ">= 0.4"
@@ -1237,7 +1230,7 @@
       }
     },
     "node_modules/negotiator": {
-      "version": "0.6.3",
+      "version": "1.0.0",
       "license": "MIT",
       "engines": {
         "node": ">= 0.6"
@@ -1290,7 +1283,7 @@
       }
     },
     "node_modules/object-inspect": {
-      "version": "1.13.3",
+      "version": "1.13.4",
       "license": "MIT",
       "engines": {
         "node": ">= 0.4"
@@ -1464,7 +1457,7 @@
       "license": "ISC"
     },
     "node_modules/semver": {
-      "version": "7.6.3",
+      "version": "7.7.1",
       "license": "ISC",
       "bin": {
         "semver": "bin/semver.js"

@@ -5,6 +5,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.1.0 - 2025-04-03
+
+### Added
+- Support stateProtection configuration to enable/disable state parameter mechanism
+
+### Fixed
+- Delete session cookies on logout
+
+## 20.0.1 - 2025-03-31
+
+### Added
+- Added iasOnly to configuration and modified the code to send iasClientId only when in hybrid mode.
+
+### Fixed
+- Additional partition logs for debugging
+- url and app_tid passed to xssec library for IAS token exchange
+
 ## 20.0.0 - 2025-03-20
 
 ### Added

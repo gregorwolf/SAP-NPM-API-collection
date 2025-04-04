@@ -2,9 +2,6 @@
  
 Application Frontend Command Line Interface (appfront-cli / afctl)
 
-## Link to release repository
-https://github.wdf.sap.corp/NPMJS/SAP_APPFRONT_CLI-1.0
-
 ## Description
 
 The Application Frontend Command Line Interface (appfront-cli) provides easy access to APIs exposed by Application Frontend service.
@@ -14,8 +11,8 @@ It allows you to:
 - Configure dependencies of frontend applications
 - See the runtime logs of frontend applications
 
-Application Frontend Command Line Interface is licensed under the Apache License, Version 2.0 - see [LICENSE](LICENSE).
-The [Open Source Legal Notice](OpenSourceLegalNotice.pdf) is part of the package contents.
+Application Frontend Command Line Interface is licensed under the Apache License, Version 2.0 - see [LICENSE](https://unpkg.com/@sap/appfront-cli@latest/LICENSE).
+The [Open Source Legal Notice](https://unpkg.com/@sap/appfront-cli@latest/OpenSourceLegalNotice.pdf) is part of the package contents.
 
 ## Prerequisites
 
@@ -152,6 +149,7 @@ Arguments:
 
 | Version  | Changes                                                  |
 |----------|----------------------------------------------------------|
+| `v1.6.0` | The `--service-key` option added                         |
 | `v1.0.0` | Added                                                    |
 
 </details>
@@ -160,17 +158,18 @@ Arguments:
 Login with named user
 
 Usage:
-  afctl login [-a URI] [-u USERNAME] [-p PASSWORD] [--sso | --p12 DER | --key KEY --cert CERT] [PROFILE]
+  afctl login [-a URI] [-u USERNAME] [-p PASSWORD] [--sso | --p12 DER | --key KEY --cert CERT | --service-key SERVICE_KEY] [PROFILE]
 
 Arguments:
-  --api, -a URI            Application Frontend API server URI                              
-  --username, -u USERNAME  Username                                                         
-  --password, -p PASSWORD  Password                                                         
-  --sso                    Single sign-on login (requires browser)                          
-  --p12 DER                P12 certificate bundle (--password will be used to open bundle)  
-  --key KEY                PEM private key                                                  
-  --cert CERT              PEM certificate                                                  
-  PROFILE                  Name of the login profile
+  --api, -a URI              Application Frontend API server URI                              
+  --username, -u USERNAME    Username                                                         
+  --password, -p PASSWORD    Password                                                         
+  --sso                      Single sign-on login (requires browser)                          
+  --p12 DER                  P12 certificate bundle (--password will be used to open bundle)  
+  --key KEY                  PEM private key                                                  
+  --cert CERT                PEM certificate
+  --service-key SERVICE_KEY  Application Frontend service key                                                  
+  PROFILE                    Name of the login profile
 ```
 
 #### logout
@@ -220,6 +219,7 @@ Arguments:
 
 | Version  | Changes                                                  |
 |----------|----------------------------------------------------------|
+| `v1.6.0` | The `--activate` and `--no-activate` options added       |
 | `v1.0.4` | The `--logs` option added                                |
 | `v1.0.0` | Added                                                    |
 
@@ -229,11 +229,14 @@ Arguments:
 Deploy new or sync changes to existing application versions
 
 Usage:
-  afctl push [PATH_TO_APP, ...] [-c CONFIG]
+  afctl push [PATH_TO_APP, ...] [-c CONFIG] [-l] [-a|-n]
 
 Arguments:
   PATH_TO_APP          Path to frontend application directory         
   --config, -c CONFIG  Path to configuration file or valid JSON string
+  --logs, -l           Print deployment logs                          
+  --activate, -a       Activate versions after deployment
+  --no-activate, -n    Don't activate versions after deployment
 ```
 
 #### download
@@ -296,18 +299,41 @@ Arguments:
   PLUGIN  CLI plugin package name
 ```
 
+### Global Flags
+
+In addition to command specific arguments, the following global flags may be passed to CLI:
+
+| Flag | Alias | Description |
+|------|-------|-------------|
+| --help | -h | Print general CLI or command specific help |
+| --verbose | -v | Add tracing information to the output |
+| --output FORMAT| -o FORMAT| Output format. FORMAT is one of `json` or `yaml`|
+| --root | | Allow CLI to run with root user privileges |
+
 ## Configuration
 
+#### AFCTL_CONFIG
 The Application Frontend Command Line Interface creates and uses configuration file, which may be found in `$HOME/.afctl/config.yaml`. It includes multiple configuration profiles that allow to easily switch between various Application Frontend API servers and users. After successfull login, the configuration file also includes JWT (JSON Web Token) that is used to authenticate the calls of command line interface to Application Frontend service API server. To use configuration file different from default, set `AFCTL_CONFIG` environment variable
 to file path of desired configuration file.
 
+#### AFCTL_LOG_LEVEL
 The Application Frontend Command Line Interface supports multiple log levels:
 - `0` - no logs
 - `1` - errors only
 - `2` - errors and warnings
 - `3` - errors, warnings and information messages
 - `5` - verbose logs with all messages (useful for troubleshooting and development). 
-The log level may be controlled by setting `AFCTL_LOG_LEVEL` environment variable. The default value is `3`. If `--verbose` global option is used, the log level is `5` (overrides the value set by environment variable).
+The log level may be controlled by setting `AFCTL_LOG_LEVEL` environment variable. The default value is `3`. If `--verbose` global flag is used, the log level is `5` (overrides the value set by environment variable).
+
+#### AFCTL_ACTIVATE
+By default, the Application Frontend service activates newly deployed application versions. 
+The behavior may be changed by:
+- `push` command `--activate` or `--no-activate` argument (for single command execution)
+- `push` command `--config config.json` configuration, where config.json `'{"activateVersion":false}'` (for command execututions using this configuration file)
+- `AFCTL_ACTIVATE` environment variable (for every command executions)
+
+If multiple options are used, the command argument has a higher priority than
+configuration file, and configuration file has higher priority than environment variable.
 
 ## Troubleshooting
 
