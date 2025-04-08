@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 8.9.1 - 2025-04-07
+
+### Fixed
+- Formatting of annotations in parentheses with values containing spaces
+
+
 ## 8.9.0 - 2025-04-01
 
 ### Fixed

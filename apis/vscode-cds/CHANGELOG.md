@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [8.9.2] - 2025-04-07
+
+
+## [8.9.1] - 2025-04-07
+
+### Fixed
+- Formatting of annotations in parentheses with values containing spaces
+
+### Also see
+- `@sap/cds-lsp` 8.9.1
+
+
 ## [8.9.0] - 2025-04-01
 
 ### Changed

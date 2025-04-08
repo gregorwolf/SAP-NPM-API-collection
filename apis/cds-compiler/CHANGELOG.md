@@ -7,6 +7,13 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.9.2 - 2025-04-04
+
+### Fixed
+
+- to.edm(x): Revert addition of the attribute sap:filterable="false" to the NavigationProperty DraftAdministrativeData in OData V2
+
+
 ## Version 5.9.0 - 2025-03-28
 
 ### Added
