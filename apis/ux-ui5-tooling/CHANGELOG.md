@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.3] - 2025-04-03
+### Quality
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | dependencies | patch | [`0.19.8` -> `0.19.12`] |
+| [@sap-ux/adp-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/adp-tooling)) | devDependencies | patch | [`0.13.21` -> `0.13.22`] |
+| [@sap-ux/reload-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/reload-middleware)) | devDependencies | patch | [`0.2.19` -> `0.2.20`] |
+
+
+
 ## [1.17.1] - 2025-19-05
 ### Quality
 

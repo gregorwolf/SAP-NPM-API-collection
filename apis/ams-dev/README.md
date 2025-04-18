@@ -46,7 +46,54 @@ We recommend the use of `--failOn warning` to not miss out on potential future d
 
 ## Testing with a local DCL bundle
 
-To test your application on the DCL bundle locally, follow these steps:
+To test your application with local DCL policy files and mocked policy assignments, follow these steps depending on the `@sap/ams` version of your project.
+
+### @sap/ams 3.x
+
+1. Compile the DCL bundle to DCN before running the application
+1. Use **`AuthorizationManagementService#fromLocalDcn(dcnRoot, config)`** to create the `AuthorizationManagementService` singleton with the following `config`:
+  - `dcnRoot` (string) the root directory of the DCN compilation.  
+  - `config.assignments` (string | PolicyAssignments, optional) a path to a `PolicyAssignments` JSON file or an in-memory `PolicyAssignments` object.  
+
+In `PolicyAssignments`, the assignments are based on the SAP Identity Service `app_tid` (*tenant*) and `scim_id` from the user's (mocked) token.
+
+```json
+{
+  "tenant1": {
+      "user1": [
+        "sales.readAllSalesOrders"
+      ],
+      "user2": [
+        "sales.readAllSalesOrders",
+        "sales.writeAllSalesOrders"
+      ]
+  },
+  "tenant2": {
+      "user1": [
+        "sales.readAllSalesOrders",
+        "sales.writeAllSalesOrders"
+      ]
+  }
+}
+```
+
+In your `package.json`, you could set-up the `pretest` and `posttest` lifecycle scripts to perform the necessary DCL compilation before the tests and cleanup the DCN output afterwards.
+
+This is an example `package.json` for an application using *jest* as test framework but any other framework can be used:
+
+```json
+"config": {
+  "dcn_root": "test/dcn"
+},
+"scripts": {
+    "pretest": "npx --package=@sap/ams-dev compile-dcl -d test/dcl -o $npm_package_config_dcn_root",
+    "jest": "AMS_DCN_ROOT=$npm_package_config_dcn_root jest", // or any other framework
+    "test": "npm run jest",
+    "posttest": "rm -rf $npm_package_config_dcn_root"
+  }
+```
+
+### @sap/ams 2.x
 
 1. Compile the DCL bundle to DCN before running the application
 1. Set environment variable `AMS_DCN_ROOT` to the DCN output root folder
@@ -54,7 +101,7 @@ To test your application on the DCL bundle locally, follow these steps:
 1. Run the application
 1. In @sap/ams versions >= 1.17, when creating a `PolicyDecisionPoint` without the new constructor argument for passing an explicit bundle loader, it will automatically load the bundle located at `AMS_DCN_ROOT` when its value has been set
 
-Inside the `data.json` file you can mock policy assignments to users based on the SAP Identity Service `app_tid` (*tenant*) and `user_uuid` from the user's (mocked) `tokenInfo`.
+Inside the `data.json` file you can mock policy assignments to users based on the SAP Identity Service `app_tid` (*tenant*) and `scim_id` from the user's (mocked) token.
 
 ```json
 {

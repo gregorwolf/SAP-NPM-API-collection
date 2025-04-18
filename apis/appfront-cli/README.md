@@ -16,7 +16,7 @@ The [Open Source Legal Notice](https://unpkg.com/@sap/appfront-cli@latest/OpenSo
 
 ## Prerequisites
 
-- [Download](https://nodejs.org/en/download/prebuilt-installer/current) and install Node.js (≥22.11.0).
+- [Download](https://nodejs.org/en/download/prebuilt-installer/current) and install Node.js (≥22.6.0).
 
 ## Installation
 

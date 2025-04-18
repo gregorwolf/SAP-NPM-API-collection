@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.6.0 - 2025-04-09
+- add `requests.retry` option to Service configuration to define retries for all HTTP calls of the instance
+- export SECURITY_CONTEXT Symbol which is recommended as new default location for the SecurityContext on the req object
+- add `skipValidation: true` option to `contextConfig` of `createSecurityConfig` (use with caution!)
+- fix unintended side effect of XsuaaService#acceptsTokenAudience in multi-service setups
+ 
 ## 4.5.0 - 2025-03-24
 - add `requests.timeout` as optional service configuration option to override default request timeout for all requests of that Service instance 
 

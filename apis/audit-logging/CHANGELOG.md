@@ -5,7 +5,29 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 6.6.0 - 2025-12-03
+
+## 6.7.1 - 2025-04-14
+
+### Added
+- Retries timeout fix
+
+## 6.7.0 - 2025-04-08
+
+### Added
+- fetch with retry.
+- REQ_DELAY - env variable for each request time in ms. Default value is 1000.
+- REQ_RETRIES - env variable for how many retries one request should made. Default value is 5.
+
+### Removed
+- REQ_TIMEOUT_MS
+
+### Updated
+- axios - > 1.8.4
+
+### Refactor
+- NGPBUG-427809
+
+## 6.6.0 - 2025-03-12
 
 ### Added
 - Request timeout functionality with editable env variable: 'REQ_TIMEOUT_MS' - working with milliseconds.
@@ -15,7 +37,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - NGPBUG-413403
 - Github issue: #297
 
-## 6.5.0 - 2025-27-01
+## 6.5.0 - 2025-01-27
  
 ### Added
 - Added UTF-8 Encoding

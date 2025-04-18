@@ -1,4 +1,40 @@
-## 1.5.2
+# SAP HANA SQL Analyzer Changelog
+
+## Version 1.6.0
+The SQL analyzer tool version 1.6.0 includes the following improvements and bug fixes.
+
+### Improvements
+
+- **Plan Graph Tab**
+  - Updated the Plan Graph edges to visually represent output cardinality, with thicker edges indicating higher values. Edges exceeding 50% of the maximum cardinality are highlighted in purple, and edge transparency ensures the operators remain visible and their details clear, even when overlapping with edges.
+  - Added Operator Property information to the Details pane for easier access.
+  - Summary and Operator Property information in the Details pane can now be viewed in a separate view, allowing full display of long summaries or operator property details.
+  - The Details pane now shows Physical instead of Physical-Simple for non-HEX plans in Physical mode, reflecting that Physical Simple/Expert modes apply only to HEX plans.
+  - Added table names to operators when zoomed out between 50% and 70%, if available.
+  - Added location-based color coding for operators in single-node queries to ensure consistent visual feedback.
+
+- **Execution Time Mode and UI Updates**
+  
+  Enabled CPU Time mode by default for both HEX and non-HEX plans. While full CPU time calculations and visualizations such as time-based bar charts and percentages remain exclusive to HEX plans, this improvement lets you explore CPU Time mode for non-HEX plans that include inner HEX plans.
+
+  When a non-HEX plan is opened in CPU Time mode, the Execution Summary in the Overview tab shows Execution Time (CPU) as n/a. Related time-based bar charts—such as those in the Dominant Plan Operators card of the Overview tab and within the Plan Graph—are either empty or display CPU time where available. The Top 10 Critical Path Operators view in the sidebar is also empty if no CPU time data is available. In the Plan Graph, bar charts will show CPU time where it is available, while operators without CPU time remain empty. Additionally, the execution time section and bar chart in the Details pane are hidden.
+
+- **Performance Trace Tab**
+  
+  The Operator List now displays only operators with available detailed metrics, inner plans, service call data, or function profiler metrics. The search functionality has also been improved with placeholder text to guide you on searchable criteria such as name, ID, location, or execution time.
+
+- **Statement Statistics Tab**
+  
+  Updated the Statement Statistics tab with improved labels for better clarity and consistency. Show Deep Dive is now Open Inner Plan, Copy SQL Command with Comments has been changed to Copy SQL Statement with Comments, and Line No. is now Line Number. Added More buttons for SQL Statement, Plan, and Comments columns to view full content in pop-ups. Introduced new icons and repositioned some labels to create a more intuitive and streamlined layout. 
+
+### Bug Fixes
+- Fixed an issue where timeline data was missing when opening inner plans in a new tab.
+- Fixed an issue where parameter values were not displayed in the SQL tab.
+- Fixed an issue where timeline data appeared empty or failed to expand when the outermost operator lacked timestamp information. A placeholder row is now added to handle these cases, allowing the timeline to expand as expected.
+- Fixed an issue where the SQL analyzer tool for SAP HANA was not activating in certain Windows Terminal System environments due to incorrect global storage path generation. The directory creation logic has been corrected.
+- Fixed an issue where the information in the Property tab did not appear expanded by default.
+
+## 1.5.1
 
 ### Bug Fixes
 

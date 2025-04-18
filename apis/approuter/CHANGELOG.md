@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.2.0 - 2025-04-07
+
+### Added
+- Support for token refresh ID based external session in service2approuter flow
+- user-api authentication type in service2approuter flow
+
 ## 20.1.0 - 2025-04-03
 
 ### Added

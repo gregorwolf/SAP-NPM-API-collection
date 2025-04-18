@@ -2207,11 +2207,37 @@ The application router can receive a consumer service JWT token created by the S
 Cookie Handling:
 In this flow client cookies are merged to backend cookies in case a backend cookie with the same key does not exist.
 
-If you have configured [external session management](#external-session-management), an external session is created for each token in the external session management service (for example, in Redis). Such an external session has the same expiration time as the token for which it was created. 
+If you have configured [external session management](#external-session-management), an external session that represents the user session is created in the external session management service (for example, in Redis).
 The application router uses the external session to store cached data, such as the exchanged tokens and destination configurations, to improve the performance by reducing roundtrips to the authentication and destination services.
 
-**Note**: The XSUAA JWT token or the OIDC token are generated with the same XSUAA service instance or the same Identity service instance that is bound to the application router. 
+This external session may be created using the provided x-approuter-authorization token id and expiration time as session id and session expiry time or the consumer service may pass this information explicitly.
+In case that external session properties are managed by the consumer service, the following headers should be passed to the application router with each request:
+- `x-approuter-ext-session-id: <session-id>` where `<session-id>` is the external session ID
+- `x-approuter-ext-session-id-sig: <signature>` where `<signature>` is a signature created for `<session-id>` (see below)
+- `x-approuter-ext-session-expiry: <timestamp>`: where `<timestamp>` is the expiry time of the external session, given as a UNIX epoch timestamp
+  If a new access token is provided via the `x-approuter-autorization` header and the external session id is provided via
+  the `x-approuter-ext-session-id` header, the application router will replace the previous access token in the external
+  session with the new one.
+  In order to avoid arbitrarily generating external sessions, the external session ID must be signed and the signature
+  must appear in the `x-approuter-ext-session-id-sig` header. The signature should be created via a HMAC based on SHA256. The result should be converted to base64 and any trailing `=`
+  characters must be trimmed. Code example for creating the signature:
+```js
+function sign(sessionId, secret) {
+  return crypto
+      .createHmac('sha256', secret)
+      .update(sessionId)
+      .digest('base64')
+      .replace(/\=+$/, '');
+}
+```
+The secret used to verify the signature is provided by the `SVC2AR_EXTERNAL_SESSION_ID_SECRET` and/or `SVC2AR_EXTERNAL_SESSION_ID_SECRET_ALT`
+environment variables. Two environment variables are supported in order to facilitate secret rotation. Signature verification
+is attempted using both secrets, if both provided.
+External session stickiness is supported if the `SVC2AR_EXTERNAL_SESSION_COOKIE_ENABLED` environment variable is set to `true`.
+In this case, when creating a new external session, a JSESSIONID cookie will be set by the application router. In CF,
+a __VCAP_ID__ cookie is generated that directs the next requests to the same Approuter instance
 
+**Note**: The XSUAA JWT token or the OIDC token are generated with the same XSUAA service instance or the same Identity service instance that is bound to the application router.
 
 ## Central Logout
 

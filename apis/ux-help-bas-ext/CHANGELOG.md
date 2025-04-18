@@ -7,6 +7,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.17.3] - 2025-04-03
+
+### Changed
+- The `model` parameter is now shown as mandatory in overview page guides
+- Enhanced the guides listed below to harmonize the creation of custom files. View XML files along with their controllers are now placed in the `ext/view` folder, fragment XML files in the `ext/fragment` folder, and single controller files in the `ext/controller` folder
+  - _Add custom columns to the table using extensions_
+  - _Extend object page headers using extensions_
+  - _Extend forms in sections_
+- Harmonized the creation of i18n keys so that PascalCase is used for annotation properties in a CAP application and camelCase elsewhere
+
+### Fixed
+- Fixed an issue where the extension did not open for an overview page application when the `globalFilterModel` property in the `manifest.json` file referred to a model that was not defined
+
 ## [1.17.1] - 2025-03-20
 
 ### Project Accelerator

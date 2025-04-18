@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.3] - 2025-04-03
+### Fixed
+- Fixed an issue where the Service Manager did not provide fields for user and password in the "Add Service" dialog
+- Fixed an issue where adding a service led to a crash in the "Add Service" dialog
+- Fixed an issue where the Service Manager returned an error when metadata was refreshed
+- Fixed an issue where the destination was not added to the `ui5.yaml` in the "Add Service" dialog
+- Fixed an issue where the expected default destination was incorrect when a service was edited
+
 ## [1.17.1] - 2025-19-05
 ### Fixed
 - Fixed an issue where deleting a service in Service Manager led to the wrong service being removed

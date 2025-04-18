@@ -6,6 +6,18 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.3] - 2025-04-03
+### Added
+- Added support for the `rowCount` and `rowCountMode` properties for grid, analytical, and tree tables on object pages using OData V4
+
+### Fixed
+- Fixed an issue where the list of SAPUI5 versions available to select during migration did not include the latest available versions
+- Fixed an issue where an non-functional vertical scrollbar appeared when notification messages were shown on the Page Map
+- Fixed an issue where deleting a value in a numeric field within the Properties Panel caused inconsistent behavior and led to an error
+- Fixed an issue where a table property overlapped with the next property in the "Page Editor"
+- Fixed an issue where switch icons were not centered vertically within creation dialogs in the "Page Editor"
+- Fixed multiple UI action inconsistencies for table-like structures in the Properties Panel and outline
+
 ## [1.17.1] - 2025-19-05  
 ### Fixed
 - Fixed an issue where the "Page Editor" did not display tables in an object page when they used `Selection Presentation Variants`

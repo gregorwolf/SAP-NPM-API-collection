@@ -1,3 +1,23 @@
+# Version 3
+
+Version 3 drastically changes the core API. Instead of checking privileges on a `PolicyDecisionPoint` with an `Attributes` object, an `AuthProvider` prepares an `Authorizations` object for the same purpose. This separates *what* to check from *how* to check it. The necessary configuration for advanced authorization scenarios such as principal propagation or non-standard authorization strategies are configured once during application start. As a result, the authorization checks themselves remain straight-forward in version 3, with a focus on the application domain.
+
+New features:
+
+- Out-of-the-box support for technical communication scenarios via SAP Identity Service
+- Flexible configuration and extensibility for non-standard authorization strategies, e.g. when authenticating both via XSUAA and SAP Identity Service tokens
+- Exports Typescript Types for a better development experience
+- Improved events that allows correlating authorization checks with requests for logging and auditing
+- Support for SAP Identity Service credentials with certificates changing at runtime, e.g. when using ZTIS or mounted Kyma service bindings
+
+### Breaking Changes
+CAP Node.js Applications should **not** need to make changes when updating to version 3.
+
+For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
+
+## 3.0.0
+Refactored core API for non-CAP projects.
+
 # Version 2
 
 Version 2 introduces an improved and re-designed instance-based authorization via AMS for CAP projects. The integration switches from `@ams.publicFields` annotations to `@ams.attributes` annotations.

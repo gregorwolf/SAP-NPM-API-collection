@@ -5,6 +5,12 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2025.3.0
+
+### Fixed
+
+- URL path parameters are not correctly URI-encoded following the example of [`encodeURIComponent()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent). This can lead to issues when using a command which requires an option value with special characters, such as `/`, as a path parameter in the API URL.
+
 ## 2025.1.0
 
 ### Added

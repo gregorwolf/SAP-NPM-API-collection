@@ -8,6 +8,26 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.14] - 2025-03-02
+
+### Added
+- Support rowCount and rowCountMode settings for grid, analytical and tree tables on object pages in OData V4
+
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | devDependencies | patch | [`0.33.16` -> `0.33.19`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | dependencies | patch | [`0.33.16` -> `0.33.19`] |
+| [axios](https://axios-http.com) ([source](https://github.com/axios/axios)) | devDependencies | patch | [`1.8.2` -> `1.8.4`] |
+| [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) | devDependencies | patch | [`5.2.3` -> `5.2.5`] |
+| [ts-jest](https://kulshekhar.github.io/ts-jest) ([source](https://github.com/kulshekhar/ts-jest)) | devDependencies | minor | [`29.2.6` -> `29.3.1`] |
+| [esbuild](https://github.com/evanw/esbuild) | devDependencies | patch | [`0.25.1` -> `0.25.2`] |
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | devDependencies | minor | [`8.26.1` -> `8.29.0`] |
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | devDependencies | minor | [`8.26.1` -> `8.29.0`] |
+
 ## [1.124.13] - 2025-03-19
 
 ### Added
