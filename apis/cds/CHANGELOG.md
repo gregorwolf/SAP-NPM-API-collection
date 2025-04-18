@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.9.2 - 2025-04-14
+
+### Fixed
+
+- `forUpdate` will not consider `wait` if `ignoreLocked` is set
+- Do not crash in case of custom `DraftAdministrativeData` table
+
 ## Version 8.9.1 - 2025-04-03
 
 ### Fixed

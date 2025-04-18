@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 2.7.2 - 2025-04-17
+
+### Fixed
+
+- Inaccurate warnings about outdated configuration are removed.
+- Improved resilience in handling corrupted metadata entries stored in the tenant database table.
+
+## Version 2.7.1 - 2025-04-07
+
+### Fixed
+
+- Input validation annotations (e. g. `@assert.range`) with default values in extensions are now correctly checked.
+- Event 'activated' is now only triggered for successfully completed extension activation.
+- Binding parameters configured for subscription are now correctly passed to the Service Manager.
+
 ## Version 2.7.0 - 2025-03-31
 
 ### Added
