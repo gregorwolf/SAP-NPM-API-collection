@@ -1,5 +1,14 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.30.1
+
+### Fixes
+- SQL console performance improvements
+- Fixed an error that the database type "NAMED_USER" is not supported
+- The database list could be modified unintentionally by a SQL console
+- Analyzing an executed plan could fail in certain scenarios
+- The dependency viewer shows too many indirect dependencies
+
 ## 1.30.0
 
 ### New Features

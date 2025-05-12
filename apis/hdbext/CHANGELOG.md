@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.1.4"></a>
+## 8.1.4 - 2025-05-08
+
+### Updated
+- Updated @sap/hana-client module version to 2.24.24
+
+### Removed
+- Removed support for NodeJS 12 and NodeJS 14
+
 <a name="8.1.3"></a>
 ## 8.1.3 - 2025-02-17
 

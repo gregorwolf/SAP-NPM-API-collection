@@ -5,6 +5,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.3.1 - 2025-04-28
+
+### Fixed
+- Avoid deleting non approuter duplicated session cookies
+- Avoid deleting active state cookies when evaluating stale cookies
+
+## 20.3.0 - 2025-04-20
+
+### Added
+- Exclude state handling for specific subdomains
+
+### Fixed
+- Get application returned errors format
+- Add uaadomain field to xsuaa extenral service. 
+- Fix app2app ias flow.
+- Token exchange in single use token flow
+
 ## 20.2.0 - 2025-04-07
 
 ### Added

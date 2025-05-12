@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.4] - 2025-04-17
+### Added
+- Added the option for users to create a new `mta.yaml` file when adding a deployment configuration for a Node.js CAP project when the file did not exist yet
+- Added support for the Application Frontend Service when adding a Cloud Foundry deployment configuration to an SAP Fiori application
+- Added the ability to download SAP Fiori applications from an ABAP SAPUI5 repository that has been deployed with the Quick Fiori Application generator using the ABAP Development Tools in Eclipse
+
+### Fixed
+- Fixed an issue where using an ABAP Core Data Service as the object type when generating a new UI service incorrectly offered the ability to create a draft service
+- Fixed an issue where the expected deploy scripts were not created when adding a deployment configuration during generation of an SAP Fiori application in a CAP project
+- Fixed an issue where connecting to a BTP system using Visual Studio Code opened multiple browser windows for authentication
+- Fixed an issue where the list of services associated with a destination in SAP Business Application Studio was not successfully returned
+
 ## [1.17.3] - 2025-04-03
 ### Fixed
 - Fixed an issue where the deployment configuration generator failed to start on Windows
@@ -13,7 +25,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Optimized the file size for images in the SAP Fiori Generator
 
 ### Fixed
- - Fixed an issue where the required destination was not populated when adding a deployment configuration during generation. This occurred when users launched the SAP Fiori Generator from the ABAP Development Tools in Eclipse
+- Fixed an issue where the required destination was not populated when adding a deployment configuration during generation. This occurred when users launched the SAP Fiori Generator from the ABAP Development Tools in Eclipse
 - Fixed an issue where only the SAP Fiori application folder was opened after generation, instead of also opening the CAP project that contained the SAP Fiori application
 
 ## [1.17.0] - 2025-03-05

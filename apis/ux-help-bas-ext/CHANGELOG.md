@@ -7,6 +7,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.17.4] - 2025-04-17
+
+### Project Accelerator
+- You can now use Microsoft Word documents (.docx) as your business requirements in the Project Accelerator. Microsoft Word documents can contain text and images to describe the application you want to generate
+
+### Changed
+- Enhanced all variants of the _Add a custom filter to the filter bar_ guide to harmonize the creation of custom files. View XML files along with their controllers are now placed in the `ext/view` folder, fragment XML files in the `ext/fragment` folder, and single controller files in the `ext/controller` folder
+
+### Fixed
+- Fixed an issue with guides where the "Entity Set" parameter was disabled when a CAP project included multiple apps
+- Fixed an issue in the _Add a static link list card to an overview page_ guide where the "Image URI" parameter was not validated
+- Fixed an issue in the _Add a progress indicator column to a table_ guide that allowed non-numeric values in the "Property Target Value" parameter
+
 ## [1.17.3] - 2025-04-03
 
 ### Changed

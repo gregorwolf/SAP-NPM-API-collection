@@ -5,7 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## 5.5.0 - 2024-03-06
+## 5.6.1 - 2025-05-09
+
+### Fixed
+- Ensured `readCFServices` returns `undefined`
+
+## 5.6.0 - 2025-05-08
+
+### Updated
+- Updated `mocha` dependency to 11.2.2
+- Updated `@babel/eslint-parser` dependency to 7.27.1
+
+### Added
+- Added support for reading service bindings from a file via VCAP_SERVICES_FILE_PATH
+
+
+## 5.5.0 - 2025-03-06
 
 ### Updated
 - Updated `filter-node-package` dependency to 5.1.0

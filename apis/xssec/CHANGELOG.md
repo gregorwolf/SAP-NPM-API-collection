@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.7.0 - 2025-05-07
+- `createSecurityContext` can now also be called with a pre-decoded `Token` object instead of a raw JWT string in the `contextConfig` parameter. This prevents costly double-decoding of the token in scenarios where the token is already decoded before validation.
+- fix and type definitions for request retry configuration
+- fixes for Typescript typings
+- reduced information when logging errors from `@sap/xssec` to console, e.g. no longer prints the http client request object unless debug logging for xssec is enabled
+
 ## 4.6.0 - 2025-04-09
 - add `requests.retry` option to Service configuration to define retries for all HTTP calls of the instance
 - export SECURITY_CONTEXT Symbol which is recommended as new default location for the SecurityContext on the req object

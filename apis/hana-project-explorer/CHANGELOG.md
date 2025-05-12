@@ -1,3 +1,13 @@
+## 1.29.1
+
+### Fixes
+
+- Show tenant names in addition to tenant IDs when binding to an SAP HANA Cloud tenant
+- Fixed the file extension for properties files created by the database artifact creation wizard
+- The end of input values could be removed in some editors
+- The virtual table editor did not update the input fields correctly for some remote sources
+- Special characters in .env files were not handled correctly in some cases
+
 ## 1.29.0
 
 ### New Features

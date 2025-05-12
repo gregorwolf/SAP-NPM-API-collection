@@ -38,6 +38,11 @@ For specifics in the usage in different environments, read below.
 Cloud Foundry and SAP XS advanced both provide application configurations via environment variables.
 The properties of the bound services are in [VCAP_SERVICES](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) environment variable in both cases.
 
+### Updates in `readCFServices`
+
+Added support for reading service bindings from a file defined by the [`VCAP_SERVICES_FILE_PATH`](https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP_SERVICES_FILE_PATH) environment variable.
+Implemented fallback logic to ensure compatibility with `VCAP_SERVICES` when `VCAP_SERVICES_FILE_PATH` is not set.
+
 ### Service Lookup
 
 Normally in Cloud Foundry you bind a service instance to your application with a command like this one:

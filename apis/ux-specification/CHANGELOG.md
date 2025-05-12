@@ -8,6 +8,33 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.15] - 2025-03-16
+
+### Added
+
+### Changed
+
+### Removed
+
+### Deprecated
+
+- `globalFilterEntityType` property, if defined, a message is set, otherwise, the property is marked as hidden.
+
+### Fixed
+
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc) | devDependencies | patch | [`50.6.8` -> `50.6.9`] |
+| [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) | devDependencies | patch | [`5.2.5` -> `5.2.6`]
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | devDependencies | patch | [`8.29.0` -> `8.29.1`]|
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | devDependencies | patch | [`8.29.0` -> `8.29.1`] |
+| [typescript](https://www.typescriptlang.org/) ([source](https://github.com/microsoft/TypeScript)) | devDependencies | patch | [`5.8.2` -> `5.8.3`]
+
+
 ## [1.124.14] - 2025-03-02
 
 ### Added

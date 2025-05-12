@@ -440,6 +440,9 @@ The second parameter is a [unique (!)](#authentication) `contextConfig` object t
   *or*:
   - `jwt` manually provided JWT token as String
 
+  *or*:
+  - `token` manually provided pre-decoded `Token` instance. This prevents costly double-decoding of the *jwt token* when it has already been decoded before.
+
   *Optional* properties:
   - `correlationId` a correlation id that allows tracing debug logs and Errors thrown by this module to the request
   - `clientCertificatePem` manually provided client certificate in PEM format
@@ -763,6 +766,9 @@ SyntaxError: Unexpected token '??='
 ### Debug Logs
 To enable debug logging, set the environment variable DEBUG as follows when starting your application: `DEBUG=xssec`. Note that `DEBUG=xssec:*` works only for xssec 3.
 
+:warning: Do not enable in production unless absolutely necessarily to analyze a problem. Sensitive information might be logged when debug logs are enabled, including (but not necessary limited to):
+- *JWT tokens* that do not pass token validation (if application logs (subclasses of) `TokenValidationError` to console)
+- *Service credentials* as part of the request payload that is logged to the console before any HTTP request from the library (if application performs service requests that require authentication, e.g. token fetches)
 
 ### How to get support
 Please use official SAP support channels to get support under component `BC-CP-CF-SEC-LIB` or `Security Client Libraries`.\
