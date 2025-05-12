@@ -1,12 +1,12 @@
 {
   "name": "@sap/cds-dk",
-  "version": "8.9.2",
+  "version": "8.9.3",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/cds-dk",
-      "version": "8.9.2",
+      "version": "8.9.3",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@cap-js/asyncapi": "^1.0.0",
@@ -43,7 +43,7 @@
       }
     },
     "node_modules/@cap-js/db-service": {
-      "version": "1.19.1",
+      "version": "1.20.0",
       "license": "SEE LICENSE",
       "optional": true,
       "dependencies": {
@@ -64,11 +64,11 @@
       }
     },
     "node_modules/@cap-js/sqlite": {
-      "version": "1.10.0",
+      "version": "1.11.0",
       "license": "SEE LICENSE",
       "optional": true,
       "dependencies": {
-        "@cap-js/db-service": "^1.19.0",
+        "@cap-js/db-service": "^1.20.0",
         "better-sqlite3": "^11.0.0"
       },
       "peerDependencies": {
@@ -76,7 +76,7 @@
       }
     },
     "node_modules/@eslint-community/eslint-utils": {
-      "version": "4.6.0",
+      "version": "4.6.1",
       "license": "MIT",
       "dependencies": {
         "eslint-visitor-keys": "^3.4.3"
@@ -128,7 +128,7 @@
       }
     },
     "node_modules/@eslint/core": {
-      "version": "0.12.0",
+      "version": "0.13.0",
       "license": "Apache-2.0",
       "dependencies": {
         "@types/json-schema": "^7.0.15"
@@ -159,7 +159,7 @@
       }
     },
     "node_modules/@eslint/js": {
-      "version": "9.24.0",
+      "version": "9.25.1",
       "license": "MIT",
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -178,16 +178,6 @@
       "dependencies": {
         "@eslint/core": "^0.13.0",
         "levn": "^0.4.1"
-      },
-      "engines": {
-        "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
-      }
-    },
-    "node_modules/@eslint/plugin-kit/node_modules/@eslint/core": {
-      "version": "0.13.0",
-      "license": "Apache-2.0",
-      "dependencies": {
-        "@types/json-schema": "^7.0.15"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -311,7 +301,7 @@
       }
     },
     "node_modules/@sap/cds-mtxs": {
-      "version": "2.7.1",
+      "version": "2.7.2",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@sap/hdi-deploy": ">=4",
@@ -836,7 +826,7 @@
       }
     },
     "node_modules/detect-libc": {
-      "version": "2.0.3",
+      "version": "2.0.4",
       "license": "Apache-2.0",
       "optional": true,
       "engines": {
@@ -936,17 +926,17 @@
       }
     },
     "node_modules/eslint": {
-      "version": "9.24.0",
+      "version": "9.25.1",
       "license": "MIT",
       "dependencies": {
         "@eslint-community/eslint-utils": "^4.2.0",
         "@eslint-community/regexpp": "^4.12.1",
         "@eslint/config-array": "^0.20.0",
-        "@eslint/config-helpers": "^0.2.0",
-        "@eslint/core": "^0.12.0",
+        "@eslint/config-helpers": "^0.2.1",
+        "@eslint/core": "^0.13.0",
         "@eslint/eslintrc": "^3.3.1",
-        "@eslint/js": "9.24.0",
-        "@eslint/plugin-kit": "^0.2.7",
+        "@eslint/js": "9.25.1",
+        "@eslint/plugin-kit": "^0.2.8",
         "@humanfs/node": "^0.16.6",
         "@humanwhocodes/module-importer": "^1.0.1",
         "@humanwhocodes/retry": "^0.4.2",

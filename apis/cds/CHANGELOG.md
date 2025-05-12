@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.9.3 - 2025-05-06
+
+### Fixed
+
+- OData: `$value` access of primitive properties returned by custom handler
+- UCL: Add missing declaration of variable `$input` in mutation for creating an application template
+- Purge of `servers` from `.cds-services.json` file
+- Loading of relative service implementations in plugins
+- `cds.compile.to.edmx` in case the model was manipulated in a plugin
+
 ## Version 8.9.2 - 2025-04-14
 
 ### Fixed

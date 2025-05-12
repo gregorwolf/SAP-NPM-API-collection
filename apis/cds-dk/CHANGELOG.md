@@ -7,6 +7,17 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 8.9.3 - 2025-04-24
+
+### Fixed
+
+- `cds add workzone` uses the backend destination `srv-api` instead of `{{appName}}-srv-api` on Cloud Foundry.
+- `cds init` uses latest Maven Java archetype version 3.9.1 for creating Java projects.
+
+### Changed
+
+- `cds add pipeline` also creates UI5 resources if required.
+
 ## Version 8.9.2 - 2025-04-16
 
 ### Fixed
