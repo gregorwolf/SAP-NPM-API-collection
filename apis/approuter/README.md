@@ -38,7 +38,7 @@
   * [*websockets* property](#websockets-property)
   * [*errorPage* property](#errorpage-property)
   * [*cors* property](#cors-property)
-  * [Complete example of an *xs-app.json* configuration file](#complete-example-of-an-xs-appjson-configuration-file)
+  * [Complete example of a *xs-app.json* configuration file](#complete-example-of-an-xs-appjson-configuration-file)
 - [Headers](#headers)
   * [Forwarding Headers](#forwarding-headers)
   * [Hop-by-hop Headers](#hop-by-hop-headers)
@@ -477,6 +477,7 @@ The CORS configuration is an array of objects. Here are the properties that a CO
 Property | Type | Optional | Description
 -------- | ---- |:--------:| -----------
 uriPattern| String | | A regular expression representing for which source routes CORS configuration is applicable. To ensure the RegExp matches the complete path, surround it with ^ and $. **Defaults:** none.
+hostPattern| String |x|A regular expression representing the host configuration for which source routes CORS configuration is applicable. The hostPattern property is applied together with uriPattern property. To ensure the RegExp matches the complete host, surround it with ^ and $. The hostPattern property might include also the port in the configuration, for example ^reuse-me\\.sap\\.com:443$. In case of the Approuter is running as a forward proxy or external reverse proxy then the hostPattern propery is applied to the external host (host sent by client) and the internal host (x-custom-host) will be ignored in the CORS policy evaluation. **Defaults:** none.
 allowedOrigin| Array | | A comma-separated list of objects that each one of them containing host name, port and protocol that are allowed by the server.for example: [{?host?: "www.sap.com"}] or [{?host?: ?*.sap.com?}]. **Note:** matching is case-sensitive. In addition, if port or protocol are not specified the default is ?_*_?.  **Defaults:** none.
 allowedMethods| Array of upper-case HTTP methods| x | Comma-separated list of HTTP methods that are allowed by the server. **Defaults:** [?GET?, ?POST?, ?HEAD?, ?OPTIONS?] (all) applies. **Note:** matching is case-sensitive.
 maxAge| Number| x | A single value specifying how long, in seconds, a preflight response should be cached. A negative value will prevent CORS Filter from adding this response header to pre-flight response.  **Defaults:** 1800. 
@@ -490,6 +491,7 @@ Sample content of the CORS environment variable:
 [
   {
       "uriPattern": "^\route1$",
+      "hostPattern": "^my-example\\.my_target_domain:443$",
       "allowedMethods": [
         "GET"
       ],
@@ -530,7 +532,8 @@ It is also possible to include the CORS in the *manifest.yml* and *manifest-op.y
                                 "protocol":"https"
                             }
                           ],
-          "uriPattern":"^/route1$"
+          "uriPattern":"^/route1$",
+          "hostPattern":"^my-example\\.my_target_domain$"
         }
       ]
 ```

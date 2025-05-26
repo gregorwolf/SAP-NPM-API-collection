@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.0.2 - 2025-05-20
+
+### Fixed
+- change iasDependencyName to IASDependencyName as expected by Approuter
+
 ## 7.0.1 - 2025-03-18
 
 ### Updated dependencies

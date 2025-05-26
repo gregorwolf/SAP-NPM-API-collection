@@ -1,3 +1,9 @@
+## 1.4.0
+
+### Fixes
+- Security fixes
+- Switch build to Node.js 22
+
 ## 1.3.1
 
 ### Fixes

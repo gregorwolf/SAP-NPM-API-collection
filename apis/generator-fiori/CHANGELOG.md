@@ -3,6 +3,21 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.5] - 2025-05-01
+### Added
+- Newly generated SAP Fiori applications now use virtual endpoints by default
+
+### Changed
+- Removed the SAP Fiori theme, Belize, as an option when using SAPUI5 version 1.136 or higher because it is no longer supported in these versions
+- ABAP deployment now displays a warning message when trying to redeploy an application using a different package name
+- The UI Service Generator now only offers the option for draft-enabled service generation if the associated business object supports drafts
+
+### Fixed
+- Fixed an issue with the generator crashing if the list of destinations in SAP Business Application Studio was not successfully retrieved
+- Fixed an issue where the generator attempted to re-authenticate unnecessarily when navigating back to the data source step
+- Fixed an issue where the generator did not offer the option to use TypeScript when using a local CAP project as the data source
+- Fixed an issue where the package name used in deployment configuration was incorrectly validated
+
 ## [1.17.4] - 2025-04-17
 ### Added
 - Added the option for users to create a new `mta.yaml` file when adding a deployment configuration for a Node.js CAP project when the file did not exist yet

@@ -8,6 +8,24 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.16] - 2025-04-30
+
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | devDependencies | patch | [`0.33.22` -> `0.33.26`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | dependencies | patch | [`0.33.22` -> `0.33.26`] |
+| [axios](https://axios-http.com) ([source](https://github.com/axios/axios)) | devDependencies | minor | [`1.8.4` -> `1.9.0`] |
+| [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc) | devDependencies | patch | [`50.6.9` -> `50.6.11`] |
+| [esbuild](https://github.com/evanw/esbuild) | devDependencies | patch | [`0.25.2` -> `0.25.3`] |
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | devDependencies | minor | [`8.29.1` -> `8.31.0`] |
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | devDependencies | minor | [`8.29.1` -> `8.31.0`] |
+| [ts-jest](https://kulshekhar.github.io/ts-jest) ([source](https://github.com/kulshekhar/ts-jest)) | devDependencies | patch | [`29.3.1` -> `29.3.2`] |
+
+
 ## [1.124.15] - 2025-03-16
 
 ### Added

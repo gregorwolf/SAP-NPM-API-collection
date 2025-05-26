@@ -1,5 +1,10 @@
 # SAP HANA SQL Analyzer Changelog
 
+## Version 1.6.1
+
+### Bug Fixes
+- Fixed an issue where PLV files could not be saved using the Save button.
+
 ## Version 1.6.0
 The SQL analyzer tool version 1.6.0 includes the following improvements and bug fixes.
 

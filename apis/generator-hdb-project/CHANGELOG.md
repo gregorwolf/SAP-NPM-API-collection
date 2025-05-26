@@ -1,3 +1,12 @@
+## 1.17.0
+
+### New Features
+- Projects can be bound to an SAP HANA Cloud tenant
+- Deployment parameters can be configured during project creation
+
+### Fixes
+- Update @sap/generator-add-hdb-module to version 1.17.0
+
 ## 1.16.0
 
 ### New Features

@@ -1,3 +1,9 @@
+## 1.17.0
+
+### New Features
+- Modules can be bound to an SAP HANA Cloud tenant
+- Deployment parameters can be configured during module creation
+
 ## 1.16.0
 
 ### New Features

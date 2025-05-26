@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.4.0 - 2025-05-14
+
+### Added
+- Optional hostPattern parameter support in the CORS configuration
+- Support for the x-forwarded-query header in UGW access
+
+### Fixed
+- Missing apps without sap.cloud.service in the get applications API
+- Error log on unexpected truststore certificate extension
+- Race condition in session handling.
+- Support keep-alive for html5 repo get applications. Can be disabled by setting DISABLE_HTML5_REPO_KEEP_ALIVE environment variable to "true".
+
 ## 20.3.1 - 2025-04-28
 
 ### Fixed

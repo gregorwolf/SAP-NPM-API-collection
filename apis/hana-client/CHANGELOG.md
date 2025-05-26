@@ -8,6 +8,12 @@ For the latest updates please see SAP Note 3566142 - SAP HANA Client 2.24 Releas
 
 https://me.sap.com/notes/3566142
 
+## Version 2.24.26
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 303584: Connection properties with non-7-bit ASCII characters may not have been handled correctly.
+
 ## Version 2.24.24
 
 ### Changes:

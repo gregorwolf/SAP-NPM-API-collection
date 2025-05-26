@@ -7,6 +7,16 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.17.5] - 2025-05-01
+
+### Project Accelerator
+- Added a visual indicator when the shift key is pressed to indicate you can drag and drop a file
+- Updated the title of the generated application to be shorter and ensured it is not the same as the application description
+- Fixed an issue where the `/fiori-gen-cap-ui` Joule Genie prompt was not available for CAP projects
+
+### Fixed
+- Fixed issues where guides were not able to fetch existing annotations and apply code snippets when there was a missing reference to the metadata namespace in the annotation file
+
 ## [1.17.4] - 2025-04-17
 
 ### Project Accelerator

@@ -6,6 +6,22 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.5] - 2025-05-01
+### Added
+  - Enabled adding, moving, deleting, and maintaining properties of column micro charts in the Page Editor 
+
+### Fixed
+  - Fixed an issue where a new entity was not recognized by the Page Map when it was created through the Page Editor using "Advanced Features"
+  - Fixed an issue where an incorrect `controlAggregation` was applied when a new object page was added and the flexible column layout was enabled
+
+## [1.17.4] - 2025-04-17
+### Fixed
+  - Fixed an issue where deleting an outline node led to an empty properties panel. The properties of the closest node are now displayed.
+  - Fixed an issue with handling app state with SAPUI5 2.0
+  - Fixed an issue where a warning was not shown when manual changes were made when using SAP Fiori AI advanced features
+  - Fixed a UX issue where there was an unintended gap between the horizontal and vertical borders of table rows in the properties panel
+  - Fixed a UX alignment issue with centering texts and icons in the toolbar
+
 ## [1.17.3] - 2025-04-03
 ### Added
 - Added support for the `rowCount` and `rowCountMode` properties for grid, analytical, and tree tables on object pages using OData V4

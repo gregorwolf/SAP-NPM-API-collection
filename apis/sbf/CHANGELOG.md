@@ -8,6 +8,131 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.9.4"></a>
+## 6.9.4 - 2024-05-18
+### Added
+- include changelog.md in npm release.
+
+<a name="6.9.3"></a>
+## 6.9.3 - 2024-05-06
+### Fixed
+- axios type baseURL correct spelling.
+### Added
+- Retry support for XSUAA requests connection errors. 
+
+<a name="6.9.2"></a>
+## 6.9.2 - 2024-03-13
+### Updated
+- Update to axios 1.8.3.
+
+- <a name="6.9.1"></a>
+## 6.9.1 - 2024-03-10
+### Updated
+- Update to @sap/logging 8.4.0  hedext 8.1.3 and axios 1.8.2.
+
+<a name="6.9.0"></a>
+## 6.9.0 - 2024-02-20
+### Removed
+- Support for SBSS as credential provider was removed, following SBSS deprecation by XSUAA.
+### Updated
+- Update to audit-logging 6.5.0, xsenv 5.4.0, andhdbext 8.1.2.
+
+<a name="6.8.2"></a>
+## 6.8.2 - 2024-01-06
+### Updated
+- Update to axios 1.7.9
+
+<a name="6.8.1"></a>
+## 6.8.1 - 2024-12-22
+### Updated
+- Update to axios 1.7.5
+
+<a name="6.8.0"></a>
+## 6.8.0 - 2024-12-11
+### Updated
+- Update to express 4.21.2
+
+<a name="6.7.9"></a>
+## 6.7.9 - 2024-11-24
+### Added
+- Support for node v22
+- Retry mechanism for XSUAA requests to support resilient Communication.
+
+<a name="6.7.8"></a>
+## 6.7.8 - 2024-11-06
+### Added
+- Support for XSUAA "reference-instance" service plan
+- Support for X509_ATTESTED Credentials Type
+
+<a name="6.7.7"></a>
+## 6.7.7 - 2024-10-15
+### Updated
+- Support Multiple Credential Providers
+
+<a name="6.7.6"></a>
+## 6.7.6 - 2024-10-09
+### Updated
+- Update express version to 4.21.1
+
+<a name="6.7.5"></a>
+## 6.7.5 - 2024-09-26
+### Updated
+- Update coverpage.md
+
+<a name="6.7.4"></a>
+## 6.7.4 - 2024-09-19
+### Updated
+- Update to express 4.21.0, async 3.2.6
+
+<a name="6.7.3"></a>
+## 6.7.3 - 2024-09-11
+### Updated
+- Update to express 4.20.0
+
+<a name="6.7.2"></a>
+## 6.7.2 - 2024-08-22
+### Updated
+- Fixing a vulnerability
+
+<a name="6.7.1"></a>
+## 6.7.1 - 2024-06-16
+### Updated
+-  Update ajv version to 8.16.0 and ajv-formats to 3.0.1
+
+<a name="6.7.0"></a>
+## 6.7.0 - 2024-05-05
+### Updated
+-  Update audit-logging to 6.1.0
+### Removed
+- Support for node v16 is removed (as audit-logging removed support in node v16 in 6.1.0 version).
+
+<a name="6.6.9"></a>
+## 6.6.9 - 2024-03-28
+### Updated
+-  Update axios to 1.6.8 and express to 4.19.2.
+
+<a name="6.6.8"></a>
+## 6.6.8 - 2024-03-20
+### Fixed
+- app_host_id enrichment on fetch binding parameters.
+
+<a name="6.6.7"></a>
+## 6.6.7 - 2024-01-21
+### Updated
+- Updated dependencies to support node20.
+
+<a name="6.6.6"></a>
+## 6.6.6 - 2024-01-08
+### Updated
+- Updated axios to v1.6.5.
+
+<a name="6.6.5"></a>
+## 6.6.5 - 2024-01-08
+### Updated
+- Updated audit-logging to v5.8.3.
+### Fixed
+- Perform verification for all credentials required by broker.
+
 <a name="6.6.4"></a>
 ## 6.6.4 - 2023-12-07
 ### Updated

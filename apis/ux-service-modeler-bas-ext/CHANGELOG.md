@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.5] - 2025-05-01
+### Fixed
+  - Fixed an issue where a `localUri` contained double forward slashes when a service was added using the Service Manager
+  - Fixed an issue where a white space added at the end of the service URI led to an inconsistent configuration
+
+## [1.17.4] - 2025-04-17
+### Fixed
+- Fixed an issue where no matching system in VS Code was shown when a destination was also maintained in the `ui5.yaml` file
+
 ## [1.17.3] - 2025-04-03
 ### Fixed
 - Fixed an issue where the Service Manager did not provide fields for user and password in the "Add Service" dialog
