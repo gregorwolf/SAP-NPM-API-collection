@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 8.9.4 - 2025-05-26
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 3.10.1 for creating Java projects.
+
 ## Version 8.9.3 - 2025-04-24
 
 ### Fixed

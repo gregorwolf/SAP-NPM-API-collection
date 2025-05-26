@@ -15,6 +15,27 @@ CAP Node.js Applications should **not** need to make changes when updating to ve
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
 
+## 3.1.2
+- Fix: Do not throw error from IdentityServiceAuthProvider#getAuthorizations for not yet supported token scenarios (e.g. internal client_credentials token). Instead, return an Authorizations object with 0 policies.
+- Typescript improvements for Decision#visit
+- fix LICENSE file
+- fix start command path in ams-dcl-content-deployer Dockerfile for version 3
+
+## 3.1.1
+- provide Typescript typings
+
+## 3.1.0
+- fix error logging in `deploy-dcl` script for AMS policy deployer
+- add `config.start` flag to `AuthorizationManagementService` factory methods to manually start AMS bundle load when ZTIS is used
+- fix `getPotentialActions` for policies that `GRANT <actions> ON *`.
+
+[CAP Node.js]
+- remove check for `requires.auth.kind = 'ias'` to support custom authentication middlewares without overriding `AuthProvider`
+- Identity Service credentials may be manually provided via `amsCapPluginRuntime.credentials = ...` when not available under `cds.env.requires.auth.credentials`.
+
+[CAP Java]
+- Fix error due to missing @sap/xssec dependency when using @sap/ams as cds plugin
+
 ## 3.0.0
 Refactored core API for non-CAP projects.
 

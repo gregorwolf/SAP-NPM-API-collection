@@ -4,6 +4,15 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 8.9.4 - 2025-05-16
+
+### Fixed
+
+- No longer require `@sap/cds-compiler` versions 6.x as these are not supported with CAP Java 3.
+- Regression in view resolving with mixins
+- View resolving for external service entities aborted too early
+- `cds.Map` validation in action/function parameters
+
 ## Version 8.9.3 - 2025-05-06
 
 ### Fixed

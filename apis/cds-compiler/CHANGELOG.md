@@ -7,6 +7,11 @@
 Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 5.9.4 - 2025-05-22
+
+- to.edm(x): Parameters are marked optional unless explicitly marked as `not null`.
+  Annotation `Core.OptionalParameter` will be added to optional parameters.
+
 ## Version 5.9.2 - 2025-04-04
 
 ### Fixed

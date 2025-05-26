@@ -65,7 +65,7 @@ npm install @sap/ams
 ```
 
 ### Maintenance
-Keep the version of this dependency up-to-date as it is a **crucial part of your application's security**, e.g. by regularly running:
+Keep the version of this dependency up-to-date since it's a **crucial part of your application's security**, for example by regularly running:
 
 ```bash
 npm update @sap/ams # or: npm update
@@ -82,15 +82,15 @@ This will print a dependency tree that shows which versions of the module are in
 
 
 ## Version 3
-Version 3 drastically changes the core API. Instead of checking privileges on a `PolicyDecisionPoint` with an `Attributes` object, an `AuthProvider` prepares an `Authorizations` object for the same purpose. This separates *what* to check from *how* to check it. The necessary configuration for advanced authorization scenarios such as principal propagation or non-standard authorization strategies are configured once during application start. As a result, the authorization checks themselves remain straight-forward in version 3, with a focus on the application domain.
+Version 3 drastically changes the core API. Instead of checking privileges on a `PolicyDecisionPoint` with an `Attributes` object, an `AuthProvider` prepares an `Authorizations` object for the same purpose. This separates *what* to check from *how* to check it. The necessary configuration for advanced authorization scenarios, such as principal propagation or non-standard authorization strategies, are configured once during application start. As a result, the authorization checks themselves remain straight-forward in version 3, with a focus on the application domain.
 
 New features:
 
-- Out-of-the-box support for technical communication scenarios via SAP Identity Service
-- Flexible configuration and extensibility for non-standard authorization strategies, e.g. when authenticating both via XSUAA and SAP Identity Service tokens
+- Out-of-the-box support for technical communication scenarios via SAP Cloud Identity Services
+- Flexible configuration and extensibility for non-standard authorization strategies, for example when authenticating both via XSUAA and SAP Cloud Identity Services tokens
 - Exports Typescript Types for a better development experience
-- Improved events that allows correlating authorization checks with requests for logging and auditing
-- Support for SAP Identity Service credentials with certificates changing at runtime, e.g. when using ZTIS or mounted Kyma service bindings
+- Improved events that allow correlating authorization checks with requests for logging and auditing
+- Support for SAP Cloud Identity Services credentials with certificates changing at runtime, for example when using ZTIS or mounted Kyma service bindings
 
 ### Breaking Changes
 CAP Node.js Applications should **not** need to make changes when updating to version 3.
@@ -127,7 +127,7 @@ const authProvider = new IdentityServiceAuthProvider(ams)
 const amsMw = authProvider.getMiddleware(); // IdentityServiceAuthProvider provides a pre-configured instance of AmsMiddleware
 app.use(/^\/(?!health).*/i, authenticate, amsMw.authorize());
 
-// You can identity Errors from @sap/ams via instanceof, e.g. in the express error handler:
+// You can identity Errors from @sap/ams via instanceof, for example in the express error handler:
 app.use((err, req, res, next) => {
     if(err instance of AmsError) {
       // Error from @sap/ams library
@@ -217,15 +217,15 @@ app.post('/orders', amsMw.checkPrivilege('read', 'products'), amsMw.precheckPriv
 The benefits of defining privilege checks on the endpoint level are:
   - concise syntax
   - provides central overview of required privileges for different parts of the application
-  - prevents accidental information leaks, e.g. by returning 404 instead of 403 while preparing the actual authorization check in the service handler
+  - prevents accidental information leaks, for example by returning 404 instead of 403 while preparing the actual authorization check in the service handler
 
 ### Technical communication
-Technical communication via SAP Identity Service is supported out-of-the-box by the [IdentityServiceAuthProvider](#identityserviceauthprovider).
+Technical communication via SAP Cloud Identity Services is supported out-of-the-box by the [IdentityServiceAuthProvider](#identityserviceauthprovider).
 
 ### Testing
 For CAP applications, see [here](#testing-policies).
 
-To test your application locally, without real SAP Identity Service tokens and AMS server, we recommend mocking an `@sap/xssec` SecurityContext during authentication that contains the relevant information. Then, the `IdentityServiceAuthProvider` will execute the same way it does in production, resulting in realistic authorization behavior of the application.
+To test your application locally, without real SAP Cloud Identity Services tokens and AMS server, we recommend mocking an `@sap/xssec` SecurityContext during authentication that contains the relevant information. Then, the `IdentityServiceAuthProvider` will execute the same way it does in production, resulting in realistic authorization behavior of the application.
 
 The DCL package called `local` has a special semantic. It is meant for DCL files with policies that are only relevant for testing but not for production. Its policies are ignored during the base policy upload, even if they are contained during the upload. You can use it to test runtime policies that build on top of your base policies without deploying them.
 
@@ -256,17 +256,29 @@ The [ams-samples-node](https://github.com/SAP-samples/ams-samples-node) reposito
 ### AuthorizationManagementService
 
 #### Construction
-- **`fromIdentityService(identityService): AuthorizationManagementService`**  
-  Creates an instance using the DCN and policy assignments fetched with SAP Identity Service credentials.  
-  - `identityService` (object): SAP Identity Service object with **certificate-based** credentials.  
+- **`fromIdentityService(identityService, config?): AuthorizationManagementService`**  
+  Creates an instance using the DCN and policy assignments fetched with SAP Cloud Identity Services credentials.  
+  - `identityService` (object): SAP Cloud Identity Services object with **certificate-based** credentials.  
 
-- **`fromLocalDcn(dcnRoot, config): AuthorizationManagementService`**  
+- **`fromLocalDcn(dcnRoot, config?): AuthorizationManagementService`**  
   Creates an instance using locally compiled DCL files for testing.  
   - `dcnRoot` (string): Root directory of the DCN bundle.  
   - `config` (object, optional):  
     - `watch` (boolean, default: `false`): Watch for file changes.  
     - `assignments` (string | PolicyAssignments, optional): Path to JSON file or `PolicyAssignments` object.  
     - `debounceDelay` (number, default: `1000`): Debounce delay in ms.  
+    - `start` (boolean, default: `true`): Control whether to immediately start downloading the AMS bundle.
+
+If an instance has been constructed with `config.start=false`, the loading of the AMS bundle must be started manually. This is useful when ZTIS is used and the credentials do not yet contain a certificate when the instance is created:
+
+```js
+const ams = AuthorizationManagementService.fromIdentityService(identityService, { start: false });
+// fill credentials with certificate asynchronously from ZTIS
+getCertificateFromZTIS().then((cert, key) => {
+  identityService.setCertificateAndKey(cert, key);
+  ams.start();
+});
+```
 
 #### Readiness Checks
 - **`whenReady(timeoutSeconds = 0): Promise<void>`**  
@@ -290,8 +302,8 @@ This is a generic interface. Its implementations define *how* to construct insta
 #### Implementations
 - **[`AuthorizationManagementService`](#authorizationmanagementservice)**: Implements `AuthProvider<PolicySet>`.
 - `XssecAuthProvider`: Abstract base class implementing `AuthProvider<SecurityContext>` for authorization with an `@sap/xssec` SecurityContext.
-  - **[`IdentityServiceAuthProvider`](#identityserviceauthprovider)**: Implements `AuthProvider<IdentityServiceSecurityContext>` for authorization of SAP Identity Service tokens.
-      - **[`HybridAuthProvider`](#hybridauthprovider)**: Implements `AuthProvider<IdentityServiceSecurityContext | XsuaaSecurityContext>` for authorization of SAP Identity Service tokens or XSUAA tokens.
+  - **[`IdentityServiceAuthProvider`](#identityserviceauthprovider)**: Implements `AuthProvider<IdentityServiceSecurityContext>` for authorization of SAP Cloud Identity Services tokens.
+      - **[`HybridAuthProvider`](#hybridauthprovider)**: Implements `AuthProvider<IdentityServiceSecurityContext | XsuaaSecurityContext>` for authorization of SAP Cloud Identity Services tokens or XSUAA tokens.
 - `CdsAuthProvider`: Abstract base class implementing `AuthProvider<CdsContext>` for authorization with a cds context in CAP applications.
   - **[`CdsXssecAuthProvider`](#cdsxssecauthprovider)** Extends `CdsAuthProvider` for cds contexts with an `@sap/xssec` SecurityContext in `cdsContext.http.req.authInfo`.
     - **`CdsMockedAuthProvider`**: Extends `CdsXssecAuthProvider` by mocking an `@sap/xssec` SecurityContext for `auth.kind = mocked` users.
@@ -304,7 +316,7 @@ This is a generic interface. Its implementations define *how* to construct insta
 - **`constructor(ams: AuthorizationManagementService): IdentityServiceAuthProvider`**  
 
 - **`withApiMapper(mapApi: ApiMapper, flow?: TechnicalUserFlow): IdentityServiceAuthProvider`**  
-  Defines an API mapper for mapping consumed SAP Identity Service APIs to policies.  
+  Defines an API mapper for mapping consumed SAP Cloud Identity Services APIs to policies.  
   - `mapApi` ((api : string, securityContext : IdentityServiceSecurityContext) =>  string | string[] | undefined): A function that maps a consumed API to no (undefined), one (string) or multiple (string[]) fully-qualified policy name(s).
   - `flow` (TECHNICAL_USER_FLOW | PRINCIPAL_PROPAGATION_FLOW, optional): A technical user flow exported by `@sap/ams` for which to apply the mapper. If omitted, applies it for both flows.  
 
@@ -325,7 +337,7 @@ This is a generic interface. Its implementations define *how* to construct insta
   Returns default input for $env.$user attributes used in all authorization checks.  
 
 - **`supportsSecurityContext(securityContext: SecurityContext): boolean`**  
-  Checks if the given security context is supported, e.g. to skip authorization or early exits.  
+  Checks if the given security context is supported, for example to skip authorization or early exits.  
 
 ### `HybridAuthProvider`
 
@@ -355,7 +367,7 @@ Retrieves the SecurityContext from `cdsContext.http.req.authInfo` and uses `xsse
   Returns default input for AMS attributes used in all authorization checks. By default, returns the input provided by `xssecAuthProvider` but can be overwritten with an implementation that returns custom input when authorizing requests for the given cds event on the given cds model definition. 
 
 - **`supportsCdsContext(cdsContext: CdsContext): boolean`**  
-  Checks if the given cds context is supported to be handled by this implementation, e.g. to skip authorization or early exits.  
+  Checks if the given cds context is supported to be handled by this implementation, for example to skip authorization or early exits.  
 
 ### Authorizations
 
@@ -367,7 +379,7 @@ An abstract representation of authorizations determined by the strategy of the [
 
 - **`checkPrivilege(action: string, resource: string, input?: AttributeInput): Decision`**  
   Checks if the action is allowed on the resource.  
-  - `input` (AttributeInput, optional): A flat input object that grounds fully-qualified attribute names to values, e.g. { "$app.product.category" : "accessory" }.
+  - `input` (AttributeInput, optional): A flat input object that grounds fully-qualified attribute names to values, for example { "$app.product.category" : "accessory" }.
   Attributes that are not grounded in the input are considered *unknown* and may result in a conditional Decision.
 
 - **`getPotentialResources(): Set<string>`**  
@@ -381,7 +393,7 @@ An abstract representation of authorizations determined by the strategy of the [
 
 - **`withDefaultInput(input: AttributeInput): Authorizations`**  
   Sets default input used for all authorization checks.  
-  - `input` (AttributeInput, optional): A flat input object that grounds fully-qualified attribute names to values, e.g. { "$env.$user.origin" : "EU" }
+  - `input` (AttributeInput, optional): A flat input object that grounds fully-qualified attribute names to values, for example { "$env.$user.origin" : "EU" }
 
 - **`limitedTo(other: Authorizations): Authorizations`**  
   Limits the authorizations of this instance to the authorizations of another instance. Subsequent authorization checks on this instance will use the logical intersection of its authorizations and those of the other Authorization instances.
@@ -401,9 +413,9 @@ Represents the result of an authorization check. A decision can be in one of thr
 Returns true if the authorization check resulted in a definitive DENY with no outstanding conditions.
 
 - **`visitDcn(visitCall: CallVisitor, visitValue: ValueVisitor) : any`**
-This method can be used to visit the condition tree botton-up. The visitor calls `visitValue` whenever it encounters a value (attribute reference or literal) or `visitCall` when it encounters a function call in the condition, e.g. a call to the "EQ" function to compare two arguments for equality.
-  - `visitCall` ((call : string, args : any[]) => any): A function that transform the given call and its arguments, e.g. `("EQ", args)` => `"args[0] = args[1]"`. The call names are the constants from `DclConstants.operators`.
-  - `transformValue` ((value : {ref:string}|number|string|boolean|number[]|string[]|boolean[]) => any): A function that transforms the given attribute reference or literal, e.g. to translate AMS references to database field names.
+This method can be used to visit the condition tree botton-up. The visitor calls `visitValue` whenever it encounters a value (attribute reference or literal) or `visitCall` when it encounters a function call in the condition, for example a call to the "EQ" function to compare two arguments for equality.
+  - `visitCall` ((call : string, args : any[]) => any): A function that transform the given call and its arguments, for example `("EQ", args)` => `"args[0] = args[1]"`. The call names are the constants from `DclConstants.operators`.
+  - `transformValue` ((value : {ref:string}|number|string|boolean|number[]|string[]|boolean[]) => any): A function that transforms the given attribute reference or literal, for example to translate AMS references to database field names.
 
 - **`filterUnknown(unknowns: string[]): Decision`**  
 Returns a new `Decision` instance that is the result of keeping only the fully-qualified attributes as *unknown*, evaluating the remaining attributes as *unset*.
@@ -433,7 +445,7 @@ Instances of `AuthorizationManagementService` emit the following events to which
 
 - **`error`**: Emitted when an error occurs in a background operation. The event object contains the following properties:
   - **`type`**: The type of the event. Possible values are:
-    - `"bundleRefreshError"`: Emitted when the BundleLoader fails to refresh the current policies and assignments bundle, e.g. due to a failed request to the AMS server. This event is not emitted when the initial loading fails. Use the `whenReady` method instead to check for the initial readiness of AMS.
+    - `"bundleRefreshError"`: Emitted when the BundleLoader fails to refresh the current policies and assignments bundle, for example due to a failed request to the AMS server. This event is not emitted when the initial loading fails. Use the `whenReady` method instead to check for the initial readiness of AMS.
   - **`error`**: The `AmsError` instance that describes the error.
 
 
@@ -443,17 +455,17 @@ Instances of `AuthorizationManagementService` emit the following events to which
 AMS can be used for authorization in CAP applications to provide both role and instance-based authorization management at runtime.
 The integration is based on the standard cds annotations for authorization via roles and optional ams-specific annotations for instance-based authorization filters. 
 
-For production, AMS is meant to be used with SAP Identity Service as authentication solution but mocked authentication can be used to test authorization without the need for Identity Service tokens. This is useful when the application is started locally or to execute automated tests.
+For production, AMS is meant to be used with SAP Cloud Identity Services as authentication solution but mocked authentication can be used to test authorization without the need for SAP Cloud Identity Services tokens. This is useful when the application is started locally or to execute automated tests.
 
-When deployed, the application's authorization policies are managed in the Identity Service cockpit of your application. During development, policies can be edited in the IDE and assigned to mocked users via the `cds env` configuration of non-production profiles.
+When deployed, the application's authorization policies are managed in your application using the administration console of SAP Cloud Identity Services. During development, policies can be edited in the IDE and assigned to mocked users via the `cds env` configuration of non-production profiles.
 
-The plugin runtime has the following expectations on the project environment. If your projects differs from this, e.g. due to a custom auth middleware, you can customize the plugin via [cds env configuration](#configuration) and the [plugin runtime configuration](#plugin-runtime).
+The plugin runtime has the following expectations on the project environment. If your projects differs from this, for example due to a custom auth middleware, you can customize the plugin via [cds env configuration](#configuration) and the [plugin runtime configuration](#plugin-runtime).
 
 | **Default**                                     | **Value**                                                                       | **Customize**
 |------------------------------------------       | ------------------------------------------------------------------------------- | -----------------
-| SAP Identity Service credentials location       | `cds.env.requires.auth.credentials`                                             | [Provide credentials manually](#custom-identity-service-credential-location)
-| @sap/xssec SecurityContext location             | `IdentityServiceSecurityContext` expected under `cds.context.http.req.authInfo` | [Replace default XssecAuthProvider](#custom-xssecauthprovider)
+| SAP Cloud Identity Services credentials location| `cds.env.requires.auth.credentials`                                             | [Provide credentials manually](#custom-sap-cloud-identity-services-credential-location)
 | amsPluginRuntime.authProvider.xssecAuthProvider | Defaults to `IdentityServiceAuthProvider`                                       | [Replace default XssecAuthProvider](#custom-xssecauthprovider)
+| @sap/xssec SecurityContext location             | `IdentityServiceSecurityContext` expected under `cds.context.http.req.authInfo` | [Replace default CdsAuthProvider](#custom-cdsauthprovider)
 | amsPluginRuntime.authProvider                   | Defaults to `CdsXssecAuthProvider`                                              | [Replace default CdsAuthProvider](#custom-cdsauthprovider)
 
 ### cds add ams
@@ -466,7 +478,7 @@ npm i @sap/ams
 npm i --save-dev @sap/ams-dev
 ```
 
-Additionally, it configures the application's deployment artefacts (`mta`, `helm`, `cf-manifest`) for AMS, e.g. by adding configuration for the [ams policy deployer application](#base-policy-upload).
+Additionally, it configures the application's deployment artefacts (`mta`, `helm`, `cf-manifest`) for AMS, for example by adding configuration for the [ams policy deployer application](#base-policy-upload).
 
 ### Features
 #### Role-based authorization
@@ -478,7 +490,7 @@ POLICY Admin {
 }
 ```
 
-The AMS plugin implements a middleware that computes the roles of Identity Service users before each request by overriding the [`user.is`](https://cap.cloud.sap/docs/node.js/authentication#user-is) function.
+The AMS plugin implements a middleware that computes the roles of SAP Cloud Identity Services users before each request by overriding the [`user.is`](https://cap.cloud.sap/docs/node.js/authentication#user-is) function.
 
 #### Instance-based authorization
 Policies that assign roles can be extended with attribute filters for instance-based authorization. This allows administrators to create custom policies at runtime for fine-grained control. This is most useful to give customer administrators in multi-tenant applications fine-grained control over their user's rights.
@@ -508,8 +520,8 @@ entity Books : media {
 Example schema.dcl
 ```sql
 SCHEMA {
-	genre: String,
-	price: Number
+  genre: String,
+  price: Number
 }
 ```
 
@@ -520,7 +532,7 @@ POLICY "Reader" {
 }
 ```
 
-Example admin policy (created at runtime via Identity Service cockpit)
+Example admin policy (created at runtime via the administration console of SAP Cloud Identity Services)
 ```sql
 POLICY JuniorReader {
     USE "Reader" RESTRICT genre IN ('Fantasy', 'Fairy Tale'), price < 20;
@@ -530,7 +542,7 @@ POLICY JuniorReader {
 #### Validation
 The AMS plugin [@sap/ams](https://www.npmjs.com/package/@sap/ams) adds a [custom build task](https://cap.cloud.sap/docs/guides/deployment/custom-builds#custom-build-plugins) for *ams*.
 
-It validates `@ams.attributes` annotations for syntactic correctness and type coherence during `cds build` and whenever a model is loaded if the application was started via `cds serve`, `cds watch` or `cds.test`. This gives early feedback about the correctness of the annotations during development:
+It validates `@ams.attributes` annotations for syntactic correctness and type coherence during `cds build`, and whenever a model is loaded if the application was started via `cds serve`, `cds watch` or `cds.test`. This gives early feedback about the correctness of the annotations during development:
 
 - validates that `@ams.attributes` annotations map AMS attributes syntactically correct to cds elements via expression syntax.
 - if a manually written/adjusted `schema.dcl` is used, validates that all AMS attributes mapped via `@ams.attributes` annotations exist and have a type that fits each cds element to which they are mapped.
@@ -548,11 +560,11 @@ entity Books as projection on my.Books { *,
 Example `basePolicies.dcl`
 ```sql
 POLICY "Reader" {
-	ASSIGN ROLE "Reader";
+  ASSIGN ROLE "Reader";
 }
 
 POLICY "Inquisitor" {
-	ASSIGN ROLE "Inquisitor";
+  ASSIGN ROLE "Inquisitor";
 }
 ```
 
@@ -576,7 +588,7 @@ The DCL package called `local` has a special semantic. It is meant for DCL files
 
 For example, you can create fictitious admin policies inside this package to test whether extensions of base policies work as expected.
 
-`@sap/ams-dev` automatically compiles DCL files to the `DCN` format which is required for local policy evaluations. This happens when the application is started via `cds start`, `cds watch` or via `cds.test`, so that the application should be able to do authorization checks via AMS even during development without deploying the policies first to the Identity Service.
+`@sap/ams-dev` automatically compiles DCL files to the `DCN` format which is required for local policy evaluations. This happens when the application is started via `cds start`, `cds watch` or via `cds.test`, so that the application should be able to do authorization checks via AMS even during development without deploying the policies first to the SAP Cloud Identity Services.
 
 #### Mocked user testing
 For testing and development purposes, policies can be assigned to mocked users via the `cds env` configuration of non-production profiles:
@@ -606,7 +618,7 @@ Of course, you can still assign roles via the `roles` array directly to mocked u
 Assigning policies instead of roles is mostly useful for testing instance-based authorization via AMS as the attribute filters only apply to roles assigned via AMS policies.
 
 #### Hybrid testing
-If [autoDeployDcl](#configuration) is enabled when bound to an `ias` instance for authentication, e.g. during [Hybrid testing](https://cap.cloud.sap/docs/advanced/hybrid-testing), the AMS plugin uploads the base policies to the AMS server instead of compiling them to `DCN`. From there, they will be downloaded into the DCN engine shortly after that via polling and subsequently used for authorization checks.
+If [autoDeployDcl](#configuration) is enabled when bound to an `ias` instance for authentication, for example during [Hybrid testing](https://cap.cloud.sap/docs/advanced/hybrid-testing), the AMS plugin uploads the base policies to the AMS server instead of compiling them to `DCN`. From there, they will be downloaded into the DCN engine shortly after that via polling and subsequently used for authorization checks.
 
 **Be very careful though with `autoDeployDcl` and do not enable it when bound against a productive system or it will override the deployed base policies with the current development state!**
 
@@ -623,33 +635,33 @@ It supports the following properties with the following [`default`]:
 - **policyDeployerRoot** *string* [`gen/policies` / `srv/src/gen/policies` (Java)]:  folder of the ams policy deployer application created during `cds build` (see [Base Policy Upload](#base-policy-upload))
 - **authPushDcl** *true/false* [`false`]:  if enabled, uploads the base policies to the AMS server (see [Hybrid testing](#hybrid-testing)
 
-All AMS properties also work lowercased (e.g. `generatedcl`) and this casing has priority of the camelCase (e.g. `generateDcl`) version of properties. This means, all [cds env sources](https://cap.cloud.sap/docs/node.js/cds-env#sources-for-cds-env) including case-insensitive ones are supported such as setting properties via environment variables (`CDS_REQUIRES_AUTH_AMS_GENERATEDCL`) which gets mapped to lowercased versions of the property. 
+All AMS properties also work lowercased (for example `generatedcl`) and this casing has priority of the camelCase (for example `generateDcl`) version of properties. This means, all [cds env sources](https://cap.cloud.sap/docs/node.js/cds-env#sources-for-cds-env) including case-insensitive ones are supported such as setting properties via environment variables (`CDS_REQUIRES_AUTH_AMS_GENERATEDCL`) which gets mapped to lowercased versions of the property. 
 
 #### Plugin Runtime
 It is possible to replace the following defaults in the runtime of the plugin to configure it for non-standard project environments.
 
-##### Custom Identity Service credential location
+##### Custom SAP Cloud Identity Services credential location
 
-If the SAP Identity Service credentials are not available under the default location (`cds.env.requires.auth.credentials`), you need to manually provide them:
+If the SAP Cloud Identity Services credentials are not available under the default location (`cds.env.requires.auth.credentials`), you need to manually provide them:
 
 server.js
 ```js
 const { amsCapPluginRuntime } = require("@sap/ams");
 
-amsCapPluginRuntime.credentials = { ... } // manually provide the SAP Identity Service credentials from service binding
+amsCapPluginRuntime.credentials = { ... } // manually provide the SAP Cloud Identity Services credentials from service binding
 ```
 
 ##### Custom XssecAuthProvider
 
 It is possible to override the `XssecAuthProvider` implementation used by the default `CdsAuthProvider` internally to a different implementation.
-For example, the following snippet shows how it can be replaced in projects that authenticate both via SAP Identity Services and XSUAA.
+For example, the following snippet shows how it can be replaced in projects that authenticate both via SAP Cloud Identity Services and XSUAA.
 
 server.js
 ```js
 const { amsCapPluginRuntime, HybridAuthProvider } = require("@sap/ams");
 
 const mapScope = (scope, securityContext) => scope; // your custom scope to policy mapper
-amsCapPluginRuntime.authProvider.xssecAuthProvider = new HybridAuthProvider(amsCapPluginRuntime.ams, mapScope) // authorization for both SAP Identity Service and XSUAA tokens
+amsCapPluginRuntime.authProvider.xssecAuthProvider = new HybridAuthProvider(amsCapPluginRuntime.ams, mapScope) // authorization for both SAP Cloud Identity Services and XSUAA tokens
 ```
 
 ##### Custom CdsAuthProvider
@@ -662,7 +674,7 @@ amsCapPluginRuntime.authProvider = new MyCustomCdsAuthProvider(); // your custom
 ```
 
 #### Technical communication
-By default, the plugin runtime uses an [IdentityServiceAuthProvider](#identityserviceauthprovider) which supports technical communication via SAP Identity Service out-of-the-box.
+By default, the plugin runtime uses an [IdentityServiceAuthProvider](#identityserviceauthprovider) which supports technical communication via SAP Cloud Identity Services out-of-the-box.
 You can access it as follows in the default plugin runtime to configure which policies to use for technical communication scenarios:
 
 ```js
@@ -676,7 +688,7 @@ identityServiceAuthProvider
 ```
 
 ### Logging
-The AMS CAP plugins log to namespace `ams` in CAP. To see [debug logs](https://cap.cloud.sap/docs/node.js/cds-log#debug-env-variable) during development, turn it on for this namespace, e.g. via
+The AMS CAP plugins log to namespace `ams` in CAP. To see [debug logs](https://cap.cloud.sap/docs/node.js/cds-log#debug-env-variable) during development, turn it on for this namespace, for example via
 
 ```shell
 DEBUG=ams cds watch
@@ -689,7 +701,7 @@ DEBUG=ams cds watch
 The DCL bundle is typically deployed together with the application to ensure the application's authorization checks are always done with the most current set of policies.
 
 ### DCL Deployer Application
-The recommended way to deploy DCL, is by deploying a minimal Node.js\* application along with your application that contains the DCL bundle and has a service binding to the target SAP Identity Service instance.
+The recommended way to deploy DCL, is by deploying a minimal Node.js\* application along with your application that contains the DCL bundle and has a service binding to the target SAP Cloud Identity Services instance.
 
 This module provides a ready-to-use [package.json](./ams-dcl-content-deployer/package.json) for such an application:
 
@@ -769,7 +781,7 @@ applications:
     memory: 256M
     instances: 1
     buildpack: nodejs_buildpack
-    command: (npm start && echo "This application may now be stopped to free resources." || echo "AMS Policy Deployment unsuccessful.") && sleep infinity
+    command: (npm start && echo "This application may now be stopped to free resources." || echo "AMS policy deployment unsuccessful.") && sleep infinity
     services:
       - name: {{identityServiceInstanceName}}
         parameters:
@@ -858,7 +870,7 @@ spec:
 
 ### deploy-dcl script
 
-The script pushes a DCL bundle (including schema.dcl, DCL root package and all subpackages) to the Identity Service instance from the environment (see `deploy-dcl --help`):
+The script pushes a DCL bundle (including schema.dcl, DCL root package and all subpackages) to the Identity service instance from the environment (see `deploy-dcl --help`):
 
 ```
 Usage: deploy-dcl -d [DCL_ROOT_DIR] -c [CREDENTIALS_FILE] -n [DEPLOYER_APP_NAME]
@@ -871,8 +883,8 @@ Options:
                      AMS_DCL_ROOT, it overrides this option.
                                                        [string] [default: "dcl"]
   -c, --credentials  [optional] path to a JSON file containing the credentials
-                     object of an Identity Service binding. If omitted, will try
-                     to find and use an Identity Service binding from the
+                     object of an Identity service binding. If omitted, will try
+                     to find and use an Identity service binding from the
                      process environment.                               [string]
   -n, --name         [optional] a descriptive name of this deployer application
                      to trace back the currently deployed DCL bundle on the AMS
@@ -890,7 +902,7 @@ Examples:
                                             identity service instance from the
                                             environment.
   deploy-dcl -d src/dcl -c config/ias.json  Pushes the DCL content from
-  -n bookshop-dcl-deployer                  ./src/dcl using the Identity Service
+  -n bookshop-dcl-deployer                  ./src/dcl using the SAP Cloud Identity Services
                                             credentials in ./config/ias.json.
                                             The deployer app name for this
                                             upload will be set to
