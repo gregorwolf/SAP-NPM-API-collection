@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.0.0 - 2025-05-27
+
+### Added
+- formatting option `boolOpsAtLineEnd` to position `and`, `or` operators at line end
+- Hovering over errors shown explanation for many error types
+- Hovering over built-in types shows documentation
+
+### Changed
+- Change license from SAP DEVELOPER LICENSE AGREEMENT '3.1' to '3.2 CAP v2'
+- where-used functionality now based on new index
+- more compact formatting of `case` statements
+
+### Fixed
+- Separate alignment of annotations to entity and select items
+- Highlighting of parenthesized annotations with strings containing a colon
+- Highlighting of comments in queries
+
+### Also see
+- `@sap/cds-compiler` 6.0.8
+
+
 ## 8.9.1 - 2025-04-07
 
 ### Fixed

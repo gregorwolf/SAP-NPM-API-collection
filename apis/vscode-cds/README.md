@@ -11,4 +11,4 @@ This package is not intended to be installed via `npm`. For installation, please
 See the [documentation](https://cap.cloud.sap/docs/get-started/tools) for further information on tools.
 
 ## License
-This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_1.txt).
+This package is provided under the terms of the [SAP Developer License Agreement](https://cap.cloud.sap/resources/license/developer-license-3_2_CAP.txt).

@@ -4,10 +4,102 @@
 <!-- markdownlint-disable MD004 -->
 <!-- (no-duplicate-heading)-->
 
-Note: `beta` fixes, changes and features are usually not listed in this ChangeLog but [here](doc/CHANGELOG_BETA.md).
+Note: `beta` fixes, changes and features are usually not listed in this ChangeLog
+but in [doc/CHANGELOG_BETA.md](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 6.0.10 - 2025-05-28
+
+### Fixed
+
+- to.sql/to.hdi:
+  + Fixed internal error for to-many associations without ON-condition in entities with `@cds.persistence.skip`.
+- for.odata/to.edm(x):
+  + In annotation expressions: enum references that have already been resolved by the compiler are
+    correctly rendered to EDMX.
+
+## Version 6.0.8 - 2025-05-23
+
+### Changed
+
+- License changed to "SAP DEVELOPER LICENSE AGREEMENT Version 3.2 CAP"
+- Node 20 is now the minimum required version.
+- Namespace `cds.core` is no longer reserved by the cds-compiler. It is used by the CAP runtimes.
+- compiler:
+  + Providing a filter for a function call now is a syntax error (was a warning before).
+    Example: `count(*)[ uncheckedFilterRef > 0 ]`.
+  + Providing a default value for an array-like action or function parameter is a syntax error now
+    (was a warning  before). Example: `action A( par: many Integer default 42 )`.
+  + Providing an annotation for an array-like element in the middle of a type expression is no longer allowed
+    (was a warning before), as this leads to unexpected results. Example: `bar: many String null @anno enum { symbol };`.
+    Fix this by moving the annotation out of the type expression, e.g. before the element name.
+  + A simple query inside parentheses (e.g. `entity V as (select from E)`) is no longer
+    represented as `set` in CSN. Repeated `order by` or `limit` clauses are no longer allowed
+    (e.g. `entity V as ( select from E order by id ) order by id;`).
+  + Defining an element or parameter as `not null default now` now is an error.
+  + A virtual element can be defined in a view without providing a value or reference.
+
+    ```cds
+    entity V as select from E { virtual a } //defines new virtual element 'a'
+    ```
+
+    In this example, the compiler no longer tries to resolve the name of the virtual element as reference
+    to an element of the view's data source.
+  + If a select item selects an element of a virtual structure that itself is not explicitly marked as virtual,
+    then the select item must be explicitly marked as virtual, too.
+  + To-many associations without ON-condition no longer get a `keys` property, i.e. `Association to many Foo;` does not get
+    any foreign keys.
+  + Annotation `@cds.persistence.journal` is now propagated to generated entities, including `.texts` entities.
+  + Doc comments are no longer propagated; use option `propagateDocComments: true` to propagate them again.
+  + With CSN input, the compiler does not accept anymore type properties
+    like `enum` in the `cast` property for the SQL function `cast` which were simply
+    ignored by the SQL backend.  Remark: inside a direct `cast` property for select
+    columns (CDL-style `cast`), these type properties are still allowed.
+- to.sql/to.hdi:
+  + Default for option `booleanEquality` is `true`, i.e. `!=` is rendered as `IS DISTINCT FROM`
+    or a similar expression and therefore has boolean logic instead of three-valued logic.
+  + To-many associations with neither an explicit foreign key list (i.e. without `keys`) nor an ON-condition
+    are reported as errors.
+  + For SAP HANA, CDS associations are by default no longer reflected in the respective database tables and views by
+    native HANA Associations (HANA SQL clause `WITH ASSOCIATIONS`). They can be switched on via configuration
+    `cds.sql.native_hana_associations: true`.
+  + A set of OData and SAP HANA functions are translated to database-specific variants.
+    See <https://cap.cloud.sap/docs/guides/databases#standard-database-functions>.
+  + For SQL and HDI rendering, `$now` is no longer rendered as `CURRENT_TIMESTAMP`, but as
+    a session variable `SESSION_CONTEXT('NOW')` for SAP HANA, `SESSION_CONTEXT('$now')`
+    for SQLite, `@now` for H2, and `current_setting('cap.now')::timestamp` for Postgres.
+    For `default` values, `CURRENT_TIMESTAMP` is kept, as `default` clauses only allow static expressions.
+    To restore the old behavior, use option `dollarNowAsTimestamp: true`.
+  + `count(*)` inside nested projections is rejected, as there is no proper representation in SQL
+- to.cdl:
+  + Nested definition rendering is now the default, i.e. definitions inside services are
+    rendered in `service { … }`, instead of being rendered top-level using their absolute name.
+  + `to.cdl` no longer returns an entry `namespace`, only `model`.
+- for.odata/to.edm(x):
+  + References to foreign keys in annotation expressions are now adjusted to directly
+    reference the corresponding local foreign key element.
+  + Annotating the generated `DraftAdministrativeData` artifacts and their elements is now supported.
+
+### Added
+
+- for.odata/to.edm(x):
+  + Annotating the generated `DraftAdministrativeData` artifacts and their elements is now supported.
+
+### Removed
+
+- compiler:
+  + The Antlr-based parser is removed.
+  + v5 deprecated flags are removed, see [CHANGELOG_DEPRECATED.md](doc/CHANGELOG_DEPRECATED.md).
+  + Option `compositionIncludes` is removed, as its default is `true`; instead, a deprecated flag was added.
+- to.hdbcds: The HDBCDS backend is deprecated and can no longer be invoked.
+
+### Fixed
+
+- to.edm(x): Fixed crash for rare case if annotation expressions were used.
+
 ## Version 5.9.4 - 2025-05-22
+
+### Fixed
 
 - to.edm(x): Parameters are marked optional unless explicitly marked as `not null`.
   Annotation `Core.OptionalParameter` will be added to optional parameters.
@@ -17,7 +109,6 @@ The compiler behavior concerning `beta` features can change at any time without 
 ### Fixed
 
 - to.edm(x): Revert addition of the attribute sap:filterable="false" to the NavigationProperty DraftAdministrativeData in OData V2
-
 
 ## Version 5.9.0 - 2025-03-28
 
@@ -37,8 +128,8 @@ The compiler behavior concerning `beta` features can change at any time without 
   + Annotation array values are pretty-printed to reduce whitespace.
 - for.effective: Property `namespace` is no longer part of effective CSN.
 - for.sql/hdi:
-  - The new operator `==` is rendered as `IS NOT DISTINCT FROM` or an equivalent expression.
-  - Using option `booleanEquality`, operator `!=` is rendered as `IS DISTINCT FROM` or an equivalent expression.
+  + The new operator `==` is rendered as `IS NOT DISTINCT FROM` or an equivalent expression.
+  + Using option `booleanEquality`, operator `!=` is rendered as `IS DISTINCT FROM` or an equivalent expression.
 
 ### Changed
 
@@ -48,13 +139,11 @@ The compiler behavior concerning `beta` features can change at any time without 
 
 - to.odata: Annotation expressions using `LabeledElement` were not correctly rendered into EDMX.
 
-
 ## Version 5.8.2 - 2025-03-07
 
 ### Fixed
 
 - for.odata: Generate foreign key elements for events again.
-
 
 ## Version 5.8.0 - 2025-02-27
 
@@ -85,7 +174,6 @@ The compiler behavior concerning `beta` features can change at any time without 
   in parentheses such as `[ (1), (2) ]`, as well as "infinite" by using `[ _, _ ]`.
 - for.odata/to.edm(x)/for.seal: Propagate annotation expressions from managed associations
   to the foreign keys
-
 
 ### Changed
 
@@ -197,7 +285,6 @@ The compiler behavior concerning `beta` features can change at any time without 
 ### Fixed
 
 - to.sql: For SQLite, map `cds.Map` to `JSON_TEXT` to ensure text affinity.
-
 
 ## Version 5.4.0 - 2024-10-24
 
@@ -375,6 +462,13 @@ This is a preview version for the major release and contains breaking changes. I
 - API: Deprecated functions `preparedCsnToEdmx` and `preparedCsnToEdm` were removed.
   Use `to.edm(x)` instead.
 
+## Version 4.9.10 - 2025-04-29
+
+### Fixed
+
+- Added option `allowMixinInProjectionExtension` which allows referring to mixins in `extend projection`.
+  This was forbidden in cds-compiler v4, but re-introduced in v5.5.  Users wanting to migrate from cds-compiler
+  v3 to v4 can use this option for easier migration.
 
 ## Version 4.9.8 - 2024-07-29
 
@@ -445,7 +539,7 @@ This is a preview version for the major release and contains breaking changes. I
 - Support associations to/from entities with parameters for SAP HANA SQL (hdi/direct).
 - to.sql/to.hdi:
   + SAP HANA keywords `ABSOLUTE`, `REAL_VECTOR`, and `ST_ASESRIJSON` are now included for smart quoting.
-  +PostgreSQL keyword `SYSTEM_USER` is now included for smart quoting.
+  + PostgreSQL keyword `SYSTEM_USER` is now included for smart quoting.
 - API: Added `to.sql.postgres.keywords` and `to.sql.h2.keywords`.
   They contain keywords for the respective SQL dialect.
 
@@ -1262,8 +1356,7 @@ This is a preview version for the major release and contains breaking changes. I
     `to.edm(x)`. This allows to reuse imported enum types in new APIs.
   + Messages raised from the EDM annotation renderer have been reworked with message id and enhanced message
     position including the annotation under investigation.
-  + `@Validation.AllowedValues` annotation as introduced for enum elements with
-    [1.44.2](./doc/CHANGELOG_ARCHIVE.md#version-1442---2020-10-09)
+  + `@Validation.AllowedValues` annotation as introduced for enum elements with v1.44.2
     are now always rendered into the API regardless of `@assert.range`.
 - to.cdl: The input CSN is no longer cloned for client-CSN and parseCdl-CSN,
   as the renderer does not modify it.
@@ -1521,311 +1614,3 @@ This is a preview version for the major release and contains breaking changes. I
 - CDL parser: `*` is not parsed anymore as argument to all SQL functions;
   it is now only allowed for `count`, `min`, `max`, `sum`, `avg`, `stddev`, `var`.
 - All non-SNAPI options.
-
-## Version 2.15.10 - 2023-01-26
-
-### Fixed
-
-- If an entity with parameters is auto-exposed, the generated projection now has
-  the same formal parameters and its query forwards these parameters to the origin entity.
-- to.edm(x): Respect record type hint `$Type` in EDM JSON as full qualified `@type` URI property.
-
-## Version 2.15.8 - 2022-08-02
-
-### Fixed
-
-- to.edm(x): Nested `@UI.TextArrangement` has precedence over `@TextArrangement` shortcut annotation for `@Common.Text`.
-- to.hdi.migration:
-  + Respect option `disableHanaComments` when rendering the `ALTER` statements
-  + Doc comments rendered the _full doc comment_ instead of only the first paragraph, as `to.hdi` does.
-- compiler: An association's cardinality was lost for associations published in projections.
-
-## Version 2.15.6 - 2022-07-26
-
-### Fixed
-
-- Annotations on sub-elements were lost during re-compilation.
-
-## Version 2.15.4 - 2022-06-09
-
-### Fixed
-
-- for.odata:
-  + Fix derived type to scalar type resolution with intermediate `many`.
-- to.edm(x):
-  + (V4 structured) Fix key paths in combination with `--odata-foreign-keys`.
-  + Add `Edm.PrimitiveType` to `@odata.Type`.
-  + (V4 JSON) Render constant expressions for `Edm.Stream` and `Edm.Untyped`.
-  + Fix a bug in target path calculation for `NavigationPropertyBinding`s to external references.
-  + Render inner annotations even if `$value` is missing.
-- Update OData vocabularies 'Common', 'UI'.
-- to.sql/to.hdbcds/to.hdi: "type of"s in `cast()`s could lead to type properties being lost.
-
-## Version 2.15.2 - 2022-05-12
-
-### Fixed
-
-- Option `cdsHome` can be used instead of `global.cds.home` to specify the path to `@sap/cds/`.
-- to.edm(x):
-  + Set anonymous nested proxy key elements to `Nullable:false` until first named type is reached.
-  + Enforce `odata-spec-violation-key-null` on explicit foreign keys of managed primary key associations.
-  + Proxies/service cross references are no longer created for associations with arbitrary ON conditions.
-    Only managed or `$self` backlink association targets are proxy/service cross reference candidates.
-  + Explicit foreign keys of a managed association that are not a primary key in the target are exposed in the proxy.
-  + If an association is primary key, the resulting navigation property is set to `Nullable:false` in structured mode.
-
-## Version 2.15.0 - 2022-05-06
-
-### Added
-
-- A new warning is emitted if `excluding` is used without a wildcard, since this does
-  not have any effect.
-- All scalar types can now take named arguments, e.g. `MyString(length: 10)`.
-  For custom scalar types, one unnamed arguments is interpreted as length, two arguments are interpreted
-  as precision and scale, e.g. `MyDecimal(3,3)`.
-- If the type `sap.common.Locale` exists, it will be used as type for the `locale` element
-  of generated texts entities.  The type must be a `cds.String`.
-- to.cdl: Extend statements (from `extensions`) can now be rendered.
-- Add OData vocabulary 'Hierarchy'.
-- CDL: New associations can be published in queries, e.g. `assoc : Association to Target on assoc.id = id`
-
-### Changed
-
-- to.edm(x):
-  + perform inbound qualification and spec violation checks as well as most/feasible EDM preprocessing steps
-    on requested services only.
-  + Open up `@odata { Type, MaxLength, Precision, Scale, SRID }` annotation.  
-    The annotations behavior is defined as follows:
-    + The element/parameter must have a scalar CDS type. The annotation is not applied on named types
-      (With the V2 exception where derived type chains terminating in a scalar type are resolved).
-    + The value of `@odata.Type` must be a valid `EDM` type for the rendered protocol version.
-    + If `@odata.Type` can be applied, all canonic type facets (`MaxLength`, `Precision`, `Scale`, `SRID`) are
-      removed from the Edm Node and the new facets `@odata { MaxLength, Precision, Scale, SRID }` are applied.
-      Non Edm type conformant facets are ignored (eg. `@odata { Type: 'Edm.Decimal', MaxLength: 10, SRID: 0 }`).
-    + Type facet values are not evaluated.
-  + V2: Propagate `@Core.MediaType` annotation from stream element to entity type if not set.
-- to.edm: Render constant expressions in short notation.
-- Update OData Vocabularies: 'Common', 'Graph', 'Validation'.
-
-### Fixed
-
-- to.cdl:
-  + Annotations of elements of action `returns` are now rendered as `annotate` statements.
-  + Annotations on columns (query sub-elements) were not always rendered.
-  + Doc comments on bound actions were rendered twice.
-  + Unapplied annotations for action parameters were not rendered.
-  + Unions and joins are correctly put into parentheses.
-  + Add parentheses around certain expressions in function bodies that require it, such as `fct((1=1))`.
-- to.edm(x):
-  + Fix a bug in top level and derived type `items` exposure leading to undefined type rendering.
-  + Fix a naming bug in type exposure leading to false reuse types, disguising invididual type
-    modifications (such as annotations, (auto-)redirections, element extensions).
-  + Ignore `@Aggregation.default`.
-  + Consolidate message texts and formatting.
-  + Fix navigation property binding in cross service rendering mode.
-  + Remove partner attribute in proxy/cross service navigations.
-- Core engine (function `compile`):
-  + Annotations for new columns inside `extend projection` blocks were not used.
-  + Extending an unknown select item resulted in a crash.
-  + Extending a context/service with columns now correctly emits an error.
-  + Unmanaged `redirected to` in queries did not check whether the source is an association.
-- parseCdl: `extend <art> with enum {...}` incorrectly threw a compiler error.
-- API: `compile()` used a synchronous call `fs.realpathSync()` on the input filename array.  
-  Now the asynchronous `fs.realpath()` is used.
-- On-conditions in localized convenience views may be incorrectly rewritten if an element
-  has the same as a localized entity.
-- to.sql/hdi/hdbcds:
-  + No referential constraint is generated for an association if its parent
-  or target entity are annotated with `@cds.persistence.exists: true`.
-  + Fix rendering of virtual elements in subqueries
-  + Correctly process subqueries in JOINs
-- to.sql/hdi: Queries with `UNION`, `INTERSECT` and similar in expressions are now enclosed in parentheses.
-
-## Version 2.14.0 - 2022-04-08
-
-### Added
-
-- cdsc:
-  + `--quiet` can now be used to suppress compiler output, including messages.
-  + `--options <file.json>` can be used to load compiler options. A JSON file is expected. Is compatible to CDS `package.json`
-    and `.cdsrc.json` by first looking for `cdsc` key in `cds`, then for a `cdsc` key and otherwise uses the full JSON file.
-  + `--[error|warn|info|debug] id1,id2` can be used to reclassify specific messages.
-- Add OData Vocabularies: 'DataIntegration', 'JSON'.
-  
-### Changed
-
-- Update OData Vocabularies: 'UI'.
-
-### Fixed
-
-- to.cdl:
-  + Delimited identifiers as the last elements of arrays in annotation values are now
-    rendered with spaces in between, to avoid accidentally escaping `]`.
-  + Identifiers in includes and redirection targets were not quoted if they are reserved keywords.
-- to.edm(x): Correctly rewrite `@Capabilities.ReadRestrictions.ReadByKeyRestrictions` into
-  `@Capabilities.NavigationPropertyRestriction` in containment mode.
-
-## Version 2.13.8 - 2022-03-29
-
-### Fixed
-
-- to.hdbcds/hdi/sql: Correctly handle `localized` in conjunction with `@cds.persistence.exists` and `@cds.persistence.skip`
-
-## Version 2.13.6 - 2022-03-25
-
-### Fixed
-
-- to.hdbcds/hdi/sql: Correctly handle `localized` in conjunction with `@cds.persistence.exists`
-
-## Version 2.13.4 - 2022-03-22
-
-No changes compared to Version 2.13.0; fixes latest NPM tag
-
-## Version 2.13.2 - 2022-03-22
-
-No changes compared to Version 2.13.0; fixes latest NPM tag
-
-## Version 2.13.0 - 2022-03-22
-
-### Added
-
-- CDL syntax:
-  + Allow to `extend E:elem` and `annotate E:elem` instead of having to write deeply nested statements.
-  + Enable `default` values as part of scalar type definitions.
-  + The following `extend` syntax variants are now possible:
-    ```cds
-    extend … with elements { … }
-    extend … with definitions { … }
-    extend … with columns { … }
-    extend … with enum { … }
-    extend … with actions { … }
-    ```
-    This syntax expresses _how_ an artifact is extended instead of _what_ is extended.
-  + Using `ORDER BY` in generic functions such as SAP HANA's `first_value` is now possible.
-- Make API function `compileSources` accept CSN objects as file content
-- to.edm(x): Annotate view parameters with `@sap.parameter: mandatory` (V2) and `@Common.FieldControl: #Mandatory` (V4).
-- to.sql/hdi/hdbcds: Introduce the annotations `@sql.prepend` and `@sql.append` that allow inserting user-written SQL
-  snippets into the compiler generated content. Changes in annotations `@sql.prepend` and `@sql.append` are now reflected
-  in the output of `to.hdi.migration`. This enables CDS Build to produce `.hdbmigrationtable` files translating such model
-  changes into schema changes.
-- API: Lists of keywords for various backends are available as `to.<backend>[.<config>].keywords`, e.g. `to.sql.sqlite.keywords`.
-- for.odata/to.edm(x): The draft composition hull is now also taking into account compositions in subelements.
-
-### Changed
-
-- In query entities inside services, only auto-redirect associations and compositions
-  in the main query of the entity.
-- An element now inherits the property `notNull` from its query source (as
-  before) or its type (like it does for most other properties);
-  `notNull` is then not further propagated to its sub elements anymore.
-- A structure element inherits the property `virtual` from its query source (as
-  before), but does not further propagate `virtual` to its sub elements
-  (semantically of course, but the CSN is not cluttered with it);
-  there is a new warning if a previously `virtual` query entity
-  element is now considered to be non-virtual.
-- Do not propagate annotation value `null`.
-  The value `null` of an annotation (and `doc`) is used to stop the inheritance
-  of an annotation value.  This means than other than that, a value `null` should
-  not be handled differently to not having set that annotation.
-- In the effective CSN, the structure type is only expanded if something has changed
-  for associations: the `target` (`keys` does not change if the `target` does not change)
-  unmanaged associations as sub elements are not supported anyway.
-- In the effective CSN, “simple” type properties like `length`, `precision`,
-  `scale` and `srid` are propagated even for a propagation via type.
-- Update OData Vocabularies: 'Capabilities', 'Common', 'Core', 'UI'.
-- to.sql:
-  + For SQL dialect `hana` referential constraints are now appended
-    as `ALTER TABLE ADD CONSTRAINT` clause to the end of `schema.sql`.
-    With option `constraintsInCreateTable` constraints are rendered into the
-    `CREATE TABLE` statement.
-  + Referential constraint names are now prefixed with `c__`.
-
-### Fixed
-
-- Properly resolve references inside anonymous aspects:
-  + references starting with `$self.` made the compiler dump.
-  + a simple `$self` did  not always work as expected (it represents the entity created via the anonymous aspect).
-  + other references inside deeply nested anonymous aspects induced a compilation error.
-- compiler: `()` inside `ORDER BY` clause was not correctly set.
-- parse.cdl: References in `ORDER BY` and filters are now correctly resolved.
-- Issue error when trying to introduce managed compositions of aspects in `mixin`s
-- Issue error in all cases for type references to unmanaged associations.
-- Avoid dump when extending an illegal definition with a name starting with `cds.`.
-- to.sql/to.cdl/to.hdbcds/to.hdi: Render `cast()` inside `ORDER BY`, `GROUP BY` and `HAVING` properly.
-- to.sql/hdi/hdbcds:
-  + `$self` was incorrectly treated as a structured path step.
-  + Correctly handle table alias in on-condition of mixin in `exists` expansion.
-  + Correctly handle table `$self` references to aliased fields in on-condition of mixin association
-    during `exists` expansion.
-- to.edm: Don't escape `&` as `&amp;`.
-- to.edmx: Escaping compliant to XML specification:
-  + `&` and `<` are always escaped.
-  + `>` is not escaped, unless it appears in text values as `]]>`.
-  + `"` is escaped in attribute values only.
-  + Control characters are always escaped.
-- Ellipsis (`...`) in annotations in different layers but without base annotation now produces an error.
-  The old but incorrect behavior can be re-enabled with option `anno-unexpected-ellipsis-layers`.
-
-## Version 2.12.0 - 2022-01-25
-
-### Added
-
-- CDL parser: You can now use multiline string literals and text blocks.  
-  Use backticks (\`) for string literals that can span multiple lines and can use JavaScript-like escape
-  sequences such as `\u{0020}`.  You can also use three backticks (\`\`\`) for strings (a.k.a. text blocks)
-  which are automatically indentation-stripped and can have an optional language identifier that is used
-  for syntax highlighting, similar to markdown.  In difference to the former, text blocks require the
-  opening and closing backticks to be on separate lines.
-  Example:
-  ````
-  @annotation: `Multi
-   line\u{0020}strings`
-
-  @textblock: ```xml
-              <summary>
-                <detail>The root tag has no indentation in this example</detail>
-              </summary>
-              ```
-  ````
-
-- Enhance the ellipsis operator `...` for array annotations by an `up to ‹val›`:
-  only values in the array of the base annotation up to (including) the first match
-  of the specified `‹val›` are included at the specified place in the final array value.
-  An array annotation can have more than on `... up to ‹val›` items and must also
-  have a pure `...` item after them.  
-  A structured `‹val›` matches if the array item is also a structure and all property
-  values in `‹val›` are equal to the corresponding property value in the array value;
-  it is not necessary to specify all properties of the array value items in `‹val›`.
-  Example
-  ```
-  @Anno: [{name: one, val: 1}, {name: two, val: 2}, {name: four, val: 4}]
-  type T: Integer;
-  @Anno: [{name: zero, val: 0}, ... up to {name: two}, {name: three, val: 3}, ...]
-  annotate T;
-  ```
-- for.odata: Support `@cds.on {update|insert}` as replacement for deprecated `@odata.on { update|insert }` to
-  set `@Core.Computed`.
-
-### Changed
-
-- Update OData Vocabularies 'Aggregation', 'Capabilities', 'Common', 'Core', PersonalData, 'Session', 'UI'
-
-### Fixed
-
-- to.sql/hdi/hdbcds: With `exists`, ensure that the precedence of the existing association-on-conditions and where-conditions is kept by adding braces.
-- to.sql/hdi: Window function suffixes are now properly rendered.
-- to.sql: `$self` comparisons inside aspects are not checked and won't result in an error anymore.
-- to.hdbcds:
-  + Correctly apply the "."-to-"_"-translation algorithm to artifacts that are marked with `@cds.persistence.exists`.
-  + Message with ID `anno-hidden-exists` (former `anno-unstable-hdbcds`) is now
-    only issued if the compiler generates a SAP HANA CDS artifact which would hide
-    a native database object from being resolved in a SAP HANA CDS `using … as …`.
-- to.cdl: Annotation paths containing special characters such as spaces or `@` are now quoted, e.g. `@![some@annotation]`.
-- compiler: A warning is emitted for elements of views with localized keys as the localized property is ignored for them.
-
-
-
-## Older Versions
-
-The change log for older entries can be found at
-[`doc/CHANGELOG_ARCHIVE.md`](doc/CHANGELOG_ARCHIVE.md).

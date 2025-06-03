@@ -6,6 +6,55 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.0.1 - 2025-05-26
+
+### Changed
+
+- `@sap/cds-mtxs` now also conforms to the CAP plugin protocol.
+- `@sap/cds-mtxs` now declares a peer dependency to `@sap/cds` version 9. Lower versions will fail.
+- For the `java` profile, `cds.requires.auth` is set to `"kind": "dummy"` in the sidecar by default.
+- `com.sap.hana.di.table/try_fast_table_migration` deployment parameter is now enabled as default.
+- Outdated MTX configuration now throws an error.
+- Outdated provisioning parameter configuration now causes an error.
+- The extension validation (aka linting) now always checks extensions including existing extensions. This can be disabled using
+  ```jsonc
+  "requires": {
+    "cds.xt.ExtensibilityService": {
+      "check-existing-extensions": false
+    }
+  }
+  ```
+- The extension validation (aka linting) now also checks if the model can be compiled to EDMX. This also detects e.g. missing key fields of entities.
+- If the `subscription-manager` profile is used, IAS will be the default authentication kind for production.
+- The MTX sidecar now always uses the compiler configuration of the project root. To use a separate compiler configuration, you need to add the configuration
+  ```jsonc
+  "requires": {
+    "cds.xt.ModelProviderService": {
+      "use-local-cdsc-config": true
+    }
+  }
+  ```
+
+
+### Added
+
+- `cds-mtx upgrade t0` can be used to (re)initialize the `t0` tenant, e. g. in a cf hook to avoid concurrency issues.
+- The `cds.xt.ExtensibilityService.activated` event now also sends the payload of the activation call. It also sends the tenant in the `x-tenant-id` header field now.
+
+### Fixed
+
+- Extension validation (aka linting) for new entities now works properly, also if no other extensions exist.
+- Extension validation now ignores internal definitions with namespace `cds.core`.
+- Base model pulled for extension projects using `cds pull` no longer contains internal definitions with namespace `cds.core`, `cds.outbox` or `cds.xt`.
+- [Beta] Extension of aspects is now possible. For now, it needs to be enabled using
+  ```jsonc
+  "requires": {
+    "cds.xt.ExtensibilityService": {
+      "allow-aspect-extension": true
+    }
+  }
+  ```
+
 ## Version 2.7.2 - 2025-04-17
 
 ### Fixed
@@ -25,7 +74,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Added
 
-- Database deployment of extensions can now be supressed by setting
+- Database deployment of extensions can now be suppressed by setting
   ```jsonc
     "requires": {
       "cds.xt.ExtensibilityService": {

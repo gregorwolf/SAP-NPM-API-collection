@@ -8,6 +8,17 @@ Note: `beta` fixes, changes and features are listed in this ChangeLog just for i
 The compiler behavior concerning `beta` features can change at any time without notice.
 **Don't use `beta` fixes, changes and features in productive mode.**
 
+## Version 6.0.8 - 2025-05-23
+
+### Added `v7preview`
+
+Use this beta flag to enable features that will be available for cds-compiler v7.
+It also enables new warnings and errors that are intended for the next version.
+
+### Removed `v6preview`
+
+Features are now enabled by default.
+
 ## Version 5.8.0 - 2025-02-27
 
 ### Added `v6preview`

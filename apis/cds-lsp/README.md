@@ -92,4 +92,5 @@ A code formatter for CDS source files is included.
 Refer to the [installation details](doc/INSTALLATION.md).
 
 ## License
-This package is provided under the terms of the [SAP Developer License Agreement](https://tools.hana.ondemand.com/developer-license-3_1.txt).
+
+This package is provided under the terms of the [SAP Developer License Agreement](https://cap.cloud.sap/resources/license/developer-license-3_2_CAP.txt).

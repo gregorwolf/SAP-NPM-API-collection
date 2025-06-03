@@ -6,7 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
-## [8.9.2] - 2025-04-07
+## [9.0.1] - 2025-05-27
+
+### Added
+- Formatter: option `boolOpsAtLineEnd` to position `and`, `or` operators at line end
+- Support for telemetry - See `README.md` for details
+
+### Changed
+- Change license from SAP DEVELOPER LICENSE AGREEMENT '3.1' to '3.2 CAP v2'
+- Where-used functionality now based on new index
+- Improved `cds json schema` retrieval
+- Refactored CLI call handling to cds and other tools
+- More compact formatting of `case` statements
+- Refactoring when renaming/deleting CDS files is now disabled by default. Corresponding user settings are `cds.refactoring.files.rename.enabled` and `cds.refactoring.files.delete.enabled`
+
+### Added
+- Support for telemetry - See `README.md` for details
+
+### Fixed
+- Avoid exception during json schema hover when no hover text is available
+- Welcome page (`CAP Release Notes`) now show title of code block sections
+- Formatter: Separate alignment of annotations to entity and select items
+- Syntax highlighting of parenthesized annotations with strings containing a colon
+- Syntax highlighting of comments in queries
+
+### Removed
+- User setting `cds.useOldParser`
+- Official support for CDS < 8 and CDS compiler < 5 (a fallback to the latest compiler is done)
+
+### Also see
+- `@sap/cds-lsp` 9.0.0
+- `@sap/cds-compiler` 6.0.8
 
 
 ## [8.9.1] - 2025-04-07
@@ -60,12 +90,11 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ### Fixed
 - removed rendering issues in `CAP Release Notes` view
-- `Generate data model` now also works for `schema.cds` files in subfolders.
+- `Generate data model` now also works for `schema.cds` files in subfolders
 
 ### Also see
 - `@sap/cds-lsp` 8.8.0
 - `@sap/cds-compiler` 5.8.0
-
 
 ## [8.5.1] - 2024-12-02
 
@@ -726,7 +755,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 ### Changed
 - `CAP Release Notes` page now persists its state
 ### Fixed
-- Syntax highlighting in Business Application Studio
+- Syntax highlighting in SAP Business Application Studio
 
 ### Also see
 - `@sap/cds-lsp` 5.5.7
@@ -781,7 +810,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ### Fixed
 
-- extension did not start in Business Application Studio
+- extension did not start in SAP Business Application Studio
 
 ### Components
 - @sap/cds-lsp 5.5.2
@@ -1229,7 +1258,7 @@ until now this functionality was enabled by default and now needs to be enabled 
 - remove irrelevent formatting option (trimTrailingWhitespace)
 
 ### Fixed
-- global npm root for Business App Studio was not found with compiler origin option ProjectThenGlobalThenBuiltIn
+- global npm root for SAP Business Application Studio was not found with compiler origin option ProjectThenGlobalThenBuiltIn
 
 
 ## [2.1.4]

@@ -6,10 +6,26 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [4.1.0] - 2025-05-27
+
+
+## [4.0.2] - 2025-05-27
+### Added
+- Add new rule sets for JS `js.all` and `js.recommended` to detect bad practice in service implementations.
+- Add rule `no-shared-handler-variables` to detect when state is shared between handlers.
+- Add rule `use-cql-select-template-strings` to mitigate potential for SQL injections.
+- Add rule `no-cross-service-import` to detect when typer artifacts are imported in an unrelated service.
+- Add rule `no-deep-sap-cds-import` to forbid importing from below the facade of `@sap/cds`.
+
+### Changed
+- Bumped peer dependency to `@sap/cds` to 9.
+
+### Removed
+- Removed support for ESLint8
+
 ## [3.2.0] - 2025-03-03
 
 ### Changed
-
 - Rules `@sap/cds/sql-null-comparison` and `@sap/cds/no-java-keywords` are moved from the `experimental` rule set to `all`.
 
 ### Fixed

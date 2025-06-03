@@ -1,27 +1,23 @@
 ---
-layout: cds-ref
+# layout: cds-ref
 shorty: Schema Notation
 synopsis: >
-  Specification of CSN, CDS' canonical format for representing CDS models as plain JavaScript objects, similar to [JSON Schema].
-permalink: cds/csn
+  Specification of CSN, CDS' canonical format for representing CDS models as plain JavaScript objects, similar to <a href="https://json-schema.org" target="_blank" rel="noopener noreferrer">JSON Schema</a>.
 status: released
-uacp: Used as link target from Help Portal at https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/855e00bd559742a3b8276fbed4af1008.html
+uacp: Used as link target from Help Portal at https://help.sap.com/products/BTP/65de2977205c403bbc107264b8eccf4b/855e00bd559742a3b8276fbed4af1008.html
 ---
+<!-- Migrated: @external/cds/12-CSN.md -> @external/cds/csn.md -->
 
-# Schema Notation (CSN)
+[JSON Schema]: https://json-schema.org
+[OpenAPI]: https://www.openapis.org
+
+# Core Schema Notation (CSN)
 
 CSN (pronounced as "_Season_") is a notation for compact representations of CDS models — tailored to serve as an optimized format to share and interpret models with minimal footprint and dependencies.
 
-It’s similar to [JSON Schema][] but goes beyond JSON's abilities, in order to capture full-blown _Entity-Relationship Models_ and [Extensions](#aspects). This makes CSN models a perfect source to generate target models, such as [OData/EDM][odata] or [OpenAPI] interfaces, as well as persistence models for SQL or NoSQL databases.
+It's similar to [JSON Schema] but goes beyond JSON's abilities, in order to capture full-blown _Entity-Relationship Models_ and [Extensions](#aspects). This makes CSN models a perfect source to generate target models, such as [OData/EDM](../advanced/odata) or [OpenAPI] interfaces, as well as persistence models for SQL or NoSQL databases.
 
-[JSON Schema]: https://json-schema.org
-
-
-
-#### Content
-{% include _toc levels="2,3" %}
-{% include links.md %}
-
+[[toc]]
 
 
 ## Anatomy
@@ -52,7 +48,7 @@ The same model in **YAML**:
 ```yaml
 requires:
   - @sap/cds/common
-  - ./db/schema,
+  - ./db/schema
 definitions:
   some.type: {type: cds.String, length: 11}
   another.type: {type: some.type }
@@ -62,7 +58,7 @@ definitions:
       bar: {type: cds.String}
 extensions: [
   - extend: Foo
-    elements: 
+    elements:
       bar: {type: cds.String}
 ]
 ```
@@ -98,15 +94,18 @@ For the remainder of this spec, you see examples in plain JavaScript representat
 ```
 
 #### Properties
-* [`requires`](#imports) --- an array listing [imported models](#imports)
-* [`definitions`](#definitions) ---  a dictionary of named [definitions](#definitions)
-* [`extensions`](#aspects) --- an array of unnamed [aspects](#aspects)
-* [`i18n`](#i18n) --- a dictionary of dictionaries of [text translations](#i18n)
+* [`requires`](#imports) &ndash; an array listing [imported models](#imports)
+* [`definitions`](#definitions) &ndash;  a dictionary of named [definitions](#definitions)
+* [`extensions`](#aspects) &ndash; an array of unnamed [aspects](#aspects)
+* [`i18n`](#i18n) &ndash; a dictionary of dictionaries of [text translations](#i18n)
 
-All properties are optional. For example, one model could contain a few definitions, while another one only contains some extensions.
-{:.tip}
+> [!TIP] All properties are optional
+> For example, one model could contain a few definitions, while another one only contains some extensions.
 
-> References are case-sensitive. All references in properties like `type` or `target` use exactly the same notation regarding casing as their targets' names. To avoid problems when translating models to case-insensitive environments like SQL databases, avoid case-significant names and references. For example, avoid two different definitions in the same scope whose names only differ in casing, such as `foo` and `Foo`.
+
+> [!NOTE] References are case-sensitive
+> All references in properties like `type` or `target` use exactly the same notation regarding casing as their targets' names. To avoid problems when translating models to case-insensitive environments like SQL databases, avoid case-significant names and references. For example, avoid two different definitions in the same scope whose names only differ in casing, such as `foo` and `Foo`.
+
 
 
 
@@ -117,29 +116,29 @@ There are several places where literals can show up in models, such as in SQL ex
 
 Standard literals are represented as in JSON:
 
-| Kind | Example |
-| --- | --- |
-| Globals | `true`, `false`, `null` |
-| Numbers<sup>1</sup> | `11` or  `2.4` |
-| Strings | `"foo"` |
-| Dates<sup>2</sup> |  `"2016-11-24"` |
-| Times<sup>2</sup>  |  `"16:11"` |
-| DateTimes<sup>2</sup> |  `"2016-11-24T16:11"` |
-| Records |  `{"foo":<literal>, ...}` |
-| Arrays |  `[<literal>, ...]` |
+| Kind                  | Example                  |
+|-----------------------|--------------------------|
+| Globals               | `true`, `false`, `null`  |
+| Numbers<sup>1</sup>   | `11` or  `2.4`           |
+| Strings               | `"foo"`                  |
+| Dates<sup>2</sup>     | `"2016-11-24"`           |
+| Times<sup>2</sup>     | `"16:11Z"`                |
+| DateTimes<sup>2</sup> | `"2016-11-24T16:11Z"`     |
+| Records               | `{"foo":<literal>, ...}` |
+| Arrays                | `[<literal>, ...]`       |
 
 In addition, CSN specifies these special forms for references, expressions, and `enum` symbols:
 
-| Kind | Example |
-| --- | --- |
-| Unparsed Expressions | `{"=":"foo.bar < 9"}` |
-| Enum symbols<sup>3</sup> |  `{"#":"asc"}` |
+| Kind                     | Example               |
+|--------------------------|-----------------------|
+| Unparsed Expressions     | `{"=":"foo.bar < 9"}` |
+| Enum symbols<sup>3</sup> | `{"#":"asc"}`         |
 
 #### Remarks
 
 ><sup>1</sup> This is as in JSON and shares the same issues when decimals are mapped to doubles with potential rounding errors. The same applies to Integer64. Use strings to avoid that, if applicable.
 >
-><sup>2</sup> Also, as in JSON, dates, and times are represented just as strings as specified in [ISO 8601][]; consumers are assumed to know the types and handle the values correctly.
+><sup>2</sup> Also, as in JSON, dates, and times are represented just as strings as specified in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601); consumers are assumed to know the types and handle the values correctly.
 >
 ><sup>3</sup> As enum symbols are equal to their values, it frequently suffices to just provide them as strings. Similar to time and dates in CSN and JSON, the consumers are assumed to know the types and handle the values correctly. The  `{"#":...}` syntax option is to serve cases where you have to distinguish the kind only based on the provided value, for example, in untyped annotations.
 
@@ -176,13 +175,13 @@ Names **must**:
 * Not contain the substring `::` more than once.
 
 
-#### Properties
+#### Properties {#def-properties}
 
-* `kind` --- one of `context`, `service`, `entity`, `type`, `action`, `function`, or `annotation`
-* `type` --- an optional base type that this definition is derived from
-* [`elements`][elements] --- optional dictionary of [_elements_][elements] in case of structured types
+* `kind` &ndash; one of `context`, `service`, `entity`, `type`, `action`, `function`, or `annotation`
+* `type` &ndash; an optional base type that this definition is derived from
+* [`elements`][elements] &ndash; optional dictionary of [_elements_][elements] in case of structured types
 
-Property `kind` is always omitted for [elements][] and can be omitted for top-level [type definitions](#type-definitions). These examples are semantically equivalent:
+Property `kind` is always omitted for [elements] and can be omitted for top-level [type definitions]. These examples are semantically equivalent:
 
 ```js
 Foo1 = { type:"cds.String" }
@@ -190,51 +189,48 @@ Foo2 = { type:"cds.String", kind:"type" }
 ```
 
 
-
-
-
 ## Type Definitions
+
+[type definitions]: #type-definitions
 
 Custom-defined types are entries in [`definitions`](#definitions) with an optional property `kind`=`"type"` and the following properties.
 
-| Property | Used for |
-| --- | --- |
-| `type` | [Scalar Types](#scalar-types), [Structured Types][struct], and [Associations](#associations) |
-| `elements` | [Structured Types][struct] |
-| `items` | [Arrayed Types][arrays] |
-| `enum` | [Enumeration Types][enum] |
-
+| Property   | Used for                                                              |
+|------------|-----------------------------------------------------------------------|
+| `type`     | [Scalar Types](#scalar-types), [Structured Types](#structured-types), and [Associations](#associations) |
+| `elements` | [Structured Types](#structured-types)                                 |
+| `items`    | [Arrayed Types](#arrayed-types)                                       |
+| `enum`     | [Enumeration Types](#enumeration-types)                               |
 
 
 #### Example
 
 ```js
 ({definitions: {
-  'scalar.type': {type:"cds.String", length:3 },
-  'struct.type': {elements:{ 'foo': {type:"cds.Integer"}}},
+  'scalar.type':  {type:"cds.String", length:3 },
+  'struct.type':  {elements:{'foo': {type:"cds.Integer"}}},
   'arrayed.type': {items:{type:"cds.Integer"}},
-  'enum.type':   {enum:{ 'asc':{}, 'desc':{} }}
+  'enum.type':    {enum:{ 'asc':{}, 'desc':{} }}
 }})
 ```
 
 #### Properties
-[kind]: #kind
-[type]: #type
 
-* `kind` --- omitted or _`"type"`_
-* `type` --- the base type, this definition is derived from
-* [`elements`][elements] --- optional element definitions for [_structured types_][struct].
-* [`items`][arrays] --- optional definition of item types for [_arrayed types_][arrays].
-* [`enum`][enum] --- an optional dictionary of enum members for [_enumeration types_][enum].
-* `value` --- a constant [literal value](#literals) or calculation expression
-* `default` --- a default [value or expression](#literals)
+
+* `kind` &ndash; omitted or _`"type"`_
+* `type` &ndash; the base type, this definition is derived from
+* [`elements`][elements] &ndash; optional element definitions for [_structured types_][struct].
+* [`items`][arrays] &ndash; optional definition of item types for [_arrayed types_][arrays].
+* [`enum`][enum] &ndash; an optional dictionary of enum members for [_enumeration types_][enum].
+* `value` &ndash; a constant [literal value](#literals) or calculation expression
+* `default` &ndash; a default [value or expression](#literals)
 * `localized` _= true_ if this type was declared like _foo : localized String_
-* `...` --- other type-specific properties, for example, a String's `length`
+* `...` &ndash; other type-specific properties, for example, a String's `length`
 
 
 
 ### Scalar Types
-[scalar]: #scalar-types
+
 
 Scalar types always have property `type` specified, plus optional type-specific parameter properties.
 
@@ -244,9 +240,9 @@ Scalar types always have property `type` specified, plus optional type-specific 
 }})
 ```
 
-See the [CDL reference docs]({{cap}}/cds/types) for an overview of CDS' built-in types.
+See the [CDL reference docs](types) for an overview of CDS' built-in types.
 
-While in [CDS sources][CDL] you can refer to these types without prefix, they always have to be specified with their **fully qualified names in CSN**, for example:
+While in [CDS sources](cdl) you can refer to these types without prefix, they always have to be specified with their **fully qualified names in CSN**, for example:
 
 ```js
 ({definitions: {
@@ -277,6 +273,7 @@ The optional property `includes` contains a list of fully qualified entity-, asp
 
 
 ### Arrayed Types
+
 [arrays]: #arrayed-types
 
 Arrayed types are signified by the presence of a property `items`. The value of which is in turn a [type definition](#type-definitions) that specifies the arrayed items' type.
@@ -289,15 +286,19 @@ Arrayed types are signified by the presence of a property `items`. The value of 
 
 
 ### Enumeration Types
+
 [enum]: #enumeration-types
 
-The `enum` property is a dictionary of enum member elements with the name being the enum symbol and the value being a [CQN literal value expression]({{cxn}}#literal-values). The literal expression optionally specifies a constant `val` as a [literal](#literals) plus optional annotations. An enumeration type can specify an explicit `type` (for example, _Decimal_) but can also omit it and refer from given enumeration values, or _String_ as default.
+The `enum` property is a dictionary of enum member elements with the name being the enum symbol and the value being a [CQN literal value expression](cxn#literal-values). The literal expression optionally specifies a constant `val` as a [literal](#literals) plus optional annotations. An enumeration type can specify an explicit `type` (for example, _Decimal_) but can also omit it and refer from given enumeration values, or _String_ as default.
 
 ```js
 ({definitions:{
   'Gender': {enum:{
     'male':{},
-    'female':{}
+    'female':{},
+    'non_binary': {
+          val: 'non-binary'
+        }
   }},
   'Status': {enum:{
     'submitted': {val:1},
@@ -316,10 +317,11 @@ The `enum` property is a dictionary of enum member elements with the name being 
 
 
 ## Entity Definitions
+
 [entities]: #entity-definitions
 [entity]: #entity-definitions
 
-Entities are [structured types][struct] with **_kind_** =`'entity'`. In addition, one or more elements usually have property `key` set to true, to flag the entity's primary key.
+Entities are [structured types](#structured-types) with **_kind_** =`'entity'`. In addition, one or more elements usually have property `key` set to true, to flag the entity's primary key.
 
 #### Example
 
@@ -335,20 +337,21 @@ Entities are [structured types][struct] with **_kind_** =`'entity'`. In addition
 
 #### Properties
 
-* `kind` --- is always _`"entity"`_
-* `elements` --- as in [Structured Types], optionally equipped with one or more of these boolean properties:
-  * `key` --- signifies that the element is (part of) the primary key
-  * `virtual` --- has this element ignored in generic persistence mapping
-  * `notNull` --- the _not null_ constraint as in SQL
-* `includes` --- as in [Structured Types]
+* `kind` &ndash; is always _`"entity"`_
+* `elements` &ndash; as in [Structured Types], optionally equipped with one or more of these boolean properties:
+  * `key` &ndash; signifies that the element is (part of) the primary key
+  * `virtual` &ndash; has this element ignored in generic persistence mapping
+  * `notNull` &ndash; the _not null_ constraint as in SQL
+* `includes` &ndash; as in [Structured Types]
 
 
 
 ### View Definitions
+
 [views]: #view-definitions
 [view]: #view-definitions
 
-Views are entities defined as projections on underlying entities. In CSN, views are signified by the presence of property `query`, which captures the projection as a [CQN] expression.
+Views are entities defined as projections on underlying entities. In CSN, views are signified by the presence of property `query`, which captures the projection as a [CQN](cqn) expression.
 
 
 #### Example
@@ -366,16 +369,16 @@ Views are entities defined as projections on underlying entities. In CSN, views 
 
 #### Properties
 
-* `kind` --- mandatory; always _`"entity"`_
-* `query` --- the parsed query in [CQN] format
-* `elements` --- optional [elements signature](#views-with-declared-signatures), omitted and inferred
-* `params` --- optional [parameters](#views-with-parameters)
+* `kind` &ndash; mandatory; always _`"entity"`_
+* `query` &ndash; the parsed query in [CQN](cqn) format
+* `elements` &ndash; optional [elements signature](#views-with-declared-signatures), omitted and inferred
+* `params` &ndash; optional [parameters](#views-with-parameters)
 
 
 
 ### Views with Declared Signatures
 
-Views with declared signatures have the additional property `elements` filled in as in [entities]:
+Views with declared signatures have the additional property `elements` filled in as in [entities](cdl#entities):
 
 ```js
 ({definitions:{
@@ -392,7 +395,7 @@ Views with declared signatures have the additional property `elements` filled in
 
 ### Views with Parameters
 
-Views with parameters have an additional property `params` --- an optional dictionary of parameter [type definitions](#type-definitions):
+Views with parameters have an additional property `params` &ndash; an optional dictionary of parameter [type definitions](#type-definitions):
 
 ```js
 ({definitions:{
@@ -403,17 +406,35 @@ Views with parameters have an additional property `params` --- an optional dicti
 }})
 ```
 
+### Projections
 
+Use the `projection` property for views if you don't need the full power of SQL. See `as projection on` in [CDL](./cdl#as-projection-on) for restrictions.
 
+```js
+({ definitions: {
+  'Foo': { kind: "entity",
+    projection: {
+      from: { ref: ['Bar'] },
+      columns: [ '*' ]
+    }
+  }
+}})
+```
 
+#### Properties
+
+* `kind` &ndash; mandatory; always _`"entity"`_
+* `projection` &ndash; the parsed query; equivalent to `query.SELECT`, see [CQN](cqn)
+* `elements` &ndash; optional [elements signature](#views-with-declared-signatures), omitted and inferred
 
 ## Associations
 
-Associations are like [scalar type definitions][scalar] with `type` being `cds.Association` or `cds.Composition` plus additional properties specifying the association's `target` and optional information like `on` conditions or foreign `keys`.
+
+Associations are like [scalar type definitions](#scalar-types) with `type` being `cds.Association` or `cds.Composition` plus additional properties specifying the association's `target` and optional information like `on` conditions or foreign `keys`.
 
 ### Basic to-one Associations
 
-The basic form of associations is *to-one* associations to a designated target:
+The basic form of associations are *to-one* associations to a designated target:
 
 ```js
 ({definitions:{
@@ -427,7 +448,7 @@ The basic form of associations is *to-one* associations to a designated target:
 
 
 
-### Associations with specified `cardinality`
+### With Specified `cardinality` {#assoc-card}
 
 Add property `cardinality` to explicitly specify a *to-one* or *to-many* relationship:
 
@@ -439,15 +460,15 @@ Add property `cardinality` to explicitly specify a *to-one* or *to-many* relatio
 }})
 ```
 
-Property `cardinality` is an object `{src?,min?,max}`with...
+Property `cardinality` is an object `{src?,min?,max}` with...
 
 * `src` set to `1` give a hint to database optimizers, that a source entity always exists
-* `min` specifying the target's minimum cardinality --- default: 0
-* `max` specifying the target's maximum cardinality --- default: 1
+* `min` specifying the target's minimum cardinality &ndash; default: `0`
+* `max` specifying the target's maximum cardinality &ndash; default: `1`
 
-In summary, the default cardinality is _[0..1,0..1]_, which means *to-one*.
+In summary, the default cardinality is _[0..1]_, which means *to-one*.
 
-### Associations with Specified `on` Condition
+### With Specified `on` Condition {#assoc-on}
 
 So-called *unmanaged* associations have an explicitly specified `on` condition:
 
@@ -463,7 +484,7 @@ So-called *unmanaged* associations have an explicitly specified `on` condition:
 
 
 
-### Associations with specified `keys`
+### With Specified `keys` {#assoc-keys}
 
 Managed to-one associations automatically use the target's designated primary `key` elements. You can overrule this by explicitly specifying alternative target properties to be used in the `keys` property:
 
@@ -478,7 +499,7 @@ Managed to-one associations automatically use the target's designated primary `k
 }})
 ```
 
-Property `keys` has the format and mechanisms of [CQN projections]({{cqn}}#select).
+Property `keys` has the format and mechanisms of [CQN projections](cqn#select).
 
 
 
@@ -502,7 +523,7 @@ This format applies to type/entity-level annotations as well as to element-level
 }})
 ```
 
-Annotations are used to add custom information to definitions, the prefixed `@` acts as a protection against conflicts with built-in/standard properties. They’re flat lists of key-value pairs, with keys being fully qualified property names and values being represented as introduced in the section [Literals and Expressions](#literals).
+Annotations are used to add custom information to definitions, the prefixed `@` acts as a protection against conflicts with built-in/standard properties. They're flat lists of key-value pairs, with keys being fully qualified property names and values being represented as introduced in the section [Literals and Expressions](#literals).
 
 
 
@@ -510,7 +531,7 @@ Annotations are used to add custom information to definitions, the prefixed `@` 
 
 ## Aspects
 
-In parsed-only models, the top-level property `extensions` holds an array of unapplied extensions or annotations (&rarr; see also [Aspects in CDL]({{cdl}}#aspects)). The entries are of this form:
+In parsed-only models, the top-level property `extensions` holds an array of unapplied extensions or annotations (&rarr; see also [Aspects in CDL](cdl#aspects)). The entries are of this form:
 
 ```js
 ext = { extend|annotate: <name>, <property>: <value>, … }
@@ -526,7 +547,7 @@ with:
 
 ### Extend with \<named aspect\>
 
-The most basic form allows to express an extension of a named definition with another named definition (&rarr; see [Named Aspects]({{cdl}}#aspect)):
+The most basic form allows to express an extension of a named definition with another named definition (&rarr; see [Named Aspects](cdl#named-aspects)):
 
 ```js
 csn = { extensions:[
@@ -560,7 +581,7 @@ csn = { extensions:[
 
 ### annotate with \<anonymous aspect\>
 
-The form `{ annotate:<target>, with:{...} }` allows to add or override annotations of the target definition as well as those of nested elements:
+The form `{ annotate:<target>, <property>: <value>, … }` allows to add or override annotations of the target definition as well as those of nested elements:
 
 ```js
 csn = {extensions:[
@@ -592,19 +613,22 @@ Services are definitions with _kind =`'service'`_:
 
 
 ### Actions / Functions
-{: .h2}
 
-Service definitions (for _unbound_ actions/functions) as well as entity definitions
-(for _bound_ actions/functions) can have an additional property `actions`.
+Entity definitions (for _bound_ actions/functions) can have an additional property `actions`.
 The keys of these `actions` are the (local) names of actions/functions.
+_Unbound_ actions/functions of a service are represented as top level definitions.
 
-
-#### Example
+Example:
 
 ```js
 ({definitions:{
-  'MyOrders': {kind:"service", actions:{
-    'cancelOrder': {kind:"action",
+  'OrderService': {kind:"service"},
+  'OrderService.Orders': {kind:"entity", elements:{...}, actions:{
+    'validate': {kind:"function",
+      returns: {type: "cds.Boolean"}
+    }
+  }},
+  'OrderService.cancelOrder': {kind:"action",
       params:{
         'orderID': {type:"cds.Integer"},
         'reason':  {type:"cds.String"},
@@ -620,13 +644,13 @@ The keys of these `actions` are the (local) names of actions/functions.
 
 #### Properties
 
-* `kind` --- either `'action'` or `'function'` as in _OData_
-* `params` --- a dictionary with the values being
+* `kind` &ndash; either `"action"` or `"function"` as in _OData_
+* `params` &ndash; a dictionary with the values being
   [Type Definitions](#type-definitions)
-* `returns` --- a [Type Definition](#type-definitions)
+* `returns` &ndash; a [Type Definition](#type-definitions)
   describing the response
 
-> The definition of the response can be a reference to a declared type or the inline definition of a new (struct) type.
+> Note: The definition of the response can be a reference to a declared type or the inline definition of a new (structured) type.
 
 
 
@@ -634,18 +658,19 @@ The keys of these `actions` are the (local) names of actions/functions.
 
 ## Imports
 
-The `requires` property lists other models to import definitions from. 
+The `requires` property lists other models to import definitions from.
+It is the CSN equivalent of the CDL [`using` directive](./cdl#using).
 
 #### Example
 
 ```js
 ({
-  requires:[ '@sap/cds/common', './db/schema' ],
-  ...
+  requires: [ '@sap/cds/common', './db/schema' ],
+  // [...]
 })
 ```
 
-As in Node.js the filenames are either absolute module names or relative 
+As in Node.js the filenames are either absolute module names or relative
 filenames, starting with `./` or `../`.
 
 ## i18n
@@ -653,12 +678,12 @@ A CSN may optionally contain a top-level `i18n` property, which can contain tran
 
 ```js
 ({
-  "i18n": {
-    "language-key": {
-      "text-key": "some string"
+  i18n: {
+    'language-key': {
+      'text-key': "some string"
     }
   }
 })
 ```
 
-This data must be written and handled by the application, there’s no out-of-the-box support for this by CAP.
+This data must be written and handled by the application, there's no out-of-the-box support for this by CAP.

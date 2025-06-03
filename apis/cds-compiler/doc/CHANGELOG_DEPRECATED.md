@@ -11,6 +11,35 @@ Note: `deprecated` features are listed in this ChangeLog just for information.
 **When the `deprecated` option is set, the `beta` option is ignored,
 and several new features are not available.**
 
+## Version 6.0.8 - 2025-05-23
+
+### Added `noQuasiVirtualAssocs`
+
+If set, managed to-many associations will get foreign keys again.
+In cds-compiler v6, managed to-many associations without explicit foreign keys
+don't get `keys` anymore.  This flag restores v5 behavior.
+
+### Added `noCompositionIncludes`
+
+If set, generated entities for composition-of-named-aspect will not
+get an `includes` property.
+
+### Added `noPersistenceJournalForGeneratedEntities`
+
+If set, `@cds.persistence.journal` will _not_ be propagated to generated entities,
+including generated `.texts` entities for localized entities, nor generated entities
+for compositions-of-aspect.
+
+In cds-compiler v6, this annotation is copied to `.texts` entities as well as
+generated composition-of-aspect entities it by default.
+
+### Removed `includesNonShadowedFirst`
+
+### Removed `eagerPersistenceForGeneratedEntities`
+
+### Removed `noKeyPropagationWithExpansions`
+
+
 ## Version 4.2.0 - 2023-08-29
 
 ### Added `noKeyPropagationWithExpansions`

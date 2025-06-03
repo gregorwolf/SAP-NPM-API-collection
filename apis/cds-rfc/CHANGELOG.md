@@ -4,6 +4,18 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 2.0.1 - 2025-06-02
+
+### Fixed
+
+- License link in readme.
+
+## Version 2.0.0 - 2025-05-09
+
+### Changed
+
+- Change license from SAP DEVELOPER LICENSE AGREEMENT '3.1' to '3.2 CAP'. See https://cap.cloud.sap/resources/license/developer-license-3_2_CAP.txt.
+
 ## Version 1.4.2 - 2025-03-12
 
 ### Fixed

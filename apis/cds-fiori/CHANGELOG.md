@@ -4,6 +4,18 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.0.1 - 2025-05-16
+
+### Changed
+
+- Change license from SAP DEVELOPER LICENSE AGREEMENT '3.1' to '3.2 CAP'. See https://cap.cloud.sap/resources/license/developer-license-3_2_CAP.txt.
+- `@sap/cds` 8 or higher is required.
+- Use UI5 version 1.135.0 by default
+
+### Fixed
+
+- Preview no longer crashes if `cds.fiori.preview` is set to `true` or `false`.
+
 ## Version 1.4.1 - 2025-04-03
 
 ### Changed
