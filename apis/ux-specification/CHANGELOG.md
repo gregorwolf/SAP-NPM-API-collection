@@ -8,6 +8,26 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.17] - 2025-05-14
+
+### Fixed
+
+- Schema generation fails with error `Cannot read properties of undefined (reading 'fullyQualifiedName')`
+
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc) | devDependencies | patch | [`50.6.11` -> `50.6.14`] |
+| [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) | devDependencies | minor | [`5.2.6` -> `5.4.0`] |
+| [esbuild](https://github.com/evanw/esbuild) | devDependencies | patch | [`0.25.3` -> `0.25.4`] |
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | devDependencies | minor | [`8.31.0` -> `8.32.1`] |
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | devDependencies | minor | [`8.31.0` -> `8.32.1`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | devDependencies | patch | [`0.33.26` -> `0.33.28`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | dependencies | patch | [`0.33.26` -> `0.33.28`] |
+
 ## [1.124.16] - 2025-04-30
 
 ### Quality

@@ -1,3 +1,8 @@
+## 1.19.0
+
+### Fixes
+- Security fixes
+
 ## 1.18.0
 
 ### Fixes

@@ -105,8 +105,8 @@ Place your text cursor somewhere inside path referencing to annotation term segm
 - In the code completion list, navigate to the desired value.
 
 ## Prerequisites
-The generated application requires the following software to be installed:
-- [NodeJS](https://nodejs.org/en/download/) Version 18.14.2 or higher
+The generated application requires the following software to be installed:  
+- [NodeJS](https://nodejs.org/en/download/) Version 20.19.2 or higher
 - Local copy of OData metadata file to be present in the application folder structure.
 - `manifest.json` file to be present in the application folder structure and contain local URIs to the  metadata and annotation file(s) in its dataSources section.
 - The annotation file must be within the webapp folder or its sub-folders

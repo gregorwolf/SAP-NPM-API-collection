@@ -3,10 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.6] - 2025-05-15
+### Changed
+- Changed the minimum required [Node.js](https://nodejs.org/en/download) version to 20.19.2 or higher
+### Fixed
+- Fixed an issue where an incorrect state was shown for "Edit & refresh local metadata" when there were multiple services
+- Fixed an issue where the Service Manager did not show matching systems in Visual Studio Code if a SAP Business Application Studio destination was also stored in the `ui5.yaml` file
+- Fixed an issue where empty folders persisted after a service was deleted
+- Fixed an issue where the local path to annotations was not removed after a service was deleted
+
 ## [1.17.5] - 2025-05-01
 ### Fixed
-  - Fixed an issue where a `localUri` contained double forward slashes when a service was added using the Service Manager
-  - Fixed an issue where a white space added at the end of the service URI led to an inconsistent configuration
+- Fixed an issue where a `localUri` contained double forward slashes when a service was added using the Service Manager
+- Fixed an issue where a white space added at the end of the service URI led to an inconsistent configuration
 
 ## [1.17.4] - 2025-04-17
 ### Fixed

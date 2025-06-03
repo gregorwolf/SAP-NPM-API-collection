@@ -5,6 +5,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.1.7"></a>
+## 8.1.7 - 2025-05-28
+
+### Updated
+- Updated @sap/hana-client module version to 2.24.26
+- fixed shrinkwrap issue
+
+<a name="8.1.6"></a>
+## 8.1.6 - 2025-05-27
+
+### Updated
+- Updated @sap/hana-client module version to 2.24.26
+- fixed shrinkwrap issue
+
+<a name="8.1.5"></a>
+## 8.1.5 - 2025-05-27
+
+### Updated
+- Updated @sap/hana-client module version to 2.24.26
+
 <a name="8.1.4"></a>
 ## 8.1.4 - 2025-05-08
 

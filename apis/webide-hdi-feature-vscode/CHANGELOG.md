@@ -1,3 +1,23 @@
+## 1.39.0
+
+### New Features
+- Improvements for Select Database Connection Dialog: fix the schema input position at the bottom, disable schema suggestions when the schema list exceeds 1000 items.
+- Notes and labels can contain multiple lines
+- Support using unit conversion in combination with the option "Conversion During Query Execution" for MDS cubes
+- Support HALF_VECTOR as data type for columns
+- Window functions can be copied between calculation views
+
+### Fixes
+- In SQL hierarchy nodes the "Start" field offers input columns but should offer output columns
+- Copying input parameters fails to save one variable into the XML
+- Replace with Data Source leads to inconsistent model
+- Replace node does not remove old link after inserting node on a link
+- Add a scroll bar to the "Select Database Connection" dialog to support large database lists
+- Deleting a calculated column with mappings could fail
+- Hidden measures can be added to MDS Cube
+- Fix a column order change usability issue
+- Mapping of column gets lost during data source replacement
+
 ## 1.38.0
 
 ### New Features

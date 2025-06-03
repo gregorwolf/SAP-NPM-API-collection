@@ -1,3 +1,13 @@
+## 1.30.0
+
+### New Features
+
+- A message is shown if the Cloud Foundry login has expired.
+
+### Fixes
+
+- A larger or invalid "minimum_feature_version" is accepted without error during .hdiconfig file upgrade
+
 ## 1.29.1
 
 ### Fixes

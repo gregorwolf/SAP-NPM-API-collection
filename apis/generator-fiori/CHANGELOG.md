@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.6] - 2025-05-15
+### Changed
+- Changed the minimum required [Node.js](https://nodejs.org/en/download) version to 20.19.2 or higher
+
+### Fixed
+- Fixed an issue where using an untrusted certificate in Visual Studio Code caused the preview to fail in the generated application
+- Fixed an issue where the description was undefined for a transport request when created as part of the UI Service Generator
+- Fixed an issue where a newly generated service using the UI Service Generator was not added to the project storyboard after generation
+
 ## [1.17.5] - 2025-05-01
 ### Added
 - Newly generated SAP Fiori applications now use virtual endpoints by default

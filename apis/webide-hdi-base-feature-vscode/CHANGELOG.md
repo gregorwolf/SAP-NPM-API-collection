@@ -1,3 +1,8 @@
+## 1.37.0
+
+### Fixes
+- When filtering UDFs with multiple return values these return values are not shown
+
 ## 1.36.0
 
 ### New Features

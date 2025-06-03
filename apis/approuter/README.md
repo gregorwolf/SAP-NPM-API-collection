@@ -47,6 +47,7 @@
 - [CSRF Protection](#csrf-protection)
 - [Support of SAP Statistics](#support-of-sap-statistics)
 - [Connectivity](#connectivity)
+  * [Support for Corporate Identity Provider Token Propagation](#support-for-corporate-identity-provider-token-propagation)
 - [SaaS Application Registration in SAP BTP](#saas-application-registration-in-SAP-BTP)
   * [How To Expose Approuter for SaaS Subscription](#how-to-expose-approuter-for-saas-subscription)
 - [Authentication with Identity Service (IAS)](#authentication-with-identity-service-ias)
@@ -191,7 +192,8 @@ The application router makes use of the following configurations:
 or from the *default-services.json* file (when running locally). Refer to the documentation of the `@sap/xsenv` package for more details.
 
 - Configurations from the environment - these configurations are either read from the application router's environment (when deployed on Cloud Foundry or XS Advanced OnPremise Runtime)
-or from the *default-env.json* file (when running locally). Refer to the documentation of the `@sap/xsenv` package for more details.
+or from the *default-env.json* file (when running locally). Refer to the documentation of the `@sap/xsenv` package for more details.  
+Note that when running application router locally it is required to set the `NODE_ENV` environment variable to `development`explicitly in order to load the *default-env.json* file.
 The environment variables that the application router takes into account are:
 
 
@@ -626,7 +628,7 @@ dynamicIdentityProvider | Boolean | x | If `dynamicIdentityProvider` is `true`, 
 **Note:** The cacheControl property is effective only when one of the following settings is performed:
 *	The localDir property was set
 *	A service pointing to HTML5 Application Repository ("service": "html5-apps-repo-rt") was set
- 
+
 ### Example routes
 
 For example, if you have a configuration with the following destination:
@@ -1535,20 +1537,33 @@ The property is an array of objects, each object having the following properties
 Property | Type         | Optional | Description
 -------- | ------------ |:--------:| -----------
 status   | Number/Array |          | HTTP status code
-file     | String       |          | File path relative to the working directory of the application router
+file     | String       |    X     | File path relative to the working directory of the application router
+path     | String       |    X     | URL path relative to the html5 application root folder
 
 
 Example:
 ```json
 { "errorPage" : [
     {"status": [400,401,402], "file": "./custom-err-40x.html"},
-    {"status": 501, "file": "./http_resources/custom-err-501.html"}
+    {"status": 501, "file": "./http_resources/custom-err-501.html"},
+    {"status": 403, "path": "/forbidden.html"}
   ]
 }
 ```
 In the example above 400, 401 and 402 errors would be shown the content of  `./custom-err-4xx.html` and for 501 errors the user would see `./http_resources/custom-err-501.html`.
+For errors with status code 403, the user is redirected to "/forbidden.html".
 
-**Note:** The errorPage conifiguration section has no effect on errors generated outside of the application router.
+To avoid errors when redirecting to the error page that is stored in HTML5 Application Repository service an own route that points to this page, with no authentication should be defined. 
+For example:
+```json
+{
+  "source": "^/forbidden.html$",
+  "service": "html5-apps-repo-rt",
+  "authenticationType": "none"
+}
+```
+
+**Note:** The errorPage configuration section has no effect on errors generated outside of the application router.
 
 ### *cors* property
 
@@ -1738,6 +1753,23 @@ Each backend sub-component can add its own response header with the duration mea
 ## Connectivity
 
 The application router supports integration with SAP Cloud Platform connectivity service. The connectivity service handles proxy access to SAP Cloud Platform cloud connector, which tunnels connections to private network systems. In order to use connectivity, a connectivity service instance should be created and bound to the Approuter application. In addition, the relevant destination configurations should have `proxyType=OnPremise`. Also, a valid XSUAA login token should be obtained via the login flow.
+
+### Support for Corporate Identity Provider Token Propagation
+
+The application router supports propagating corporate identity provider tokens to backend systems.
+
+For detailed information about the configuration of the corporate identity provider token propagation, see:  
+- [Corporate Identity Providers](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/corporate-identity-providers?advAll=Corporate+identity+providers) in the documentation for  SAP Cloud Identity services and  
+- [Principal Propagation](https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/connectivity-in-cloud-foundry-environment) in the documentation for SAP BTP Connectivity service
+
+To enable the token propagation with the application router, follow these steps:
+
+* Create a connectivity service instance and bind it to the application router. Ensure that the binding configuration includes a token-type array with the value 'ias'.
+* Create a destination service instance and bind it to the application router. Ensure that binding configuration contains a token-type array with the value 'ias'.
+* Configure the Identity Authentication service with the consumed-services property to include the connectivity and destination service instance names.
+* Make sure that the authentication type for the login is based on Identity Authentication service (IAS).
+
+**Note** : Token propagation from a corporate identity provider is only supported for destinations defined at the subaccount level.
 
 ## SaaS Application Registration in SAP BTP
 

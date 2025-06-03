@@ -7,6 +7,20 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.17.6] - 2025-05-15
+
+### Project Accelerator
+- Fixed an issue where the Project Accelerator reported that the application had finished generating even when it was still in progress
+
+### Added
+- Significantly improved the performance of Guided Development when the workspace contained multiple applications:
+  - Faster load times for the project picker 
+  - Faster loading for guides, resulting in a smoother user experience
+
+### Changed
+- Selecting the same app from the "Project" dropdown now switches to the existing tab (if already open), instead of launching a duplicate instance
+- Changed the minimum required [Node.js](https://nodejs.org/en/download) version to 20.19.2 or higher
+
 ## [1.17.5] - 2025-05-01
 
 ### Project Accelerator

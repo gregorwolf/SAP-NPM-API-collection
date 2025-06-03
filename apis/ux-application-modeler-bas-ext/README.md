@@ -64,8 +64,8 @@ From the Command Palette, execute the `Fiori: Show Page Map` command.
 * Undo/redo using menu options is not supported in SAP Business Application Studio.
 
 ### Prerequisites
-
-* [Node.js](https://nodejs.org/en/download/) version 18.14.2 or higher.
+The generated application requires the following software to be installed:
+* [Node.js](https://nodejs.org/en/download/) version 20.19.2 or higher.
 
 ## Page Editor
 
@@ -164,7 +164,7 @@ This launches the application generator tool if installed.  Otherwise, it is ins
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/en/download/) version 18.14.2 or higher
+* [Node.js](https://nodejs.org/en/download/) version 20.19.2 or higher
 
 ## Application Information Page
 

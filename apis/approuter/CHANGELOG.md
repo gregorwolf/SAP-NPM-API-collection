@@ -5,10 +5,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+
+## 20.5.0 - 2025-05-29
+
+### Added
+- Corporate IDP Token support for IAS
+- Support for multitenant services that require client_credentials token
+- Support for HTML5 Repo error page configuration
+- LEP reuse lib handling
+- Support for CLS UPS binding
+
+### Fixed
+- Avoid calling get metadata in SaaS Approuter if SAP Cloud Service is null
+- Increased compatibility by using correlation ID from header `x-correlation-id`, if present
+
 ## 20.4.0 - 2025-05-14
 
 ### Added
-- Optional hostPattern parameter support in the CORS configuration
+- Optional hostPattern parameter support in the CORS 
+- configuration
 - Support for the x-forwarded-query header in UGW access
 
 ### Fixed

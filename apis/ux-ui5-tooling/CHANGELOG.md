@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.17.6] - 2025-05-15
+### Changed
+- Changed the minimum required [Node.js](https://nodejs.org/en/download) version to 20.19.2 or higher
+
+### Quality
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | dependencies | patch | [`0.19.39` -> `0.19.43`] |
+| [@sap-ux/adp-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/adp-tooling)) | devDependencies | minor | [`0.13.42` -> `0.13.45`] |
+| [@sap-ux/axios-extension](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/axios-extension)) | devDependencies | patch | [`1.20.2` -> `1.20.3`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/backend-proxy-middleware)) | devDependencies | minor | [`0.8.43` -> `0.8.44`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/deploy-tooling)) | devDependencies | minor | [`0.15.60` -> `0.15.62`] |
+
 ## [1.17.5] - 2025-05-01
 ### Quality
 

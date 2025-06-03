@@ -1,5 +1,14 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.31.0
+
+### New Features
+- All schemas can be collapsed or expanded at once via buttons in the toolbar in the dependency viewer.
+- The schema filter in the catalog browser is saved across sessions.
+
+### Fixes
+- Performance improvements
+
 ## 1.30.1
 
 ### Fixes
