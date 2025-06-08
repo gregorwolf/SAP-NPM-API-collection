@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.0.1 - 2025-06-02
+
+### Added
+- Support for Node.js 24
+
+### Also see
+- `@sap/cds-compiler` 6.0.10
+
 ## 9.0.0 - 2025-05-27
 
 ### Added

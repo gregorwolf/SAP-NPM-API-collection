@@ -4,6 +4,14 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.0.3 - 2025-06-04
+
+### Fixed
+
+- Handling of bad timestamps in URL ($filter and temporals)
+- View metadata for requests with $apply
+- Server crash for some URLs
+
 ## Version 9.0.2 - 2025-05-28
 
 ### Changed

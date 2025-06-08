@@ -8,6 +8,19 @@ Note: `beta` fixes, changes and features are usually not listed in this ChangeLo
 but in [doc/CHANGELOG_BETA.md](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 6.0.12 - 2025-06-06
+
+### Changed
+
+- Update OData vocabularies: 'Common', 'Hierarchy'
+
+### Fixed
+
+- compiler: Fix artifact refs in annotated annotation expressions,
+  i.e. the `Type` inside `annotate … with @SomeAnno: (cast( … as Type ))`.
+- to.sql: Checks around managed associations for mocked entities have been relaxed.
+- to.edm(x): Resolved a crash caused by references in annotation expressions that were not properly updated.
+
 ## Version 6.0.10 - 2025-05-28
 
 ### Fixed
