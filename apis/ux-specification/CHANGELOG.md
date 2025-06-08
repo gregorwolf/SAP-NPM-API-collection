@@ -8,6 +8,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `18.18.0` or higher
 
+## [1.124.18] - 2025-05-28
+
+### Quality
+
+Upgrades:
+
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc) | devDependencies | patch | [`50.6.14` -> `50.6.17`] |
+| [semver](https://github.com/npm/node-semver) | devDependencies | patch | [`7.7.1` -> `7.7.2`] |
+| [ts-jest](https://kulshekhar.github.io/ts-jest) ([source](https://github.com/kulshekhar/ts-jest)) | devDependencies | patch | [`29.3.2` -> `29.3.4`] |
+
 ## [1.124.17] - 2025-05-14
 
 ### Fixed

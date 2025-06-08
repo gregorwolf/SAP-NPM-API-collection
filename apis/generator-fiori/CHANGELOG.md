@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.0] - 2025-05-29
+### Added
+- Added the ability to ignore any SSL certificate errors during generation by setting the Node.js global environment variable: NODE_TLS_REJECT_UNAUTHORIZED=0.
+
+### Changed
+- Updated the generator when used in headless mode to support data sources as destinations in SAP Business Technology Platform
+
+### Fixed
+- Fixed an issue where the option to generate with TypeScript was incorrectly displayed when the installed version of CDS did not support it
+- Fixed an issue where the generator incorrectly displayed OData V4 templates when an OData V2 service was chosen
+- Fixed an issue where an SAP Fiori project downloaded from an ADT deployed application in ABAP did not support SAP Fiori tools
+
 ## [1.17.6] - 2025-05-15
 ### Changed
 - Changed the minimum required [Node.js](https://nodejs.org/en/download) version to 20.19.2 or higher

@@ -1,3 +1,10 @@
+## 1.2.1
+
+### Fixes
+- Changes to prevent data loss in the target for Load type Archive
+- Check for connection before invoking success function in HRTTManager
+- Show the error message when Compare action fails in Reptask
+
 ## 1.2.0
 
 ### New Features

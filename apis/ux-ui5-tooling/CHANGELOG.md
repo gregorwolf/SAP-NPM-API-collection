@@ -3,6 +3,21 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.0] - 2025-05-29
+### Quality
+| Package | Type | Update | Change |
+|---|---|---|---|
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | dependencies | patch | [`0.20.7` -> `0.20.14`] |
+| [@sap-ux/adp-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/adp-tooling)) | devDependencies | minor | [`0.13.45` -> `0.14.8`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/backend-proxy-middleware)) | devDependencies | minor | [`0.8.44` -> `0.9.1`] |
+| [@sap-ux/btp-utils](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/btp-utils)) | devDependencies | minor | [`1.0.3` -> `1.1.0`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/deploy-tooling)) | devDependencies | minor | [`0.15.62` -> `0.16.2`] |
+| [@sap-ux/reload-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/reload-middleware)) | devDependencies | minor | [`0.2.21` -> `0.3.0`] |
+| [@sap-ux/serve-static-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/serve-static-middleware)) | devDependencies | minor | [`0.2.3` -> `0.3.0`] |
+| [@sap-ux/store](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/store)) | devDependencies | minor | [`1.0.0` -> `1.1.0`] |
+| [@sap-ux/ui5-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-proxy-middleware)) | devDependencies | minor | [`1.4.26` -> `1.5.1`] |
+
+
 ## [1.17.6] - 2025-05-15
 ### Changed
 - Changed the minimum required [Node.js](https://nodejs.org/en/download) version to 20.19.2 or higher

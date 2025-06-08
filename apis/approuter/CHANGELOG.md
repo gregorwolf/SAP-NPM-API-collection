@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.5.1 - 2025-06-03
+
+### Fixed
+- bracket issue in client-credentials-token flow
 
 ## 20.5.0 - 2025-05-29
 

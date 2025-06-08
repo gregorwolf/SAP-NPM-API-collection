@@ -33,6 +33,8 @@ The building blocks provided by SAP Fiori elements are:
     <li>"Share" Functionality</li>
     <li>Paginators</li>
     <li>KPITag</li>
+    <li>Page</li>
+    <li>Message Button</li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/api/sap.fe.macros.Field" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="../../../../../../../#/topic/5260b9ca249f465ab33769b9edb442aa" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/api/sap.fe.macros.Form" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="../../../../../../../#/topic/391aad28bfc64616abe2500a631391c1" target="_blank">Documentation</a> </li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/api/sap.fe.macros.FormElement" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="../../../../../../../#/topic/b45f038068ca4b68a2d8008c1de5f7fb" target="_blank">Documentation</a></li>
@@ -45,4 +47,6 @@ The building blocks provided by SAP Fiori elements are:
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/api/sap.fe.macros.Share" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="../../../../../../../#/topic/41b02dfe1ac44d72bb766f5fc3e3d244" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/api/sap.fe.macros.Paginator" target="_blank">API Reference | </a> <a style="font-size: 0.75em" href="../../../../../../../#/topic/997292b38e584e6aa6d848f22e4422fd" target="_blank">Documentation</a></li>
     <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/api/sap.fe.macros.KPITag" target="_blank">API Reference | </a></li>
+    <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/api/sap.fe.macros.Page" target="_blank">API Reference | </a></li>
+    <li style="list-style-type: none"><a style="font-size: 0.75em" href="../../../../../../../#/api/sap.fe.macros.MessageButton" target="_blank">API Reference | </a></li>
 </ul>

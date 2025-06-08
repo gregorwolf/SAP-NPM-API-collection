@@ -6,6 +6,17 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.0] - 2025-05-29
+### Added
+- Enabled adding, moving, deleting, and maintaining properties of harvey micro charts in the Page Editor
+
+### Fixed
+- Fixed an issue where the radio button for the flexible column layout was not activated by pressing enter
+- Fixed an issue where adding a custom function to an extension controller in the Page Editor resulted in the function being added in the wrong place
+- Fixed an issue where the "Undo" and "Redo" buttons did not restore custom views in the Page Editor
+- Fixed an issue where adding a harvey micro chart to the header section of an object page generated the wrong name
+- Fixed an issue where the focus outline on the left side of the "Add Item" button in the Property panel was clipped
+
 ## [1.17.6] - 2025-05-15
 ### Added
 - Enabled adding, moving, deleting, and maintaining properties of comparison micro charts in the Page Editor

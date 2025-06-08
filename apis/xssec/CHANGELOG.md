@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.8.0 - 2025-06-04
+This release primarily provides two new features: token decode cache and signature (validation) cache. They offer non-trivial performance improvements but are disabled by default until next major release for backward compatibility reasons. See README for details on how to enable them.
+
+- log JWT token during createSecurityContext when DEBUG=xssec is enabled
+- add `Token#enableDecodeCache(config)` function to enable token decode cache which stores header/payload objects after base64 decoding.
+- add `validation.signatureCache` option to Service configuration to enable or disable the signature cache which stores results of token signature validation.
+- minor performance improvements for `createSecurityContext` when only a single `Service` instance is provided
+- Typescript types definition improvements (easier mocking of `Service` and `SecurityContext` classes etc.)
+- small bugfixes for debug logging (e.g. for correlationId logging)
+
 ## 4.7.0 - 2025-05-07
 - `createSecurityContext` can now also be called with a pre-decoded `Token` object instead of a raw JWT string in the `contextConfig` parameter. This prevents costly double-decoding of the token in scenarios where the token is already decoded before validation.
 - fix and type definitions for request retry configuration

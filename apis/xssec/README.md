@@ -25,10 +25,13 @@ This module allows Node.js applications to authenticate users via JWT tokens iss
     - [createSecurityContext](#createsecuritycontext)
     - [SecurityContext](#securitycontext)
     - [Token](#token)
+1. [Performance optimization by caching](#performance-optimization-by-caching)
 1. [Configuration](#configuration)
     - [Passport Strategy](#passport-strategy-1)
     - [Request configuration](#request-configuration)
     - [JWKS Cache](#jwks-cache)
+    - [Signature Cache](#signature-cache)
+    - [Token Decode Cache](#token-decode-cache)
     - [x5t Validation](#x5t-validation)
     - [Proof Token Validation](#proof-token-validation)
     - [IAS -> XSUAA Token Exchange](#ias---xsuaa-token-exchange)
@@ -540,6 +543,33 @@ Instances of `XsuaaToken`, `XsaToken`, `UaaToken` additionally have
 - **xsSystemAttributes** (*object*) *xs.system.attributes* from *ext_ctx* or direct claim
 - **zid** (*string*) zone id
 
+
+
+# Performance optimization by caching
+The library makes use of caching to improve performance and reduce latency for certain operations. This includes caching network requests, as well as caching results of computationally expensive operations.
+
+**The caching strategy ensures that the library is not any less secure when using caches.** The only exception to this is that a JWKS rotation reaches the application after a (configurable) delay. However, this is a well-established trade-off to make offline token validation feasible. 
+
+## Caching network requests
+The library uses the following caches for responses from the authentication servers:
+
+- **OIDC Cache**: Caches the OIDC configuration fetched from the authentication server.
+- **[JWKS Cache](#jwks-cache)**: Caches results from the JWKS endpoint for different payloads that are required for signature validation.
+
+These caches are crucial to achieve acceptable latency in the application, so they are enabled by default.
+
+## Caching CPU intensive operations
+Optionally, caches for the results of the following CPU-intensive operations can be enabled:
+
+- **[Signature Cache](#signature-validation-cache)** Caches the result of the cryptographic signature validation of a *JWT* token.
+- **[Token Decode Cache](#token-decode-cache)**: Caches header/payload after base64-decoding of a *JWT* token.
+
+These caches can drastically improve latency on subsequent requests with the same token. This is especially useful in applications where the user client makes many requests in parallel or in quick succession with the same token. Experiments measured up to **500%** throughput (req/s) on a ping endpoint with both caches enabled compared to the default configuration with no caching. Of course, the effect on latency gets relatively smaller in endpoints with more complex processing logic, e.g. due to database access.
+
+For backward-compatibility, those caches are disabled by default until the next major version but we generally recommend their usage already today.
+
+
+
 ## Configuration
 ### Passport Strategy
 It is possible to configure the [XssecPassportStrategy](#passport-strategy) with *scope(s)* such that incoming requests must have at least one of them. Otherwise, a response with code 403 is returned:
@@ -590,7 +620,6 @@ Only **one HTTP request at a time** will be performed to refresh the JWKS.
 
 In effect, productive systems with regular incoming requests should not experience delays from refreshing a JWKS after the initial fetch of that JWKS. Delays will only happen when the JWKS could not be refreshed during the refresh period, e.g. due to a prolonged outage of the JWKS endpoint or when no requests were received during the refresh period that would have triggered an asynchronous refresh.
 
-
 ##### Default cache configuration
 ```json
 {
@@ -620,6 +649,86 @@ const authService = new IdentityService(identityServiceCredentials,
       }
     }
   });
+```
+
+
+
+### Signature Cache
+A Signature Cache is a cache for the results of the cryptographic signature validation of a *JWT* token. It is used to improve the latency of subsequent requests with the same token (see [Caching CPU intensive operations](#caching-cpu-intensive-operations)).
+
+Each cache entry consists of the size of the cached JWT as string plus the boolean for the result.
+
+To enable this cache, you can enable the simple, built-in LRU cache or alternatively, provide any Node.js cache implementation with the standard `get/set` signature. The entries of the cache do **not** need to be timed out with a TTL for secure operation because a signature that is (in)valid now will always be (in)valid in the future. The validation result is only used when the JWKS still contains a valid key for the token's `kid`, so JWKS rotation can still be used to invalidate tokens by removing the corresponding public key.
+
+The following configuration snippet is an example that uses the built-in LRU cache:
+
+```js
+const authService = new IdentityService(identityServiceCredentials,
+  {
+    validation: {
+      signatureCache: {
+        enabled: true // enables the built-in LRU cache with default size 100
+      }
+    }
+  }
+);
+
+const authService = new XsuaaService(xsuaaCredentials,
+  {
+    validation: {
+      signatureCache: {
+        size: 1000 // enables the built-in LRU cache with a custom size of 1000 entries  
+      }
+    }
+  }
+);
+```
+
+The following configuration snippet is an example that uses the well-known [lru-cache](https://www.npmjs.com/package/lru-cache) module as a custom cache implementation:
+
+```js
+const LRUCache = require("lru-cache");
+const signatureCache = new LRUCache({ max: 100 });
+
+const authService = new IdentityService(identityServiceCredentials,
+  {
+    validation: {
+      signatureCache: {
+        impl: signatureCache
+      }
+    }
+  }
+);
+```
+
+### Token Decode Cache
+The Token Decode Cache is a cache for the base64 decoded *header/payload* objects of a *JWT* token. It is used to improve the latency of subsequent requests with the same token (see [Caching CPU intensive operations](#caching-cpu-intensive-operations)).
+
+Each cache entry consists of the size of the cached JWT as string plus the header/payload objects.
+
+To enable this cache, you can enable the simple, built-in LRU cache or alternatively, provide any Node.js cache implementation with the standard `get/set` signature.
+
+The following configuration snippets are examples that use the built-in LRU cache:
+
+```js
+Token.enableDecodeCache(); // enables the built-in LRU cache with default size 100
+```
+
+```js
+Token.enableDecodeCache({
+  size: 1000 // enables the built-in LRU cache with a custom size of 1000 entries
+});
+```
+
+The following configuration snippet is an example that uses the well-known [lru-cache](https://www.npmjs.com/package/lru-cache) module as a custom cache implementation:
+
+```js
+const LRUCache = require("lru-cache");
+const tokenDecodeCache = new LRUCache({ max: 100 });
+
+Token.enableDecodeCache({
+  impl: tokenDecodeCache // enables the built-in LRU cache with a custom implementation
+});
 ```
 
 ### Retry logic

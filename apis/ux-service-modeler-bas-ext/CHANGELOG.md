@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.0] - 2025-05-29
+### Fixed
+- Fixed an issue where a duplicate service was added in the Service Manager
+- Fixed an issue where it was not possible to update and refresh a data source using the Service Manager
+- Fixed an issue where clicking "Add Service" had no effect when the user was already in "Add Service" mode
+- Fixed an issue where "Add Service" failed with the error: Cannot read properties of undefined
+- Fixed an issue where a refresh in Service Modeler did not update the service files in the `webapp/../localService` folder
+
 ## [1.17.6] - 2025-05-15
 ### Changed
 - Changed the minimum required [Node.js](https://nodejs.org/en/download) version to 20.19.2 or higher

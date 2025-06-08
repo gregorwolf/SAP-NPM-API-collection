@@ -7,8 +7,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
-## [1.17.6] - 2025-05-15
+## [1.18.0] - 2025-05-29
+### Fixed
+- Fixed an issue in the _Add an interactive chart to a list page_ guide where it was not possible to add new measures and dimensions in Step 1
+- Fixed an issue in the _Enable a Show Related Apps Button_ guide where the "Reset" button did not restore the guide to its default state
+- Fixed an issue where, if only one project was present in the workspace, clicking "Refresh" failed to auto-select the project in the "Project" dropdown
+- Fixed an issue where command hyperlinks were not displayed correctly
 
+## [1.17.6] - 2025-05-15
 ### Project Accelerator
 - Fixed an issue where the Project Accelerator reported that the application had finished generating even when it was still in progress
 
@@ -22,7 +28,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Changed the minimum required [Node.js](https://nodejs.org/en/download) version to 20.19.2 or higher
 
 ## [1.17.5] - 2025-05-01
-
 ### Project Accelerator
 - Added a visual indicator when the shift key is pressed to indicate you can drag and drop a file
 - Updated the title of the generated application to be shorter and ensured it is not the same as the application description
@@ -32,7 +37,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Fixed issues where guides were not able to fetch existing annotations and apply code snippets when there was a missing reference to the metadata namespace in the annotation file
 
 ## [1.17.4] - 2025-04-17
-
 ### Project Accelerator
 - You can now use Microsoft Word documents (.docx) as your business requirements in the Project Accelerator. Microsoft Word documents can contain text and images to describe the application you want to generate
 
@@ -45,7 +49,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Fixed an issue in the _Add a progress indicator column to a table_ guide that allowed non-numeric values in the "Property Target Value" parameter
 
 ## [1.17.3] - 2025-04-03
-
 ### Changed
 - The `model` parameter is now shown as mandatory in overview page guides
 - Enhanced the guides listed below to harmonize the creation of custom files. View XML files along with their controllers are now placed in the `ext/view` folder, fragment XML files in the `ext/fragment` folder, and single controller files in the `ext/controller` folder
@@ -58,7 +61,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 - Fixed an issue where the extension did not open for an overview page application when the `globalFilterModel` property in the `manifest.json` file referred to a model that was not defined
 
 ## [1.17.1] - 2025-03-20
-
 ### Project Accelerator
 - Fixed an issue where the `/fiori-gen-cap-ui` command in Joule was visible even if there was no project in the current workspace
 
