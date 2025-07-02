@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.1.3"></a>
+## 2.1.3 - 2025-07-01
+
+### Updated
+- Updated node-hdbext version to 8.1.9
+- Shrinkwrap issue is fixed
+- jnlp version is updated
+
 <a name="2.1.2"></a>
 ## 2.1.2 - 2025-05-28
 

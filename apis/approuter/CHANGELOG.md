@@ -5,6 +5,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.5.4 - 2025-06-24
+
+### Fixed
+- Add tenant to session in service2approuter
+- Check for false in ENABLE_FORWARD_CORPORATE_IDP_TOKEN env. variable
+- Single use token: support services with no credentials field.
+- Implemented retry logic for backend calls using axios-retry to improve resilience during transient failures.
+
+## 20.5.3 - 2025-06-15
+
+### Fixed
+- Find credentials by sap.cloud.service too in client-credentials token flow
+- Enable corporate IDP token propagation flow only if ENABLE_FORWARD_CORPORATE_IDP_TOKEN is set to true or specific subdomains provided
+- Check service existence in app.services property
+
+## 20.5.2 - 2025-06-10
+
+### Fixed
+- Type error in case that IAS based connectivity token is not available. Use the XSUAA based token as a fallback
+
 ## 20.5.1 - 2025-06-03
 
 ### Fixed

@@ -1,3 +1,26 @@
+# Hana Client 2.25.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.25 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.25/en-US
+
+For the latest updates please see SAP Note 3599751 - SAP HANA Client 2.25 Release Notes
+
+https://me.sap.com/notes/3599751
+
+## Version 2.25.22
+
+### Changes:
+
+ - Issue Number 341573: Some edge cases could have been incorrectly handled by the conversion function from float to half-precision float.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 337832: Reconnect could have failed after a password change.
+ - Issue Number 337459: Prepared statements' packet sizes were not always being used when executed.
+ - Issue Number 337057: Extra semicolons in a connection string could have caused parameters to be ignored.
+ - Issue Number 303584: Connection properties with non-7-bit ASCII characters may not have been handled correctly.
+
 # Hana Client 2.24.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.24 documentation:
@@ -7,12 +30,6 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.24/en-US
 For the latest updates please see SAP Note 3566142 - SAP HANA Client 2.24 Release Notes
 
 https://me.sap.com/notes/3566142
-
-## Version 2.24.26
-
-### Underlying SQLDBC changes:
-
- - Issue Number 303584: Connection properties with non-7-bit ASCII characters may not have been handled correctly.
 
 ## Version 2.24.24
 

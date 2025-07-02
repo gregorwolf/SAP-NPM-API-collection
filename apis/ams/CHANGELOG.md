@@ -12,8 +12,27 @@ New features:
 
 ### Breaking Changes
 CAP Node.js Applications should **not** need to make changes when updating to version 3.
+The only exception are applications that received app2app principal propagation tokens.
+Previously the consumed API was not considered in the authorization checks of the AMS plugin but now it is. For this reason, it is now mandatory to provide a mapper function from API name(s) to policy name(s).
+Please see the CAP Technical Communication documentation for details on how to configure this.
+To achieve backward-compatibility, you can map the used API name in the principal propagation flow to a policy that grants all possible roles that a user may have in the application.
+In effect, privileges will only depend on the user's roles as the privileges on the consumed API will not limit the privileges (like before).
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
+
+## 3.2.0
+- `IdentityServiceAuthProvider` now has special handling for API consumption of `principal-propagation` API by not limiting user authorizations to policies of consumed API(s) in this case
+- much improved DEBUG logging
+- `authorizationCheck` events now have additional relevant properties and log better to console
+- various fixes in error handlers
+- internal values of `TECHNICAL_USER_FLOW` and `PRINCIPAL_PROPAGATION_FLOW` changed from a Symbol to string constants for better loggability
+- fix type definition of `callName` to be one of several **lowercased** instead of **uppercased** call names in first callback of `Decision#visit`
+
+## 3.1.3
+
+- Fix in TarReader for AMS Bundle Download
+- Fix error handling in IdentityServiceAuthProvider
+- Fix error handling in CAP Build Plugin
 
 ## 3.1.2
 - Fix: Do not throw error from IdentityServiceAuthProvider#getAuthorizations for not yet supported token scenarios (e.g. internal client_credentials token). Instead, return an Authorizations object with 0 policies.

@@ -765,7 +765,7 @@ Therefore, SBF with IAS as credentials provider acts as a proxy to the IAS Broke
 
 ##### Prerequisites
 
-You can find the complete IAS Broker documentation [here](https://github.wdf.sap.corp/CPSecurity/Knowledge-Base/tree/master/08_Tutorials/iasbroker), along with prerequisites and procedures. 
+You can find the complete IAS Broker documentation [here](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/integrating-service-with-identity-service-of-sap-btp), along with prerequisites and procedures. 
 
 ##### Creating an IAS instance
 Create an IAS instance of the plan _application_ (example):
@@ -779,7 +779,7 @@ Bind an IAS instance (example):
 ```sh
 cf bind-service <broker-app> <service-instance> -c '{"credential-type": "X509_GENERATED"}'
 ```
-Here we use the IAS ability to generate X.509 client certificates for us. Refer to the [documentation](https://github.wdf.sap.corp/CPSecurity/Knowledge-Base/tree/master/08_Tutorials/iasbroker#service-binding-creation) for alternatives. 
+Here we use the IAS ability to generate X.509 client certificates for us. Refer to the [documentation](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/reference-information-for-identity-service-of-sap-btp?q=X509_GENERATED#binding-properties) for alternatives.
 
 **Note:** communication between the SBF-based broker application and the IAS broker is based on TLS authentication (X.509 client certificates). Make sure you create the binding properly by passing the parameters correctly. 
 In addition, arbitrary parameters are not supported in app manifests in cf CLI v6.x (see [here](https://docs.cloudfoundry.org/devguide/services/application-binding.html#bind-with-manifest)), therefore the binding cannot be declared in the manifest.yml file.

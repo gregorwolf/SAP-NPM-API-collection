@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.18.1] - 2025-06-12
+### Added
+- Added the **CAP CDS Annotation** variant for the _Add an Analytical Card to an Overview Page_ guide
+
 ## [1.18.0] - 2025-05-29
 ### Fixed
 - Fixed an issue in the _Add an interactive chart to a list page_ guide where it was not possible to add new measures and dimensions in Step 1

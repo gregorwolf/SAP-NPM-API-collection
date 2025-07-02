@@ -8,37 +8,42 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.9.5"></a>
+## 6.9.5 - 2025-06-16
+### Fixed
+- Correct handling of SBF_UAA_RETRY_TIMEOUT.
+
 <a name="6.9.4"></a>
-## 6.9.4 - 2024-05-18
+## 6.9.4 - 2025-05-18
 ### Added
 - include changelog.md in npm release.
 
 <a name="6.9.3"></a>
-## 6.9.3 - 2024-05-06
+## 6.9.3 - 2025-05-06
 ### Fixed
 - axios type baseURL correct spelling.
 ### Added
 - Retry support for XSUAA requests connection errors. 
 
 <a name="6.9.2"></a>
-## 6.9.2 - 2024-03-13
+## 6.9.2 - 2025-03-13
 ### Updated
 - Update to axios 1.8.3.
 
 - <a name="6.9.1"></a>
-## 6.9.1 - 2024-03-10
+## 6.9.1 - 2025-03-10
 ### Updated
 - Update to @sap/logging 8.4.0  hedext 8.1.3 and axios 1.8.2.
 
 <a name="6.9.0"></a>
-## 6.9.0 - 2024-02-20
+## 6.9.0 - 2025-02-20
 ### Removed
 - Support for SBSS as credential provider was removed, following SBSS deprecation by XSUAA.
 ### Updated
 - Update to audit-logging 6.5.0, xsenv 5.4.0, andhdbext 8.1.2.
 
 <a name="6.8.2"></a>
-## 6.8.2 - 2024-01-06
+## 6.8.2 - 2025-01-06
 ### Updated
 - Update to axios 1.7.9
 

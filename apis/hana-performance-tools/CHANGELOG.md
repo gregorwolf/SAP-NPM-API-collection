@@ -1,5 +1,15 @@
 # SAP HANA SQL Analyzer Changelog
 
+## 1.7.0
+
+### Improvements
+- Moved the Properties tab from the property pane to the sidebar to enhance layout flexibility and streamline analysis workflows. The Properties view now appears alongside other analysis tabs such as Operators, Timeline, and other relevant tabs. It can be dragged from the sidebar and docked into the Visual Studio Code panel as needed.
+- Improved the SQL query re-execution workflow to support reviewing and modifying the session context before running a query. If session variables are stored, they appear prefilled and can be adjusted as needed prior to execution. An option to run without session variables is also available.
+
+### Bug Fixes
+- Fixed an issue that resulted in errors and missing elements when visualizing .PLV files in the SQL Plan Execution Monitor.
+- Improved visibility of overlapping operators in the Plan Graph. Container operators are now shown with a semi-transparent background when expanded, making overlapping operators easier to distinguish during analysis.
+
 ## Version 1.6.1
 
 ### Bug Fixes

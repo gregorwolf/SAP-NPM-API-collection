@@ -1,5 +1,16 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.32.0
+
+### New Features
+- Running queries on local connections can be canceled.
+- "SAP HANA Database Explorer" connections can be deleted.
+- Test data can be generated for one or more tables via GenAI. This feature is only available in SAP Build.
+- Analytic data preview for calculation views (column views).
+
+### Fixes
+- Dependency viewer performance improvements
+
 ## 1.31.0
 
 ### New Features

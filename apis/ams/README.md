@@ -410,15 +410,27 @@ Represents the result of an authorization check. A decision can be in one of thr
   Returns true if the authorization check resulted in a definitive GRANT with no outstanding conditions.
 
 - **`isDenied(): boolean`**  
-Returns true if the authorization check resulted in a definitive DENY with no outstanding conditions.
+  Returns true if the authorization check resulted in a definitive DENY with no outstanding conditions.
 
-- **`visitDcn(visitCall: CallVisitor, visitValue: ValueVisitor) : any`**
-This method can be used to visit the condition tree botton-up. The visitor calls `visitValue` whenever it encounters a value (attribute reference or literal) or `visitCall` when it encounters a function call in the condition, for example a call to the "EQ" function to compare two arguments for equality.
-  - `visitCall` ((call : string, args : any[]) => any): A function that transform the given call and its arguments, for example `("EQ", args)` => `"args[0] = args[1]"`. The call names are the constants from `DclConstants.operators`.
-  - `transformValue` ((value : {ref:string}|number|string|boolean|number[]|string[]|boolean[]) => any): A function that transforms the given attribute reference or literal, for example to translate AMS references to database field names.
+- **`<T,V>visit(visitCall: CallVisitor, visitValue: ValueVisitor) : T`**
+  This method can be used to visit the condition tree bottom-up. The visitor calls `visitValue` whenever it encounters a value (attribute reference or literal) or `visitCall` when it encounters a function call in the condition, for example a call to the "EQ" function to compare two arguments for equality.
+    - `visitCall` ((call : string, args : (DcnReference|DcnValue|V)[]) => T): A function that visits the given call and its arguments, for example to transform `("EQ", args)` => `"args[0] = args[1]"`. The call names are the constants from `DclConstants.operators`.
+    - `transformValue` ((value : DcnReference|DcnValue) => DcnReference|DcnValue|V): A function that visits the given attribute reference or literal, for example to translate AMS references to database field names.
+    - {{ref:string}} `DcnReference`
+    - {number|string|boolean|number[]|string[]|boolean[]} `DcnValue` 
 
 - **`filterUnknown(unknowns: string[]): Decision`**  
-Returns a new `Decision` instance that is the result of keeping only the fully-qualified attributes as *unknown*, evaluating the remaining attributes as *unset*.
+  Returns a new `Decision` instance that is the result of keeping only the fully-qualified attributes as *unknown*, evaluating the remaining attributes as *unset*.
+
+- **`apply(flatInput: { [attributeName: string]: DcnValue }): Decision`**  
+  **EXPERIMENTAL**: If you plan to use this method in production, please open a ServiceNow ticket on component `BC-CP-CF-SEC-LIB`.
+  Uses the data provided in `flatInput` to create a new Decision. Simple example on a decision `d` that represents `a = 3` and `b = 4`:
+  ```javascript
+  d.apply({ a: 3 }) // returns a Decision that represents b=4
+  d.apply({ a: 3, b: 4 }) // returns a Decision that represents true
+  d.apply({ a: 1 }) // returns a Decision that represents false
+  d.apply({ a:3 }).apply({ b: 4 }) // returns a Decision that represents true
+  ```
    
 ### Events
 

@@ -2,7 +2,25 @@
 
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg?logo=jest)](https://github.com/facebook/jest)
 
-HANA SQL Analyzer for Visual Studio Code is a brand new software that we are developing from the scratch to help users analyze the performance of HANA SQL queries. This repository will be the only single source for the development plan, code, development status, release information, downloadable package, analysis know-hows, and bug reporting.
+The SQL analyzer tool for SAP HANA is a performance analysis tool that helps developers visualize and understand SQL execution plans. Designed for query tuning and optimization, it offers detailed insights into how queries run within the SAP HANA database.
+
+This extension replaces earlier tools like PlanViz in SAP HANA studio and the SQL analyzer in SAP HANA cockpit, delivering a more integrated and flexible experience directly in Visual Studio Code.
+
+The GitHub repository is the central hub for development updates, release notes, downloads, usage guides, and issue tracking.
+
+## Features
+
+SQL Analyzer for Visual Studio Code is still under heavy development. Here are some highlighted features:
+
+- Live connection support (Note: connection details will be stored in [SecretStorage](https://code.visualstudio.com/updates/v1_53#_secrets-api).)
+- Load multiple PLV files and keep the history
+- Visualize query plans in PLV into plan graph
+- Quick analysis support
+- Critical path visualization
+- Bookmark and sharing (Note: Personal data can be anonymized and the comments can be deleted by users.)
+- Recommendations
+- SQL Plan Execution Monitor for real-time analysis
+- Advanced UX
 
 ## How To Install
 

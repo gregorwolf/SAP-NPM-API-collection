@@ -1764,6 +1764,7 @@ For detailed information about the configuration of the corporate identity provi
 
 To enable the token propagation with the application router, follow these steps:
 
+* Set environment variable `ENABLE_FORWARD_CORPORATE_IDP_TOKEN` value to `true` or provide a comma separated list of subaccount subdomains. Note that after changing the value of this environment variable, you must re-login to the application.
 * Create a connectivity service instance and bind it to the application router. Ensure that the binding configuration includes a token-type array with the value 'ias'.
 * Create a destination service instance and bind it to the application router. Ensure that binding configuration contains a token-type array with the value 'ias'.
 * Configure the Identity Authentication service with the consumed-services property to include the connectivity and destination service instance names.

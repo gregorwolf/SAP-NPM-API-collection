@@ -6,6 +6,25 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.1] - 2025-06-12
+### Added
+- Enabled adding, moving, deleting and maintaing annotation-based action menus in the Page Editor
+- Added support of hidden draft-related properties in Page Map
+
+### Changed
+- Reworked the "Flexible column layout" setting in Page Map to become a switch
+- Adjusted the cards editor tiles on the Application Info page because of the integration into the preview middleware
+
+### Fixed
+- Fixed an issue where focused elements in the Properties Panel were clipped
+- Fixed an issue where the focus in the Properties Panel was lost after reodering items for Quick Variant Selection Paths
+- Fixed an issue where the focus in the Properties Panel was lost after adding a selection presentation variant to a table section
+- Fixed an issue where dragging and dropping multiple items on the Page Editor led to unexpected expanded outline nodes 
+- Fixed an issue where file links were not working in the `Validate Project` summary
+- Fixed an issue where saving a variant for a migrated app was not possible
+- Fixed an issue where a visual indication was missing that the linter is running for `Fiori: Run UI5 Linter` 
+- Fixed an issue where a workspace connector configuration was not added to an html file for custom paths from ui5 yaml configuration
+
 ## [1.18.0] - 2025-05-29
 ### Added
 - Enabled adding, moving, deleting, and maintaining properties of harvey micro charts in the Page Editor

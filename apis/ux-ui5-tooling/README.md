@@ -5,7 +5,7 @@ Furthermore, the module expose the cli `fiori` offering e.g. the [`fiori run`](#
 
 **IMPORTANT**: 
 - Starting with version `1.10.5`, the minimum required `@ui5/cli` version is >= 3! For more information about migration to version 3 of the `@ui5/cli`, see [here](https://sap.github.io/ui5-tooling/v3/updates/migrate-v3/).
-- Starting with version `1.11.3`, the minimum required NodeJS version is 18.14.2 or higher!
+- Starting with version `1.17.6`, the minimum required NodeJS version is 20.19.2 or higher!
 
 ## [**Middlewares**](#middlewares)
 
@@ -259,7 +259,7 @@ Starting with `ux-ui5-tooling` version `1.4.7`, if the `version` property is not
 
 Starting with `ux-ui5-tooling` version `1.7.1` a check for the SAPUI5 version of the application was added, which checks if the version is availble on the SAPUI5 SDK. If not, then the nearest, highest patch, version is used instead.
 
-**Note:** all UI5 requests are routed through the proxy. Sometimes this can cause performance issues. If you don't want route the UI5 requests through the proxy, then you can set parameter `directLoad: true`. This will inject the UI5 url in the HTML file of the application and thus the UI5 libs will be loaded directly.
+**Note:** all UI5 requests are routed through the proxy. Sometimes this can cause performance issues. If you don't want route the UI5 requests through the proxy, then you can set parameter `directLoad: true`. This will inject the UI5 url in the HTML file of the application and thus the UI5 libs will be loaded directly. This feature is only available for files served from the local file system (not for virtual endpoints). The filename must adhere to the default filenames: `/index.html`, `/test/flpSandbox.html`, `/test/flpSandboxMockServer.html` or `/test/flp.html`.
 
 ```
 - name: fiori-tools-proxy

@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.1.9"></a>
+## 8.1.9 - 2025-06-19
+
+### Updated
+- fixed shrinkwrap issue
+
+<a name="8.1.8"></a>
+## 8.1.8 - 2025-06-17
+
+### Updated
+- fixed shrinkwrap issue
+
 <a name="8.1.7"></a>
 ## 8.1.7 - 2025-05-28
 

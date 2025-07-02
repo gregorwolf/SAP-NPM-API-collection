@@ -1,3 +1,12 @@
+## 1.31.0
+
+### Fixes
+
+- The deployment fails on Windows
+- Don't show "Upgrade .hdiconfig file" when the .hdiconfig file is not under db/src folder
+- Grants editor: do not copy "#" roles for hdi-shared grantor services
+- Grants editor: mark and preselect schema from .env file in value help
+
 ## 1.30.0
 
 ### New Features

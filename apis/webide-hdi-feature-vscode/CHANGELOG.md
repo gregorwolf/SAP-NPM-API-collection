@@ -1,3 +1,17 @@
+## 1.40.0
+
+### New Features
+- Refactor nodes into standalone calculation views. Nodes can be replaced with newly created calculation views
+- Improved analytic data preview for previewing calculation view data
+- Option to automap table function parameters based on parameter names: automatically map table function input parameters to available columns with the same name, available in table function nodes under "Input Mapping"
+- Hierarchies can be copied between calculation views
+
+### Fixes
+- CV editor is frozen when modifying the columns pane to a calculation view that has many columns
+- Original join elements added to new copied Join when using the "Copy All Below" functionality
+- Don't show columns under Common Attributes for hdbstructurefilter
+- Table function node not correctly updated after removing table function or constant
+
 ## 1.39.0
 
 ### New Features

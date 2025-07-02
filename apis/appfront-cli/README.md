@@ -149,6 +149,7 @@ Arguments:
 
 | Version  | Changes                                                  |
 |----------|----------------------------------------------------------|
+| `v1.7.0` | The `--service-key` + `--sso` together option added      |
 | `v1.6.0` | The `--service-key` option added                         |
 | `v1.0.0` | Added                                                    |
 
@@ -331,6 +332,20 @@ The behavior may be changed by:
 - `push` command `--activate` or `--no-activate` argument (for single command execution)
 - `push` command `--config config.json` configuration, where config.json `'{"activateVersion":false}'` (for command execututions using this configuration file)
 - `AFCTL_ACTIVATE` environment variable (for every command executions)
+
+#### AFCTL_POLLING_MAX_ATTEMPTS
+During deployment with `push` command, there is a polling of deployment status.
+By default, there will be 120 attempts to fetch the deployment status. After the threshold
+is reached, the `push` command will fail (while deployment itself may still be in progress).
+To support long running deployments for large applications (>100Mb), it is possible to change
+the maximum number of polling attempts with `AFCTL_POLLING_MAX_ATTEMPTS` environment variable.
+The value must be positive integer.
+
+#### AFCTL_POLLING_DELAY
+During deployment with `push` command, there is a polling of deployment status.
+By default, the delay between polling requests is 2 seconds (2000ms).
+To set different delay, it is possible to set `AFCTL_POLLING_DELAY` environment variable.
+The value must be positive integer (in milliseconds).
 
 If multiple options are used, the command argument has a higher priority than
 configuration file, and configuration file has higher priority than environment variable.

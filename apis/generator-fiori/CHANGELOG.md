@@ -3,6 +3,18 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.1] - 2025-06-12
+### Added
+- Added support for adding ABAP deployment configuration when using the SAP Fiori Generator in headless mode
+- Added the ability to bypass invalid SSL certificate errors while adding deploy configuration if the environment variable `NODE_TLS_REJECT_UNAUTHORIZED=0` is set
+
+### Changed
+- Updated the warning message displayed during deployment to now include a link to Guided Answers with more details when the target landscape is using an invalid SSL certificate
+
+### Fixed
+- Fixed an issue where an application generated and deployed with ABAP Development Tools could not be downloaded with SAP Fiori tools if there was no title or description in the original application
+- Fixed an issue where an application generated and deployed with ABAP Development Tools could not be re-deployed after being updated to support SAP Fiori tools
+
 ## [1.18.0] - 2025-05-29
 ### Added
 - Added the ability to ignore any SSL certificate errors during generation by setting the Node.js global environment variable: NODE_TLS_REJECT_UNAUTHORIZED=0.

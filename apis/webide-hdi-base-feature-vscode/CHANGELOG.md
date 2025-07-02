@@ -1,3 +1,8 @@
+## 1.38.0
+
+### Fixes
+- Security fixes
+
 ## 1.37.0
 
 ### Fixes
