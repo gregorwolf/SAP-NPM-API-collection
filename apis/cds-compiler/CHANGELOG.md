@@ -8,6 +8,13 @@ Note: `beta` fixes, changes and features are usually not listed in this ChangeLo
 but in [doc/CHANGELOG_BETA.md](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 6.0.14 - 2025-06-18
+
+### Fixed
+
+- to.sql: Fix error when calculated element refers to a localized element.
+- to.edm(x): Correctly handle `PropertyPath` in a collection when using expressions as annotation values
+
 ## Version 6.0.12 - 2025-06-06
 
 ### Changed

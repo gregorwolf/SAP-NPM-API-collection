@@ -6,6 +6,24 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.0.6 - 2025-06-18
+
+### Changed
+
+- `cds build` now adds an `engines.node = ">=20"` entry to the effective _package.json_ iff it is missing from the project's _package.json_ to avoid engine confusion when deploying to Cloud Foundry
+
+## Version 9.0.5 - 2025-06-06
+
+### Changed
+
+- `cds init` uses latest Maven Java archetype version 4.0.2 for creating Java projects.
+
+### Fixed
+
+- `cds build` for extensions now filters built-in entities such as `cds.outbox.Messages` to fix the extension upload with `cds push`.
+- `cds add data` now correctly works for nested structured properties.
+- `cds add data/http` no longer create decimal numbers with too many precision places
+
 ## Version 9.0.4 - 2025-05-28
 
 ### Changed
@@ -94,6 +112,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `cds add ams` for Java adds a custom builder to the `mta.yaml` to circumvent the missing `srv/src/gen/policies`.
 - `cds add multitenancy` requires the `srv-api` instead of the `mtx-api` for Java projects.
 
+
+## Version 8.9.5 - 2025-06-05
+
+### Fixed
+
+- Bump `tar-fs` to address CVE-2024-12905.
+- `cds add data` now correctly works for nested structured properties.
+- Help text of `cds debug`.
 
 ## Version 8.9.4 - 2025-05-26
 

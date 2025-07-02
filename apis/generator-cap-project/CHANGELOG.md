@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [2.0.2] - 2025-06-11
+### Changed
+- updated dependencies
+
+## [2.0.1] - 2025-05-09
+### Changed
+- errors during `npm install` after project creation will no abort the whole project creation process
+- Lobby: projects will contain `generation.log` file
+
+## [2.0.0] - 2025-05-08
+### Fixed
+- make tests more robust
 
 ## [1.8.3] - 2025-01-23
 ### Changed

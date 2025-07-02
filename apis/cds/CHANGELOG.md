@@ -4,6 +4,17 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.0.4 - 2025-06-18
+
+### Fixed
+
+- In some cases, the app crashed if an element was named like a reserved CSN key.
+- Locale detection does not enforce `<http-req>.query` to be present. Some protocol adapters do not set it.
+- `between` operator for remote OData requests
+- `cds serve/watch` and `cds.test()` no longer try to connect to an SQLite database if none is configured.
+- `cds.connect.to` for required queueable services if no persistence is configured
+- Persistent queue is not enabled if no persistence is configured
+
 ## Version 9.0.3 - 2025-06-04
 
 ### Fixed

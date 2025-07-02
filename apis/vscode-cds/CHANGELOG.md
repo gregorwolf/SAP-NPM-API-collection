@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [9.0.2] - 2025-06-05
+
+### Changed
+- Telemetry now requires the user to install `SAP Business Application Studio Toolkit` extension
+
 ## [9.0.1] - 2025-05-27
 
 ### Added
