@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.6.0 - 2025-07-02
+
+### Added
+- Bound services authorization check
+- Change default behaviour of INCLUDE_NONCE_ATTR for secure header response headers
+- IAS App2App token exchange support for Business Services
+- xssec retry support
+
+### Fixed
+- Services logout when service is referenced by destination
+- Add content-type header for login callback errors
+- Remove info logs from headers.js
+
+### Updated dependencies
+- deps: sap/xssec@4.7.0
+
 ## 20.5.4 - 2025-06-24
 
 ### Fixed
@@ -42,6 +58,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 ### Fixed
 - Avoid calling get metadata in SaaS Approuter if SAP Cloud Service is null
 - Increased compatibility by using correlation ID from header `x-correlation-id`, if present
+
 
 ## 20.4.0 - 2025-05-14
 

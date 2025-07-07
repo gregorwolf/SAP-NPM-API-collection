@@ -441,6 +441,8 @@ Sample content of the `plugins` environment variable:
 ]
 ```
 
+**Note:** When HTML5 Application Repository integration is enabled, plugins are completely overwritten by the HTML5 application's own xs-app.json configuration. Environment-based plugins will not be applied to HTML5 repository routes.
+
 ### Session timeout configuration
 
 For example, if you have the following line in your *manifest.yml* or *manifest-op.yml* file:
@@ -2030,6 +2032,8 @@ While binding a Business Service instance to application router the following in
 * forwardiastoken: flag that indicates if, in addition to the exchanged SAP Authorization and Trust Management service (xsuaa) JWT token, the OIDC access token created by Identity Authentication service should be forwarded as well. the OIDC token is forwarded in request header: `x-ias-token`
 * forwardiasauthentication: This flag indicates that if the login was performed using Identity Authentication, the application router will not exchange the JWT token created by the SAP Authorization and Trust Management service (xsuaa). Instead, the OIDC access token created by Identity Authentication will be forwarded in the authorization header.
 * URL.headers.`<header-name>`:`header-value` If you provide this information, the application router propagates this attribute as the header to the business service backend. Existing request headers will not be overwritten.
+* IASDependencyName: The name of the IAS dependency that was configured between the application router IAS application and the Business Service IAS application exposed API. In case that the login process was performed using IAS authentication and the Business Service binding contains an IASDependencyName configuration, the application router will use the IAS dependency name to perform an IAS token exchange and forward the IAS token to the Business Service backend.
+  Note that in case of multitenancy the IAS dependency should be configured between the subscribed application router IAS application and the subscribed Business Service IAS application. For more details see: [Integrating Applications in SCI](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/integrating-applications).
 
 
 The value of `endpoints` should be an object with the following properties:
