@@ -6,11 +6,37 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.1.0 - 2025-07-02
+
+### Added
+
+- `cds add test` to generate test files for CDS services [experimental]
+- `cds debug --no-devtools` allows to skip opening the developer tools.
+
+### Changed
+
+- `cds add helm` doesn't route the subscription callbacks through the app router any longer.
+- `cds lint` now uses local copy of `eslint` help content.
+- `cds add cloud-logging` will correctly add the Helm dependency to `Chart.yaml`.
+
+### Fixed
+
+- `cds add hana` for Java correctly adds the HANA dependencies to `chart/Chart.yaml`.
+- `cds add xsuaa` for Java doesn't throw an error when the `.cdsrc.json` is not existing.
+- `cds build --for fiori` stores EDMX files again relative if `dataSources.mainService.settings.localUri` in UI5's `manifest.json` is a relative path.
+- `cds add ams/ias` add the `repository` in combination with `cds add helm-unified-runtime`.
+- `cds add xsuaa` adds a wildcard prefix to the domain name to allow for multitenancy use cases.
+- `cds add portal` for Java binds the HTML5 repo runtime and portal service to the Java server instead of the MTX sidecar, to allow for CAP Java built-in dependencies resolution.
+- `cds repl --run` can now run again w/o `@cap-js/cds-test` installed.
+- `cds push` and other commands now handle request errors more robustly
+- `cds debug` now also honors the `--host` parameter when it starts `cds watch`.
+
 ## Version 9.0.6 - 2025-06-18
 
 ### Changed
 
 - `cds build` now adds an `engines.node = ">=20"` entry to the effective _package.json_ iff it is missing from the project's _package.json_ to avoid engine confusion when deploying to Cloud Foundry
+- `cds add` without any flag now shows the help (`cds add --help`) instead of throwing an error
 
 ## Version 9.0.5 - 2025-06-06
 

@@ -1,12 +1,12 @@
 {
   "name": "@sap/cds-dk",
-  "version": "9.0.6",
+  "version": "9.1.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/cds-dk",
-      "version": "9.0.6",
+      "version": "9.1.0",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@cap-js/asyncapi": "^1.0.0",
@@ -78,8 +78,8 @@
       }
     },
     "node_modules/@eslint/js": {
-      "version": "9.29.0",
-      "integrity": "sha512-3PIF4cBw/y+1u2EazflInpV+lYsSG0aByVIQzAgb1m1MhHFSbqTyNqtBKHgWf/9Ykud+DhILS9EGkmekVhbKoQ==",
+      "version": "9.30.1",
+      "integrity": "sha512-zXhuECFlyep42KZUhWjfvsmXGX39W8K8LFb8AWXM9gSV9dQB+MrJGLKvW6Zw0Ggnbpw0VHTtrhFXYe3Gym18jg==",
       "license": "MIT",
       "peer": true,
       "engines": {
@@ -90,8 +90,8 @@
       }
     },
     "node_modules/@sap/cds": {
-      "version": "9.0.4",
-      "integrity": "sha512-KaGI9DHLfs8SD44zgNQuODKOU5n8c4fer3a0hg2kmqvmTtATswnW4QuU9b8Wddx+bkoJDQYs8IZjAkWq21perw==",
+      "version": "9.1.0",
+      "integrity": "sha512-i5bAVbFzi1uN11O4U6SdPKzYDDxc+YDSWMiqt1ryxT0WYrrehJPg5pJQjy4AH1EgRIqa3eqK2RfmHS6SgkBOyg==",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@sap/cds-compiler": "^6",
@@ -120,8 +120,8 @@
       }
     },
     "node_modules/@sap/cds-compiler": {
-      "version": "6.0.14",
-      "integrity": "sha512-glxvrrOABemDHxR6BOUSJdZ+H+aZ0PadreGML862ZIeJJ0AUAjwIiT6gV5i6cgbXGXI7+aG70/DRB+W4H8jAsQ==",
+      "version": "6.1.0",
+      "integrity": "sha512-s71fsxDZKqHn2xvoqoNst54K/BkBzCpiU+8xc0t3nMDXmsLzSC3VfygZGwGAZD8fkxUnXh8oL2XLHWKWcvcdNg==",
       "license": "SEE LICENSE IN LICENSE",
       "bin": {
         "cdsc": "bin/cdsc.js",
@@ -142,8 +142,8 @@
       }
     },
     "node_modules/@sap/cds-mtxs": {
-      "version": "3.0.1",
-      "integrity": "sha512-9Jl2GgDueLHn7xuOL0igawT4knNEIogbo7r1OOwh4TPb2nbo3EZqs1/QlkF9OKk6+uD8ei7LXVohRQ/K1lvQEg==",
+      "version": "3.1.0",
+      "integrity": "sha512-ifE6RdiqIYz8OXOQYlEy0BYSHYN18T0d5kjSejX8svYsRyq//YsdxjybCFzOE3lgbHzfKsmAoe+ANx+99mhOwg==",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@sap/hdi-deploy": "^5"
@@ -564,8 +564,8 @@
       }
     },
     "node_modules/dotenv": {
-      "version": "16.5.0",
-      "integrity": "sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==",
+      "version": "16.6.1",
+      "integrity": "sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==",
       "license": "BSD-2-Clause",
       "engines": {
         "node": ">=12"
@@ -1799,8 +1799,8 @@
       "optional": true
     },
     "node_modules/ws": {
-      "version": "8.18.2",
-      "integrity": "sha512-DMricUmwGZUVr++AEAe2uiVM7UoO9MAVZMDu05UQOaUII0lp+zOzLLU4Xqh/JvTqklB1T4uELaaPBKyjE1r4fQ==",
+      "version": "8.18.3",
+      "integrity": "sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==",
       "license": "MIT",
       "engines": {
         "node": ">=10.0.0"

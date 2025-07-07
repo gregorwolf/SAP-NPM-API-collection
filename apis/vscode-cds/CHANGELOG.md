@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [9.1.0] - 2025-07-02
+### Added
+- Performance/Responsiveness:
+  + Reduce _"lagging red underline"_ while typing - configurable via user setting `cds.workspace.fastDiagnosticsMode`
+  + Outdated compilations in background are aborted fast. This increases responsiveness and reduces CPU usage and is especially useful for large projects with many files.
+- Formatter: New option `argsInNewLine` to put multiple arguments to e.g. function calls on a new line
+- Outline/Workspace Symbols: use distinct icons for `Association` and `Composition` elements
+
+### Changed
+- Minimum VSCode version is now 1.99.0
+- Formatter: Chained method-like function calls are now broken into separate lines
+
+### Fixed
+- Formatter:
+  + Original empty lines are now correctly preserved before single-lined blocks
+  + Separate alignment of annotations before resp. within projection-like entities
+
+### Also see
+- `@sap/cds-lsp` 9.1.0
+- `@sap/cds-compiler` 6.1.0
+
+
 ## [9.0.2] - 2025-06-05
 
 ### Changed

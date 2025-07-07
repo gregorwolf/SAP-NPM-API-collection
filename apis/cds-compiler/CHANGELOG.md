@@ -8,6 +8,24 @@ Note: `beta` fixes, changes and features are usually not listed in this ChangeLo
 but in [doc/CHANGELOG_BETA.md](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 6.1.0 - 2025-06-27
+
+### Added
+
+- for.odata:
+  + Introduce a new option `addAnnotationAddressViaNavigationPath` to annotate services
+    containing draft-enabled entities with `@Common.AddressViaNavigationPath`.
+  + Introduce a new option `draftMessages` that enhances the draft generation logic.
+
+### Changed
+
+- Update OData vocabularies: Capabilities, Common
+
+### Fixed
+
+- compiler: The ternary condition operator `…?…:…` is now right-associative as usual
+  (in v5, chaining it like in `…?…:…?…:…` was not possible without parentheses).
+
 ## Version 6.0.14 - 2025-06-18
 
 ### Fixed

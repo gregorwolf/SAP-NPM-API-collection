@@ -4,6 +4,31 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.1.0 - 2025-06-30
+
+### Added
+
+- CDS config schema validations for `cds.requires.auth.tenants`, `cds.cdsc`, `cds.query`, `cds.log`, `cds.server`
+- Queue option `targetPrefix` to prefix `target` value of `cds.outbox.Messages` entries for microservice isolation
+- Basic support for CRUD for hierarchy entities
+
+### Changed
+
+- Reduced the amount of SELECT nesting the OData adapter does for `$apply` queries.
+- Better error messages for unresolved parent associations in hierarchy requests
+- Enabled updated behavior of `draftActivate` to move updates to fields of draft enabled entities with type `cds.LargeBinary` from draft to active table on the database level, with feature flag `cds.env.fiori.move_media_data_in_db`.
+
+### Fixed
+
+- Copies of `cds.context` with `locale`
+- Support for relative paths in `@odata.bind`
+- `cds build` on Windows OS - fixed cli tar usage for resources.tgz
+- Actions and functions with scalar return types use same `@odata.context` calculation as other return types, fixing e.g. `cds.odata.contextAbsoluteUrl` not being respected
+- Improve content-type and content-length handling in OData adapter
+- Parsing incorrect function parameters
+- `cds deploy --dry` no longer tries to load a DB adapter, so that it works w/o one installed.
+- Fix `@mandatory` for actions and functions
+
 ## Version 9.0.4 - 2025-06-18
 
 ### Fixed

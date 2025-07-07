@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.1.0 - 2025-06-30
+
+### Changed
+
+- `cds.requires.multitenancy.jobs.clusterSize` is set to 3 by default.
+- `cds.requires.multitenancy.jobs.workerSize` is set to 4 by default.
+
+### Fixed
+
+- Properly catching errors in the `t0` cleanup intervals.
+- eTag determination for `ModelProviderService.getCsn()` only evaluates active extensions now if not
+  explicitly requested differently.
+
 ## Version 3.0.1 - 2025-05-26
 
 ### Changed
@@ -35,7 +48,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
   }
   ```
 
-
 ### Added
 
 - `cds-mtx upgrade t0` can be used to (re)initialize the `t0` tenant, e. g. in a cf hook to avoid concurrency issues.
@@ -46,14 +58,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Extension validation (aka linting) for new entities now works properly, also if no other extensions exist.
 - Extension validation now ignores internal definitions with namespace `cds.core`.
 - Base model pulled for extension projects using `cds pull` no longer contains internal definitions with namespace `cds.core`, `cds.outbox` or `cds.xt`.
-- [Beta] Extension of aspects is now possible. For now, it needs to be enabled using
+
+## Version 2.7.4 - 2025-06-24
+
+### Fixed
+
+- Extension of aspects is now possible. It needs to be enabled using
   ```jsonc
   "requires": {
-    "cds.xt.ExtensibilityService": {
-      "allow-aspect-extension": true
+    "extensibility": {
+      "enable-aspect-extension": true
     }
   }
   ```
+  in the root project configuration.
+
+## Version 2.7.3 - 2025-06-13
+
+### Fixed
+
+- More reliable detection of forbidden annotations in entity extensions
+- Event 'activated' now only available as internal event to avoid deadlocks.
 
 ## Version 2.7.2 - 2025-04-17
 
