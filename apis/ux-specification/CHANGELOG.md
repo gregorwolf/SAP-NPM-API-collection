@@ -8,6 +8,35 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `20.14.0` or higher
 
+## [1.136.2] - 2025-07-09
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+|---|---|
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | [`8.35.0` -> `8.35.1`] |
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | [`8.35.0` -> `8.35.1`] |
+| [prettier](https://prettier.io) ([source](https://github.com/prettier/prettier)) | [`3.5.3` -> `3.6.2`] | 
+| [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) | [`5.5.0` -> `5.5.1`] | 
+
+## [1.136.1] - 2025-06-25
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+|---|---|
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | [`0.35.0` -> `0.35.5`]|
+| [axios](https://axios-http.com) ([source](https://github.com/axios/axios)) | [`1.9.0` -> `1.10.0`] |
+| [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc) | [`50.7.1` -> `50.8.0`] |
+| [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) | [`5.4.1` -> `5.5.0`] |
+| [ts-jest](https://kulshekhar.github.io/ts-jest) ([source](https://github.com/kulshekhar/ts-jest)) | [`29.3.4` -> `29.4.0`] |
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | [`8.34.0` -> `8.35.0`] |
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | [`8.34.0` -> `8.35.0`] |
+
 ## [1.136.0] - 2025-06-11
 
 ### Added

@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.3] - 2025-07-10
+- No update
+
+## [1.18.2] - 2025-06-26
+### Fixed
+- Fixed an issue where a destination entry was set in the `ui5.yaml` file when a service was added in Visual Studio Code as a new SAP system
+
 ## [1.18.1] - 2025-06-12
 ### Fixed
 - Fixed an issue where a destination entry was added to a new service when run in the VS Code context

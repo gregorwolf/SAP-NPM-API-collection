@@ -8,6 +8,18 @@ For the latest updates please see SAP Note 3599751 - SAP HANA Client 2.25 Releas
 
 https://me.sap.com/notes/3599751
 
+## Version 2.25.29
+
+### Changes:
+
+ - Issue Number 344250: A Node.js pipeline could have failed when connecting a readable stream and a writable stream with a callback function.
+ - Issue Number 342754: OpenTelemetry attribute names did not match the specification.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 343107: Results from an executing statement with an input LOB parameter may have been lost.
+ - Issue Number 342648: An input string conversion error could have resulted in a driver crash.
+
 ## Version 2.25.22
 
 ### Changes:
@@ -19,7 +31,6 @@ https://me.sap.com/notes/3599751
  - Issue Number 337832: Reconnect could have failed after a password change.
  - Issue Number 337459: Prepared statements' packet sizes were not always being used when executed.
  - Issue Number 337057: Extra semicolons in a connection string could have caused parameters to be ignored.
- - Issue Number 303584: Connection properties with non-7-bit ASCII characters may not have been handled correctly.
 
 # Hana Client 2.24.x Drivers
 
@@ -30,6 +41,12 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.24/en-US
 For the latest updates please see SAP Note 3566142 - SAP HANA Client 2.24 Release Notes
 
 https://me.sap.com/notes/3566142
+
+## Version 2.24.26
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 303584: Connection properties with non-7-bit ASCII characters may not have been handled correctly.
 
 ## Version 2.24.24
 

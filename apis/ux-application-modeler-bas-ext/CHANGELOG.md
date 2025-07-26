@@ -6,6 +6,31 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.3] - 2025-07-10
+### Added
+- Enabled adding, moving, deleting, and maintaining properties of stacked bar micro charts in the "Page Editor"
+- Added a tile to the "Application Info" page to run the variants management script
+### Fixed
+- Fixed an issue where the `@Common.ValueListWithFixedValues` annotation was not overridden when updating value help
+- Fixed an issue where the back button was not visible when migrating SAP Fiori applications to support SAP Fiori tools
+- Fixed an issue where exporting a saved system to JSON suggested an empty file name in Windows
+- Fixed an issue where the width of a draggable node decreased during drag and drop
+- Fixed an issue where properties could not be removed or set to default in the "Page Editor"
+
+## [1.18.2] - 2025-06-26
+### Changed
+- Improved the backdrop behind dialogs to align with the Visual Studio Code theme
+- Improved auto numbering when adding views
+- Enhanced the Page Editor to read and write new syntax for the `@Common.TextArrangement` in CAP CDS Files​
+### Fixed
+- Fixed an issue where a change in the minimum SAPUI5 version prevented the format of the `manifest.json` file from updating
+- Fixed an issue where group action nodes did not appear in the Table macro's actions
+- Fixed an issue where the wrong node was selected when an action group was created in the Page Editor
+- Fixed an issue where the creation of group actions was allowed with older specification versions in the Page Editor
+- Fixed an issue where an unnecessary and incomplete row was generated in mock data for a new property in the Page Editor
+- Fixed an issue where incorrect keys were generated in the `manifest.json` file for newly created views
+- Fixed an issue where "Add Action Menu" was shown for incompatible SAPUI5 versions
+
 ## [1.18.1] - 2025-06-12
 ### Added
 - Enabled adding, moving, deleting and maintaing annotation-based action menus in the Page Editor

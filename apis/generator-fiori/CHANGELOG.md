@@ -3,6 +3,23 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.3] - 2025-07-10
+## Fixed
+- Fixed an issue where the UI Service Generator showed non-ABAP destinations that were incompatible
+
+## [1.18.2] - 2025-06-26
+### Changed
+- Updated generated applications to version 4 of the @ui5/cli library
+- Improved the tile images in the "Template Selection" screen
+
+## Fixed
+- Fixed an issue where an error message was not displayed when attempting to download an ADT deployed application and none were available in the selected system
+- Fixed an issue where the navigation entity was requested when the supplied service did not support it
+- Fixed an issue where the SAP Fiori launchpad sandbox file was not correctly located during preview if the application was generated with non-virtual endpoints
+- Fixed an issue where the generated "Run and Debug" scripts in Visual Studio Code were not correct for applications generated with virtual endpoints
+- Fixed an issue where the UI Service Generator did not launch the SAP Fiori generator after the new service was created
+- Fixed an issue where the SAP Fiori generator did not prevent generation for path names that were longer than Windows supported
+
 ## [1.18.1] - 2025-06-12
 ### Added
 - Added support for adding ABAP deployment configuration when using the SAP Fiori Generator in headless mode

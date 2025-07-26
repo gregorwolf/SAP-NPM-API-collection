@@ -7,6 +7,24 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.18.3] - 2025-07-10
+### Project Accelerator
+- Updated the introductory text for the Project Accelerator with a link to the supported features
+- Fixed an issue where the Project Accelerator incorrectly asked for a project folder path when using a `Full-Stack Application Using Productivity Tools` dev space
+- Fixed an issue where the generation status did not scroll into view after the "Generate" button was clicked
+
+### Added
+- Added the **CAP CDS Annotation** variant for the following guides:
+  - _Add a Custom Card to an Overview Page_
+  - _Enable a Data Label in Analytical Charts_
+  - _Specify a Refresh Interval for Cards_
+  - _Specify the Layout for the Card Container_
+
+## [1.18.2] - 2025-06-26
+### Project Accelerator
+- Added the ability to generate applications directly into the selected project folder path, without having to generate into the staging area for review
+- Updated generated SAP Fiori applications to use the latest SAPUI5 version, 1.136
+
 ## [1.18.1] - 2025-06-12
 ### Added
 - Added the **CAP CDS Annotation** variant for the _Add an Analytical Card to an Overview Page_ guide

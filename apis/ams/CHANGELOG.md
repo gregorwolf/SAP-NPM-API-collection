@@ -20,6 +20,11 @@ In effect, privileges will only depend on the user's roles as the privileges on 
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
 
+## 3.3.0
+- Make API Permission Group -> Policy Mapper optional for app2app principal propagation flow (error log messages reduced to debug level)
+- Simplify attribute input handling in `Authorizations#checkPrivilege` method, so attribute names work the same as in DCL where $app and $env prefixes are inferred automatically
+- Fix `getPotentialActions` and `getPotentialResources` methods in app2app principal propagation flow
+
 ## 3.2.0
 - `IdentityServiceAuthProvider` now has special handling for API consumption of `principal-propagation` API by not limiting user authorizations to policies of consumed API(s) in this case
 - much improved DEBUG logging

@@ -2,6 +2,12 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.18.2] - 2025-07-03
+### Added
+- Diagnostics for preceeding spaces in path values. 
+### Changed
+- Updated to support latest changes in OData annotation vocabularies.
+
 ## [1.15.4] - 2024-10-31
 ### Changed
 - Updated to support latest changes in OData annotation vocabularies

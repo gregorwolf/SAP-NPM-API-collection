@@ -1,5 +1,33 @@
 # SAP HANA SQL Analyzer Changelog
 
+## 1.8.1
+
+### Independent Property Tab
+
+![Independent Property Tab](https://i.postimg.cc/DZbVb87m/1-8-1propertytab.gif)
+
+To expand the Properties view, drag it from the SQL analyzer tool's sidebar into the VS Code panel for a larger, dockable view.
+
+### Bug Fixes
+- Replaced some technical category codes with clear, descriptive summaries in the Recommendations card on the Overview tab.
+
+## 1.8.0
+The SQL analyzer tool version 1.8.0 includes the following improvements
+
+### Improvements
+- **SQL Tab**
+  - Changed the copy icon behavior for parameter values to use CSV format instead of JSON, making it easier to paste values into SQL Console or external tools.
+  - Retained previously saved parameter values in the Add Parameters tab when re-executing SQL, allowing quicker test cycles with consistent input.
+  - Enabled manual entry of a schema name in the Set Session Context dialog before execution. The specified schema is now applied before SQL execution.
+
+- **Plan Graph Tab**
+  - Improved visibility for selected operator groups by adding a subtle light blue background to selected and expanded operator groups. Previously, when large operator groups were selected, the highlight outline could extend beyond the visible area, making it difficult to confirm the selection. This improvement ensures that the selection state is immediately visible, making it easier to identify large operator groups even when their outlines fall outside the visible area.
+  - Implemented selective display for operator groups with more than 30 parallel identical inner operators. This applies only when all inner operators have the same name as the operator group. Upon expansion, a selection dialog appears to specify which inner operators to display, improving performance and reducing visual clutter in large execution plans.
+  - Added automatic highlighting of operator groups when a hidden inner operator is selected from the table, helping to quickly locate and understand the context of inner operators within complex plans.
+
+- **Overview Tab**
+  - Enhanced the SQL Analyzer to check for the presence of HEX hints within SQL queries. If hints such as NO_HEX_FUSE_JIT_CODE or HEX_COMPILE_JIT_CODE are missing and applicable, the tool now recommends their use to improve performance analysis.
+  
 ## 1.7.0
 
 ### Improvements

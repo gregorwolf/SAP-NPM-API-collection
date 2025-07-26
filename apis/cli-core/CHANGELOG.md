@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2025.13.0
+
+### Changed
+
+- The login experience has been improved: When logging in, it is now clearly indicated if a secret for a tenant already exists, and confirmation is requested before overwriting it. Previously, existing secrets were not overwritten, but this was not clearly communicated. The process is now transparent and user-driven, helping to prevent accidental loss of credentials and confusion.
+
+  Example:
+
+  ```bash
+  $ <cli> login
+  ? Secret for tenant https://example-tenant.hanacloudservices.cloud.sap already exists. Do you want to overwrite it? › (Y/n)
+  ```
+
+  After confirming, the CLI will overwrite the existing secret with the new one. If the user chooses not to overwrite, the CLI will exit gracefully without making any changes.
+
 ## 2025.11.0
 
 ### Fixed

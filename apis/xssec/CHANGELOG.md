@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.9.0 - 2025-07-14
+
+- when DEBUG=xssec is enabled, the `createSecurityContext` function will now log the jwt token that gets validated for better analysis and replayability of issues
+- relax typescript definition for `req` property of `SecurityContextConfig` to be an optional object with `headers` property to support request objects from different frameworks
+- fix correlation_id logging when DEBUG=xssec is enabled: it was missing from some log statements
+
 ## 4.8.0 - 2025-06-04
 This release primarily provides two new features: token decode cache and signature (validation) cache. They offer non-trivial performance improvements but are disabled by default until next major release for backward compatibility reasons. See README for details on how to enable them.
 

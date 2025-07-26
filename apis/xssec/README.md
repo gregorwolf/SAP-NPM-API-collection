@@ -13,6 +13,7 @@ This module allows Node.js applications to authenticate users via JWT tokens iss
 1. [Installation](#installation)
 1. [Maintenance](#maintenance)
 1. [Example](#example)
+    - [Express Middleware](#express-middleware)
     - [Passport Strategy](#passport-strategy)
 1. [Usage](#usage)
     - [Authentication](#authentication)
@@ -102,6 +103,7 @@ This will print a dependency tree that shows which versions of the module are in
 
 
 ## Example
+### Express Middleware
 The following example gives an overview of the most important APIs of this module for user authentication in [express](https://www.npmjs.com/package/express):
 
 ```js
@@ -113,6 +115,7 @@ const authService = new XsuaaService(credentials) // or: IdentityService, XsaSer
 async function authMiddleware(req, res, next) {
   try {
     const secContext = await createSecurityContext(authService, { req });
+    // or: const secContext = await createSecurityContext([xsuaaService, identityService]], { req }); for hybrid authentication
     // user is authenticated -> tie the SecurityContext to this req object via the dedicated Symbol
     req[SECURITY_CONTEXT] = secContext;
     return next();
@@ -152,6 +155,7 @@ const credentials = { clientid, ... } // access service credentials, e.g. via @s
 const authService = new XsuaaService(credentials) // or: IdentityService, XsaService, UaaService ...
 
 passport.use(new XssecPassportStrategy(authService, SECURITY_CONTEXT));
+// or: passport.use(new XssecPassportStrategy([xsuaaService, identityService], SECURITY_CONTEXT)); for hybrid authentication
 app.use(passport.initialize());
 app.use(passport.authenticate('JWT', { session: false }));
 

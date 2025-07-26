@@ -123,6 +123,68 @@ Arguments:
   --force, -f  Force deletion without prompt
 ```
 
+#### download
+
+<details><summary>History</summary>
+
+| Version  | Changes                                                  |
+|----------|----------------------------------------------------------|
+| `v1.1.2` | Added                                                    |
+
+</details>
+
+```
+Download deployed application
+
+Usage:
+  afctl download APPLICATION
+
+Arguments:
+  APPLICATION  Name of the deployed application
+```
+
+#### init
+
+<details><summary>History</summary>
+
+| Version  | Changes                                                  |
+|----------|----------------------------------------------------------|
+| `v1.8.0` | Added                                                    |
+
+</details>
+
+```
+Initialize application
+
+Usage:
+  afctl init [APPLICATION] [VERSION] [-f]
+
+Arguments:
+  APPLICATION  Name of the new application        
+  VERSION      Name of the new application version
+  --force, -f  Force init with default values
+```
+
+#### install
+
+<details><summary>History</summary>
+
+| Version  | Changes                                                  |
+|----------|----------------------------------------------------------|
+| `v1.1.2` | Added                                                    |
+
+</details>
+
+```
+Install CLI plugin
+
+Usage:
+  afctl install PLUGIN
+
+Arguments:
+  PLUGIN  CLI plugin package name
+```
+
 #### list
 
 <details><summary>History</summary>
@@ -240,44 +302,44 @@ Arguments:
   --no-activate, -n    Don't activate versions after deployment
 ```
 
-#### download
+#### start
 
 <details><summary>History</summary>
 
-| Version  | Changes                                                  |
-|----------|----------------------------------------------------------|
-| `v1.1.2` | Added                                                    |
+| Version  | Changes                                     |
+|----------|---------------------------------------------|
+| `v1.8.0` | Added                                       |
 
 </details>
 
 ```
-Download deployed application
+Start deployed application
 
 Usage:
-  afctl download APPLICATION
+  afctl start APPLICATION
 
 Arguments:
   APPLICATION  Name of the deployed application
 ```
 
-#### install
+#### stop
 
 <details><summary>History</summary>
 
-| Version  | Changes                                                  |
-|----------|----------------------------------------------------------|
-| `v1.1.2` | Added                                                    |
+| Version  | Changes                                     |
+|----------|---------------------------------------------|
+| `v1.8.0` | Added                                       |
 
 </details>
 
 ```
-Install CLI plugin
+Stop deployed application
 
 Usage:
-  afctl install PLUGIN
+  afctl stop APPLICATION
 
 Arguments:
-  PLUGIN  CLI plugin package name
+  APPLICATION  Name of the deployed application
 ```
 
 #### uninstall
@@ -349,6 +411,12 @@ The value must be positive integer (in milliseconds).
 
 If multiple options are used, the command argument has a higher priority than
 configuration file, and configuration file has higher priority than environment variable.
+
+#### AFCTL_XSAPP_TEMPLATE
+By default, the `init` command either uses the `xs-app.json` in the current working directory (if it exists) as template for the target `xs-app.json` or creates a brand new `xs-app.json`. To specify different path to the file that should serve as template for the target `xs-app.json`, the `AFCTL_XSAPP_TEMPLATE` environment variable may be set. The template file content should be valid JSON. The route to serve static content from Application Fronted service will be added to the template, if it's not already exist. All routes pointing to `html5-apps-repo-rt` service will be changed to point to `app-front` service instead.
+
+#### AFCTL_MANIFEST_TEMPLATE
+By default, the `init` command either uses the `manifest.json` in the current working directory (if it exists) as template for the target `manifest.json` or creates a brand new `manifest.json`. To specify different path to file that should serve as template for the target `manifest.json`, the `AFCTL_MANIFEST_TEMPLATE` environment variable may be set. The template file content should be valid JSON. The application name an version will be added to the template or will replace the relevant values, if they are already present in template.
 
 ## Troubleshooting
 

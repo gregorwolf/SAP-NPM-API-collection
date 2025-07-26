@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.8.1 - 2025-07-16
+### Updated
+- @sap/xssec - > 4.9.0
+
+## 6.8.0 - 2025-07-15
+### Added
+- Support for @sap/xssec v4.x.x
 
 ## 6.7.1 - 2025-04-14
 

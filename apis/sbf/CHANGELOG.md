@@ -8,6 +8,12 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.9.6"></a>
+## 6.9.6 - 2025-07-21
+### Updated
+- Update to @sap/audit-logging 6.8.1
+- Update to form-data 4.0.4
+
 <a name="6.9.5"></a>
 ## 6.9.5 - 2025-06-16
 ### Fixed

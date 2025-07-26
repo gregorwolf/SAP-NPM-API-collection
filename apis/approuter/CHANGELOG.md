@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.6.1 - 2025-07-18
+
+## Fixed
+- SMS documentation removal
+- Client credentials token refresh
+
 ## 20.6.0 - 2025-07-02
 
 ### Added
@@ -27,7 +33,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 - Add tenant to session in service2approuter
 - Check for false in ENABLE_FORWARD_CORPORATE_IDP_TOKEN env. variable
 - Single use token: support services with no credentials field.
-- Implemented retry logic for backend calls using axios-retry to improve resilience during transient failures.
+- Implemented retry logic for core services calls using axios-retry to improve resilience during transient failures.
 
 ## 20.5.3 - 2025-06-15
 

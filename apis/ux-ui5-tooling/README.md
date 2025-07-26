@@ -4,8 +4,8 @@ The SAP Fiori Tools - UI5 Tooling contains a selection of custom [middlewares](h
 Furthermore, the module expose the cli `fiori` offering e.g. the [`fiori run`](#run) command is a wrapper of the `ui5 serve` commands and provides some additional parameters as well as `fiori add deploy-config` and `fiori add flp-config` to extend an existing project.
 
 **IMPORTANT**: 
-- Starting with version `1.10.5`, the minimum required `@ui5/cli` version is >= 3! For more information about migration to version 3 of the `@ui5/cli`, see [here](https://sap.github.io/ui5-tooling/v3/updates/migrate-v3/).
-- Starting with version `1.17.6`, the minimum required NodeJS version is 20.19.2 or higher!
+- For more information about migration to the latest `@ui5/cli`, see [here](https://sap.github.io/ui5-tooling/stable/).
+- Starting with version `1.17.6`, the minimum required Node.js version is 20.19.2 or higher!
 
 ## [**Middlewares**](#middlewares)
 
@@ -33,7 +33,7 @@ The application reload middleware does not require any configuration parameters.
 #### path
 
 - `<string>` (default: `webapp`)
-Path that is to be watched. By default the standard SAPUI5 `webapp` folder is used
+Path that is to be watched. By default, the standard SAPUI5 `webapp` folder is used
 
 #### ext
 
@@ -472,28 +472,22 @@ The deployment to ABAP task allows deploying SAP Fiori applications to SAP syste
 **Pre-requisites:**
 
 * SAP component SAP_UI 7.53 or higher is installed in your SAP system
-* Service needs to be enabled and accessible from your development environment ([how to check this](https://help.sap.com/viewer/68bf513362174d54b58cddec28794093/7.52.5/en-US/bb2bfe50645c741ae10000000a423f68.html))
-* For operations on a SAPUI5 ABAP repository, you need the S_DEVELOP authorization.
-
-**Notes:**
-
-* the task does not create ABAP transports, therefore, it requires an existing transport if the target ABAP package requires a transport
-* only Basic Authentication (user/password based authentication) as well as OAuth2 with the SAP Business Technology Platform
+* Service `/UI5/ABAP_REPOSITORY_SRV` needs to be enabled and accessible from your development environment ([how to check this](https://ui5.sap.com/#/topic/a883327a82ef4cc792f3c1e7b7a48de8))
+* For operations on a SAPUI5 ABAP repository, you need the `S_DEVELOP` authorization.
 
 ## Example Configuration
 
-Executing `ui5 build --config ui5-deploy.yaml` in your project with the configuration below in a `ui5-deploy.yaml`, manually added to the project, would deploy all files of your `dist` folder except files ending with `.test.js` and the `internal.md` file. The target system is XYZ with client 200. Username and password for authentication will be read from the environment variables `XYZ_USER` and `XYZ_PASSWORD`.
+Executing the command `npm run deploy` from the root of your project, using the `ui5-deploy.yaml` configuration below, will deploy all files of your `dist` folder except files found in the `test` folder. The `username` and `password` for authentication will be read from the environment variables `XYZ_USER` and `XYZ_PASSWORD`, continue reading to see more examples of how to configure credentials.
 
-Based on this example, the application will be created/updated as `/TEST/SAMPLE_APP` in package `/TEST/UPLOAD` and all changes will be recorded in transport request `XYZQ300582`.
+The application will be created/updated as `/TEST/SAMPLE_APP` in package `/TEST/UPLOAD` and all changes will be recorded in Transport Request `XYZQ300582`. To dynamically create a Transport Request, use the bookmark `REPLACE_WITH_TRANSPORT` in the transport property.
 
-Content of `ui5-deploy.yaml`
-
-```
+```yaml
 builder:
   customTasks:
   - name: deploy-to-abap
     afterTask: replaceVersion
     configuration:
+      ignoreCertError: false # Disabled by default, set to true if you want to ignore certificate errors
       target:
         url: https://XYZ.sap-system.corp:44311
         client: 200
@@ -504,10 +498,9 @@ builder:
       app:
         name: /TEST/SAMPLE_APP
         package: /TEST/UPLOAD
-        transport: XYZQ300582
+        transport: XYZQ300582 | REPLACE_WITH_TRANSPORT
       exclude:
-      - .*\.test.js
-      - internal.md
+      - /test/      
 ```
 
 ### Command to create the ui5-deploy.yaml file
@@ -516,9 +509,9 @@ A newly created project does not contain a deployment configuration (`ui5-deploy
 
 ### Setting environment variables in a .env file
 
-If you prefer to keep the environment variables in a file, an option can be to create ```.env``` file at the root of your project which contains the environment variables that can be referenced in the ui5.yaml file.
+If you prefer to keep the environment variables in a file, an option can be to create an `.env` file at the root of your project which contains the environment variables that can be referenced in the ui5.yaml file.
 
-IMPORTANT: The username and password property will **only** accept environment variable references in the ```ui5-deploy.yaml```.
+IMPORTANT: The username and password property will **only** accept environment variable references in the `ui5-deploy.yaml`.
 
 ```
 XYZ_USER=[MY_USER_NAME]
@@ -527,7 +520,27 @@ XYZ_PASSWORD=[MY_PASSWORD]
 
 ## Command to deploy
 
-After completing the changes in the configuration files, execute the command `npm run deploy`. The deployment task is by default interactive and requires that the user confirms the deploy configuration. If such a confirmation is not required or desired then it can be disable by adding `-- -y` to the `deploy` script e.g. `ui5 build preload --config ui5-deploy.yaml -- -y`
+After completing the changes in the configuration files, execute the command `npm run deploy`.
+
+The deployment task is by default interactive and requires that the user confirms the deployment configuration. 
+
+If such a confirmation is not required or desired then it can be disabled by updating the `ui5-deploy.yaml` configuration file to include the `yes: true` property, e.g.
+
+```yaml
+builder:
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: replaceVersion
+      configuration:
+        yes: true # Enabled by default, set to true if you want to disable the confirmation prompt
+        target:
+          url: https://XYZ.sap-system.corp:44311
+          client: 200
+          auth: basic
+        credentials:
+          username: env:XYZ_USER
+          password: env:XYZ_PASSWORD
+```
 
 ### Accessing the deployed app
 
@@ -554,7 +567,7 @@ The target object contains properties identifying your target SAP system.
 #### scp
 
 - `<boolean>` (default: `false`)
-- By default the deployment task will use basic authentication when connecting to the backend. If the target system is ABAP Environment on SAP Business Technology Platform, this parameter needs to be set to `true`.
+- By default, the deployment task will use basic authentication when connecting to the backend. If the target system is ABAP Environment on SAP Business Technology Platform, this parameter needs to be set to `true`.
 
 #### service
 
@@ -599,6 +612,7 @@ The app object describes the backend object that is created/updated as result of
 
 - `<string>` (optional)
 - The transport parameter refers to a transport request number that is to be used to record changes to the backend application object. The property is optional because it is only required if the package that is used for deployments requires transport requests.
+- To dynamically create a Transport Request during the deployment or undeployment task, use the value `REPLACE_WITH_TRANSPORT`.
 
 #### description
 
@@ -608,17 +622,22 @@ The app object describes the backend object that is created/updated as result of
 ### exclude
 
 - `<string[] array of regex>` (optional)
-- By default the deployment task will create an archive (zip file) of all build files and send it to the backend. By using exclude, you can define expressions to match files that shall not be included into the deployment. Note: `string.match()` is used to evaluate the expressions.
+- By default, the deployment task will create an archive (zip file) of all build files and send it to the backend. By using `exclude`, you can define expressions to match files that shall not be included into the deployment. Note: `string.match()` is used to evaluate the expressions.
 
 ### index
 
-- `true|false` (default: `false`)
+- `boolean` (default: `false`)
 - If set to `true`, then an additional index.html will be generated and deployed to run the application standalone.
 
 ### test
 
-- `true|false` (default: `false`)
+- `boolean` (default: `false`)
 - If set to `true`, the task will run through all steps including sending the archive to the SAP backend. The backend will not deploy the app but run the pre-deployment checklist and return the result.
+
+### verbose
+
+- `boolean` (default: `false`)
+- If set to `true`, the task will log additional information about the deployment process. This is useful for debugging purposes.
 
 ## [Commands](#commands)
 ### [fiori run](#fiori-run---starts-a-local-web-server-for-running-a-fe-application) - starts a local web server for running a FE application
@@ -647,16 +666,16 @@ For the deployment to CF, an MTA configuration will be created. The command allo
 
 **Pre-requisites:**
 
-* Availablity of the [`mta`](https://github.com/SAP/cloud-mta) executable in the path.
+* Availability of the [`mta`](https://github.com/SAP/cloud-mta) executable in the path.
 Use `npm i -g mta` to install globally
 * Availability of Cloud Foundry CLI tools. Installation instructions: https://docs.cloudfoundry.org/cf-cli/install-go-cli.html
 * Availability of CF multiapps plugin. Installation instructions: https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/27f3af39c2584d4ea8c15ba8c282fd75.html
 * A correctly configured destination to the backend system
 * User authorization on CF to deploy
 
-#### Artifacts & configuration created
+#### Artifacts & Configuration
 
-Running the command/task, results in a directory structure that looks like this:
+A Cloud Foundry MTA project structure is created in the current directory. The following files are generated or updated:
 ```
 mta_directory
 |_ application_directory
@@ -664,15 +683,16 @@ mta_directory
    |_ webapp
       |_ ...
       |_ manifest.json
-   |_ ui5.yaml
-|_ cf
-   |_ deployer
-   |_ router
-   |_ flp (optional)
-...
-|_ package.json
-|_ mta.yaml
+   |_ ui5.yaml 
+   |_ router (Standalone Approuter)(Optional)
+      |_ xs-app.json
+   |_ package.json
+   |_ mta.yaml
+   |_ xs-app.json
+   |_ xs-security.json
+   |_ ui5-deploy.yaml
 ```
+
 #### Information required to generate the configuration
 ##### Location of MTA Directory
 The tool finds the nearest parent directory that contains a `mta.yaml` and offers that as the MTA directory. Failing that, it defaults to the parent directory of the application.
@@ -693,13 +713,13 @@ Deploys an application to an ABAP frontend server.
 
 #### Options
 
-* `--config, c` - Path to config file (default: `ui5-deploy.yaml` in root folder of the project).
-* `--noConfig` - Only CLI arguments will be used, no config file is read.
+* `--config, -c` - Path to config file (default: `ui5-deploy.yaml` in root folder of the project).
+* `--noConfig, -nc` - Only CLI arguments will be used, no config file is read.
 * `--destination, -d` - The destination used in SAP Business Application Studio (default: destination from `ui5-deploy.yaml`).
 * `--url, -u` - The url of the service endpoint at the ABAP system (default: url from `ui5-deploy.yaml`).
-* `--username` - Name of environment variable containing a username to authenticate (default: username from `ui5-deploy.yaml`).
-* `--password` - Name of environment variable containing a password to authenticate (default: password from `ui5-deploy.yaml`).
-* `--authenticationType` - Authentication type for the app (e.g. 'basic', 'reentranceTicket'). Required for 'reentranceTicket' flows.
+* `--username, -ur` - Name of environment variable containing a username to authenticate (default: username from `ui5-deploy.yaml`).
+* `--password, -pw` - Name of environment variable containing a password to authenticate (default: password from `ui5-deploy.yaml`).
+* `--authenticationType, -at` - Authentication type for the app (e.g. 'basic', 'reentranceTicket'). Required for 'reentranceTicket' flows.
 * `--client, -l` - The ABAP client (default: client from `ui5-deploy.yaml`).
 * `--transport, -t` - The id of the transport request (default: transport from `ui5-deploy.yaml`).
 * `--name, -n` - The application name (default: name from `ui5-deploy.yaml`).
@@ -708,7 +728,9 @@ Deploys an application to an ABAP frontend server.
 * `--yes, -y` - Deploy without asking for confirmation.
 * `--failFast, -f` - Throw an error if something goes wrong and exit with a return code != 0.
 * `--testMode, -tm` - Shows the results of CRUD operations that would be done in a real deployment to help you make an informed decision.
-* `--archive-path, -ap` - The path to the archive that should be deployed. If provided, the archive will be used instead of creating a new one from the dist folder. 
+* `--archive-path, -ap` - The path to the archive that should be deployed. If provided, the archive will be used instead of creating a new one from the dist folder.
+* `--verbose, -vb` - Enable verbose logging (default: `false`).
+* `--strict-ssl, -ss` - If set to `false`, the task will not validate the SSL certificate of the target system. This is useful for development purposes but should not be used in production environments (default: `true`).
 
 ## [FAQ](#faq)
 

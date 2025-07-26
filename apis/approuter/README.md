@@ -1786,6 +1786,7 @@ Also, onboarding and offboarding callbacks will be triggered for the subscribed/
 
 If you use IAS by binding a multi-tenant application router to an identity service instance, the subscription manager service (SMS) should be used to enable the subscription to a subscriber subaccount and an IAS tenant.
 
+**Note**: IAS based multi-tenancy, using subscription manager service, is only supported for internal SAP SaaS applications.
 
 ### How To Expose Approuter for SaaS Subscription
 
