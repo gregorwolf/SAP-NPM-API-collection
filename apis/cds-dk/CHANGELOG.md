@@ -6,6 +6,28 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.1.2 - 2025-07-24
+
+### Fixed
+
+- CVE-2025-7783: vulnerability with `form-data` versions <4.0.4.
+- `cds build --for hana` no longer excludes external entities when not in mocking mode.
+
+## Version 9.1.1 - 2025-07-10
+
+### Added
+
+- shipping an `index.d.ts` file containing a subset of the dk types now.
+
+### Changed
+
+- `cds add http` now generates auth headers with `:` separators again, as this is the only separator supporting empty passwords with the RestClient extension in VS Code. (For use with IntelliJ, separate username and password with a blank.)
+
+### Fixed
+
+- `cds deploy --to hana --no-build` now works correctly
+- fixed bug in call from SAP Business Application Studio wizard
+
 ## Version 9.1.0 - 2025-07-02
 
 ### Added

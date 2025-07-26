@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 2.0.2 - 2025-07-11
+
+### Fixed
+
+- Add fallback to default language if `cds.context.locale` is not set
+
 ## Version 2.0.1 - 2025-06-02
 
 ### Fixed

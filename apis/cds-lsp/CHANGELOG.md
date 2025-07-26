@@ -6,6 +6,26 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.1.2 - 2025-07-21
+
+### Added
+- Formatting options `whitespaceBeforeColonInParamList` and `whitespaceAfterColonInParamList` to control whitespace around colons in parameter lists
+
+### Fixed
+- Workspace symbols could have been incomplete due to a bug in the where-used index
+
+
+## 9.1.1 - 2025-07-10
+
+### Changed
+- Maximum log-file size can now be increased to at most 1 GB (default limit unchanged at 10 MB)
+- Telemetry: 
+  + error reporting now sends same error only once per session
+  + periodic statistics changed from every 5 minutes to every 30 minutes
+
+### Fixed
+- Colons in type paths are no longer aligned with other colons, nor are they padded with spaces
+
 ## 9.1.0 - 2025-06-30
 
 ### Added
@@ -13,6 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
   + Reduce _"lagging red underline"_ while typing - configurable via user setting `cds.workspace.fastDiagnosticsMode`
   + Outdated compilations in background are aborted fast. This increases responsiveness and reduces CPU usage and is especially useful for large projects with many files.
 - Formatter: New option `argsInNewLine` to put multiple arguments to e.g. function calls on a new line
+- Document/Workspace Symbols: use distinct kinds for `Association` and `Composition` elements
 
 ### Changed
 - Formatter: Chained method-like function calls are now broken into separate lines

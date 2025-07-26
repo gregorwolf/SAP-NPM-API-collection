@@ -1,12 +1,12 @@
 {
   "name": "@sap/cds-dk",
-  "version": "9.1.0",
+  "version": "9.1.2",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/cds-dk",
-      "version": "9.1.0",
+      "version": "9.1.2",
       "license": "SEE LICENSE IN LICENSE",
       "dependencies": {
         "@cap-js/asyncapi": "^1.0.0",
@@ -42,8 +42,8 @@
       }
     },
     "node_modules/@cap-js/db-service": {
-      "version": "2.1.2",
-      "integrity": "sha512-wbbEhUaSnQnYSC2029CO8MLAag5k/mJAtu6nyJUYfZbjkfr/JnP9lG5ylHg1dQtjRfAjPds+lxZIo35DHwNsVQ==",
+      "version": "2.2.0",
+      "integrity": "sha512-C5n8Qy8MwOGWjpXS44CskaEZt8YKrEEs4AtJyBSfJ6+aKMu/ynqpXh0Up4Ql0XX2Frq2PwNU8Ohai/04wxd46g==",
       "devOptional": true,
       "license": "Apache-2.0",
       "dependencies": {
@@ -65,21 +65,21 @@
       }
     },
     "node_modules/@cap-js/sqlite": {
-      "version": "2.0.1",
-      "integrity": "sha512-QahmUBueZ5fvzal7WpcUN83EKrtnIxJCtGGGqXmJraeBZY/wDx+NqOGFiiZ9UE05lUSvYtPJw4JJ+d3f5aCy8w==",
+      "version": "2.0.2",
+      "integrity": "sha512-oNg2f56sfELshyp0eSmYYwG1lt4Zmc135sLIzS8iykHdRVxxJpTrPj0jx0Y4Hc6sfC9u25LRXVu/ZKqjm9Yu+Q==",
       "license": "Apache-2.0",
       "optional": true,
       "dependencies": {
         "@cap-js/db-service": "^2",
-        "better-sqlite3": "^11.0.0"
+        "better-sqlite3": "^12.0.0"
       },
       "peerDependencies": {
         "@sap/cds": ">=9"
       }
     },
     "node_modules/@eslint/js": {
-      "version": "9.30.1",
-      "integrity": "sha512-zXhuECFlyep42KZUhWjfvsmXGX39W8K8LFb8AWXM9gSV9dQB+MrJGLKvW6Zw0Ggnbpw0VHTtrhFXYe3Gym18jg==",
+      "version": "9.31.0",
+      "integrity": "sha512-LOm5OVt7D4qiKCqoiPbA7LWmI+tbw1VbTUowBcUMgQSuM6poJufkFkYDcQpo5KfgD39TnNySV26QjOh7VFpSyw==",
       "license": "MIT",
       "peer": true,
       "engines": {
@@ -157,8 +157,8 @@
       }
     },
     "node_modules/@sap/hdi": {
-      "version": "4.7.0",
-      "integrity": "sha512-iA7W3en3QdZBTialmbomB2E6q4mP/b2Z2S2juhyQpbG7jPhc9jcL3S2wMkDv1XF3RJ5bmm6S/QwiSPtuCfI3LQ==",
+      "version": "4.8.0",
+      "integrity": "sha512-tkJmY2ffm6mt4/LFwRBihlQkMxNAXa3ngvRe2N/6+qLIsUNdrH/M03S5mkygXq56K+KoVVZYuradajCusMWwsw==",
       "license": "See LICENSE file",
       "dependencies": {
         "async": "^3.2.3"
@@ -168,7 +168,7 @@
       },
       "peerDependencies": {
         "@sap/hana-client": "^2 >= 2.5",
-        "hdb": "^0"
+        "hdb": "^2 || ^0"
       },
       "peerDependenciesMeta": {
         "@sap/hana-client": {
@@ -180,11 +180,11 @@
       }
     },
     "node_modules/@sap/hdi-deploy": {
-      "version": "5.4.2",
-      "integrity": "sha512-v+u7kEyC5BT5S2ppOacRRBFwTGXVwu7tU83AMM5n/TzBMukdTE58+rMSFjvpm78Uy8ct2K+1W+xFS+Nx96b+6Q==",
+      "version": "5.5.0",
+      "integrity": "sha512-nxamWIBz+D/4wcvgYgxGSJLsyJ1KNtU9X6gfMHiyi/IjozGN/3WdeT11++jy5qeZNkdinuND55RRlRcnsu3W5g==",
       "license": "See LICENSE file",
       "dependencies": {
-        "@sap/hdi": "^4.7.0",
+        "@sap/hdi": "^4.8.0",
         "@sap/xsenv": "^5.2.0",
         "async": "^3.2.6",
         "dotenv": "^16.4.5",
@@ -196,7 +196,7 @@
       },
       "peerDependencies": {
         "@sap/hana-client": "^2 >= 2.6",
-        "hdb": "^0"
+        "hdb": "^2 || ^0"
       },
       "peerDependenciesMeta": {
         "@sap/hana-client": {
@@ -261,12 +261,12 @@
       "license": "MIT"
     },
     "node_modules/axios": {
-      "version": "1.10.0",
-      "integrity": "sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==",
+      "version": "1.11.0",
+      "integrity": "sha512-1Lx3WLFQWm3ooKDYZD1eXmoGO9fxYQjrycfHFC8P0sCfQVXyROp0p9PFWBehewBOdCwHc+f/b8I0fMto5eSfwA==",
       "license": "MIT",
       "dependencies": {
         "follow-redirects": "^1.15.6",
-        "form-data": "^4.0.0",
+        "form-data": "^4.0.4",
         "proxy-from-env": "^1.1.0"
       }
     },
@@ -291,14 +291,17 @@
       "optional": true
     },
     "node_modules/better-sqlite3": {
-      "version": "11.10.0",
-      "integrity": "sha512-EwhOpyXiOEL/lKzHz9AW1msWFNzGc/z+LzeB3/jnFJpxu+th2yqvzsSWas1v9jgs9+xiXJcD5A8CJxAG2TaghQ==",
+      "version": "12.2.0",
+      "integrity": "sha512-eGbYq2CT+tos1fBwLQ/tkBt9J5M3JEHjku4hbvQUePCckkvVf14xWj+1m7dGoK81M/fOjFT7yM9UMeKT/+vFLQ==",
       "hasInstallScript": true,
       "license": "MIT",
       "optional": true,
       "dependencies": {
         "bindings": "^1.5.0",
         "prebuild-install": "^7.1.1"
+      },
+      "engines": {
+        "node": "20.x || 22.x || 23.x || 24.x"
       }
     },
     "node_modules/bindings": {
@@ -805,8 +808,8 @@
       }
     },
     "node_modules/form-data": {
-      "version": "4.0.3",
-      "integrity": "sha512-qsITQPfmvMOSAdeyZ+12I1c+CKSstAFAwu+97zrnWAbIr5u8wfsExUzCesVLC8NgHuRUqNN4Zy6UPWUTRGslcA==",
+      "version": "4.0.4",
+      "integrity": "sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==",
       "license": "MIT",
       "dependencies": {
         "asynckit": "^0.4.0",

@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [9.1.3] - 2025-07-21
+### Added
+- Formatting options `whitespaceBeforeColonInParamList` and `whitespaceAfterColonInParamList` to control whitespace around colons in parameter lists
+
+### Fixed
+- Workspace symbols could have been incomplete due to a bug in the where-used index
+
+### Also see
+- `@sap/cds-lsp` 9.1.2
+
+
+## [9.1.1] - 2025-07-10
+
+### Changed
+- Maximum log-file size can now be increased to at most 1 GB (default limit unchanged at 10 MB)
+
+### Fixed
+- Colons in type paths are no longer aligned with other colons, nor are they padded with spaces
+
+### Also see
+- `@sap/cds-lsp` 9.1.1
+
+
 ## [9.1.0] - 2025-07-02
 ### Added
 - Performance/Responsiveness:
