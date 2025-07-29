@@ -1,3 +1,7 @@
+## 4.8.0
+Features:
+- Added hdb ^2 support
+
 ## 4.7.0
 Features:
 - Added node >=18 support

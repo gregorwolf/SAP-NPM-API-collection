@@ -102,7 +102,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.4.2",
+    "@sap/hdi-deploy": "5.5.0",
     "@sap/hana-client": "2.19.20",
     "hdb": "0.19.3"
   },
@@ -552,7 +552,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.4.2",
+    "@sap/hdi-deploy": "5.5.0",
     "module1": "1.3.1",
     "module2": "1.7.0",
 
@@ -1060,6 +1060,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--[no-]migrationtable-development-mode`: [don't] pass the development mode flag for migration tables to HDI, if the parameter is supported by the server, not enabled by default
 - `--[no-]liveness-ping`: [don't] send a sign of life from time to time, by default, a sign of life will be sent
 - `--[no-]live-messages`: [don't] display the make messages while the make is still in progress, by default, the messages will be displayed while the make is in progress
+- `--write-batch-size <integer>`: number of files to write in one batch. Must be a positive integer. Default: 8000
 
 See `--help` for details and defaults.
 
@@ -1092,7 +1093,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "5.4.2",
+        "version": "5.5.0",
         "features": {
             "info": 2,
             "verbose": 1,

@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.1.0 - 2025-07-24
+
+### Added
+- xssec retry support
+
+### Updated dependencies
+- deps: form-data@4.0.4
+- deps: xssec@4.8.0
+- deps: xsenv@5.6.1
+- deps: axios@1.10.0
+
 ## 7.0.2 - 2025-05-20
 
 ### Fixed

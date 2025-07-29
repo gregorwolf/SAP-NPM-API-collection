@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.8.2 - 2025-07-28
+
+### Updated
+- _async_ upgraded from `3.2.5` → `3.2.6`
+- _eslint_ upgraded from `8.57.0` → `8.57.1`
+- _c8_ upgraded from `9.1.0` → `10.1.3`
+
 ## 6.8.1 - 2025-07-16
 ### Updated
 - @sap/xssec - > 4.9.0

@@ -1,3 +1,12 @@
+## 5.5.0
+Features:
+- Added option `--write-batch-size <integer>`
+- Use @sap/hdi@^4.8.0
+- hdb@^2 support
+
+Fixes:
+- Error: EMFILE, too many open files
+
 ## 5.4.2
 Features:
 - Added support for certificate authentication
