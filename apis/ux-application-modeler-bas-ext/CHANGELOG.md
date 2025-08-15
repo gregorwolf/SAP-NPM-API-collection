@@ -6,6 +6,12 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.4] - 2025-07-24
+### Added
+- Added support for additional options in the "Mass Edit" dialog for SAP Fiori elements for OData V4 applications
+### Fixed
+- Fixed the list of options for "Chart Type" in the "Add Analytical Chart" dialog of the Page Editor
+
 ## [1.18.3] - 2025-07-10
 ### Added
 - Enabled adding, moving, deleting, and maintaining properties of stacked bar micro charts in the "Page Editor"

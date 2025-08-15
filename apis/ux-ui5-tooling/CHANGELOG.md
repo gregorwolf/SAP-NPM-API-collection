@@ -3,6 +3,17 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.4] - 2025-07-24
+### Quality
+| Package | Change |
+|---|---|
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | [`0.20.50` -> `0.20.67`] |
+| [@sap-ux/adp-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/adp-tooling)) | [`0.14.35` -> `0.15.4`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/backend-proxy-middleware)) | [`0.9.9` -> `0.9.10`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/deploy-tooling)) | [`0.16.22` -> `0.16.32`] |
+| [@sap-ux/store](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/store)) | [`1.1.1` -> `1.1.2`] |
+| [@sap-ux/ui5-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-proxy-middleware)) | [`1.5.4` -> `1.5.7`] |
+
 ## [1.18.3] - 2025-07-10
 ### Quality
 | Package | Change |

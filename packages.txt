@@ -37,6 +37,7 @@
 @sap/cds-oyster
 @sap/cds-rfc
 @sap/cf-tools
+@sap/cf-tools-local
 @sap/cli-core
 @sap/consume-services
 @sap/consume-services-types

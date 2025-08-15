@@ -1,12 +1,12 @@
 {
   "name": "@sap/async-xsjs",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/async-xsjs",
-      "version": "2.1.3",
+      "version": "2.1.4",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
         "@sap/audit-logging": "^6.3.0",
@@ -28,7 +28,7 @@
         "big.js": "6.2.2",
         "body-parser": "1.20.3",
         "callsite": "1.0.0",
-        "compression": "1.7.5",
+        "compression": "1.8.1",
         "content-type": "1.0.5",
         "cookie": "1.0.2",
         "cookie-parser": "1.4.7",
@@ -51,10 +51,10 @@
       }
     },
     "node_modules/@sap/audit-logging": {
-      "version": "6.7.1",
+      "version": "6.8.2",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
-        "@sap/xssec": "^3.6.1",
+        "@sap/xssec": "4.9.0",
         "debug": "4.3.5",
         "fetch-retry": "6.0.0",
         "lodash": "4.17.21",
@@ -63,6 +63,17 @@
       },
       "engines": {
         "node": "^18.0.0 || ^20.0.0 ||  ^22.x"
+      }
+    },
+    "node_modules/@sap/audit-logging/node_modules/@sap/xssec": {
+      "version": "4.9.0",
+      "license": "SAP DEVELOPER LICENSE AGREEMENT",
+      "dependencies": {
+        "debug": "^4.3.4",
+        "jwt-decode": "^4"
+      },
+      "engines": {
+        "node": ">=18"
       }
     },
     "node_modules/@sap/e2e-trace": {
@@ -389,11 +400,11 @@
       "license": "MIT"
     },
     "node_modules/axios": {
-      "version": "1.10.0",
+      "version": "1.11.0",
       "license": "MIT",
       "dependencies": {
         "follow-redirects": "^1.15.6",
-        "form-data": "^4.0.0",
+        "form-data": "^4.0.4",
         "proxy-from-env": "^1.1.0"
       }
     },
@@ -525,14 +536,14 @@
       }
     },
     "node_modules/compression": {
-      "version": "1.7.5",
+      "version": "1.8.1",
       "license": "MIT",
       "dependencies": {
         "bytes": "3.1.2",
         "compressible": "~2.0.18",
         "debug": "2.6.9",
         "negotiator": "~0.6.4",
-        "on-headers": "~1.0.2",
+        "on-headers": "~1.1.0",
         "safe-buffer": "5.2.1",
         "vary": "~1.1.2"
       },
@@ -856,7 +867,7 @@
       }
     },
     "node_modules/form-data": {
-      "version": "4.0.3",
+      "version": "4.0.4",
       "license": "MIT",
       "dependencies": {
         "asynckit": "^0.4.0",
@@ -1060,6 +1071,13 @@
       "dependencies": {
         "jwa": "^1.4.1",
         "safe-buffer": "^5.0.1"
+      }
+    },
+    "node_modules/jwt-decode": {
+      "version": "4.0.0",
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
       }
     },
     "node_modules/lodash": {
@@ -1282,7 +1300,7 @@
       }
     },
     "node_modules/on-headers": {
-      "version": "1.0.2",
+      "version": "1.1.0",
       "license": "MIT",
       "engines": {
         "node": ">= 0.8"

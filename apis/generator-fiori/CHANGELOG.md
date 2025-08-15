@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.4] - 2025-07-24
+### Changed
+- Updated the SAP Fiori generator so that the table type for a list report or worklist floorplan defaults to "Analytical" if the selected entity supports it
+- Updated the logo for the SAP Fiori generator
+- Updated the generated deploy script for ABAP so that extra CLI parameters can be passed when running the npm run deploy command
+
+## Fixed
+- Fixed an issue where the suggested project folder path in Visual Studio Code already contained an SAP Fiori project
+
 ## [1.18.3] - 2025-07-10
 ## Fixed
 - Fixed an issue where the UI Service Generator showed non-ABAP destinations that were incompatible

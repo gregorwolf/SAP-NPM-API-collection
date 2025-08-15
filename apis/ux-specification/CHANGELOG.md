@@ -8,6 +8,27 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `20.14.0` or higher
 
+## [1.136.3] - 2025-07-23
+
+### Added
+
+OData V4:
+- Support of `enableMassEdit` properties for table
+
+### Quality
+
+Upgrades:
+
+| Package | Change | 
+|---|---|
+| [axios](https://axios-http.com) ([source](https://github.com/axios/axios)) | [`1.10.0` -> `1.11.0`] | 
+| [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) | [`9.1.0` -> `9.1.2`] | 
+| [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) | [`5.5.1` -> `5.5.3`] | 
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | [`8.35.1` -> `8.37.0`] | 
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | [`8.35.1` -> `8.37.0`] | 
+| [esbuild](https://github.com/evanw/esbuild) | [`0.25.5` -> `0.25.8`] | 
+
+
 ## [1.136.2] - 2025-07-09
 
 ### Quality

@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.0.0 - 2025-08-01
+
+### Added
+- Added node 24.x support
+
+### Updated
+- Updated `@eslint/js` dependency to ^9.32.0
+- Updated `@eslint/eslintrc` dependency to ^3.3.0
+- Updated `@babel/eslint-parser` dependency to 7.28.0
+- Updated `mocha` dependency to 11.7.1
+- Updated `debug` dependency to 4.4.1
+
+### Removed
+- Removed node 18.x
+
+
 ## 5.6.1 - 2025-05-09
 
 ### Fixed

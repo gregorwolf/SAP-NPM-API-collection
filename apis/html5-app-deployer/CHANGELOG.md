@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.1.1 - 2025-08-03
+
+### Fixed
+- support html5-apps-repo/app-host x509 binding
+
 ## 7.1.0 - 2025-07-24
 
 ### Added

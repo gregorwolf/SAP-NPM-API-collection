@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.1.4"></a>
+## 2.1.4 - 2025-07-30
+
+### Updated
+- The form-data library was pinned to an older version by a dependent package, causing issues. We’re re-releasing async-xsjs to pin the latest form-data version via shrinkwrap.json
+- Update Compression library to 1.8.1
+
 <a name="2.1.3"></a>
 ## 2.1.3 - 2025-07-01
 

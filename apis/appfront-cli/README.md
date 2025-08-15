@@ -418,6 +418,11 @@ By default, the `init` command either uses the `xs-app.json` in the current work
 #### AFCTL_MANIFEST_TEMPLATE
 By default, the `init` command either uses the `manifest.json` in the current working directory (if it exists) as template for the target `manifest.json` or creates a brand new `manifest.json`. To specify different path to file that should serve as template for the target `manifest.json`, the `AFCTL_MANIFEST_TEMPLATE` environment variable may be set. The template file content should be valid JSON. The application name an version will be added to the template or will replace the relevant values, if they are already present in template.
 
+#### AFCTL_SAVE_ZIP
+By default, the `push` command creates ZIP of ZIPs in memory and deletes it, once command is finished.
+To keep generated ZIP and save it to file system, the `AFCTL_SAVE_ZIP` environment variable may be set to any non-empy value.
+In this case `apps.zip` will be saved to current working directory.
+
 ## Troubleshooting
 
 If you experience unexpected behavior, the execution of command never ends, you see error messages or stack traces in the output - you can run any command with global `--verbose` or just `-v` at the end. This will print trace logs with detailed information about each step in the command execution.

@@ -5,6 +5,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.0.0 - 2025-07-31
+
+### Added
+- Node.js 24.x support and tests
+
+### Updated
+- updated `chai` dependency to 5.2.1
+- updated `@babel/eslint-parser` dependency to 7.28.0
+- updated `express` dependency to ^5.0.0
+- updated `filter-node-package` dependency to 6.0.0
+- updated `mocha` dependency to 11.7.1
+- updated `sinon` dependency to 21.0.0
+- updated `supertest` dependency to 7.1.4
+
+
+### Removed
+- Node.js 18.x support and tests
+
 ## 8.4.0 - 2025-03-06
 
 ### Updated

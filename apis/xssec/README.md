@@ -565,7 +565,7 @@ These caches are crucial to achieve acceptable latency in the application, so th
 ## Caching CPU intensive operations
 Optionally, caches for the results of the following CPU-intensive operations can be enabled:
 
-- **[Signature Cache](#signature-validation-cache)** Caches the result of the cryptographic signature validation of a *JWT* token.
+- **[Signature Cache](#signature-cache)** Caches the result of the cryptographic signature validation of a *JWT* token.
 - **[Token Decode Cache](#token-decode-cache)**: Caches header/payload after base64-decoding of a *JWT* token.
 
 These caches can drastically improve latency on subsequent requests with the same token. This is especially useful in applications where the user client makes many requests in parallel or in quick succession with the same token. Experiments measured up to **500%** throughput (req/s) on a ping endpoint with both caches enabled compared to the default configuration with no caching. Of course, the effect on latency gets relatively smaller in endpoints with more complex processing logic, e.g. due to database access.
@@ -715,6 +715,7 @@ To enable this cache, you can enable the simple, built-in LRU cache or alternati
 The following configuration snippets are examples that use the built-in LRU cache:
 
 ```js
+const { Token } = require("@sap/xssec");
 Token.enableDecodeCache(); // enables the built-in LRU cache with default size 100
 ```
 

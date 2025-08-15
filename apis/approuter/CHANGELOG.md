@@ -5,9 +5,48 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.7.0 - 2025-08-07
+
+### Added
+- Cache statistics logs
+
+### Fixed
+- Read grant_type and saas.registry.enabled from service credentials in client_credentials token flow
+- Wrong authentication type determination in case only IAS instance is bound. Enable behavior via ENABLE_PERMANENT_AUTHTYPE env. variable
+
+### Updated dependencies
+- deps: sap/audit-logging@6.8.1
+- deps: on-headers@1.1.0
+- deps: form-data@4.0.4
+- deps: @sap/e2e-trace@5.4.0
+- deps: @sap/logging@8.4.0
+- deps: @sap/xsenv@5.6.1
+- deps: @sap/xssec@4.9.0
+- deps: agentkeepalive@4.6.0
+- deps: axios@1.11.0
+- deps: basic-auth@1.1.0
+- deps: commander@2.20.3
+- deps: compression@1.8.1
+- deps: connect@3.7.0
+- deps: cookie-signature@1.2.2
+- deps: debug@4.4.1
+- deps: deepmerge@2.2.1
+- deps: ioredis@5.6.1
+- deps: jwt-decode@2.2.0
+- deps: lru-cache@4.1.5
+- deps: mime@1.6.0
+- deps: mustache@2.3.2
+- deps: tv4@1.3.0
+- deps: validator@13.15.15
+- deps: node-mocks-http@1.17.2
+- deps: proxyquire@1.8.0
+- deps: rimraf@2.7.1
+- deps: sonarqube-scanner@2.9.1
+- deps: supertest@6.3.4
+
 ## 20.6.1 - 2025-07-18
 
-## Fixed
+### Fixed
 - SMS documentation removal
 - Client credentials token refresh
 

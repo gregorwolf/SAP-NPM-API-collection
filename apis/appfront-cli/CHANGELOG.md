@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2025-07-22
+
+### Added
+- Support passing `cdm.json` as positional argument to `push` command
+- The `AFCTL_SAVE_ZIP` configuration added
+
+### Fixed
+- Add `"keepConfig": true` to default deploy configuration
+
+## [1.8.2] - 2025-07-14
+
+### Fixed
+- Remove `apptid` from API calls, where it is irrelevant
+
 ## [1.8.1] - 2025-07-09
 
 ### Added
