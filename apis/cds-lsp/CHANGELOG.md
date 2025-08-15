@@ -6,6 +6,28 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.2.1 - 2025-08-08
+
+### Changed
+- OData Annotation Modeler's sub features can be enabled distinctively. 
+  For performance reasons, **only _code completion_ and _hover_ are enabled by default**. 
+  Enable others via user settings: `cds.contributions.features.<feature>`
+- Performance optimizations when updating dependency net of CDS file dependencies
+
+### Fixed
+- _Using_ paths which end with a folder name were not resolved correctly
+- Formatter support for `==` operator
+
+### Also see
+- `@sap/cds-compiler` 6.2.2
+
+
+## 9.2.0 - 2025-07-29
+
+### Added
+- goto implementation for NodeJS services, entities, events, actions and functions, services and entities for Java
+
+
 ## 9.1.2 - 2025-07-21
 
 ### Added

@@ -6,6 +6,18 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.2.0 - 2025-07-30
+
+### Changed
+
+- The `metadata` field in t0's tenants table supports more than 5000 characters.
+- Improved resilience for subscriptions after incomplete unsubscriptions.
+
+### Fixed
+
+- `cds.requires.html5-host` and `cds.requires.html5-runtime` can be used as shortcuts to define SaaS dependencies with `cds-mtxs` version 3 again (using CAP plugin technique).
+- Job configuration is merged if specified both in `cds.requires.multitenancy` and `cds.requires['cds.xt.SaasProvisioningService']` or `cds.requires['cds.xt.SmsProvisioningService']`.
+
 ## Version 3.1.0 - 2025-06-30
 
 ### Changed
@@ -58,6 +70,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Extension validation (aka linting) for new entities now works properly, also if no other extensions exist.
 - Extension validation now ignores internal definitions with namespace `cds.core`.
 - Base model pulled for extension projects using `cds pull` no longer contains internal definitions with namespace `cds.core`, `cds.outbox` or `cds.xt`.
+
+# Version 2.7.5 - 2025-07-14
+
+### Changed
+
+- The `metadata` field in t0's tenants table supports more than 5000 characters.
+
+### Fixed
+
+- Initialization of `t0` tenant using `cds-mtx-migrate --init-tenant-list` now uses the database_id of any existing tenant.
 
 ## Version 2.7.4 - 2025-06-24
 

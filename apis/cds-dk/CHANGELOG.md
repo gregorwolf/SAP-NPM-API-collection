@@ -6,6 +6,41 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.2.0 - 2025-07-31
+
+### Added
+
+- `cds add xsuaa` now also creates a default `role-collections` field in the `mta.yaml`.
+- `cds add github-actions` (shortcut `gha`) adds pipeline configuration for GitHub Actions.
+- `cds add kyma` as a shortcut for `cds add helm,containerize`.
+- `cds add multitenancy` creates a `package-lock.json` in `mtx/sidecar` for Java projects if not existing.
+- `cds build` provides more defaults in its standard `.hdiconfig`.
+
+### Changed
+
+- `cds up` auto-creates `package-lock.json` if required for `app/router`, `app/portal`, and `app/html5-deployer`.
+- `cds up` does not do retries when not running in CI/CD (`CI` environment variable is not set).
+- `cds add html5-repo` uses a folder `app/html5-deployer` instead of `ui-resources` for Kyma.
+- `cds add http` now generates auth headers with `:` separators again, as this is the only separator supporting empty passwords with the RestClient extension in VS Code. (For use with IntelliJ, separate username and password with a blank.)
+- `cds add html5-repo` will add the destinations to the application content deployer instead of the service instance.
+- `cds add helm` exposes the `srv` module by default in Kyma scenarios.
+- `cds add multitenancy` with Helm exposes the sidecar URL for consumption by Java.
+- `cds add ias` will use the `production` profile by default, if no other profile is specified.
+- `cds add http` now uses the proper service name in the generated requests.
+- `cds build` error messages for build plugins are improved.
+
+### Fixed
+
+- `cds add multitenancy` for Kyma with IAS correctly adds the `subscription-manager` service.
+- `cds watch/run myapp/` now outputs correct error locations like `myapp/srv/broken.cds` instead of `srv/broken.cds`.  These locations can be opened from shells as they are relative to the working folder, not to the project folder.
+- `cds add data --records` now correctly generates decimals within the range of the specified precision and scale.
+
+## Version 9.1.3 - 2025-07-24
+
+### Fixed
+
+- Fix installation issues with version 9.1.2.
+
 ## Version 9.1.2 - 2025-07-24
 
 ### Fixed

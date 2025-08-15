@@ -8,6 +8,34 @@ Note: `beta` fixes, changes and features are usually not listed in this ChangeLo
 but in [doc/CHANGELOG_BETA.md](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 6.2.2 - 2025-07-28
+
+### Fixed
+
+- compiler: `@extension.code` was accidentally restricted to non-expression values.
+
+## Version 6.2.0 - 2025-07-25
+
+### Added
+
+- parser: CDL-casts in queries now support all type expressions, e.g. `field : many String not null`.
+- compiler: Association paths in annotation expressions can now end with a filter, e.g. `@anno: (assoc[1=1])`.
+
+### Changed
+
+- compiler: Annotation `@extension.code` is no longer propagated.
+- Update OData vocabularies: Common
+- The list of CDL keywords was updated for the latest CDL grammar.
+- to.cdl: Foreign keys of managed associations are only rendered explicitly if
+  the compiler can't infer them when recompiled.
+- cdsc: The command `parseCdl` was renamed to `parse`, since it also supports CSN input.
+
+### Fixed
+
+- compiler:
+  + Calculated elements can now have a localized type.
+  + Associations in sub-queries of an `order by` of a `UNION` are now redirected.
+
 ## Version 6.1.0 - 2025-06-27
 
 ### Added
@@ -134,6 +162,21 @@ The compiler behavior concerning `beta` features can change at any time without 
 ### Fixed
 
 - to.edm(x): Fixed crash for rare case if annotation expressions were used.
+
+## Version 5.9.8 - 2025-07-14
+
+### Fixed
+
+- compiler: Calculated elements can now have a localized type
+
+## Version 5.9.6 - 2025-06-18
+
+### Fixed
+
+- to.sql: Fix error when calculated element refers to a localized element.
+- to.edm(x):
+  + Fix errors for service entities containing multiple path steps (e.g. `Service.Prefix.MyEntity`).
+  + Support enum references in annotation expressions that were resolved by the compiler.
 
 ## Version 5.9.4 - 2025-05-22
 

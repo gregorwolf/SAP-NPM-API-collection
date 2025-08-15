@@ -4,6 +4,39 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.2.0 - 2025-07-29
+
+### Added
+
+- `srv.schedule` allows to specify the time in a more readable way, e.g. `srv.schedule(...).after('1min')`
+- Support for `jwt`/`xsuaa`-auth on XSA
+- Enable `@sap/xssec`'s caching mechanisms (requires `@sap/xssec^4.8`)
+  + The signature cache can be configured via `cds.requires.auth.config`, which is passed to `@sap/xssec`'s authentication services
+  + The token decode cache can be configured programmatically via `require('@sap/xssec').Token.enableDecodeCache(config?)` and deactivated via `require('@sap/xssec').Token.decodeCache = false`
+- `cds.requires` correctly resolve service credentials on Kyma when its merged env configuration is only `true` and the service is found via its property name.
+- `ias`-auth: Support for fallback XSUAA-based authentication meant to ease migration to IAS
+  + The fallback is automatically enabled if XSUAA credentials are available. To enable the credentials look-up, simply add `cds.requires.xsuaa = true` to your env.
+  + In case you need a custom config for the fallback (passed through to `@sap/xssec` as is!), configure it via `cds.requires.xsuaa = { config: { ... } }`
+- Better error message if `cds.xt.Extensions` table is missing in extensibility scenarios.
+
+### Changed
+
+- Upgrade to Peggy 5 version
+- Enabled conversion of `not exists where not` to OData `all`, integrating the inverse of the policy applied by the OData parser.
+- Numeric values in `.csv` files are now returned as numbers instead of strings, e.g. `1` instead of `'1'`;
+  when pre-padded with zeros, e.g., `0123`, they are returned as strings, e.g. `'0123'` instead of `123`.
+
+### Fixed
+
+- Runtime error in transaction handling in messaging services when used with outbox
+- Always use `cds.context` middleware for `enterprise-messaging` endpoints
+- Crash during Location header generation caused by custom response not matching the entity definition.
+- Support for logging of correct error locations with `cds watch` and `cds run`. 
+- Double-unescaping of values in double quotes during OData URL parsing
+- Throw explicit error if the result of a media data query is not an instance of `Readable`, rather than responding with `No Content`
+- When loading `.csv` files quoted strings containing the separator (comma or semicolon) where erroneously
+  parsed as two separate values instead of one.
+
 ## Version 9.1.0 - 2025-06-30
 
 ### Added
@@ -63,6 +96,7 @@
 ### Changed
 
 - Lean draft handler is registered in a service only if a draft-enabled service entity exists
+- Add back in server version on CAP server launch info log record
 
 ### Fixed
 
@@ -159,6 +193,15 @@
 - Deprecated element-level annotation `@Search.defaultSearchElement`. Please use annotation `@cds.search` instead.
 - Deprecated stripping of unnecessary topic prefix `topic:` in messaging
 - Deprecated messaging `Outbox` class. Please use config or `cds.outboxed(srv)` to outbox your service.
+
+## Version 8.9.5 - 2025-07-25
+
+### Fixed
+
+- `req.diff` in case of draft entities using associations to joins/unions
+- Locale detection does not enforce `<http-req>.query` to be present. Some protocol adapters do not set it.
+- View metadata for requests with $apply
+- Handling of bad timestamps in URL ($filter and temporals)
 
 ## Version 8.9.4 - 2025-05-16
 
