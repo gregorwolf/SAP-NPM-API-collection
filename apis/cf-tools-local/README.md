@@ -1,0 +1,1 @@
+The cf cli service info plugin installer.
