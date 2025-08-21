@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.2.1 - 2025-08-15
+
+### Fixed
+
+- Check whether token validation was configured
+- `UPDATE(Foo).with`foo=${'bar'}` erroneously constructed the equivalent of `UPDATE(Foo).with`foo=bar` instead of `UPDATE(Foo).with`foo='bar'`
+- Errors in emits for file-based messaging are thrown
+- Queue: Ensure `method`, `path`, `entity` and `params` are correctly taken over when creating tasks
+- Reject navigations in `$expand` without parsing the navigation path
+
 ## Version 9.2.0 - 2025-07-29
 
 ### Added
