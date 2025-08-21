@@ -189,13 +189,15 @@ By default, the `fiori-tools-proxy` will verify the SSL certificates and will th
 
 ```
 #### [Providing Credentials](#providing-credentials)
-Starting with version `1.6.7` it is now possible to provide the credentials for the backend service upfront in a `.env` file.
+### Local Testing 
+For local testing the logon credentials to a backend system need to be provided using the secure storage of the operating system.
 
-```
-FIORI_TOOLS_USER=YOUR_USER
-FIORI_TOOLS_PASSWORD=YOUR_PASSWORD
-```
-When the two environment variables `FIORI_TOOLS_USER` and `FIORI_TOOLS_PASSWORD` are defined, then they will be used as credentials when connecting to the backend service.
+Configure the needed connections here: `SAP Fiori -> SAP SYSTEMS`
+
+### CI Scenario
+In the CI scenario the logon credentials to a backend system need to be provided by the two environment variables
+
+`FIORI_TOOLS_USER` and `FIORI_TOOLS_PASSWORD`
 
 #### [Backend configuration options](#backend-configuration-options)
 

@@ -6,6 +6,19 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.5] - 2025-08-06
+### Added
+- Enabled selecting multiple options when adding visible and ignored fields for the mass edit dialog in SAP Fiori elements for OData V4 applications
+- Added support for External ID in fields, filters, table columns and value help
+### Fixed
+- Fixed an issue where the "Table" node was displayed outside of the default "Items" aggregation in the Page Editor
+- Fixed an issue where the "Presentation Variant: Annotation" property was missing from the "Chart View" node in the Page Editor
+- Fixed an issue where the dropdown closed on every second selection in the "Add New Item to Visible Fields" and "Add New Item to Ignored Fields" dialogs in the Page Editor
+- Fixed an issue where an array-based property value was not inserted as an array element in the "Add New Items" dialog in the Page Editor
+- Fixed an issue where warning messages for array-based properties were not shown in the Page Editor
+- Fixed an issue where technical names instead of titles were shown in the "Add New Item to Visible Fields" and "Add New Item to Ignored Fields" dialogs in the Page Editor
+- Fixed an issue where the "Add New Item to Visible Fields" and "Add New Item to Ignored Fields" dialogs in the Page Editor were not expanded when selecting values, so the "Add" and "Cancel" buttons were hidden
+ 
 ## [1.18.4] - 2025-07-24
 ### Added
 - Added support for additional options in the "Mass Edit" dialog for SAP Fiori elements for OData V4 applications

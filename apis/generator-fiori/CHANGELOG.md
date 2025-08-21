@@ -3,6 +3,15 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.5] - 2025-08-07
+### Changed
+- Improved the performance of retrieving the full catalog service listing after SAP system selection
+
+## Fixed
+- Fixed an issue during deployment configuration where the supplied package was not correctly identified as local so the user was asked to provide an unnecessary transport request
+- Fixed an issue where generated integration tests and unit tests failed on Windows environments
+- Fixed an issue where an SAP Fiori project downloaded from an ADT deployed application in ABAP had SAPUI5 linting errors
+
 ## [1.18.4] - 2025-07-24
 ### Changed
 - Updated the SAP Fiori generator so that the table type for a list report or worklist floorplan defaults to "Analytical" if the selected entity supports it

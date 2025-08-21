@@ -8,6 +8,27 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `20.14.0` or higher
 
+## [1.136.4] - 2025-08-06
+
+### Fixed
+
+OData V4:
+- Support of `enableMassEdit` properties for single view table
+
+### Quality
+
+Upgrades:
+
+| Package | Change | 
+|---|---|
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | [`8.37.0` -> `8.39.0`] | 
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | [`8.37.0` -> `8.39.0`] | 
+| [typescript](https://www.typescriptlang.org/) ([source](https://github.com/microsoft/TypeScript)) | [`5.8.3` -> `5.9.2`] | 
+| [ts-jest](https://kulshekhar.github.io/ts-jest) ([source](https://github.com/kulshekhar/ts-jest)) | [`29.4.0` -> `29.4.1`] | 
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | [`0.35.5` -> `0.36.0`] | 
+| [i18next](https://github.com/i18next/i18next) | [`23.16.8` -> `25.3.0`] | 
+| [typescript-json-schema](https://github.com/YousefED/typescript-json-schema) | [`0.57.0` -> `0.65.1`] |
+
 ## [1.136.3] - 2025-07-23
 
 ### Added

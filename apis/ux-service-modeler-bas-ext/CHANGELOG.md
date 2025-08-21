@@ -3,6 +3,9 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.5] - 2025-08-06
+- No update
+
 ## [1.18.4] - 2025-07-24
 - No update
 

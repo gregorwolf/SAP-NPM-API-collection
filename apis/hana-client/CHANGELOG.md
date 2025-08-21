@@ -8,6 +8,12 @@ For the latest updates please see SAP Note 3599751 - SAP HANA Client 2.25 Releas
 
 https://me.sap.com/notes/3599751
 
+## Version 2.25.31
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 322041: Some ABAP type definitions were unsupported on ARM platforms.
+
 ## Version 2.25.29
 
 ### Changes:

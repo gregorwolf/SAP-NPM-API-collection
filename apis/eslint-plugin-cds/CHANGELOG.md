@@ -6,7 +6,18 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [4.1.0] - 2025-05-27
+## [4.1.0] - 2025-08-18
+
+### Added
+- Add new rule `case-sensitive-well-known-events` to detect when a well known event is not cased correctly.
+
+### Changed
+- Adjust `no-shared-handler-variables` to also detect shared states when handler refers to a locally defined function, rather than an inline declaration.
+- Rule `use-cql-select-template-strings` now also catches offending template strings in other query parts than just `SELECT`.
+- Rule `no-shared-handler-variables` now also checks functions that are not part of a class extending `cds.ApplicationService`, if the function has an explicit type annotation `@type {import('@sap/cds').CRUDEventHandler.Before}`, `@type {import('@sap/cds').CRUDEventHandler.On}`, or `@type {import('@sap/cds').CRUDEventHandler.After}`.
+
+### Fixed
+- `no-cross-service-import` rule no longer crashes when some file has an unexpected name.
 
 
 ## [4.0.2] - 2025-05-27
