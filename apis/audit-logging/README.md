@@ -963,6 +963,18 @@ xssec.createSecurityContext(access_token, xsuaa, function(error, securityContext
 });
 ```
 
+## Timeouts & Retries
+
+ServiceTransport supports automatic retries with configurable timeouts using environment variables:
+
+* **REQ_DELAY** – timeout in milliseconds for each request attempt (default: 1000).
+* **REQ_RETRIES** – maximum number of retries before failing (default: 5).
+
+Behavior:
+* If a request fails before `REQ_DELAY` (e.g. network error, connection refused), the next attempt waits for `REQ_DELAY` before retrying.
+* If a request fails because `REQ_DELAY` is reached, the next attempt starts immediately.
+* If a request fails after `REQ_RETRIES` attempts, it will throw an error.
+
 ## Local development
 
 ### Without Audit log service

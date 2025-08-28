@@ -1,3 +1,33 @@
+## 1.41.0
+
+### New Features
+- Alias labels for columns of dimensions can be defined using expressions. For example, labels can be generated that transform the name to lowercase and add a prefix.
+- Option to rename multiple columns that are already mapped in one step. Available for star joins and in node mapping dialog.
+- Snapshot queries can be copied between calculation views.
+- Switch between structured privileges and structured filters via the graphical editor
+- "Semi Join" can be selected as a join type in standard join nodes
+
+### Fixes
+- Can't delete the first constant in Input Mapping of a Table Function node
+- Calculated column name is missing in warning message during copy to a Projection node
+- The automap option in table function nodes does not work if a mapping already exists
+- Mapping of columns of type real_vector/half_vector/BLOB into Minus or Intersection nodes was possible
+- Greedy pruning value in a Non-equi join is lost after reopening the editor
+- Generate Properties File fails without notification
+- Duplicate names could be displayed in Column Based Pruning
+- Extract to New View should be disabled for nodes directly below star join nodes
+- Cannot select field entries for e.g. copying under "Shared" tab
+- Debug Query Generation Issues for Snapshot in a CV with Input Parameters
+- Show a warning in a star join when an attribute has been removed in a dimension
+- The value help of input parameters and variables does not show SQL views
+- After renaming a calculation view without re-opening the calculation view propagating column name changes to consuming views fail
+- Multiple data source deletion doesn't work in the table function node.
+- The "Go to Code Toggle" button is missing for .hdbstructuredprivilege and .hdbstructuredfilter
+- Wrapping a table function node around a data source leads to inconsistent XML
+- Calculation view editor copy from name is not working with hotkey
+- Replace ID with text message for Propagate Deleting Column
+- Incorrect error message for propagation of renaming
+
 ## 1.40.0
 
 ### New Features

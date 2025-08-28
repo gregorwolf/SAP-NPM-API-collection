@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.9.0 - 2025-08-19
+
+### Removed
+- fetch-retry dependency
+
+### Added
+- chai-as-promised as dev dependency
+
 ## 6.8.2 - 2025-07-28
 
 ### Updated

@@ -1,5 +1,29 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.33.0
+
+### New Features
+- SQL statements can be generated via Joule. This feature is only available in SAP Build.
+
+### Fixes
+- Object dependencies are not shown correctly in the dependency viewer for calculation views of type "cube".
+- Test data generation via GenAI did not work correctly in some cases for auto-generated column values
+- Test data generation via GenAI did not work correctly in some cases for vector columns
+- Test data generation via GenAI did not work correctly in some cases for calculated columns
+- Test data generation via GenAI did not work correctly in some cases for virtual tables
+- The run option "Explain Statement via AI" was incorrectly shown in Visual Studio Code
+- Adding a local HDI container connection asks for a user name after while adding the connection
+- The SQL analysis section was sometimes missing from the "run" menu in the SQL console
+- Adding a database connection was not possible if the connection user was required to change its password
+- The data preview of calculation views (column views) of type "dimension" did not work correctly
+
+## 1.32.1
+
+### Fixes
+- The SQL console doesn't set row limit and byte limit from the Visual Studio Code settings
+- SQL console tabs could cause high CPU load
+- The database filter doesn't work correctly for HDI container connections
+
 ## 1.32.0
 
 ### New Features

@@ -1,3 +1,8 @@
+## 1.39.0
+
+### Fixes
+- Persist the last choice of data source types in the  "Replace With Data Source" dialog
+
 ## 1.38.0
 
 ### Fixes

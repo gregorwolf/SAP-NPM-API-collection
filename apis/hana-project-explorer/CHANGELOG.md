@@ -1,3 +1,15 @@
+## 1.32.0
+
+### New Features
+
+- The deployment of a file can be triggered via a configurable keyboard shortcut (default CTRL+D)
+
+### Fixes
+
+- Show tenant name in addition to tenant ID in the "create database connection" wizard
+- Copy all properties to the application user in the grants editor
+- Changes may not be detected correctly when deploying a CAP project
+
 ## 1.31.0
 
 ### Fixes

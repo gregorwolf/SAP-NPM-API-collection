@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2025.17.0
+
+### Changed
+
+- **Enhanced TLS configuration for improved security.** The CLI now uses TLS 1.2 by default for all HTTPS requests, ensuring secure communication with servers. Users can adjust the TLS version if needed using the `--tls-version` flag with options "TLSv1.2" or "TLSv1.3".
+
+### Added
+
+- **New environment variable `CLI_LEGACY_TLS_DETECTION`.** When set to `"true"`, this disables TLS version enforcement and lets Node.js decide the default TLS version. This provides compatibility with older Node.js versions or specific environments where TLS version enforcement might cause issues.
+
+### Fixed
+
+- The CLI now correctly handles the secrets overwrite confirmation when using the `--secrets-file` option. If the cached secret already exists the user is prompted to confirm whether to overwrite the existing secret or not. If the user chooses to overwrite, the CLI deletes the existing secret and continues with the default login process.
+
 ## 2025.13.0
 
 ### Changed

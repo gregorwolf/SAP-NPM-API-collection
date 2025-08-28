@@ -1,3 +1,11 @@
+## 1.18.0
+
+### New Features
+- The tenant name is shown in addition to the tenant ID when binding to an SAP HANA Cloud tenant
+
+### Fixes
+- Added BTP landscape support for eu01 and eu21
+
 ## 1.17.0
 
 ### New Features
