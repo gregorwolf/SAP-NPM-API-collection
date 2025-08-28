@@ -6,6 +6,23 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.2.1 - 2025-08-22
+
+### Changed
+
+- `cds add github-actions` adds `if: always()` to the scripts retrieving Cloud Foundry logs.
+- `cds up` uses a default timeout of 10 minutes for Helm upgrades.
+- `cds bind` works out-of-the-box for PostgreSQL databases.
+- `cds bind -a` gives warning if no services are bound to the targeted app.
+
+### Fixed
+
+- `cds add github-actions` won't try to merge a `cf-info` action if there's an existing `mta.yaml`.
+- `cds add workzone` with missing `sap.app` config in `manifest.json` does not throw a `TypeError`.
+- `cds compile --to xsuaa` generates roles for `@requires` in bound actions.
+- `cds add lint` now adds proper configuration to enable linting of JavaScript and TypeScript files in VS Code.
+- `cds add mta` does no longer adds services in `mta.yaml` for plugins coming from `devDependencies`.
+
 ## Version 9.2.0 - 2025-07-31
 
 ### Added
