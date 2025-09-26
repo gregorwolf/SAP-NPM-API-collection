@@ -4,6 +4,84 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.3.1 - 2025-09-03
+
+### Fixed
+
+- In messaging services, propagated headers (e.g. `x-correlation-id`) will not be automatically propagated for `format: 'cloudevents'`
+- Avoid deprecation warning for `cds.context.user.tokenInfo`
+- Consider `@Capabilities.ExpandRestrictions.NonExpandableProperties` annotation and ignore fields referenced by the annotation, when rewriting asterisk expand into columns
+
+## Version 9.3.0 - 2025-08-29
+
+### Added
+
+- New method `collect()` has been added to `LinkedCSN`, which can be used like that:
+  ```js
+  const federated_entities = cds.linked(csn).collect (d => d.is_entity && d['@federated'])
+  ```
+- Remote services can now be configured without `kind`, for example:
+  ```json
+  { "cds": { "requires": { "SomeService": true }}}
+  ```
+- Automatic protocol selection is applied if a required service is configured as above
+  and the remote services is served via multiple protocols. For example, if the above
+  service would be declared like that, the best protocol would be chosen automatically
+  (`hcql` in this case):
+  ```cds
+  @hcql @rest @odata service SomeService {...}
+  ```
+- Method `cds.connect.to()` now allows to connect to remote services with just an http url.
+  For example use that from `cds repl` like that:
+  ```js
+  srv = await cds.connect.to ('http://localhost:4004/hcql/books')
+  await srv.read `ID, title, author.name from Books`
+  ```
+- Property `cds.User.authInfo` as generic container for authentication-related information
+  + For `@sap/xssec`-based authentication strategies, `cds.context.user.authInfo` is an instance of `@sap/xssec`'s `SecurityContext`
+- Support for state transition flows (`@flow`):
+  + Generic handlers for validating entry (`@from`) and exit (`@to`) states
+  + Automatic addition of necessary annotations for Fiori UIs (`@Common.SideEffects` and `@Core.OperationAvailable`) during compile to EDMX with feature flag `cds.features.compile_for_flows = true`
+- Experimental support for consuming remote HCQL services (`cds.requires.<remote>.kind = 'hcql'`)
+- Infrastructure for implementing the tenant mapping notification of Unified Customer Landscape's (UCL) Service Provider Integration Interface (SPII) API
+  + Bootstrap the `UCLService` via `cds.requires.ucl = true` and implement the assign and unassign operations like so:
+    ```js
+    // custom server.js
+    cds.on('served', async () => {
+      const ucl = await cds.connect.to('ucl')
+      ucl.on('assign', async function(req) { ... })
+      ucl.on('unassign', async function(req) { ... })
+    })
+    ```
+  + Currently, only the synchronous interaction pattern is supported!
+- The targets of `@Common.Text` are added to the default search targets
+- Patch Level Validations are enabled by default. Opt-out with `cds.fiori.draft_messages=false`
+- Enable custom aggregations for currency codes and units of measure
+
+### Changed
+
+- `UCLService` only pushes the application template to UCL if `cds.requires.ucl.applicationTemplate` is present
+- `cds.User.tokenInfo` is deprecated. Use `cds.context.user.authInfo.token` instead.
+- Undocumented compat `cds.context.http.req.authInfo` is deprecated. Use `cds.context.user.authInfo` instead.
+- Delete all persisted draft messages, when the first request targeting a draft child without containment is handled.
+- cds build now trims leading or trailing whitespace characters for all values in CSV files deployed to SAP HANA.
+
+### Fixed
+
+- Errors when reading complementary drafts
+- Apply configurations in case `cds.env` was loaded before `cds.log` is initialized.
+- `req.diff` resolves correctly deleted nested composition by deep update
+- `cds-deploy` did not terminate correctly even though deployment was successful
+- Requests to an unimplemented unbound action/ function are rejected
+- Custom app-service implementations configured through `cds.requires.app-service.impl` is now correctly resolved (again)
+- Validation of UUID format for navigation by key
+
+### Removed
+
+- Internal property `cds.services._pending` was removed => use `cds.services` instead.
+- Internal property `srv._is_dark` was removed => use `!srv.endpoints?.length` instead.
+- Internal method `cds.env.requires._resolved` was removed => use `cds.requires` instead.
+
 ## Version 9.2.1 - 2025-08-15
 
 ### Fixed
@@ -41,7 +119,7 @@
 - Runtime error in transaction handling in messaging services when used with outbox
 - Always use `cds.context` middleware for `enterprise-messaging` endpoints
 - Crash during Location header generation caused by custom response not matching the entity definition.
-- Support for logging of correct error locations with `cds watch` and `cds run`. 
+- Support for logging of correct error locations with `cds watch` and `cds run`.
 - Double-unescaping of values in double quotes during OData URL parsing
 - Throw explicit error if the result of a media data query is not an instance of `Readable`, rather than responding with `No Content`
 - When loading `.csv` files quoted strings containing the separator (comma or semicolon) where erroneously
@@ -203,6 +281,12 @@
 - Deprecated element-level annotation `@Search.defaultSearchElement`. Please use annotation `@cds.search` instead.
 - Deprecated stripping of unnecessary topic prefix `topic:` in messaging
 - Deprecated messaging `Outbox` class. Please use config or `cds.outboxed(srv)` to outbox your service.
+
+## Version 8.9.6 - 2025-07-29
+
+### Fixed
+
+- Batch insert using `INSERT.entries()` on draft enabled entities
 
 ## Version 8.9.5 - 2025-07-25
 

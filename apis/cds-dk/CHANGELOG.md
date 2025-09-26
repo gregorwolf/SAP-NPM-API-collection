@@ -6,6 +6,48 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.3.2 - 2025-09-16
+
+### Fixed
+
+- `cds add html5-repo` avoids some superfluous configuration combination with `cds add portal`.
+- `cds import` correctly imports OData v2 EDMX files with `Edm.Time` properties having a precision.
+
+## Version 9.3.1 - 2025-09-08
+
+### Fixed
+
+- `cds add ias` correctly sets the `subscription-manager` dependencies endpoint for Node.js.
+- `cds add data --records` respects the max length of a string field when it is annotated with `@Communication.IsEmailAddress`
+- `cds add data --records --format csv` correctly escaping complex properties nested within structs.
+- `cds add data --records` correctly generates values for structs in cases when the entity and the struct, used by the entity, have both a property with the same name.
+- `cds add html5-repo` also binds the `html5-repo-host` service to the approuter.
+- `cds up` has improved support for setups with multiple microservices.
+- `cds add mta` will add no `role-collections` parameters if there are some specified in `xs-security.json`.
+- `cds add github-actions` correctly generates a release workflow.
+- `cds add github-actions` uses a simplified and more resilient Kyma setup script.
+- `cds import` now correctly imports EDMX files with empty NavigationPropertyPath tags.
+
+## Version 9.3.0 - 2025-09-01
+
+### Added
+
+- `cds bind -a` is now also supported for Kyma, where the app prefix can be passed for `-a`, e.g. `bookshop-srv`.
+- `cds build --for hana` now trims leading and trailing whitespaces in csv-Files if build option `trimCsvWhitespaces` is set.
+- `cds add github-actions` sets required `permissions`.
+- `cds up` supports a deployment layout where approuter or portal service configuration is in a top-level `.deploy` folder.
+- `cds add ias` sets the `access-token-format` to `jwt` by default.
+
+### Changed
+
+- `cds add sample` provides more i18n translations.
+- `cds add ias` sets the `xsuaa-cross-consumption` field to `true` by default.
+
+### Fixed
+
+- `cds add workzone` with missing `sap.app` config in `manifest.json` does not throw a `TypeError`.
+- `cds add ias` adds a subdomain-less application URL in `redirect_uris`.
+
 ## Version 9.2.1 - 2025-08-22
 
 ### Changed

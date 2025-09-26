@@ -6,6 +6,36 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.3.1 - 2025-09-05
+
+### Added
+
+- [Pre-Alpha] By setting `cds.requires['cds.xt.DeploymentService'].hdi.create.cleanup_hana_tenants = true`,
+the unsubscribe operation will also try to remove the corresponding HANA tenant.
+
+### Fixed
+
+- [Pre-Alpha] Container determination for HANA TMS v2 now fails correctly if no containers exist.
+- Subscription Manager and Saas Registry Service can now be used in parallel (hybrid use).
+
+## Version 3.3.0 - 2025-09-01
+
+### Added
+
+- The number of unbound entities added via extensions can now be restricted via their namespace:
+  ```jsonc
+  "extension-allowlist": [
+   {
+    "for": ["my.new"],
+    "new-entities": 1
+   }]
+  ```
+- [Pre-Alpha] Support for HANA TMSv2.
+
+### Fixed
+
+- Better support for `readOnlyRootFilesystem` in Kubernetes.
+
 ## Version 3.2.0 - 2025-07-30
 
 ### Changed

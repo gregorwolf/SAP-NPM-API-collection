@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.3.0 - 2025-08-29
+### Changed
+- Important: minimum required NodeJS version is now 22.15.1
+
+### Fixed
+- Element names are now correctly highlighted even without type specification
+
+### Also see
+- `@sap/cds-compiler` 6.3.0
+
+
 ## 9.2.1 - 2025-08-08
 
 ### Changed
@@ -26,6 +37,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Added
 - goto implementation for NodeJS services, entities, events, actions and functions, services and entities for Java
+
+### Also see
+- `@sap/cds-compiler` 6.2.0
 
 
 ## 9.1.2 - 2025-07-21

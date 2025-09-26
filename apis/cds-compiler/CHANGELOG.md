@@ -8,6 +8,61 @@ Note: `beta` fixes, changes and features are usually not listed in this ChangeLo
 but in [doc/CHANGELOG_BETA.md](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 6.3.6 - 2025-09-19
+
+### Fixed
+
+- to.sql: Topological ordering of views did not always account for subqueries (fixes regression from v5.9.0)
+
+## Version 6.3.4 - 2025-09-11
+
+### Fixed
+
+- parser: Keep parentheses around lists on the right side of an `in` operator.
+- compiler: For calculated elements using associations with filters and cardinality, CSN recompilation could
+  fail for `gensrc` CSN, as happens for MTX.
+
+## Version 6.3.2 - 2025-09-02
+
+### Fixed
+
+- to.sql: Fix internal inconsistency when handling nested projections.
+
+## Version 6.3.0 - 2025-08-28
+
+### Added
+
+- compiler: Column casts can now use more modifiers such as `default` directly.
+- for.odata/to.edm(x):
+  + New option `draftUserDescription` is now available. It adds the fields `CreatedByUserDescription`,
+    `LastChangedByUserDescription`, `InProcessByUserDescription` to the `DraftAdministrativeData` entity.
+- to.sql:
+  + Structures with only one element can now be compared to scalar values.
+    This also applies to associations with only one foreign key.
+  + `cds.UInt8` can now be used in SQL dialects "h2" and "postgres".
+  + Managed associations can now be used in comparisons, e.g. `assoc = struct`.
+  + Structures and managed associations with only one element can be compared with scalars, e.g. `struct = 1`.
+  + In the draft use case, the `DRAFT.DraftAdministrativeData` entity now includes the following fields by default:
+  `CreatedByUserDescription`, `LastChangedByUserDescription`, `InProcessByUserDescription`, and `DraftMessages`.
+
+### Changed
+
+- Update OData vocabularies: Common
+- cdsc: EDMX output uses XML comments as service separators instead of `//`.
+        If there is only one service, no header is printed, allowing piping the output to a file.
+- to.sql: path expressions which end in a foreign key are now always optimized to use the element of the source side.
+
+### Fixed
+
+- compiler: Redirecting associations to non-query entities was fixed.
+- to.sql/to.edm(x): References to associations can now be compared to other associations and structures.
+- to.sql: Referencing a foreign key of an `@cds.persistence.skip` entity previously caused an
+  error in queries. Now the foreign key in the source entity is resolved and rendered.
+
+### Removed
+
+- for.odata/to.edm(x): The `addAnnotationAddressViaNavigationPath` option has been removed. Its functionality is included in the `draftMessages` option.
+
 ## Version 6.2.2 - 2025-07-28
 
 ### Fixed
