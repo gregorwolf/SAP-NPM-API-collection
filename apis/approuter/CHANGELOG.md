@@ -5,14 +5,52 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.8.1 - 2025-09-18
+
+### Fixed
+- Returned missing destIds and appIds from compact response
+
+## 20.8.0 - 2025-09-15
+
+### Added
+- Enable sending backend session cookies with setBackendSessionCookies set to 'true' in xs-app.json per route item
+- Enable reading html5 application xs-app.json in login callback - can be enabled by setting USE_HTML5_APP_XS_APPJSON_IN_LOGIN_CALLBACK env. variable to 'true'
+- Enable set log level by header
+
+### Fixed
+- Fix HTTP/2 invalid connection headers error in compression middleware due to compression library update
+- Fix HTTP/2 statusMessage compatibility warnings in OAuth2 strategy and request handler
+- Fix race condition in JWT refresh after logout, check session existence before refreshing.
+- Avoid using IAS authentication type if zone info missing
+- Return 404 for non-existent routes instead of redirecting to authentication, disable with REQUIRE_AUTH_FOR_UNKNOWN_ROUTES=true
+- Configured destinations normalization
+- Incorrect external cache format and different application count in external cache
+
+### Updated dependencies
+- deps: axios@1.12.2
+- deps: axios-retry@4.5.0
+
+## 20.7.1 - 2025-08-28
+
+### Fixed
+- Lock to prevent from  multiple approuter instances to fetch the same applications metadata
+- Async middleware support for WebSocket extensions via HANDLE_WEBSOCKET_EXT=async
+
+### Updated dependencies
+- deps: express-session@1.18.2
+
 ## 20.7.0 - 2025-08-07
 
 ### Added
 - Cache statistics logs
+- Changed format in Redis for storing application data into object with apps and errors properties
+- Added validation for the sap.cloud.service property in the application metadata
+- Added validation results in case of errors
 
 ### Fixed
 - Read grant_type and saas.registry.enabled from service credentials in client_credentials token flow
 - Wrong authentication type determination in case only IAS instance is bound. Enable behavior via ENABLE_PERMANENT_AUTHTYPE env. variable
+
 
 ### Updated dependencies
 - deps: sap/audit-logging@6.8.1

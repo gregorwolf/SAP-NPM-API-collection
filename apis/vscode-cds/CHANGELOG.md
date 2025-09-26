@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [9.3.0] - 2025-09-01
+### Changed
+- Minimum VSCode version is now 1.101.2
+
+### Fixed
+- Element names are now correctly highlighted even without type specification
+
+### Also see
+- `@sap/cds-lsp` 9.3.0
+- `@sap/cds-compiler` 6.3.0
+
+
 ## [9.2.1] - 2025-08-08
 
 ### Changed

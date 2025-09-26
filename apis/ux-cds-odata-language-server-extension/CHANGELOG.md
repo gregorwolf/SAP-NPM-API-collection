@@ -3,17 +3,27 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## [1.18.6] - 2025-08-21
+### Added
+- Added more code completion suggestions to improve adding annotations to annotations with scalar or array values
+- Added more code completion suggestions for annotations using shortcut syntax
+- Added a diagnostic message for the deprecated `$value` syntax
+
+### Removed
+- Removed code completion suggestions with the deprecated `$value` syntax
+
 ## [1.18.2] - 2025-07-03
 ### Changed
-- Updated to support latest changes in OData annotation vocabularies
+- Updated to support the latest changes in OData annotation vocabularies
 
 ### Fixed
-- False positive diagnostic for enum references in annotation expressions.
-- False positive diagnostic for a single path in expression
-- 
+- We resolved an issue with false positive diagnostics for enum references in annotation expressions
+- We resolved an issue with false positive diagnostics for a single path in an expression
+ 
 ## [1.15.4] - 2024-10-31
 ### Changed
-- Updated to support latest changes in OData annotation vocabularies
+- Updated to support the latest changes in OData annotation vocabularies
 - Removed the applicability restricitions for `@description`
 
 ## [1.14.1] - 2024-06-27

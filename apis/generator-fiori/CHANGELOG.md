@@ -3,6 +3,24 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.7] - 2025-09-04
+### Added
+- Added a notification banner to the SAP Fiori generator that allows the user to launch the Project Accelerator directly
+
+### Fixed
+- Fixed an issue where downloading a basic deployed application from ADT using Fiori tools would fail
+
+## [1.18.6] - 2025-08-21
+### Added
+- Added an option to add a page building block to a custom page template during generation
+
+### Changed
+- Updated the generator to use NPM workspaces by default when using a local CAP project as the data source
+- Updated generated OPA5 tests to use self-contained journeys
+
+## Fixed
+- Fixed an issue where the generator was creating obsolete configuration when using a CAP Java data source
+
 ## [1.18.5] - 2025-08-07
 ### Changed
 - Improved the performance of retrieving the full catalog service listing after SAP system selection

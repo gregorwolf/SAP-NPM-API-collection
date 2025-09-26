@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.2.0 - 2025-09-16
+
+### Updated dependencies
+- deps: axios@1.12.2
+- deps: archiver@7.0.1
+- deps: @sap/xssec@4.9.1
+
 ## 7.1.1 - 2025-08-03
 
 ### Fixed

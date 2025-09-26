@@ -129,6 +129,14 @@
 @sap/oyster-runtime-x86_64-unknown-linux-gnu
 @sap/oyster-runtime-x86_64-unknown-linux-musl
 @sap/oyster-sdk-js
+@sap/oyster-sdk-js-aarch64-apple-darwin
+@sap/oyster-sdk-js-aarch64-unknown-linux-gnu
+@sap/oyster-sdk-js-aarch64-unknown-linux-musl
+@sap/oyster-sdk-js-bundler
+@sap/oyster-sdk-js-x86_64-apple-darwin
+@sap/oyster-sdk-js-x86_64-pc-windows-msvc
+@sap/oyster-sdk-js-x86_64-unknown-linux-gnu
+@sap/oyster-sdk-js-x86_64-unknown-linux-musl
 @sap/pdms-sdk
 @sap/portal-cf-content-deployer
 @sap/sbf

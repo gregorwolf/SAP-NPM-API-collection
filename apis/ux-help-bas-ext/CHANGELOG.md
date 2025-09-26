@@ -7,6 +7,26 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.18.7] - 2025-09-04
+### Project Accelerator
+- Fixed an issue where invalid command palette entries were shown for the Project Accelerator
+
+## [1.18.6] - 2025-08-21
+### Project Accelerator
+- The Project Accelerator now launches in the main window in SAP Business Application Studio so it is no longer restricted to the side panel
+- Updated the title of the requirements area to "Business Requirements"
+- Fixed an issue where the "Application Information" page failed to load successfully if there was no folder or workspace open
+
+### Added
+- Added the **CAP CDS Annotation** variant for the _Add a Table Card to an Overview Page_ guide
+
+### Changed
+- Updated mandatory properties so they are now enabled once all the prerequisites are met, even if no values are available for selection
+
+### Fixed
+- Fixed an issue where mandatory properties were disabled when they had no value. Now they are enabled with a warning when no values are available
+- Fixed an issue where an error message was not shown below the "Function Import" field when a duplicate function import was selected in the _Add an Action Button_ guide
+
 ## [1.18.5] - 2025-08-07
 ### Project Accelerator
 - Improved the performance of SAP Fiori elements application generation

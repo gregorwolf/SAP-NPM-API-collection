@@ -3,6 +3,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.7] - 2025-09-04
+- Fixed an issue where an error message was not shown for a missing destination
+
+## [1.18.6] - 2025-08-20
+- No update
+
 ## [1.18.5] - 2025-08-06
 - No update
 

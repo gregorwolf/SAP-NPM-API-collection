@@ -8,6 +8,48 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `20.14.0` or higher
 
+## [1.136.6] - 2025-09-03
+
+### Added
+
+OData V4:
+- Added possibility to define the 'InlineCreationRows' mode as the default creation mode that is used for all tables within an application.
+- Object Page: Support of `creationMode` settings on tables
+
+### Fixed
+
+OVP page. Properties from different card types on the OVP page were not imported/exported, which prevented resetting them in the Page Editor.
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+|---|---|
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | [`8.40.0` -> `8.42.0`] | 
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | [`8.40.0` -> `8.42.0`] | 
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | [`0.38.0` -> `0.38.2`]) | 
+| [i18next](https://www.i18next.com) ([source](https://github.com/i18next/i18next)) | [`25.4.0` -> `25.4.2`] | 
+
+## [1.136.5] - 2025-08-20
+
+### Fixed
+
+Page macros. Default aggregation `items` is not recognized
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+|---|---|
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | [`8.39.0` -> `8.40.0`] | 
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | [`8.39.0` -> `8.40.0`] | 
+| [esbuild](https://github.com/evanw/esbuild) | [`0.25.8` -> `0.25.9`] |
+| [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) | [`5.5.3` -> `5.5.4`] | 
+| [i18next](https://www.i18next.com) ([source](https://github.com/i18next/i18next)) | [`25.3.0` -> `25.4.0`] | 
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | [`0.36.0` -> `0.38.0`] | 
+
 ## [1.136.4] - 2025-08-06
 
 ### Fixed

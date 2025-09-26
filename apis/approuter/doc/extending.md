@@ -6,25 +6,26 @@ Extending Application Router
 - [Basics](#basics)
 - [Inject Custom Middleware](#inject-custom-middleware)
 - [Application Router Extensions](#application-router-extensions)
+  - [WebSocket Extensions](#websocket-extensions)
 - [Customize Command Line](#customize-command-line)
 - [Dynamic Routing](#dynamic-routing)
 - [State synchronization](#state-synchronization)
 - [API Reference](#api-reference)
-  * [approuter](#approuter)
-    + [`approuter()`](#approuter)
-    + [Event: 'login'](#event-login)
-    + [Event: 'logout'](#event-logout)
-    + [`first`](#first)
-    + [`beforeRequestHandler`](#beforerequesthandler)
-    + [`afterRequestHandler`](#afterrequesthandler)
-    + [`backendTimeout`](#backendtimeout)
-    + [`beforeErrorHandler`](#beforeerrorhandler)
-    + [`start(options, callback)`](#startoptions-callback)
-    + [`close(callback)`](#closecallback)
-    + [`createRouterConfig(options, callback)`](#createrouterconfigoptions-callback)
-    + [`resolveUaaConfig(request, uaaOptions, callback)`](#resolveuaaconfigrequest-uaaoptions-callback)
-  * [Middleware Slot](#middleware-slot)
-    + [`use(path, handler)`](#usepath-handler)
+  - [approuter](#approuter)
+    - [`approuter()`](#approuter-1)
+    - [Event: 'login'](#event-login)
+    - [Event: 'logout'](#event-logout)
+    - [`first`](#first)
+    - [`beforeRequestHandler`](#beforerequesthandler)
+    - [`afterRequestHandler`](#afterrequesthandler)
+    - [`backendTimeout`](#backendtimeout)
+    - [`beforeErrorHandler`](#beforeerrorhandler)
+    - [`start(options, callback)`](#startoptions-callback)
+    - [`close(callback)`](#closecallback)
+    - [`createRouterConfig(options, callback)`](#createrouterconfigoptions-callback)
+    - [`resolveUaaConfig(request, uaaOptions, callback)`](#resolveuaaconfigrequest-uaaoptions-callback)
+  - [Middleware Slot](#middleware-slot)
+    - [`use(path, handler)`](#usepath-handler)
 
 <!-- tocstop -->
 
@@ -133,6 +134,41 @@ ar.start({
     require('./my-ext.js')
   ]
 });
+```
+
+### WebSocket Extensions
+
+WebSocket extensions require the environment variable `HANDLE_WEBSOCKET_EXT` to be enabled.
+
+A WebSocket extension is defined by an object with the following properties:
+* `insertMiddleware` - describes the middleware provided by this extension
+  * `firstWS`, `beforeRequestHandlerWS` - an array of middleware, where each one is either
+    * a middleware function (invoked on all WebSocket requests), or
+    * an object with properties:
+      * `path` - handle requests only for this path
+      * `handler` - middleware function to invoke
+
+**Environment Configuration:**
+* `HANDLE_WEBSOCKET_EXT=false` - WebSocket extensions disabled (default)
+* `HANDLE_WEBSOCKET_EXT=true` - Synchronous WebSocket extensions
+* `HANDLE_WEBSOCKET_EXT=async` - Async WebSocket extensions with proper await handling
+
+**Async Example (requires `HANDLE_WEBSOCKET_EXT=async`):**
+```js
+module.exports = {
+  insertMiddleware: {
+    beforeRequestHandlerWS: [
+      {
+        path: '/ws',
+        handler: async function(req, res, next) {
+          const config = await getConfiguration();
+          req.headers['x-custom-config'] = config.value;
+          next();
+        }
+      }
+    ]
+  }
+};
 ```
 
 ## Customize Command Line

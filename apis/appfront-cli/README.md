@@ -59,20 +59,22 @@ Arguments:
 
 <details><summary>History</summary>
 
-| Version  | Changes                                     |
-|----------|---------------------------------------------|
-| `v1.0.0` | Added                                       |
+| Version   | Changes                                     |
+|-----------|---------------------------------------------|
+| `v1.12.0` | The `-d` option added                       |
+| `v1.0.0`  | Added                                       |
 
 </details>
 
 ```
-Display actual tool configuration or switch configuration profile
+Display actual tool configuration or switch/delete configuration profile
 
 Usage:
-  afctl config [PROFILE]
+  afctl config [PROFILE] [-d]
 
 Arguments:
-  PROFILE  Name of the configuration profile
+  PROFILE       Name of the configuration profile
+  --delete, -d  Delete configuration profile
 ```
 
 #### curl
@@ -147,9 +149,11 @@ Arguments:
 
 <details><summary>History</summary>
 
-| Version  | Changes                                                  |
-|----------|----------------------------------------------------------|
-| `v1.8.0` | Added                                                    |
+| Version   | Changes                                                           |
+|-----------|-------------------------------------------------------------------|
+| `v1.11.0` | The `--cdm`, `--business-service` and `PATH_TO_APP` options added |
+| `v1.11.0` | The `--name` and `--version` arguments are now named              |
+| `v1.8.0`  | Added                                                             |
 
 </details>
 
@@ -157,12 +161,15 @@ Arguments:
 Initialize application
 
 Usage:
-  afctl init [APPLICATION] [VERSION] [-f]
+  afctl init [PATH_TO_APP [--name APPLICATION] [--version VERSION], ...] [--business-service BUSINESS_SERVICE] [--cdm] [-f]
 
 Arguments:
-  APPLICATION  Name of the new application        
-  VERSION      Name of the new application version
-  --force, -f  Force init with default values
+  PATH_TO_APP                          Path to frontend application directory
+  --name APPLICATION                   Name of the application        
+  --version VERSION                    Name of the application version
+  --business-service BUSINESS_SERVICE  Name of the application business service
+  --cdm                                Generate cdm.json file
+  --force, -f                          Force init with default values
 ```
 
 #### install

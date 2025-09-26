@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2025.18.0
+
+### Changed
+
+- The CLI has been migrated to [EcmaScript Module (ESM)](https://nodejs.org/api/esm.html) syntax. As a result, support for Node.js versions 18 and 19 has been dropped, and Node.js 20 or later is now required. No APIs or other external properties of the CLI have been modified, so with a supported Node.js version, the CLI is expected to continue functioning as before.
+
 ## 2025.17.0
 
 ### Changed

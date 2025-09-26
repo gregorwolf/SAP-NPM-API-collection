@@ -176,18 +176,20 @@ By the default the `fiori-tools-proxy` will read the proxy configuration from th
 
 ```
 #### [Ignoring Certificate Errors](#ignoring-certificate-errors)
-By default, the `fiori-tools-proxy` will verify the SSL certificates and will throw an error if the validation fails. One can set the parameter `ignoreCertError: true` to ignore the certificate errors. Setting this parameter to `true` also allows the usage of self-signed certificates.
+By default, the `fiori-tools-proxy` will verify the SSL certificates and will throw an error if the validation fails. One can set the parameter `ignoreCertErrors: true` to ignore the certificate errors. Setting this parameter to `true` also allows the usage of self-signed certificates.
 
 ```
 - name: fiori-tools-proxy
   afterMiddleware: compression
   configuration:
-    ignoreCertError: true
+    ignoreCertErrors: true
     backend:
     - path: /sap
       url: https://my.backend.com:1234
 
 ```
+
+**Note**: The singular form `ignoreCertError` is also supported for backward compatibility but is deprecated. When using the singular form, a deprecation warning will be displayed encouraging migration to `ignoreCertErrors` (plural).
 #### [Providing Credentials](#providing-credentials)
 ### Local Testing 
 For local testing the logon credentials to a backend system need to be provided using the secure storage of the operating system.
@@ -429,11 +431,11 @@ With the following configuration, the local Fiori launchpad will be available at
   customMiddleware:
   - name: fiori-tools-preview
     afterMiddleware: fiori-tools-appreload
-      configuration:
-        flp:
-          path: /test/flpSandbox.html
-          theme: sap_horizon
-        debug: true
+    configuration:
+      flp:
+        path: /test/flpSandbox.html
+        theme: sap_horizon
+      debug: true
 ```
 
 #### [Deprecated configuration](#deprecated-configuration)
@@ -453,15 +455,38 @@ This configuration is internally converted to following.
   customMiddleware:
   - name: fiori-tools-preview
     afterMiddleware: fiori-tools-appreload
-      configuration:
-        flp:
-          path: /test/flpSandbox.html
-          intent:
-            object: preview
-            action: app
-          theme: sap_fiori_3
+    configuration:
+      flp:
+        path: /test/flpSandbox.html
+        intent:
+          object: preview
+          action: app
+        theme: sap_fiori_3
 ```
+#### [Custom Init](#custom-init)
 
+If you want to add custom modifications to the local SAP Fiori Launchpad sandbox file that is served at a virtual endpoint, you can do so by creating a `.js` or `.ts` file (depending on your setup).
+This file can then be used as a custom init in the configuration options. It will be executed after the standard initialization of the middleware.
+
+**test/myCustomInit.js**
+```js
+// Example for setting the ABAP date format
+sap.ui.require(['sap/base/i18n/Formatting'], function(Formatting) {
+    Formatting.setABAPDateFormat('1');
+});
+
+// If you are on a UI5 version lower than 1.120 you need to use
+//sap.ui.getCore().getConfiguration().getFormatSettings().setLegacyDateFormat('1');
+```
+ 
+```yaml
+  customMiddleware:
+  - name: fiori-tools-preview
+    afterMiddleware: fiori-tools-appreload
+    configuration:
+      flp:
+        init: /test/myCustomInit
+```
 
 ## [**Tasks**](#tasks)
 

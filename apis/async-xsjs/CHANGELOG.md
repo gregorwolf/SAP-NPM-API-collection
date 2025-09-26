@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.1.5"></a>
+## 2.1.5 - 2025-09-23
+
+### Updated
+- update axios version to 1.12.2
+
 <a name="2.1.4"></a>
 ## 2.1.4 - 2025-07-30
 

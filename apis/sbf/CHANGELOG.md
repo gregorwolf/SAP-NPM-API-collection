@@ -8,6 +8,11 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.9.7"></a>
+## 6.9.7 - 2025-09-25
+### Updated
+- Update to axios 1.12.2
+
 <a name="6.9.6"></a>
 ## 6.9.6 - 2025-07-21
 ### Updated

@@ -1,3 +1,24 @@
+# Hana Client 2.26.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.26 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.26/en-US
+
+For the latest updates please see SAP Note 3643985 - SAP HANA Client 2.26 Release Notes
+
+https://me.sap.com/notes/3643985
+
+## Version 2.26.18
+
+### Changes:
+
+ - Issue Number 332523: An uncaught exception thrown in a trace callback would have caused a crash.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 345650: When reconnecting to a node, SQLDBC could have taken too long.
+ - Issue Number 341125: BOOLEAN empty string parameters would have been sent to the server as true.
+
 # Hana Client 2.25.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.25 documentation:
@@ -7,12 +28,6 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.25/en-US
 For the latest updates please see SAP Note 3599751 - SAP HANA Client 2.25 Release Notes
 
 https://me.sap.com/notes/3599751
-
-## Version 2.25.31
-
-### Underlying SQLDBC changes:
-
- - Issue Number 322041: Some ABAP type definitions were unsupported on ARM platforms.
 
 ## Version 2.25.29
 

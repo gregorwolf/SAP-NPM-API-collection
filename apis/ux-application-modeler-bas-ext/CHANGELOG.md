@@ -6,6 +6,27 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.18.7] - 2025-09-04
+### Added
+- Added the ability to use AI code assistants such as GitHub Copilot or Cline to create and modify SAP Fiori elements applications
+- Added the ability to configure creation options for object page tables in the Page Editor for SAP Fiori elements for OData V4 applications
+- Added the ability to set the default creation mode for tables in the Page Editor for SAP Fiori elements for OData V4 applications
+- Added the tile "Add configuration for the card generator and tooling" to the Application Info page
+### Fixed
+- Fixed an issue where deleting a saved system from "SAP Systems" prevented it from being added again manually
+- Fixed an issue where the preview option `start-embedded` only accepted a single parameter
+- Fixed an issue where "Add Page" was incorrectly shown inside pages that contained the Page building block and inside custom sections
+- Fixed an issue where the Page Editor incorrectly showed table columns which were different from those displayed in the preview
+- Fixed an issue where it was not possible to remove invalid properties after changing a card type
+
+## [1.18.6] - 2025-08-20
+### Added
+- [Experimental] Enabled adding UI features such as fields, tables, and columns when the underlying service and data layers do not contain the relevant properties or entities. The service, database schema, and dummy test data are generated along with the new UI features. You can then refine the dummy test data to match your application context. This feature is only available for applications in CAP projects generated with the Project Accelerator
+    <img width="739" alt="image" src="https://github.wdf.sap.corp/ux-engineering/tools-suite/blob/master/packages/application-modeler/ide-extension/media/release-notes/experimental-ui-features.png">
+- Added the ability to add the Page building block to a custom page using the Page Map
+### Changed
+- Updated the UX for the SAP Fiori launchpad configuration of Adaptation Projects to provide options to replace an existing tile or add a new one
+
 ## [1.18.5] - 2025-08-06
 ### Added
 - Enabled selecting multiple options when adding visible and ignored fields for the mass edit dialog in SAP Fiori elements for OData V4 applications

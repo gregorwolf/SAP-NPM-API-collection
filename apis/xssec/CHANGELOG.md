@@ -1,10 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 4.10.0 - 2025-09-22
+- add support for certification validations under SAP BTP Kyma where x-forwarded-client-cert header is in Envoy format.
+- fix for v3 compatibility package: prevent accessing potentially undefined property during `createSecurityContext`.
+
+## 4.9.2 - 2025-09-15
+- add support for `refresh_expiry` parameter for SAP Identity Service *password* and *jwt_bearer* token fetches
+- fix for v3 compatibility package: `createSecurityContext` now passes on new configuration properties such as `requests.retry` and `validation.signatureCache` when creating internal `Service` instances
+
 ## 4.9.1 - 2025-08-07
 - fix: IdentityService#getJwks now uses the retry settings from the Service configuration when fetching a JWKS from subscriber IAS tenants
 - Refactored `Service` constructor to be more light-weight: This slightly improves performance and memory usage when creating multiple `Service` instances, e.g. when fetching tokens with a lot of different service credentials. For this purpose, some properties of the `Service` instance are now only initialized when they are actually needed for the first time, e.g. the jwksCache.
-- Some properties of the `Service` class, which are meant for internal use, have become read-only (`endpoints`, `jwksCache`, `signatureCache`).
+- Some properties of the `Service` class, which are meant for internal use, have become read-only (`endpoints`, `jwksCache`, `signatureCache`) after instantiation.
 
 ## 4.9.0 - 2025-07-14
 

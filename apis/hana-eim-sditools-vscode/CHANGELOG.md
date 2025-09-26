@@ -1,3 +1,10 @@
+## 1.2.2
+
+### Fixes
+- Reptask deploys with Primary Key and Nullable true
+- Flowgraph editor does not open in BAS
+- Changes to prevent data loss for Load type Archive
+
 ## 1.2.1
 
 ### Fixes
