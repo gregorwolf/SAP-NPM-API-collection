@@ -6,6 +6,46 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.4.1 - 2025-10-09
+
+### Added
+
+- `cds add app-frontend` is supported as an alias to `cds add app-front`.
+- `cds add attachments` is supported for Java projects.
+
+### Fixed
+
+- `cds import` adds latest version 4 of `@sap-cloud-sdk` packages.
+- `cds add sample` now uses Integer IDs for Books and Authors again, instead of UUIDs.
+
+## Version 9.4.0 - 2025-10-02
+
+### Added
+
+- `cds add app-front` adds configuration for the new SAP BTP Application Frontend service.
+- `cds add ias` has improved support for XSUAA hybrid projects.
+- `cds add multitenancy` automatically adds upgrade hooks for Node.js projects.
+- `cds deploy` support the generic `--resolve-bindings` option to resolve all bound services. This is helpful for use cases with multiple `hana`-tagged service bindings.
+
+### Changed
+
+- `cds add typescript` and `cds add typer` will now add a `path` entry in the project's _tsconfig.json_ or _jsconfig.json_ respectively, which will mitigate resolution problems with `@cap-js/cds-types`.
+- `cds add multitenancy` adds the `with-mtx` profile to Java apps by default, simplifying local development.
+- `cds import` for EDMX files now maps `Edm.String` types to `cds.String` (before: `cds.LargeString`). Background is that some databases don't support the resulting `NCLOB` type in key fields.
+- `cds build` will now remove dev dependencies starting with `workspace:`, `file:`, as well as the entire `workspace:` block therein, and regenerate the _package-lock.json_ if needed.
+- `cds import` for EDMX correctly imports multiline strings in `DefaultValue`.
+- `cds import` now writes annotations from EDMX files in a flat, i.e. non-structured manner, so that they can be processed by the application runtime.
+- `cds bind` does not fail when setting the profile via `CDS_ENV`.
+- `cds version` is more robust with respect to Java versions.
+
+### Fixed
+
+- `cds add html5-repo` avoids some superfluous configuration combination with `cds add portal`.
+- `cds add handler` ignores external services.
+- `cds add audit-logging` correctly adds the dependency in the _Chart.yaml_ for Helm deployments.
+- `cds deploy --to hana` works with user-provided HANA services.
+- `cds bind` doesn't add the `custom-service:` prefix for Node.js any more.
+
 ## Version 9.3.2 - 2025-09-16
 
 ### Fixed
@@ -27,6 +67,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `cds add github-actions` correctly generates a release workflow.
 - `cds add github-actions` uses a simplified and more resilient Kyma setup script.
 - `cds import` now correctly imports EDMX files with empty NavigationPropertyPath tags.
+- `cds import` now correctly imports OData v2 EDMX files with `Edm.Time` properties, which have a precision.
 
 ## Version 9.3.0 - 2025-09-01
 

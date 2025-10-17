@@ -1,4 +1,4 @@
-# ChangeLog of Beta Features for cdx compiler and backends
+# ChangeLog of beta Features for CDS compiler and backends
 
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD004 -->

@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.4.2 - 2025-10-14
+
+### Fixed
+
+- [Pre-Alpha] Subscription when using HANA TMS v2 now filters all options that are incompatible.
+
+## Version 3.4.1 - 2025-10-02
+
+### Fixed
+
+- Annotation validation now works correctly when using `extend <entity> with <annotation>`.
+- [Pre-Alpha] Subscription triggered by BTP when using HANA TMS v2 works again.
+- The profile `[with-mtx]` doesn't override database configuration for non-MTX usage.
+- Improved resilience for SaaS regsistry and Subscription Manager callbacks.
+
+## Version 3.4.0 - 2025-09-29
+
+### Fixed
+
+- Extension validation now properly check unbound entities.
+
 ## Version 3.3.1 - 2025-09-05
 
 ### Added

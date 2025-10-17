@@ -4,6 +4,66 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.4.3 - 2025-10-10
+
+### Fixed
+
+- Don't continue validation user input if data type is wrong
+- UI annotation generation for status transition flows for Java
+- Increased minimium version of `@sap/cds-compiler` to 6.3.x
+- Undefined error message for early access checks
+
+## Version 9.4.2 - 2025-10-08
+
+### Fixed
+
+- `DISCARD` as a synonym for `CANCEL`
+- `cds.load()` called twice
+
+## Version 9.4.1 - 2025-10-06
+
+### Fixed
+
+- Default `kind` for unknown required service to `hcql`
+- Consider and allow aliases from nesting during OData query validation
+
+## Version 9.4.0 - 2025-09-30
+
+### Added
+
+- Status Transition Flows (`@flow`; alpha):
+  + Resolve enum references in `@from`/`@to` values
+  + Support for `@to: $flow.previous` (transition to the previous status in a flow)
+    + Use `cds.env.features.flows_history_stack=true` to switch from history (default) to stack-based behavior
+    + Requires adding aspect `sap.common.FlowHistory` to the respective entity
+- `i18n` translations for `@assert` messages
+- `SELECT ... .stream ()` returns the data from the database as a raw stream
+- `cds.validate` treats `@insertonly` elements as immutable
+- Vietnamese translations for texts from `@sap/cds/common`
+- `ias`/`jwt`/`xsuaa`-auth: Add token payload (as `token_payload`) to warning log in case of an invalid token
+  + Note: Some invalid tokens are (for performance reasons) not fully validated and, hence, the payload may not be trusted!
+
+### Changed
+
+- `SAVE` handlers for drafts are triggered when a draft is activated
+  + Opt-out until cds^10 with `cds.features.compat_save_drafts=true`
+- Improved default error messages for input validation.
+- Renamed error key for validation errors of `@mandatory` from `ASSERT_NOT_NULL` to `ASSERT_MANDATORY`
+  + For i18n message lookup, an automatic fallback is implemented.
+  + Opt-out until cds^10 with `cds.features.compat_assert_not_null=true`
+- Errors are collected for `_initial` (internal!) and `before` phase
+
+### Fixed
+
+- Duplicate reconnects in AMQP
+- `ASSERT_FORMAT` errors return correct regexp in message
+- Crash by draft validation with (custom) error w/o target
+- Fixed issue where `' $'` in payloads of batch requests would be prefixed with `'/'`
+- Broken link `cds.auth`
+- Persist original error message in draft validation messages
+- Escaping of `\t` and `\f` in edmx during localization
+- Escaping of JSON escape sequences other than `\"` during localization
+
 ## Version 9.3.1 - 2025-09-03
 
 ### Fixed
@@ -39,9 +99,9 @@
   ```
 - Property `cds.User.authInfo` as generic container for authentication-related information
   + For `@sap/xssec`-based authentication strategies, `cds.context.user.authInfo` is an instance of `@sap/xssec`'s `SecurityContext`
-- Support for state transition flows (`@flow`):
+- Support for status transition flows (`@flow`; alpha):
   + Generic handlers for validating entry (`@from`) and exit (`@to`) states
-  + Automatic addition of necessary annotations for Fiori UIs (`@Common.SideEffects` and `@Core.OperationAvailable`) during compile to EDMX with feature flag `cds.features.compile_for_flows = true`
+  + Automatic addition of necessary annotations for Fiori UIs (`@Common.SideEffects` and `@Core.OperationAvailable`) during compile to EDMX with feature flag `cds.features.compile_for_flows=true`
 - Experimental support for consuming remote HCQL services (`cds.requires.<remote>.kind = 'hcql'`)
 - Infrastructure for implementing the tenant mapping notification of Unified Customer Landscape's (UCL) Service Provider Integration Interface (SPII) API
   + Bootstrap the `UCLService` via `cds.requires.ucl = true` and implement the assign and unassign operations like so:
@@ -136,7 +196,7 @@
 ### Changed
 
 - Reduced the amount of SELECT nesting the OData adapter does for `$apply` queries.
-- Better error messages for unresolved parent associations in hierarchy requests
+- Better error messages for unresolved parent associations in hierarchy requests.
 - Enabled updated behavior of `draftActivate` to move updates to fields of draft enabled entities with type `cds.LargeBinary` from draft to active table on the database level, with feature flag `cds.env.fiori.move_media_data_in_db`.
 
 ### Fixed

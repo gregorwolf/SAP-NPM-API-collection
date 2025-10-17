@@ -10,11 +10,9 @@ This functionality is **experimental** and **not meant for productive use**! The
 ### Latest Breaking Changes
 In the alpha state, the event umbrella and hence the API to code against can be changed frequently, invalidating already deployed handlers with a new `npm install`. Please make sure to check this section, when extensions crash or expose unexpected behavior after each new install, since we to our best to list all incompatible changes here.
 
-These constructs are now deprecated , and should be replaced by the respective alternatives as soon as possible:
-- The old self-invoking function format `f(){...}()` is deprecated and replaced by `module.export`
-- the internal API is being standardized to `this.*`, so please search and replace for all occurrences of `srv.*`
-- after handlers are changed to standard signature `after(result, req)`. See the documented [after handlers](https://cap.cloud.sap/docs/node.js/core-services#srv-after-request).
-
+- Removed support for calling bound action from extension in the form `this.action()`. Only unbound actions are allowed.
+- Removed support for before-READ extension handler
+ 
 ## Prerequisites
 
 ### Oyster
@@ -59,7 +57,7 @@ In addition, code scanning is **always** applied upon activation and checks for 
 | Require             | Is it not possible to require any library beyond the limited API provided to the sandbox                                                                                                |                                                                                                                                                                                   |
 | Console             | The console object is available locally in development mode (CDS watch), but extensions cannot be deployed to MTX using it                                                              | Remove all console statements before activating custom code                                                                                                                       |
 | Object properties   | access to `prototype` or `__proto__` is also completely prohibited                                                                                                                      |                                                                                                                                                                                   |
-| Asynchronous calls  | `await` is prohibited generally - except for the data access API (QL) as well as `this.send` and `this.emit` where it is actually required           | We have yet to see a valid use case for asynchronous calls within the sandbox when I/O is generally disallowed. Helper functions and system libraries can be called synchronously |
+| Asynchronous calls  | `await` is prohibited generally - except for the data access API (QL) as well as `this.emit` where it is actually required           | We have yet to see a valid use case for asynchronous calls within the sandbox when I/O is generally disallowed. Helper functions and system libraries can be called synchronously |
 | Throw Statement     | No errors can be thrown within the sandbox                                                                                                                                              | Either call `req.reject` or call `req.error`                                                                                        |
 | Generator Functions | Generator functions and `yield` are error prone, a frequent cause of memory leaks and should serve no useful purpose in the sandbox                                                  |                                                                                                                                                                                   |
 | Debugger Statement  | In local single-tenancy mode, debugging the sandbox is allowed and supported through the `debug` mode. When deploying to a multi-tenant application, debugger statements are prohibited | Remove all debugger statements before activating custom code                                                                                                                      |
@@ -76,7 +74,10 @@ After adding the [CDS Plugin](#cds-oyster), the following switch in the applicat
       "code-extensibility": {
         "runtime": "oyster",
         "maxTime": 1000,
-        "maxMemory": 4
+        "maxMemory": 4,
+        "maxDepth": 4,
+        "maxResultSize": 100,
+        "continueOnError": false
       },
   ...          
 ```
@@ -87,6 +88,9 @@ The possiblle parameters are all optional and follow the following specification
 | runtime | `oyster` is the default runtime and must be used for deployment. <br>`debug` allows local debugging within local extension projects only|
 | maxTime| in milliseconds |
 | maxMemory | in megabytes|
+| maxDepth | number: maximum sequence of consecutively invoked sandboxes  |
+| maxResultSize | throws an exception when the query result exceeds the given number of rows. Please use `LIMIT` in the query to avoid issues. Default is 1000 |
+| continueOnError | boolean: relevant for Node.js runtime, which crashes on system errors: https://cap.cloud.sap/docs/node.js/best-practices#let-it-crash. Default value is false |
 
 The same switch can also be utilized within the extension project itself to test extensions locally before activation.
 
@@ -138,8 +142,8 @@ Developers can create custom logic for (Planned events in `{brackets}`):
 
 | When   | What                                    | Useful Scope                                    | Example Usage                                                                                                                                                                                             |
 |:-------|:----------------------------------------|:------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Before | Create, Update, Delete `{Read, Upsert}` | Request Payload `req.data`                      | Manipulate `req.data` with e.g custom calculations. Validate input against constraints and reject requests                                                                                                |
-| After  | Read `{Create, Update, Delete, Upsert}` | Response `req.results`                          | Manipulate `req.results`in read handlers to display calculated fields, but also asynchronously trigger events after any operation. Note, the DB transaction of the event in question has already finished. QL requests will be executed within a new transaction |
+| Before | Create, Update, Delete `{Upsert}`       | Request Payload `req.data`                      | Manipulate `req.data` with e.g custom calculations. Validate input against constraints and reject requests                                                                                                |
+| After  | Read, Create, Update, Delete, Upsert    | Response `req.results`                          | Manipulate `req.results`in read handlers to display calculated fields, but also asynchronously trigger events after any operation. Note, the DB transaction of the event in question has already finished. QL requests will be executed within a new transaction |
 | On     | Event                                   | Inbound Interface `req.data`                    | Custom coding will run within the context of the calling transaction, so this one is useful to enable BADI-like extension points                                                                           |
 | On     | Bound/Unbound Action and Function       | Inbound Interface `req.data`, Response `return` | This option can also be used well for BADI-like extension points. Application developers can provide action definitions without an implementation and invoke them as needed                               |
 
@@ -261,6 +265,15 @@ Code extensibility is also reflected in the extension allow list:
   }
 ```
 
+For application developers, configuring an allow-list is essential. Not all entities should be eligible for code extensions. 
+A key security-related example involves projections to remote services exposed by the system. 
+Writing custom extension code for these entities can not only break the application but may also negatively impact external (remote) systems.
+
+Note that for application developers it is also crucial to carefully control the input and output of extension snippets. 
+Improper handling may cause issues in the main applicationh.
+Custom or generic handlers in the application may rely on specific input or output values. 
+Without safeguards, changes in one extension’s input/output can propagate and potentially break the entire application.
+The validation in cds-oyster performs some basic checks for known potential issues in generic handlers. However, this control is limited and does not cover all cases.
 
 ## Reference
 

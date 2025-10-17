@@ -8,6 +8,40 @@ Note: `beta` fixes, changes and features are usually not listed in this ChangeLo
 but in [doc/CHANGELOG_BETA.md](doc/CHANGELOG_BETA.md).
 The compiler behavior concerning `beta` features can change at any time without notice.
 
+## Version 6.4.2 - 2025-10-07
+
+### Fixed
+
+- parser:
+  + improve error recovery with empty expression as annotation value
+  + avoid clutter in message text for syntax errors: use `‹Value›` instead of listing value tokens
+- compiler: fix suppression of warnings when annotating backend-generated things
+  like draft entities or localized convenience views
+- to.sql|hdi|hdbcds: Fix handling of structured columns when calculated elements are used
+  don't add explicit casts too eagerly
+
+## Version 6.4.0 - 2025-09-26
+
+### Added
+
+- compiler: `annotate … with @extension.code: [..., 'additional code']` even works
+  if no value for that annotation has been provided with the base definition.
+- to.sql: Calculated elements can now be used next to (but not in) nested projections.
+- to.edm(x): The `@cds.api.ignore` annotation can now be applied to actions, functions, and their parameters.
+
+### Changed
+
+- to.sql:
+  + generation of localized convenience views now use the ON-condition of the `localized` element
+    to create the FROM clause.
+
+### Fixed
+
+- parser: minor improvements in error reporting and error recovery
+- to.sql:
+  + columns selecting variables did not always get a column alias.
+  + when excluding a structure, the SQL backend incorrectly emits `wildcard-excluding-one`.
+
 ## Version 6.3.6 - 2025-09-19
 
 ### Fixed
@@ -217,6 +251,20 @@ The compiler behavior concerning `beta` features can change at any time without 
 ### Fixed
 
 - to.edm(x): Fixed crash for rare case if annotation expressions were used.
+
+## Version 5.9.12 - 2025-09-19
+
+### Fixed
+
+- to.sql: Topological ordering of views did not always account for subqueries (fixes regression from v5.9.0)
+
+## Version 5.9.10 - 2025-09-11
+
+### Fixed
+
+- parser: Keep parentheses around lists on the right side of an `in` operator.
+- compiler: For calculated elements using associations with filters and cardinality, CSN recompilation could
+            fail for `gensrc` CSN, as happens for MTX.
 
 ## Version 5.9.8 - 2025-07-14
 

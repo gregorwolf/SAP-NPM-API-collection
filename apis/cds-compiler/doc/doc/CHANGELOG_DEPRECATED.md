@@ -1,4 +1,4 @@
-# ChangeLog of deprecated Features for cdx compiler and backends
+# ChangeLog of deprecated features for CDS compiler and backends
 
 <!-- markdownlint-disable MD024 -->
 <!-- (no-duplicate-heading)-->

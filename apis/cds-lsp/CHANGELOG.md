@@ -6,7 +6,23 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.4.0 - 2025-09-29
+
+### Fixed
+- Code completion for annotations:
+  + In certain cases proposals added a superfluous `@` character
+  + Entries in annotation expressions could be shown twice
+  + SQL functions could have been suggested in annotation expressions
+
+### Removed
+- Temporary user setting `cds.workspace.fastDiagnosticsMode`. The default so far `clear` is now the only mode.
+
+### Also see
+- `@sap/cds-compiler` 6.4.0
+
+
 ## 9.3.0 - 2025-08-29
+
 ### Changed
 - Important: minimum required NodeJS version is now 22.15.1
 

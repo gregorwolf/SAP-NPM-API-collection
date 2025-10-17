@@ -6,6 +6,8 @@
 
 [Installation and Usage](#installation-and-usage)  
 [Documentation](#documentation)
+[How to Obtain Support](#how-to-obtain-support)
+[History and License](#history-and-license)
 
 ## Installation and Usage
 
@@ -23,15 +25,25 @@ Or maintain your package.json dependencies as follows:
   }
 ```
 
+If your project already has a dependency to `@sap/cds`, nothing has to be done.
+
 
 ## Documentation
 
 Please refer to the [official CDS documentation](https://cap.cloud.sap/docs/cds/).
 
+
 ## How to Obtain Support
 
 In case you find a bug, please report an [incident](https://cap.cloud.sap/docs/resources/#reporting-incidents) on SAP Support Portal.
 
-## License
 
-This package is provided under the terms of the [SAP Developer License Agreement](https://cap.cloud.sap/resources/license/developer-license-3_2_CAP.txt).
+## History and License
+
+The cds-compiler uses [Semantic Versioning](./doc/Versioning.md) for its version numbers.
+
+Our [changelog](./CHANGELOG.md) lists recent changes.
+<!-- If you upgrade from a previous version, TODO: incompatible changes -->
+
+This package is provided under the terms of the [SAP Developer License Agreement, Version 3.2 CAP](LICENSE).
+<!-- https://cap.cloud.sap/resources/license/developer-license-3_2_CAP.txt -->
