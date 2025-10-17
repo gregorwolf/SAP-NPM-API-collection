@@ -25,6 +25,7 @@
 @sap/bas-sdk
 @sap/bas-sdk-cf-utils
 @sap/cds
+@sap/cds-adapter-ina-js
 @sap/cds-attic
 @sap/cds-common-content
 @sap/cds-compiler
@@ -76,6 +77,7 @@
 @sap/generator-cds
 @sap/generator-fiori
 @sap/generator-hdb-project
+@sap/generator-mdk
 @sap/graph-toolkit
 @sap/grunt-sapui5-bestpractice-build
 @sap/grunt-sapui5-bestpractice-test
@@ -103,6 +105,7 @@
 @sap/logger-for-bas-extensions
 @sap/logging
 @sap/low-code-event-handler
+@sap/mdk-mcp-server
 @sap/mdk-tools
 @sap/modules-exploration
 @sap/mta-lib
