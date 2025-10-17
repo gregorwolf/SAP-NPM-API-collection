@@ -309,6 +309,29 @@ Arguments:
   --no-activate, -n    Don't activate versions after deployment
 ```
 
+#### set-log-level
+
+<details><summary>History</summary>
+
+| Version   | Changes                                     |
+|-----------|---------------------------------------------|
+| `v1.13.0` | Added                                       |
+
+</details>
+
+```
+Set the log level for a specific application version
+
+Usage:
+  afctl set-log-level APPLICATION [VERSION] --debug|--error
+
+Arguments:
+  APPLICATION  Name of the deployed application
+  VERSION      Name of the application version (defaults to active version)
+  --debug      Set log level to debug
+  --error      Set log level to error
+```
+
 #### start
 
 <details><summary>History</summary>

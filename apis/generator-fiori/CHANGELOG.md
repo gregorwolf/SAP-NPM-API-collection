@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.19.1] - 2025-10-02
+### Fixed
+- Fixed an issue where the "Transport Request" field was not marked as mandatory during deployment configuration
+- Fixed an issue where invalid error messages appeared in the output logs of the SAP Fiori generator when using an OData V4 service
+- Fixed an issue where the variants management script failed to load when virtual endpoints were not used
+
+## [1.19.0] - 2025-09-18
+### Changed
+- Changed the warning message when using a virtual host in the destination in SAP Business Application Studio to an information message to make it clearer that deployment can continue without a fix
+
+## Fixed
+- Fixed an issue where the option for ignoring certificate errors during deployment was not applied
+
 ## [1.18.7] - 2025-09-04
 ### Added
 - Added a notification banner to the SAP Fiori generator that allows the user to launch the Project Accelerator directly

@@ -1,5 +1,18 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.34.0
+
+### New Features
+- SAP HANA Cloud trace files are listed in the database list and can be anlysed via the trace file viewer.
+- SQL statements can be optmized via Joule. This feature is only available in SAP Build.
+
+### Fixes
+- The generation of SELECT and INSERT Statements for JSON collections was missing
+- The Joule commands were missing in SAP Build Code
+- SQL statement results in Joule are formatted correctly
+- Improved error reporting in Joule
+- Deleting a table takes a long time after inserting AI generated test data
+
 ## 1.33.0
 
 ### New Features

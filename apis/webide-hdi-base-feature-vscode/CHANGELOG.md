@@ -1,3 +1,8 @@
+## 1.40.0
+
+### New Features
+- Add datasource dialog: offer option to show only local objects
+
 ## 1.39.0
 
 ### Fixes

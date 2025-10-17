@@ -1,3 +1,10 @@
+## 5.5.1
+Features:
+- Fail with error if credentials.schema property is not a string
+
+Fixes:
+- Error: write EPIPE
+
 ## 5.5.0
 Features:
 - Added option `--write-batch-size <integer>`

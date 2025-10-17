@@ -12,13 +12,20 @@ New features:
 
 ### Breaking Changes
 CAP Node.js Applications should **not** need to make changes when updating to version 3.
-The only exception are applications that received app2app principal propagation tokens.
-Previously the consumed API was not considered in the authorization checks of the AMS plugin but now it is. For this reason, it is now mandatory to provide a mapper function from API name(s) to policy name(s).
-Please see the CAP Technical Communication documentation for details on how to configure this.
-To achieve backward-compatibility, you can map the used API name in the principal propagation flow to a policy that grants all possible roles that a user may have in the application.
-In effect, privileges will only depend on the user's roles as the privileges on the consumed API will not limit the privileges (like before).
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
+
+## 3.4.0
+- Removed some unused npm dependencies
+- Fix: AuthorizationManagementService no longer emits "error" events on failed bundle requests when no listeners are registered. Instead, it logs the error to console.error.
+- [CAP] Fix: use cds.context.user.authInfo instead of deprecated cds.context.http.req.authInfo if available (@sap/cds >= 9.3.0) to avoid deprecation warning
+- [CAP] Fix: During `cds serve|watch|test` in `production` profile, the CSN model is no longer traversed to validate AMS annotations or generate DCL at server start (only in `development` profile). During `cds build`, the model is still traversed regardless of the profile.
+- [CAP] Removed `requires.auth.ams.cache` default configuration for `cds env` as a cache has no longer been necessary since version 2.0.0.
+- [CAP] Added `requires.auth.generatePoliciesDeployer` configuration property (default: `auto`) that can be set to `false` to disable generation of an ams policy deployer application during `cds build` in applications that use a dedicated deployer application instead of the main application for deploying DCL files. In a future release, the `auto` option may receive intelligent behavior to detect whether a deployer application is required or not, while `true` can be used to enforce it.
+
+## 3.3.1
+- IdentityServiceAuthProvider now fills $user input without $env prefix which is semantically equal but more concise.
+- AuthorizationManagementService now emits different "error" events depending on its readiness state: `bundleInitializationError` or `bundleRefreshError`. The latter contains a new `secondsSinceLastRefresh` property.
 
 ## 3.3.0
 - Make API Permission Group -> Policy Mapper optional for app2app principal propagation flow (error log messages reduced to debug level)

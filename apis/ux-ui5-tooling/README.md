@@ -288,8 +288,38 @@ Starting with version `1.6.0` one can use the following syntax for proxying diff
         - path: /resources
           url: https://ui5.sap.com
         - path: /test-resources
-          src: https://ui5.sap.com
+          url: https://ui5.sap.com
       version: '1.100.1'
+```
+
+Starting with version `1.20.0` one can use the following syntax to load UI5 sources from a different host, e.g.
+
+**NOTE: using `pathReplace` will not consider a specified UI5 version. If a specific UI5 version is needed, then it needs to be part of the `pathReplace`.**
+
+```Yaml
+server:
+  customMiddleware:
+  - name: ui5-proxy-middleware
+    afterMiddleware: compression
+    configuration:
+      ui5:
+      - path: /resources          
+        url: https://my.backend.example:1234
+        pathReplace: /sap/public/ui5/resources    
+```
+```Yaml
+server:
+  customMiddleware:
+  - name: fiori-tools-proxy
+    afterMiddleware: compression
+    configuration:
+      ui5:
+        paths:
+          - path: /resources
+            url: https://ui5.sap.com
+          - path: /test-resources          
+            url: https://my.backend.example:1234
+            pathReplace: /sap/public/ui5/resources  
 ```
 
 ### [**3. Serve Static**](#3-serve-static)
@@ -514,7 +544,7 @@ builder:
   - name: deploy-to-abap
     afterTask: replaceVersion
     configuration:
-      ignoreCertError: false # Disabled by default, set to true if you want to ignore certificate errors
+      ignoreCertErrors: false # Disabled by default. Set to `true` to ignore certificate errors.
       target:
         url: https://XYZ.sap-system.corp:44311
         client: 200
@@ -559,7 +589,9 @@ builder:
     - name: deploy-to-abap
       afterTask: replaceVersion
       configuration:
-        yes: true # Enabled by default, set to true if you want to disable the confirmation prompt
+        verbose: true # Disabled by default. Set to `true` to include more information in the log.
+        yes: true # Enabled by default. Set to `true` to disable the confirmation prompt.
+        ignoreCertErrors: true # Disabled by default. Set to `true` to ignore certificate errors.
         target:
           url: https://XYZ.sap-system.corp:44311
           client: 200
@@ -666,7 +698,7 @@ The app object describes the backend object that is created/updated as result of
 - `boolean` (default: `false`)
 - If set to `true`, the task will log additional information about the deployment process. This is useful for debugging purposes.
 
-## [Commands](#commands)
+## [CLI Commands](#commands)
 ### [fiori run](#fiori-run---starts-a-local-web-server-for-running-a-fe-application) - starts a local web server for running a FE application
 #### Options
 
@@ -757,7 +789,9 @@ Deploys an application to an ABAP frontend server.
 * `--testMode, -tm` - Shows the results of CRUD operations that would be done in a real deployment to help you make an informed decision.
 * `--archive-path, -ap` - The path to the archive that should be deployed. If provided, the archive will be used instead of creating a new one from the dist folder.
 * `--verbose, -vb` - Enable verbose logging (default: `false`).
-* `--strict-ssl, -ss` - If set to `false`, the task will not validate the SSL certificate of the target system. This is useful for development purposes but should not be used in production environments (default: `true`).
+* `--strict-ssl, -ss` - Deprecated. Use `ignoreCertErrors` (plural) instead.
+* `--ignore-cert-error, -ic` - Deprecated. Use `ignoreCertErrors` (plural) instead.
+* `--ignore-cert-errors, -ics` - Disabled by default. If set to `true`, the task will not validate the SSL certificate of the target system. This is useful for development purposes but must not be used in production environments.
 
 ## [FAQ](#faq)
 

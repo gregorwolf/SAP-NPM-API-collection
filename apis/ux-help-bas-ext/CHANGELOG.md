@@ -7,6 +7,23 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.19.0] - 2025-09-18
+### Project Accelerator
+- Fixed an issue where the Project Accelerator failed to generate an application if it contained an empty subsection for a facet
+    
+### Added
+- Updated the _Configure Side Effects_ guide with several new features:
+  - Added support for updating existing annotations
+  - Added two guide variants for SAPUI5 versions 1.87 and above and versions below 1.87. For SAPUI5 version 1.87 and above, the guide includes using the `TriggerAction` annotation
+  - Introduced parameter collection tables, making parameter editing and management more user-friendly and efficient
+  - Aligned the CAP CDS and XML annotation variants of the guide. The XML variant now only contains a single simplified step
+
+### Changed
+- Improved the responsiveness of parameter collection tables
+
+### Fixed
+- Fixed an issue that prevented the _Configure Side Effects_ guide from appearing in the list when filtering by "Annotation"
+
 ## [1.18.7] - 2025-09-04
 ### Project Accelerator
 - Fixed an issue where invalid command palette entries were shown for the Project Accelerator

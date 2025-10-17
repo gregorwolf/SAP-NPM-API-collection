@@ -1,3 +1,37 @@
+## 1.42.0
+
+### New Features
+- New option to restrict the result list of the "Add Data Source" dialog to local objects to make it easier to find local objects
+- Support additional vector functions in the SQL expression editor: CARDINALITY, L2NORM, L2NORMALIZE, MEMBER_AT, SUB_VECTOR
+- Reduce memory consumption when filling snapshot tables: Focus on reduced memory consumption when filling snapshot tables
+
+### Fixes
+- Show confirmation dialog when deleting a synonym
+- Refreshing a calculation view doesn't work after refactoring
+- The value help for attributes and parameters is not correctly rendered
+- MDSCube: remove check for input parameters as client values during conversions
+- MDSCube: allow synonyms
+- Propagate changes should not be invoked by three different icons
+- Show a confirmation dialog with warning if an analytic privilege defines attributes
+- Manage mapping doesn't work when create constant used is in the output columns
+- Replace With Data Source doesn't modify the reference column of original table
+- Add scroll bar to "Generate Documents"
+- Analytic Data Preview not working on Windows
+- Hint of ASIN() function is missing, TO_GREATEST and TO_LEAST should be removed
+- Don't refactor hdbstructuredfilter file when renaming calculation view file
+- Cannot replace data source of table function
+- Switch aggregation to projection should work when there is one counter
+- Undo of Column Removal leads to inconsistent calculation view
+- Replace with node does not allow to delete node and keeps unmapped target column
+- The refactoring log could be empty
+- Undo not recovering former mass generated alias labels
+- Remove value help for calculated measures in expressions
+- Client column Name not populating in union node mapping for calculation view
+- fail to save after replace with data source
+- Search doesn't work in MDSCube
+- The "Remove" button is disable after clicking "Move Up"/"Move Down" buttons
+- Intermediate view creation fails if the SQL/Graphical data preview is executed more than once.
+
 ## 1.41.0
 
 ### New Features

@@ -5,6 +5,42 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2025.20.0
+
+### Changed
+
+- The CLI has been migrated to [EcmaScript Module (ESM)](https://nodejs.org/api/esm.html) syntax. As a result, support for Node.js versions 18 and 19 has been dropped, and Node.js 20 or later is now required. No APIs or other external properties of the CLI have been modified, so with a supported Node.js version, the CLI is expected to continue functioning as before.
+
+## 2025.18.0
+
+### Changed
+
+- **Enhanced TLS configuration for improved security.** The CLI now uses TLS 1.2 by default for all HTTPS requests, ensuring secure communication with servers. Users can adjust the TLS version if needed using the `--tls-version` flag with options "TLSv1.2" or "TLSv1.3".
+- The CLI has been migrated to [EcmaScript Module (ESM)](https://nodejs.org/api/esm.html) syntax. As a result, support for Node.js versions 18 and 19 has been dropped, and Node.js 20 or later is now required. No APIs or other external properties of the CLI have been modified, so with a supported Node.js version, the CLI is expected to continue functioning as before.
+
+### Added
+
+- **New environment variable `CLI_LEGACY_TLS_DETECTION`.** When set to `"true"`, this disables TLS version enforcement and lets Node.js decide the default TLS version. This provides compatibility with older Node.js versions or specific environments where TLS version enforcement might cause issues.
+
+### Fixed
+
+- The CLI now correctly handles the secrets overwrite confirmation when using the `--secrets-file` option. If the cached secret already exists the user is prompted to confirm whether to overwrite the existing secret or not. If the user chooses to overwrite, the CLI deletes the existing secret and continues with the default login process.
+
+## 2025.14.0
+
+### Changed
+
+- The login experience has been improved: When logging in, it is now clearly indicated if a secret for a tenant already exists, and confirmation is requested before overwriting it. Previously, existing secrets were not overwritten, but this was not clearly communicated. The process is now transparent and user-driven, helping to prevent accidental loss of credentials and confusion.
+
+  Example:
+
+  ```bash
+  $ datasphere login
+  ? Secret for tenant https://example-tenant.hanacloudservices.cloud.sap already exists. Do you want to overwrite it? › (Y/n)
+  ```
+
+  After confirming, the CLI will overwrite the existing secret with the new one. If the user chooses not to overwrite, the CLI will exit gracefully without making any changes.
+
 ## 2025.12.0
 
 ### Fixed

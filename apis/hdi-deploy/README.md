@@ -102,7 +102,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.5.0",
+    "@sap/hdi-deploy": "5.5.1",
     "@sap/hana-client": "2.19.20",
     "hdb": "0.19.3"
   },
@@ -552,7 +552,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.5.0",
+    "@sap/hdi-deploy": "5.5.1",
     "module1": "1.3.1",
     "module2": "1.7.0",
 
@@ -988,16 +988,16 @@ Example `manifest.yml`:
       env:
         TARGET_CONTAINER: app-database
         SERVICE_REPLACEMENTS: >
-        [
-          {
-            "key"     : "logical-grantor-service",
-            "service" : "real-grantor-service"
-          },
-          {
-            "key"     : "logical-external-service",
-            "service" : "real-external-service"
-          }
-        ]
+          [
+            {
+              "key"     : "logical-grantor-service",
+              "service" : "real-grantor-service"
+            },
+            {
+              "key"     : "logical-external-service",
+              "service" : "real-external-service"
+            }
+          ]
 
 ## Environment Variables for Infrastructure / Development Tools
 
@@ -1005,7 +1005,33 @@ Example `manifest.yml`:
 
 - `EXIT`: (optional) if set, the HDI Deployer will exit when the deployment is done; using the environment variable is equivalent to passing a `--exit` on the command line
 - `DEPLOY_ID`: (optional) if set, the given id will be written to the final application log entry (custom id, to support processes in parsing log output
-- `HDI_DEPLOY_OPTIONS`: (optional) JSON-structured set of options for the HDI Deployer, e.g. `{ "auto_undeploy" : true, "exit" : true, "root" : "/volumes/A/workspaces/B/db/", "include_filter" : [ "src/", "cfg/" ] }`; command line options can be translated to `HDI_DEPLOY_OPTIONS` options by replacing the `-`s in the option names with `_`s; options which can accept multiple values require a JSON array with the values, e.g. path options like the include-filter option.
+- `HDI_DEPLOY_OPTIONS`: (optional) JSON-structured set of options for the HDI Deployer, e.g. `{ "auto_undeploy" : true, "exit" : true }`;
+command line options can be translated to `HDI_DEPLOY_OPTIONS` options by replacing the `-`s in the option names with `_`s;
+options which can accept multiple values require a JSON array with the values, e.g. path options like the include-filter option.
+
+Example `mta.yml`:
+
+    _schema-version: "2.1"
+    ID: project
+    version: 0.0.1
+    modules:
+    - name: db
+      type: hdb
+      path: db
+      requires:
+      - name: hdi_db
+        properties:
+          TARGET_CONTAINER: ~{hdi-container-name}
+          HDI_DEPLOY_OPTIONS: >
+            {
+              "validate_external_dependencies": false,
+              "treat_unmodified_as_modified": true,
+              "exit": true,
+              "include_filter": ["src/", "cfg/"]
+            }
+
+            ...
+
 - `APPLICATION_ID`: (optional, fallback `SAP_HDI`) this will be used, in conjunction with the `space_name` and the `organization_name` of the `VCAP_APPLICATION` to set the session variable `APPLICATION` for all connections to the database. This setting may only be used by applications from SAP.
 - `APPLICATION_VERSION_INFO`: (optional) this will be logged to the command line, to allow logging of some additional information about the application.
 
@@ -1093,7 +1119,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "5.5.0",
+        "version": "5.5.1",
         "features": {
             "info": 2,
             "verbose": 1,

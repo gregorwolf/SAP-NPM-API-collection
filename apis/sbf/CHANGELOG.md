@@ -8,6 +8,11 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.9.8"></a>
+## 6.9.8 - 2025-10-16
+### Fixed
+- Fixed "Cannot read properties of undefined" error when using debug log level.
+
 <a name="6.9.7"></a>
 ## 6.9.7 - 2025-09-25
 ### Updated

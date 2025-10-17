@@ -621,6 +621,17 @@ Cloud Foundry provides both `plan_id` and `previous_values.plan_id`.
 At the moment Service Catalog on Kubernetes does not support service instance update. Refer to the [CLI documentation](https://github.com/kubernetes-sigs/service-catalog/blob/master/docs/cli.md) for changes.
 
 ##### Authentication with X.509 client certificates
+> [!WARNING]
+> #### XSUAA / X.509 Client Deprecation Notice
+> **Heads‑up (XSUAA / X.509):**
+> By the **end of this year**, creating **X.509 client bindings or service keys** will only work if the target service instance supports:
+> - `grant_type=client_credentials`
+> - `credential_type=x509`
+>
+> Setups that don’t meet this requirement will fail.
+> 
+> Learn more here: [Retrieving Access Tokens with Mutual Transport Layer Security (mTLS)](https://help.sap.com/docs/btp/sap-business-technology-platform/retrieving-access-tokens-with-mutual-transport-layer-security-mtls)
+
 
 Authentication with X.509 client certificates can be enabled with the following configuration provided in the _xs-security_ options:
 

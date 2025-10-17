@@ -6,6 +6,23 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.19.1] - 2025-10-02
+### Added
+- Added support for setting the grouping mode for mass edit changes
+- Added support for previewing applications on mobile devices from Visual Studio Code and SAP Business Application Studio
+### Changed
+- Improved the text in the message popover that appears when a project has been detected that can be migrated to support SAP Fiori tools
+### Fixed
+- Fixed an issue where a reusable library that can be migrated to support SAP Fiori tools did not appear in the list of projects to be migrated
+- Fixed an issue where the preview for CAP applications with namespaces did not work
+- Fixed an issue where the preview ignored SAPUI5 configuration properties when running from an alternate path in SAP Business Application Studio
+- Fixed an issue where the icons for the Page and Section building blocks were missing or broken in the Page Map
+- Fixed an issue where local changes did not reflect in SAP Fiori launchpad in embedded mode
+
+## [1.19.0] - 2025-09-18
+### Added
+- Added support for `rowCountMode: Interactive` to object page tables with the `GridTable`, `TreeTable`, and `AnalyticalTable` type in the "Page Editor"
+
 ## [1.18.7] - 2025-09-04
 ### Added
 - Added the ability to use AI code assistants such as GitHub Copilot or Cline to create and modify SAP Fiori elements applications

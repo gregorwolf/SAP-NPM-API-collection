@@ -1,3 +1,13 @@
+## 1.42.0
+
+### New Features
+
+- Updated HRTT to version 250814-1756963235-ee2e3f6
+
+### Fixes
+
+- The Cloud Foundry OAuth token is not refreshed when changing regions
+
 ## 1.41.0
 
 ### New Features

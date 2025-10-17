@@ -1,3 +1,17 @@
+## 1.33.0
+
+### New Features
+
+- The Generative AI Toolkit for SAP HANA Cloud can be used via Joule. This feature requires a Python runtime to be available.
+- Show a warning message if database modules are bound to services of different databases
+
+### Fixes
+
+- The artifact creation wizard tool is adding repeating SAP HANA Platform option
+- SQL connections could get added multiple times
+- Change the button "Delete unsupported content" in the virtual table file format editor to enhance clarity
+- Clear column definitions when selecting a new object in the virtual table edior
+
 ## 1.32.0
 
 ### New Features

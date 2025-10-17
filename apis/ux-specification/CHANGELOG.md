@@ -8,6 +8,55 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [NodeJS](https://nodejs.org/en/download/) Version `20.14.0` or higher
 
+## [1.136.8] - 2025-10-01
+
+### Added
+
+OData V4:
+- `operationGroupingMode` property support for table `enableMassEdit`
+- Add icon support and improve description for main building blocks in schema
+
+### Fixed
+
+- Macros: Corrections related to macros sub namespaces. Properties of richtexteditor:ButtonGroup control are not listed in app specific schema
+
+### Quality
+
+Upgrades:
+
+- Upgraded TS target to `ES2023`
+
+| Package | Change |
+|---|---|
+| [ts-jest](https://kulshekhar.github.io/ts-jest) ([source](https://github.com/kulshekhar/ts-jest)) | [`29.4.1` -> `29.4.4`] |
+| [@sap-ux/edmx-parser](https://github.com/SAP/open-ux-odata) ([source](https://github.com/SAP/open-ux-odata/tree/HEAD/packages/edmx-parser)) | [`0.9.5` -> `0.9.6`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | [`0.38.6` -> `0.39.2`] |
+| [esbuild](https://github.com/evanw/esbuild) | [`0.25.9` -> `0.25.10`] | 
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | [`8.44.0` -> `8.45.0`] | 
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | [`8.44.0` -> `8.45.0`] | 
+| [tar](https://github.com/isaacs/node-tar) | [`7.4.3` -> `7.5.1`] | 
+
+## [1.136.7] - 2025-09-17
+
+### Added
+
+OData V4:
+- Object Page: Added support for the `rowCountMode: Interactive` property on grid, analytical, and tree tables.
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+|---|---|
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/fe-fpm-writer)) | [`0.38.2` -> `0.38.6`] | 
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/eslint-plugin)) | [`8.42.0` -> `8.44.0`] | 
+| [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) ([source](https://github.com/typescript-eslint/typescript-eslint/tree/HEAD/packages/parser)) | [`8.42.0` -> `8.44.0`] | 
+| [axios](https://axios-http.com) ([source](https://github.com/axios/axios)) | [`1.11.0` -> `1.12.0`] | 
+| [@sap-ux/annotation-converter](https://github.com/SAP/open-ux-odata) ([source](https://github.com/SAP/open-ux-odata/tree/HEAD/packages/annotation-converter)) | [`0.10.3` -> `0.10.5`] | 
+| [@sap-ux/edmx-parser](https://github.com/SAP/open-ux-odata) ([source](https://github.com/SAP/open-ux-odata/tree/HEAD/packages/edmx-parser)) | [`0.8.2` -> `0.9.5`] | 
+| [i18next](https://www.i18next.com) ([source](https://github.com/i18next/i18next)) | [`25.4.2` -> `25.5.2`] |
+
 ## [1.136.6] - 2025-09-03
 
 ### Added
