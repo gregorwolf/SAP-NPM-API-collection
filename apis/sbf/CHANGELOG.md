@@ -8,6 +8,13 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.9.9"></a>
+## 6.9.9 - 2025-11-02
+### Updated
+- Update to qs 6.14.0
+- Update to axios-mock-adapter 2.1.0
+- Udpate to semver 7.7.3 
+
 <a name="6.9.8"></a>
 ## 6.9.8 - 2025-10-16
 ### Fixed

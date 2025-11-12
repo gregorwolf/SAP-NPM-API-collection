@@ -5,6 +5,12 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2025.21.0
+
+### Fixed
+
+- Fixed ESM dynamic import issues on Windows by converting file paths to proper file URLs using `pathToFileURL()`.
+
 ## 2025.20.0
 
 ### Changed

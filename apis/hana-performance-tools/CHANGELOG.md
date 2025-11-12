@@ -1,5 +1,52 @@
 # SAP HANA SQL Analyzer Changelog
 
+## 1.9.0
+The SQL analyzer tool version 1.9.0 includes the following improvements and bug fixes.
+
+### Improvements
+
+- **Overview Tab**
+  - Added the SAP HANA Smart Data Integration (SDI) Statistics card to display key-value metrics for SDI executions. Enabled copying of this data in JSON format for easy sharing or further analysis.
+
+- **Plan Graph Tab (Details Pane)**
+  - Integrated with SAP HANA database explorer by adding the Open Dependency Viewer button, providing direct access to the object dependency viewer when analyzing table-type operators.
+
+- **SQL Tab**
+  - Enhanced parameter handling by making the **Copy Parameter Values** button export data as a CSV string for easy pasting into the SQL Console or other tools.
+  - Pre-populated saved parameter values when re-running SQL queries.
+
+- **Operators & Table Access Tabs**
+  - Simplified the interface by removing filter, aggregation, and grouping options for a more focused view.
+  - Introduced a universal search bar to quickly find any entry in tables.
+  - Moved the **Save as CSV** and **Settings** buttons next to the search bar for faster access.
+  - Improved navigation in the **Operators** tab. Parent and child operators are now interactive, and clicking "N parents" or "N children" opens a dialog showing all related operators for easier navigation.
+  - Updated table columns to display relevant information:
+    - **Operators** tab: Added **Status** and **Property** columns, and removed **Details**, **APF** and **Critical Path** columns.
+    - **Table Access** tab: Added **CPU Time** and **Estimated Output Cardinality** columns, removed **Offset** and **Details** columns, and renamed **Processing Time** column to **Execution Time**.
+
+- **Properties View**
+  - Removed performance trace and function profiler data to focus on essential operator properties.
+
+- **Performance Trace Tab**
+  - Renamed **StartTime** and **EndTime** columns to **Start Time** and **End Time** in the **Inner Plans** and **Service Calls** tabs for better readability.
+
+- **Automatic Opening of PLV Files**
+  - Enabled automatic opening of PLV files directly in SQL analyzer, eliminating the need to click the Open SQL Analyzer button and accelerating query analysis.
+
+- **Large Data Warning Message**
+  - Added a warning when opening files containing exceptionally large data blocks (larger than 1MB) to prevent potential memory issues.
+
+### Bug Fixes
+
+- **Plan Compare Tab**
+  - Restored the missing **Compilation Summary** in the **Comparison Report**.
+  - Updated colors for dominant and critical operators to distinguish them by engine type.
+  - Fixed the navigation issue when selecting **Accessed Tables** in the **Comparison Report**.
+  - Resolved the issue where the **Plan Compare** tab did not open if two PLV files were already opened.
+
+- **Overview Tab**
+  - Fixed an issue where **Parameter Values** showed **1** on the **Context** card for PLV files without captured parameters. Now it shows **Not Captured**.
+
 ## 1.8.1
 
 ### Independent Property Tab

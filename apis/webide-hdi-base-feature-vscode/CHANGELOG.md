@@ -1,3 +1,11 @@
+## 1.41.0
+
+### New Features
+- Allow only non-cube views as sources in star-joins
+
+### Fixes
+- Performance improvements and fixes
+
 ## 1.40.0
 
 ### New Features

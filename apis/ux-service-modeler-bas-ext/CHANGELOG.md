@@ -3,6 +3,13 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.19.5] - 2025-10-30
+- No update
+
+## [1.19.2] - 2025-10-16
+### Fixed
+- Fixed an issue where incorrect error messages were shown for a service URI that did not exist on the backend
+
 ## [1.19.1] - 2025-10-02
 - No update
 

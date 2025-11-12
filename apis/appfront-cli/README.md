@@ -61,6 +61,7 @@ Arguments:
 
 | Version   | Changes                                     |
 |-----------|---------------------------------------------|
+| `v1.14.0` | The `-e` option added                       |
 | `v1.12.0` | The `-d` option added                       |
 | `v1.0.0`  | Added                                       |
 
@@ -70,11 +71,12 @@ Arguments:
 Display actual tool configuration or switch/delete configuration profile
 
 Usage:
-  afctl config [PROFILE] [-d]
+  afctl config [PROFILE] [-d] [-e]
 
 Arguments:
-  PROFILE       Name of the configuration profile
-  --delete, -d  Delete configuration profile
+  PROFILE       Name of the configuration profile                       
+  --delete, -d  Delete configuration profile                            
+  --env, -e     Display supported environment variables and their values
 ```
 
 #### curl
@@ -105,11 +107,12 @@ Arguments:
 
 <details><summary>History</summary>
 
-| Version  | Changes                                                  |
-|----------|----------------------------------------------------------|
-| `v1.5.0` | Prompt before deletion and `-f` flag added               |
-| `v1.3.0` | Support of version deletion added                        |
-| `v1.0.0` | Added                                                    |
+| Version   | Changes                                                  |
+|-----------|----------------------------------------------------------|
+| `v1.14.0` | The `d` alias added                                      |
+| `v1.5.0`  | Prompt before deletion and `-f` flag added               |
+| `v1.3.0`  | Support of version deletion added                        |
+| `v1.0.0`  | Added                                                    |
 
 </details>
 
@@ -118,6 +121,9 @@ Delete deployed application or application version
 
 Usage:
   afctl delete APPLICATION [VERSION] [-f]
+
+Alias:
+  d
 
 Arguments:
   APPLICATION  Name of the deployed application
@@ -151,6 +157,7 @@ Arguments:
 
 | Version   | Changes                                                           |
 |-----------|-------------------------------------------------------------------|
+| `v1.14.0` | The `--business-service` renamed to `--business-solution`         |
 | `v1.11.0` | The `--cdm`, `--business-service` and `PATH_TO_APP` options added |
 | `v1.11.0` | The `--name` and `--version` arguments are now named              |
 | `v1.8.0`  | Added                                                             |
@@ -161,15 +168,15 @@ Arguments:
 Initialize application
 
 Usage:
-  afctl init [PATH_TO_APP [--name APPLICATION] [--version VERSION], ...] [--business-service BUSINESS_SERVICE] [--cdm] [-f]
+  afctl init [PATH_TO_APP [--name APPLICATION] [--version VERSION], ...] [--business-solution BUSINESS_SOLUTION] [--cdm] [-f]
 
 Arguments:
-  PATH_TO_APP                          Path to frontend application directory
-  --name APPLICATION                   Name of the application        
-  --version VERSION                    Name of the application version
-  --business-service BUSINESS_SERVICE  Name of the application business service
-  --cdm                                Generate cdm.json file
-  --force, -f                          Force init with default values
+  PATH_TO_APP                            Path to frontend application directory
+  --name APPLICATION                     Name of the application        
+  --version VERSION                      Name of the application version
+  --business-solution BUSINESS_SOLUTION  Name of the application business solution
+  --cdm                                  Generate cdm.json file
+  --force, -f                            Force init with default values
 ```
 
 #### install
@@ -196,20 +203,22 @@ Arguments:
 
 <details><summary>History</summary>
 
-| Version  | Changes                                                  |
-|----------|----------------------------------------------------------|
-| `v1.0.0` | Added                                                    |
+| Version   | Changes                                                  |
+|-----------|----------------------------------------------------------|
+| `v1.14.0` | The `VERSION` option added                               |
+| `v1.0.0`  | Added                                                    |
 
 </details>
 
 ```
-List deployed applications or application versions
+List deployed applications or application versions or application version details
 
 Usage:
-  afctl list [APPLICATION]
+  afctl list [APPLICATION [VERSION]]
 
 Arguments:
-  APPLICATION  Name of the deployed application
+  APPLICATION  Name of the deployed application        
+  VERSION      Name of the deployed application version
 ```
 
 #### login
@@ -287,11 +296,12 @@ Arguments:
 
 <details><summary>History</summary>
 
-| Version  | Changes                                                  |
-|----------|----------------------------------------------------------|
-| `v1.6.0` | The `--activate` and `--no-activate` options added       |
-| `v1.0.4` | The `--logs` option added                                |
-| `v1.0.0` | Added                                                    |
+| Version   | Changes                                                  |
+|-----------|----------------------------------------------------------|
+| `v1.14.0` | The `p` alias added                                      |
+| `v1.6.0`  | The `--activate` and `--no-activate` options added       |
+| `v1.0.4`  | The `--logs` option added                                |
+| `v1.0.0`  | Added                                                    |
 
 </details>
 
@@ -300,6 +310,9 @@ Deploy new or sync changes to existing application versions
 
 Usage:
   afctl push [PATH_TO_APP, ...] [-c CONFIG] [-l] [-a|-n]
+
+Alias:
+  p
 
 Arguments:
   PATH_TO_APP          Path to frontend application directory         
@@ -313,9 +326,11 @@ Arguments:
 
 <details><summary>History</summary>
 
-| Version   | Changes                                     |
-|-----------|---------------------------------------------|
-| `v1.13.0` | Added                                       |
+| Version   | Changes                                                    |
+|-----------|------------------------------------------------------------|
+| `v1.14.0` | The `sll` alias added                                      |
+| `v1.13.1` | Enhanced to display expiration time when TTL is configured |
+| `v1.13.0` | Added                                                      |
 
 </details>
 
@@ -325,11 +340,17 @@ Set the log level for a specific application version
 Usage:
   afctl set-log-level APPLICATION [VERSION] --debug|--error
 
+Alias:
+  sll
+
 Arguments:
   APPLICATION  Name of the deployed application
   VERSION      Name of the application version (defaults to active version)
-  --debug      Set log level to debug
+  --debug      Set log level to debug (temporarily)
   --error      Set log level to error
+
+Note: When setting the log level to debug, it is configured temporarily with an expiration time.
+The command will display the expiration timestamp when applicable.
 ```
 
 #### start
@@ -409,6 +430,9 @@ In addition to command specific arguments, the following global flags may be pas
 The Application Frontend Command Line Interface creates and uses configuration file, which may be found in `$HOME/.afctl/config.yaml`. It includes multiple configuration profiles that allow to easily switch between various Application Frontend API servers and users. After successfull login, the configuration file also includes JWT (JSON Web Token) that is used to authenticate the calls of command line interface to Application Frontend service API server. To use configuration file different from default, set `AFCTL_CONFIG` environment variable
 to file path of desired configuration file.
 
+#### AFCTL_COLORS
+The Application Frontend Command Line Interface recognizes whether it is printing messages to terminal or not (e.g., output may be piped to file). By default, the messages printed to terminal are colorized using special character sequences (e.g., `\u001b[0;90m`). If your terminal does not support colors or you would like to explicitly switch off colorization, you can set `AFCTL_COLORS` to one of the falsy values (`false|off|no|0`).
+
 #### AFCTL_LOG_LEVEL
 The Application Frontend Command Line Interface supports multiple log levels:
 - `0` - no logs
@@ -450,8 +474,11 @@ By default, the `init` command either uses the `manifest.json` in the current wo
 
 #### AFCTL_SAVE_ZIP
 By default, the `push` command creates ZIP of ZIPs in memory and deletes it, once command is finished.
-To keep generated ZIP and save it to file system, the `AFCTL_SAVE_ZIP` environment variable may be set to any non-empy value.
+To keep generated ZIP and save it to file system, the `AFCTL_SAVE_ZIP` environment variable may be set to any non-empy and non-falsy value.
 In this case `apps.zip` will be saved to current working directory.
+
+#### AFCTL_TRACE
+The path to the file, which will contain the traces of executed command.
 
 ## Troubleshooting
 

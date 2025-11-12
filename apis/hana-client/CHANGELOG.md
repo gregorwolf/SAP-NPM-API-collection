@@ -8,6 +8,13 @@ For the latest updates please see SAP Note 3643985 - SAP HANA Client 2.26 Releas
 
 https://me.sap.com/notes/3643985
 
+## Version 2.26.25
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 347466: Upon changing an isolation level, a spurious "SET ISOLATION LEVEL" statement was executed.
+ - Issue Number 347850: "Error building request packet" errors could have been missing or inaccurate.
+
 ## Version 2.26.18
 
 ### Changes:
@@ -28,6 +35,12 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.25/en-US
 For the latest updates please see SAP Note 3599751 - SAP HANA Client 2.25 Release Notes
 
 https://me.sap.com/notes/3599751
+
+## Version 2.25.31
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 322041: Some ABAP type definitions were unsupported on ARM platforms.
 
 ## Version 2.25.29
 

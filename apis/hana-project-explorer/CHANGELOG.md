@@ -1,3 +1,15 @@
+## 1.34.0
+
+### New Features
+
+- The virtual table editor supports SQL on files remote sources
+
+### Fixes
+
+- Binding to a multi-tenancy instance with x509 authentication fails
+- Entering a database ID manually could cause the wizard snippet exit when binding to HANA Cloud tenant
+- Selecting all items with an active filter selects hidden items in the HDI Content Manager
+
 ## 1.33.0
 
 ### New Features

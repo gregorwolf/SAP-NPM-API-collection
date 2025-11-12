@@ -1,3 +1,8 @@
+## 1.19.0
+
+### Fixes
+- Use the "saposs.vscode-cf-tools" extension for Cloud Foundry login if available
+
 ## 1.18.0
 
 ### New Features

@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.19.2] - 2025-10-16
+### Project Accelerator
+- Fixed an issue where multiple lockfiles were created for applications generated using the "Project Accelerator"
+
 ## [1.19.0] - 2025-09-18
 ### Project Accelerator
 - Fixed an issue where the Project Accelerator failed to generate an application if it contained an empty subsection for a facet

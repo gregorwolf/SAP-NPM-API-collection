@@ -1,5 +1,20 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.35.0
+
+### New Features
+- An overview of the active SQL statements can be shown for a database connection
+
+### Fixes
+- Switch to the "saposs.vscode-cf-tools" extension for Cloud Foundry login
+- AI powered SQL generator fails to generate data for table having spatial columns
+- Empty results are not shown as tabs in the SQL console
+- A SQL console could hang if an HDI service cannot be found
+- SQL result formatting is switched off by default as it could lead to unexpected results
+- The analytic data preview for calculation views (column views) did not work for SAP HANA XS Classic calculation views
+- Selecting a large number of schemas could lead to a request error
+- The database connection for showing trace file list is not properly initialized
+
 ## 1.34.0
 
 ### New Features

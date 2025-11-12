@@ -15,6 +15,14 @@ CAP Node.js Applications should **not** need to make changes when updating to ve
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
 
+## 3.5.0
+- Fix: Catch request errors such as TLS certificate expiration errors during AMS bundle download and emit them via "bundleInitializationError" or "bundleRefreshError" events
+- Fix: Duplicated log output in CAP applications
+- improve bundle download error messages to include relevant information for support, such as bundle URL and region
+- `IdentityServiceAuthProvider#withApiMapper` and `IdentityServiceAuthProvider#withServicePlanMapper` now also accept plain objects for mapping APIs/service plans to policies as a simpler alternative to mapper functions.
+- ignore "local" DCL sub-packages during bundle upload case-insensitively
+- ignore legacy DCL test files ending in `_test.dcl` during bundle upload
+
 ## 3.4.0
 - Removed some unused npm dependencies
 - Fix: AuthorizationManagementService no longer emits "error" events on failed bundle requests when no listeners are registered. Instead, it logs the error to console.error.

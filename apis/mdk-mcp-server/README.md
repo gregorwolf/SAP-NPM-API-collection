@@ -13,7 +13,7 @@ The SAP Mobile Development Kit (MDK) is a powerful framework that enables develo
 Some of SAP’s larger and complex mobile apps are built using MDK. An example is [SAP Service and Asset Manager](https://www.sap.com/sea/products/scm/asset-manager.html).
 
 > [!NOTE]
-> This MCP server is an early release version of the MDK. Right now it can only run properly on Mac, it will be on Windows soon. You may encounter bugs or unfinished features. We'd love your feedback to make it better! Please report issues or share suggestions via [GitHub issues](https://github.com/sap/mdk-mcp-server/issues).
+> This MCP server is an early release version of the MDK. You may encounter bugs or unfinished features. We'd love your feedback to make it better! Please report issues or share suggestions via [GitHub issues](https://github.com/sap/mdk-mcp-server/issues).
 
 ## Table of Contents
 
@@ -36,14 +36,23 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
     npm i -g yo@4.3.1
     ```
 
-3. Install the MCP server for mobile development kit (MDK): 
+3. For installing the MDK MCP server, we offer two options:
 
-    ```bash 
-    git clone https://github.com/SAP/mdk-mcp-server.git 
-    cd mdk-mcp-server 
-    npm i --include=optional 
-    npm i -g @sap/mdk-mcp-server@. 
-    ```
+    a. Use npm to install it from the public npmjs registry at [@sap/mdk-mcp-server](https://www.npmjs.com/package/@sap/mdk-mcp-server). 
+  
+      ```bash
+      npm install -g @sap/mdk-mcp-server 
+      ``` 
+
+    b. Clone the open-source code repository at https://github.com/SAP/mdk-mcp-server, and use `npm` to install.  
+
+      ```bash 
+      git clone https://github.com/SAP/mdk-mcp-server.git 
+      cd mdk-mcp-server 
+      npm i --include=optional 
+      npm run build
+      npm i -g @sap/mdk-mcp-server@. 
+      ```
 
 4. Configure your MCP client (AI agent) to connect to the server. Configuration will vary depending on the AI agent used.
 
@@ -52,7 +61,7 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
     - With Cline open, look below the prompt box and click **Manage MCP Servers**.
     - In the dialog, click **Settings**. The MCP Servers page opens.
     - Click **Configure MCP Servers**. This will open the `cline_mcp_settings.json` file in your editor.
-    - In the JSON settings file, add a configuration block for MDK MCP server within a `mcpServers` section and save the file.
+    - In the JSON settings file, add a configuration block for MDK MCP server within the `mcpServers` section, and save the file. The supported schema versions include 25.9(default), 25.6, 24.11, and 24.7.
 
     ```
     {
@@ -60,7 +69,7 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
         "mdk-mcp": {
           "type": "stdio",
           "command": "mdk-mcp",
-          "args": []
+          "args": ["--schema-version", "25.9"]
         }
       }
     }
@@ -79,7 +88,7 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
       "mcp": {
         "mdk-mcp": {
           "type": "local",
-          "command": ["mdk-mcp"],
+          "command": ["mdk-mcp", "--schema-version", "25.9"],
           "enabled": true
         }
       }
@@ -97,7 +106,7 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
       "mcpServers": {
         "mdk-mcp": {
           "command": "mdk-mcp",
-          "args": []
+          "args": ["--schema-version", "25.9"]
         }
       }
     }
@@ -136,9 +145,9 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
       2.	Install the [Cloud Foundry CLI](https://help.sap.com/docs/btp/sap-business-technology-platform/download-and-install-cloud-foundry-command-line-interface).
       3.	Log in to your SAP BTP Cloud Foundry environment. For more details you can refer to [this help documentation](https://help.sap.com/docs/btp/sap-business-technology-platform/log-on-to-cloud-foundry-environment-using-cloud-foundry-command-line-interface).
 
-          ```bash
-          cf login <your target endpoint> --sso
-          ```
+      ```bash
+      cf login <your target endpoint> --sso
+      ```
 
       4. Create an empty folder on your machine and open it in VS Code.
       5. Open the Command Palette in VS Code and select **MDK: Open Mobile App Editor**.
@@ -172,16 +181,8 @@ This release of the MDK MCP server includes the following tools, which can be ac
 | `mdk-gen-layout-page`    | Generates a layout-based MDK page. You can describe the page layout, controls. It saves the response to `.page` file.  | - `folderRootPath:` The path of the current project root folder. <br> -`layoutType:` The type of the layout to be used in the MDK page. |
 | `mdk-gen-entity`    | Generates CRUD or List Detail template metadata for a new entity set.  | - `folderRootPath:` The path of the current project root folder. <br> -`templateType:` The type of the entity template to be used. <br> -`oDataEntitySets:` The OData entity sets are relevant to the user prompt, separated by commas. |
 | `mdk-gen-action`    | Returns a prompt to be used for generating an MDK action. Using the prompt, an `.action` file will be created that describes the action type and data bindings.  | - `folderRootPath:` The path of the current project root folder. <br> -`actionType:` The type of the action. |
-| `mdk-build`    | Build an MDK project.  | - `folderRootPath:` The path of the current project root folder. |
-| `mdk-deploy`    | Deploy an MDK project to the Mobile Services.  | - `folderRootPath:` The path of the current project root folder. |
-| `mdk-show-qrcode`    | Show QR code for an MDK application. | - `folderRootPath:` The path of the current project root folder. |
-| `mdk-migrate`    | Migrate an MDK project to the latest MDK version.  | - `folderRootPath:` The path of the current project root folder. |
-| `mdk-validate`    | Validate an MDK project. | - `folderRootPath:` The path of the current project root folder. |
-| `mdk-search-documentation`    | Returns the top N results from MDK documentation by semantic search, sorted by relevance.  | - `query:` Search query string. <br> -`N:` Number of results to return. |
-| `mdk-get-component-documentation`    | Returns the schema of an MDK component based on the name of the component.  | - `component_name:` Name of the component. |
-| `mdk-get-property-documentation`    | Returns the documentation of a specific property of an MDK component.  | - `component_name:` Name of the component. <br> -`property_name:` Name of the property. |
-| `mdk-get-example`    | Returns an example usage of an MDK component.  | - `component_name:` Name of the component. |
-| `mdk-open-mobile-app-editor`    | Instruct how to open the Mobile App Editor to create .service.metadata file.  | None |
+| `mdk-manage`    | Comprehensive MDK project management tool that handles build, deploy, validate, migrate, show QR code, and mobile app editor operations.  | - `folderRootPath:` The path of the current project root folder. <br> -`operation:` The operation to perform on the MDK project. Available operations:<br>• `build`: Build an MDK project<br>• `deploy`: Deploy an MDK project to the Mobile Services<br>• `validate`: Validate an MDK project<br>• `migrate`: Migrate an MDK project to the latest MDK version<br>• `show-qrcode`: Show QR code for an MDK project<br>• `open-mobile-app-editor`: Instruct how to open the Mobile App Editor to create .service.metadata file |
+| `mdk-docs`    | Unified tool for accessing MDK documentation including search, component schemas, property details, and examples.  | - `operation:` The type of documentation operation to perform:<br>• `search`: Returns the top N results from MDK documentation by semantic search, sorted by relevance<br>• `component`: Returns the schema of an MDK component based on the name of the component<br>• `property`: Returns the documentation of a specific property of an MDK component<br>• `example`: Returns an example usage of an MDK component <br> -`folderRootPath:` The path of the current project root folder. Used to determine the appropriate MDK schema version. <br> -`query:` Search query string (required for 'search' operation). <br> -`component_name:` Name of the component (required for 'component', 'property', and 'example' operations). <br> -`property_name:` Name of the property (required for 'property' operation). <br> -`N:` Number of results to return for search operation (default: 5). |
 
 ## Support, Feedback, Contributing
 

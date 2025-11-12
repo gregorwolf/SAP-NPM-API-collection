@@ -3,6 +3,23 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.19.5] - 2025-10-30
+### Fixed
+- Fixed an issue where the deployment configuration could not be added from the command line when using SAP Business Application Studio
+- Fixed an issue where a reuse library generated with SAPUI5 versions 1.71.x failed to deploy
+- Fixed an issue where the user was not warned when adding a new saved system if that saved system already existed when generating an application using the command line
+- Updated ux-ui5-tooling to no longer report high vulnerabilities with dependencies
+
+## [1.19.2] - 2025-10-16
+### Changed
+- Updated ABAP Cloud saved systems to only use reentrance tickets. Existing saved system that use service keys are still supported, but you must use reentrance tickets for new ABAP Cloud system connections
+- Updated the default table type for SAP Fiori elements for OData V4 applications with a list report page or worklist page to an analytical table or tree table if the selected entity supports it
+
+### Fixed
+- Fixed an issue where launching an SAP Fiori application in Visual Studio Code from ABAP Development Tools in Eclipse failed if the workspace in Visual Studio Code used a virtual directory
+- Fixed an issue where the UI Service Generator showed a message that contained invalid characters after generation
+- Fixed an issue where adding a new saved system using the "SAP Fiori generator" overwrote an existing saved system if it used the same connectivity details, without a warning
+
 ## [1.19.1] - 2025-10-02
 ### Fixed
 - Fixed an issue where the "Transport Request" field was not marked as mandatory during deployment configuration
@@ -511,7 +528,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 ## [1.10.5] - 2023-08-10
 ### Added
-- Added option to create Fiori launchpad configuration after generation using a wizard style approach rather than needing to use the command line.  Users can use the command palette option `Fiori: Add Fiori Launchpad Configuration` to launch the wizard.
+- Added option to create Fiori launchpad configuration after generation using a wizard style approach rather than needing to use the command line.  Users can use the command palette option `Fiori: Add SAP Fiori Launchpad Config` to launch the wizard.
 - Added Guided Answers link for deployment failures due to an invalid SSL certificate being used.
 
 ### Changed

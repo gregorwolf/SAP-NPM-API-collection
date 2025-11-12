@@ -1,3 +1,29 @@
+## 1.43.0
+
+### New Features
+- Allow only non-cube views as sources in star-joins
+- New option "Keep MDS Cube" to ensure that reporting on MDS Cube can continue even if underlying calculation views have been redeployed
+- Information about key columns is available when modeling star-joins
+- Support for left-outer joins in MDS Cubes
+- Allow restricted measures in MDS Cubes
+
+### Fixes
+- Make the hierarchy list toolbar sticky
+- Make the restricted columns list toolbar sticky
+- Replacing a data source of a union node leads to Null flag for constant mapping
+- Show tooltip for window function frame value
+- Snapshot query shows inconsistent null handling
+- Error Details not shown and previous output persists after snapshot query failure
+- Value help of input parameter with reference column in current view should query current view
+- Rename "Structured Filter" to "SQL Analytic Filters"
+- Block switching to projection when there are MDS Cubes
+- Use "saposs.code-snippet-tool" extension for code snippet visualization
+- Analytic data preview could fail in project setups with multiple modules
+- Display of parameter mapping shows only white screen
+- Prevent usage of input parameters of type multiple entries in currency conversion fields
+- Editor does not block variable with hierarchy reference with MDS Cube
+- Show reason why MDS Cube cannot be modified when keep flag is set
+
 ## 1.42.0
 
 ### New Features

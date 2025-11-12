@@ -6,6 +6,30 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.19.5] - 2025-10-30
+### Added
+ - Enabled the ability for grouping actions in the "Page Editor" to ensure that certain actions are always displayed together in the overflow, for SAPUI5 versions 1.139 and above
+ - Enabled the possibility to configure `creationMode` settings for the list report tables of OData V4 applications in the "Page Editor", for SAPUI5 versions 1.130 and above
+### Fixed
+ - Fixed an issue where adding a new SAP-saved system for an ABAP on-premise system asked for credentials without validating if the saved system already existed
+ - Fixed an issue where the name of a new custom column that was created using building blocks was not displayed as a column name in the Page Map
+ - Fixed an issue where an empty key was created in the manifest when a view was added in the "Page Editor"
+ - Fixed an issue where the error messages were not correctly updated in the "Page Map"
+ - Fixed an issue where a newly added property appeared outside the viewport after being added for the first time in the Page Editor
+ - Fixed an issue where the synchronization of tables on the object page did not work correctly if the `PresentationVariant` was used
+ - Fixed an issue where the specification loading was broken with the error: [ERR_INVALID_ARG_TYPE]
+
+## [1.19.2] - 2025-10-16
+### Changed
+- Updated the "Flexible Programming Model Explorer" link in the "USEFUL LINKS" section with the new "SAP Fiori Development Portal" link
+- Updated ABAP Cloud saved systems to only use reentrance tickets. Existing saved system that use service keys are still supported, but you must use reentrance tickets for new ABAP Cloud system connections
+### Fixed
+- Fixed an issue where the book icons were missing on the `creationMode` aggregation in the "Page Editor"
+- Fixed an issue where a timeout error occurred with an EDMX application containing another EDMX application in the "Page Map"
+- Fixed an issue where the preview for the `reentranceTicket` authentication type did not work
+- Fixed an issue where an incorrect entity list was shown when no relative entity was present when adding the Rich Text Editor building block
+- Fixed an issue where it was possible to make the Actions menu empty in the "Page Editor"
+
 ## [1.19.1] - 2025-10-02
 ### Added
 - Added support for setting the grouping mode for mass edit changes

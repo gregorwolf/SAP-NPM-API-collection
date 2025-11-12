@@ -37,6 +37,7 @@ This module allows Node.js applications to authenticate users via JWT tokens iss
     - [Proof Token Validation](#proof-token-validation)
     - [IAS -> XSUAA Token Exchange](#ias---xsuaa-token-exchange)
     - [Retry logic](#retry-logic)
+    - [JWKS Rotation](#jwks-rotation)
 1. [Troubleshooting](#troubleshooting)
     - [Common Issues](#common-issues)
     - [Debug Logs](#debug-logs)
@@ -792,6 +793,14 @@ const authService = new IdentityService(identityServiceCredentials,
   }
 );
 ```
+
+### JWKS Rotation
+JWKS rotation is supported out-of-the-box and you do **not** need to configure anything for this:
+
+- The standard JWKS cache timings provide plenty of leeway for key rotations performed by the authentication servers.
+For example, the automatic key rotation in XSUAA  has a 24 hours period for both phasing out old keys and phasing in new keys while the cached JWKS is not used longer than 30 minutes.
+If you are using non-default JWKS cache timings, please ensure that they are not set too high to receive JWKS updates within the leeway period.
+- The [token signature cache](#signature-cache) supports phasing out of old keys. Its results will not be used for tokens whose public key hase been removed from the JWKS. Also, it does not cache the absence of public keys from the JWKS, so once a new key is added to the JWKS, tokens signed with that key will be validated correctly even if they have been seen before.
 
 ### X.509 certificate support
 #### X509_GENERATED
