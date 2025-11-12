@@ -6,6 +6,41 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.4.3 - 2025-10-29
+
+### Changed
+
+- `cds add containerize` omits the Unix-based `before_all` scripts in `containerize.yaml` in favor of a cross-platform compatible `cds up --to k8s` integration.
+- `cds up --to k8s` now uses built-in containerization, eliminating the hard dependency on the `ctz` library.
+- `cds up --to k8s` will interactively ask for a domain if it can't be determined from the current Kubernetes configuration.
+- `cds build --for hana` no longer requires `.hdbgrants` and `.hdbrevokes` to be specified as a plugin in the `.hdiconfig` file.
+
+### Fixed
+
+- `cds add pipeline` does not add UI5 template files in some cases.
+- `cds add ias` does not write to the `mta.yaml` for non-MTA projects.
+- `cds add ias` automatically adds the `authenticationType` to `xs-app.json` if required.
+- `cds add ias` adds a binding to the approuter component if required.
+- `cds import --from ...` yields a better error message for unknown import kinds.
+
+## Version 9.4.2 - 2025-10-23
+
+### Changed
+
+- `cds add containerize` does not add app module installations scripts to its `containerize.yaml`. Use `cds up --to k8s` instead.
+- `cds add` is less eager with respect to changing unaffected configuration.
+- `cds add ias` adds less unnecessary configuration in combination with the HTML5 repository.
+- `cds add test` includes the service name in the test suite description.
+
+### Fixed
+
+- `cds add ams` followed by `cds add mta` correctly generates the AMS deployer module.
+- `cds add hana` does not fail if there's no `.cdsrc.json`.
+- `cds up` doesn't try to create a symlink to the monorepo _package-lock.json_ if a submodule-local one already exists.
+- `cds add test` creates correct OData URLs with unqualified entity names in service paths.
+- `cds add http` skips contained composition targets.
+- `cds add sample` no longer comes with an error when creating a Book through Fiori.
+
 ## Version 9.4.1 - 2025-10-09
 
 ### Added

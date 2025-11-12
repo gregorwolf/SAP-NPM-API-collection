@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.1.1 - 2025-10-29
+
+### Fixed
+
+- Various performance improvements like support for preload requests and disabling of non-essential features.
+
 ## Version 2.1.0 - 2025-10-07
 
 ### Changed

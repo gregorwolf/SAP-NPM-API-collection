@@ -6,6 +6,21 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.4.3 - 2025-10-29
+
+### Changed
+
+- [Pre-Alpha] `hana_tenant_prefix` is now mandatory to ensure a unique HANA tenant for `t0`.
+
+### Fixed
+
+- Deployment errors when activating extensions do no longer appear as base64 encoded text in the logs.
+- The `cds.cdsc.tenantDiscriminator` setting is ignored by the sidecar.
+- [Pre-Alpha] Upgrade is for list of tenants now works properly again with `cds.requires.multitenancy.jobs.clusterSize` > 1 (default is 3).
+- [Pre-Alpha] Creation of tenant containers for a BTP tenant or `t0` for different applications now works more stable.
+- When pushing or adding extensions via API, the extension validation now checks the edmx for the configured odata version.
+- Update of the application URL via Subscription Management Dashboard now works correctly.
+
 ## Version 3.4.2 - 2025-10-14
 
 ### Fixed
@@ -19,7 +34,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Annotation validation now works correctly when using `extend <entity> with <annotation>`.
 - [Pre-Alpha] Subscription triggered by BTP when using HANA TMS v2 works again.
 - The profile `[with-mtx]` doesn't override database configuration for non-MTX usage.
-- Improved resilience for SaaS regsistry and Subscription Manager callbacks.
+- Improved resilience for SaaS registry and Subscription Manager callbacks.
 
 ## Version 3.4.0 - 2025-09-29
 

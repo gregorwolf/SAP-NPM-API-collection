@@ -4,9 +4,35 @@
 <!-- markdownlint-disable MD004 -->
 <!-- (no-duplicate-heading)-->
 
-Note: `beta` fixes, changes and features are usually not listed in this ChangeLog
-but in [doc/CHANGELOG_BETA.md](doc/CHANGELOG_BETA.md).
-The compiler behavior concerning `beta` features can change at any time without notice.
+Note: while we list new `beta` flags and their removal in this ChangeLog,
+we might not list every change in its behavior here.
+Productive code should never require a `beta` flag to be set, and
+might use a deprecated flag only for a limited period of time.
+
+## Version 6.4.6 - 2025-10-23
+
+### Fixed
+
+- compiler: a references to an element of the target in a filter for associations
+  inside an annotation expression does not lead to a compiler message requesting
+  users to provide the annotation themselves (regression with v6.4.4)
+
+## Version 6.4.4 - 2025-10-15
+
+### Fixed
+
+- compiler:
+  + properly rewrite references in arguments of associations in annotation expressions
+  + a references to a variable (`$user.id`, …) in a filter of an annotation expression
+    does not lead to a compiler message requesting users to provide the annotation themselves
+  + improve code completion in annotation expressions: the editor can display valid names
+    for references even if the expression does not properly end by `)`
+- to.sql:
+  + reject `$self` in infix filter following exists predicate instead of just ignoring the filter expression
+  + properly add comparison for the `tenant` discriminator to the `join` condition of `localized` views
+    if the non-published option for tenant support is set (regression with v6.4.0)
+
+### Removed
 
 ## Version 6.4.2 - 2025-10-07
 
@@ -17,8 +43,8 @@ The compiler behavior concerning `beta` features can change at any time without 
   + avoid clutter in message text for syntax errors: use `‹Value›` instead of listing value tokens
 - compiler: fix suppression of warnings when annotating backend-generated things
   like draft entities or localized convenience views
-- to.sql|hdi|hdbcds: Fix handling of structured columns when calculated elements are used
-  don't add explicit casts too eagerly
+- to.sql|hdi|hdbcds: don’t report unjustified errors when projecting structured elements and
+  calculated elements had been used (regression with v6.4.0)
 
 ## Version 6.4.0 - 2025-09-26
 
@@ -239,6 +265,19 @@ The compiler behavior concerning `beta` features can change at any time without 
 
 - for.odata/to.edm(x):
   + Annotating the generated `DraftAdministrativeData` artifacts and their elements is now supported.
+- beta flag `v7preview`: if set, the compiler reports those issues as errors
+  which we consider severe enough to report as error with the v7 release.
+- new deprecated flags:
+  + If the deprecated flag `noQuasiVirtualAssocs` is set, managed to-many associations
+    will get foreign keys as they got in compiler v5.  If not set, managed to-many associations
+    without explicit foreign keys don't get `keys` anymore in  cds-compiler v6.
+  + If the deprecated flag `noCompositionIncludes` is set, generated entities for compositions
+    of named aspect will not get an `includes` property.
+  + If the deprecated flag `noPersistenceJournalForGeneratedEntities` is set,
+    `@cds.persistence.journal` will _not_ be propagated to generated entities,
+    including generated `.texts` entities for localized entities, nor generated entities
+    for managed compositions of aspects. If not set, this annotation is copied to those entities
+    in compiler v6.
 
 ### Removed
 
@@ -247,6 +286,9 @@ The compiler behavior concerning `beta` features can change at any time without 
   + v5 deprecated flags are removed, see [CHANGELOG_DEPRECATED.md](doc/CHANGELOG_DEPRECATED.md).
   + Option `compositionIncludes` is removed, as its default is `true`; instead, a deprecated flag was added.
 - to.hdbcds: The HDBCDS backend is deprecated and can no longer be invoked.
+- beta feature `v6preview`
+- deprecated flags `includesNonShadowedFirst`, `eagerPersistenceForGeneratedEntities` and
+  noKeyPropagationWithExpansions`
 
 ### Fixed
 
@@ -358,6 +400,8 @@ The compiler behavior concerning `beta` features can change at any time without 
   in parentheses such as `[ (1), (2) ]`, as well as "infinite" by using `[ _, _ ]`.
 - for.odata/to.edm(x)/for.seal: Propagate annotation expressions from managed associations
   to the foreign keys
+- beta feature `v6preview`: if set, the compiler reports those issues as errors
+  which we consider severe enough to report as error with the v6 release.
 
 ### Changed
 
@@ -530,6 +574,11 @@ The compiler behavior concerning `beta` features can change at any time without 
 - CDL parser: Issue warning for arrayed parameter with default value.
 - to.cdl: Arrayed parameters with default values were not rendered correctly.
 
+### Removed
+
+- beta flag `optionalActionFunctionParameters`: in v5, action and function parameters
+  can be specified as optional without setting this beta flag.
+
 ## Version 5.2.0 - 2024-08-27
 
 ### Added
@@ -645,6 +694,7 @@ This is a preview version for the major release and contains breaking changes. I
 
 - API: Deprecated functions `preparedCsnToEdmx` and `preparedCsnToEdm` were removed.
   Use `to.edm(x)` instead.
+- beta feature `v5preview`
 
 ## Version 4.9.10 - 2025-04-29
 

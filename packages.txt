@@ -26,6 +26,7 @@
 @sap/bas-sdk-cf-utils
 @sap/cds
 @sap/cds-adapter-ina-js
+@sap/cds-analytics
 @sap/cds-attic
 @sap/cds-common-content
 @sap/cds-compiler

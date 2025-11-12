@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## Version 0.2.1 - 2025-10-30
+
+### Fixed
+ 
+- Local multitenant development using the --with-mtx profile
+- formatting of this changelog
+
 ## Version 0.2.0 - 2025-10-06
 
 ### Added
@@ -18,20 +25,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
   ```
 - Restrict after read handlers to modify certain fields, like IDs, ETag and managed fields.
  
-## Fixed
+### Fixed
  
 - Forbid usage of `console.log` in production
 - Only application services can be code-extended
 - Extensions for services with manespace `cds.xt` are forbidden
  
-## Changed
+### Changed
  
 - Switch to Oyster v2
 - Keep framework.wasm in binary format
 - Allow non CDS-Oyster application handlers in `app/srv` directory
 - Only errors and messages produced in extension are visible within extension
  
-## Removed
+### Removed
  
 - Calling bound action from extension in form `this.action()`. Only unbound actions are allowed.
 - Before-READ extension handler

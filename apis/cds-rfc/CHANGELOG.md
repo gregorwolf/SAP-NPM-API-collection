@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 2.0.4 - 2025-10-24
+
+### Fixed
+
+- import with `--name` no longer fails for modules in namespaces like `/FOO/BAR`
+
 ## Version 2.0.2 - 2025-07-11
 
 ### Fixed

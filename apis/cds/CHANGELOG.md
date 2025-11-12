@@ -4,6 +4,15 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.4.4 - 2025-10-23
+
+### Fixed
+
+- Input validation of action parameters in action calls on draft state of draft enabled entities
+- Input validation on `NEW` event of draft choreography
+- Ignore outbox model on Windows
+- `enterprise-messaging-shared`: preserve error listener during reconnect
+
 ## Version 9.4.3 - 2025-10-10
 
 ### Fixed
@@ -62,7 +71,6 @@
 - Broken link `cds.auth`
 - Persist original error message in draft validation messages
 - Escaping of `\t` and `\f` in edmx during localization
-- Escaping of JSON escape sequences other than `\"` during localization
 
 ## Version 9.3.1 - 2025-09-03
 

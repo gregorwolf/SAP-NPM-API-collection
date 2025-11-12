@@ -121,6 +121,20 @@ class MyService extends cds.ApplicationService { init() {
 module.exports = MyService
 ```
 
+The above example uses the convenient typed API `sys.BAPI_USER_GET_DETAIL()`. Function modules with _ABAP namespaces_ though (like `/FOO/BAR`) need to be called using the generic `send` API:
+```js
+await sys.send('/FOO/BAR', { ... })
+```
+
+As the parameter number of function modules tends to be high, _prefer named parameters_ over positional ones:
+```js
+await sys.FOO_BAR ({ PARAM1: val1, PARAM1: val2, ... }) // do
+await sys.FOO_BAR (val1, val2, ...) // don't, too confusing
+```
+
+> Learn more on the different [service call styles](https://cap.cloud.sap/docs/node.js/core-services#consuming-services).
+
+
 #### Configure System Access
 
 In local scenarios where you can reach the system from your network, you can skip using destinations and specify the connection details in an `.env` file:
@@ -133,14 +147,16 @@ cds.requires.SYS.credentials.user=
 cds.requires.SYS.credentials.passwd=
 ```
 
+Such a system configuration is also required for the [online CLI importer](#through-the-cli) above.
+
 Make sure to git-ignore this file, if it contains your user and password.
 You can also pass user and password through environment variables:
 
 ```sh
- CDS_REQUIRES_SYS_CREDENTIALS_USER=... CDS_REQUIRES_SYS_CREDENTIALS_PASSWD=... cds watch
+ cds_requires_SYS_credentials_user=... cds_requires_SYS_credentials_passwd=... cds watch
 ```
+> On Windows use the `SET ...` equivalent.
 
-Such a system configuration is also required for the [online CLI importer](#through-the-cli) above.
 
 ## How to Obtain Support
 
