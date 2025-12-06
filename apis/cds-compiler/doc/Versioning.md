@@ -54,19 +54,15 @@ we detect invalid CDS code.  OData vocabularies may be updated.
 
 The compiler provides so-called “beta flags” that enable or disable certain
 features.  We do not guarantee that any such flags stay consistent between
-patch versions!  Beta flags may change any time.
-
-Refer to [CHANGELOG_BETA.md](./CHANGELOG_BETA.md) for changes to beta flags.
+patch versions!  Beta flags may change any time,
+with or without being listed in the [CHANGELOG.md](../CHANGELOG.md).
 
 ## Deprecated Flags
 
 “Deprecated flags” allow developers to switch to old behavior and make it
 easier to upgrade to a later major version.  These flags may be changed or
 removed anytime as they only serve to make upgrades easier during a grace
-period.
-
-Refer to [CHANGELOG_DEPRECATED.md](./CHANGELOG_DEPRECATED.md) for changes
-to deprecated flags.
+period.  For change of deprecated flags, see the [CHANGELOG.md](../CHANGELOG.md).
 
 ## Command Line Tool `cdsc`
 

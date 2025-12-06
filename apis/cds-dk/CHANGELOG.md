@@ -6,17 +6,58 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 9.4.3 - 2025-10-29
+## Version 9.5.0 - 2025-12-01
+
+### Added
+
+- `cds import` now accepts `--into-namespace <string>` to override the namespace entities are imported to, when importing OpenAPI definitions.
 
 ### Changed
 
+- `cds add portal` adds the correct service key configuration to the _mta.yaml_.
+- `cds add sample` creates sample files aligned with recent versions of bookshop and bookstore in https://github.com/capire.
+- `cds add sample` uses a matching ID in generated `manifest.json` and UI5 components.
+- `cds build` uses `hdblogicalschema` and `hdblogicalschemaconfig` plugins in its default `.hdiconfig`.
+- `cds add cloud-logging` adds required dependencies to _pom.xml_ for Java projects.
+- `cds add kyma` is now the only suggested Kyma facet in `cds add help`.
+- `cds add helm-unified-runtime` option is now deprecated; use `cds add kyma --unified-runtime` instead.
+- `cds up --to k8s` now saves the checksum of buildpack images to determine if a rebuild is necessary.
+- `cds up --to k8s` will interactively ask for registry credentials if they don't exist on the remote cluster.
+- `cds build` automatically adds `contentLocalizedEdmx=true` to the java build task configuration if OData V2 is set.
+- `cds add github-actions` has out-of-the-box support for Java projects.
+- `cds add html5-repo` and `cds add app-frontend` do not create a separate _ui5-deploy.yaml_ but use the default _ui5.yaml_.
+- `cds add` plugins allow merging into non-existing files with `cds.add.merge(<object>).into(<yaml-path>)`.
+- `cds build` tasks that produce `csn.json` now emit the `compile.for.runtime` event, in alignment with other runtime CSN producers like `cds serve`. Plugins can use such events to hook into CSN creation.
+- `cds add xsuaa` sets `credential-types: [ "binding-secret", "x509" ]` for XSUAA instances.
+- `cds add hana` does not create an explicit `.hdiconfig` file any more as `cds build` provides defaults.
+- `cds import` generates the on condition for a composition when the corresponding OData navigation property targets a collection, is contained (`$ContainsTarget` in OData EDM) and has a backlink (`$Partner` in OData EDM).
+- `cds import` now considers OData contained navigation properties as compositions instead of associations.
+
+### Fixed
+
+- `cds add ias` will always add a binding to the MTX sidecar or approuter if required.
+- `cds add ias` has improved support for multitenancy scenarios on Kyma.
+- `cds lint` no longer fails with error code 1 and no message when loading the config fails.
+- `cds version` no longer prints an `undefined` value for `@sap/cds-dk`.
+- `cds compile --flavor files` no longer crashes with a `TypeError`.
+- `cds add workzone` does not add superfluous `destinations` configuration to the `srv-api` import.
+
+## Version 9.4.3 - 2025-10-29
+
+### Added
+
+### Changed
+
+- `cds add github-actions` will use the `cap-js/cf-setup` action from GitHub marketplace instead of creating a local copy.
 - `cds add containerize` omits the Unix-based `before_all` scripts in `containerize.yaml` in favor of a cross-platform compatible `cds up --to k8s` integration.
 - `cds up --to k8s` now uses built-in containerization, eliminating the hard dependency on the `ctz` library.
 - `cds up --to k8s` will interactively ask for a domain if it can't be determined from the current Kubernetes configuration.
 - `cds build --for hana` no longer requires `.hdbgrants` and `.hdbrevokes` to be specified as a plugin in the `.hdiconfig` file.
+- `cds import` no longer emits usage info when invoked with the dry option.
 
 ### Fixed
 
+- `cds add data` fixes an issue where randomly generated `Decimal` and `Integer` values could exceed their defined precision or scale.
 - `cds add pipeline` does not add UI5 template files in some cases.
 - `cds add ias` does not write to the `mta.yaml` for non-MTA projects.
 - `cds add ias` automatically adds the `authenticationType` to `xs-app.json` if required.
@@ -40,6 +81,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `cds add test` creates correct OData URLs with unqualified entity names in service paths.
 - `cds add http` skips contained composition targets.
 - `cds add sample` no longer comes with an error when creating a Book through Fiori.
+- `cds build` now places the `i18n` folder in the generated output root directory instead of nested locations.
 
 ## Version 9.4.1 - 2025-10-09
 
@@ -330,6 +372,41 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `cds add ams` for Java adds a custom builder to the `mta.yaml` to circumvent the missing `srv/src/gen/policies`.
 - `cds add multitenancy` requires the `srv-api` instead of the `mtx-api` for Java projects.
 
+## Version 8.9.11 - 2025-11-21
+
+### Fixed
+
+- Bump dependencies in shrinkwrap.
+
+## Version 8.9.10 - 2025-09-19
+
+### Fixed
+
+- Updated shrinkwrap to include `@sap/cds-compiler` version 5.9.12.
+
+## Version 8.9.9 - 2025-09-16
+
+### Fixed
+
+- CVE-2025-58754: vulnerability with `axios` versions <1.12.0.
+
+## Version 8.9.8 - 2025-07-24
+
+### Fixed
+
+- CVE-2025-7783: vulnerability with `form-data` versions <4.0.4.
+
+## Version 8.9.7 - 2025-07-17
+
+### Fixed
+
+- Bump dependencies in shrinkwrap.
+
+## Version 8.9.6 - 2025-06-05
+
+### Fixed
+
+- Bump dependencies in shrinkwrap.
 
 ## Version 8.9.5 - 2025-06-05
 

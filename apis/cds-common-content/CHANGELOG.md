@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 3.1.0 - 2025-06-17
+
+### Changed
+ - Added currency code XCG to replace currency code ANG as per sap note https://me.sap.com/notes/3410662/E
+
 ## Version 3.0.1 - 2025-05-19
 
 ### Changed

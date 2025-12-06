@@ -6,6 +6,25 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.5.1 - 2025-11-28
+### Changed
+- Compatibility with `@sap/cds 9.5`
+
+### Also see
+- `@sap/cds-compiler` 6.5.0
+- `@sap/cds` 9.5.0
+
+
+## 9.5.0 - 2025-11-24
+### Added
+- `format-cds` CLI
+  + support piping - format single src from stdin to stdout
+  + support forward-slashed paths on Windows
+- Telemetry without client. Can be disabled via user setting `sapbas.telemetryEnabled`
+
+### Changed
+- `*.json` files are no longer scanned and parsed heuristically if they contain CSN. Those files need to be used from a CDS file to be seen e.g. in `Workspace Symbols`. However, files ending with `.csn.json` or `.csn` are still considered as CSN files.
+
 ## 9.4.0 - 2025-09-29
 
 ### Fixed

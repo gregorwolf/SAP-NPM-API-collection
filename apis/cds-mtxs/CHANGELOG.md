@@ -6,6 +6,42 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.5.0 - 2025-12-01
+
+### Added
+
+- Deployment now evaluates Cloud Foundry environment variable `VCAP_SERVICES_FILE_PATH`.
+
+### Changed
+
+- Metadata is merged instead of overwritten for resubscriptions.
+
+### Fixed
+
+- `cds login` compatibility with recent `@sap/cds-dk` versions.
+- Event `compile.for.runtime` is also triggered when calling `POST/-/cds/extensibility/pull`.
+- Startup of MTX does no longer show `cdsc` configuration warning if only defaults are used.
+- Concurrency handling with HANA TMS v2 is now more stable.
+
+## Version 3.4.4 - 2025-11-17
+
+### Fixed
+
+- The `PUT` and `set` API of the Extensibility Service now work more stable with parallel requests handled by many appliation instances.
+- CDS Plugins are now loaded properly when running the `cds-mtx` command.
+
+### Added
+
+- [Pre-Alpha] Warning in case of multiple containers per BTP Tenant with HANA TMS v2.
+- Improved handling of `retry-after` header in case of rate limiting errors.
+- Maximum tolerated waiting time after a 429 response can be configured by setting `cds.requires.multitenancy.containerManager.maxRetryAfter` (in ms). Default is 5000.
+
+### Changed
+
+- [Pre-Alpha] Upgrade for list of tenants does no longer work with `cds.requires.multitenancy.jobs.clusterSize` > 1 (default is 3). Required TMS API has been disabled.
+- [Pre-Alpha] When setting `cds.requires['cds.xt.DeploymentService'].hdi.create.cleanup_hana_tenants = true`, the deletion will no longer throw an error if deletion
+fails because of other containers remaining.
+
 ## Version 3.4.3 - 2025-10-29
 
 ### Changed
@@ -16,7 +52,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - Deployment errors when activating extensions do no longer appear as base64 encoded text in the logs.
 - The `cds.cdsc.tenantDiscriminator` setting is ignored by the sidecar.
-- [Pre-Alpha] Upgrade is for list of tenants now works properly again with `cds.requires.multitenancy.jobs.clusterSize` > 1 (default is 3).
+- [Pre-Alpha] Upgrade for list of tenants now works properly again with `cds.requires.multitenancy.jobs.clusterSize` > 1 (default is 3).
 - [Pre-Alpha] Creation of tenant containers for a BTP tenant or `t0` for different applications now works more stable.
 - When pushing or adding extensions via API, the extension validation now checks the edmx for the configured odata version.
 - Update of the application URL via Subscription Management Dashboard now works correctly.

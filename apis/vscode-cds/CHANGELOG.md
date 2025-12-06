@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [9.5.0] - 2025-12-01
+
+### Fixed
+- Show compilation and other errors only once in status bar.
+
+### Changed
+- Minimum VSCode version is now 1.103.1
+
+### Also see
+- `@sap/cds-lsp` 9.5.1
+- `@sap/cds-compiler` 6.5.0
+
+
 ## [9.4.0] - 2025-09-30
 
 ### Fixed

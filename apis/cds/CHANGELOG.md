@@ -4,6 +4,79 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.5.1 - 2025-12-01
+
+### Fixed
+
+- Draft child creation in case `cds.features.new_draft_via_action` is enabled
+- Draft messages of declarative constraints
+- Persisted draft messages in case of on-commit errors
+- Async UCL tenant mapping for UCL SPII v2
+- Quoting in `cds.compile.to.yaml`
+
+## Version 9.5.0 - 2025-11-26
+
+### Added
+
+- Support for Declarative Constraints (`@assert`; beta)
+- Status Transition Flows (`@flow`; beta):
+  + Aspect `sap.common.FlowHistory` automatically appended to entities with a `@to: $flow.previous`
+    + Deactivate via `cds.features.history_for_flows=false`
+    + Experimental: Via `cds.features.history_for_flows='all'`, all entities with a flow definition get appended
+    + Note: FlowHistory is not maintained within drafts
+  + Support for `@flow.status: <element name>` on entity level
+  + UI annotation generation adds action to UI automatically (Object Page and List Report) but hidden in draft mode
+  + Experimental support for CRUD flows:
+    + Pseudo bound actions `CREATE` and `UPDATE` events can be flow-annotated
+      + Note: The `CREATE` event cannot have a `@from` condition
+    + Pseudo bound actions for drafts `NEW`, `EDIT`, `PATCH`, `DISCARD`, and `SAVE` can be flow-annotated
+      + Note: Flow annotations inside drafts (`@from`, `@to`) are processed as in standard flow transitions, with the following exceptions:
+        + The `NEW` event cannot have a `@from` condition
+        + The `DISCARD` event cannot have a `@to` condition
+- Support for pseudo protocols
+- Support for Async UCL tenant mapping notification flow
+- `flush` on a queued service returns a Promise that resolves when immediate work (i.e., not scheduled for future) is processed
+- For draft-enabled entities, IsActiveEntity=true can be omitted from url
+- Support for `@Common.DraftRoot.NewAction` annotation with feature flag `cds.features.new_draft_via_action`
+  + Generic collection bound action `draftNew` will be added to draft enabled entities
+  + The action specified in the annotation will be rewritten into a draft `NEW` event
+  + Active instances of draft enabled entities can be created directly via `POST`
+- Limited support for `$compute` query option: computed properties are only supported in `$select` at the root level, not in expanded entries or other query options. Only numeric operands and operators `add`, `sub`, `-`, `mul` and `div` are supported
+- `ias-auth`: configurable name for XSUAA fallback's `cds.requires` entry
+- `enterprise-messaging`: Support for scenario `ias-auth` with XSUAA fallback
+- Service configuration through `VCAP_SERVICES` can now be supplied with `VCAP_SERVICES_FILE_PATH`. Note that this is an experimental CF feature.
+
+### Changed
+
+- Internal service `UCLService` moved into non-extensible namespace `cds.core`
+- Status Transition Flows (`@flow`; beta):
+  + UI annotation generation is on by default. Switch off via `cds.features.annotate_for_flows=false`.
+  + Feature flag `cds.features.compile_for_flows` renamed to `cds.features.annotate_for_flows`
+- `DELETE` requests during draft edit, that do not use containment will cause persisted draft messages to be cleared
+
+### Fixed
+
+- Correctly format values in a where clause send to an external OData service, when the expression order is: value, operator, reference
+- cds.ql: tolerate extra spaces after in; parse RHS arrays of values as list
+- CRUD-style API: `cds.read()` et al. used without `await` do not throw if there is no database connected
+- Unnecessary compilation of model for edmx generation in multitenancy cases
+- Using `req.notify`, `req.warn` and `req.info` in custom draft handlers by collecting validation errors in a dedicated collection
+- `cds.auth` factory: passed options take precedence
+- `cds deploy --dry` no longer produces broken SQL for DB functions like `days_between`.
+- Read-after-write for create events during draft choreography will no longer include messages targeting siblings
+- `before` and `after` handlers now really run in parallel. If that causes trouble, you can restore the previous behavior with `cds.features.async_handler_compat=true` until `@sap/cds@10`.
+- Escaping of JSON escape sequences during localization
+
+## Version 9.4.5 - 2025-11-07
+
+### Fixed
+
+- Custom error message for `@assert.range`
+- For hierarchy requests with `$filter`, properly remove inner `where` clause
+- Calling a parameterless function with parameter
+- Aligned error handling for path navigation and `$expand`
+- Input validation immediately rejects for `@mandatory`
+
 ## Version 9.4.4 - 2025-10-23
 
 ### Fixed
@@ -109,7 +182,7 @@
   + For `@sap/xssec`-based authentication strategies, `cds.context.user.authInfo` is an instance of `@sap/xssec`'s `SecurityContext`
 - Support for status transition flows (`@flow`; alpha):
   + Generic handlers for validating entry (`@from`) and exit (`@to`) states
-  + Automatic addition of necessary annotations for Fiori UIs (`@Common.SideEffects` and `@Core.OperationAvailable`) during compile to EDMX with feature flag `cds.features.compile_for_flows=true`
+  + Automatic addition of necessary annotations for Fiori UIs (`@Common.SideEffects` and `@Core.OperationAvailable`) during compile to EDMX with feature flag `cds.features.compile_for_flows = true`
 - Experimental support for consuming remote HCQL services (`cds.requires.<remote>.kind = 'hcql'`)
 - Infrastructure for implementing the tenant mapping notification of Unified Customer Landscape's (UCL) Service Provider Integration Interface (SPII) API
   + Bootstrap the `UCLService` via `cds.requires.ucl = true` and implement the assign and unassign operations like so:
@@ -349,6 +422,13 @@
 - Deprecated element-level annotation `@Search.defaultSearchElement`. Please use annotation `@cds.search` instead.
 - Deprecated stripping of unnecessary topic prefix `topic:` in messaging
 - Deprecated messaging `Outbox` class. Please use config or `cds.outboxed(srv)` to outbox your service.
+
+## Version 8.9.7 - 2025-11-07
+
+### Fixed
+
+- Reject navigations in `$expand` without parsing the navigation path
+- Aligned error handling for path navigation and `$expand`
 
 ## Version 8.9.6 - 2025-07-29
 
