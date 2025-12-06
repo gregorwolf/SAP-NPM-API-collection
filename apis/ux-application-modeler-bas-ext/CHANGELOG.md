@@ -6,6 +6,38 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.20.0] - 2025-11-27
+### Added
+- Added the ability to add a custom filter to the Filter Bar building block
+### Changed
+- Improved the performance of actions in the Page Editor for OData V4 applications
+### Fixed
+- Fixed an issue where node modules were not installed and annotations were not generated into the annotation file in a CAP Java project
+- Fixed an issue where the value of the `rowCount` property was not updated when the table type was changed to a responsive table
+- Fixed an issue where tooltips in the Page Editor were closed incorrectly
+- Fixed an issue where no warnings were shown when the deprecated fixed layout for the overview page was edited
+- Fixed an issue where the warning was not formulated correctly when the user tried to enter identical values in the "Add Connected Fields" dialog
+- Fixed an issue where the properties "Enable Mass Edit" and "Analytical Configuration: Aggregation" were incorrectly displayed on the leaf level for the chart view on the list report page
+- Fixed an issue where there were no resettable warning messages displayed on the object property level
+
+## [1.19.6] - 2025-11-13
+### Added
+- Added the ability to delete building blocks in a custom page
+- Enabled the ability in the "Page Editor" to configure data aggregation for analytical tables only for visible columns
+- Added support for creating custom fields in form-based sections of object pages in the "Page Editor"
+### Changed
+- Moved SAP saved systems into a dedicated extension, `Connection Manager for SAP Systems`, which can still be accessed using the SAP Fiori tools panel
+- Updated the Connection Manager for SAP systems to provide a warning when saving credentials and to allow users to save a connection without credentials being stored
+- Updated the UI components with a new building block icon
+### Fixed
+- Fixed an issue where the undo functionality failed to remove custom columns that had been added to a custom section in an object page
+- Fixed an issue where the undo/redo functionality for enableMassEdit was not working in the "Page Editor"
+- Fixed an issue where it was not possible to add items to a complex property in the property editor for OData version 2
+- Fixed an issue where the path displayed in the tooltip in the "Page Editor" was incorrect
+- Fixed an issue where the capitalization in the "Creation Mode Validation" message was incorrect
+- Fixed an issue where the description of the new property "Aggregation on Leaf Level" was incorrect
+- Fixed an issue where the fragment definition did not require a JS/TS handler file in the "Page Editor"
+ 
 ## [1.19.5] - 2025-10-30
 ### Added
  - Enabled the ability for grouping actions in the "Page Editor" to ensure that certain actions are always displayed together in the overflow, for SAPUI5 versions 1.139 and above

@@ -102,7 +102,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.5.1",
+    "@sap/hdi-deploy": "5.6.0",
     "@sap/hana-client": "2.19.20",
     "hdb": "0.19.3"
   },
@@ -130,6 +130,10 @@ For local testing, the HDI Deployer supports default configurations via the foll
 - `default-env.json`: a JSON file which contains a set of environment variables and their values
 - `.env`: a dot env file which contains a set of environment variables and their values. This file is used in the absence of `default-env.json`.   
 - `default-services.json`: a JSON file which contains a set of service bindings
+
+In addition, you can provide a path to a json file containing `VCAP_SERVICES` in json format.
+This is done using the `VCAP_SERVICES_FILE_PATH` environment variable.
+If the `VCAP_SERVICES_FILE_PATH` environment variable is set, the deployer will use it for obtaining the `VCAP_SERVICES` value. Read more about this in [the VCAP_SERVICES section](#VCAP_SERVICES).
 
 Details of a bound service from an SAP HANA-Service-Broker-based service binding in CF/XSA usually look as follows:
 
@@ -308,8 +312,24 @@ A `.env` file can contain a set of environment variables and their values. The H
 
 ```
 
-  VCAP_SERVICES={"hana" : [ { "name" : "target-service", "label" : "hana", "tags" : [ "hana", "database", "relational" ], "plan" : "hdi-shared", "credentials" : { "schema" : "SCHEMA", "hdi_user" : "USER_DT", "hdi_password" : "PASSWORD_DT", "certificate" : "-----BEGIN CERTIFICATE-----\nABCD...1234\n-----END CERTIFICATE-----\n", "host" : "host", "port" : "30015" } } ] }
+  VCAP_SERVICES='{"hana" : [ { "name" : "target-service", "label" : "hana", "tags" : [ "hana", "database", "relational" ], "plan" : "hdi-shared", "credentials" : { "schema" : "SCHEMA", "hdi_user" : "USER_DT", "hdi_password" : "PASSWORD_DT", "certificate" : "-----BEGIN CERTIFICATE-----\nABCD...1234\n-----END CERTIFICATE-----\n", "host" : "host", "port" : "30015" } } ] }'
   
+```
+
+### VCAP_SERVICES_FILE_PATH
+
+The `VCAP_SERVICES` can be read from a file. This is achieved with the `VCAP_SERVICES_FILE_PATH` variable.
+The variable is an absolute path to an existing file.
+The content of that file must be in json format.
+
+Note: `default-services.json` does not take effect when used in combination with `VCAP_SERVICES_FILE_PATH`.
+
+`.env` example file:
+
+```
+
+  VCAP_SERVICES_FILE_PATH='/tmp/vcap_services.json'
+
 ```
 ## Deployment via Push and Tasks
 
@@ -552,7 +572,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.5.1",
+    "@sap/hdi-deploy": "5.6.0",
     "module1": "1.3.1",
     "module2": "1.7.0",
 
@@ -800,6 +820,7 @@ Such a user-provided service can be created as follows:
   - `"user"/"password"`: Connection details for a database user that has grant permissions for the objects in the schema.
   - `"schema"`: The database schema that contains the objects to which access is to be granted.
   - `"type"`: The type of the grantor mechanism; valid values are `"hdi"`, `"sql"`, or `"procedure"`. If the type is not specified, then the type is auto-sensed (see details below).
+  - `"tags"`: For the purposes of granting, create user-provided services that are tagged with the `"hana"` tag. E.g.: `"tags": [ "hana" ]` or `"tags": "hana"`.
 - Use the command `xs services` to display a list of services available in the current space; the 'grantor-service' service should be visible.
 
 For Cloud Foundry, use the corresponding `cf` commands.
@@ -1086,6 +1107,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--[no-]migrationtable-development-mode`: [don't] pass the development mode flag for migration tables to HDI, if the parameter is supported by the server, not enabled by default
 - `--[no-]liveness-ping`: [don't] send a sign of life from time to time, by default, a sign of life will be sent
 - `--[no-]live-messages`: [don't] display the make messages while the make is still in progress, by default, the messages will be displayed while the make is in progress
+- `--[no-]trace-vcap-services`: [don't] log VCAP services information, by default, the following VCAP services properties will be logged: name, label, plan, tags, schema, database_id, user, hdi_user, and service_key_name (with --trace, the rest of the properties will also be logged)
 - `--write-batch-size <integer>`: number of files to write in one batch. Must be a positive integer. Default: 8000
 
 See `--help` for details and defaults.
@@ -1119,7 +1141,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "5.5.1",
+        "version": "5.6.0",
         "features": {
             "info": 2,
             "verbose": 1,

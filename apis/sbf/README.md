@@ -623,14 +623,16 @@ At the moment Service Catalog on Kubernetes does not support service instance up
 ##### Authentication with X.509 client certificates
 > [!WARNING]
 > #### XSUAA / X.509 Client Deprecation Notice
-> **Heads‑up (XSUAA / X.509):**
-> By the **end of this year**, creating **X.509 client bindings or service keys** will only work if the target service instance supports:
+> **Heads-up (XSUAA / X.509):** The XSUAA grant type client_x509 will reach end of life on January 26, and creating **X.509 client bindings or service keys** will only work if the target service instance supports:
+>
 > - `grant_type=client_credentials`
 > - `credential_type=x509`
 >
-> Setups that don’t meet this requirement will fail.
-> 
-> Learn more here: [Retrieving Access Tokens with Mutual Transport Layer Security (mTLS)](https://help.sap.com/docs/btp/sap-business-technology-platform/retrieving-access-tokens-with-mutual-transport-layer-security-mtls)
+> Setups that don't meet this requirement will fail.
+>
+> Learn more here: [Retrieving Access Tokens with Mutual Transport Layer Security (mTLS)](https://help.sap.com/docs/btp/sap-business-technology-platform/retrieving-access-tokens-with-mutual-transport-layer-security-mtls).
+>
+> If you have already updated your security descriptor and want to stop using client_x509 earlier, you can set the environment variable `DISABLE_UAA_GRANT_TYPE_CLIENT_X509=true`.
 
 
 Authentication with X.509 client certificates can be enabled with the following configuration provided in the _xs-security_ options:
@@ -1834,6 +1836,7 @@ Otherwise the broker will return HTTP status code 500 with a generic error messa
 - `SBF_UAA_TIMEOUT` - timeout in milliseconds for requests to XSUAA, default is 20 seconds.
 - `SBF_UAA_RETRY_TIMEOUT` - maximum allocated time (in milliseconds) to connect to XSUAA, including retries. Defaults to 30 seconds (30000 ms).
 - `SBF_UAA_RETRY_MAX_NUMBER` - maximum connection attempts to XSUAA. Allowed values: 0-5 (0 = no retries). Defaults to 3.
+- `DISABLE_UAA_GRANT_TYPE_CLIENT_X509` — when set to true, disables the deprecated client_x509 grant type and forces the use of client_credentials with X.509 certificates. This allows applications to proactively migrate away from client_x509 regardless of any remaining deprecated configuration. Default: false. This flag will be removed once the client_x509 grant type is officially deprecated.
 - `SBF_SECURE_OUTGOING_CONNECTIONS` - if set to false `false`, unencrypted outgoing connections will be allowed, see [Secure outgoing connections](#secure-outgoing-connections)
 - `SBF_SECURE_INCOMING_CONNECTIONS` - if set to true `true`, a [secured connection](#mtls-authentication) is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate, you also have to configure the `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` environment variable.
 - `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` - the Service Manager client certificate's subject. This variable has to be configured so that the Service Manager [client certificate](#out-of-the-box-mtls) is verified. Also, set `SBF_SECURE_INCOMING_CONNECTIONS` to true. You can retrieve the Service Manager certificate's subject at `https://service-manager.cfapps.<landscape domain>/v1/info` from the `service_manager_certificate_subject` field. The URL changes depending on your landscape domains. For example, https://service-manager.cfapps.eu10.hana.ondemand.com/v1/info.

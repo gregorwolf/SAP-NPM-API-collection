@@ -1,3 +1,9 @@
+## 5.6.0
+Features:
+- Added support for the `VCAP_SERVICES_FILE_PATH` environment variable
+- Enhancements in VCAP_SERVICES logging
+- Use @sap/xsenv@^6.0.0
+
 ## 5.5.1
 Features:
 - Fail with error if credentials.schema property is not a string

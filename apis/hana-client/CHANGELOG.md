@@ -8,6 +8,18 @@ For the latest updates please see SAP Note 3643985 - SAP HANA Client 2.26 Releas
 
 https://me.sap.com/notes/3643985
 
+## Version 2.26.26
+
+### Changes:
+
+ - Issue Number 348889: If disconnect() was called while an asynchronous call to abort() was still in progress, a crash could have occurred.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 350513: In specific instances, when TRACE ONLY ON ERROR was enabled, the trace data written could have been corrupted.
+ - Issue Number 349842: Disconnecting a connection that was dropped could have resulted in an unnecessary error.
+ - Issue Number 349753: Switching users could have caused future internal connections to fail with an unclear error message.
+
 ## Version 2.26.25
 
 ### Underlying SQLDBC changes:

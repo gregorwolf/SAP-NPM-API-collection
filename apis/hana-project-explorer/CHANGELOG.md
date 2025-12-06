@@ -1,3 +1,16 @@
+## 1.35.0
+
+### New Features
+
+- A warning message is displayed if a module is missing a target container
+
+### Fixes
+
+- Install HANA AI toolkit only if Python Tools are installed
+- The grants editor doesn't support "reference" tags for external schemas
+- The link to the documentation in the grants editor help doesn't work
+- Support vector data types in the grants editor
+
 ## 1.34.0
 
 ### New Features

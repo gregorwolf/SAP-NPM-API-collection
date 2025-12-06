@@ -1,3 +1,8 @@
+## 1.42.0
+
+### Fixes
+- Performance improvements and fixes
+
 ## 1.41.0
 
 ### New Features

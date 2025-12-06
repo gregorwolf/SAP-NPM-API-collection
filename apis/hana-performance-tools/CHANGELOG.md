@@ -1,5 +1,15 @@
 # SAP HANA SQL Analyzer Changelog
 
+## 1.9.1
+SAP HANA SQL Analyzer version 1.9.1 includes the following improvements.
+
+- **Operators & Table Access Tabs**
+  - Reintroduced the **Details** column, which was temporarily removed in version 1.9.0, restoring access to its content and supporting search functionality within the column.
+  - Added yellow highlighting for search results to make all matches easier to see and review.
+  
+- **Configuration via VS Code Settings**
+  - Removed the "Skip Operator and Edge Detailed Information" configuration option.
+
 ## 1.9.0
 The SQL analyzer tool version 1.9.0 includes the following improvements and bug fixes.
 

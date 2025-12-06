@@ -1,12 +1,12 @@
 {
   "name": "@sap/async-xsjs",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/async-xsjs",
-      "version": "2.1.5",
+      "version": "2.1.6",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
         "@sap/audit-logging": "^6.3.0",
@@ -37,7 +37,7 @@
         "media-typer": "0.3.0",
         "moment": "2.29.4",
         "multiparty": "4.2.2",
-        "nodemailer": "6.9.16",
+        "nodemailer": "7.0.10",
         "passport": "0.7.0",
         "passport-strategy": "1.0.0",
         "sax": "1.4.1",
@@ -399,7 +399,7 @@
       "license": "MIT"
     },
     "node_modules/axios": {
-      "version": "1.12.2",
+      "version": "1.13.2",
       "license": "MIT",
       "dependencies": {
         "follow-redirects": "^1.15.6",
@@ -862,7 +862,7 @@
       }
     },
     "node_modules/form-data": {
-      "version": "4.0.4",
+      "version": "4.0.5",
       "license": "MIT",
       "dependencies": {
         "asynckit": "^0.4.0",
@@ -1268,7 +1268,7 @@
       }
     },
     "node_modules/nodemailer": {
-      "version": "6.9.16",
+      "version": "7.0.10",
       "license": "MIT-0",
       "engines": {
         "node": ">=6.0.0"
@@ -1449,7 +1449,7 @@
       "license": "ISC"
     },
     "node_modules/semver": {
-      "version": "7.7.2",
+      "version": "7.7.3",
       "license": "ISC",
       "bin": {
         "semver": "bin/semver.js"

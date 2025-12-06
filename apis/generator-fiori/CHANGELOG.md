@@ -3,6 +3,20 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.20.0] - 2025-11-27
+### Fixed
+- Fixed an issue where an incorrect error message was shown during generation if the selected SAP System catalog only contained OData V2 services and the selected template type required an OData V4 service
+
+## [1.19.6] - 2025-11-13
+### Added
+- Added the option to save system credentials during generation if the saved system does not already store the credentials or if the stored credentials are invalid
+
+### Changed
+- Updated generated projects to use the latest version of UI5 CLI (Version 4)
+
+### Fixed
+- Fixed an issue where an SAP Fiori application downloaded from an app deployed with ADT would fail to deploy again if the package was not local
+
 ## [1.19.5] - 2025-10-30
 ### Fixed
 - Fixed an issue where the deployment configuration could not be added from the command line when using SAP Business Application Studio

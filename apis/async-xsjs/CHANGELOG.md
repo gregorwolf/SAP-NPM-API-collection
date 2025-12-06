@@ -5,11 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+<a name="2.1.6"></a>
+## 2.1.6 - 2025-11-24
+
+### Updated
+- update nodemailer version to 7.0.10
+
 <a name="2.1.5"></a>
 ## 2.1.5 - 2025-09-23
 
 ### Updated
 - update axios version to 1.12.2
+- update cookie version to 1.0.2
 
 <a name="2.1.4"></a>
 ## 2.1.4 - 2025-07-30

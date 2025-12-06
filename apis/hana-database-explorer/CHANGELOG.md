@@ -1,5 +1,14 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.36.0
+
+### Fixes
+- The trace file viewer showed an incorrect trace file scope when selecting "Database Diagnostic Files"
+- The instance status is shown correctly for local connections in the instance selection dialog in the SQL console
+- Parameterized SQL execution required an explicit conversion from hexadecimal to binary
+- Affected rows are not shown for INSERT/UPDATE statements on local connections
+- The default graph depth is not set correctly in the dependency viewer
+
 ## 1.35.0
 
 ### New Features

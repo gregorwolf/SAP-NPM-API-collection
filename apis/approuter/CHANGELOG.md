@@ -5,6 +5,41 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.8.4 - 2025-12-02
+
+### Fixed
+- Prevent JWT refresh attempts for destroyed sessions (replaces previous fix in 20.8.0)
+- IAS-only authentication flow detection and zone info handling when only IAS is configured without UAA
+- User token determination when calling destination service
+- Mask user_name in logs
+- Remove IASDependencyName normalization
+
+### Updated Dependencies
+- deps: node-forge@1.3.2 - Resolves CVE-2025-12816
+- deps: validator@13.15.23 - Resolves CVE-2025-12758
+
+## 20.8.3 - 2025-11-12
+
+### Added
+- Changed cookie encryption/decryption algorithm from AES-256 to AES-256-GCM for improved security
+
+### Fixed
+- Include custom CA certificates in certificate authentication requests to XSUAA/IAS and Destination service
+- Use refresh token directly from XSUAA jwt-bearer token exchange response instead of making separate API call
+- sap.cloud.service calculation in client credentials token middleware
+- Character encoding issues in JSON responses by adding charset=utf-8 to Content-Type headers
+- Avoid undefined scope error if business service has no scopes defined
+- Skip XSUAA token exchange when no scope checks are required in cross-subaccount scenarios
+- Incorrect applicationName in get applications API response when received from cache
+- Wrong html5-apps-repo service name in client credentials token middleware 
+- Error handling in token utils
+- Scope check in service-tokens handler
+- Remove fix for race condition in JWT refresh after logout
+- Incorrect call to trace.warn in websocket flow
+
+### Updated dependencies
+- deps: validator@13.15.20 - Resolves CVE-2025-56200
+
 ## 20.8.2 - 2025-09-28
 
 ### Updated dependencies
@@ -21,6 +56,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 - Enable sending backend session cookies with setBackendSessionCookies set to 'true' in xs-app.json per route item
 - Enable reading html5 application xs-app.json in login callback - can be enabled by setting USE_HTML5_APP_XS_APPJSON_IN_LOGIN_CALLBACK env. variable to 'true'
 - Enable set log level by header
+- Debug logging when html5 application xs-app.json not found and approuter uses central xs-ap.json
 
 ### Fixed
 - Fix HTTP/2 invalid connection headers error in compression middleware due to compression library update
@@ -30,6 +66,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 - Return 404 for non-existent routes instead of redirecting to authentication, disable with REQUIRE_AUTH_FOR_UNKNOWN_ROUTES=true
 - Configured destinations normalization
 - Incorrect external cache format and different application count in external cache
+- Integer environment variable validation
 
 ### Updated dependencies
 - deps: axios@1.12.2

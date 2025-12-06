@@ -3,6 +3,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.20.0] - 2025-11-27
+- Fixed multiple usability issues in Service Modeler
+
+## [1.19.6] - 2025-11-13
+- No update
+
 ## [1.19.5] - 2025-10-30
 - No update
 

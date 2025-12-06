@@ -2,7 +2,7 @@
 
 Command-Line Interface (CLI) Core Module.
 
-[![Node Version](https://img.shields.io/badge/node-20.xx.x-brightgreen)](https://nodejs.org/dist/latest-v20.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-21.xx.x-brightgreen)](https://nodejs.org/dist/latest-v21.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-22.xx.x-brightgreen)](https://nodejs.org/dist/latest-v22.x/docs/api/#) [![npm version](https://badge.fury.io/js/@sap%2Fcli-core.svg)](https://badge.fury.io/js/@sap%2Fcli-core)
+[![Node Version](https://img.shields.io/badge/node-20.xx.x-brightgreen)](https://nodejs.org/dist/latest-v20.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-21.xx.x-brightgreen)](https://nodejs.org/dist/latest-v21.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-22.xx.x-brightgreen)](https://nodejs.org/dist/latest-v22.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-23.xx.x-brightgreen)](https://nodejs.org/dist/latest-v23.x/docs/api/#) [![Node Version](https://img.shields.io/badge/node-24.xx.x-brightgreen)](https://nodejs.org/dist/latest-v24.x/docs/api/#) [![npm version](https://badge.fury.io/js/@sap%2Fcli-core.svg)](https://badge.fury.io/js/@sap%2Fcli-core)
 
 ## Content
 

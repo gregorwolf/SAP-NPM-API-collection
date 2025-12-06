@@ -8,6 +8,13 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.10.0"></a>
+## 6.10.0 - 2025-11-19
+### Updated
+- Update to uuid 11.1.0
+### Added
+- Environment Variable: DISABLE_UAA_GRANT_TYPE_CLIENT_X509. When set to true, disables the deprecated client_x509 grant type and forces the use of   client_credentials with X.509 certificates.
+
 <a name="6.9.9"></a>
 ## 6.9.9 - 2025-11-02
 ### Updated

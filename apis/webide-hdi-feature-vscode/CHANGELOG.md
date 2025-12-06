@@ -1,3 +1,16 @@
+## 1.44.0
+
+### New Features
+- Objects shown in impact and lineage analysis can be opened in the respective editor
+- New option to enforce relational behavior of calculation views
+
+### Fixes
+- Dimension View is not offered in MDS Cube Dimension selection if Dimension View is referred to by a synonym
+- Deleted MDS Cube is not removed from UI after refresh
+- Properties file generation uses column names instead of alias names for star-joins
+- Keep Flag setting not saved for Calculated Columns and Restricted Columns
+- Show key column indicators also in Join and Non-Equi Join nodes
+
 ## 1.43.0
 
 ### New Features
