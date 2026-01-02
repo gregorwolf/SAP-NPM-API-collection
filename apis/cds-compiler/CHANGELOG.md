@@ -13,6 +13,32 @@ we might not list every change in its behavior here.
 Productive code should never require a `beta` flag to be set, and
 might use a deprecated flag only for a limited period of time.
 
+## Version 6.6.0 - 2025-12-12
+
+### Added
+
+- compiler:
+  + Support for upcoming ESlint rules (by other team) for Fiori elements annotations.
+  + Namespace `cds.dataproducts` is no longer reserved by the cds-compiler. It is used by the CAP @sap/cds-data-products plugin.
+- for.odata/to.edm(x):
+  + Enumeration symbols are now supported in annotation expression syntax.
+  + For projections and views, the `@hierarchy` annotation now triggers generation of
+    additional Fiori Tree View relevant annotations and fields.
+- for.effective: First non-beta release.
+
+### Changed
+
+- `to.sql`: Annotating a foreign key of an association in a view with a sql-snippet annotation (e.g. `@sql.append`)
+            now results in an error. This is the default behaviour for any element in a view.
+
+### Fixed
+
+- compiler:
+  + Minor fixes for auto-redirections and recompilation with localized data
+    in very rare situations when an aspect definition uses an entity as include.
+  + Don't let “namespaces” prevent the compiler to generate texts/target entities.
+- to.sql: Improve foreign key flattening for various edge cases.
+
 ## Version 6.5.2 - 2025-12-02
 
 ### Fixed

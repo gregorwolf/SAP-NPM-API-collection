@@ -4,6 +4,59 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.6.1 - 2025-12-18
+
+### Fixed
+
+- Status check in case of non-existing subject
+- Gracefully handle bad value when calculating `@Core.OperationAvailable` from `@from`
+
+## Version 9.6.0 - 2025-12-16
+
+### Added
+
+- New config entry `cds.folders.apps = 'app/*'` to fetch and load all .cds files from subfolders of `./app` automatically. This eliminates the need for an `./app/index.cds` file with respective `using` directives. Can be disabled by setting `cds.folders.apps` to `false`.
+- Support for direct CRUD on draft-enabled entities (beta)
+  + Enable via `cds.fiori.direct_crud` (replacing `cds.features.new_draft_via_action`)
+  + In such requests, `IsActiveEntity` is defaulted to `true`
+- Columns `task` and `appid` to `cds.outbox.Messages`
+- `cds.env` getter for `appid`
+
+### Changed
+
+- Improved Event Queue Processing
+  + For db-only message processors, the guarantee is now "exactly once" instead of "at least once".
+  + Use default target `queue` unless specified (formerly it was the name of the service). In effect, all services with the default queue config are processed together.
+- Cleaned-up Model Reflection APIs
+  + `cds.entities` and `model.entities` provide access to all entities, not just the ones matching the first sources' namespace
+    + Function usage `cds.entities()` without passing a namespace no longer offers unqualified access to the entities of the first sources' namespace
+  + `srv.entities` returns `LinkedDefinitions` for that service
+  + Undocumented function usages `srv.entities()`, `srv.types()`, `srv.events()`, and `srv.actions()` are officially deprecated and will be removed with `cds^10`.
+    + For `srv.entities()`, use `cds.entities()` instead. The others have no replacement. Simply use `srv.types`, `srv.events`, and `srv.actions`.
+  + All `.entities` variants only provide `.texts` entities if `cds.features.compat_texts_entities = true` (default until `cds^10`). Use `.texts` property of the respective entity instead (i.e., `CatalogService.Books.texts` instead of `CatalogService['Books.texts']`).
+
+### Fixed
+
+- Actions rejected with `415` for requests with empty body
+- `cds.parse.expr` with template literals using "param" as parameter name
+- Kafka messaging won't listen for messages without registered on handlers
+- Single quote escaping in remote OData requests
+- Lambda prefix within function calls in remote OData requests
+- Hierarchy requests with `$top` in combination with `$filter`
+- Response format of `ASSERT_DATA_TYPE` errors with draft messages
+- Deletion of `@assert` draft messages on SAVE
+- Check for `process.env.VCAP_SERVICES_FILE_PATH` in logging aspects enterprise messaging tasks
+- Remove control data from deserialized task
+- Hierarchy draft requests with $filter
+
+## Version 9.5.2 - 2025-12-09
+
+### Fixed
+
+- Usage of associations in `@assert`
+- Usage of `@assert` on child entities
+- Mocking of remote services using `srv.post('<url>')`
+
 ## Version 9.5.1 - 2025-12-01
 
 ### Fixed
@@ -36,7 +89,6 @@
 - Support for pseudo protocols
 - Support for Async UCL tenant mapping notification flow
 - `flush` on a queued service returns a Promise that resolves when immediate work (i.e., not scheduled for future) is processed
-- For draft-enabled entities, IsActiveEntity=true can be omitted from url
 - Support for `@Common.DraftRoot.NewAction` annotation with feature flag `cds.features.new_draft_via_action`
   + Generic collection bound action `draftNew` will be added to draft enabled entities
   + The action specified in the annotation will be rewritten into a draft `NEW` event
@@ -66,6 +118,7 @@
 - Read-after-write for create events during draft choreography will no longer include messages targeting siblings
 - `before` and `after` handlers now really run in parallel. If that causes trouble, you can restore the previous behavior with `cds.features.async_handler_compat=true` until `@sap/cds@10`.
 - Escaping of JSON escape sequences during localization
+- Persisted draft messages in case of on-commit errors
 
 ## Version 9.4.5 - 2025-11-07
 

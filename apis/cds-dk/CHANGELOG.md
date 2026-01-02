@@ -6,6 +6,35 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.6.0 - 2025-12-16
+
+### Added
+
+- `cds add console` adds dependency to the CAP console plugin.
+
+### Changed
+
+- `cds import` no longer generates a first parameter typed as `$self` to bound actions, as this parameter is implicit.
+- `cds add` sets `relativePaths: true` for generated UI5 apps to avoid deployment issues if UI5 data sources start with a "/".
+- `cds up` automatically detects the preferred platform.
+- Added deprecation notices for the following commands in favor of using `cds add kyma`:
+    - `cds add containerize`
+    - `cds add helm`
+    - `cds add helm-unified-runtime`
+
+### Fixed
+
+- `cds build --ws-pack` now checks folder depth of up to 5.
+- `cds import --config param1=true,param2=0` now writes boolean and number values correctly to `package.json`.
+- `cds add sample` sets the correct UI component in _\_appconfig/fioriSandboxConfig.json_.
+- `cds add xsuaa` correctly adds the authentication binding to the application deployer if executed afterwards.
+- `cds env` prints coloured output by default again.
+- `cds add java` will preserve existing _package.json_ settings.
+- `cds add multitenancy` now correctly adds a `devDependencies` section when missing.
+- `cds add mta` adds fixes an issue where a faulty XSUAA instance was added with `messaging: true` configured.
+- `cds add sqlite --for production` correctly activates SQLite for production, not just development.
+- `cds up -2 k8s` correctly runs `before_all` before the checksum calculation to calculate against the correct artifact.
+
 ## Version 9.5.0 - 2025-12-01
 
 ### Added
@@ -371,6 +400,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `cds import` adds `@mandatory` annotations to properties marked as `required` in the schema.
 - `cds add ams` for Java adds a custom builder to the `mta.yaml` to circumvent the missing `srv/src/gen/policies`.
 - `cds add multitenancy` requires the `srv-api` instead of the `mtx-api` for Java projects.
+
+
+## Version 8.9.12 - 2025-12-16
+
+### Fixed
+
+- `cds import` generates the on condition for a composition when the corresponding OData navigation property targets a collection, is contained (`$ContainsTarget` in OData EDM) and has a backlink (`$Partner` in OData EDM).
+- `cds import` now considers OData contained navigation properties as compositions instead of associations.
+- Support for `hdb` v2.
 
 ## Version 8.9.11 - 2025-11-21
 

@@ -6,11 +6,29 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 3.5.0 - 2025-12-01
+## Version 3.6.1 - 2025-12-16
+
+### Fixed
+
+- `cdsc.tenantDiscriminator` is not ignored for H2 deployments.
+
+## Version 3.6.0 - 2025-12-12
 
 ### Added
 
-- Deployment now evaluates Cloud Foundry environment variable `VCAP_SERVICES_FILE_PATH`.
+- Extensions are now stored with an additional `appid` column to allow a better separation when using shared HDI containers. It can be configured
+using `cds.env.appid`. If no value is set, no `appid` will be used. If it is set to `true`, the `appid` will be the `name` defined in the
+`package.json` file of the main application.
+
+## Version 3.5.1 - 2025-12-09
+
+### Fixed
+
+- Evaluation of cloudfoundry environment variable `VCAP_SERVICES_FILE_PATH` now properly works for HDI deployment.
+- `@sap/hana-client` fallback works again if explicitly defined as a dependency in the MTX sidecar.
+- Certificate check for Subscription Manager Subscription now correctly works with encoded line breaks.
+
+## Version 3.5.0 - 2025-12-01
 
 ### Changed
 
@@ -22,6 +40,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Event `compile.for.runtime` is also triggered when calling `POST/-/cds/extensibility/pull`.
 - Startup of MTX does no longer show `cdsc` configuration warning if only defaults are used.
 - Concurrency handling with HANA TMS v2 is now more stable.
+
+### Added
+
+- Deployment now evaluates Cloud Foundry environment variable `VCAP_SERVICES_FILE_PATH`.
 
 ## Version 3.4.4 - 2025-11-17
 
