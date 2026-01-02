@@ -55,6 +55,27 @@ Arguments:
   VERSION      Name of the application version
 ```
 
+#### ai-analyze
+
+<details><summary>History</summary>
+
+| Version  | Changes                                                  |
+|----------|----------------------------------------------------------|
+| `v1.15.0` | Added                                                    |
+
+</details>
+
+```
+Analyze application version logs with AI
+
+Usage:
+  afctl ai-analyze APPLICATION [VERSION]
+
+Arguments:
+  APPLICATION  Name of the deployed application
+  VERSION      Name of the application version
+```
+
 #### config
 
 <details><summary>History</summary>

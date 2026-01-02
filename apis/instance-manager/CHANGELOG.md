@@ -5,6 +5,62 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.2.4 - 2025-12-04
+
+### Added
+- Support for Node.js 24 
+
+### Removed
+Removed node 18.x support and tests
+
+## 5.2.3 - 2024-12-25
+
+### Added
+- Support for Node.js 22
+
+## 5.2.2 - 2024-12-01
+
+### Updated
+- Updated debug to 4.3.7 
+- Updated sinon to 18.0.1
+- Updated async to 3.2.6
+
+## 5.2.1 - 2024-08-15
+
+### Downgrade
+- Revert dependency to @sap/xssec v4.2.1 to v3.6.1
+
+## 5.2.0 - 2024-08-14
+
+### Updated
+- Update @sap/xssec to 4.2.1
+- Updated debug to 4.3.6 
+- Updated uuid to 10.0.0
+- Updated c8 to 10.0.0
+- Updated chai to 4.5.0
+- Updated filter-node-package to 4.1.0
+- Updated sinon to 18.0.0
+
+
+## 5.1.0 - 2024-03-28
+
+### Updated
+- Updated clone to 2.1.2
+- Updated debug to 4.3.4
+- Updated lru-cache to 4.1.5
+- Updated uuid to 9.0.1
+
+## 5.0.0 - 2024-03-27
+
+### Removed
+- Removed shrinkwrap from preRelease
+- Removed node 16.x support and tests
+
+## 4.3.0 - 2024-01-10
+
+### Updated
+- Updated *xssec* to 3.6.1
+
 ## 4.2.0 - 2023-12-06
 
 ### Updated

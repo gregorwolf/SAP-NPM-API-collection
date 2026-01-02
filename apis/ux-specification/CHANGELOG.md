@@ -8,6 +8,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 [Node.js](https://nodejs.org/en/download/) version `20.14.0` or higher
 
+## [1.139.4] - 2025-12-15
+ - Updated dist tags
+
+## [1.139.3] - 2025-12-11
+
+### Fixed
+ - Removed the `group` property from actions
+
 ## [1.139.2] - 2025-11-26
 
 ### Added

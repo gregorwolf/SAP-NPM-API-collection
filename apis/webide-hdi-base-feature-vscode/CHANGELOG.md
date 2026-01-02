@@ -1,3 +1,8 @@
+## 1.43.0
+
+### Fixes
+- "Show local objects" in the "Add Data Source" dialog ignores local synonyms
+
 ## 1.42.0
 
 ### Fixes

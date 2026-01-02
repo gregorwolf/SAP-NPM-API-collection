@@ -1,3 +1,8 @@
+## 1.20.0
+
+### Fixes
+- TRIGGER not recognized as valid object privilege in hdbrole files
+
 ## 1.19.0
 
 ### Fixes

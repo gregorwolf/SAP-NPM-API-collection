@@ -5,6 +5,40 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.8.7 - 2025-12-31
+
+### Added
+- Support for error source tracking via x-error-source header when RETURN_ERROR_SOURCE environment variable is set
+
+### Fixed
+- Delete tenant specific token cache in case of service 401 response
+- html5 repo service name in token cache path in client credentials token middleware
+
+### Updated Dependencies
+- deps: cf-nodejs-logging-support@7.4.2
+- deps: qs@6.14.1
+
+## 20.8.6 - 2025-12-15
+
+### Fixed
+- Enable lazy html5 repo token exchange using ENABLE_LAZY_HTML5_TOKEN_EXCHANGE (default value is true)
+
+### Updated Dependencies
+- deps: mustache@4.2.0
+- deps: cf-nodejs-logging-support@7.4.1
+- deps: mime@4.1.0
+
+## 20.8.5 - 2025-12-10
+
+### Fixed
+- Client credentials token expiration calculation
+### Updated Dependencies
+- deps: ms@2.1.3
+- deps: verror@1.10.1
+- deps: cookie@1.1.1
+- deps: node-forge@1.3.3	
+- deps: debug@4.4.3
+
 ## 20.8.4 - 2025-12-02
 
 ### Fixed

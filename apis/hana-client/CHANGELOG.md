@@ -1,3 +1,29 @@
+# Hana Client 2.27.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.27 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.27/en-US
+
+For the latest updates please see SAP Note 3681871 - SAP HANA Client 2.27 Release Notes
+
+https://me.sap.com/notes/3681871
+
+## Version 2.27.19
+
+### Changes:
+
+ - Issue Number 348889: If disconnect() was called while an asynchronous call to abort() was still in progress, a crash could have occurred.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 349842: Disconnecting a connection that was dropped could have resulted in an unnecessary error.
+ - Issue Number 349361: Reusing the same connection object could have resulted in incorrect settings.
+ - Issue Number 349172: A connection could have reconnected to the wrong site after a failover if the siteType connection property was not set.
+ - Issue Number 349168: SQL after DISTRIBUTION in a SQLDBC trace option string incorrectly changed settings.
+ - Issue Number 348500: A System Replication system with scale out may not have statement routed correctly.
+ - Issue Number 346387: An incorrect buffer size was shown in the trace header.
+ - Issue Number 346010: The APPLICATIONSOURCE value may not have been set correctly after ABAP FDA operations.
+
 # Hana Client 2.26.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.26 documentation:
@@ -7,18 +33,6 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.26/en-US
 For the latest updates please see SAP Note 3643985 - SAP HANA Client 2.26 Release Notes
 
 https://me.sap.com/notes/3643985
-
-## Version 2.26.26
-
-### Changes:
-
- - Issue Number 348889: If disconnect() was called while an asynchronous call to abort() was still in progress, a crash could have occurred.
-
-### Underlying SQLDBC changes:
-
- - Issue Number 350513: In specific instances, when TRACE ONLY ON ERROR was enabled, the trace data written could have been corrupted.
- - Issue Number 349842: Disconnecting a connection that was dropped could have resulted in an unnecessary error.
- - Issue Number 349753: Switching users could have caused future internal connections to fail with an unclear error message.
 
 ## Version 2.26.25
 

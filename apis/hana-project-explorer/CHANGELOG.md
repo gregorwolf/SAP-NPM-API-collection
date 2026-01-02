@@ -1,3 +1,14 @@
+## 1.36.0
+
+### New Features
+
+- HDI artifact content can be generated via GenAI
+
+### Fixes
+
+- The deployment could fail in CAP project with message "Multi-target application not found"
+- Deployments could start without waiting for confirmation if services are bound to different databases
+
 ## 1.35.0
 
 ### New Features

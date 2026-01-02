@@ -1,3 +1,19 @@
+## 1.45.0
+
+### New Features
+- Improved currency conversion dialog and unit conversion dialog
+- The calculation view outline view supports searching for data sources
+
+### Fixes
+- Aggregation of restricted measure does not reflect base measure in XML
+- Removing an output column does not work when it is used as the right column of a join node
+- Data preview schema search should load schemas from the database
+- The key indicator for a calculated column wasn't shown
+- Selecting LIKE_REGEXPR inserts partial syntax instead of full template
+- Calculation View Editor removes sorting semantics when a node gets deleted
+- The calculation view icon can be missing in the analytical privilege editor
+- The Analytic Data Preview could fail because it could not access the target container
+
 ## 1.44.0
 
 ### New Features

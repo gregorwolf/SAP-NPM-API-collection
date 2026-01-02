@@ -1,17 +1,17 @@
 {
   "name": "@sap/async-xsjs",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/async-xsjs",
-      "version": "2.1.6",
+      "version": "2.1.7",
       "license": "SEE LICENSE IN LICENSE file",
       "dependencies": {
         "@sap/audit-logging": "^6.3.0",
         "@sap/e2e-trace": "^5.3.0",
-        "@sap/hana-client": "2.24.26",
+        "@sap/hana-client": "2.26.26",
         "@sap/hdbext": "8.1.9",
         "@sap/instance-manager": "^5.2.1",
         "@sap/jobs-client": "^1.8.5",
@@ -86,7 +86,7 @@
       }
     },
     "node_modules/@sap/hana-client": {
-      "version": "2.24.26",
+      "version": "2.26.26",
       "hasInstallScript": true,
       "license": "SEE LICENSE IN developer-license-3_2.txt",
       "dependencies": {
@@ -132,6 +132,28 @@
       "engines": {
         "node": "^18.0.0 || ^20.0.0 || ^22.0.0"
       }
+    },
+    "node_modules/@sap/hdbext/node_modules/@sap/hana-client": {
+      "version": "2.24.26",
+      "hasInstallScript": true,
+      "license": "SEE LICENSE IN developer-license-3_2.txt",
+      "dependencies": {
+        "debug": "3.1.0"
+      },
+      "engines": {
+        "node": ">=4.0.0"
+      }
+    },
+    "node_modules/@sap/hdbext/node_modules/@sap/hana-client/node_modules/debug": {
+      "version": "3.1.0",
+      "license": "MIT",
+      "dependencies": {
+        "ms": "2.0.0"
+      }
+    },
+    "node_modules/@sap/hdbext/node_modules/@sap/hana-client/node_modules/ms": {
+      "version": "2.0.0",
+      "license": "MIT"
     },
     "node_modules/@sap/hdbext/node_modules/debug": {
       "version": "4.3.1",
@@ -1032,10 +1054,10 @@
       }
     },
     "node_modules/jsonwebtoken": {
-      "version": "9.0.2",
+      "version": "9.0.3",
       "license": "MIT",
       "dependencies": {
-        "jws": "^3.2.2",
+        "jws": "^4.0.1",
         "lodash.includes": "^4.3.0",
         "lodash.isboolean": "^3.0.3",
         "lodash.isinteger": "^4.0.4",
@@ -1052,7 +1074,7 @@
       }
     },
     "node_modules/jwa": {
-      "version": "1.4.2",
+      "version": "2.0.1",
       "license": "MIT",
       "dependencies": {
         "buffer-equal-constant-time": "^1.0.1",
@@ -1061,10 +1083,10 @@
       }
     },
     "node_modules/jws": {
-      "version": "3.2.2",
+      "version": "4.0.1",
       "license": "MIT",
       "dependencies": {
-        "jwa": "^1.4.1",
+        "jwa": "^2.0.1",
         "safe-buffer": "^5.0.1"
       }
     },

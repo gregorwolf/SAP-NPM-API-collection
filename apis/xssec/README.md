@@ -35,7 +35,7 @@ This module allows Node.js applications to authenticate users via JWT tokens iss
     - [Token Decode Cache](#token-decode-cache)
     - [x5t Validation](#x5t-validation)
     - [Proof Token Validation](#proof-token-validation)
-    - [IAS -> XSUAA Token Exchange](#ias---xsuaa-token-exchange)
+    - [XSUAA Legacy Extension](#xsuaa-legacy-extension)
     - [Retry logic](#retry-logic)
     - [JWKS Rotation](#jwks-rotation)
 1. [Troubleshooting](#troubleshooting)
@@ -215,6 +215,7 @@ Major new features will only be made available for *SAP Cloud Identity Services*
 ### Migration from XSUAA
 Migration for older applications from XSUAA to *SAP Cloud Identity Services* with *Authorization Policies* is currently in the pilot phase. There will be guides for different migration stages available soon.
 
+The [XsuaaLegacyExtension](#xsuaa-legacy-extension) is the first official solution to support hybrid authentication during migration from XSUAA to SAP Cloud Identity Services.
 
 
 ## Usage
@@ -863,15 +864,180 @@ const securityContext = await createSecurityContext(identityService, { reqWithFo
 // service plans are available via securityContext.servicePlans
 ```
 
-#### IAS -> XSUAA Token Exchange
-Some applications need to exchange incoming Identity Service user tokens to XSUAA user tokens.
-The correct token flow for this is the [JWT Bearer](#token-flows) flow.
+#### XSUAA Legacy Extension
+The `XsuaaLegacyExtension` enables hybrid authentication during migration from XSUAA to SAP Cloud Identity Services. It automatically exchanges IAS user tokens for XSUAA tokens, allowing applications to support both authentication methods.
 
-The token exchange is not a fully fletched feature of the library and needs to be implemented **and tested** via application coding.
+##### Use Case
+Applications migrating from XSUAA-based authentication to SAP Cloud Identity Services may need to:
+- Support tenants that still authenticate via XSUAA (sending XSUAA tokens)
+- Support tenants that have migrated to IAS (sending IAS tokens)
+- Maintain existing XSUAA-based authorization for migrated tenants
 
-However, [this snippet](./src/util/iasXsuaaTokenExchange.js) should give a good idea how the API of the library can be used to achieve this.
-It implements an express middleware that can be registered *before* the authentication middleware to exchange the IAS token in the request header to an XSUAA token.\
-If you decide to base your implementation on the snippet, you need to copy it to your source files and implement logging and error handling as required by the application.
+The extension handles this by automatically fetching an XSUAA token after an IAS user token has been successfully validated, giving the application full flexibility which token to use.
+
+##### Basic Setup
+
+Enable the extension in the `IdentityService` configuration:
+
+```js
+const { IdentityService, XsuaaService, createSecurityContext } = require("@sap/xssec");
+
+const xsuaaService = new XsuaaService(xsuaaCredentials);
+const identityService = new IdentityService(identityServiceCredentials, {
+  xsuaaLegacyExtension: true
+});
+
+// The extension is now active with default settings (IAS-primary mode)
+// Both services must be passed to createSecurityContext
+const securityContext = await createSecurityContext([identityService, xsuaaService], { req });
+```
+
+The extension fetches the XSUAA token from the first `XsuaaService` instance from the services array passed to `createSecurityContext`.
+
+##### Primary Context Type
+
+The extension supports two modes, controlled by the `primaryContextType` configuration property:
+
+**IAS-Primary Mode (Default)** - For applications adopting AMS authorization
+
+```js
+const { IdentityService, XsuaaService, XsuaaLegacyExtension, createSecurityContext } = require("@sap/xssec");
+
+const xsuaaService = new XsuaaService(xsuaaCredentials);
+const identityService = new IdentityService(identityServiceCredentials, {
+  xsuaaLegacyExtension: true  // defaults to IAS-primary
+});
+
+// Or explicitly:
+const identityService = new IdentityService(identityServiceCredentials, {
+  xsuaaLegacyExtension: {
+    primaryContextType: XsuaaLegacyExtension.IDENTITY_SERVICE_SECURITY_CONTEXT
+    // or: primaryContextType: "IdentityServiceSecurityContext"
+  }
+});
+
+const securityContext = await createSecurityContext([identityService, xsuaaService], { req });
+```
+
+In this mode, `createSecurityContext` for IAS user tokens returns an `IdentityServiceSecurityContext` with the XSUAA context embedded:
+```
+IdentityServiceSecurityContext
+ └─ xsuaaContext: XsuaaSecurityContext
+```
+
+This mode is recommended for applications that have adopted [@sap/ams](https://www.npmjs.com/package/@sap/ams) for authorization checks. It is possible to configure the AMS library so that in addition to the policies assigned to users in the IAS directory, additional base policies are granted based on XSUAA scopes. This allows tenants a graceful migration path where existing XSUAA scopes continue to provide equivalent authorization via base policies while the administrator is not yet finished with policy assignments in the directory.
+
+**XSUAA-Primary Mode** - For applications keeping XSUAA authorization
+
+```js
+const { IdentityService, XsuaaService, XsuaaLegacyExtension, createSecurityContext } = require("@sap/xssec");
+
+const xsuaaService = new XsuaaService(xsuaaCredentials);
+const identityService = new IdentityService(identityServiceCredentials, {
+  xsuaaLegacyExtension: {
+    primaryContextType: XsuaaLegacyExtension.XSUAA_SECURITY_CONTEXT
+    // or: primaryContextType: "XsuaaSecurityContext"
+  }
+});
+
+const securityContext = await createSecurityContext([identityService, xsuaaService], { req });
+```
+
+In this mode, `createSecurityContext` for IAS user tokens returns an `XsuaaSecurityContext` with the IAS context embedded:
+```
+XsuaaSecurityContext
+ └─ iasContext: IdentityServiceSecurityContext
+```
+
+This mode allows applications to continue using existing XSUAA-based authorization checks such as `securityContext.checkLocalScope` without further code changes.
+
+Applications following this approach must ensure that IAS technical user tokens are either rejected after token validation or authorized with custom logic as they would still result in an `IdentityServiceSecurityContext` without the expected methods for checking scopes.
+
+##### Customizing Extension Behavior
+
+The extension only applies to user tokens by default (not technical/client credentials tokens). You can customize this behavior by subclassing and overriding the `appliesTo` method:
+
+```js
+const { IdentityService, XsuaaService, XsuaaLegacyExtension, createSecurityContext } = require("@sap/xssec");
+
+class TenantSpecificXsuaaLegacyExtension extends XsuaaLegacyExtension {
+  async appliesTo(iasCtx) {
+    // First check the default condition (user token)
+    if (!await super.appliesTo(iasCtx)) {
+      return false;
+    }
+    
+    // Additional custom logic, e.g., tenant allowlist
+    const allowedTenants = ["tenant1", "tenant2", "tenant3"];
+    return allowedTenants.includes(iasCtx.token.appTid);
+  }
+}
+
+// Register the custom extension using context.extensions
+const xsuaaService = new XsuaaService(xsuaaCredentials);
+const identityService = new IdentityService(identityServiceCredentials, {
+  context: {
+    extensions: [
+      new TenantSpecificXsuaaLegacyExtension({
+        primaryContextType: XsuaaLegacyExtension.XSUAA_SECURITY_CONTEXT
+      })
+    ]
+  }
+});
+
+const securityContext = await createSecurityContext([identityService, xsuaaService], { req });
+```
+
+##### Cache Configuration
+
+The extension caches fetched XSUAA contexts to improve performance. By default, it uses an in-memory LRU cache with a maximum size of 100 entries. When accessed, cached XSUAA contexts with less than 5 minutes token lifetime are removed from the cache and a fresh token is fetched.
+
+**Default cache:**
+```js
+const identityService = new IdentityService(identityServiceCredentials, {
+  xsuaaLegacyExtension: true  // Uses default: LRU cache with size 100
+});
+```
+
+**Custom cache size:**
+```js
+const identityService = new IdentityService(identityServiceCredentials, {
+  xsuaaLegacyExtension: {
+    cache: { size: 500 }
+  }
+});
+```
+
+**Disable caching:**
+```js
+const identityService = new IdentityService(identityServiceCredentials, {
+  xsuaaLegacyExtension: {
+    cache: { enabled: false }
+  }
+});
+```
+
+**Custom cache implementation:**
+```js
+const customCache = {
+  get: (key) => { /* your implementation */ },
+  set: (key, value) => { /* your implementation */ }
+};
+
+const identityService = new IdentityService(identityServiceCredentials, {
+  xsuaaLegacyExtension: {
+    cache: { impl: customCache }
+  }
+});
+```
+
+##### Important Notes
+- The extension **only applies to IAS user tokens**. It does not apply to:
+  - XSUAA tokens (returned as `XsuaaSecurityContext` without modification)
+  - IAS technical user tokens fetched via client credentials flow
+- When the extension does not apply, `createSecurityContext` returns an `IdentityServiceSecurityContext` even if `primaryContextType` is set to `XsuaaSecurityContext`
+- The extension supports also IAS access tokens by exchanging them for IAS id tokens first which is necessary input for requesting the XSUAA token
+- Remember to pass both `IdentityService` and `XsuaaService` instances to `createSecurityContext` as an array
 
 
 ## Troubleshooting

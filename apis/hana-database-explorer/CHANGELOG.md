@@ -1,5 +1,15 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.37.0
+
+### New Features
+- The metadata of sequences can be visualized graphically by clicking on a sequence in the catalog browser.
+
+### Fixes
+- A CREATE USER statement could silently fail in the SQL console if the password didn't match the password policy
+- CONNECT statements could silently fail in the SQL console if the password was invalid
+- The SQL console could hang during an "Explain Plan" execution if a table in the statement didn't exist
+
 ## 1.36.0
 
 ### Fixes

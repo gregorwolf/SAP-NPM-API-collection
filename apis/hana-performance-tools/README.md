@@ -39,6 +39,12 @@ SQL Analyzer for Visual Studio Code is still under heavy development. Here are s
 
 [SQL Analyzer Extension](https://help.sap.com/docs/HANA_SQL_ANALYZER) - SAP Help Portal
 
+## Telemetry and Data Collection
+
+This extension collects usage data to help improve SAP products and enhance the user experience. The collected data is sent to SAP in accordance with our Privacy Statement.
+
+If you prefer not to share usage data, you can disable telemetry by setting `sapbas.telemetryEnabled` to false in your VS Code settings. 
+
 ## Feedbacks
 
 Please provide your feedback through [ServiceNow](https://itsm.services.sap/now/workspace/agent/record/u_sap_component/b1b0603e1bb3d4d0ddab74049b4bcbda/params/selected-tab-index/3) using the component HAN-BAS-SA.
