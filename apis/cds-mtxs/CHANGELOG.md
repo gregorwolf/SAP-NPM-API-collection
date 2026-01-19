@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.6.2 - 2026-01-13
+
+### Fixed
+
+- Command `cds-mtx` now correctly passes the services when triggering the 'served' event.
+- HDI deployment log files are now safely written in case of process terminations.
+- Etag returned by `/-/cds/model-provider/getCsn` now properly reflects model changes again.
+- Reading extensions using `/-/cds/extensibility/Extensions` now also works with an outdated schema of the extension table.
+
+### Changed
+
+- Maximum chunk size when retrieving container bindings from service-manager is reduced to 1000.
+
 ## Version 3.6.1 - 2025-12-16
 
 ### Fixed
@@ -30,6 +43,10 @@ using `cds.env.appid`. If no value is set, no `appid` will be used. If it is set
 
 ## Version 3.5.0 - 2025-12-01
 
+### Added
+
+- Deployment now evaluates Cloud Foundry environment variable `VCAP_SERVICES_FILE_PATH`.
+
 ### Changed
 
 - Metadata is merged instead of overwritten for resubscriptions.
@@ -40,10 +57,6 @@ using `cds.env.appid`. If no value is set, no `appid` will be used. If it is set
 - Event `compile.for.runtime` is also triggered when calling `POST/-/cds/extensibility/pull`.
 - Startup of MTX does no longer show `cdsc` configuration warning if only defaults are used.
 - Concurrency handling with HANA TMS v2 is now more stable.
-
-### Added
-
-- Deployment now evaluates Cloud Foundry environment variable `VCAP_SERVICES_FILE_PATH`.
 
 ## Version 3.4.4 - 2025-11-17
 

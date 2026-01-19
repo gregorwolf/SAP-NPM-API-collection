@@ -4,6 +4,22 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.6.3 - 2026-01-14
+
+### Fixed
+
+- `queue`: Exactly-once guarantee only with `legacyLocking: false`
+
+## Version 9.6.2 - 2026-01-08
+
+### Fixed
+
+- Consider `@mandatory.message` for the error message, when a mandatory action / function parameter is not provided
+- Respond with error code `400` when receiving requests that use `any()` / `all()` filters on an association to one
+- Error message of unknown property check will no longer include `undefined` to identify structs without a name
+- `enterprise-messaging`: Type error in check for unofficial XSUAA fallback
+- Status Transition Flows: Exclusions for multiple projections
+
 ## Version 9.6.1 - 2025-12-18
 
 ### Fixed

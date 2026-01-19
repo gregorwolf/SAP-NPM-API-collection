@@ -6,7 +6,65 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.6.3 - 2026-01-12
+
+### Added
+- JSON schema for user settings
+- progress reporting for persistency operations
+
+### Changed
+- disable type generation for current session when preconditions not fulfilled after first try
+
+
+## 9.6.2 - 2026-01-02
+
+### Fixed
+- CSN files cannot be persisted currently
+- telemetry issue
+
+
+## 9.6.1 - 2026-01-02
+
+### Fixed
+- crash when starting server
+
+
+## 9.6.0 - 2025-12-29
+
+### Added
+- (Experimental) persistency of where-used index
+
+  This feature allows to persist/restore where-used indexes on a per-file basis to speed up indexing of large projects
+  with many root models. It is currently experimental and must be enabled via user setting `cds.workspace.persistency.enabled`.
+  There are a couple of user settings to fine tune the behavior
+  + `cds.workspace.persistency.enabled`: general enablement. All other settings have no effect if this is disabled.
+  + `cds.workspace.persistency.persistAfterSave`: when a file is saved its index is persisted.
+  + `cds.workspace.persistency.persistAfterCompile`: when (closed) CDS files are compiled (also as part of another model compilation) their index gets persisted.
+  + `cds.workspace.persistency.restoreBeforeCompile`: when CDS files are part of a compilation their persisted index is used if matching 
+  + `cds.workspace.persistency.restoreAfterStartup`: restore all persisted indexes after start-up
+  + `cds.workspace.persistency.indexAllAfterStartup`: index all files not yet persisted
+  + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterStartup`: index files are written per content. Delete index files with outdated content after start-up
+  + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterNSaves`: Delete index files with outdated content after specified number of `Save` requests 
+  + `cds.workspace.persistency.reindexAfterCompileIfRestored`: If files are part of a compilation and a matching index exist, still index again.
+  
+
+### Fixed
+- Syntax highlighting in bracketed expressions
+
+### Changed
+- `@sap/cds-lsp` now uses es2024 (NodeJS 22) as bundled output format
+- Custom request `cds/statusMessage` now supports an `id` argument for better UX and simpler life-cycle. Clients must close a currently shown
+  status bar item with the same id before showing a new one with the id.
+
+### Removed
+- User setting `cds.workspace.debounceFastChanges`, now always enabled
+
+### Also see
+- `@sap/cds-compiler` 6.6.0
+
+
 ## 9.5.1 - 2025-11-28
+
 ### Changed
 - Compatibility with `@sap/cds 9.5`
 
@@ -14,8 +72,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `@sap/cds-compiler` 6.5.0
 - `@sap/cds` 9.5.0
 
+### Fixed
+- Syntax highlighting in `annotate` statements with constraints containing function calls
+
 
 ## 9.5.0 - 2025-11-24
+
 ### Added
 - `format-cds` CLI
   + support piping - format single src from stdin to stdout
@@ -24,6 +86,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Changed
 - `*.json` files are no longer scanned and parsed heuristically if they contain CSN. Those files need to be used from a CDS file to be seen e.g. in `Workspace Symbols`. However, files ending with `.csn.json` or `.csn` are still considered as CSN files.
+
 
 ## 9.4.0 - 2025-09-29
 

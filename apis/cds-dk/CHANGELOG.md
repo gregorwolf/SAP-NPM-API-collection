@@ -6,6 +6,20 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.6.1 - 2026-01-09
+
+### Changed
+
+- All commands use colored logs in GitHub Actions workflows by default.
+
+### Fixed
+
+- CVE-2025-15284: update `express` to fix vulnerability with `qs` <6.14.1.
+- `cds watch` is more efficient on Linux with respect to `inotify` events. This fixes some crash and stall situations on Linux, especially in SAP Business Application Studio where resources are shared.
+- `cds build --production` correctly includes `message.properties` from i18n files provided by CAP plugins.
+- `cds add sample` fixes a warning about unused imports in _app/common.cds_.
+- `cds init` fixes some rare argument parsing errors.
+
 ## Version 9.6.0 - 2025-12-16
 
 ### Added
