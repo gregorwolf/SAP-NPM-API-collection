@@ -6,6 +6,33 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.20.1] - 2026-01-07
+### Added
+- Added the ability to display a walkthrough that describes how to get started with SAP Fiori tools.  The walkthrough is automatically displayed on the first install in Visual Studio Code, or by using the command palette entry `Fiori: Open Walkthrough`
+- Enhanced the Page Editor to enable configuring the popin layout for the responsive table
+- Enhanced the Page Editor to enable assigning priority for actions and action menus, which controls how actions and action menus move into overflow.
+- Enhanced the Page Editor to enable assigning overflow groups for actions and action menus
+### Fixed
+- Fixed an issue where some table properties were incorrectly displayed in the outline section of the Page Map, rather than the Properties section
+- Fixed an issue where custom filter fields could not be added to a second filter bar in a custom section on an object page
+- Fixed an issue where the Warning/Info message strip was incorrectly displayed in the Page Map and Page Editor
+- Fixed an issue where the "Empty Collection for Visualizations" error message was incorrectly displayed in the Page Map
+- Fixed an issue where annotation features were disabled and errors occurred while parsing annotations in the Page Editor
+- Fixed an issue where an annotation action could not be dropped before the first custom action in the Page Editor
+- Fixed an issue where dialog boxes displayed incorrect shadow rendering in the Page Editor
+- Fixed an issue in the Page Map that prevented placing a custom page as an entry page before the list report page
+- Fixed an issue where analytical list page charts were generated using the `Measures` property instead of `DynamicMeasures` when using the `@Analytics.AggregatedProperty` annotation in OData V4
+- Fixed an issue where existing presentation variant and selection presentation variant annotations were not available in the dropdown list for the "Presentation Variant" property of analytical list report page charts
+- Fixed an issue with the size of the "Add Chart" button
+- Fixed an issue where an error occurred when adding a new custom filter which was anchored to a basic filter
+- Fixed an issue where the generated schema for macro controls did not include properties or aggregations from extended macro controls or classes in OData V4
+- Fixed an issue where disallowed properties could not be removed in the overview page
+- Fixed an issue in the Application Modeler tree where icons were misaligned and displayed with incorrect colors
+- Fixed a usability issue with the "Creation Dialog" dropdown
+- Fixed an issue where configuration documentation descriptions were displayed as undefined
+- Fixed an issue where a custom fragment was deleted from the `manifest.json` file during export
+- Fixed an issue where the `manifest.json file` entry was not deleted when deleting an annotation-based column containing a `manifest.json` file property
+    
 ## [1.20.0] - 2025-11-27
 ### Added
 - Added the ability to add a custom filter to the Filter Bar building block

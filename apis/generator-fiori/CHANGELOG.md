@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.20.1] - 2026-01-07
+### Added
+- Generated OData V4 applications now have lazy loading enabled by default for SAPUI5 versions 1.144 and above
+- ABAP deployment now provides warnings if the version of the manifest.json file and the version of SAPUI5 used in the application are not compatible
+
+### Changed
+- The version added when you choose an eslint configuration has been upgraded to version 9
+- Updated the Cloud Foundry deployment configuration so that you must now choose to add the application to either a managed application router or to an Application Frontend service
+- The advanced option to add code assist during project generation has been removed. Please use the option to generate with TypeScript, which includes code completion and type checking
+
+### Fixed
+- Fixed an issue where the generator unexpectedly exited when changing from an HTTP connection to an HTTPS connection when adding a new saved system
+
 ## [1.20.0] - 2025-11-27
 ### Fixed
 - Fixed an issue where an incorrect error message was shown during generation if the selected SAP System catalog only contained OData V2 services and the selected template type required an OData V4 service

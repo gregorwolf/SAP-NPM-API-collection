@@ -3,6 +3,10 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.20.1] - 2026-01-07
+### Fixed
+- Fixed an issue where incorrect error messages were shown for invalid credentials
+   
 ## [1.20.0] - 2025-11-27
 - Fixed multiple usability issues in Service Modeler
 

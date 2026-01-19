@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+
+## [1.15.1] - 2026-01-15
+
+### Fixed
+- Implemented a persistent beta acceptance mechanism (per user profile) for the `ai-analyze` command, replacing the previous static warning with an interactive prompt. 
+
+
+### Updated Dependencies
+- deps: yaml@2.8.2
+
+
 ## [1.15.0] - 2025-12-07
 
 ### Added

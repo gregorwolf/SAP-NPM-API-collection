@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.2.5 - 2026-01-08
+
+### Added
+- Client-Name and Client-Version headers to request.
+
 ## 5.2.4 - 2025-12-04
 
 ### Added

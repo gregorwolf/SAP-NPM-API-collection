@@ -5,6 +5,23 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.8.8 - 2026-01-11
+
+### Fixed
+- instance destination in embedded flow
+- Return 404 response in case of non-existing subdomain in url
+- Don't return LEP apps in get applications unless RETURN_LEP_APPLICATIONS=true is set
+
+### Updated Dependencies
+- deps: body-parser@1.20.4
+- deps: https-proxy-agent@5.0.1
+- deps: query-string@7.1.3
+- deps: send@0.19.2
+- deps: serve-static@1.16.3
+- deps: tough-cookie@4.1.4
+- deps: validator@13.15.26
+- deps: wtfnode@0.10.1
+
 ## 20.8.7 - 2025-12-31
 
 ### Added

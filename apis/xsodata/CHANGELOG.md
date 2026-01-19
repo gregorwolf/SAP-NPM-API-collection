@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [8.3.0] - 2026-01-09
+
+* FOSS related security updates
+* Add support for node 24
+* Batch responses additional CRLF fix
+
 ## [8.2.1] - 2025-03-21
 
 * FOSS related security updates

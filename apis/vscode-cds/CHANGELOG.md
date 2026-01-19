@@ -6,6 +6,47 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [9.6.3] - 2026-01-13
+
+### Added
+- progress reporting for persistency
+
+### Fixed
+- some minor fixes
+
+### Also see
+- `@sap/cds-lsp` 9.6.3
+
+
+## [9.6.0] - 2026-01-02
+
+### Added
+- (Experimental) persistency of where-used index
+
+  This feature allows to persist/restore where-used indexes on a per-file basis to speed up indexing of large projects
+  with many root models. It is currently experimental and must be enabled via user setting `cds.workspace.persistency.enabled`.
+  There are a couple of user settings to fine tune the behavior
+  + `cds.workspace.persistency.enabled`: general enablement. All other settings have no effect if this is disabled.
+  + `cds.workspace.persistency.persistAfterSave`: when a file is saved its index is persisted.
+  + `cds.workspace.persistency.persistAfterCompile`: when (closed) CDS files are compiled (also as part of another model compilation) their index gets persisted.
+  + `cds.workspace.persistency.restoreBeforeCompile`: when CDS files are part of a compilation their persisted index is used if matching 
+  + `cds.workspace.persistency.restoreAfterStartup`: restore all persisted indexes after start-up
+  + `cds.workspace.persistency.indexAllAfterStartup`: index all files not yet persisted
+  + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterStartup`: index files are written per content. Delete index files with outdated content after start-up
+  + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterNSaves`: Delete index files with outdated content after specified number of `Save` requests 
+  + `cds.workspace.persistency.reindexAfterCompileIfRestored`: If files are part of a compilation and a matching index exist, still index again.  
+
+### Fixed
+- Syntax highlighting in bracketed expressions
+
+### Removed
+- User setting `cds.workspace.debounceFastChanges`, now always enabled
+
+### Also see
+- `@sap/cds-lsp` 9.6.0
+- `@sap/cds-compiler` 6.6.0
+
+
 ## [9.5.0] - 2025-12-01
 
 ### Fixed

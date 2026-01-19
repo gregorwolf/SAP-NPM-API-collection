@@ -8,6 +8,18 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+<a name="6.10.1"></a>
+## 6.10.1 - 2026-01-05
+### Added
+- Support for custom logger
+### Updated
+- Update to express 5.2.0
+- Update to @sap/audit-logging 6.9.0
+- Update to @sap/logging 9.0.0
+- Update to @sap/xsenv 6.0.0
+- Update to qs 6.14.1
+  
 <a name="6.10.0"></a>
 ## 6.10.0 - 2025-11-19
 ### Updated

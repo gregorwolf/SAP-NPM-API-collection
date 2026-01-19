@@ -424,7 +424,8 @@ It also supports the following service-specific options:
 
 **Identity Service**:
 
-`resource` (*string|string[]*) name(s) of API dependency to another application that shall be consumed with this token in the format urn:sap:identity:application:provider:name:\<dependencyName\>
+`resource` (*string|string[]*) name(s) of API dependency to another application that shall be consumed with this token in the format `urn:sap:identity:application:provider:name:\<dependencyName\>`\
+`refresh_expiry` (number) Can be used to reduce the expiry time of the refresh token. If set to 0, no refresh token will be issued.
 
 #### acceptsToken
 Furthermore, each subclass of `Service` offers the method `acceptsToken(token)` which checks if a `Token` is accepted by this service instance:
