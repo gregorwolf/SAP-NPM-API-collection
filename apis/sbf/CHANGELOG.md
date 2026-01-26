@@ -8,6 +8,11 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.10.2"></a>
+## 6.10.2 - 2026-01-22
+### Changed
+- Update to lodash 4.17.23
+
 
 <a name="6.10.1"></a>
 ## 6.10.1 - 2026-01-05

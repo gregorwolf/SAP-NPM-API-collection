@@ -7,12 +7,12 @@ GridRowItem, ObjectHeader, ChartCard, ChartContent, SectionHeaderItem.Label
 FioriToolbar, FioriActionBar
 
 
-| Properties | iOS | Android | Web | Remarks |
-|:---|:---:|:---:|:---:|:---:|
-| font-color: Color | &check; |&check;| | |
-| color: Color | | | &check; | |
-| font-size: Number |  | &check; |&check;| |
-| font-family | | |&check; | |
-| font-style: UIFont.TextStyle | &check; | | | Style of the font, for iOS, e.g. body / caption / headline, refer to [UIFont.TextStyle](https://developer.apple.com/documentation/uikit/uifont/textstyle) |
-| font-typeface: Typeface |  | &check; | | |
-| font-name: Font |  | &check; | | Name of the font, e.g. thinSystem, italicSystem, boldSystem | |
+| Properties | iOS | Android | Web |
+|:---|:---:|:---:|:---:|
+| font-color: Color | &check; |&check;| |
+| color: Color | | | &check; |
+| font-size: Number |  | &check; |&check;|
+| font-family | | |&check; |
+| font-style: UIFont.TextStyle | &check; | | |
+| font-typeface: Typeface |  | &check; | |
+| font-name: Font |  | &check; | | Name of the font, e.g. thinSystem, italicSystem, boldSystem |

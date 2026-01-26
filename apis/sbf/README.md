@@ -1,4 +1,4 @@
-# @sap/sbf.
+# @sap/sbf
 
 A Node.js framework to create a service broker in SAP Business Technology Platform (SAP BTP)
 

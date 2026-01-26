@@ -20,6 +20,7 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
 - [Setup](#setup)
 - [Available Tools](#available-tools)
 - [Support, Feedback, Contributing](#support-feedback-contributing)
+- [Telemetry](#telemetry)
 - [Security / Disclosure](#security--disclosure)
 - [Code of Conduct](#code-of-conduct)
 - [Licensing](#licensing)
@@ -175,14 +176,10 @@ This release of the MDK MCP server includes the following tools, which can be ac
 
 | Tools     | Description | Parameters      |
 |----------|-----|-----------|
-| `mdk-gen-project`    | Generates a new MDK project in the current directory.  | - `folderRootPath:` The path of the current project root folder. <br> -`templateType:` The type of the template to be used. <br> -`oDataEntitySets:` The OData entity sets are relevant to the user prompt, separated by commas. <br> -`offline:` Whether to generate the project in offline mode, set to false unless offline is explicitly specified.  |
-| `mdk-gen-i18n`    | Returns a prompt to be used for generating i18n files for the MDK application. You can describe texts, labels, messages.  | - `folderRootPath:` The path of the current project root folder. |
-| `mdk-gen-databinding-page`    | Returns a prompt to be used for generating a databinding-enabled MDK page. Using the prompt, a .page file is created that describes the page layout, controls and data bindings.  | - `folderRootPath:` The path of the current project root folder. <br> -`controlType:` The type of the control to be used in the MDK page. |
-| `mdk-gen-layout-page`    | Generates a layout-based MDK page. You can describe the page layout, controls. It saves the response to `.page` file.  | - `folderRootPath:` The path of the current project root folder. <br> -`layoutType:` The type of the layout to be used in the MDK page. |
-| `mdk-gen-entity`    | Generates CRUD or List Detail template metadata for a new entity set.  | - `folderRootPath:` The path of the current project root folder. <br> -`templateType:` The type of the entity template to be used. <br> -`oDataEntitySets:` The OData entity sets are relevant to the user prompt, separated by commas. |
-| `mdk-gen-action`    | Returns a prompt to be used for generating an MDK action. Using the prompt, an `.action` file will be created that describes the action type and data bindings.  | - `folderRootPath:` The path of the current project root folder. <br> -`actionType:` The type of the action. |
-| `mdk-manage`    | Comprehensive MDK project management tool that handles build, deploy, validate, migrate, show QR code, and mobile app editor operations.  | - `folderRootPath:` The path of the current project root folder. <br> -`operation:` The operation to perform on the MDK project. Available operations:<br>• `build`: Build an MDK project<br>• `deploy`: Deploy an MDK project to the Mobile Services<br>• `validate`: Validate an MDK project<br>• `migrate`: Migrate an MDK project to the latest MDK version<br>• `show-qrcode`: Show QR code for an MDK project<br>• `open-mobile-app-editor`: Instruct how to open the Mobile App Editor to create .service.metadata file |
-| `mdk-docs`    | Unified tool for accessing MDK documentation including search, component schemas, property details, and examples.  | - `operation:` The type of documentation operation to perform:<br>• `search`: Returns the top N results from MDK documentation by semantic search, sorted by relevance<br>• `component`: Returns the schema of an MDK component based on the name of the component<br>• `property`: Returns the documentation of a specific property of an MDK component<br>• `example`: Returns an example usage of an MDK component <br> -`folderRootPath:` The path of the current project root folder. Used to determine the appropriate MDK schema version. <br> -`query:` Search query string (required for 'search' operation). <br> -`component_name:` Name of the component (required for 'component', 'property', and 'example' operations). <br> -`property_name:` Name of the property (required for 'property' operation). <br> -`N:` Number of results to return for search operation (default: 5). |
+| `mdk-create`    | Creates MDK projects or entity metadata using templates (CRUD, List Detail, Base). Use this for initializing new projects or adding entity metadata to existing projects.  | - `folderRootPath:` The path of the current project root folder. <br> - `scope:` The scope of creation:<br>• `project`: Initialize a new MDK project with full structure<br>• `entity`: Add entity metadata to an existing project<br> - `templateType:` The type of template to use (crud, list detail, base). Note: 'base' template is only valid for project scope.<br> - `oDataEntitySets:` The OData entity sets relevant to the user prompt, separated by commas.<br> - `offline:` Whether to generate the project in offline mode (only applicable for project scope). Set to false unless offline is explicitly specified. |
+| `mdk-gen`    | Generates MDK artifacts including pages, actions, i18n files, and rule references. Returns prompts for LLM processing (pages, actions, i18n) or searches for rule examples.  | - `artifactType:` The type of artifact to generate:<br>• `page`: Generate MDK page files (.page) with databinding or layout<br>• `action`: Generate MDK action files (.action)<br>• `i18n`: Generate internationalization files (.properties)<br>• `rule`: Search for and return relevant JavaScript rule examples<br> - `folderRootPath:` The path of the current project root folder (not required for rule artifact type).<br><br>**For page artifacts:**<br> - `pageType:` Type of page (required when artifactType is 'page'):<br>• `databinding`: Data-driven pages with controls bound to OData<br>• `layout`: Structure-focused pages with specific layouts<br> - `controlType:` The control type for databinding pages (required when pageType is 'databinding'). Available types: ObjectTable, FormCell, KeyValue, ObjectHeader, ContactTable, SimplePropertyCollection, ObjectCard, DataTable, KPIHeader, ProfileHeader, ObjectCollection, Timeline, TimelinePreview, Calendar.<br> - `oDataEntitySets:` Optional: The OData entity sets to use for page generation, separated by commas (required only when pageType is 'databinding').<br> - `layoutType:` The layout type for layout pages (required when pageType is 'layout'). Available types: Section, BottomNavigation, FlexibleColumnLayout, SideDrawerNavigation, Tabs, Extension.<br><br>**For action artifacts:**<br> - `actionType:` The type of action (required when artifactType is 'action'). Available types: CreateODataEntity, UpdateODataEntity, DeleteODataEntity, CreateODataMedia, InitializeOfflineOData, DownloadOfflineOData, UploadOfflineOData, CancelDownloadOfflineOData, CancelUploadOfflineOData, ClearOfflineOData, CloseOfflineOData, CreateODataRelatedEntity, CreateODataRelatedMedia, CreateODataService, DeleteODataMedia, DownloadMediaOData, LogMessage, Message, Navigation, OpenODataService, ProgressBanner, PushNotificationRegister, PushNotificationUnregister, ReadODataService, RemoveDefiningRequest, SendRequest, SetLevel, SetState, ToastMessage, UndoPendingChanges, UploadLog, UploadODataMedia, UploadStreamOData, ChatCompletion, PopoverMenu, CheckRequiredFields, ChangeSet, OpenDocument, Banner, Filter.<br> - `oDataEntitySets:` Optional: The OData entity sets to use for action generation, separated by commas (required only when artifactType is 'action').<br><br>**For i18n artifacts:**<br> - No additional parameters required beyond folderRootPath.<br><br>**For rule artifacts:**<br> - `query:` Search query for rule reference (required when artifactType is 'rule'). Examples: 'get app name', 'handle form validation', 'navigate to page', etc. |
+| `mdk-manage`    | Comprehensive MDK project management tool that handles build, deploy, validate, migrate, show QR code, and mobile app editor operations.  | - `folderRootPath:` The path of the current project root folder. <br> - `operation:` The operation to perform on the MDK project. Available operations:<br>• `build`: Build an MDK project<br>• `deploy`: Deploy an MDK project to the Mobile Services<br>• `validate`: Validate an MDK project<br>• `migrate`: Migrate an MDK project to the latest MDK version<br>• `show-qrcode`: Show QR code for an MDK project<br>• `open-mobile-app-editor`: Instruct how to open the Mobile App Editor to create .service.metadata file<br> - `externals:` Optional: Array of external package names to include in the deployment (e.g., ['@nativescript/geolocation']). If not specified, will automatically read from `mdk.bundlerExternals` in `.vscode/settings.json` of the project. Defaults to empty array if neither is provided. |
+| `mdk-docs`    | Unified tool for accessing MDK documentation including search, component schemas, property details, and examples.  | - `operation:` The type of documentation operation to perform:<br>• `search`: Returns the top N results from MDK documentation by semantic search, sorted by relevance<br>• `component`: Returns the schema of an MDK component based on the name of the component<br>• `property`: Returns the documentation of a specific property of an MDK component<br>• `example`: Returns an example usage of an MDK component <br> - `folderRootPath:` The path of the current project root folder. Used to determine the appropriate MDK schema version. <br> - `query:` Search query string (required for 'search' operation). <br> - `component_name:` Name of the component (required for 'component', 'property', and 'example' operations). <br> - `property_name:` Name of the property (required for 'property' operation). <br> - `N:` Number of results to return for search operation (default: 5). |
 
 ## Support, Feedback, Contributing
 
@@ -196,7 +193,27 @@ These instructions help contributors set up, test, and maintain code quality for
 
 For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
 
+## Telemetry
 
+You can enable and disable the collection of analytics. By default, non-personally identifiable information is used to help understand how you use the product to improve the MDK MCP Server. In case you want to opt-out there exist two ways to disable the telemetry.
+
+Method 1: Configuration File
+Create or change the file ~/.fioritools/telemetrysettings.json:
+
+{
+  "telemetrysettings": {
+    "telemetrySetting": {
+      "enableTelemetry": false
+    }
+  }
+}
+Set enableTelemetry to false to disable telemetry collection.
+
+Method 2: Environment Variable
+Set the environment variable SAP_UX_FIORI_TOOLS_DISABLE_TELEMETRY to true:
+
+export SAP_UX_FIORI_TOOLS_DISABLE_TELEMETRY=true
+Setting this environment variable will disable the telemetry client.
 
 ## Security / Disclosure
 
