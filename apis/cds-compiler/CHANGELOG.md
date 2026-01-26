@@ -13,6 +13,12 @@ we might not list every change in its behavior here.
 Productive code should never require a `beta` flag to be set, and
 might use a deprecated flag only for a limited period of time.
 
+## Version 6.6.2 - 2026-01-16
+
+### Fixed
+
+- for.effective: Don't resolve backlinks in aspects
+
 ## Version 6.6.0 - 2025-12-12
 
 ### Added

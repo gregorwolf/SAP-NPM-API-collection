@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.6.4 - 2026-01-20
+
+### Fixed
+
+- `queue`: Too eager removal of control data from deserialized task
+- Stop overriding existing `cds.requires.[service].credentials` configurations using values from `.cds-services.json`
+
 ## Version 9.6.3 - 2026-01-14
 
 ### Fixed
