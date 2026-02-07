@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Collection of current SAP NPM packages",
   "main": "index.js",
+  "engines": {
+    "node": "^22"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node update-package-json.js"

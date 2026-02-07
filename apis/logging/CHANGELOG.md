@@ -5,6 +5,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.1.1 - 2026-01-29
+- updated `filter-node-package` dependency to 6.1.0
+- updated `@sap/e2e-trace` dependency to 6.1.0
+
+## 9.1.0 - 2026-01-27
+
+### Added
+- Node.js 24.x support and tests
+
+### Updated
+- update `lodash` dependency to 4.17.23
+- updated `chai` dependency to 6.2.2
+- updated `@babel/eslint-parser` dependency to 7.28.6
+- updated `express` dependency to 5.2.1
+- updated `filter-node-package` dependency to 6.0.0
+- updated `mocha` dependency to 11.7.5
+- updated `supertest` dependency to 7.2.2
+
 ## 9.0.0 - 2025-07-31
 
 ### Added

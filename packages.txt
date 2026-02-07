@@ -78,6 +78,7 @@
 @sap/generator-cds
 @sap/generator-fiori
 @sap/generator-hdb-project
+@sap/generator-joule
 @sap/generator-mdk
 @sap/graph-toolkit
 @sap/grunt-sapui5-bestpractice-build
@@ -104,6 +105,7 @@
 @sap/instance-manager
 @sap/iq-client
 @sap/jobs-client
+@sap/joule-studio-cli
 @sap/logger-for-bas-extensions
 @sap/logging
 @sap/low-code-event-handler
@@ -169,6 +171,7 @@
 @sap/ux-service-modeler-bas-ext
 @sap/ux-specification
 @sap/ux-ui5-tooling
+@sap/vite-plugin-leanix-custom-report
 @sap/vscode-cds
 @sap/webide-hdi-base-feature-vscode
 @sap/webide-hdi-feature-vscode

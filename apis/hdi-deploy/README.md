@@ -102,9 +102,9 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.6.0",
-    "@sap/hana-client": "2.19.20",
-    "hdb": "0.19.3"
+    "@sap/hdi-deploy": "5.6.1",
+    "@sap/hana-client": "2.27.19",
+    "hdb": "2.26.4"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -123,7 +123,22 @@ Connection details for the database, e.g. host, port, credentials, certificates,
 
 Since version 4.3.1 of hdi-deploy supports reading credentials from a secret volume for Kubernetes.
 
-In order to use mutual authentication, `client_authentication_private_key` and `client_authentication_certificate` can be supplied via the service binding.
+### Mutual Authentication Configuration
+
+To use X.509 certificate-based authentication, you must provide a client certificate and private key. These can be supplied through your service binding in either of these two ways:
+
+1. **Combined in a single password field:**
+   You can include both the private key and certificate in either the `hdi_password` or `password` field. In this case, the corresponding `hdi_user` or `user` field must be blank. The system will automatically extract and use both components.
+
+2. **As separate credential properties:**
+   ```json
+   "credentials": {
+    ...
+     "client_authentication_private_key": "-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----",
+     "client_authentication_certificate": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----"
+   }
+   ```
+   `client_authentication_private_key` and `client_authentication_certificate` take precedence over private key and certificate from `hdi_password` or `password`. Older versions of `hdb` (before 2.26.1) do not support this feature.
 
 For local testing, the HDI Deployer supports default configurations via the following configuration files:
 
@@ -572,12 +587,12 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.6.0",
+    "@sap/hdi-deploy": "5.6.1",
     "module1": "1.3.1",
     "module2": "1.7.0",
 
-    "@sap/hana-client": "2.19.20",
-    "hdb": "0.19.3"
+    "@sap/hana-client": "2.27.19",
+    "hdb": "2.26.4"
   },
   "scripts": {
     "start": "node node_modules/@sap/hdi-deploy/"
@@ -1141,7 +1156,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "5.6.0",
+        "version": "5.6.1",
         "features": {
             "info": 2,
             "verbose": 1,

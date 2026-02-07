@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.1.0 - 2026-01-29
+
+### Updated 
+- updated `babel/eslint-parser` dependency to 7.28.6
+- updated `filter-node-package` dependency to 6.1.0
+- updated `mocha` dependency to 11.7.5
+
 ## 6.0.0 - 2025-07-31
 
 ### Added

@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.1.0 - 2026-01-29
+
+### Updated
+- Updated `filter-node-package` dependency to 6.1.0
+- Updated `lodash` dependency to 4.17.23
+- Updated `@babel/eslint-parser` dependency to 7.28.6
+- Updated `mocha` dependency to 11.7.5
+- Updated `debug` dependency to 4.4.3
+
 ## 6.0.0 - 2025-08-01
 
 ### Added

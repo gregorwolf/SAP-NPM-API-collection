@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.20.2] - 2026-01-22
+### Added
+- Added an info message when retrieving services for an ABAP Catalog if no services for OData V2 or OData V4 were returned
+
+### Changed
+- Updated the Application Generator to support Yeoman version 5
+
+### Fixed
+- Fixed an issue where some generator prompts were incorrectly displayed if there was a validation error in a previous prompt
+- Fixed an issue where the option to download an ADT deployed app incorrectly offered to create a new saved system in Visual Studio Code
+- Fixed an issue where the generator did not detect a local CAP project if it was invoked from a subfolder of the CAP project
+- Fixed an issue where the SAP Fiori generator failed to find the correct saved system in Visual Studio Code when launched directly from ABAP Development Tools in Eclipse
+
 ## [1.20.1] - 2026-01-07
 ### Added
 - Generated OData V4 applications now have lazy loading enabled by default for SAPUI5 versions 1.144 and above

@@ -6,6 +6,25 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.20.2] - 2026-01-22
+### Added
+- The Service Catalog extension has been added as a dependency in the SAP Fiori tools extension pack. This extension allows you to visualize your OData services and preview live data.  For more information, see [Service Catalog](https://marketplace.visualstudio.com/items?itemName=SAPSE.service-catalog)
+- Added the ability to set the `importance`, `tooltip`, and `required` properties for custom columns in the Page Editor
+- Added the ability to set the `createMode`property at the page level for OData V2 applications in the Page Editor
+- Added the ability to set the `createMode`property at the application level for OData V2 applications in the Page Map
+### Fixed
+- Fixed an issue where the "The 'util._extend' API is deprecated" warning was incorrectly displayed in the terminal when Node.js version 22 was used
+- Fixed an issue where texts and icons were not center-aligned on the Application Info page
+- Fixed an issue where the outdated `group` property was used instead of `overflowGroup`
+- Fixed an issue with spaces in custom filter fields in preview mode
+- Fixed an issue where the empty `sap.ui.generic.app` object was removed and an empty `chartSettings` object was added to the `manifest.json` file during the export of an overview page
+- Fixed an issue where the "Trying to copy from a source that does not exist" error appeared during the creation of a custom extension in the Page Editor
+- Fixed an issue where the unsupported `Fiori: Open Walkthrough` command was available in SAP Business Application Studio
+- Fixed an issue where scrolling properties did not work correctly in the Page Editor
+- Fixed an issue where properties were not found when searched with scrolling enabled in the Page Editor
+- Fixed an issue where an input validation check for integer values was missing for the `overflowGroup` property
+- Fixed an issue with inconsistent warning messages in the Page Map and Page Editor
+
 ## [1.20.1] - 2026-01-07
 ### Added
 - Added the ability to display a walkthrough that describes how to get started with SAP Fiori tools.  The walkthrough is automatically displayed on the first install in Visual Studio Code, or by using the command palette entry `Fiori: Open Walkthrough`

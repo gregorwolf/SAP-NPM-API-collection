@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+<a name="8.1.10"></a>
+## 8.1.10 - 2026-01-28
+
+### Updated
+- Updated @sap/e2e-trace module version to 6.0.0
+- Updated @sap/hana-client module version to 2.27.23
+- Updated debug module version to 4.4.3
+- Updated lodash module version to 4.17.23
+- Updated verror module version to 1.10.1
+- Added Node.js 24.x support
 
 <a name="8.1.9"></a>
 ## 8.1.9 - 2025-06-19

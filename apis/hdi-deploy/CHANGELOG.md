@@ -1,3 +1,8 @@
+## 5.6.1
+Fixes:
+- Fixed X.509 certificate authentication issue
+- Patched an issue classified under CWE‑89 (SQL injection vulnerability)
+
 ## 5.6.0
 Features:
 - Added support for the `VCAP_SERVICES_FILE_PATH` environment variable

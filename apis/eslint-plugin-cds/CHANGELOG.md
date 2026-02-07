@@ -6,8 +6,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [4.1.0] - 2025-08-18
+## [4.1.1] - 2025-12-04
+### Added
+- Top level type definitions for package export
 
+
+## [4.1.0] - 2025-08-18
 ### Added
 - Add new rule `case-sensitive-well-known-events` to detect when a well known event is not cased correctly.
 

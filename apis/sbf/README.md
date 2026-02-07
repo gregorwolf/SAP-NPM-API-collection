@@ -622,8 +622,8 @@ At the moment Service Catalog on Kubernetes does not support service instance up
 
 ##### Authentication with X.509 client certificates
 > [!WARNING]
-> #### XSUAA / X.509 Client Deprecation Notice
-> **Heads-up (XSUAA / X.509):** The XSUAA grant type client_x509 will reach end of life on January 26, and creating **X.509 client bindings or service keys** will only work if the target service instance supports:
+> #### XSUAA / X.509 Client No Longer Supported
+> **Notice (XSUAA / X.509):** The XSUAA grant type client_x509 is no longer supported. Creating **X.509 client bindings or service keys** will only work if the target service instance supports:
 >
 > - `grant_type=client_credentials`
 > - `credential_type=x509`
@@ -631,8 +631,6 @@ At the moment Service Catalog on Kubernetes does not support service instance up
 > Setups that don't meet this requirement will fail.
 >
 > Learn more here: [Retrieving Access Tokens with Mutual Transport Layer Security (mTLS)](https://help.sap.com/docs/btp/sap-business-technology-platform/retrieving-access-tokens-with-mutual-transport-layer-security-mtls).
->
-> If you have already updated your security descriptor and want to stop using client_x509 earlier, you can set the environment variable `DISABLE_UAA_GRANT_TYPE_CLIENT_X509=true`.
 
 
 Authentication with X.509 client certificates can be enabled with the following configuration provided in the _xs-security_ options:

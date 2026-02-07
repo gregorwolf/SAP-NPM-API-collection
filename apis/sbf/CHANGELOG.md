@@ -8,6 +8,14 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.10.3"></a>
+## 6.10.3 - 2026-01-29
+### Removed
+- Environment Variable: DISABLE_UAA_GRANT_TYPE_CLIENT_X509, as client_x509 not supported by XSUAA anymore.
+
+### Fixed
+- support 410 gone response from XSUAA on service instance/binding delete requests
+
 <a name="6.10.2"></a>
 ## 6.10.2 - 2026-01-22
 ### Changed

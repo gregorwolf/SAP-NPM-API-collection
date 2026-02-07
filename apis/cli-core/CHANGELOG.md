@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2026.3.0
+
+### Fixed
+
+- Fixed Windows compatibility issue where browser discovery would fail with "win32 is not supported" error when encountering platform-specific browsers like Safari.
+
+## 2026.1.0
+
+### Changed
+
+- **TLS 1.3 is now the default protocol** for all HTTPS connections to meet NS2/SC compliance requirements
+- **Automatic TLS fallback mechanism** retries with TLS 1.2 when servers don't support TLS 1.3
+
 ## 2025.23.0
 
 ### Added
