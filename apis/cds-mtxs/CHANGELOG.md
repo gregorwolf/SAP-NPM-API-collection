@@ -6,6 +6,26 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+
+## Version 3.7.0 - 2026-01-27
+
+### Added
+
+- Immediate deletion of TMS HANA tenants can be enabled with configuration `cds.requires['cds.xt.DeploymentService'].hdi.create.immediate_deletion = true`
+(combined with `cds.requires['cds.xt.DeploymentService'].hdi.create.cleanup_hana_tenants = true`)
+- Container credential determination with TMS v2 is accelerated by using `$top=1` for the container query.
+
+### Changed
+
+- MTXS is now using fewer requests when getting container credentials from HANA TMS v2.
+
+### Fixed
+
+- More stable deletion of HDI container instances via SAP BTP Service Manager.
+- Extension validation no longer counts field type changes as new fields.
+- Getting a task from the job service no returns `404` for non-existing tasks.
+- In combination with `@cap-js/hana` version 2.6.0 pool connection errors with invalid database credentials are handled more gracefully.
+
 ## Version 3.6.2 - 2026-01-13
 
 ### Fixed

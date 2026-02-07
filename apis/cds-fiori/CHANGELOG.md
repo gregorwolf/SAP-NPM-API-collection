@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.2.0 - 2026-01-27
+
+### Added
+
+- Support for express 5 (in addition to express 4)
+
+### Changed
+
+- Use UI5 version 1.134.0 by default
+
 ## Version 2.1.1 - 2025-10-29
 
 ### Fixed

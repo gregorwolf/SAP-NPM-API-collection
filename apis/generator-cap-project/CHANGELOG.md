@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [2.0.5] - 2026-01-30
+## Changed
+- Yeoman generator now uses `cds init` cli to create project
+
+## [2.0.4] - 2026-01-29
+### Added
+- `LobbyHandler` makes project names not longer than 64 characters when adding timestamp.
+
+### Fixed
+- Generator adds `nodejs` if type is missing.
+
 ## [2.0.3] - 2026-01-15
 ### Fixed
 - Generation error in BAS due to reused `@sap/cds-dk` instance

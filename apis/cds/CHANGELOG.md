@@ -4,6 +4,57 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.7.1 - 2026-02-06
+
+### Fixed
+
+- `DELETE` requests nulling a `@mandatory` property
+- Correctly call remote collection bound action for `odata-v4` services
+- Flow annotation validation at compile time strictly follows the documentation: only enum status values are allowed
+  + Status value validation can be disabled via `cds.features.skip_flows_validation=true`
+
+## Version 9.7.0 - 2026-02-02
+
+### Added
+
+- Support for express 5 (in addition to express 4)
+- New config option `cds.requires.db.data` to configure source folders for initial data and test data CSV files
+- Enterprise Messaging now caches access tokens to support high-throughput message processing from Event Mesh
+- Automatically add `@Common.DraftRoot.NewAction` for each draft-enabled entity during `compile.for.odata` via `cds.fiori.direct_crud=true`
+- Support for `null` value in `@odata.bind`
+- Validation of flow annotations at compile step
+
+### Changed
+
+- Colors are enabled by default in GitHub Actions workflows
+- `queue`: Manually update `lastAttemptTimestamp` of outbox messages (instead of relying on `@cds.on.update: $now`)
+- `express` is no longer a peer dependency of `@sap/cds` but a regular one. Applications that want to pin it or require it in their custom code, should declare the dependency on their own.
+- `hcql` response format: `{ data: [], errors: [] }`
+
+### Fixed
+
+- Correctly respond with status `404` when `@cds.api.ignore` annotated action is requested
+- Ensure plugin debug emitted with `DEBUG=all`
+- Prevent app crash when `JSON.parse` of operation parameters fails
+- Generate correct UI annotations for Status Transition Flows when building and compiling
+- Remote services: Prefer `cds.context.user?.authInfo?.token?.jwt` over JWT in HTTP header of incoming request
+- References to child elements in `@Common.Text` annotations will now be checked. The reference will not be included in `@cds.search`, in case ...
+  * ... the reference can not be found in the annotated entity's associations
+  * ... the referenced entity is annotated with `@cds.persistence.skip`
+  * ... the referenced field does not exist in the referenced entity
+  * References to children of children will be ignored.
+- OData parser: Ignore superfluous brackets
+- Prevent app crash in case of `req.reject()` during draft activate triggered via OData batch
+- `cds minify` no longer removes services if their actions are kept
+- Better error when subquery can't be resolved for the current service
+- Flows: Record transition to default value on `INSERT`/ `UPSERT`
+- Error response properties of OData batch subrequests are now formatted identically to properties in single OData error responses
+- Prevent `@Common.numericSeverity` from appearing in persistent draft messages (in addition to the correct property `numericSeverity`)
+
+### Removed
+
+- `@cds.on.update: $now` from `cds.outbox.Messages.lastAttemptTimestamp`
+
 ## Version 9.6.4 - 2026-01-20
 
 ### Fixed
@@ -498,6 +549,12 @@
 - Deprecated element-level annotation `@Search.defaultSearchElement`. Please use annotation `@cds.search` instead.
 - Deprecated stripping of unnecessary topic prefix `topic:` in messaging
 - Deprecated messaging `Outbox` class. Please use config or `cds.outboxed(srv)` to outbox your service.
+
+## Version 8.9.8 - 2025-12-17
+
+### Fixed
+
+- `enterprise-messaging-shared`: preserve error listener during reconnect
 
 ## Version 8.9.7 - 2025-11-07
 

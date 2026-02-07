@@ -9,12 +9,13 @@
    *-s | --services* <patterns>
    *-f | --from* <sources>
    *-2 | --to* <folder>
-   *-4 | --for* <npm|mvn>
    *-a | --as* <csn|cdl>
+   *-4 | --for* <npm|mvn>
 
    *-c | --cleanse* <properties>
    *-k | --keep* <kinds>
    *-x | --skip* <kinds>
+   *-p | --plugin*
    *-d | --data*
    *-t | --texts*
 

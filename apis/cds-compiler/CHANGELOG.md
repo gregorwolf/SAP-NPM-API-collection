@@ -1,4 +1,4 @@
-# ChangeLog for cds compiler and backends
+# Changelog
 
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD004 -->
@@ -12,6 +12,42 @@ Note: while we list new `beta` flags and their removal in this ChangeLog,
 we might not list every change in its behavior here.
 Productive code should never require a `beta` flag to be set, and
 might use a deprecated flag only for a limited period of time.
+
+## Version 6.7.2 - 2026-02-04
+
+### Fixed
+
+- **compiler:** Just issue warning for `using` declaration referring to nothing
+  (fixes regression introduced with v6.7.0 if there is a file containing
+  a `namespace` declaration, but no definitions)
+- **effective:** clean up internal Symbols from meta section
+- **sql:** clean up internal Symbols from meta section
+
+## Version 6.7.1 - 2026-01-28
+
+### Fixed
+
+- compiler: Properly accept aspects as composition targets in an `extend`
+  (fixes regression introduced with v6.7.0)
+
+## Version 6.7.0 - 2026-01-23
+
+### Added
+
+- to.hdi: Support .hdbprojectionview for Data Product Production
+
+### Changed
+
+- compiler: Change internal processing sequence (extensions and entity generation) for
+    potentially upcoming compiler features; messages for erroneous models might differ slightly
+
+- for.odata/to.edm(x): Enhancements for Fiori Tree Views: support managed associations with explicit foreign keys,
+    raise messages when the `@hierarchy` annotation cannot be applied.
+
+### Fixed
+
+- to.sql: portable hana functions `*_between` with dates
+
 
 ## Version 6.6.2 - 2026-01-16
 

@@ -6,6 +6,51 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.7.1 - 2026-02-05
+
+### Fixed
+
+- `cds add completion` now works without specifying the project runtime.
+
+- `cds add xsuaa` correctly adds the the binding for the `html5-apps-deployer` on Kyma.
+- `cds version` prints an older format in a legacy situation.
+- `cds add nodejs` is automatically added in BAS scenarios for compatibility if no other runtime is specified.
+- `cds add data -n` works correctly for `Composition of one` scenarios.
+
+## Version 9.7.0 - 2026-02-02
+
+### Added
+
+- `cds debug` is now supported for Kubernetes/Kyma deployments.
+- `cds init --nodejs` as a shortcut for `cds init --add nodejs`.
+- Support for express 5 (in addition to express 4).
+- `cds deploy --to hana` now supports `--out` to specify the output directory for generated files.
+- `cds mock <service>` as a shortcut for `cds serve --mocked --project <service> --in-memory? --port 0`.
+- `cds add ias` adds a URL for local approuter testing to `redirect-uris` if approuter is configured.
+
+### Changed
+
+- `cds version` received major enhancements: It's now fully based on the `npm ls` command and always prints a tabular output. Also some new flags were added; check `cds version --help` for details.
+- `cds deploy --to k8s` increased the timeout to wait for the HDI container creation from 120 to 180 seconds.
+- `cds add` facets now abort when executed in a folder that is neither a Node.js nor a Java project.
+- `cds add lint` now also adds the .java extension to the files that are linted within VSCode.
+- `cds init` now restricts project names to 64 characters maximum, requiring them to start with an alphanumeric character or `_`, and contain only alphanumeric characters, `_`, and `-`.
+- `cds import` now generates an on condition for associations if the navigation property in an imported OData v4 service has a referential constraint.
+- `cds build` does not ignore wildcarded folders like `app/*` any more.
+- `cds env --resolve-bindings/-b` also considers local service bindings.
+
+### Fixed
+
+- `cds add sqlite --for production` adds `@cap-js/sqlite` to `dependencies`.
+- `cds build --ws` fixes a race condition.
+- `cds build` now places the `i18n` folder in the generated output in nested locations.
+- `cds build --for mtx-sidecar` loads CAP plugins from the MTX sidecar instead of the main app for generating the sidecar CSN.
+- `cds add ias` uses a matching `IASDependencyName` for the application content deployer.
+- `cds add ias` uses a more generic `redirect-uris` pattern.
+- `cds import` no longer generates a managed association for navigation properties of imported OData v4 services if the foreign key, the managed association would generate, already exists.
+- `cds add multitenancy` for Java correctly creates a `package-lock.json` in _mtx/sidecar_.
+- `cds add xsuaa` works properly when executed after `cds add workzone`.
+
 ## Version 9.6.1 - 2026-01-09
 
 ### Changed
@@ -415,6 +460,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `cds add ams` for Java adds a custom builder to the `mta.yaml` to circumvent the missing `srv/src/gen/policies`.
 - `cds add multitenancy` requires the `srv-api` instead of the `mtx-api` for Java projects.
 
+## Version 8.9.13 - 2029-01-09
+
+### Fixed
+
+- CVE-2025-15284: update `express` to fix vulnerability with `qs` <6.14.1
 
 ## Version 8.9.12 - 2025-12-16
 

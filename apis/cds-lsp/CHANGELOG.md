@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.7.0 - 2026-01-29
+
+### Added
+- support for multi-cursor range expansion/shrinking
+- support folding ranges, especially for consecutive `using` statements
+
+### Fixed
+- formatter: align element names after `key` keyword only
+
+### Also see
+- `@sap/cds-compiler` 6.7.1
+
+
 ## 9.6.3 - 2026-01-12
 
 ### Added
@@ -14,6 +27,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Changed
 - disable type generation for current session when preconditions not fulfilled after first try
+
+### Fixed
+- element formatting: align names after `key` keyword only
 
 
 ## 9.6.2 - 2026-01-02

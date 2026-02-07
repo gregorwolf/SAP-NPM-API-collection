@@ -6,13 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
-## [9.6.3] - 2026-01-13
+
+## [9.7.0] - 2026-01-30
 
 ### Added
-- progress reporting for persistency
+- Multi-Cursor support for range selection
+- Folding range for consecutive `using` statements
+
+### Changed
+- Persistency of where-used index is now beta
+- User setting categories in settings UI
 
 ### Fixed
-- some minor fixes
+- Show `CAP Release Notes` automatically only if timestamp of page changed.
+- Formatter: align element names after `key` keyword only
+
+### Also see
+- `@sap/cds-lsp` 9.7.0
+- `@sap/cds-compiler` 6.7.1
+
+
+## [9.6.3] - 2026-01-23
+
+### Added
+- Progress reporting for persistency
+
+### Fixed
+- Some minor fixes
 
 ### Also see
 - `@sap/cds-lsp` 9.6.3
