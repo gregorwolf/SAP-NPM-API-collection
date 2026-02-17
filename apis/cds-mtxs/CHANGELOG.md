@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.7.1 - 2026-02-12
+
+### Changed
+
+- Provisioning service calls now skip `cds.xt.DeploymentService` operations if it is disabled, logging only a warning.
+
+### Fixed
+
+- HANA deployment parameters set via the `HDI_DEPLOY_OPTIONS` environment are now correctly evaluated.
 
 ## Version 3.7.0 - 2026-01-27
 

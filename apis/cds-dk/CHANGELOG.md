@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.7.2 - tbd
+
+### Fixed
+
+- `cds build --for mtx-sidecar` correctly resolves `@source` in custom MTX sidecar services.
+- `cds build` now utilises caching for workspace resolution, which will speed up build times for projects with many workspaces.
+- `cds add` commands don't augment Helm Charts if not managed by CAP.
+- `cds add approuter` for Kyma configures token exchange for managed approuter scenarios.
+- `cds bind` reports additional error information while accessing Cloud Foundry services.
+
 ## Version 9.7.1 - 2026-02-05
 
 ### Fixed

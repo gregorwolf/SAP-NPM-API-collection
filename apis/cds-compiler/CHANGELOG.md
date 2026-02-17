@@ -13,6 +13,12 @@ we might not list every change in its behavior here.
 Productive code should never require a `beta` flag to be set, and
 might use a deprecated flag only for a limited period of time.
 
+## Version 6.7.3 - 2026-02-11
+
+### Fixed
+
+- **sql:** do not resolve path navigations to virtual elements which resulted in an internal error.
+
 ## Version 6.7.2 - 2026-02-04
 
 ### Fixed

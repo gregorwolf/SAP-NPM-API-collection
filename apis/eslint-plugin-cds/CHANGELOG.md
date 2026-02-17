@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [4.1.2] - 2026-02-13
+### Fixed
+- No longer crash on .java files larger than 32 kB.
+- Weaken `java/cql-class-targets` to only warn when a string literal is passed as parameter.
+- `assoc2many-ambiguous-key` no longer falsely warns about 1-n joins when an infix filter reduces the joined relation to a single row.
+
 ## [4.1.1] - 2025-12-04
 ### Added
 - Top level type definitions for package export
