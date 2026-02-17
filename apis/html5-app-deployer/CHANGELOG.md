@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.2.2 - 2026-02-16
+### Update Dependencies
+- deps: cf-nodejs-logging-support@7.4.4
+- deps: axios@1.13.5
+- deps: @sap/xssec@4.12.2
+
 ## 7.2.1 - 2025-12-15
 ### Update Dependencies
 - deps: cf-nodejs-logging-support@7.4.1

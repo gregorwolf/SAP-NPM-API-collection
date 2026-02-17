@@ -44,6 +44,7 @@
 @sap/consume-services
 @sap/consume-services-types
 @sap/create-hana-database-artifact
+@sap/create-leanix-custom-report
 @sap/csn-interop-renderer
 @sap/csn-interop-specification
 @sap/datasphere-cli

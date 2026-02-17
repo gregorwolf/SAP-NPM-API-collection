@@ -5,6 +5,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.0.0 - 2026-02-05
+
+### Changed
+- Added Node.js 24.x engine support
+- Dropped Node.js 18.x support
+
+### Removed
+- Removed `lodash` dependency after refactoring usages to native JavaScript utilities.
+- Removed `node-fetch` dependency and migrated HTTP calls to the native `fetch` API available in Node.js 18+.
+- Removed `node-cache` dependency and replaced it with a lightweight in-memory Map-based cache aligned with the previous library behaviour.
+
+### Updated
+- Updated `debug` dependency to the latest supported version.
+
+### Notes
+- These changes were made to comply with SDOL-005 requirements by removing outdated and unmaintained dependencies.
+- Functional behaviour of the audit logging library remains unchanged.
+
 ## 6.9.0 - 2025-08-19
 
 ### Removed

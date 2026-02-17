@@ -8,6 +8,16 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.11.0"></a>
+## 6.11.0 - 2026-02-12
+### Added
+- Support for Node v24.
+
+### Updated
+- Update to @sap/audit-logging 7.0.0
+- Update to @sap/logging 9.1.1
+- Update to axios 1.13.5
+
 <a name="6.10.3"></a>
 ## 6.10.3 - 2026-01-29
 ### Removed

@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 20.9.0 - 2026-02-09
+
+### Added
+- Accept the `rejectUnauthorized` option as part of the `EXT_SESSION_MGT` configuration
+
+### Fixed
+- Redis Store: Fallback to master node when slave nodes unavailable during cluster topology changes
+- Fetch IAS token subdomain using tenantLogInfo
+- Do not try evaluating stateProtection for target applications when html5-apps-repo service is not bound
+
+### Updated Dependencies
+- deps: body-parser@2.2.2
+- deps: cf-nodejs-logging-support@7.4.3
+- deps: @sap/xssec@4.12.2
+- deps: @sap/logging@9.0.0
+
 ## 20.8.8 - 2026-01-11
 
 ### Fixed
@@ -31,6 +47,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 - Delete tenant specific token cache in case of service 401 response
 - html5 repo service name in token cache path in client credentials token middleware
 
+### Added
+- Add zone-info cache configuration via ZONE_INFO_CACHE_TTL env. variable and expired data fallback support
+
 ### Updated Dependencies
 - deps: cf-nodejs-logging-support@7.4.2
 - deps: qs@6.14.1
@@ -49,6 +68,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
 ### Fixed
 - Client credentials token expiration calculation
+
 ### Updated Dependencies
 - deps: ms@2.1.3
 - deps: verror@1.10.1
@@ -64,6 +84,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 - User token determination when calling destination service
 - Mask user_name in logs
 - Remove IASDependencyName normalization
+- Adds additional CSP directives: style-src, img-src (including data:), connect-src, font-src, base-uri, and form-action. This is enabled only when the environment variable EXTENDED_LOGIN_CSP=true is set; otherwise, it remains disabled by default.
 
 ### Updated Dependencies
 - deps: node-forge@1.3.2 - Resolves CVE-2025-12816
@@ -222,6 +243,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 ### Fixed
 - bracket issue in client-credentials-token flow
 
+
 ## 20.5.0 - 2025-05-29
 
 ### Added
@@ -239,8 +261,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 ## 20.4.0 - 2025-05-14
 
 ### Added
-- Optional hostPattern parameter support in the CORS 
-- configuration
+- Optional hostPattern parameter support in the CORS configuration
 - Support for the x-forwarded-query header in UGW access
 
 ### Fixed
