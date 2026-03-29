@@ -32,6 +32,7 @@ This module allows Node.js applications to authenticate users via JWT tokens iss
     - [Request configuration](#request-configuration)
     - [JWKS Cache](#jwks-cache)
     - [Signature Cache](#signature-cache)
+    - [Token Cache](#token-cache)
     - [Token Decode Cache](#token-decode-cache)
     - [x5t Validation](#x5t-validation)
     - [Proof Token Validation](#proof-token-validation)
@@ -404,6 +405,22 @@ const idTokenJwt = (await identityService.fetchPasswordToken(username, password)
 
 Of course, the other properties of the response, for example `refresh_token`, are also accessible.
 
+#### Cached Token Flows
+Cached versions of the token flow methods are available as well:
+
+- Client Credentials: `getClientCredentialsToken({ options })`
+- Password: `getPasswordToken(username, password, { options })`
+- JWT Bearer: `getJwtBearerToken(assertion, { options })`
+
+These methods use the token cache configured on the service instance (see [Token Cache](#token-cache)). Token responses are cached by request URL, parameters and headers. Cached tokens are re-used for subsequent requests with the same parameters. The minimum guaranteed lifetime of returned tokens is 5 minutes. When the token cache is disabled on the service instance, these methods behave identically to their `fetch*` counterparts.
+
+```js
+const xsuaaService = new XsuaaService(credentials); // token cache is enabled by default
+
+const response1 = await xsuaaService.getClientCredentialsToken({ zid: "zone1" }); // fetches token from server and caches it
+const response2 = await xsuaaService.getClientCredentialsToken({ zid: "zone1" }); // returns cached token if still valid for >= 5 minutes, otherwise fetches a new token from the server
+```
+
 The methods are annotated with service-specific JSDoc type definitions that should provide IDE-support for the function signatures and following options.
 
 ##### options
@@ -659,6 +676,76 @@ const authService = new IdentityService(identityServiceCredentials,
 ```
 
 
+
+### Token Fetch Cache
+A Token FetchCache is a cache for the responses of token fetch requests. It is used by the [cached token getter methods](#cached-token-flows) (`getClientCredentialsToken`, `getJwtBearerToken`, `getPasswordToken`) to prevent unnecessary performance overhead and reduce the number of requests to the authentication server for repeated token fetches with the same parameters.
+
+Each cache entry consists of the token fetch response object and the timestamp at which the cached token expires. Tokens with a remaining lifetime of less than 5 minutes are not returned from the cache, ensuring callers always receive a token with at least 5 minutes remaining lifetime.
+
+The token fetch cache is a **per-instance** cache that is **enabled by default** with a built-in LRU cache of size 100. Since the cache is lazily initialized, there is zero overhead for applications that only use the `fetch*` methods and never call the `get*` methods.
+
+##### Default cache configuration
+```json
+{
+  "enabled": true,
+  "size": 100
+}
+```
+
+To disable or customize the token fetch cache, specify the `tokenfetch.cache` property in the `Service` configuration. You can use the simple, built-in LRU cache or alternatively provide any Node.js cache implementation with the standard `get/set` signature.
+
+The following configuration snippets are examples that use the built-in LRU cache:
+
+```js
+const authService = new XsuaaService(xsuaaCredentials,
+  {
+    tokenfetch: {
+      cache: {
+        size: 1000 // built-in LRU cache with a custom size of 1000 entries
+      }
+    }
+  }
+);
+
+// disable the token fetch cache
+const authService = new IdentityService(identityServiceCredentials,
+  {
+    tokenfetch: {
+      cache: {
+        enabled: false // env var: CDS_REQUIRES_<BINDING>_TOKENFETCH_CACHE_ENABLED=false
+      }
+    }
+  }
+);
+```
+
+The following configuration snippet is an example that uses the well-known [lru-cache](https://www.npmjs.com/package/lru-cache) module as a custom cache implementation:
+
+```js
+const LRUCache = require("lru-cache");
+const tokenCache = new LRUCache({ max: 100 });
+
+const authService = new IdentityService(identityServiceCredentials,
+  {
+    tokenfetch: {
+      cache: {
+        impl: tokenCache
+      }
+    }
+  }
+);
+```
+
+If you create a second service instance later and want to share the token fetch cache with an existing service instance, use the `tokenFetchCache` getter:
+
+```js
+const service1 = new XsuaaService(credentials);
+
+// Re-use service1's token fetch cache for service2 by passing it via the impl option
+const service2 = new XsuaaService(newCredentials, {
+  tokenfetch: { cache: { impl: service1.tokenFetchCache } }
+});
+```
 
 ### Signature Cache
 A Signature Cache is a cache for the results of the cryptographic signature validation of a *JWT* token. It is used to improve the latency of subsequent requests with the same token (see [Caching CPU intensive operations](#caching-cpu-intensive-operations)).

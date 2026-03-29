@@ -5,6 +5,65 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 21.2.0 - 2026-03-26
+
+### Added
+- Support for x-approuter-access-token header containing app-to-app token to receive an extended service-to-app token
+- Enable service2approuter external session id direct consumption
+
+### Fixed
+- IAS identity zone (subdomain) is now populated at application startup, ensuring it is available from the first request
+- Use `REMOVE_CLASHING_BACKEND_SESSION_COOKIE` env to fix conflict between cookies when they have the same name as the approuter default session cookie.
+- Embedded reuse business service resolution
+
+## 21.1.0 - 2026-03-17
+
+### Added
+- Enable outgoing request options via OUTGOING_REQUEST_OPTIONS env. variable (timeout)
+- Support for disabling CSP headers during login flow via OMIT_LOGIN_CSP environment variable
+- Support for PKCE in OAuth2 login flow
+
+### Fixed
+- IAS token exchange (IASDependencyName) not working for WebSocket connections
+
+### Updated Dependencies
+- deps: http-proxy-agent@7.0.2
+- deps: https-proxy-agent@7.0.6
+
+
+## 21.0.0 - 2026-03-02
+
+### Added
+- Support Node.js 24 and 22 (dropped Node.js 20)
+- Use of HTML5.StrictConnectionMode in destination configuration to enable strict connection handling for mTLS/certificate traffic
+- Redis Store: TLS options support in cluster mode - `skipCertHostnameValidation`, `rejectUnauthorized`
+
+### Fixed
+- IAS logout will be done with appTid instead of token hint, can be skipped with LOGOUT_WITH_TOKEN_HINT
+- Remove sap_idp query param before path re-writing
+- Use `idp` parameter instead of `login_hint` for XSUAA authentication to enable IAS identity provider chaining
+- Redis Store: Username support in cluster mode configuration
+
+### Updated Dependencies
+- deps: cf-nodejs-logging-support@7.4.5
+- deps: @sap/e2e-trace@6.0.0
+- deps: @sap/xsenv@6.0.0
+ 
+## 20.10.0 - 2026-02-19
+
+### Added
+- Use of DISABLE_CONNECTION_REUSE to enable/disable connection reuse.
+
+### Fixed
+- IAS token subdomain determination and validation in service2approuter flow, validation can be skipped with SKIP_SERVICE2APPROUTER_APPTID_CHECK
+- Ignore CSRF token check in back channel logout
+
+### Updated Dependencies
+- deps: @sap/audit-logging@7.0.0
+- deps: axios@1.13.5
+- deps: cf-nodejs-logging-support@7.4.4
+- deps: @sap/logging@9.1.1
+
 ## 20.9.0 - 2026-02-09
 
 ### Added

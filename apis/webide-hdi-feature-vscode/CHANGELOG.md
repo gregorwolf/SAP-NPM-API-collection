@@ -1,3 +1,39 @@
+## 1.46.0
+
+### New Features
+- Calculation views can be classified for privacy and security
+- Data source names can be copied via the context menu
+- Spill to disk hints are available in the hint list
+- Nodes with descendants can be copied across calculation views
+- An indication is show on calculation view nodes that block filters
+- Support delta loading in MDS cubes
+
+### Fixes
+- Value picker is not showing the value in analytic privilege editor
+- Enhanced key column indicator
+- MDS Cube section is shown under View Properties for Dimension views even though MDS Cubes cannot be defined for Dimension views
+- Show only local objects doesn't work for synonym
+- Failed to update node icon based on join type after swap data source
+- Inconsistent delete Button Behavior when applying filters on derived Input Parameters
+- Renaming a shared column alias does not change references in expressions accordingly
+- Analytical Privilege Editor Freezes When Adding a Second Attribute Restriction
+- Harmonize behavior between delete query_level_sql_hints and qo_pop_hints
+- Missing Data Type Icons for ARRAY and VECTOR Types in Calculation View Join Definition
+- Deployment fails after replace with data source in Star Join
+- Color pruned columns red when debugging the calculation view
+- Refresh outline after to execute Copy with Object Below
+- XML misses attributeRef tag for local parent child hierarchies of cubes
+- Copy Nodes added unnecessary _copy postfix
+- Warning popup when Copy Node is not clicked
+- Copy nodes fails when data sources are unavailable
+- Remove mapping doesn't remove the mapping from the output column even when we refresh the calculation view it still points to previous column.
+- Rename "Start" in generate nodes to: "Expression for Selecting Start Nodes"
+- SQL hierarchies: rename generate functions and navigation functions
+- Multiple connections are created during auto layout
+- Notes of calculated columns in non-default node is not saved
+- don't add one more column under Incremental Columns for MDS Cube
+- should delete column under Incremental Columns when delete columns under Dimensions for MDS Cubes
+
 ## 1.45.0
 
 ### New Features

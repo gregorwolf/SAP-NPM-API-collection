@@ -1,3 +1,10 @@
+## 1.44.0
+
+### Fixes
+- Schema Filter "Deselect All" Does Not Properly Filter All Schemas in the "Find Data Source" Dialog
+- Creation of Synonym on manually created table fails
+- Enable Finish button in "Find Data Source" dialog
+
 ## 1.43.0
 
 ### Fixes

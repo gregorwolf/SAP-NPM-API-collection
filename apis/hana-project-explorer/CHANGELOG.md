@@ -1,3 +1,13 @@
+## 1.37.0
+
+### Fixes
+
+- Virtual table editor: refresh after change
+- Virtual table editor: fix primary key handling
+- Virtual table editor: fix scrolling for large tables
+- Virtual table editor: support more than 999 remote objects
+- SAP HANA AI toolkit integration: improve messages
+
 ## 1.36.0
 
 ### New Features

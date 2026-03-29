@@ -1,3 +1,8 @@
+## 1.21.0
+
+### Fixes
+- Formatting of functions did not work correctly
+
 ## 1.20.0
 
 ### Fixes

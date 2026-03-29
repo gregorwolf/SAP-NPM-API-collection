@@ -8,6 +8,12 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.11.1"></a>
+## 6.11.1 - 2026-02-16
+### Updated
+- Update to qs 6.14.2
+- Update to ajv 8.18.0
+
 <a name="6.11.0"></a>
 ## 6.11.0 - 2026-02-12
 ### Added

@@ -1,3 +1,36 @@
+# Hana Client 2.28.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.28 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.28/en-US
+
+For the latest updates please see SAP Note 3710958 - SAP HANA Client 2.28 Release Notes
+
+https://me.sap.com/notes/3710958
+
+## Version 2.28.19
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 355833: When connecting to HANA Cloud, an "Invalid connect reply" error was not specific.
+ - Issue Number 355677: SQLDBC SQL=INFO tracing was overly verbose for very large result sets.
+
+## Version 2.28.17
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 351976: siteType=ANY and replicationRole=ANY reconnect role switches resulted in errors.
+
+## Version 2.28.16
+
+### Changes:
+
+ - Issue Number 352179: The error text "No Connection Available" was unclear.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 351976: When connecting via an HTTP Proxy, the Keep-Alive header was missing.
+
 # Hana Client 2.27.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.27 documentation:
@@ -7,6 +40,12 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.27/en-US
 For the latest updates please see SAP Note 3681871 - SAP HANA Client 2.27 Release Notes
 
 https://me.sap.com/notes/3681871
+
+## Version 2.27.24
+
+### Changes:
+
+ - No relevant changes made.
 
 ## Version 2.27.23
 

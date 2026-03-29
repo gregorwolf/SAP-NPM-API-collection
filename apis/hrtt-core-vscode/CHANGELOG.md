@@ -1,3 +1,9 @@
+## 1.46.0
+
+### New Features
+
+- Updated HRTT to version 260129-1770835910-d6bf75e
+
 ## 1.45.0
 
 ### New Features

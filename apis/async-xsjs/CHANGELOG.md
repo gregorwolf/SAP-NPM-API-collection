@@ -5,6 +5,45 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.1.10"></a>
+## 2.1.10 - 2026-03-17
+
+### Updated
+- update @sap/hdbext version to 8.1.12
+
+<a name="2.1.9"></a>
+## 2.1.9 - 2026-03-12
+
+### Updated
+- update @sap/hana-client version to 2.27.24
+- update @sap/hdbext version to 8.1.11
+
+<a name="2.1.8"></a>
+## 2.1.8 - 2026-02-13
+
+### Updated
+- update @sap/audit-logging version to 7.0.0
+- update @sap/e2e-trace version to 6.1.0
+- update @sap/hana-client version to 2.27.23
+- update @sap/hdbext version to 8.1.10
+- update @sap/instance-manager version to 5.2.5
+- update @sap/jobs-client version to 1.8.6
+- update @sap/logging version to 9.1.1
+- update @sap/textbundle version to 6.1.0
+- update @sap/xsenv version to 6.1.0
+- update @sap/xsodata version to 8.3.1
+- update express version to 4.22.1
+- update @sap/xss-secure version to 6.1.0
+- update big.js version to 7.0.1
+- update body-parser version to 2.2.2
+- update cookie version to 1.1.1
+- update lodash version to 4.17.23
+- update moment version to 2.30.1
+- update multiparty version to 4.2.3
+- update nodemailer version to 8.0.1
+- update sax version to 1.4.4
+- update axios version to 1.13.5
+
 <a name="2.1.7"></a>
 ## 2.1.7 - 2025-12-11
 

@@ -3,6 +3,22 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.22.0] - 2026-03-19
+### Fixed
+- Fixed an issue where an error was incorrectly displayed for system selection when editing the service in Visual Studio Code
+- Fixed an issue where editing a service using the "Service Manager" did not update the saved values
+- Fixed an issue where the error message associated with a saved system in the "Service Manager" was incorrectly referenced as a destination
+
+## [1.21.0] - 2026-03-05
+### Fixed
+- Fixed an issue where the project picker did not open when launching Service Modeler for an overview page project
+- Fixed an issue where the Service Manager created an incorrect file name when syncing from the back end
+- Fixed an issue where back-end services were not fetched in Service Manager when using SAP Business Application Studio
+
+## [1.20.3] - 2026-02-05
+### Added
+- Added the ability to refresh or download value help metadata which is associated with an OData V4 service
+
 ## [1.20.2] - 2026-01-22
 - No update
 

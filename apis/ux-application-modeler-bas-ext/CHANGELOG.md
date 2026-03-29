@@ -6,6 +6,77 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.22.0] - 2026-03-19
+### Added
+- Enhanced the Page Editor to automatically open the properties pane which shows the properties for the top node by default
+- Added the ability to display warnings for undefined properties which are reported by ESLint
+- Added Application Modeler commands for OData download generation
+- Added navigation support to manifest properties in the Page Map
+- Added the ability to add the Field building block to a form
+- Added the ability to add the Form building block to a custom page and a custom section
+### Changed
+- Updated the `border-radius` styling on UI components to improve visual consistency
+- Enabled selecting multiple filters for properties in the Page Map and Page Editor
+### Fixed
+- Fixed an issue where the "Undo" and "Redo" buttons on the Page Map did not work correctly
+- Fixed an issue where the bubble messages in the Page Editor displayed incorrect colors for inner nodes
+- Fixed an issue where "Go to Code" for the `manifestPath` menu action did not navigate to the correct location
+- Fixed an issue where the Page Editor incorrectly displayed simple "Object" properties without inner properties; these properties are now displayed with an "Edit in Source File" option
+- Fixed an issue where the schema was not updated for CAP applications when the changed annotation file was not located in the root folder of the CAP application
+
+## [1.21.0] - 2026-03-05
+### Added
+- Enhanced the Page Map to enable lazy loading for applications, unless overridden at the page level
+- Enhanced the Page Editor to enable lazy loading for object pages
+- Enhanced the Page Editor to enable defining analytical charts based on existing annotations in list report pages and sections in an object page
+- Enhanced the Page Editor to auto-generate IDs in fragment files when adding building blocks for OData V4 applications
+- Added the ability to add custom actions to the Table building block
+- Added the ability to navigate from the Page Map and Page Editor to specific properties in the `manifest.json` file using the "Edit in Source Code" icon
+### Changed
+- Modified the precondition checks to enable defining analytical charts for applications based on RAP services
+- Changed the default value for scrolling mode in the Page Editor to `false`. By default, the Properties Panel now only shows the properties of the selected node
+- Provided the "Enable Export" property in the Page Editor instead of the deprecated "Use Export To Excel" property for OData V2 apps with a minimum SAPUI5 version of 1.144
+### Fixed
+- Fixed an issue where the "Application Info" page incorrectly displayed a missing `node_modules` error even though `node_modules` existed
+- Fixed an issue where it was not possible to delete properties from `Quick Variant Selection: Paths`
+- Fixed an issue where changing the `useExportToExcel` property in a table on an object page incorrectly generated two flex change files in OData V2 applications
+- Fixed an issue where it was not possible to set a Boolean value for the `personalization` property for a table in OData V4 applications
+- Fixed an issue where changing the  `enableMassEdit` property from `false` to `true` incorrectly triggered the `manifest.json` file to save twice
+- Fixed an issue where an error was displayed instead of creating the `.fioritools` folder in an environment where SAP Fiori tools was not installed
+- Fixed an issue where deleting the last view in the Page Editor incorrectly added `table: true` instead of `table: {}` in the virtual `page.config` file
+- Fixed an issue where installing the `@sap/cds-dk` node module globally failed when using version 9.7.1 or higher
+- Fixed an issue where `undefined.position` was incorrectly created in the `manifest.json` file during view creation or deletion in the Page Editor
+- Fixed a UX issue where the tag selector dropdown was not aligned with similar dropdowns in the Page Map and Page Editor
+- Fixed an issue where the "Info" icon was incorrectly sized in the Page Editor
+- Fixed an issue where the text for the "Delete Confirmation" dialog in building blocks was not properly aligned
+- Fixed an issue where it was not possible to delete a table view in list report pages for OData V4 applications
+- Fixed an issue where it was not possible to create a Rich Text Editor building block because the "Target Property" dropdown was empty
+- Fixed an issue where the anchor property was empty for custom actions in a list report page in the Page Editor
+- Fixed an issue where the Page Map did not start for a CAP project
+- Fixed an issue where tooltip texts were missing for the "Move Up and "Move Down" icons in the Page Editor
+- Fixed an issue where the "[error] For LR page no entitySet could be determined from contextPath" error was incorrectly displayed when parsing annotations
+- Fixed an issue with incorrect navigation in a card using "Navigate to Source Code" in an overview page application
+- Fixed an issue where the "Delete Confirmation" dialog for Custom Actions was incorrectly displayed in applications with a minimum SAPUI5 version of 1.144 or higher
+- Fixed an issue where the auto-selected handler file was incorrect or not detected when creating a custom action for a building block
+- Fixed an issue where button groups in the Rich Text Editor displayed incorrect names in the Page Editor due to auto-generated IDs
+- Fixed an issue where it was incorrectly possible to add custom action options for the Table building block in applications based on SAPUI5 version 1.144 or lower
+- Fixed an issue where it was not possible to add manifest-based custom actions in the Page Editor for applications based on SAPUI5 version 1.144 or lower
+
+## [1.20.3] - 2026-02-05
+### Added
+- Added the ability to use, edit, and format button groups using the Rich Text Editor building block in a custom section
+- Added the ability to reorder the placement of button groups in the Rich Text Editor building block
+- Added support for compliance checks against area-specific rules in the Page Map and Page Editor
+- Enhanced the Page Editor to enable adding and maintaining manifest-based action menus in table toolbars, object page headers, and form sections for OData V4 applications with a minimum SAPUI5 version of 1.136 and above
+### Fixed
+- Fixed an issue where the `manifestPath` was not resolved for properties when the `manifestPath` was placed outside of the `$ref` property
+- Fixed an issue where it was possible to incorrectly drag and drop a menu action from the "Toolbar Actions" node to the "Columns" node if the "Columns" node was collapsed in the Page Editor
+- Fixed an issue where an incorrect `<i18n>` prefix was displayed in the creation field name for CAP projects
+- Fixed an issue with the label position for the `Switch` property in dialog forms in the Page Editor
+- Fixed an issue where an empty configuration object was created in the `manifest.json` file when the `Anchor Bar` was set to `true` for a form page in the Page Editor
+- Fixed an issue where a dot was incorrectly used in a node title in the Page Editor
+- Fixed an issue where the "Invalid value: property is not part of the service definition" error was incorrectly displayed for a data point in the Page Editor
+
 ## [1.20.2] - 2026-01-22
 ### Added
 - The Service Catalog extension has been added as a dependency in the SAP Fiori tools extension pack. This extension allows you to visualize your OData services and preview live data.  For more information, see [Service Catalog](https://marketplace.visualstudio.com/items?itemName=SAPSE.service-catalog)

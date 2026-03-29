@@ -15,6 +15,12 @@ CAP Node.js Applications should **not** need to make changes when updating to ve
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
 
+## 3.5.1
+- use `authorization_bundle_url` from credentials instead of hard-coded `/bundle-gateway` endpoint for AMS bundle download
+- send `user-agent` header during AMS bundle download with value `@sap/ams/<version>` to allow better identification of the client in AMS server logs for support purposes
+- send `x-correlation-id` header during AMS bundle download with a random UUID value to allow correlating AMS bundle download requests with error logs for support purposes
+- `AuthorizationManagementService#fromIdentityService(identityService, config)` now correctly forwards the config object to the authorization bundle loader. Added type definitions for config options.
+
 ## 3.5.0
 - Fix: Catch request errors such as TLS certificate expiration errors during AMS bundle download and emit them via "bundleInitializationError" or "bundleRefreshError" events
 - Fix: Duplicated log output in CAP applications

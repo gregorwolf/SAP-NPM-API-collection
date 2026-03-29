@@ -7,6 +7,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.21.0] - 2026-03-05
+### Project Accelerator
+- Fixed an issue where the SAPUI5 ABAP Repository name was not displayed in the connection details when using the Project Accelerator with an ABAP data source
+- Fixed an issue where business requirements were lost when switching between CAP and RAP tabs
+
+## [1.20.3] - 2026-02-05
+### Project Accelerator
+- Added the ability to use the Project Accelerator in SAP Business Application Studio with an ABAP back end
+
 ## [1.19.2] - 2025-10-16
 ### Project Accelerator
 - Fixed an issue where multiple lockfiles were created for applications generated using the "Project Accelerator"

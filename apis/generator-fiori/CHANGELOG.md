@@ -3,6 +3,36 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.22.0] - 2026-03-19
+### Changed
+- Generated applications now have an ESLint configuration enabled by default
+
+### Fixed
+- Fixed an issue where the generator did not display all relevant services from the selected ABAP catalog
+
+## [1.21.0] - 2026-03-05
+### Changed
+- Updated the generator to display an informational message about row size limits when selecting a responsive table type
+- Updated generated applications to use eslint version 9 when choosing to add an ESLint configuration during generation
+
+### Fixed
+- Fixed an issue where invalid package names in lower case provided during deployment configuration were not alerted to the user
+- Fixed an issue where users were incorrectly offered to create a new system when using the UI Service Generator
+- Fixed an issue where an incorrect authorization error message was displayed when selecting a destination in the generator in SAP Business Application Studio
+- Fixed an issue where the custom page template controller and xml files were created in the ext/main folder rather than the ext/view folder
+- Fixed an issue where value help metadata was not downloaded during generation if the generator was used from the command line
+
+## [1.20.3] - 2026-02-05
+### Added
+- Added support for OData version 4.01 services for applications generated using SAPUI5 version 1.144 or higher
+- Added the ability to download metadata for value help which is referenced in an OData V4 service during generation
+
+### Changed
+- Added more information to the error message displayed when the metadata for a service cannot be retrieved
+
+### Fixed
+- Fixed an issue where the Application Generator crashed when deleting the main entity in the "Entity Selection" step
+
 ## [1.20.2] - 2026-01-22
 ### Added
 - Added an info message when retrieving services for an ABAP Catalog if no services for OData V2 or OData V4 were returned

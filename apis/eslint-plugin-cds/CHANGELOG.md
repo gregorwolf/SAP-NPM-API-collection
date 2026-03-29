@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [4.2.1] - 2026-02-26
+### Fixed
+- Removed usage of deprecated API in `lib/utils/rules.js`
+
+## [4.2.0] - 2026-02-26
+### Fixed
+- Use ESLint API supported by versions `9` and `10`.
+
 ## [4.1.2] - 2026-02-13
 ### Fixed
 - No longer crash on .java files larger than 32 kB.

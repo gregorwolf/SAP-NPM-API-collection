@@ -1,19 +1,33 @@
 {
   "name": "@sap/hana-client",
-  "version": "2.27.23",
-  "lockfileVersion": 1,
+  "version": "2.28.19",
+  "lockfileVersion": 3,
   "requires": true,
-  "dependencies": {
-    "debug": {
+  "packages": {
+    "": {
+      "name": "@sap/hana-client",
+      "version": "2.28.19",
+      "hasInstallScript": true,
+      "license": "SEE LICENSE IN developer-license-3_2.txt",
+      "dependencies": {
+        "debug": "3.1.0"
+      },
+      "engines": {
+        "node": ">=4.0.0"
+      }
+    },
+    "node_modules/debug": {
       "version": "3.1.0",
       "integrity": "sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==",
-      "requires": {
+      "license": "MIT",
+      "dependencies": {
         "ms": "2.0.0"
       }
     },
-    "ms": {
+    "node_modules/ms": {
       "version": "2.0.0",
-      "integrity": "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A=="
+      "integrity": "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==",
+      "license": "MIT"
     }
   }
 }

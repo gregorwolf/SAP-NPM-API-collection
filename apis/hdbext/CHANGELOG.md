@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+<a name="8.1.12"></a>
+## 8.1.12 - 2026-03-17
+
+### Updated
+- Fixed createConnection and createConnectionPromise issue.
+
+<a name="8.1.11"></a>
+## 8.1.11 - 2026-03-11
+
+### Updated
+- Enhanced createConnection and createConnectionPromise with automatic retry on connection failure
+- Updated @sap/hana-client module version to 2.27.24
+
 <a name="8.1.10"></a>
 ## 8.1.10 - 2026-01-28
 

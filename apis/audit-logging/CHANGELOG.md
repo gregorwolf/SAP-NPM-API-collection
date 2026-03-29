@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.0.1 - 2026-03-18
+
+### Changed
+- Switched to xssec built-in token caching to reduce redundant token requests to XSUAA.
+
 ## 7.0.0 - 2026-02-05
 
 ### Changed

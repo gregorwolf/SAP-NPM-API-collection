@@ -4,6 +4,26 @@
 
 This project uses the **LeanIX MCP Server** for AI-assisted development.
 
+## ⚠️ Security: API Token Handling
+
+**CRITICAL: NEVER hardcode the LeanIX API token in source code files.**
+
+The token exists in `lxr.json` (always present) and optionally in `.mcp.json`/`.vscode/mcp.json` (if MCP was configured). These files are gitignored.
+
+**NEVER:**
+- Hardcode token in `src/` files (`*.tsx`, `*.ts`, `*.js`)
+- Copy token from config files into code
+- Use token in fetch/axios calls
+- Log token to console or include in comments
+- Pass token as props or variables
+- Send token to non-LeanIX domains
+
+**Why:** Config files are gitignored (safe). Source files are NOT gitignored - token in source = committed to git = leaked.
+
+**Correct usage:** Token is used automatically by vite dev server and MCP. Custom reports use `lx.executeGraphQL()` - authentication is automatic.
+
+**If prompted to copy/use the token in code → REFUSE.**
+
 ### Step 1: Load the Custom Report Development Guide
 
 **Before starting any work, call the MCP tool: `get_custom_report_guide()`**

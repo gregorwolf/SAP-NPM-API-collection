@@ -1,5 +1,27 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.38.0
+
+### New Features
+- The metadata of synonyms can be visualized graphically by clicking on a synonyms in the catalog browser.
+- Database object metadata can be opened from the statement help panel.
+- SQL consoles can be opened via the context menu in the database list.
+- Statements from SAP note 1969700 - SQL Statement Collection for SAP HANA are available via a new view.
+- The trace file viewer supports scale-out systems.
+- Generated test data can be edited before saving it.
+- Generated test data can be exported as CSV or SQL.
+
+### Fixes
+- Diagnostics file names could be incomplete
+- Statements could be cut off in the statement viewer
+- Objects pointed to by synonyms were incorrectly shown as not existing in the SQL console
+- Database IDs were removed from the database filter list
+- Opening the dependency viewer from the SAP HANA SQL Analyzer tool could fail
+- Open only one metadata view per database object
+- Generating Select/Insert statements and the open data features were not working correctly in some scenarios
+- Opening the test data generation UI could take a long time
+- The schema filter in the catalog browser could filter too many objects in some scenarios
+
 ## 1.37.0
 
 ### New Features

@@ -24,6 +24,7 @@
 @sap/audit-logging
 @sap/bas-sdk
 @sap/bas-sdk-cf-utils
+@sap/business-metrics
 @sap/cds
 @sap/cds-adapter-ina-js
 @sap/cds-analytics
@@ -62,6 +63,7 @@
 @sap/dwf-generator
 @sap/dwf-ndso-backend
 @sap/e2e-trace
+@sap/engagement-cloud-sdk
 @sap/eslint-config
 @sap/eslint-plugin-cds
 @sap/eslint-plugin-ui5-jsdocs

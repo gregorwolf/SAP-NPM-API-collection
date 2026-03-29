@@ -1,10 +1,10 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/eslint-config)](https://api.reuse.software/info/github.com/SAP/eslint-config)
+[![CI](https://github.com/SAP/eslint-config/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/SAP/eslint-config/actions/workflows/main.yml)
+[![npm version](https://img.shields.io/npm/v/@sap/eslint-config)](https://www.npmjs.com/package/@sap/eslint-config)
 
 # ESLint Configuration for SAP Ecosystem
 
-## About this project
-
-Set of linting rules for JavaScript/TypeScript based projects in SAP ecosystem.
+Set of linting rules for JavaScript/TypeScript based projects in SAP ecosystem. Don't be special, just use this standard configuration.
 
 The package provides the following rule sets:
 
@@ -54,4 +54,4 @@ We as members, contributors, and leaders pledge to make participation in our com
 
 ## Licensing
 
-Copyright 2025 SAP SE or an SAP affiliate company and eslint-configuration-for-sap-ecosystem contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/eslint-configuration-for-sap-ecosystem).
+Copyright 2026 SAP SE or an SAP affiliate company and eslint-configuration-for-sap-ecosystem contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/eslint-configuration-for-sap-ecosystem).

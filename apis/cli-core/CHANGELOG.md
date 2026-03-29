@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2026.5.0
+
+### Added
+
+- Added `--force` option to the `login` command to skip the confirmation prompt when overwriting existing secrets. This is useful when running the CLI programmatically or in scripts.
+
+### Fixed
+
+- Fixed config state leakage between commands when using `getCommands()` programmatically. Previously, `config.data` and `config.headers` from one command (e.g., file content from `--file` option) would persist and leak into subsequent commands, causing incorrect request payloads.
+
 ## 2026.3.0
 
 ### Fixed

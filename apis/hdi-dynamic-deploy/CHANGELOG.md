@@ -1,3 +1,14 @@
+# 2.9.1
+Fixes
+- use @sap/hdi-deploy@5.6.1
+- use @sap/hana-client@2.27.19
+- use @sap/audit-logging@7.0.0
+- use @sap/xsenv@6.0.0
+- use body-parser@2.2.1
+- use express@5.2.1
+- use hdb@2.26.4
+- use uuid@11.1.0
+
 # 2.9.0
 Features:
 - Add range dependencies in package.json
