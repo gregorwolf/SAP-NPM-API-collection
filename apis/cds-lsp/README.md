@@ -74,12 +74,16 @@ It provides many useful features for working with and enjoying CDS sources.
     - show translations on hover
     - quickfix to maintain missing translations
 
-- Annotation support via external plugin
+- Annotation support via `@sap/ux-cds-odata-language-server-extension` plugin
     - diagnostics
     - where-used navigation
     - hover information
     - code completion
     - quick fixes for translations
+
+- Multi-cursor selection ranges according the CDS grammar
+- Folding ranges according to CDS grammar, incl. treating consecutive `using` statements as one folding range
+
 
 ## Usage
 
@@ -104,7 +108,7 @@ For other IDEs there exist generic client plug-ins for language servers. Example
 - Emacs, ...
 
 #### Requirements
-`@sap/cds-lsp` is a NodeJS module. As such it requires NodeJS installed on the client machine. Minimum version is 20.15.1
+`@sap/cds-lsp` is a NodeJS module. As such it requires NodeJS installed on the client machine. Minimum version is 22.15.1
 
 #### Start-up
 

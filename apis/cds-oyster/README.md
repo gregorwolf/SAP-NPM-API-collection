@@ -169,7 +169,22 @@ and the ability to call the `req.error(...)` and `req.reject(...)` methods.
 The `req` object is available to the extension developer as the handler parameter and doesn't need a require statement or initialization. Throwing errors within custom code is not possible. Unhandled exceptions are propagated to the outer shell of the sandbox and handled generically without a meaningful semantic error message.
 Instead, developers should either call the `req.reject(...)` method or call the `req.error(...)` method. Developers are free to manipulate the `req.data` and `req.results` arrays but should be aware that adding attributes beyond the application model will be ignored by the framework and won't appear in subsequent processing. As per the table above, while the full `req` object is always inherently defined, manipulating data within only makes sense to the specific context. A `before UPDATE` handler has an undefined results array, so whatever the sandboxed code does to it, will be overwritten by subsequent processing of the CAP framework.
 
-In addition, developers can asynchronously call `SELECT`, `INSERT`, `UPDATE`, `DELETE`, and `UPSERT` on **service** level with authorization enforced on request-user level. Calls to database entities will be rejected with an error message. Alternatively one can use direct service calls like `this.read` or `this.update`. Finally unbound actions of the service can be called like `this.someAction(data:{object})`.
+Developers can asynchronously call `cds.qi` API `SELECT`, `INSERT`, `UPDATE`, `DELETE`, and `UPSERT` on **service** level with authorization enforced on request-user level.
+Calls to database entities will be rejected with an error message.
+The API has the following restrictions:
+- where clauses can only use object notation
+- functionality is limited to the basic features compared to the full `cds.ql` API
+
+Alternatively one can use asynchronous direct service calls like `this.read` or `this.update`. 
+
+Unbound actions of the service can be asynchronously called using the following syntax: `this.someAction(data:{object})`.
+
+Finally some utilities are available. Extension developers can use the following methods:
+
+```
+- utils.uuid() is a convenience method to generate a UUID value
+- utils.i18n(key) will return the translation of a key with the tenant and user context applied
+```
 
 ### Reading data
 

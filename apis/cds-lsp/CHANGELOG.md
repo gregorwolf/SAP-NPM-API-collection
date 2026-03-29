@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.8.0 - 2026-03-08
+
+### Fixed
+- running CDS Typer in WSL projects
+- indentation of annotations to entities with annotated actions
+
+### Also see
+- `@sap/cds-compiler` 6.8.0
+
+
 ## 9.7.0 - 2026-01-29
 
 ### Added

@@ -6,7 +6,54 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 9.7.2 - tbd
+## Version 9.8.2 - 2026-03-25
+
+### Added
+
+- `cds init` now removes the `.vscode` folder when creating projects in SAP Business Application Studio in order to restore compatibility with other project generators. This is a temporary solution likely to be reverted in cds-dk 10.
+
+### Fixed
+
+- `cds add workzone` for Kyma correctly adds the `html5-apps-repo-runtime` to its `Chart.yaml`.
+- `cds add app-front` in combination with `cds add ias` correctly includes all `IASDependencyName` settings.
+- `cds build` has improved performance in some scenarios.
+
+## Version 9.8.1 - 2026-03-13
+
+### Fixed
+
+- `cds build` plugins correctly formats a thrown `BuildError` in the logs.
+- `cds version` also reports a cds-dk installation in Java projects that don't have such a dependency in their `package.json`.
+
+## Version 9.8.0 - 2026-03-09
+
+### Added
+
+- `cds up --overlay <file|name> (Cloud Foundry) now resolves MTA extension descriptors (<name>.mtaext) from the project root.`
+- `cds add postgres` now supports Kyma with automatic database provisioning and IP whitelisting.
+- `cds deploy --to hana --store-credentials` now warns about the deprecated option `--store-credentials`.
+- `cds import` now uses the default options defined via `cds.import.options[<from>] = {option: 'value'}`
+- `cds version` now shows version of `@sap/eslint-plugin-cds`.
+- `cds version --json` returns a stable output format as JSON.
+
+### Changed
+
+- `cds add multitenancy` does not add an explicit `java` profile to the main app any more.
+- `cds deploy` and `cds bind` support Kyma-by-default for projects with Kyma-only deployment descriptors.
+- `cds deploy --to hana --on k8s` now supports deploying to SAP HANA using an existing Kubernetes service binding, allowing non-default Kyma naming conventions.
+- `cds import` now correctly imports Views with Parameters from a given OData EDMX service definition.
+- `cds import` now interprets empty navigation path references as if it would be a null value.
+
+### Fixed
+
+- `cds bind` reports additional error information while accessing Cloud Foundry services.
+- `cds version` now works again if executed in subfolders of Java projects without a `pom.xml` file.
+- `cds add workzone` in combination with `cds add ias` adds the `HTML5.IASDependencyName` for the `srv-api`.
+- `cds add lint` now creates an ESLint config file again.
+- `cds import` now correctly handles enum types as keys in EDMX v4 import.
+- `cds push` now shows the correct passcode URL when the subdomain changes between logins.
+
+## Version 9.7.2 - 2026-02-13
 
 ### Fixed
 
@@ -21,7 +68,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Fixed
 
 - `cds add completion` now works without specifying the project runtime.
-
 - `cds add xsuaa` correctly adds the the binding for the `html5-apps-deployer` on Kyma.
 - `cds version` prints an older format in a legacy situation.
 - `cds add nodejs` is automatically added in BAS scenarios for compatibility if no other runtime is specified.
@@ -469,6 +515,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `cds import` adds `@mandatory` annotations to properties marked as `required` in the schema.
 - `cds add ams` for Java adds a custom builder to the `mta.yaml` to circumvent the missing `srv/src/gen/policies`.
 - `cds add multitenancy` requires the `srv-api` instead of the `mtx-api` for Java projects.
+
+## Version 8.9.14 - 2026-02-25
+
+### Fixed
+
+- CVE-2026-25639: Update `axios` version to 1.13.5
 
 ## Version 8.9.13 - 2029-01-09
 

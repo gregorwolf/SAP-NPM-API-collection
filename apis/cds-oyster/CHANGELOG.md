@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 0.3.0 - 2026-03-11
+
+### Added
+
+- method `utils.i18n(key)` providing translation for the key in extension
+
+### Fixed
+
+- issue in allowlist restrictions being too strict by extension entities
 
 ## Version 0.2.1 - 2025-10-30
 

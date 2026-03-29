@@ -13,6 +13,34 @@ we might not list every change in its behavior here.
 Productive code should never require a `beta` flag to be set, and
 might use a deprecated flag only for a limited period of time.
 
+## Version 6.8.0 - 2026-03-05
+
+### Features
+
+- **api:** basic experimental support for code completion in `cds repl`
+- **compiler:**
+  + retain original meta property in CSN
+  + add compilerCsnFlavor to meta property
+- **sql:**
+  + Add support for `cds.Vector`
+  + Allow migration from cds.String to cds.LargeString
+  + Fiori Tree Views in the database backend
+  + For postgres: warning for identifiers that exceed the databases length limit
+
+### Bug Fixes
+
+- **sql:**
+  + do not report validation errors on entities marked as `@cds.persistence.skip`
+  + normalize named arguments for portable functions
+  + properly flatten associations for temporal unique constraints
+
+### Improvements
+
+- **compiler:**
+  + improve warning in case of invalid type for key
+  + simplify syntax error text when expecting Comparison and Operator tokens
+  + improve support for code completion with `case` expressions, queries, and subqueries
+
 ## Version 6.7.3 - 2026-02-11
 
 ### Fixed

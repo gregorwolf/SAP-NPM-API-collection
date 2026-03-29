@@ -4,6 +4,74 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.8.4 - 2026-03-26
+
+### Fixed
+
+- `res.statusCode` of batch sub-requests did not consider potential modifications during `srv.on('error')`
+- Restore login challenge for late `401` with mocked authentication in `$batch`
+- Batched request fails when depended upon atomicity group fails
+
+## Version 9.8.3 - 2026-03-12
+
+### Fixed
+
+- OData batch parallel processing: Drain remaining queue when aborting
+
+## Version 9.8.2 - 2026-03-10
+
+### Fixed
+
+- Compatibility with `@eslint/js^10`
+
+## Version 9.8.1 - 2026-03-09
+
+### Fixed
+
+- OData batch parallel processing: Preserve request sequence for OData v2
+- In inbound messaging, only load the extended model if there is a tenant
+- Ensure `cds.fiori.direct_crud` is considered during `cds build`
+
+## Version 9.8.0 - 2026-03-06
+
+### Added
+
+- Calculated elements are now properly calculated in draft state. So far, the elements have been treated as regular elements ignoring the calculation.
+  + In case this causes issues, you can opt-out with `cds.fiori.calc_elements = false` until cds10
+- $compute supports decimal constants
+- Support `/$metadata` requests in OData batch
+- Support for `@odata.bind` parameters in collection bound actions
+- Support for renaming of foreign keys of managed associations while resolving views
+- Support for `Prefer: return=minimal` header in generic draft actions
+- OData batch: Parallel processing of atomicity groups via `cds.odata.max_batch_parallelization=<number>` (default: `1`)
+  - Only applicable if `$batch` request exclusively contains `GET` requests
+  - Note: Parallel processing of atomicity groups is in conflict with OData specification for `multipart/mixed`!
+  - Additional experimental feature: Bundle independent `GET` requests into single transaction via `cds.odata.group_parallel_gets=true`
+- `hcql`: request raw stream via http header `Accept: application/octet-stream`
+
+### Changed
+
+- Destination caching is no longer modified at runtime. Caching configuration is now managed by the Cloud SDK.
+- `cds.env` now supports for credentials lookup Kubernetes secrets with a structure like `${SERVICE_BINDING_ROOT}/${SERVICE}/${INSTANCE}/${BINDING}`. Previously only one level between the root and the binding was possible.
+- Allow using ESlint 10 by opening version range `^9 || ^10` for `@eslint/js`
+- Outbound `hcql` requests always via `POST`
+
+### Fixed
+
+- OData JSON batch:
+  + Response value formatting and escaping for non `application/json` responses
+  + Setting correct `content-type` header value for all content types
+- `content-length` is now set for OData multipart/mixed batch subrequest responses
+- Connection issues when a Kafka cluster has been created with public endpoints
+- Fix duplicated columns in case of `$expand=*`
+- Unhandled promise rejection in `cds.spawn` if extended model could not be loaded
+- Set `msg.tenant` & `msg.event` of messages received from Kafka, based on the stringified header values
+- `$expand=*` expands only the exposed associations
+- Broken `odata-v2` formatting for values used in `beween- and`, `in` and `lambda` type expressions
+- Appending `/$value` to an entity that is not a media entity returns `400 Bad Request`
+- In Jest test runs in ESM projects, files are now loaded properly
+- Correctly resolve dependencies in workspace setups where the CAP project is not at the root
+
 ## Version 9.7.1 - 2026-02-06
 
 ### Fixed

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 
 
+## [9.8.0] - 2026-03-10
+### Fixed
+- running CDS Typer in WSL projects
+- formatter: indentation of annotations to entities with annotated actions
+
+### Also see
+- `@sap/cds-lsp` 9.8.0
+- `@sap/cds-compiler` 6.8.0
+
+
 ## [9.7.0] - 2026-01-30
 
 ### Added

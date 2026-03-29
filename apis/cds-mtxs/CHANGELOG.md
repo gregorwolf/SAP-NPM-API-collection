@@ -6,6 +6,25 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.8.1 - 2026-03-23
+
+### Fixed
+
+- More accurate exception handling if the extension table `cds.xt.Extensions` cannot be read.
+- For HANA, tenant subscription now stores the tenant database `schema` in `cds.xt.Tenants`.
+- The annotation allowlist correctly handles allowed parent annotations.
+
+## Version 3.8.0 - 2026-03-05
+
+### Added
+
+- If not needed, CSV data deployment with extensions can be disabled with `cds.requires['cds.xt.ExtensibilityService'].activate['skip-csv'] = true`. This improves the performance when pushing extensions if many extensions already exist.
+
+### Fixed
+
+- The extension linter for annotations on structured types does not throw a `TypeError`.
+- The response when getting extensions using `/-/cds/Extensions/<id>` now also contains the `status`.
+
 ## Version 3.7.1 - 2026-02-12
 
 ### Changed

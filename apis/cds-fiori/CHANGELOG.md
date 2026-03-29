@@ -4,6 +4,12 @@
 - The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Version 2.3.0 - 2026-03-06
+
+### Changed
+
+- Use UI5 1.145.0 by default
+
 ## Version 2.2.0 - 2026-01-27
 
 ### Added
@@ -12,7 +18,7 @@
 
 ### Changed
 
-- Use UI5 version 1.134.0 by default
+- Use UI5 version 1.143.0 by default
 
 ## Version 2.1.1 - 2025-10-29
 
