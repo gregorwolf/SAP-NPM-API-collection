@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.8.4 - 2026-04-10
+
+### Fixed
+
+- `axios` bump to 1.15.0 for CVE-2025-62718.
+
+## Version 9.8.3 - 2026-04-02
+
+### Fixed
+
+- Dependency updates, e.g. for CVE-2026-33937.
+- `cds add xsuaa --plan broker` does not use plan `application` in approuter scenarios.
+
 ## Version 9.8.2 - 2026-03-25
 
 ### Added

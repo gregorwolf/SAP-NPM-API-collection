@@ -6,8 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [2.0.6] - 2026-03-31
+### Changed
+- Internal refactoring, using typescript
+
 ## [2.0.5] - 2026-01-30
-## Changed
+### Changed
 - Yeoman generator now uses `cds init` cli to create project
 
 ## [2.0.4] - 2026-01-29

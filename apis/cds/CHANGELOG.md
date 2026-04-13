@@ -4,6 +4,15 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.8.5 - 2026-04-08
+
+### Fixed
+
+- `compile.for.direct_crud` is resilient against draft-enablement on non-service entities
+- Requests targeting a view with parameters are now correctly send to remote OData services
+- `TypeError` due to unchecked access when handling `PUT` on collection via navigation
+- Null value sorting in draft-enabled scenarios now matches database behavior (NULLS FIRST for ASC, NULLS LAST for DESC)
+
 ## Version 9.8.4 - 2026-03-26
 
 ### Fixed
