@@ -22,12 +22,12 @@ Example 1
 
 ```typescript
 try {
-	const result = await cfLogin("https://api.cf.....com", "user", "password");
-	if (result === "OK") {
-		// successful
-	}
+  const result = await cfLogin("https://api.cf.....com", "user", "password");
+  if (result === "OK") {
+    // successful
+  }
 } catch (e) {
-	// display or/and log error
+  // display or/and log error
 }
 ```
 
@@ -35,12 +35,12 @@ Example 2
 
 ```typescript
 try {
-	const spaces = await cfGetAvailableSpaces("myOrg");
-	for (const space of spaces) {
-		console.log("Space label is " + space.label + " guid is " + space.guid);
-	}
+  const spaces = await cfGetAvailableSpaces("myOrg");
+  for (const space of spaces) {
+    console.log("Space label is " + space.label + " guid is " + space.guid);
+  }
 } catch (e) {
-	// display or/and log error
+  // display or/and log error
 }
 ```
 

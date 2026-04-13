@@ -257,6 +257,21 @@ var services = xsenv.getServices('/some/user/path', {
 var hanaCredentials = services.hana;
 var schedulerCredentials = services.xsuaa;
 ```
+### SERVICE_BINDING_ROOT environment variable
+
+@sap/xsenv now supports the standard `SERVICE_BINDING_ROOT` environment variable for specifying the root path of Kubernetes service bindings. This is a well-known convention used by other SAP and Cloud Native buildpacks.
+
+When no explicit path is provided to the service lookup functions, @sap/xsenv will use the following path resolution order:
+1. The path explicitly passed by the application developer
+2. The `SERVICE_BINDING_ROOT` environment variable (if set)
+3. The default path `/etc/secrets/sapcp`
+
+This allows you to configure the bindings root path via environment variable, without any code changes, which is especially useful in containerized or operator-managed deployments:
+
+```sh
+SERVICE_BINDING_ROOT=/bindings
+```
+
 
 ## Local Usage
 

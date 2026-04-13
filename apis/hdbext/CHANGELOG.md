@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+
+<a name="8.1.13"></a>
+## 8.1.13 - 2026-04-08
+
+### Updated
+- Updated lodash module version to 4.18.1
+  
 <a name="8.1.12"></a>
 ## 8.1.12 - 2026-03-17
 

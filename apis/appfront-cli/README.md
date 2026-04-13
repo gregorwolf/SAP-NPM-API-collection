@@ -1,5 +1,5 @@
 # Application Frontend service CLI
- 
+
 Application Frontend Command Line Interface (appfront-cli / afctl)
 
 ## Description
@@ -470,6 +470,9 @@ The behavior may be changed by:
 - `push` command `--config config.json` configuration, where config.json `'{"activateVersion":false}'` (for command execututions using this configuration file)
 - `AFCTL_ACTIVATE` environment variable (for every command executions)
 
+If multiple options are used, the command argument has a higher priority than
+configuration file, and configuration file has higher priority than environment variable.
+
 #### AFCTL_POLLING_MAX_ATTEMPTS
 During deployment with `push` command, there is a polling of deployment status.
 By default, there will be 120 attempts to fetch the deployment status. After the threshold
@@ -484,8 +487,17 @@ By default, the delay between polling requests is 2 seconds (2000ms).
 To set different delay, it is possible to set `AFCTL_POLLING_DELAY` environment variable.
 The value must be positive integer (in milliseconds).
 
-If multiple options are used, the command argument has a higher priority than
-configuration file, and configuration file has higher priority than environment variable.
+#### AFCTL_PUSH_MAX_ATTEMPTS
+During deployment with `push` command, there are upload and deploy API calls.
+In case API call fails due to network error, there will be up to `AFCTL_PUSH_MAX_ATTEMPTS`
+attempts. By default, there will be 2 attempts.
+The value must be positive integer.
+
+#### AFCTL_PUSH_DELAY
+During deployment with `push` command there may be retries to call APIs due to network errors.
+The `AFCTL_PUSH_DELAY`, if set, defines the initial delay between retry calls in milliseconds.
+The delay will grow exponentially for consequent retries. The default value is 1 second (1000ms).
+The value must be positive integer.
 
 #### AFCTL_XSAPP_TEMPLATE
 By default, the `init` command either uses the `xs-app.json` in the current working directory (if it exists) as template for the target `xs-app.json` or creates a brand new `xs-app.json`. To specify different path to the file that should serve as template for the target `xs-app.json`, the `AFCTL_XSAPP_TEMPLATE` environment variable may be set. The template file content should be valid JSON. The route to serve static content from Application Fronted service will be added to the template, if it's not already exist. All routes pointing to `html5-apps-repo-rt` service will be changed to point to `app-front` service instead.

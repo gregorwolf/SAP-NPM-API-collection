@@ -1,5 +1,13 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/langchainjs-integration-for-sap-hana-cloud)](https://api.reuse.software/info/github.com/SAP/langchainjs-integration-for-sap-hana-cloud)
 
+> [!NOTE]
+>
+> ### Legacy Version
+>
+> Langchain 0.3.x compatible version of this package is maintained in the 0.3.x branch:
+>
+> [https://github.com/SAP/langchainjs-integration-for-sap-hana-cloud/tree/0.3.x](https://github.com/SAP/langchainjs-integration-for-sap-hana-cloud/tree/0.3.x)
+
 # langchainjs-integration-for-sap-hana-cloud
 
 ## About this project
@@ -11,7 +19,7 @@ Integrates LangChain.js with SAP HANA Cloud to make use of vector search, knowle
 ### Prerequisites
 
 - **NodeJS Enviroment**: Since this package uses components from Langchain, please ensure you have a compliant NodeJS environment installed [from here](https://js.langchain.com/docs/how_to/installation/)
-- **Peer Dependencies Installed**: This package requries these versions langchain and @langchain/core to be installed.
+- **Peer Dependencies Installed**: This package requries these versions langchain, @langchain/classic and @langchain/core to be installed.
 
 ```bash
 npm install @langchain/core@latest @langchain/classic@latest langchain@latest

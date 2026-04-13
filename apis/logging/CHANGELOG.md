@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.2.0 - 2026-04-06
+- updated `filter-node-package` dependency to 6.2.0
+- updated `@sap/e2e-trace` dependency to 6.2.1
+- update `lodash` dependency to 4.18.01
+- updated `sinon` dependency to 21.0.3
+- updated `got` dependency to 15.0.0
+
+
 ## 9.1.1 - 2026-01-29
 - updated `filter-node-package` dependency to 6.1.0
 - updated `@sap/e2e-trace` dependency to 6.1.0

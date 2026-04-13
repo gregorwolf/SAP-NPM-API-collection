@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.2.0 - 2026-04-06
+
+### Updated
+- Updated `filter-node-package` dependency to 6.2.0
+- Updated `lodash` dependency to 4.18.1
+
+### Added
+- Add support for SERVICE_BINDING_ROOT environment variable in K8S environment
+
 ## 6.1.0 - 2026-01-29
 
 ### Updated

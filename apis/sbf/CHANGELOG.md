@@ -8,6 +8,14 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.11.2"></a>
+## 6.11.2 - 2026-03-22
+### Updated
+- update to http-errors 2.0.1
+
+### Fixed
+- Pass correct user to audit log when using OAuth2 audit log plan
+
 <a name="6.11.1"></a>
 ## 6.11.1 - 2026-02-16
 ### Updated

@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.15.3] - 2026-03-25
+
+### Added
+- The `AFCTL_PUSH_MAX_ATTEMPTS` and `AFCTL_PUSH_DELAY` configuration added
+
+### Enhanced
+- The `push` command retries to call upload/deploy GACD APIs in case of network errors.
+
+
 ## [1.15.1] - 2026-01-15
 
 ### Fixed

@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 21.2.1 - 2026-04-09
+
+### Updated Dependencies
+- deps: node-forge@1.4.0
+- deps: lodash@4.18.1
+- deps: axios@1.15.0
+
+### Fixed
+- preserveHostHeader host resolution
+- removed superfluous error log when IAS not bound
+
 ## 21.2.0 - 2026-03-26
 
 ### Added
