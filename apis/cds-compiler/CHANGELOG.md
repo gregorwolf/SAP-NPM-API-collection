@@ -13,6 +13,48 @@ we might not list every change in its behavior here.
 Productive code should never require a `beta` flag to be set, and
 might use a deprecated flag only for a limited period of time.
 
+## Version 6.9.0 - 2026-04-21
+
+### Features
+
+- **compiler:**
+  + add support for extending views/projections with several SQL clauses:
+    `where`, `group by`, `having`, `order by`, `limit`
+  + allow extending derived enum types/elements by adding enum symbols
+  + inside `extend … with enum {…}`, it is now possible to use `extend existingEnumSymbol with @Anno`,
+    like it is already possible inside `extend … with {…}`
+  + when the new options `v7KeyPropagation` is set, the propagation of the `key` property in queries is simplified,
+    and the `key` property is not propagated when including structures into types
+- **odata:** set `meta.compilerCsnFlavor` in the OData transformed CSN
+- **seal**: set `meta.compilerCsnFlavor` in the SEAL transformed CSN
+- **effective:** set `meta.compilerCsnFlavor` in the effective CSN
+- **sql:**
+  + set `meta.compilerCsnFlavor` in SQL transformed CSN
+  + allow single-leafed structures within a `list` on the left-hand side of the `IN` operator.
+    For example `(author, struct) in (...)` becomes `(author_ID, struct_leaf) in (...)`.
+  + support `cds.Vector` on Postgres and H2
+
+### Bug Fixes
+
+- **compiler:**
+  + don't introduce a strange `cast` property in the CSN for a column with an expand on a to-many association
+  + while crawling tokens for LSP, allow extensions without name
+- **effective:** don't absolutify paths in filters in annotations
+- **sql:** properly resolve references in annotation values and `on` conditions for a column inside an expand without base reference
+
+### Improvements
+
+- **compiler:**
+  + add `compilerVersion` to CSN meta
+  + issue a warning if a structure in an annotation value would have the same CSN representation as an expression
+  + issue warnings for extends on built-in types
+  + warn on duplicate members from includes via extend
+- **odata:**
+  + update OData vocabularies: Common, Core, UI
+  + using `@readonly` with an expression value on entities or aspects is no longer silently accepted and now produces an error
+
+
+
 ## Version 6.8.0 - 2026-03-05
 
 ### Features

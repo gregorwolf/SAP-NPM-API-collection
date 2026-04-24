@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 
 
+## [9.9.0] - 2026-04-23
+
+### Added
+- WorkspaceSymbols API: `/x` to get index flags
+- WorkspaceSymbols: also include models defined in build tasks
+
+### Changed
+- removed `https-proxy-agent` in favour of native VS Code / fetch proxy handling.
+- `CAP Release Notes` page shows a lightning bolt logo as dimmed background when loading fails.
+- Zoom direction in Analyze Dependencies was flipped on macOS to have a more natural UX
+
+### Removed
+- Unsupported `play` button for CDS queries in the `CAP Release Notes` page.
+
+### Fixed
+- Prevent error when scanning for LSP-restart settings in configuration.
+- support CDS lookup dirs defined in subfolders e.g. pom.xml (resolve cds env per project root instead of workspace root)
+- WorkspaceSymbols: NodeJS V8 crashed for very large workspaces
+- WorkspaceSymbols: filter out symbols from ignored files
+- add quotes around the binary in the default cds-typer command to support paths with non-alphanumeric characters
+
+### Also see
+- `@sap/cds-lsp` 9.9.0
+- `@sap/cds-compiler` 6.9.0
+
+
 ## [9.8.0] - 2026-03-10
 ### Fixed
 - running CDS Typer in WSL projects

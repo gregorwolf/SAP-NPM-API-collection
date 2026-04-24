@@ -6,6 +6,22 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 9.9.0 - 2026-04-22
+
+### Added
+- WorkspaceSymbols API: `/x` to get index flags
+- WorkspaceSymbols: also include models defined in build tasks
+
+### Fixed
+- support lookup dirs defined in subfolders e.g. pom.xml (resolve cds env per project root instead of workspace root)
+- WorkspaceSymbols: NodeJS V8 crashed for very large workspaces
+- WorkspaceSymbols: filter out symbols from ignored files
+- add quotes around the binary in the default cds-typer command to support paths with non-alphanumeric characters
+
+### Also see
+- `@sap/cds-compiler` 6.9.0
+
+
 ## 9.8.0 - 2026-03-08
 
 ### Fixed
@@ -66,13 +82,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
   + `cds.workspace.persistency.enabled`: general enablement. All other settings have no effect if this is disabled.
   + `cds.workspace.persistency.persistAfterSave`: when a file is saved its index is persisted.
   + `cds.workspace.persistency.persistAfterCompile`: when (closed) CDS files are compiled (also as part of another model compilation) their index gets persisted.
-  + `cds.workspace.persistency.restoreBeforeCompile`: when CDS files are part of a compilation their persisted index is used if matching 
+  + `cds.workspace.persistency.restoreBeforeCompile`: when CDS files are part of a compilation their persisted index is used if matching
   + `cds.workspace.persistency.restoreAfterStartup`: restore all persisted indexes after start-up
   + `cds.workspace.persistency.indexAllAfterStartup`: index all files not yet persisted
   + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterStartup`: index files are written per content. Delete index files with outdated content after start-up
-  + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterNSaves`: Delete index files with outdated content after specified number of `Save` requests 
+  + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterNSaves`: Delete index files with outdated content after specified number of `Save` requests
   + `cds.workspace.persistency.reindexAfterCompileIfRestored`: If files are part of a compilation and a matching index exist, still index again.
-  
+
 
 ### Fixed
 - Syntax highlighting in bracketed expressions
@@ -144,8 +160,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ## 9.2.1 - 2025-08-08
 
 ### Changed
-- OData Annotation Modeler's sub features can be enabled distinctively. 
-  For performance reasons, **only _code completion_ and _hover_ are enabled by default**. 
+- OData Annotation Modeler's sub features can be enabled distinctively.
+  For performance reasons, **only _code completion_ and _hover_ are enabled by default**.
   Enable others via user settings: `cds.contributions.features.<feature>`
 - Performance optimizations when updating dependency net of CDS file dependencies
 
@@ -179,7 +195,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Changed
 - Maximum log-file size can now be increased to at most 1 GB (default limit unchanged at 10 MB)
-- Telemetry: 
+- Telemetry:
   + error reporting now sends same error only once per session
   + periodic statistics changed from every 5 minutes to every 30 minutes
 
@@ -189,7 +205,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ## 9.1.0 - 2025-06-30
 
 ### Added
-- Performance/Responsiveness: 
+- Performance/Responsiveness:
   + Reduce _"lagging red underline"_ while typing - configurable via user setting `cds.workspace.fastDiagnosticsMode`
   + Outdated compilations in background are aborted fast. This increases responsiveness and reduces CPU usage and is especially useful for large projects with many files.
 - Formatter: New option `argsInNewLine` to put multiple arguments to e.g. function calls on a new line
@@ -250,7 +266,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Changed
 - _Initialize_ request now accepts _initializationOptions_ with top-level `cds` child.
-  Previously only the direct children of the `cds` user settings node were 
+  Previously only the direct children of the `cds` user settings node were
   accepted - this is now deprecated and will be removed in next major.
 
 ### Also see
@@ -338,7 +354,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - highlighting of escaped identifiers and parameter lists
 - `using` path proposals could have been suggesting JS files instead of CDS files in certain cases
 - on Windows if client mixes upper- and lowercase drive letters some requests could have failed
-- CDS Typer was called when deleting a file which led to a misleading error output 
+- CDS Typer was called when deleting a file which led to a misleading error output
 - Analysis of dependencies failed when handling non-npm `package.json` files (e.g. from `pnpm` lacking `name` property)
 
 ### Changed
@@ -350,7 +366,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ## 8.3.2 - 2024-10-01
 
 ### Added
-- support for annotation modeler to remove certain code completions from compiler in favor of more suitable ones 
+- support for annotation modeler to remove certain code completions from compiler in favor of more suitable ones
 - show absolute name and kind of artifact in hover and completion details
 - analyze-dependencies command now supports rendering to `svg` or `json` string
 
@@ -541,7 +557,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Changed
 - refactored data structures of where-used index to keep file indexes independent of each other
-- (beta): reuse file indexes in most situations to speed up indexing - can be disabled via user setting `cds.workspaceValidationOptimistic` 
+- (beta): reuse file indexes in most situations to speed up indexing - can be disabled via user setting `cds.workspaceValidationOptimistic`
 - annotation handler is only called for completion if cursor at reasonable annotation position
 - workspace symbol query has new switch `/a` to include auto-exposed entities
 - rewritten indexing of annotations to boost performance
@@ -665,16 +681,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 
 - _@sap/cds-lsp_ can now trigger a globally installed cds type generator when saving a model file.
-  <br/>This feature is still **experimental** and must be enabled via user setting `cds.typeGenerator.enabled`. 
+  <br/>This feature is still **experimental** and must be enabled via user setting `cds.typeGenerator.enabled`.
 
-- The annotation contribution API has a new optional callback. 
+- The annotation contribution API has a new optional callback.
   Now a contribution can add where-used relationships inside annotations to the global where-used index.
   (A complete index is a prerequisite for refactoring.)
   <br/> The feature is still **experimental** and might change in future.
 
 ### Fixed
 
-- _workspace/symbols_ request didn't include definitions of a file after it was closed. 
+- _workspace/symbols_ request didn't include definitions of a file after it was closed.
 
 ### Removed
 
@@ -682,11 +698,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
    <br/>Please use `@sap/cds-lsp@6.0.3` when having an older compiler in your project.
    <br/>**Note:** our extension for _Visual Studio Code_ (`@sap/vscode-cds`) contains
    both mentioned versions of _@sap/cds-lsp_ to continue supporting all major compiler
-   versions. 
+   versions.
 
 - `@cds.doc` annotation, which was marked as deprecated for a long time, is no longer considered in requests like _document/hover_.
-   Please use doc comments (`/** ... */`) instead. The quick fix to migrate from _@cds.doc_ to _doc comments_ is still in place, 
-   but is likely to be removed in near future. 
+   Please use doc comments (`/** ... */`) instead. The quick fix to migrate from _@cds.doc_ to _doc comments_ is still in place,
+   but is likely to be removed in near future.
 
 ### Also see
 - `@sap/cds-compiler` 3.6.0
@@ -763,7 +779,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Also see
 - `@sap/cds-compiler` 3.0.2
-                                                                 
+
 ## 6.0.0 - 2022-07-01
 
 ### Added
@@ -899,7 +915,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Fixed
 
-- `enum` was not indexed 
+- `enum` was not indexed
 - `composition` of aspect was not indexed
 - symbols contained localized entries with recent compiler versions
 - workspaces with _many_ workspace folders could lead to stop lsp
@@ -955,7 +971,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - translation support is now lazy
 - performance improvements when translation files changed
 - last workspace/symbols are cached now to speed up CAP explorer
-- user setting cds.workspace.scanCsn has now three modes: Off, ByFileExtension (new default) and InspectJson 
+- user setting cds.workspace.scanCsn has now three modes: Off, ByFileExtension (new default) and InspectJson
 
 
 ## 5.2.0 - 2021-07-30
@@ -963,11 +979,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 
 - new validation mode _ActiveEditorOnly_ (new default) for clients indicating support
-  via capability _workspace.didChangeActiveEditor_. 
+  via capability _workspace.didChangeActiveEditor_.
   Other clients remain using _OpenEditorsOnly_ as default.
   The new mode reduces number of compilations during editing and thus improves responsiveness.
 - new command to analyze using dependencies of CDS model files.
-  It will create a graphviz dot file that can be viewed with an appropriate viewer. 
+  It will create a graphviz dot file that can be viewed with an appropriate viewer.
   Getting an overview of file dependencies can help to keep your project architecture clean.
 
 ### Changed
@@ -983,7 +999,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - new performance relevant user settings
     + `cds.workspace.debounceFastChanges`:  skip intermediate compilations when typing - enabled by default
     + `cds.workspace.scanDependentModules`: skip scanning of node_modules - enabled by default, speeds up start-up time
-      Note: 
+      Note:
       - when using code completion for global identifiers (see `cds.completion.workspaceSymbols.minPrefixLength`) this option needs to be enabled
       - for code completion of import paths in `using` statements this option needs to be enabled
 
@@ -994,7 +1010,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 This is a quality release focusing on performance for large models.
 There are new user settings and some have changed their defaults.
-Best performance is achieved with default settings, 
+Best performance is achieved with default settings,
 except `cds.contributions.enablement.odata` which should be switched `off` to speed up compilation, unless feature is needed.
 
 Additonal hints to increase performance:
@@ -1003,7 +1019,7 @@ Additonal hints to increase performance:
 - Settings: `Editor � Goto Location: Alternative Definition Command`: do not select `goToReferences`, otherwise being already on a definition will trigger find references which requires all dirty models to be recompiled.
 - Settings: `Workbench � Editor � Limit: Enabled`: switch on
 - Settings: `Workbench � Editor � Limit: Value`: lower the number. If open editors have `using` dependencies, a change in one editor will lead to a recompile of releated editors.
-- Commands `Go to References` / `Find All References` will recompile all models that might have changed due to a change in a depending model. If there are index models it often means the complete workspace is being recompiled. 
+- Commands `Go to References` / `Find All References` will recompile all models that might have changed due to a change in a depending model. If there are index models it often means the complete workspace is being recompiled.
 Until a further change, reference calculation is resonably fast.
 - Command `Go to Symbol in Workspace` will recompile the complete workspace once, then it is reasonable fast
 - Changing settings in `CDS` section will currently perform a complete workspace invalidation i.e. required indexes will lead to recompilations on-demand as described above
@@ -1022,7 +1038,7 @@ Until a further change, reference calculation is resonably fast.
 
 ### Fixed
 
-- asynchronous scanning of workspace blocked and led to high cpu usage (mostly on Linux/macOS) 
+- asynchronous scanning of workspace blocked and led to high cpu usage (mostly on Linux/macOS)
 
 
 ## 5.0.3 - 2021-05-06
@@ -1108,7 +1124,7 @@ times
 
 - quickfix for deprecated identifiers
 - support for quickfixes in annotation handler
-- internal support for incremental text updates 
+- internal support for incremental text updates
 - improved supportability with extended statistic logs
 
 ### Changed
@@ -1141,7 +1157,7 @@ times
 ### Added
 
 - support mono repo file system layouts
-- user option to format snippets after completion 
+- user option to format snippets after completion
 - user option to disable odata plugin
 - detection of slow running odata plugin (when validating) incl. user options to disable and fine tune
 - user option for omitRedundantTypesInSnippets for annotations
@@ -1177,7 +1193,7 @@ From version 4.1.0 on, @sap/cds-lsp requires NodeJS 12.14+
   - auto-installation/update with user setting for npm registry
 
 - code completion inside string literals and `![...]` identifiers is automatically triggered by `/` character (additionally to `.` and `@`)
-  
+
 - snippets applied via code completion are now formatted
 
 - `action`s and their parameters are now indexed and support code navigation, hover etc.

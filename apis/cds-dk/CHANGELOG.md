@@ -6,11 +6,27 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 9.8.4 - 2026-04-10
+## Version 9.9.0 - 2026-04-23
+
+### Added
+
+- `cds build` routes `.hdbsynonymconfig` files with `*.configure` properties to the `cfg/` folder for HDI template substitution.
+- `cds deploy` also supports `-b` as a shortcut for `--resolve-bindings`.
+- `cds import` now supports `--resolve-bindings`.
+
+### Changed
+
+- `cds add html5-repo` creates destinations as part of the app deployer module instead of initial destinations in the destination service.
+- `axios` is removed from `dependencies`.
+- `cds init` no longer generates database-specific extensions (`db/hana/`, `db/sqlite/`) and their profile-based configuration in the sample template.
 
 ### Fixed
 
-- `axios` bump to 1.15.0 for CVE-2025-62718.
+- `cds add xsuaa --plan broker` does not use plan `application` in approuter scenarios.
+- `cds add postgres` for Kyma no longer adds an invalid `values.yaml` entry for `postgres-db-deployer`.
+- `cds init/add esm` now also fills `package.json` with proper content.
+- `cds deploy --to hana --resolve-bindings` no longer overwrites credentials of all hana-tagged `VCAP_SERVICES` entries with the target container's service key when multiple HDI bindings are present.
+- `cds add data` now adds a newline character at the end of csv files to make appending content easier.
 
 ## Version 9.8.3 - 2026-04-02
 

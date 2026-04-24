@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.9.0 - 2026-04-22
+
+### Added
+
+- It is now possible to create additional instances of the internal Service Manager Client or HANA TMS v2 client to access alternative services. Instances can be created using `cds.xt.containerManager.newInstance(serviceCredentials)`.
+- Environment variables `APPLICATION_ID`, `APPLICATION_VERSION_INFO`, and `DEPLOY_ID` are now forwarded to the HDI deploy environment.
+- Database deployment can be individually disabled for `cds.xt.SmsProvisioningService` or `cds.xt.SaasProvisioningService` for hybrid scenarios. It can be confiured by e. g. `cds.requires['cds.xt.SmsProvisioningService'] = { "subscribe": { "skip-db": true } }`. This is only available for synchronous subscription.
+- `cds.outbox.Messages` to model of `t0`.
+- Subscription payloads may now include a `custom_label` in the `_.hdi.create` options to attach additional labels to HANA containers and, for the service-manager, also to bindings. Example: `_.hdi.create.custom_label = 'my_key=my_value'`.
+
 ## Version 3.8.1 - 2026-03-23
 
 ### Fixed

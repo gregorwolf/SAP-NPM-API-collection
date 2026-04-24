@@ -4,6 +4,54 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.9.0 - 2026-04-22
+
+### Added
+
+- Event Queue Scheduling:
+  + Support for `srv.schedule.task(event, data)` to create so-called "singleton tasks" that exist only once as well as `srv.unschedule.task(event)` to remove them again
+  + Support for cron expressions as argument for `.every()`, e.g., `.every('*/5 * * * 2')` for "Every 5 minutes, only on Tuesday"
+  + Support for `cds.appid` for isolating microservices in shared HDI scenarios
+    + The experimental option `targetPrefix` is temporarily kept to allow flushing tasks that rely on it, but will be removed soon
+  + Streamlined aggregation of `queued` service effective configuration
+- Advanced Event Queue Scheduling via Scheduling Service (Beta; enable via `cds.requires.scheduling = true`)
+  + Efficient leftover processing by maintaining a schedule in `t0` (requires `@sap/cds-mtxs^3.9`)
+  + Revised event processing (ongoing)
+  + Only applicable with queue kind `persistent-queue` (which is the default)
+- In addition to `.csv` files, and `.json` files, initial data can now also be provided via `.yaml` files
+  + Limitation: Only supported in Node.js runtimes, so far, not yet by `cds build` for Java, and for production deployments to HANA
+- Support `$select` and `$expand` from draft actions: `draftNew`, `draftPrepare`, `draftActivate`, and `draftEdit`
+- Enable referencing action request responses in `dependsOn` of subsequent requests in the same batch
+- Import files the ESM way in ESM projects, e.g. to support mocking in Vitest
+- Node.js-native `fetch`-based HTTP client for remote service consumption (beta)
+  + Used automatically when `@sap-cloud-sdk/http-client` is not installed or forced via `cds.remote.native_fetch = true`
+  + Known limitations:
+    + Resolving destinations via the BTP Destination Service is not supported
+    + Only basic authentication is supported
+- `cds.infer.elements` now also supports SQL-style casts, wildcard overrides and `excluding` clauses
+- Support for restricting the levels of `$expand` (beta)
+  + `@Capabilities.ExpandRestrictions.MaxLevels` defines the maximum allowed depth of an `$expand` starting from the annotated entity
+  + Additionally, `@Capabilities.ExpandRestrictions.Expandable: false` is interpreted as `@Capabilities.ExpandRestrictions.MaxLevels: 0`
+  + Finally, there is global config option `cds.query.restrictions.expand.maxLevels`
+- Kafka: `cds.requires.messaging.config = { ... }` allows custom Kafka client config for development scenarios
+
+### Changed
+
+- I18n keys in `@assert` error messages are now used as error codes. The generic `ASSERT` error key is no longer used if the `message` is not an i18n key.
+
+### Fixed
+
+- Calculation of `nextLink` based on `$skipToken` for requests with `$top` and/or `$skip`
+- Stale entries in `.cds-services.json` are removed reliably, so that `cds mock/watch` no longer try to connect to dead servers
+- Configuration shortcuts like `cds.requires[service] = true` always preserve object configuration from other sources
+- `cds-serve --project <dir> --service <name>` now honors the explicit service instead of defaulting to `all`
+- Handle expression values for `@Core.MediaType`, like `@Core.MediaType: (mimeType)`
+- Will not add a default target to `MULTIPLE_ERRORS`-type error
+- Enabled creating active composition children using `direct_crud` requests via navigation
+- Removed artifacts of draft metadata from active entity data
+- Prevent type error when encountering an unexpected symbol key in `cds.ApplicationService`
+- Reject requests with `$filter` on operations with primitive return types
+
 ## Version 9.8.5 - 2026-04-08
 
 ### Fixed
@@ -626,6 +674,12 @@
 - Deprecated element-level annotation `@Search.defaultSearchElement`. Please use annotation `@cds.search` instead.
 - Deprecated stripping of unnecessary topic prefix `topic:` in messaging
 - Deprecated messaging `Outbox` class. Please use config or `cds.outboxed(srv)` to outbox your service.
+
+## Version 8.9.9 - 2026-03-10
+
+### Fixed
+
+- Requests targeting a view with parameters are now correctly send to remote OData services
 
 ## Version 8.9.8 - 2025-12-17
 
