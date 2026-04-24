@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="2.1.11"></a>
+## 2.1.11 - 2026-04-16
+
+### Updated
+- update @sap/xsodata version to 8.3.2
+- update @sap/hdbext  version to 8.1.13
+- update nodemailer version to 8.0.5
+- update lodash version to 4.18.1
+- update yauzl version to 3.3.0
+- update @sap/node-jwt version to 1.6.28
+- update @sap/node-vsi version to 1.4.32
+
 <a name="2.1.10"></a>
 ## 2.1.10 - 2026-03-17
 

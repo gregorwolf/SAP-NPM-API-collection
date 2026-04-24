@@ -8,6 +8,23 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.11.4"></a>
+## 6.11.4 - 2026-04-23
+### Updated
+- @sap/audit-logging to7.0.1
+- @sap/xsenv to 6.2.0
+- axios to 1.15.2
+- form-data to 4.0.5
+- qs to 6.15.1
+- semver to 7.7.4
+- @sap/hdbext to 8.1.13
+
+<a name="6.11.3"></a>
+## 6.11.3 - 2026-04-13
+### Updated
+- update to axios 1.15.0
+- update to lodash 4.18.1
+
 <a name="6.11.2"></a>
 ## 6.11.2 - 2026-03-22
 ### Updated

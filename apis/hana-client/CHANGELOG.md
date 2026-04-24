@@ -8,6 +8,13 @@ For the latest updates please see SAP Note 3710958 - SAP HANA Client 2.28 Releas
 
 https://me.sap.com/notes/3710958
 
+## Version 2.28.20
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 356669: Under low memory conditions, the driver could have crashed or thrown an uncaught exception.
+ - Issue Number 355361: Many -11001 warnings with "site id or replica id not in the topology" could have occurred.
+
 ## Version 2.28.19
 
 ### Underlying SQLDBC changes:

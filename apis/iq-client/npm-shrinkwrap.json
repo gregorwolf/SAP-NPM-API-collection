@@ -1,6 +1,6 @@
 {
   "name": "@sap/iq-client",
-  "version": "2.28.19",
+  "version": "2.28.20",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {

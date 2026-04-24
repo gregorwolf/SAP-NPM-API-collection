@@ -2103,9 +2103,10 @@ Application router supports integration with Business Services.
 Business Services are a flavour of reuse-services that expose specific information in VCAP_SERVICES credentials block that enable application router to serve Business Service UI and/or data.
 * Business Service UI must be stored in HTML5 Application Repository to be accessible from application router
 * Business Service UI must be defined as "public" to be accessible from an application router in a different space than the one from where the UI was uploaded 
-* Business Service data can be served using two grant types:
+* Business Service data can be served using three grant types:
   1. User Token Grant: Application router performs a token exchange between login JWT token and Business Service token and uses it to trigger a request to the Business Service endpoint
   2. Client Credentials Grant: Application router generates a client_credentials token and uses it to trigger a request to the Business Service endpoint
+  3. mTLS Grant: Application router uses the certificate and private key from the Business Service binding credentials to establish a mutual TLS connection directly to the Business Service endpoint, without any bearer token
 
 #### Business Service Credentials
 While binding a Business Service instance to application router the following information should be provided in VCAP_SERVICES credentials:
@@ -2116,8 +2117,9 @@ While binding a Business Service instance to application router the following in
 * html5-apps-repo: html5-apps-repo.app_host_id contains one or more html5-apps-repo service instance GUIDs that can be used to retrieve Business Service UIs - Optional
 * saasregistryenabled: flag that indicates that this Business Service supports SaaS Registry subscription. If provided, application router will return this Business Service xsappname in SaaS Registry 
   getDependencies callback - Optional
-* grant_type: the grant type that should be used to trigger requests to the Business Service. Allowed values: user_token or client_credentials. 
-  Default value, in case this attribute is not provided, user_token - Optional
+* grant_type: the grant type that should be used to trigger requests to the Business Service. Allowed values: `user_token`, `client_credentials`, or `mtls`.
+  Default value, in case this attribute is not provided, `user_token` - Optional.
+  When set to `mtls`, the `cert` and `key` fields must also be present in the binding credentials. The application router will use them to establish a mutual TLS connection to the Business Service endpoint without a bearer token, in addition the application router will propagate the tenant ID via x-tenant-id header
 * forwardiastoken: flag that indicates if, in addition to the exchanged SAP Authorization and Trust Management service (xsuaa) JWT token, the OIDC access token created by Identity Authentication service should be forwarded as well. the OIDC token is forwarded in request header: `x-ias-token`
 * forwardiasauthentication: This flag indicates that if the login was performed using Identity Authentication, the application router will not exchange the JWT token created by the SAP Authorization and Trust Management service (xsuaa). Instead, the OIDC access token created by Identity Authentication will be forwarded in the authorization header.
 * URL.headers.`<header-name>`:`header-value` If you provide this information, the application router propagates this attribute as the header to the business service backend. Existing request headers will not be overwritten.
@@ -2155,6 +2157,24 @@ For example:
      "saasregistryenabled": true,
      "grant_type": "user_token"
    ....
+```
+
+For an mTLS binding, the credentials must include `cert` and `key` fields and set `grant_type` to `mtls`:
+```
+"otel-collector": [
+   {
+    ...
+    "credentials": {
+     "sap.cloud.service": "otel",
+     "endpoints": {
+      "http-url": { "url": "https://my-otel-collector.cfapps.sap.hana.ondemand.com" }
+     },
+     "grant_type": "mtls",
+     "cert": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+     "key": "-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----"
+    }
+   }
+  ]
 ```
 
 #### Accessing Business Service Data

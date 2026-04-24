@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2026.9.0
+
+### Added
+
+- Support command name aliases and deprecation via array-form `operationId` in discovery JSON
+  - `operationId` can now be an array of strings and alias objects to register multiple command names for the same endpoint
+  - Deprecated aliases display wave info and replacement command in `--help` output (e.g. `(deprecated, since 2026.09, use "new-command" instead)`)
+  - Parent commands are marked as deprecated when all their sub-commands are deprecated
+- Validate auto-generated OAuth URLs (authorization and token endpoints) before login to surface misconfiguration early
+
+### Changed
+
+- Automatically save host in the settings cache after successful login
+
 ## 2026.5.0
 
 ### Added

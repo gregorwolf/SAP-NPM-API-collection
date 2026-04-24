@@ -15,6 +15,10 @@ CAP Node.js Applications should **not** need to make changes when updating to ve
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
 
+## 3.6.0
+- Feature: added configuration option for fetching authorization bundles from an AMS Edge Service.
+- Fix: [CAP] prevent base policy generation for `internal-user` pseudo role.
+
 ## 3.5.1
 - use `authorization_bundle_url` from credentials instead of hard-coded `/bundle-gateway` endpoint for AMS bundle download
 - send `user-agent` header during AMS bundle download with value `@sap/ams/<version>` to allow better identification of the client in AMS server logs for support purposes

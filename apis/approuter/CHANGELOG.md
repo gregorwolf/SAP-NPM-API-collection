@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 21.3.0 - 2026-04-14
+
+### Added
+- mtls grant type support for business service integration
+
+### Fixed
+- Use IAS/XSUAA credentials loaded at startup in service-to-approuter middleware instead of fetching directly from environment
+- Handle unexpected exceptions in writeToAuditLog to avoid crashing on invalid audit log parameters
+
+### Updated Dependencies
+- deps: @sap/logging@9.2.0
+
 ## 21.2.1 - 2026-04-09
 
 ### Updated Dependencies

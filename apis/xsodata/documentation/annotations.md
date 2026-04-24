@@ -34,7 +34,7 @@ If the annotations are enabled for an XSOData service, the following XML namespa
 of the $metadata document:
 
 ```
-xmlns:sap="http://www.sap.com/Protocols/SAPData"
+xmlns:sap="https://www.sap.com/Protocols/SAPData"
 ```
 
 The sections below describe the annotations (annotation attributes), which are supported by the XSOData XS2. Only the

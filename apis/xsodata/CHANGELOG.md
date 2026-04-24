@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [8.3.2] - 2026-04-14
+
+* FOSS related security updates
+
 ## [8.3.1] - 2026-02-12
 
 * FOSS related security updates
