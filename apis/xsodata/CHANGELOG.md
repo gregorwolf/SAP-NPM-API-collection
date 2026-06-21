@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [8.4.0] - 2026-06-11
+
+* Revert change of sap xml namespace from "https" to "http"
+* Enable creation for SBOM file
+* FOSS related updates
+* Remove support for node 18
+
 ## [8.3.2] - 2026-04-14
 
 * FOSS related security updates

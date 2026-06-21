@@ -2,6 +2,40 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+## [1.26.0] - 2026-05-28
+### Added
+- Added support for virtual endpoints when using the headless generator
+- Added the ability to launch the "OUTPUT" tab to view more details of an error when using the SAP Fiori generator
+- Added support for relative paths when using the SAP Fiori generator in the command line
+
+### Changed
+- Updated the Application Generator so when generating with virtual endpoints, the files for the OPA test harness are also delivered virtually
+
+### Fixed
+- Fixed an issue with filtering lists in the Service Center
+- Fixed an issue with SAPUI5 version detection in multi-app CAP projects
+- Fixed an issue where deployment failed with an incorrect validation error
+
+## [1.25.0] - 2026-05-14
+### Changed
+- The "Create New System" dialog now contains the connection details from ABAP Development Tools (ADT) for easier completion when launching the SAP Fiori Generator in Visual Studio Code from ADT, if the system from ADT is not a saved system in the Connection Manager
+
+### Fixed
+- Fixed an issue that caused the SAP Fiori Generator to terminate unexpectedly when selecting a different saved system after a connection failure
+- Fixed an issue where OData V4.0 services were incorrectly identified as OData V4.01 services during generation
+
+## [1.24.0] - 2026-04-30
+### Added
+- Added the ability to provide multiple service metadata files when using the headless generator
+
+## [1.23.0] - 2026-04-16
+### Added
+- Added additional OPA5 tests during generation by analyzing the project metadata and annotations to provide meaningful tests for applications
+- Added the ability to select a full-service URL endpoint from the Connection Manager and use it when generating an SAP Fiori application
+
+### Fixed
+- Fixed an issue where users were incorrectly notified that the SAPUI5 version in their application was not compatible with the manifest version during deployment
+- Fixed an issue where deployment did not timeout if no response was received from the back end
 
 ## [1.22.0] - 2026-03-19
 ### Changed

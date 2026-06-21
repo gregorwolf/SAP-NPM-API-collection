@@ -1,7 +1,64 @@
-# SAP HANA SQL Analyzer Changelog
+# SQL analyzer tool for SAP HANA Changelog
+
+## 1.10.0
+The SQL analyzer tool version 1.10.0 includes the following improvements and bug fixes.
+
+### Improvements
+
+- **Plan Graph Tab**
+  - Updated **Plan Graph** to maintain settings per execution plan instead of globally, ensuring that changes made to one execution plan no longer affect others.
+  - Updated **Plan Graph** to restore previously configured settings for an execution plan when reopening the plan.
+  - Enabled HEX execution plans to automatically open in **CPU Time** mode when you first open a file.
+  - Moved the **Settings** panel into the details pane as a new **Graph Settings** tab to improve usability.
+  - Redesigned the details pane to include two tabs: **Details** (default) and **Graph Settings**, streamlining navigation.
+  - Renamed sections within the **Graph Settings** tab for clarity: Node Execution Time Mode is now **Operator Execution Time**, Plan Mode is now **Inner Plan Mode**, Cardinality Display is now **Cardinality**, and Node Coloring is now **Operator Colors**.
+  - Ensured that inner plans opened from the context menu inherit settings from the parent execution plan for a consistent experience.
+  - Enhanced the **Details** tab with clear, color-coded status badges, including **Physical**/**Logical**, **CPU Time** (for HEX plans), and **Expert** mode badges.
+  - Improved readability by fixing insufficient color contrast for CPU Time labels in light themes, using theme-aware text colors.
+  - Renamed the **Payload** field in the **Edge Details** to **Output Bytes** for clarity.
+
+- **Properties View**
+  - Added search functionality with real-time filtering across all property fields to help quickly find relevant information.
+  - Highlighted matching property values with visual markers for easier identification.
+  - Added empty state messages for initial view, operators without properties, and no search results.
+  - Cleared search field automatically when switching between operators or edges to avoid confusion.
+  - Applied consistent search functionality across the **Operators** and **Table Access** tabs.
+
+- **Overview Tab**
+  - Renamed the **Involved Services** table to **Locations** in the **Distribution** card. Increased the default row display to five rows.
+  - Added a network transfer visualization for HEX plans in the **Distribution** card.
+    - Displays total network traffic across all nodes for a comprehensive overview.
+    - Lists individual network transfer operators with source and destination details.
+    - Shows total network traffic between location pairs for a high-level view of data flow.
+
+- **SQL Analyzer Tool Configuration via VS Code Settings**
+  - Renamed several JSON keys for graph and parsing options for improved clarity and consistency.
+  - Added a one-time notification for users upgrading from earlier versions, guiding them to update JSON keys.
+  - Removed deprecated and non-functional configuration settings to simplify the configuration interface.
+  - Standardized the product name across the extension to SQL analyzer tool for SAP HANA.
+
+- **Telemetry**
+  - Integrated Azure Application Insights telemetry to support usage analytics.
+  - Assigned a stable short UUID to each opened plan file for session tracking.
+  - Added a `plan_parsed` telemetry event to capture plan type and file size information.
+
+### Bug Fixes
+
+- **Recommendation Tab**
+  - Restored operator name navigation to the **Plan Graph** with highlighting enabled.
+  - Enabled row-click navigation consistent with the **Table Access** tab.
+  - Replaced the table in the **Recommendation** tab with a common-control table for consistency.
+  - Removed unnecessary columns and aligned column names.
+  - Updated the search box to common-control search with term highlighting and full-field search.
+  - Removed the **Export as CSV** icon from the **Recommendation** tab.
+
+- **Object Dependency Viewer**
+  - Removed duplicated error message related to failed database connections.
+  - Fixed an issue where the **Object Dependency Viewer** did not open in SAP HANA database explorer connections.
+  - Fixed an issue where the database list temporarily failed to load.
 
 ## 1.9.1
-SAP HANA SQL Analyzer version 1.9.1 includes the following improvements.
+SQL analyzer tool for SAP HANA version 1.9.1 includes the following improvements.
 
 - **Operators & Table Access Tabs**
   - Reintroduced the **Details** column, which was temporarily removed in version 1.9.0, restoring access to its content and supporting search functionality within the column.
@@ -11,7 +68,7 @@ SAP HANA SQL Analyzer version 1.9.1 includes the following improvements.
   - Removed the "Skip Operator and Edge Detailed Information" configuration option.
 
 ## 1.9.0
-The SQL analyzer tool version 1.9.0 includes the following improvements and bug fixes.
+The SQL Analyzer Tool version 1.9.0 includes the following improvements and bug fixes.
 
 ### Improvements
 
@@ -63,13 +120,13 @@ The SQL analyzer tool version 1.9.0 includes the following improvements and bug 
 
 ![Independent Property Tab](https://i.postimg.cc/DZbVb87m/1-8-1propertytab.gif)
 
-To expand the Properties view, drag it from the SQL analyzer tool's sidebar into the VS Code panel for a larger, dockable view.
+To expand the Properties view, drag it from the SQL Analyzer Tool's sidebar into the VS Code panel for a larger, dockable view.
 
 ### Bug Fixes
 - Replaced some technical category codes with clear, descriptive summaries in the Recommendations card on the Overview tab.
 
 ## 1.8.0
-The SQL analyzer tool version 1.8.0 includes the following improvements
+The SQL Analyzer Tool version 1.8.0 includes the following improvements
 
 ### Improvements
 - **SQL Tab**
@@ -101,7 +158,7 @@ The SQL analyzer tool version 1.8.0 includes the following improvements
 - Fixed an issue where PLV files could not be saved using the Save button.
 
 ## Version 1.6.0
-The SQL analyzer tool version 1.6.0 includes the following improvements and bug fixes.
+The SQL Analyzer Tool version 1.6.0 includes the following improvements and bug fixes.
 
 ### Improvements
 

@@ -1,207 +1,304 @@
-# MDK Tools
-It provides the CLI to assist Mobile Development Kit (MDK) application developers throughout the development lifecycle to:
-- deploy MDK metadata project to SAP Business Technology Platform (BTP) Cloud Foundry environment,
-    - Mobile Services to run as mobile application
-    - HTML5 repository to run as web application
+# @sap/mdk-tools
 
-## Setup
+[![npm version](https://img.shields.io/npm/v/@sap/mdk-tools)](https://www.npmjs.com/package/@sap/mdk-tools)
+[![license](https://img.shields.io/badge/license-SAP%20Developer-blue)](./LICENSE.txt)
+[![node](https://img.shields.io/badge/node-%3E%3D22.13.1-brightgreen)](https://nodejs.org/)
 
-- Prerequisites
-    - Node 12 or higher version
-    - [Space Developer role]( https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/09076385086b4da3bd1808d5ef572862.html) assigned to your user
-    - [Cloud Foundry CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
-    - Logon to Cloud Foundry by 'cf login'
-    - MDK metadata project
-    - [MTA Build Tool](https://sap.github.io/cloud-mta-build-tool/) (required for MDK web deployment)
-    - MultiApps CF CLI Plugin (required for MDK web deployment)
-        ```bash
-        cf install-plugin -r CF-Community "multiapps"
-        ```
-    - CF HTML5 Applications Repository CLI Plugin (required for MDK web deployment)
-        ```bash
-        cf install-plugin -r CF-Community "html5-plugin"
-        ```
-- Install
-    ```bash
-    npm install @sap/mdk-tools -g
-    ```
-## Features
+CLI tools for the **mobile development kit (MDK)** — build, deploy, migrate, and validate MDK metadata projects from the command line.
 
-- Builder
+---
 
-    You can build metadata project into js or zip file. 
-    
-    Below command can get build parameter details:
-    
-    ```bash
-    mdk build
-    ```
+## Table of Contents
 
-    - target
+- [Installation](#installation)
+- [Commands at a Glance](#commands-at-a-glance)
+- [Usage](#usage)
+  - [mdk build](#mdk-build)
+  - [mdk deploy](#mdk-deploy)
+  - [mdk migrate](#mdk-migrate)
+  - [mdk validate](#mdk-validate)
+- [License](#license)
 
-        Target 'js' can build to bundle.js and bundle.js.map, you can use it to update your local run project.   
-        Target 'zip' can build to uploadBundle.zip, you can uploaded it to Mobile Services.
-        Target 'source' can pack source code into zip with configuration for Mobile Services.This is for scenario to extend a multi tenant application.
-        
-        The build results are generated in .build folder under project.
-    - project
+---
 
-        Metadata project, it's current folder if not provided.
+## Installation
 
-    - externals
+**Prerequisites**
 
-        Libs need to be ignored in webpack bundle process. The built-in externals are:
-        - @nativescript/core
-        - mdk-core
+| Requirement | Notes |
+|-------------|-------|
+| Node.js ≥ 22.13.1, npm ≥ 10.9.2 | LTS recommended |
+| [Space Developer role](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/09076385086b4da3bd1808d5ef572862.html) | Required for CF deployments |
+| [Cloud Foundry CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) + `cf login` | Required for all CF targets |
+| [MTA Build Tool](https://sap.github.io/cloud-mta-build-tool/) | Required for web (`cf`) deployments |
+| MultiApps CF CLI plugin | Required for web (`cf`) deployments |
+| CF HTML5 Applications Repository CLI plugin | Required for web (`cf`) deployments |
 
-        ```bash
-        mdk build --target zip --externals "@nativescript/geolocation" "external2"
-        ```
+Install the CF plugins:
 
-    - filters
+```bash
+cf install-plugin -r CF-Community "multiapps"
+cf install-plugin -r CF-Community "html5-plugin"
+```
 
-        Project folders/files need to be filtered in bundle procees. The built-in filters are:
-        - /Web/
+**Install mdk-tools globally:**
 
-        ```bash
-        mdk build --target zip --filters "/FolderA/" "/FolderB/readme.txt"
-        ```
+```bash
+npm install -g @sap/mdk-tools
+```
 
-    - debugging
+---
 
-        Enable debugging by add devtool option
+## Commands at a Glance
 
-        ```bash
-        mdk build --target zip --devtool "source-map"
-        ```
-    - bundle-definition-path
+| Command | Purpose |
+|---------|---------|
+| `mdk build` | Bundle an MDK metadata project to js, zip, or source |
+| `mdk deploy` | Deploy a project to Mobile Services or an HTML5 repository on CF |
+| `mdk migrate` | Migrate project metadata to the latest schema version |
+| `mdk validate` | Validate a project against the MDK language schema |
 
-        The definition factory path for build purpose. The default path is the 'out' folder in mdk-tools.
+---
 
-    ```bash
-    mdk build --target js
-    mdk build --target js  --project /path/to/Your-MDK-metadata-project 
-    mdk build --target zip --project /path/to/Your-MDK-metadata-project
-    mdk build --target source --project /path/to/Your-MDK-metadata-project
-    ```
-    
+## Usage
 
-- Deployer
+### mdk build
 
-    You can deploy MDK metadata project directly to SAP Business Technology Platform (BTP) Cloud Foundry and NEO environment.
+Bundles an MDK metadata project using webpack.
 
-    Below command can get deploy parameter details:
-    
-    ```bash
-    mdk deploy
-    ```
+```bash
+mdk build --target <target> [options]
+```
 
-    - Deploy to Mobile Services on Cloud Foundry to run it as a mobile application
+**Targets**
 
-        It bundles MDK metadata project, uploads to Mobile Services and publishes it.
-        The name option is the application id in Mobile Services. If there's no *name* argument, it reads *MobileService:AppId* from *\.project.json* file (applicable to MDK metadata project exported from SAP Business Application Studio). If there's no *project* argument, it reads *current folder* as *MDK metadata folder*.
+| Target | Output | Description |
+|--------|--------|-------------|
+| `js` | `bundle.js`, `bundle.js.map` | Use to update a local run project |
+| `zip` | `uploadBundle.zip` | Upload to Mobile Services |
+| `source` | source zip | Multi-tenant extension scenario |
 
-        >In case of MDK metadata project exported from SAP Web IDE, *name* argument is mandatory.
+**Options**
 
-        ```bash
-        mdk deploy --target mobile --name "com.mdk.myapp" --devtool "source-map"
-        mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project
-        mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --externals "@nativescript/geolocation" "external2"
-        mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --showqr
-        mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project
-        ```
+| Option | Description |
+|--------|-------------|
+| `--target <target>` | Build target: `js`, `zip`, or `source` |
+| `--project <folder>` | Path to the MDK metadata project (defaults to current directory) |
+| `--externals <module…>` | Space-separated npm modules to exclude from the bundle |
+| `--filters <path…>` | Space-separated project paths/files to exclude from the bundle |
+| `--devtool <style>` | Source map style, e.g. `source-map` |
+| `--bundle-definition-path <folder>` | Custom definition factory path (defaults to the `out` folder in mdk-tools) |
 
-        If your Mobile Services is Preview version, you can add *--preview* option.
-        ```bash
-        mdk deploy --target mobile --name "com.mdk.myapp" --preview
-        ```
-        In case of deploying MDK bundle zip exproted from SAP Web IDE or Business Application Studio.
-        ```
-        mdk deploy --target mobile --name "com.mdk.myapp" --zip Your-MDK-bundle-zip-file
-        ```
+Built-in externals (always excluded): `@nativescript/core`, `mdk-core`.  
+Built-in filters (always excluded): `/Web/`.  
+Build results are placed in the `.build` folder under the project.
 
-        In case of deploying MDK Base project with project source zip
-        ```
-        mdk deploy --target mobile --name "com.mdk.myapp" --zip Your-MDK-source-zip-file --source
-        ```
+**Examples**
 
-    - Deploy to Mobile Services on NEO to run it as a mobile application    
-        - Prerequisites
-            - NEO Mobile Services Admin API URL
-            - Admin user name and password
-        ```bash
-            mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-metadata-project --neo 
-        ```
-        The above example prompts user password input, reads adminApi and user from .project.json, if can't find them, then prompts user input. 
+```bash
+# Build a local run bundle
+mdk build --target js
 
-        ```bash
-            mdk deploy --target mobile --name "com.mdk.myapp" --neo --adminApi YourAdminAPI --user YourUserName --pwd YourPassword
-        ```
-        The above example starts deploy without prompts.
+# Build an upload bundle for a specific project
+mdk build --target zip --project /path/to/Your-MDK-Project
 
-    - Deploy to HTML5 repository on Cloud Foundry to run it as web application
+# Build a source zip
+mdk build --target source --project /path/to/Your-MDK-Project
 
-        It bundles MDK metadata project, builds it to MTA project and deploys to HTML5 repository.
-        The name option is the application name in SAP BTP cockpit. If there is no *name* argument, it reads *CF:Deploy:Name* from *\.project.json* file (applicable to MDK metadata project exported from SAP Business Application Studio). If there's no *project* argument, it reads *current folder* as *MDK metadata folder*.
+# Exclude a third-party library from the bundle
+mdk build --target zip --externals "@nativescript/geolocation"
 
-        >In case of MDK metadata project exported from SAP Web IDE, *name* argument is mandatory.
+# Exclude project folders from the bundle
+mdk build --target zip --filters "/FolderA/" "/FolderB/readme.txt"
 
-        ```bash
-        mdk deploy --target cf --name "MyWebApplication" --devtool "source-map"
-        mdk deploy --target cf --name "MyWebApplication" --project /path/to/Your-MDK-metadata-project 
-        mdk deploy --target cf --name "MyWebApplication" --externals "@nativescript/geolocation" "external2"
-        ```
-        
-        If you want to use preview web runtime or dev web runtime starts with https://, you can add *--runtime* option.
-        ```bash
-        mdk deploy --target cf --name "MyWebApplication" --runtime preview
-        mdk deploy --target cf --name "MyWebApplication" --runtime "https://RuntimeUrl"
-        ```
-- Migrator
+# Enable source map debugging
+mdk build --target zip --devtool "source-map"
+```
 
-    Migrate the MDK project to the latest schema version.
+---
 
-    The option '--preview' is only used to list all files that need to be migrated but not to do a real migration.
-    ```bash
-    mdk migrate --project /path/to/Your-MDK-metadata-project 
-    mdk migrate --project /path/to/Your-MDK-metadata-project --preview
-    ```
+### mdk deploy
 
-    If you want to migrate files to the specific schema version, use '--target-version' option (right now, we support only one target-version option 6.3):
-    ```bash
-    mdk migrate --project /path/to/Your-MDK-metadata-project --target-version 6.3
-    ```
-    Use 'log-file' option output the logs to a file (no need to create the log file firstly, it will be generated automatically):
-    ```bash
-    mdk migrate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt
-    ```
-- Validator
-You can validate MDK project through the below command:
-    ```bash
-    mdk validate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt
-    ```
-    The option '--log-file' is not required, you can use it to output the logs to a file.
-    You can use option '--log-level' to specify which logs can be output. The acceptable values are: 0 (Debug), 1 (Info), 2 (Warn), 3 (Error). Default value is 1.
-    ```bash
-    mdk validate --project /path/to/Your-MDK-metadata-project --log-file /path/to/log-file.txt --log-level 3
-    ```
-    You can use option '--config-file' to specify a JSON format file that includes some exclusion configurations for the validation. By default, .project.json file in the root path of MDK project is used. Below is an example:
-    ```
-    {
-        "validation": {
-            "exclude": {
-                "ui": [
-                    "#Page:myFormCell", // exclude page name "myFormCell"
-                    "#Control:myControl" // exclude control name "myControl"
-                ],
-                "i18n": [
-                    "test" // exclude i18n key "test"
-                ]
-            }
-        }
+Deploys an MDK metadata project to SAP BTP Cloud Foundry. Requires an active CF login (`cf login`).
+
+```bash
+mdk deploy --target <target> [options]
+```
+
+**Targets**
+
+| Target | Description |
+|--------|-------------|
+| `mobile` | Deploy to Mobile Services on Cloud Foundry (runs as a mobile application) |
+| `cf` | Deploy to the HTML5 repository on Cloud Foundry (runs as a web application) |
+
+**Common options**
+
+| Option | Description |
+|--------|-------------|
+| `--target <target>` | Deploy target: `mobile` or `cf` |
+| `--name <app-id>` | Application ID (Mobile Services) or application name (HTML5 repo). Falls back to `MobileService:AppId` or `CF:Deploy:Name` in `.project.json`. |
+| `--project <folder>` | Path to the MDK metadata project (defaults to current directory) |
+| `--externals <module…>` | Space-separated npm modules to exclude from the bundle |
+| `--devtool <style>` | Source map style, e.g. `source-map` |
+
+#### Deploy to Mobile Services (`--target mobile`)
+
+Bundles the project, uploads the bundle to Mobile Services, and publishes it. The `--name` option is the application ID in Mobile Services. If omitted, the command reads `MobileService:AppId` from `.project.json` in the project root (set automatically when exporting from SAP Business Application Studio). Projects exported from SAP Web IDE do not include this key — `--name` is required in that case.
+
+```bash
+# Standard deploy
+mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-Project
+
+# Show QR code for onboarding after deploy
+mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-Project --showqr
+
+# Use source maps for debugging
+mdk deploy --target mobile --name "com.mdk.myapp" --devtool "source-map"
+
+# Exclude a third-party library
+mdk deploy --target mobile --name "com.mdk.myapp" --externals "@nativescript/geolocation"
+
+# Deploy a pre-built bundle zip (e.g. exported from SAP Business Application Studio)
+mdk deploy --target mobile --name "com.mdk.myapp" --zip Your-MDK-bundle.zip
+
+# Deploy a source zip (multi-tenant base project scenario)
+mdk deploy --target mobile --name "com.mdk.myapp" --zip Your-MDK-source.zip --source
+```
+
+**Additional `mobile` options**
+
+| Option | Description |
+|--------|-------------|
+| `--showqr` | Display a QR code for onboarding after deploy |
+| `--preview` | Use the Mobile Services preview runtime |
+| `--zip <file>` | Deploy a pre-built bundle or source zip instead of building from source |
+| `--source` | Treat the zip as a source zip (multi-tenant scenario) |
+| `--create` | Create the mobile application if it does not yet exist |
+
+#### Deploy to HTML5 Repository (`--target cf`)
+
+Bundles the project, builds an MTA project from it, and deploys the result to the HTML5 repository. The `--name` option is the application name in SAP BTP cockpit. If omitted, the command reads `CF:Deploy:Name` from `.project.json` (set automatically when exporting from SAP Business Application Studio). Projects exported from SAP Web IDE do not include this key — `--name` is required in that case.
+
+```bash
+# Standard web deploy
+mdk deploy --target cf --name "MyWebApplication" --project /path/to/Your-MDK-Project
+
+# Use a preview web runtime
+mdk deploy --target cf --name "MyWebApplication" --runtime preview
+
+# Use a custom runtime URL
+mdk deploy --target cf --name "MyWebApplication" --runtime "https://your-runtime-url"
+
+# Exclude a third-party library
+mdk deploy --target cf --name "MyWebApplication" --externals "@nativescript/geolocation"
+```
+
+**Additional `cf` options**
+
+| Option | Description |
+|--------|-------------|
+| `--runtime <value>` | Runtime to use: `preview`, `production`, or a custom `https://` URL |
+| `--force` | Replace the entire MTA on redeploy |
+
+#### Deploy to NEO (legacy)
+
+> **Note:** SAP BTP NEO is end-of-life. New projects should target Cloud Foundry.
+
+```bash
+mdk deploy --target mobile --name "com.mdk.myapp" --project /path/to/Your-MDK-Project --neo
+```
+
+Use `--adminApi`, `--user`, and `--pwd` to skip interactive prompts. If omitted, the command reads `adminApi` and `user` from `.project.json` and prompts for the password.
+
+---
+
+### mdk migrate
+
+Migrates an MDK metadata project to the latest schema version. Both JSON metadata files and JavaScript rule files are migrated. Use `--preview` to do a dry run that lists affected files without writing any changes.
+
+```bash
+mdk migrate --project <folder> [options]
+```
+
+**Options**
+
+| Option | Description |
+|--------|-------------|
+| `--project <folder>` | Path to the MDK metadata project |
+| `--target-version <version>` | Migrate to a specific schema version instead of the latest. Run `mdk migrate --help` for the versions bundled with this release. |
+| `--preview` | List files that would be migrated without performing the migration |
+| `--log-file <file>` | Write migration output to a file (created automatically if absent) |
+
+**Examples**
+
+```bash
+# Migrate to the latest schema version
+mdk migrate --project /path/to/Your-MDK-Project
+
+# Preview which files would be migrated (dry run)
+mdk migrate --project /path/to/Your-MDK-Project --preview
+
+# Migrate to a specific schema version
+mdk migrate --project /path/to/Your-MDK-Project --target-version 6.3
+
+# Write migration output to a log file
+mdk migrate --project /path/to/Your-MDK-Project --log-file /path/to/migration.log
+```
+
+---
+
+### mdk validate
+
+Validates an MDK metadata project against the MDK language schema. Exits with `0` when there are no errors and with a non-zero code when issues are found — making it suitable for use as a git pre-commit hook. Warnings are not included in the exit code unless `--show-warnings` is set.
+
+```bash
+mdk validate --project <folder> [options]
+```
+
+**Options**
+
+| Option | Description |
+|--------|-------------|
+| `--project <folder>` | Path to the MDK metadata project |
+| `--log-file <file>` | Write validation output to a file |
+| `--log-level <number>` | Minimum log level: `0` Debug, `1` Info (default), `2` Warn, `3` Error |
+| `--show-warnings` | Include warnings in the validation result and let them affect the exit code (default: `false`) |
+| `--config-file <file>` | JSON file with validation exclusion rules. Defaults to `.project.json` in the project root. |
+
+**Exclusion config format** (in `.project.json` or a custom `--config-file`):
+
+```json
+{
+  "validation": {
+    "exclude": {
+      "ui": [
+        "#Page:myFormCell",
+        "#Control:myControl"
+      ],
+      "i18n": [
+        "test"
+      ]
     }
-    ```
-    The MDK Validator supports hook for git commit. If there is no validation errors the command exit with zero, otherwise the command exit with non-zero. You can use option '--show-warnings' to include warnings in the validation result, this option is set to false by default.
+  }
+}
+```
+
+**Examples**
+
+```bash
+# Validate with default settings
+mdk validate --project /path/to/Your-MDK-Project
+
+# Validate and write results to a log file, errors only
+mdk validate --project /path/to/Your-MDK-Project --log-file /path/to/validate.log --log-level 3
+
+# Include warnings in the result
+mdk validate --project /path/to/Your-MDK-Project --show-warnings
+
+# Use a custom exclusion config
+mdk validate --project /path/to/Your-MDK-Project --config-file /path/to/config.json
+```
 
 ## License
 

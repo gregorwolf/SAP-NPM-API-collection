@@ -5,6 +5,42 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+
+## 1.9.1 - 2025-05-28
+
+### Added
+
+- Node.js v24 support
+- Dependency updates
+  - @sap/xsenv to version 6.2.1
+  - filter-node-package to version 6.2.0
+  - mocha to 11.7.6
+  - nock to 14.0.12
+  - nyc to 18.0.0
+
+## 1.9.0 - 2026-04-30
+
+### Added
+
+- New `fetchJobs()` method for paginated job retrieval
+  - Supports `page_size` (1-100) and `offset` parameters
+  - Returns pagination metadata: `total`, `results`, `prev_url`, `next_url`
+
+- Automatic retry policy for all requests
+  - 3 retry attempts with exponential backoff (1s, 2s, 4s) by default
+  - Retries only on recoverable errors: 408 (timeout), 429 (rate limit), and 5xx (server errors)
+  - Does not retry on 4xx client errors (except 408) as they are deterministic failures
+  - Rate limit handling with `Retry-After` header support
+  - **Customizable**: Configure retry count and backoff strategy via constructor options
+
+### Changed
+
+- `fetchAllJobs()` now automatically iterates through all pages
+following [Pagination Guide for GET /scheduler/jobs](https://help.sap.com/docs/job-scheduling/sap-job-scheduling-service/pagination-guide-for-get-scheduler-jobs)
+  - Internally uses `fetchJobs()` with `page_size=100` and automatic pagination
+  - Returns object with `{ total, results }` format - backward compatible
+  - Fetches all jobs across multiple pages automatically
+
 ## 1.8.6 - 2025-02-25
 
 ### Added

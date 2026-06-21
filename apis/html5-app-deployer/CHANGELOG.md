@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.2.4 - 2026-05-11
+### Update Dependencies
+- deps: axios@1.16.0 (with npm override to ensure consistent version across all transitive dependencies)
+- deps: file-type@21.3.3 (with npm override to prevent vulnerable versions from transitive dependencies)
+- deps: sonarqube-scanner@4.3.6
+
 ## 7.2.3 - 2026-03-02
 ### Fixed
 - Destination configurations were not being updated when they already existed, causing changes to be silently ignored

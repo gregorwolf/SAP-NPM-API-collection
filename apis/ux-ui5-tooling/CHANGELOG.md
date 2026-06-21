@@ -3,6 +3,103 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.27.0] - 2026-06-11
+### Quality
+| Package | Change |
+|---|---|
+| [@sap-ux/axios-extension](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/axios-extension)) | [`1.26.1` -> `2.0.3`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/backend-proxy-middleware)) | [`0.13.2` -> `1.0.3`] |
+| [@sap-ux/btp-utils](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/btp-utils)) | [`1.2.1` -> `2.0.2`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/deploy-tooling)) | [`0.19.7` -> `1.0.12`] |
+| [@sap-ux/feature-toggle](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/feature-toggle)) | [`0.4.0` -> `1.0.2`] |
+| [@sap-ux/guided-answers-helper](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/guided-answers-helper)) | [`0.5.0` -> `1.0.1`] |
+| [@sap-ux/logger](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/logger)) | [`0.9.0` -> `1.0.1`] |
+| [@sap-ux/nodejs-utils](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/nodejs-utils)) | [`0.3.2` -> `1.0.3`] |
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | [`0.26.10` -> `1.0.24`] |
+| [@sap-ux/project-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/project-access)) | [`1.38.1` -> `2.1.2`] |
+| [@sap-ux/reload-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/reload-middleware)) | [`0.4.1` -> `1.0.2`] |
+| [@sap-ux/serve-static-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/serve-static-middleware)) | [`0.5.0` -> `1.0.1`] |
+| [@sap-ux/store](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/store)) | [`1.6.1` -> `2.0.1`] |
+| [@sap-ux/system-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/system-access)) | [`0.8.2` -> `1.0.3`] |
+| [@sap-ux/telemetry](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/telemetry)) | [`0.7.5` -> `1.0.9`] |
+| [@sap-ux/ui5-config](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-config)) | [`0.31.1` -> `1.0.3`] |
+| [@sap-ux/ui5-info](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-info)) | [`0.14.0` -> `1.0.1`] |
+| [@sap-ux/ui5-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-proxy-middleware)) | [`1.7.1` -> `2.0.3`] |
+
+## [1.26.0] - 2026-05-28
+### Quality
+| Package | Change |
+|---|---|
+| [@sap-ux/axios-extension](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/axios-extension)) | [`1.25.35` -> `1.26.1`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/backend-proxy-middleware)) | [`0.12.8` -> `0.13.2`] |
+| [@sap-ux/btp-utils](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/btp-utils)) | [`1.1.15` -> `1.2.1`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/deploy-tooling)) | [`0.18.24` -> `0.19.7`] |
+| [@sap-ux/feature-toggle](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/feature-toggle)) | [`0.3.8` -> `0.4.0`] |
+| [@sap-ux/guided-answers-helper](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/guided-answers-helper)) | [`0.4.2` -> `0.5.0`] |
+| [@sap-ux/logger](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/logger)) | [`0.8.5` -> `0.9.0`] |
+| [@sap-ux/nodejs-utils](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/nodejs-utils)) | [`0.2.22` -> `0.3.2`] |
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | [`0.25.43` -> `0.26.10`] |
+| [@sap-ux/project-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/project-access)) | [`1.36.3` -> `1.38.1`] |
+| [@sap-ux/reload-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/reload-middleware)) | [`0.3.26` -> `0.4.1`] |
+| [@sap-ux/serve-static-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/serve-static-middleware)) | [`0.4.13` -> `0.5.0`] |
+| [@sap-ux/store](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/store)) | [`1.5.13` -> `1.6.1`] |
+| [@sap-ux/system-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/system-access)) | [`0.7.11` -> `0.8.2`] |
+| [@sap-ux/telemetry](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/telemetry)) | [`0.6.104` -> `0.7.5`] |
+| [@sap-ux/ui5-config](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-config)) | [`0.30.4` -> `0.31.1`] |
+| [@sap-ux/ui5-info](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-info)) | [`0.13.21` -> `0.14.0`] |
+| [@sap-ux/ui5-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-proxy-middleware)) | [`1.6.34` -> `1.7.1`] |
+
+## [1.25.0] - 2026-05-14
+### Quality
+| Package | Change |
+|---|---|
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/deploy-tooling)) | [`0.18.23` -> `0.18.24`] |
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | [`0.25.40` -> `0.25.43`] |
+
+## [1.24.0] - 2026-04-30
+### Quality
+| Package | Change |
+|---|---|
+| [@sap-ux/axios-extension](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/axios-extension)) | [`1.25.31` -> `1.25.35`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/backend-proxy-middleware)) | [`0.12.4` -> `0.12.8`] |
+| [@sap-ux/btp-utils](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/btp-utils)) | [`1.1.14` -> `1.1.15`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/deploy-tooling)) | [`0.18.16` -> `0.18.23`] |
+| [@sap-ux/feature-toggle](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/feature-toggle)) | [`0.3.8` -> `0.3.9`] |
+| [@sap-ux/logger](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/logger)) | [`0.8.5` -> `0.8.6`] |
+| [@sap-ux/nodejs-utils](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/nodejs-utils)) | [`0.2.21` -> `0.2.23`] |
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | [`0.25.27` -> `0.25.39`] |
+| [@sap-ux/project-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/project-access)) | [`1.35.20` -> `1.36.3`] |
+| [@sap-ux/reload-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/reload-middleware)) | [`0.3.25` -> `0.3.28`] |
+| [@sap-ux/serve-static-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/serve-static-middleware)) | [`0.4.13` -> `0.4.15`] |
+| [@sap-ux/store](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/store)) | [`1.5.13` -> `1.5.15`] |
+| [@sap-ux/system-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/system-access)) | [`0.7.7` -> `0.7.11`] |
+| [@sap-ux/telemetry](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/telemetry)) | [`0.6.99` -> `0.6.104`] |
+| [@sap-ux/ui5-config](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-config)) | [`0.30.3` -> `0.30.4`] |
+| [@sap-ux/ui5-info](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-info)) | [`0.13.20` -> `0.13.21`] |
+| [@sap-ux/ui5-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-proxy-middleware)) | [`1.6.33` -> `1.6.34`] |
+
+## [1.23.0] - 2026-04-16
+### Quality
+| Package | Change |
+|---|---|
+| [@sap-ux/axios-extension](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/axios-extension)) | [`1.25.24` -> `1.25.31`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/backend-proxy-middleware)) | [`0.10.56` -> `0.12.4`] |
+| [@sap-ux/btp-utils](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/btp-utils)) | [`1.1.10` -> `1.1.14`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/deploy-tooling)) | [`0.17.74` -> `0.18.16`] |
+| [@sap-ux/feature-toggle](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/feature-toggle)) | [`0.3.7` -> `0.3.8`] |
+| [@sap-ux/logger](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/logger)) | [`0.8.2` -> `0.8.5`] |
+| [@sap-ux/nodejs-utils](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/nodejs-utils)) | [`0.2.17` -> `0.2.21`] |
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | [`0.24.2` -> `0.25.27`] |
+| [@sap-ux/project-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/project-access)) | [`1.35.13` -> `1.35.20`] |
+| [@sap-ux/reload-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/reload-middleware)) | [`0.3.18` -> `0.3.25`] |
+| [@sap-ux/serve-static-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/serve-static-middleware)) | [`0.4.10` -> `0.4.13`] |
+| [@sap-ux/store](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/store)) | [`1.5.10` -> `1.5.13`] |
+| [@sap-ux/system-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/system-access)) | [`0.6.66` -> `0.7.7`] |
+| [@sap-ux/telemetry](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/telemetry)) | [`0.6.87` -> `0.6.99`] |
+| [@sap-ux/ui5-config](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-config)) | [`0.29.21` -> `0.30.3`] |
+| [@sap-ux/ui5-info](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-info)) | [`0.13.15` -> `0.13.20`] |
+| [@sap-ux/ui5-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/ui5-proxy-middleware)) | [`1.6.27` -> `1.6.33`] |
+
 ## [1.22.0] - 2026-03-19
 ### Quality
 | Package | Change |

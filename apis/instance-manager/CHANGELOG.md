@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 5.2.6 - 2026-05-13
+
+### Removed
+- uuid dependency
+- clone dependency 
+
+### Updated
+- Updated debug to 4.4.3
+- Updated filter-node-package to 6.2.0
+- Updated lru-cache to 11.0.2
+- Updated @sap/xssec to 4.0.0
+
 ## 5.2.5 - 2026-01-08
 
 ### Added

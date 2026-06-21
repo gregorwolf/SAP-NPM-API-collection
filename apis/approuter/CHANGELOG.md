@@ -5,14 +5,83 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 22.0.3 -2026-06-28
+
+### Fixed
+- Fix passport strategy race condition
+- Fix async callback error swallowing in `getAuthenticator`
+
+## 22.0.2 - 2026-06-14
+
+### Fixed
+- Fix open redirect vulnerability (CWE-601) in stale cookie cleanup flow — `req.url` is now validated to be a relative path before use in 302 Location
+- Strip incoming `x-ias-token` header from consumer requests to prevent direct forwarding
+- Path traversal vulnerability via `localDir` route configuration (PSINC0011566)
+- Fix re-direct-url in stale cookie cleanup flow
+- Refresh token memory leak in non-sticky flow
+
+### Updated dependencies
+- deps: @sap/logging@9.2.1
+
+## 22.0.1 - 2026-05-24
+
+### Fixed
+- Embedded reuse business service token lookup mismatch when `sap.cloud.service` contains dots
+- Log a warning when HTML5 Apps Repo response contains `x-invalid-app-host-id` header indicating invalid App Host IDs in business service configuration
+
+## 22.0.0 - 2026-05-16
+
+### Added
+- Session stickiness improvements
+
+### Fixed
+- Additional external session management timeout configurations
+- Removed `NODE_ENV=development` bypass in `shouldAskBusinessToken`: routes with `service` configured now require a fully authenticated session in all environments. Use `default-env.json` with a mock IdP for local development.
+- x-forwarded-host propagation for OnPremise destinations with preserveHostHeader
+- WebSocket connections to OnPremise destinations with preserveHostHeader
+- Validate `HTML5.Timeout` destination property type — non-numeric values (e.g. `"true"`) now throw a descriptive error at startup instead of causing an opaque crash at request time
+
+### Updated Dependencies
+- deps: axios@1.16.1
+
+## 21.5.0 - 2026-05-11
+
+### Fixed
+- Reauthorization redirect_uri missing path prefix when request URL contains a query string and x-forwarded-path header contains path only
+- Embedded reuse business service resolution for client credentials flow
+- Axios retry mechanism - set shouldResetTimeout so UAA token request retries fire after a timeout
+
+### Updated Dependencies
+- deps: cf-nodejs-logging-support@7.4.6
+
+## 21.4.0 - 2026-04-28
+
+### Added
+- Send application keys to configured logout destinations
+
+### Fixed
+- Race condition in request-handler.js causing spurious 502 when client disconnects during getToken
+- WebSocket connections now apply the same cookie handling as regular HTTP requests
+- OTEL example in README
+- Timeout resolution for html5-apps-repo outgoing requests
+- Login callback now reports specific missing cookie in error log when redirect location cookie is absent
+
+### Removed Dependencies
+- deps: replace uuid package with native crypto.randomUUID()
+
+### Updated Dependencies
+- deps: axios@1.15.2
+
 ## 21.3.0 - 2026-04-14
 
 ### Added
 - mtls grant type support for business service integration
+- Strip dots from `OWN_SAP_CLOUD_SERVICE` values on startup and validate the env var structure
 
 ### Fixed
 - Use IAS/XSUAA credentials loaded at startup in service-to-approuter middleware instead of fetching directly from environment
 - Handle unexpected exceptions in writeToAuditLog to avoid crashing on invalid audit log parameters
+- Documentation: clarify logout configuration inheritance behavior for HTML5 applications served via html5-apps-repo
 
 ### Updated Dependencies
 - deps: @sap/logging@9.2.0
@@ -76,6 +145,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
 ### Added
 - Use of DISABLE_CONNECTION_REUSE to enable/disable connection reuse.
+- Add zone-info cache configuration via ZONE_INFO_CACHE_TTL env. variable and expired data fallback support
 
 ### Fixed
 - IAS token subdomain determination and validation in service2approuter flow, validation can be skipped with SKIP_SERVICE2APPROUTER_APPTID_CHECK
@@ -129,8 +199,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 - Delete tenant specific token cache in case of service 401 response
 - html5 repo service name in token cache path in client credentials token middleware
 
-### Added
-- Add zone-info cache configuration via ZONE_INFO_CACHE_TTL env. variable and expired data fallback support
 
 ### Updated Dependencies
 - deps: cf-nodejs-logging-support@7.4.2

@@ -226,6 +226,7 @@ Arguments:
 
 | Version   | Changes                                                  |
 |-----------|----------------------------------------------------------|
+| `v1.15.4` | The `--basic` option added                               |
 | `v1.14.0` | The `VERSION` option added                               |
 | `v1.0.0`  | Added                                                    |
 
@@ -235,11 +236,12 @@ Arguments:
 List deployed applications or application versions or application version details
 
 Usage:
-  afctl list [APPLICATION [VERSION]]
+  afctl list [APPLICATION [VERSION]] [--basic]
 
 Arguments:
   APPLICATION  Name of the deployed application        
   VERSION      Name of the deployed application version
+  --basic, -b  Output only basic properties of application or version
 ```
 
 #### login

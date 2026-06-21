@@ -1,3 +1,39 @@
+# Hana Client 2.29.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.29 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.29/en-US
+
+For the latest updates please see SAP Note 3744083 - SAP HANA Client 2.29 Release Notes
+
+https://me.sap.com/notes/3744083
+
+## Version 2.29.23
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 358452: Tracing could have been missing when using statement hash trace filtering.
+ - Issue Number 357771: SQLDBC could have crashed in rare situations when tracing was enabled.
+
+## Version 2.29.18
+
+### Changes:
+
+ - Issue Number 357563: The TypeScript type definition for the second parameter to Statement.sendParameterData() was missing null.
+ - Issue Number 354813: The Node.js Stream extension could have thrown a string instead of an Error object.
+ - Issue Number 353959: Shutting down while having statements still open could have resulted in a crash.
+ - Issue Number 353437: Some asynchronous ConnectionPool methods were not included in the Promise.js extension.
+ - Issue Number 352317: Some synchronous only methods could have blocked the main thread.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 357501: When client-to-server heartbeat was enabled, the driver could have crashed on shutdown.
+ - Issue Number 354816: The SQLDBC trace configuration file could have been incorrectly reported as corrupted.
+ - Issue Number 354611: The driver could have crashed while connecting in low memory conditions.
+ - Issue Number 353063: String output of REAL values may have been inaccurate.
+ - Issue Number 335196: While fetching large result sets from the server that returned warnings, the client could have incorrectly returned a -10503 error.
+ - Issue Number 355816: Part of the SQLDBC trace file contents may have been missing.
+
 # Hana Client 2.28.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.28 documentation:
@@ -7,6 +43,17 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.28/en-US
 For the latest updates please see SAP Note 3710958 - SAP HANA Client 2.28 Release Notes
 
 https://me.sap.com/notes/3710958
+
+## Version 2.28.21
+
+### Changes:
+
+ - Issue Number 351019: An error may not have been thrown when the Connection.switchUser method failed.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 359927: Preparing a statement with SQL of approximately 1 GB or larger would have failed.
+ - Issue Number 357501: When client-to-server heartbeat was enabled, the driver could have crashed on shutdown.
 
 ## Version 2.28.20
 

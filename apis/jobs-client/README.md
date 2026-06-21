@@ -39,6 +39,28 @@ timeout  | HTTP request timeout in milliseconds, default 15000
 token    | OAuth access token for the job scheduler service
 user     | user name for the job scheduler service (if basic authentication is used)
 password | password for the job scheduler service (if basic authentication is used)
+retry    | Retry configuration object (see below)
+
+#### Retry Configuration
+
+The `retry` option allows customization of the automatic retry behavior:
+
+```js
+{
+  retry: {
+    count: 3,                          // Number of retry attempts (default: 3)
+    timeoutStrategy: (retryCount) => { // Custom backoff function (optional)
+      return Math.pow(2, retryCount) * 1000; // Default: exponential (1s, 2s, 4s)
+    }
+  }
+}
+```
+
+**Default behavior:**
+- 3 retry attempts with exponential backoff (1s, 2s, 4s)
+- Retries on: 408 (timeout), 429 (rate limit), 5xx (server errors)
+- Does NOT retry on: 4xx client errors (except 408)
+- Honors `Retry-After` header for 429 responses
 
 
 Example usage with bound job scheduler service:
@@ -73,11 +95,30 @@ Example usage with OAuth:
   const scheduler = new JobSchedulerClient.Scheduler(options);
 ```
 
+Example usage with custom retry configuration:
+
+```js
+  const JobSchedulerClient = require('@sap/jobs-client');
+
+  const options = {
+    baseURL: 'https://apphost:port/',
+    token: '<token>',
+    retry: {
+      count: 5,  // 5 retry attempts instead of default 3
+      timeoutStrategy: (retryCount) => {
+        // Custom: flat 2-second delay
+        return 2000;
+      }
+    }
+  };
+  const scheduler = new JobSchedulerClient.Scheduler(options);
+```
+
 ### Create job
 
 ```js
-  var myJob = { /* according to job scheduler documentation */ };
-  var scJob = { job: myJob };
+  const myJob = { /* according to job scheduler documentation */ };
+  const scJob = { job: myJob };
 
   scheduler.createJob(scJob, function (error, body) {
     if (error) {
@@ -91,7 +132,7 @@ Example usage with OAuth:
 ### Update job
 
 ```js
-  var req = {
+  const req = {
     jobId: 33,
     job: {
       user : 'John',
@@ -110,7 +151,7 @@ Example usage with OAuth:
 ### Delete job
 
 ```js
-  var req = {
+  const req = {
     jobId: 33
   };
   scheduler.deleteJob(req, function(err, result) {
@@ -124,7 +165,7 @@ Example usage with OAuth:
 ### Get job Details
 
 ```js
-  var req = {
+  const req = {
     //by Id
     jobId: 33
   };
@@ -134,7 +175,7 @@ Example usage with OAuth:
     }
     //job details retrieved successfully
   });
-  var req = {
+  const req = {
     //by name
     name: 'my job'
   };
@@ -149,8 +190,8 @@ Example usage with OAuth:
 ### Create job schedule
 
 ```js
-  var mySchedule = { /* according to job scheduler documentation */ }
-  var req = {
+  const mySchedule = { /* according to job scheduler documentation */ }
+  const req = {
     jobId: 33,
     schedule: mySchedule
   };
@@ -165,7 +206,7 @@ Example usage with OAuth:
 ### Update job schedule
 
 ```js
-  var req = {
+  const req = {
     jobId: 33,
     scheduleId: 'ABC-DEF',
     schedule: {
@@ -183,7 +224,7 @@ Example usage with OAuth:
 ###Delete job schedule
 
 ```js
-  var req = {
+  const req = {
     jobId: 33,
     scheduleId: 'ABC-DEF'
   };
@@ -195,22 +236,48 @@ Example usage with OAuth:
   });
 ```
 
+### Get jobs with pagination
+
+```js
+  const req = {
+    page_size: 10,  // Optional: 1-100, defaults to server default
+    offset: 0       // Optional: starting position
+  };
+  scheduler.fetchJobs(req, function(err, result) {
+    if (err) {
+      return console.log('Error retrieving jobs: %s', err);
+    }
+    // result contains:
+    // - total: total number of jobs
+    // - results: array of jobs for this page
+    // - prev_url: URL for previous page (if exists)
+    // - next_url: URL for next page (if exists)
+    console.log('Total jobs: %s', result.total);
+    console.log('Jobs in this page: %s', result.results.length);
+  });
+```
+
 ### Get all jobs
 
 ```js
-  var req = {};
+  const req = {};
   scheduler.fetchAllJobs(req, function(err, result) {
     if (err) {
       return console.log('Error retrieving jobs: %s', err);
     }
-    //Jobs retrieved successfully
+    // Automatically fetches all pages and returns all jobs
+    // result contains:
+    // - total: total number of jobs
+    // - results: array of all jobs
+    console.log('Total jobs: %s', result.total);
+    console.log('All jobs: %s', result.results.length);
   });
 ```
 
 ### Get job schedule details
 
 ```js
-  var req = {
+  const req = {
     jobId: 33,
     scheduleId: 'ABC-DEF',
     displayLogs: false
@@ -226,7 +293,7 @@ Example usage with OAuth:
 ### Get schedules of job
 
 ```js
-  var req = {
+  const req = {
     jobId: 33
   };
   scheduler.fetchJobSchedules(req, function(err, result) {
@@ -240,7 +307,7 @@ Example usage with OAuth:
 ### Update run log of schedule
 
 ```js
-  var req = {
+  const req = {
     jobId: 33,
     scheduleId: 'ABC-DEF',
     runId: 1,
@@ -257,7 +324,7 @@ Example usage with OAuth:
 ### Get run logs of schedule
 
 ```js
-  var req = {
+  const req = {
     jobId: 33,
     scheduleId: 'ABC-DEF',
     page_size: 15,
@@ -274,7 +341,7 @@ Example usage with OAuth:
 ### Delete all schedules of job
 
 ```js
-  var req = {
+  const req = {
     jobId: 3
   };
   scheduler.deleteAllJobSchedules(req, function(err, result) {
@@ -288,7 +355,7 @@ Example usage with OAuth:
 ### Bulk activation of schedules of job
 
 ```js
-  var req = {
+  const req = {
     jobId: 3
   };
   scheduler.activateAllSchedules(req, function(err, result) {
@@ -302,7 +369,7 @@ Example usage with OAuth:
 ### Bulk deactivation of schedules of job
 
 ```js
-  var req = {
+  const req = {
     jobId: 3
   };
   scheduler.deactivateAllSchedules(req, function(err, result) {
@@ -316,7 +383,7 @@ Example usage with OAuth:
 ### Get action logs of job
 
 ```js
-  var req = {
+  const req = {
     jobId: 3
   };
   scheduler.getJobActionLogs(req, function(err, result) {
@@ -330,7 +397,7 @@ Example usage with OAuth:
 ### Get action logs of schedule
 
 ```js
-  var req = {
+  const req = {
     jobId: 3,
     scheduleId: "ABC-DEF"
   };
@@ -345,7 +412,7 @@ Example usage with OAuth:
 ### Get active and inactive jobcount
 
 ```js
-  var req = {
+  const req = {
     activeStatus: true // true- for getting active number of jobs and false- for getting inactive number of jobs
   };
   scheduler.getJobCount(req, function(err, result) {
@@ -365,7 +432,7 @@ the client will decode the query.
 And filtering parameters can be provided as shown below:
 
 ```js
-var searchToken = {
+const searchToken = {
     q : 'job startTime:>2011-02-18 active:false',
     displaySchedules : 'false',
     offset : 0,
@@ -383,7 +450,7 @@ var searchToken = {
   For schedule search:
 
   ```js
-  var searchScheduleToken = {
+  const searchScheduleToken = {
     q : 'startTime:>2011-02-18 active:false',
     offset : 0,
     page_size : 5

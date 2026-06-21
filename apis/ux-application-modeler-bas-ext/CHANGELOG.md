@@ -6,6 +6,84 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.27.0] - 2026-06-11
+### Added
+- Added support for the Notes reuse component
+
+### Changed
+- Changed the logic for determining default table type in OData V4 applications, so that now it's based on the service type
+- Added the Table Type field to the dialogs for adding table views and table sections in the Page Editor
+- Improved the extension load time by optimizing external dependencies
+- Enhanced tooltip rendering for better visual consistency
+- Improved the validation for UI5 linter change files in adaptation projects
+
+## [1.26.0] - 2026-05-28
+### Added
+- Enabled choosing an existing UI.LineItem annotation when adding table views, sections, and the Table building block
+- Added the ability to support column export configurations with the "Table" building block
+
+### Changed
+- Improved default styling by enhancing box shadows
+- Improved the scaling of property labels and ESLint warnings for improved readability
+- Improved the border-radius of the property label and tree dropdowns
+- Updated OPA5 test generation with support for more test scenarios
+
+### Fixed
+- Fixed an issue where dropdowns in the Page Editor did not display any values for tree tables with @hierarchy entries
+- Fixed an issue where incorrect fields were displayed in the "Add Form" dialog
+
+## [1.25.0] - 2026-05-14
+### Added
+- Added schema-based property messages in the Property Panel of the Page Map
+- Enabled defining the `personalization.group` setting for responsive and analytical tables
+### Changed
+- Improved the load time of the "Application Info" page by loading data asynchronously
+- Adjusted separator and divider colors in messages for improved visual consistency in the Page Editor
+### Fixed
+- Fixed an issue where the option to generate mock data with AI from the page map for CAP projects was incorrectly removed
+
+## [1.24.0] - 2026-04-30
+### Added
+- Added ESLint status details to the "Application Info" page, which includes issues with annotations for CAP projects
+- Added navigation from annotation issues to the corresponding item in the Property Panel of the Page Editor
+- Enhanced the Page Map with the "Disable Strict UoM Filtering" property to disable strict filtering
+- Enhanced the Page Editor to support all the configurations of the "Visible Fields" and "Ignored Fields" properties for the mass edit dialog
+- Enabled configuring inline edit for list report pages in the Page Editor
+- Added support for custom fields in the "Form" building block
+### Changed
+- Updated the default MCP server used by Application Modeler to version 0.6.52
+### Fixed
+- Fixed an issue with project validation where files other than `.cds` files were incorrectly linted in CAP projects
+- Fixed an issue with duplicate tooltip rendering in the Page Editor
+- Fixed the following issues related to custom field enhancements in the Page Editor:
+- Fixed an issue with the ID and placement of custom fields in the "Form" building block
+- Fixed a linting issue with custom fields in the "Form" building block
+
+## [1.23.0] - 2026-04-16
+### Added
+- Enhanced the Page Editor to show the properties of value help based on referenced services in OData V4 applications with a RAP back end
+- Enhanced the "Application Information" page to show redundant dependencies
+- Enhanced the Page Editor to enable external navigation actions based on intent-based navigation in action menus, which includes moving those actions to and from action menus
+- Enhanced dropdown fields within "Add" dialogs to display error messages for selected options when the dropdown is closed
+- Enhanced the Page Editor to auto-generate IDs in fragment files when adding building blocks for OData V2 applications
+- Enabled defining the interaction type of side effects in the Page Editor if at least one side effect which reacts on SourceEvents is defined in the service metadata
+- Added the ability to add a presentation variant when creating the Table building block
+- Added the ability to add new OPA5 tests to an existing application from the "Application Info" page
+- Added icons in the Page Map for the Form, Field, and Rich Text Editor building blocks
+- Improved the small callout structure and alignment in the Page Editor
+- Added the ability to view and edit building block properties from override classes such as `ColumnOverride` in the Page Editor
+- Enhanced the "Application Info" page to show a status message with a direct link to the Page Map when the application contains warnings or errors in the Page Map
+### Fixed
+- Fixed an issue where adding a new Filter Bar building block in the Page Map created an invalid label
+- Fixed an issue where the "Undo" action on the Page Map incorrectly required clicking twice after a single change
+- Fixed an issue where the Page Editor displayed incorrect tooltips for read-only fields in the Value Help Dialog
+- Fixed an issue where "Creation Mode" properties were editable in the Page Editor for non-insertable entities
+- Fixed an issue where the Page Editor displayed an incorrect visualization of the `personalization` property
+- Fixed an issue where the "Application Info" page omitted project details
+- Fixed an issue where deleting custom extensions cleared the undo history in the Page Editor
+- Fixed an issue where the manifest key for an intent-based navigation action was not synchronized when the "Semantic Object Action" was modified
+- Fixed an issue where the "Validate Project" command did not report validation issues found in the `manifest.json` file
+
 ## [1.22.0] - 2026-03-19
 ### Added
 - Enhanced the Page Editor to automatically open the properties pane which shows the properties for the top node by default

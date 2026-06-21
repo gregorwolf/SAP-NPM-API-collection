@@ -7,6 +7,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.23.0] - 2026-04-16
+### Project Accelerator
+- Updated the large language model used by the Project Accelerator to gpt-4.1-mini
+- Fixed an issue where applications generated using the Project Accelerator with a CAP back end did not create associated mock data
+
 ## [1.21.0] - 2026-03-05
 ### Project Accelerator
 - Fixed an issue where the SAPUI5 ABAP Repository name was not displayed in the connection details when using the Project Accelerator with an ABAP data source

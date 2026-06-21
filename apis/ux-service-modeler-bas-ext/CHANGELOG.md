@@ -3,6 +3,36 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.27.0] - 2026-06-11
+### Fixed
+- Fixed an issue where an unexpected error message was displayed when adding a non-existent service URI
+- Fixed an issue where authentication was incorrectly required when refreshing a data source
+- Fixed an issue where an error was incorrectly displayed when adding a non-existent service
+
+## [1.26.0] - 2026-05-28
+- No update
+
+## [1.25.0] - 2026-05-14
+- No update
+
+## [1.24.0] - 2026-04-30
+### Fixed
+- Fixed an issue where credential handling errors occurred in the Connection Manager
+
+## [1.23.0] - 2026-04-16
+### Added
+- Added support for the `Generic Host` connection type in the Connection Manager
+- Added the ability to overwrite an existing system in the Connection Manager without a manual search
+
+### Changed
+- Updated the Service Manager to open in edit mode when launched from the Page Map if there are missing local service metadata files
+
+### Fixed
+- Fixed an issue where the option to download value help metadata during service refresh defaulted to "No" instead of "Yes"
+- Fixed an issue where an OData V4 service was not shown in SAP Business Application Studio
+- Fixed an issue where a label for a custom filter field was incorrect in the page outline for the Filter Bar building block
+- Fixed an issue where updating an existing system in the Connection Manager failed when saved credentials were removed
+
 ## [1.22.0] - 2026-03-19
 ### Fixed
 - Fixed an issue where an error was incorrectly displayed for system selection when editing the service in Visual Studio Code

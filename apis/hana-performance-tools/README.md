@@ -1,4 +1,4 @@
-# SAP HANA SQL Analyzer for Visual Studio Code
+# SQL analyzer tool for SAP HANA for Visual Studio Code
 
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg?logo=jest)](https://github.com/facebook/jest)
 
@@ -26,7 +26,7 @@ SQL Analyzer for Visual Studio Code is still under heavy development. Here are s
 
 1. Install [Visual Studio Code](https://code.visualstudio.com) if not installed already (>= 1.53.0 is required because the extension is relying on the APIs from that version).
 1. Open VSCode and click Extensions tab (puzzle icon) from the left side menu bar
-1. Search for 'SAP HANA SQL Analyzer' and install Visual Studio Code Extension file (vsc-extension-sa-<ver>.vsix) of this new SQL Analyzer from [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=SAPSE.vsc-extension-sa).
+1. Search for 'SQL analyzer tool for SAP HANA' and install Visual Studio Code Extension file (vsc-extension-sa-<ver>.vsix) of this new SQL Analyzer from [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=SAPSE.vsc-extension-sa).
 1. Once the installation is completed, the new SQL Analyzer icon will be added in the left side menu.
 
 ## How To Use

@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.2.1 - 2026-05-13
+
+### Updated
+- Updated `@eslint/eslintrc` dependency to 3.3.5
+- Updated `@eslint/js` dependency to 9.39.4
+
 ## 6.2.0 - 2026-04-06
 
 ### Updated

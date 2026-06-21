@@ -478,7 +478,12 @@ The application router will use this path to require your storage.
 
 The application router uses the defaultRetryTimeout and the backOffMultiplier properties in the EXT_SESSION_MGT environment variable to determine the Redis pattern for automatic retries of failed operations.
 
-For example: 
+Additionally, the application router supports the following timeout configurations for Redis connections:
+- `connectTimeout` - Maximum time (in milliseconds) to wait for a connection to be established. Default: 10000 (10 seconds)
+- `commandTimeout` - Maximum time (in milliseconds) to wait for a Redis command to complete. Default: 5000 (5 seconds)
+- `keepAlive` - TCP keep-alive interval (in milliseconds). Set to `false` to disable keep-alive. Default: 30000 (30 seconds)
+
+For example:
 ```json
 {
     "instanceName": "approuter-redis",
@@ -486,7 +491,10 @@ For example:
     "sessionSecret": "someuniquesessionsecret",
     "externalStoreFilePath": "./src/storage/my-special-storage",
     "defaultRetryTimeout": 10000,
-    "backOffMultiplier":  10
+    "backOffMultiplier": 10,
+    "connectTimeout": 15000,
+    "commandTimeout": 8000,
+    "keepAlive": 60000
 }
 ``` 
 

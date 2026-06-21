@@ -8,6 +8,14 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.11.5"></a>
+## 6.11.5 - 2026-05-24
+### Updated
+- axios to 1.16.1
+
+### Security
+- Vulnerability resolved: Miagrated from uuid package to Node's native crypto.randomUUID()
+
 <a name="6.11.4"></a>
 ## 6.11.4 - 2026-04-23
 ### Updated

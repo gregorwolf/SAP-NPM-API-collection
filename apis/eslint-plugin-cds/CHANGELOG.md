@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [4.2.3] - 2026-05-12
+### Fixed
+- Don't fail if the `tree-sitter` dependency cannot be installed. This might happen in WebContainer environments where native modules cannot be loaded.
+
+## [4.2.2] - 2026-05-04
+### Fixed
+- `auth-valid-restrict-grant` now also considers inherited actions.
+
 ## [4.2.1] - 2026-02-26
 ### Fixed
 - Removed usage of deprecated API in `lib/utils/rules.js`

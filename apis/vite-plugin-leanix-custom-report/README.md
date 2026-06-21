@@ -5,16 +5,15 @@ A Vite plugin for developing SAP LeanIX Custom Reports with hot reload, TypeScri
 ## Features
 
 - 🚀 Fast development with Vite's hot module replacement
-- 📦 Automatic bundling and optimization for LeanIX reports
+- 📦 Automatic bundling and optimization for SAP LeanIX reports
 - 🔧 Built-in TypeScript support
-- 📤 One-command deployment to LeanIX workspace
+- 📤 One-command deployment to SAP LeanIX workspace
 - ⚛️ Optimized for React with TypeScript
 
 ## Prerequisites
 
-- Node.js 16+ and npm/yarn/pnpm
+- Node.js 24+ and npm/yarn/pnpm
 - A SAP LeanIX workspace with API access
-- A valid SAP LeanIX API token
 
 ## Get Started
 
@@ -91,7 +90,15 @@ export default defineConfig({
 }
 ```
 
-7. Finally add a `lxr.json` file into your project root folder with the following contents:
+7. Authenticate with your SAP LeanIX workspace. The recommended way is OAuth via the CLI:
+
+```bash
+npx lxr login
+```
+
+This opens a browser window, completes the OAuth flow, and saves credentials to `~/.leanix/lxr.json` (shared across all reports on the machine).
+
+Alternatively, you can create a `lxr.json` file manually in your project root with an API token:
 
 ```json
 {
@@ -100,7 +107,9 @@ export default defineConfig({
 }
 ```
 
-⚠️ **Security Note**: Add `lxr.json` to your `.gitignore` to avoid committing sensitive credentials.
+A project-level `lxr.json` takes precedence over the user-level one.
+
+⚠️ **Security Note**: Add `lxr.json` to your `.gitignore`. This file stores sensitive credentials (OAuth tokens and/or API tokens) and must never be committed to version control.
 
 8. You are now ready to start developing your report by issuing the following command
 
@@ -113,5 +122,9 @@ npm run dev
 **Common Issues:**
 
 - **Build fails**: Ensure all required package.json fields are present
-- **Upload fails**: Verify your API token and workspace URL in `lxr.json`
+- **Upload fails**: Verify your credentials in `lxr.json` (run `npx lxr login` to re-authenticate)
 - **Report not loading**: Check browser console for JavaScript errors
+
+## Learn More
+
+- [SAP LeanIX Custom Reports](https://help.sap.com/docs/leanix/ea/custom-reports)

@@ -1,3 +1,8 @@
+## 4.8.1
+Fixes:
+- Fixed license field in package.json to use npm-standard format for proper recognition by SCA tools
+- Updated license to SAP Developer License Agreement version 3.2
+
 ## 4.8.0
 Features:
 - Added hdb ^2 support

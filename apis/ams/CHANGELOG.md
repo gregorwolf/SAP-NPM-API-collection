@@ -15,6 +15,15 @@ CAP Node.js Applications should **not** need to make changes when updating to ve
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
 
+## 3.7.0
+- [CAP] Support additional CXL operators (`NOT_LIKE`, `IS_NULL`, `IS_NOT_NULL`, `BETWEEN`, `NOT_BETWEEN`) when translating DCL operators to CXL.
+- Fix: [CAP] Fixed merging of generated CXL condition with static where conditions when static conditions have complex format (e.g. EXISTS predicates).
+- Fix: [CAP] Relative paths are now resolved from `cds.root` instead of the current working directory to allow running `cds build` from a different folder than the project root.
+- Fix: Policies that USE with multiple RESTRICT now have correct `OR` semantics across the restrictions instead of `OR` semantics across restriction predicates of individual attributes.
+- Fix: Fixed missing JsDoc type definitions to fix generated typescript definition files.
+- Fix: When no error listeners are registered, the log level of failed bundle refresh requests was changed to `WARN` from `ERROR` (initial bundle fetch errors are still logged with `ERROR` severity).
+- Added check for supported DCN version of bundle.
+
 ## 3.6.0
 - Feature: added configuration option for fetching authorization bundles from an AMS Edge Service.
 - Fix: [CAP] prevent base policy generation for `internal-user` pseudo role.
