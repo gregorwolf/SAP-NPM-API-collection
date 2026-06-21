@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 
 
+## Version 2.18.12 - 2026-05-06
+### Changed
+- updated dependencies
+
 ## Version 2.18.11 - 2025-08-12
 
 ## Version 2.18.10 - 2025-08-11

@@ -4,6 +4,13 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 2.2.1 - 2026-06-18
+
+### Fixed
+
+- Handling of RFC systems using load balancing
+- token.js: add error handler to HTTP request for proper error handling
+
 ## Version 2.2.0 - 2026-01-20
 
 ### Added

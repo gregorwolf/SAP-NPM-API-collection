@@ -74,6 +74,7 @@ After adding the [CDS Plugin](#cds-oyster), the following switch in the applicat
       "code-extensibility": {
         "runtime": "oyster",
         "maxTime": 1000,
+        "maxCallbacks": 10,
         "maxMemory": 4,
         "maxDepth": 4,
         "maxResultSize": 100,
@@ -88,6 +89,7 @@ The possiblle parameters are all optional and follow the following specification
 | runtime | `oyster` is the default runtime and must be used for deployment. <br>`debug` allows local debugging within local extension projects only|
 | maxTime| in milliseconds |
 | maxMemory | in megabytes|
+| maxCallbacks | number: maximal number of callback calls |
 | maxDepth | number: maximum sequence of consecutively invoked sandboxes  |
 | maxResultSize | throws an exception when the query result exceeds the given number of rows. Please use `LIMIT` in the query to avoid issues. Default is 1000 |
 | continueOnError | boolean: relevant for Node.js runtime, which crashes on system errors: https://cap.cloud.sap/docs/node.js/best-practices#let-it-crash. Default value is false |

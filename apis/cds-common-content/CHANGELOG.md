@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <!-- New version information is automatically added after line 8 -->
 
+## Version 3.2.0 - 2025-06-27
+
+### Changed
+
+- Texts for `US` are changed to `United States`.
+
 ## Version 3.1.0 - 2025-06-17
 
 ### Changed

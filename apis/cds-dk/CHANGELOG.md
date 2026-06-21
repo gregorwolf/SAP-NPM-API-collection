@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 9.9.2 - 2026-05-28
+
+### Fixed
+
+- Dependency updates, e.g. for CVE-2026-8723.
+- `cds build --for mtx-sidecar` warns if `resources.tgz` was not created, hinting to run `npm add -D tar` as a workaround on Windows.
+
+## Version 9.9.1 - 2026-05-07
+
+### Changed
+
+- `cds add lint` now adds a dependency on `eslint@10`, instead of `eslint@9`.
+
+### Fixed
+
+- `cds add test` now uses version 1 of `@cap-js/cds-test`.
+- `cds add vue` uses correct placeholder values for book and author in `App.vue`.
+- `cds debug` support for latest Chrome versions.
+- `cds watch` runs ESM projects with `tsx` again, so that `.js` import are rewritten to `.ts`. This got broken in 9.9.0, but used to work in 9.8.
+- `cds add` only adds the `event-mesh.json` if a facet requiring the file is run.
+
 ## Version 9.9.0 - 2026-04-23
 
 ### Added

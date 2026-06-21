@@ -6,6 +6,50 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 3.9.4 - 2026-06-17
+
+### Added
+
+- `getCsn` now sets `meta.extended` to `true` or `false` on the returned CSN, indicating whether tenant extensions were applied. If `meta.extended` is set to `false`, the deployment is using the precompiled
+HANA artifacts instead of running another HANA build.
+
+### Changed
+
+- In case of multiple instances on Cloud Foundry, the initial creation of the `t0` tenant is only done by instance 0.
+- Service Broker errors are logged with more detailed descriptions in the Service Manager client.
+
+### Fixed
+
+- Command `cds-mtx upgrade '*'` now also works with setting `cds.requires.multitenancy.jobs.clusterSize` > 1.
+- Clients for multiple instances of the Service Manager do no longer interfere each other.
+- Retry handling has been improved for the HANA TMS v2 client.
+
+## Version 3.9.3 - 2026-05-26
+
+### Added
+
+- Error on missing extension table if extensibility is enabled and `cds.requires['cds.xt.ExtensibilityService']['error-on-missing-extension-table']` is set.
+
+## Version 3.9.2 - 2026-05-20
+
+### Fixed
+
+- When reusing HANA tenants with HANA TMS v2, the HANA tenant labels are not longer lost.
+- `/-/cds/model-provider/getCsn` for non-exsisting tenants returns a model again instead of throwing an error.
+
+## Version 3.9.1 - 2026-05-11
+
+### Fixed
+
+- More robust behavior of the `cds.xt.serviceManager` API if no Service Manager or HANA TMS credentials are configured.
+- Synchronous SMS subscription now returns the application url with the correct JSON format.
+- Transient database errors in ETag determination are no longer silently swallowed.
+- Undocumented programmatic `cds-mtx` API usage does not serve MTX services multiple times.
+- It is now possible to register on the `bootstrap` event in the `cli.js` file to handle that event when running the `cds-mtx` command.
+- Parallel calls of the database upgrade API are now more robust against race conditions.
+- MTX sidecar no longer crashes when triggering an upgrade and legacy tenant `__META__` still exists.
+- Database connection errors with `status` 404 throw without retries.
+
 ## Version 3.9.0 - 2026-04-22
 
 ### Added

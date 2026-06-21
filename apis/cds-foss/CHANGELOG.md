@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 5.0.2 - 2026-05-11
+
+### Fixed
+
+- License header
+
 ## Version 5.0.1 - 2024-06-14
 
 ### Removed

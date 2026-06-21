@@ -4,6 +4,16 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 9.9.1 - 2026-04-29
+
+### Fixed
+
+- `cds.features.compat_texts_entities` erroneously influenced the OData service document
+- Newly introduced `EXPAND_MAX_LEVELS_EXCEEDED` errors did not have a default message
+- Incorrect resolving of parameter aliases for OData functions
+- OData Batch: Call error middlewares during error serialization
+- `cds.features.count_as_string` in lean draft
+
 ## Version 9.9.0 - 2026-04-22
 
 ### Added

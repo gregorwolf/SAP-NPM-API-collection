@@ -13,6 +13,39 @@ we might not list every change in its behavior here.
 Productive code should never require a `beta` flag to be set, and
 might use a deprecated flag only for a limited period of time.
 
+## Version 6.9.3 - 2026-06-17
+
+### Bug Fixes
+
+- **api:** New compiler option `noErrorForUnknownAnnotateTarget` downgrades errors to warnings
+for `annotate` statements with security-relevant annotations (`@restrict`, `@requires`, `@ams`)
+whose target does not exist.
+
+
+
+## Version 6.9.2 - 2026-05-08
+
+### Bug Fixes
+
+- **api:** when the environment variable `CDSC_TRACE_API` is set,
+  the compiler writes a trace for calls of API functions;
+  it now has more information, and also traces the exit of the API function.
+
+
+
+## Version 6.9.1 - 2026-05-05
+
+### Bug Fixes
+
+- **compiler:**
+  + make an element added via `extend` correctly shadow an element from an include
+  + do not issue a warning for a correct use of `$projection`
+- **odata:**
+  + do not generate wrong ReferentialConstraints for unmanaged Composition without a partner
+  + render Partner attribute on forward association correctly
+
+
+
 ## Version 6.9.0 - 2026-04-21
 
 ### Features

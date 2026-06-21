@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 0.3.1 - 2026-05-08
+
+### Fixed
+
+- A check for the Extension Allowlist was too strong, making it unusable in certain cases
+
+### Changed
+
+- srv.emit() is now restricted to events that are explicitly modeled in a service definition
+- input/output of extension actions/functions is validated
+- input of modelled events is validated
+- `maxTime` Parameter is now measured in milliseconds
+
 ## Version 0.3.0 - 2026-03-11
 
 ### Added
