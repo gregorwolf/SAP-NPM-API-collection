@@ -1,3 +1,15 @@
+## 1.38.0
+
+### New Features
+
+- Track module database connection binding history and clear it via the "Clear Module Binding History" command
+- Exclude the target container from the "Bind All" operation in the project explorer
+
+### Fixes
+
+- Fix binding failure when attempting to bind a newly created SAP HANA Cloud multitenant HDI instance that is not yet ready
+- Fix modeling feature version input to accept case-insensitive formats (e.g. "2024.qrc4") and validate the version format
+
 ## 1.37.0
 
 ### Fixes

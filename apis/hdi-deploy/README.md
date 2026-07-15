@@ -102,7 +102,7 @@ Usually, `@sap/hdi-deploy` gets installed via a `package.json`-based dependency 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.6.1",
+    "@sap/hdi-deploy": "5.7.0",
     "@sap/hana-client": "2.27.19",
     "hdb": "2.26.4"
   },
@@ -587,7 +587,7 @@ Consumption of a reusable database module is done by adding a dependency in the 
 {
   "name": "deploy",
   "dependencies": {
-    "@sap/hdi-deploy": "5.6.1",
+    "@sap/hdi-deploy": "5.7.0",
     "module1": "1.3.1",
     "module2": "1.7.0",
 
@@ -1114,6 +1114,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--connection-timeout <ms>`: number of milliseconds to wait for the database connection(s)
 - `--delete-timeout <ms>`: number of milliseconds to wait for the DELETE call
 - `--write-timeout <ms>`: number of milliseconds to wait for the WRITE call
+- `--async-make-timeout <ms>`: number of milliseconds to wait for the async make job to finish when `--async-make` is active; by default 1800000 ms (30 minutes)
 - `--lock-container-timeout <ms>`: number of milliseconds to wait for the container lock
 - `--exclude-filter [<path> ..]`: exclude the given paths during: file walk, delta detection and when explicitly scheduled via --(un)deploy
 - `--[no-]optimise-file-upload` : [don't] perform delta detection via local SHA256 calculation instead of DELETE and WRITE calls. Will not have any positive effect when used along with --treat-unmodified-as-modified.
@@ -1122,6 +1123,7 @@ The file works just like the `--exclude-filter` option and they can be used at t
 - `--[no-]migrationtable-development-mode`: [don't] pass the development mode flag for migration tables to HDI, if the parameter is supported by the server, not enabled by default
 - `--[no-]liveness-ping`: [don't] send a sign of life from time to time, by default, a sign of life will be sent
 - `--[no-]live-messages`: [don't] display the make messages while the make is still in progress, by default, the messages will be displayed while the make is in progress
+- `--[no-]async-make`: [don't] use `MAKE_ASYNC` instead of `MAKE` for the HDI make step; prevents connection timeouts for very long-running deployments; by default, the synchronous `MAKE` is used
 - `--[no-]trace-vcap-services`: [don't] log VCAP services information, by default, the following VCAP services properties will be logged: name, label, plan, tags, schema, database_id, user, hdi_user, and service_key_name (with --trace, the rest of the properties will also be logged)
 - `--write-batch-size <integer>`: number of files to write in one batch. Must be a positive integer. Default: 8000
 
@@ -1156,7 +1158,7 @@ For a `--info client` call, the document looks as follows:
 {
     "client": {
         "name": "@sap/hdi-deploy",
-        "version": "5.6.1",
+        "version": "5.7.0",
         "features": {
             "info": 2,
             "verbose": 1,

@@ -76,14 +76,14 @@ export default defineConfig({
 }
 ```
 
-6. Make sure that the package.json file contains both "author" and "description", and add the "leanixReport" section as follows:
+6. Make sure that the package.json file contains a "name", "version", and "description", and add the "leanixReport" section as follows:
 
 ```json
 {
-  "author": "The report author",
+  "name": "your-report-name",
+  "version": "0.0.0",
   "description": "Description of the report",
   "leanixReport": {
-    "id": "<your report id in dot notation, e.g. leanix.net.report.demo>",
     "title": "Your Report Title",
     "defaultConfig": {}
   }

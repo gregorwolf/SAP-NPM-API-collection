@@ -1,3 +1,10 @@
+## 1.6.0
+
+### Fixes
+
+- Fixed logging configuration settings to use the correct "XS Advanced Tools" property name
+- Security fixes
+
 ## 1.5.0
 
 ### Fixes

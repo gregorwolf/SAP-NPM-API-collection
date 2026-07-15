@@ -1,3 +1,37 @@
+## 1.47.0
+
+### New Features
+- Calculation View: Convert join nodes to non-equi join nodes more easily from the context menu
+- Calculation View: More consistent handling of input parameters that are offered for selection
+- Support for Active/Active system hint in Calculation View execution hints
+- MDS Cube: Support for calculated measures
+- Show key icon for key columns in the Calculation View mapping pane
+
+### Fixes
+- Fixed undo not working for changes to Execution Hints
+- Fixed schema list search failing for User-Provided Service (UPS) or external container connections in the Synonym editor
+- Fixed hierarchy function node creating mappings to technical columns after reopening
+- Fixed newly created hierarchy function node having no function attribute
+- Fixed MDS Cube not removing the corresponding Incremental Column when a Dimension column is deleted
+- Fixed Data Classification upgrade running prematurely before the column name collision dialog closes during Replace Data Source
+- Calculation View impact analysis now shows all impacted objects across different schemas
+- Fixed inability to undo the creation of a hierarchy function node
+- Fixed editor reload not being triggered when using "Login to Cloud Foundry" option in the dialog that appears during editor opening
+- Fixed created analytic privileges missing namespace, and namespace not being allowed when renaming
+- Fixed AI expression explain and optimize not correctly preserving delimiter blocks, blank lines, and user comments in the expression
+- Fixed Calculation View not loading settings and context data on first open when not using forced reload
+- Fixed any change to a Calculation View causing additional empty lines in the XML
+- Fixed client column name not displaying in Calculation View Properties after selection
+- Fixed Calculation View Data Lineage showing label "0" for SQL View nodes under the Properties tab
+- Fixed Calculation View Data Lineage tab not refreshing when changes are made to the view while the tab is already open
+- Fixed several issues with Calculation View editor opening, tab switching, and reloading
+- Fixed Calculation View Data Lineage not showing schema name and data category for the root Calculation View node under the Properties tab
+- Removed the ability to set the "Ignore Multiple Outputs For Filter" flag on Table Function nodes in Calculation View (this flag is not supported for Table Functions)
+- Fixed hierarchy function node being unable to add a table as a second input
+- Fixed UI showing wrong value after changing the hierarchy function node input type
+- Fixed inability to undo changes on Input Properties
+- Fixed Calculation View Outline pane search by dimension view name not returning the data source as a result
+
 ## 1.46.0
 
 ### New Features

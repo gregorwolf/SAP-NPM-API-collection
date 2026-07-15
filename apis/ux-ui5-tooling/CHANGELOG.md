@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.28.0] - 2026-06-25
+### Quality
+| Package | Change |
+|---|---|
+| [@sap-ux/axios-extension](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/axios-extension)) | [`2.0.2` -> `2.0.3`] |
+| [@sap-ux/backend-proxy-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/backend-proxy-middleware)) | [`1.0.2` -> `1.0.3`] |
+| [@sap-ux/deploy-tooling](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/deploy-tooling)) | [`1.0.9` -> `1.0.14`] |
+| [@sap-ux/feature-toggle](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/feature-toggle)) | [`1.0.1` -> `1.0.2`] |
+| [@sap-ux/preview-middleware](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/preview-middleware)) | [`1.0.14` -> `1.0.28`] |
+| [@sap-ux/project-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/project-access)) | [`2.1.2` -> `2.1.3`] |
+| [@sap-ux/system-access](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/system-access)) | [`1.0.2` -> `1.0.3`] |
+| [@sap-ux/telemetry](https://github.com/SAP/open-ux-tools) ([source](https://github.com/SAP/open-ux-tools/tree/HEAD/packages/telemetry)) | [`1.0.8` -> `1.0.10`] |
+
 ## [1.27.0] - 2026-06-11
 ### Quality
 | Package | Change |

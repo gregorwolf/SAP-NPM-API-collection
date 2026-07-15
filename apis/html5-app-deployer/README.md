@@ -17,10 +17,11 @@
   * [Deploying HTML5 Applications with Service Instances Binding to the HTML5 Application Deployer](#Deploying-HTML5-Applications-with-Service-Instances-Binding-to-the-HTML5-Application-Deployer)
     * [Defining a Business Solution as a Content Provider](#defining-a-business-solution-as-a-content-provider)
 - [Enable Process Exit After Upload](#enable-process-exit-after-upload)
+- [SAP Application Frontend Service Support](#sap-application-frontend-service-support)
 
 
 ## Overview
-HTML5 application deployer handles the upload of the HTML5 applications content to the HTML5 application repository.
+HTML5 application deployer handles the upload of the HTML5 applications content to the HTML5 application repository or to the [SAP Application Frontend Service](https://help.sap.com/docs/application-frontend-service/application-frontend-service/what-is-application-frontend-service?version=Cloud).
 
 The @sap/html5-app-deployer module can be consumed as a dependency in a node.js CF application or as a base image in an HTML5 application image.
 
@@ -259,6 +260,8 @@ Using asynchronous upload is specially important when triggering upload of servi
 ## Deploying HTML5 Applications to SAP BTP Kyma Runtime
 
 ### Deploying HTML5 Applications with Automatic Creation of Destination Configurations
+> **Note**: This feature is only available when using the `html5-apps-repo` service. It is not supported with the `app-front` service.
+
 If you use the HTML5 application deployer together with an application router managed by SAP, you can enable that the required destination configurations pointing to the service instances are created automatically.
 
 To enable the automatic creation of destination configurations, add the environment variable SAP_CLOUD_SERVICE with the value of the sap.cloud.service property in the html5 application manifest.json file of the HTML5 application that you want to deploy. 
@@ -415,3 +418,10 @@ In case it is required to automatically exit the html5 application deployer proc
 If this environment variable is set, after a successful upload the html5 application deployer application will be stopped. 
 Note that when using deploy service this is not required because deploy service stops the html5 application deployer application automatically.
 If you use native deployment mechanisms such as Cloud Foundry cf push or Kubernetes deployment, you may need to use this capability.
+
+## SAP Application Frontend Service Support
+
+You can use the HTML5 application deployer to bind an [Application Frontend service](https://help.sap.com/docs/application-frontend-service/application-frontend-service/what-is-application-frontend-service?version=Cloud) instance instead of the standard HTML5 application repository service.
+To deploy in the Kyma runtime, follow the process for [Deploying HTML5 Applications with Service Instances Binding to the HTML5 Application Deployer](#deploying-html5-applications-with-service-instances-binding-to-the-html5-application-deployer). Bind a single Application Frontend service instance of the developer plan to the HTML5 application deployer application. The deployer automatically detects the binding and uses the `content_endpoint` credential as the upload target.
+
+> **Note**: Only in the Kyma runtime, does the HTML5 application deployer support deployments to Application Frontend service. In the Cloud Foundry runtime, you must use the `cf deploy` command (the MTA deploy service) for deployments to the Application Frontend service. A Cloud Foundry deployment requires additional service bindings, such as SAP Authorization and Trust Management (XSUAA), which the HTML5 application deployer cannot manage. The `cf deploy` command handles instance creation, bindings, and service key rotation.

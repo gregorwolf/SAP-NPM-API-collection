@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
+ 
+## 7.3.0 - 2026-06-25
+### Added
+- Support for SAP appFront (`app-front`) service binding as an alternative to `html5-apps-repo`. When an `app-front` service instance (developer plan) is bound its `content_endpoint` credential is used as the upload target and the GACD async upload path is used automatically.
+
+### Update Dependencies
+- deps: axios@1.17.0 (security)
+- deps: cf-nodejs-logging-support@7.4.6
+- deps: file-type@21.3.4 (with npm override to prevent vulnerable versions from transitive dependencies)
 
 ## 7.2.4 - 2026-05-11
 ### Update Dependencies

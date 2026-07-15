@@ -1,3 +1,9 @@
+## 1.47.0
+
+### Fixes
+
+- Updated HRTT to version 260326-1776787698-db26076
+
 ## 1.46.0
 
 ### New Features

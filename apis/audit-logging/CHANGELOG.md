@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 7.0.2 - 2026-06-22
+
+### Added
+- FIPS enforcement support via the `REQUIRE_FIPS=true` environment variable. When set, the library asserts FIPS mode is active at startup and attempts to enable it via `crypto.setFips(true)` if not already on. If FIPS cannot be activated, a clear error is thrown. Existing deployments without this variable are unaffected.
+
 ## 7.0.1 - 2026-03-18
 
 ### Changed

@@ -2,6 +2,28 @@
 All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
+
+## [1.28.0] - 2026-06-25
+### Changed
+- Replaced webpack with esbuild for improved build performance in the SAP Fiori generator
+
+### Fixed
+- Fixed an issue with CLI deployment when using the nomta deploy_yaml option
+- Fixed an issue where error messages in the SAP Fiori generator were not removed after the fields were updated
+- Fixed an issue where the preview failed for generated SAP Fiori applications that used the basic template with TypeScript
+- Fixed an issue where changing the selected system in the generator displayed an error
+- Fixed an issue where deployment to ABAP failed because it was unable to retrieve the credentials from the SAP Connection Manager
+
+## [1.27.0] - 2026-06-11
+### Added
+- Added a warning message when previewing and deploying with a full service URL, in case some routing requests don't work as expected
+- Ensured that generating an application with TypeScript now also generates the OPA5 tests as TypeScript
+
+### Fixed
+- Fixed an issue where the SAPUI5 ABAP Repository did not allow parentheses in the path, resulting in deployment failure
+- Fixed an issue where generators failed with a 404 error when calling /api/listDestinations from the terminal in SAP Business Application Studio
+- Fixed an issue where updates to the low-code application platform generator broke the existing storyboard flow
+
 ## [1.26.0] - 2026-05-28
 ### Added
 - Added support for virtual endpoints when using the headless generator

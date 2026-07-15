@@ -3,6 +3,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.28.0] - 2026-06-25
+### Fixed
+- Fixed an issue with SAML authentication support
+- Fixed an issue where the list of systems displayed in the Service Manager were not sorted alphabetically
+- Fixed an issue where using the Service Manager in SAP Business Application Studio incorrectly prompted for connection credentials when this was not required
+
 ## [1.27.0] - 2026-06-11
 ### Fixed
 - Fixed an issue where an unexpected error message was displayed when adding a non-existent service URI

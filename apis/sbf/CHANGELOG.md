@@ -8,6 +8,19 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.11.7"></a>
+## 6.11.7 - 2026-06-28
+### Updated
+- form-data to 4.0.6
+
+<a name="6.11.6"></a>
+## 6.11.6 - 2026-06-11
+### Updated
+- qs to 6.15.2
+
+### Security
+- define axios-mock-adapter as dev dependency
+
 <a name="6.11.5"></a>
 ## 6.11.5 - 2026-05-24
 ### Updated

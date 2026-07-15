@@ -8,6 +8,14 @@ For the latest updates please see SAP Note 3744083 - SAP HANA Client 2.29 Releas
 
 https://me.sap.com/notes/3744083
 
+## Version 2.29.25
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 361604: FDA execution may have resulted in a protocol error when input parameters were close to filling the request packet.
+ - Issue Number 360718: Users could have been locked out after switching the user.
+ - Issue Number 360479: Re-executing a prepared statement with explicit input table parameter streaming may have crashed on the final execute.
+
 ## Version 2.29.23
 
 ### Underlying SQLDBC changes:
@@ -43,6 +51,12 @@ https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.28/en-US
 For the latest updates please see SAP Note 3710958 - SAP HANA Client 2.28 Release Notes
 
 https://me.sap.com/notes/3710958
+
+## Version 2.28.22
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 360479: Re-executing a prepared statement with explicit input table parameter streaming may have crashed on the final execute.
 
 ## Version 2.28.21
 

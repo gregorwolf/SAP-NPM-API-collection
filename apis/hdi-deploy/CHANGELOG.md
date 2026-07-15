@@ -1,3 +1,14 @@
+## 5.7.0
+Features:
+- Added support for `grant_using_group` and `revoke_using_group` in `.hdbgrants` and `.hdbrevokes` files
+- Added option `--async-make` to run the HDI make operation asynchronously
+- Added structured logging support in dynamic deploy (library mode)
+- Use @sap/hdi@^4.8.1
+
+Fixes:
+- Fixed license field in package.json to use npm-standard format for proper recognition by SCA tools
+- Updated license to SAP Developer License Agreement version 3.2
+
 ## 5.6.1
 Fixes:
 - Fixed X.509 certificate authentication issue

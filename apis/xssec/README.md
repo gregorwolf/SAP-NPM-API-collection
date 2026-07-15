@@ -554,6 +554,7 @@ Instances of `IdentityServiceToken` additionally have
 - **appTid** (*string*) application tenant id
 - **customIssuer** (*string*) or *null* if no custom issuer has been configured
 - **scimId** (*string*)
+- **idType** ("app"|"user") the ID type of the token principal from claim `sap_id_type`.
 
 #### XsuaaToken, XsaToken, UaaToken
 Instances of `XsuaaToken`, `XsaToken`, `UaaToken` additionally have
@@ -827,36 +828,21 @@ Token.enableDecodeCache({
 ```
 
 ### Retry logic
-The library supports a configurable retry mechanism for network requests, such as fetching tokens or JWKS. This ensures resilience against temporary network issues or service unavailability.
+The library supports a configurable retry feature for network requests, such as fetching tokens or JWKS. This ensures resilience against temporary network issues or service unavailability.
 
-The retry logic is based on an **exponential backoff** strategy with the following configurable parameters:
+:exclamation: By default, the retry feature is **disabled** (for backward compatibility) and must be explicitly enabled in the service configuration as documented below.
 
-```json
-{
-  "strategy": "exponential", // The retry strategy (currently only "exponential" is supported)
-  "retries": 3,              // Maximum number of retry attempts
-  "initialDelay": 500,       // Initial delay in milliseconds before the first retry
-  "factor": 3,               // Multiplier for the delay after each retry
-  "maxDelay": 4000           // Maximum delay in milliseconds between retries
-}
+```js
+const authService = new IdentityService(identityServiceCredentials,
+  {
+    requests: {
+      retry: true // enable with default configuration
+    }
+  }
+);
 ```
 
-#### How it works:
-1. The first retry occurs after the `initialDelay` (e.g., 500ms).
-2. Subsequent retries increase the delay exponentially, multiplied by the `factor` (e.g., 500ms → 1500ms → 4000ms).
-3. The delay will not exceed the `maxDelay` (e.g., 4000ms).
-
-#### Example:
-With the default configuration:
-- Retry 1: 500ms delay
-- Retry 2: 1500ms delay
-- Retry 3: 4000ms delay (capped by `maxDelay`)
-
-If all retries fail, the operation will throw a `RetryError` object, containing all errors during the attempt.
-
-:exclamation: **Note:** The retry logic is only applied to network-related errors (e.g., timeouts or unreachable endpoints). It also applies to HTTP error status codes in the range 500–599, as well as 429 (Too Many Requests) and 408 (Request Timeout).
-
-Errors such as invalid configurations or authentication failures are not retried.
+The retry logic is based on an **exponential backoff** strategy. If required, it can be enabled instead with custom parameters:
 
 ```js
 const authService = new IdentityService(identityServiceCredentials,
@@ -872,16 +858,26 @@ const authService = new IdentityService(identityServiceCredentials,
     }
   }
 );
-
-//for the default configuration you can also just set it to true
-const authService = new IdentityService(identityServiceCredentials,
-  {
-    requests: {
-      retry: true //take the default configuration
-    }
-  }
-);
 ```
+
+If you pass a custom configuration object, you can omit any of the above parameters and the default values will be used for the omitted parameters.
+
+#### How it works:
+1. The first retry occurs after the `initialDelay` (e.g., 500ms).
+2. Subsequent retries increase the delay exponentially, multiplied by the `factor` (e.g., 500ms → 1500ms → 4500ms).
+3. The delay will not exceed the `maxDelay` (e.g., 4000ms).
+
+#### Example:
+With the default configuration:
+- Retry 1: 500ms delay
+- Retry 2: 1500ms delay
+- Retry 3: 4000ms delay (capped from 4500ms due to `maxDelay`)
+
+If all retries fail, the operation will throw a `RetryError` object, containing an array of the individual errors that occured under property `retryErrors`.
+
+:exclamation: **Note:** The retry logic is only applied to network-related errors (e.g., timeouts or unreachable endpoints). It also applies to HTTP error status codes in the range 500–599, as well as 429 (Too Many Requests) and 408 (Request Timeout).
+
+Errors such as invalid configurations or authentication failures are not retried.
 
 ### JWKS Rotation
 JWKS rotation is supported out-of-the-box and you do **not** need to configure anything for this:

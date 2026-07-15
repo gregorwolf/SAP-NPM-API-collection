@@ -5,18 +5,43 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-<a name="2.3.1"></a>
-## 2.3.1 - 2026-06-15
+<a name="3.0.3"></a>
+## 3.0.3 - 2026-07-06
 
 ### Updated
-- Update nodemailer to 8.0.11
-- update yauzl to 3.4.0
-- update @sap/hdbext to 8.1.13
-- pinned @sap/xsodata version to 8.3.0
-- Updated @sap/instance-manager to 5.2.3
-- update lodash version to 4.18.1
-- pinned  @sap/jobs-client version to 1.8.5
-- Added node 18 support & tests
+- update @sap/hdbext version to 8.1.14
+- Revised the lib/client-factory.js code to enhance logger information handling
+
+<a name="3.0.2"></a>
+## 3.0.2 - 2026-06-29
+
+### Updated
+- update axios version to 1.18.1
+  
+<a name="3.0.1"></a>
+## 3.0.1 - 2026-06-11
+
+### Updated
+- update @sap/node-jwt version to 1.6.30
+- update @sap/node-vsi to 1.4.34
+
+<a name="3.0.0"></a>
+## 3.0.0 - 2026-06-08
+
+### Updated
+- update @sap/hana-client version to 2.28.21
+- update nodemailer to 8.0.10
+- update yauzl version to 3.4.0
+- update axios version to 1.17.0
+
+<a name="3.0.0"></a>
+## 3.0.0 - 2026-06-08
+
+### Updated
+- update @sap/hana-client version to 2.28.21
+- update nodemailer to 8.0.10
+- update yauzl version to 3.4.0
+- update axios version to 1.17.0
 
 <a name="2.3.0"></a>
 ## 2.3.0 - 2026-06-02

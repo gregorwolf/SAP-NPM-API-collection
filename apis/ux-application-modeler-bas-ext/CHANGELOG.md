@@ -6,6 +6,13 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.28.0] - 2026-06-25
+### Added
+- Added support for actions in the chart toolbar in the Page Editor
+- Added icons and improved the description for validation warnings
+- Added a notification to "Application Info" to request the user to reload the window after the `@sap-ux/eslint-plugin-fiori-tools` ESLint plugin has been updated
+- Added the ability to download the code from an ABAP UI5 repository for a deployed SAP Fiori application
+
 ## [1.27.0] - 2026-06-11
 ### Added
 - Added support for the Notes reuse component

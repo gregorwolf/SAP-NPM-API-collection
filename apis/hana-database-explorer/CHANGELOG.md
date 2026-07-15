@@ -1,5 +1,24 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.39.0
+
+### New Features
+- Automatic Plan Trace deletion based on retention time in Visual Studio Code
+- Debugging support for SQLScript procedures and functions
+- Additional configuration parameters for Plan Trace in Statement Overview
+- Table editor for viewing and editing table data
+
+### Fixes
+- Plan Trace not working for "SAP HANA Database Explorer" connections in Statement Overview
+- Connections could fail for the eu22 region in SAP HANA Cloud
+- The application name is set on local connections to correctly identify the running environment
+- Loading the connection list could be blocked by Cloud Foundry and SAP HANA XS Advanced login prompts
+- Analyze Execution Plan fails silently for parameterized queries with VARBINARY/UUID parameters
+- SQL parsing is not triggered when the SQL console regains visibility or focus
+- Plan Trace metadata is not uploaded when the trace is stopped
+- Invalid date is generated when using "Generate Data with Generative AI"
+- The search function is not working correctly in Statement Collection
+
 ## 1.38.0
 
 ### New Features

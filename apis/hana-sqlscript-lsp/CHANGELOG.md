@@ -1,3 +1,8 @@
+## 1.22.0
+
+### Fixes
+- Security fixes
+
 ## 1.21.0
 
 ### Fixes

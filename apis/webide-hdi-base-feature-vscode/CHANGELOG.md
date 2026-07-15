@@ -1,3 +1,13 @@
+## 1.45.0
+
+### New Features
+- Added support for multitenant-managed HDI containers in modeling editors
+
+### Fixes
+- Fixed schema search failures for User-Provided Service and external container connections in the synonym editor
+- Fixed the 'Show only local objects' option in Calculation View not displaying deployed synonyms in HDI containers
+- Fixed incorrect HANA version being used when an invalid format is specified in the project's package.json
+
 ## 1.44.0
 
 ### Fixes

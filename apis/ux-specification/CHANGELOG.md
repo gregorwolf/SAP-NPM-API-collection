@@ -8,6 +8,29 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 You have [Node.js](https://nodejs.org/en/download/) version `22.13.0` or higher installed
 
+## [1.144.7] - 2026-06-25
+
+### Added
+- Added support for actions and menus in the chart toolbar for OData V4 applications
+- Added support for the attachment reuse component for hierarchical document management in object pages for OData V4 applications
+
+### Fixed
+- Fixed the `esbuild` configuration by splitting it into a separate file and correcting the documentation script extension
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+| --- | --- |
+| [esbuild](https://esbuild.github.io/) | [`0.28.0` -> `0.28.1`] |
+| [prettier](https://prettier.io) | [`3.8.3` -> `3.8.4`] |
+| [semver](https://github.com/npm/node-semver) | [`7.8.3` -> `7.8.4`] |
+| [i18next](https://www.i18next.com) | [`25.8.18` -> `25.10.10`] |
+| [axios](https://axios-http.com) | [`1.17.0` -> `1.18.0`] |
+| [fast-xml-parser](https://naturalintelligence.github.io/fast-xml-parser/) | [`5.8.0` -> `5.9.3`] |
+| [@ui5/manifest](https://www.npmjs.com/package/@ui5/manifest) | [`1.82.0` -> `1.86.0`] |
+
 ## [1.144.6] - 2026-06-11
 
 ### Added
@@ -15,6 +38,7 @@ You have [Node.js](https://nodejs.org/en/download/) version `22.13.0` or higher 
 
 ### Fixed
 - Fixed an issue with version gating based on the SAPUI5 version and table type for `creationMode` and `popinLayout` properties for tables in OData V4 applications
+- Moved `@sap-ux/fe-fpm-writer` from an external dependency to an internal dependency. The code is bundled in `dist\index-min.js`
 
 ### Quality
 - Upgraded the minimum Node.js version from v20 to v22 because Node.js 20 reached end-of-life on 2026-04-30.

@@ -32,6 +32,7 @@ Provides audit logging functionalities for Node.js applications.
 - [Local development](#local-development)
   * [Without Audit log service](#without-audit-log-service)
   * [With Audit log service](#with-audit-log-service)
+- [FIPS Mode](#fips-mode)
 
 <!-- tocstop -->
 
@@ -975,9 +976,44 @@ Behavior:
 * If a request fails because `REQ_DELAY` is reached, the next attempt starts immediately.
 * If a request fails after `REQ_RETRIES` attempts, it will throw an error.
 
+## FIPS Mode
+
+The library supports opt-in FIPS enforcement via an environment variable. This allows deployments that require FIPS compliance to enforce it at startup without affecting other consumers.
+
+### Enabling FIPS enforcement
+
+Set the `REQUIRE_FIPS` environment variable to `true` before starting your application:
+
+```bash
+REQUIRE_FIPS=true node app.js
+```
+
+Or in your deployment manifest / container environment:
+
 ## Local development
 
-### Without Audit log service
+```
+REQUIRE_FIPS=true
+```
+
+When `REQUIRE_FIPS=true`, the library will:
+1. Check if FIPS mode is already active (`crypto.getFips()`).
+2. If not, attempt to enable it via `crypto.setFips(true)`.
+3. If FIPS cannot be enabled (e.g. the Node.js runtime is not linked against a FIPS-capable OpenSSL), throw an error with a clear message at startup.
+
+If `REQUIRE_FIPS` is not set or set to any value other than `'true'`, the library loads normally with no change in behavior.
+
+### Strongest enforcement
+
+For environments where FIPS must be guaranteed and must not be disabled by any downstream code, combine the environment variable with the `--force-fips` Node.js flag:
+
+```bash
+NODE_OPTIONS="--force-fips" REQUIRE_FIPS=true node app.js
+```
+
+`--force-fips` prevents any code from calling `crypto.setFips(false)` at runtime. The `REQUIRE_FIPS` variable then acts as a fail-fast guard for misconfigured deployments where the flag was accidentally omitted.
+
+## Local development
 
 ```js
 var credentials = {
