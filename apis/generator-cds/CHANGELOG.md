@@ -7,18 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 
 
+## Version 3.0.2 - 2026-06-25
+### Changed
+- updated dependencies
+
+## Version 3.0.1 - 2026-06-12
+### Changed
+- updated dependencies
+
+## Version 3.0.0 - 2026-06-09
+### Changed
+- updated dependencies
+
+### Removed
+- support for `Node.js 20`
+
+
 ## Version 2.18.12 - 2026-05-06
 ### Changed
 - updated dependencies
 
+
 ## Version 2.18.11 - 2025-08-12
+
 
 ## Version 2.18.10 - 2025-08-11
 ### Removed
-- support for `node 18`
+- support for `Node.js 18`
 
 ### Changed
 - `srv/package.json` will now use `express^4` as dependency.
+
 
 ## Version 2.18.9 - 2025-02-17
 ### Changed

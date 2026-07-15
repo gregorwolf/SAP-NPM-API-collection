@@ -6,6 +6,22 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.0.1 - 2026-06-23
+
+### Changed
+
+- Migration from `@sap/cds-mtx` has been removed.
+- Calling endpoint `POST /-/cds/sms-provisioning/upgrade` is now requires more permissions.
+- Annotation `@Common.FieldControl` is now also blocked for extensions.
+- Annotations `@Capabilities.*` are now also blocked for extensions.
+- The MTX sidecar now logs a warning if `cds.sql` is configured differently in both the project root and the sidecar. By setting `cds.env.requires['cds.xt.ModelProviderService']['use-root-sql-config'] === true`,
+you can enforce the configuration of the project root.
+
+### Fixed
+
+- Default value 3 for `cds.requires.multitenancy.jobs.clusterSize` is now effective for upgrade. When using HANA TMS v2, the default for `clusterSize` is set to 1.
+- Parallel single-tenant upgrades no longer fail with `tar: Cannot open: File exists` when extensibility is disabled.
+
 ## Version 3.9.4 - 2026-06-17
 
 ### Added

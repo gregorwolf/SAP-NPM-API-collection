@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 
 
+## [10.0.1] - 2026-06-29
+
+### Added
+- CAP Project Explorer in sidebar, can be disabled via user setting `cds.explorer.enabled`
+  + user setting `cds.explorer.alignLeafArtifacts` (default off): aligns childless services, entities, views, actions, functions, and events with their expandable siblings by reserving an inert chevron
+  + user setting `cds.explorer.smartStructure...` (default on): streamline artificial group nodes e.g. combine inbound and outbound services nodes
+- Formatting: 
+  + option `annotationInNewLine` to start elements on a new line after their annotation in `annotate` blocks
+  + option `asProjectionInNewLine` to start `as projection on` / `as select from` in a new line (indented)
+  + option `conditionInNewLine` to put ON conditions on a separate line
+
+### Changed
+- Minimum VSCode version is now 1.109.5
+- Where-Used Index is now persisted by default, can be switched off via user setting `cds.workspace.persistency.enabled`
+- CAP Project Explorer (Service & Domain view): list entity elements, entity actions, service/Domain Model entities, and top-level types/enums/aspects in alphabetic order (case-insensitive). Action parameter order is unchanged.
+- CAP Project Explorer: revised tree icons and theme colors. Most nodes now use the `symbolIcon.*` color family so they render consistently across light, dark, and High Contrast themes; `charts.*` is kept for service direction (purple default, green inbound, orange outbound) and for error/warning. Every `NodeType` now has an explicit icon — previously twelve node types (e.g. `group_compositions`, `group_autoexposed`, `group_files`, `param_group`) fell back to a generic folder icon.
+- CAP Project Explorer: every group container (Aspects, ValueHelp, Autoexposed, Types, Enums, Entities & Views, Functions & Actions, per-entity Actions, Requires) now renders with its own colored codicon instead of the user's theme folder icon. Files / Config Files groups continue to use the theme folder. Individual aspect / type / enum / namespace / context / using / annotation / element / composition / association artifacts now carry their own `NodeType` and render with a distinct icon instead of being collapsed onto the generic `field` / `group_types` rendering.
+
+### Fixed
+- Formatting: 
+  + align post-annotations (e.g. `@mandatory`) in parameter lists
+  + align `virtual` and `element` keyword modifiers with element name if `alignAfterKey` is set
+- Node.js spawn warning when running CLI commands with `shell: true`
+
+### Removed
+- Removed notebook feature
+
+### Also see
+- `@sap/cds-lsp` 10.0.x
+- `@sap/cds-compiler` 7.0.x
+
+
 ## [9.9.0] - 2026-04-23
 
 ### Added

@@ -6,8 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
-## [2.0.6] - 2026-03-31
+## [2.1.3] - 2026-07-09
+### Added
+- bundle dependencies into the npm tarball via `bundledDependencies`.
+
+## [2.1.2] - 2026-06-19
 ### Changed
+- Updated dependencies
+
+## [2.1.1] - 2026-06-12
+### Removed
+- `npm-shrinkwrap.json` since it is not supported with `npm@12` anymore.
+- support for `node 20`
+
+## [2.1.0] - 2026-05-27
+### Changed
+- Generator now uses `yeoman-generator@6`
+
+## [2.0.6] - 2026-03-31
 - Internal refactoring, using typescript
 
 ## [2.0.5] - 2026-01-30

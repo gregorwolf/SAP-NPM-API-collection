@@ -5,13 +5,87 @@
 <!-- (no-duplicate-heading)-->
 
 If you upgrade from a previous version, you might want to read in more detail about
-incompatible [changes between v5 and v6](./doc/IncompatibleChanges_v6.md)
-and [changes between v4 and v5](./doc/IncompatibleChanges_v5.md).
+incompatible [changes between v6 and v7](./doc/IncompatibleChanges_v7.md)
+and [changes between v5 and v6](./doc/IncompatibleChanges_v6.md).
 
 Note: while we list new `beta` flags and their removal in this ChangeLog,
 we might not list every change in its behavior here.
 Productive code should never require a `beta` flag to be set, and
 might use a deprecated flag only for a limited period of time.
+
+
+
+## Version 7.0.1 - 2026-06-18
+
+### ⚠ BREAKING CHANGES
+
+- Node.js 22 is now the minimum required version.
+- The deprecated backend "hdbcds" has been removed.
+- **compiler:**
+  + An `annotate` statement for assigning a security-relevant annotation (`@restrict`, `@requires`, `@ams.…`)
+    to a bound action (or element, …) of a non-existent definition now is an error (for security reasons that
+    has already been the case since compiler version 6.5.0).
+  + The CSN representation for annotations with expression-like values has been changed: property `=` is no longer present,
+    unless the expression is a simple reference. An object as annotation value with a “primary expression property” like
+    `ref` or `xpr` is always interpreted as an expression. Before, it was only interpreted as expression if the object also
+    contained a property `=`.  In order to avoid ambiguities, it is not allowed to provide structured annotation values that
+    could be confused with expressions.
+  + Expression-like values that are not simple references are no longer allowed as comparator value for `... up to` when
+    extending array like annotation values. Simple references now are handled correctly.
+  + `null` as annotation value is now propagated like any other value. Exceptions are `includes` with multiple structures/aspects:
+    value `null` from a later include does not overwrite a value from an earlier include (no change compared to previous releases).
+  + The compiler now reports an error when multiple `extend ... with <aspect>` statements introduce the same element or action.
+  + Providing a default for a structure with more than one elements now leads to an error.
+  + Providing a default for an array now leads to an error.
+  + The rules for the propagation of `key` in queries have been simplified: Keys are propagated, if no explicit key is set in
+    the query and all key elements of the primary base entity and of joined entities are selected.
+  + No longer propagate the `key` property of the elements of structures which are included into a structured type.
+  + It is no longer possible to extend built-in types by adding type properties.
+  + Always propagate annotation with `elements` and `enum` expansion.
+  + Ensure that recompiling a CSN of flavor `gensrc` / `xtended` does not change the element order.
+  + Streamline and fix sloppy handling of optional semicolon.
+  + Property `compilerVersion` has been removed from CSN meta (was introduced in 6.9.0). Keep using property `creator` instead.
+  + The error `syntax-unsupported-masked` (for using the non-documented keyword or CSN property `masked`) is not configurable anymore.
+  + The error `name-deprecated-$self` (for naming an entity `$self`) is not configurable anymore.
+  + The error `syntax-unexpected-filter` (for providing a filter for the result of a function call) is not configurable anymore.
+  + Deprecated flags `noPersistenceJournalForGeneratedEntities` and `noCompositionIncludes` have been removed.
+  + Add stricter checks for associations (or compositions) which are defined like `assoc: Association to Target on assoc.back = $self`:
+    - only one bare `$self` comparison is allowed per `on` condition.
+    - the target of the backlink association `back` must be the enclosing artifact or one of its includes/query sources.
+    - all target elements which are referred to in the foreign keys or
+      on-condition of the backlink association `back` must be projected.
+- **odata:** The (deprecated) property `EffectsType` has been removed from `Common.SideEffectsType` in a recent update of the OData vocabularies.
+- **sql:**
+  + For SQLite, type `cds.Decimal` is now mapped to `REAL_DECIMAL` with affinity "REAL".
+    To switch back to `DECIMAL` you can set the option `decimal_affinity` to `numeric`.
+  + Obsolete option `fewerLocalizedViews` (introduced in cds-compiler v5) has been removed.
+
+### Features
+
+- **compiler:** Special property `$includeAfter` is put into a CSN of flavor `gensrc`/`xtended` to preserve the original
+  element order for entities and other structures with `includes` added via an `extend` statement.
+- **sql:** Default values from structures with a single element are propagated to the flattened leaf element.
+- **odata:** Default values from structures with a single element are propagated to the flattened leaf element.
+
+### Bug Fixes
+
+- **sql:**
+  + An error is reported for subqueries that select only virtual elements. This avoids late errors during database deployment.
+  + Parameter references in nested inlines are now handled correctly.
+
+### Improvements
+
+- **compiler:**
+  + Messages reported by compiler backends for non-applied `annotate` statements now mention the original file location if that is unique.
+  + The message IDs and texts for undefined references have been consolidated.
+- **odata:**
+  + Non-spec compliant simple identifiers in OData V2 now lead to a warning.
+  + Avoid duplicate or incorrect warnings for value help shortcut.
+- **sql:**
+  + Performance of the SQL backend has been improved: wildcard `*` in views and projections is only expanded lazily.
+  + No errors are reported anymore for non-persisted entities, as they are irrelevant for database deployment
+    (for the message IDs `type-missing-argument`, `type-unexpected-argument`, `ref-unsupported-type`, and `ref-unexpected-args`).
+
 
 ## Version 6.9.3 - 2026-06-17
 

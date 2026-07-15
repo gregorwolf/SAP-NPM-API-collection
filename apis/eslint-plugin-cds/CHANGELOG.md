@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [4.2.4] - 2026-06-22
+### Fixed
+- `auth-valid-restrict-grant` no longer crashes on JOINs with three or more tables.
+
 ## [4.2.3] - 2026-05-12
 ### Fixed
 - Don't fail if the `tree-sitter` dependency cannot be installed. This might happen in WebContainer environments where native modules cannot be loaded.

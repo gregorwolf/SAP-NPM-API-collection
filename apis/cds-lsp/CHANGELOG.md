@@ -6,6 +6,28 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 10.0.1 - 2026-06-29
+
+### Added
+- Formatting: new option `annotationInNewLine` to start elements on a new line after their annotation in `annotate` blocks
+- Formatting: new option `asProjectionInNewLine` to start `as projection on` / `as select from` in a new line (indented)
+- Formatting: new option `conditionInNewLine` to put ON conditions on a separate line
+- WorkspaceSymbols (api): switch /x for project explorer
+
+### Fixed
+- Formatting: align post-annotations (e.g. `@mandatory`) in parameter lists
+- Formatting: align `virtual` and `element` keyword modifiers with element name if `alignAfterKey` is set
+
+### Changed
+- index persistency is enabled by default, can be switched off via user setting `cds.workspace.persistency.enabled`
+- using Typescript 6
+- using vscode-languageserver-protocol 3.18.0
+- using vscode-languageserver 10
+
+### Also see
+- `@sap/cds-compiler` 7.0.1
+
+
 ## 9.9.0 - 2026-04-22
 
 ### Added
