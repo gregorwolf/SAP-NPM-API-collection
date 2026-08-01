@@ -173,7 +173,7 @@ In cds-compiler v7, we make `name-deprecated-$self` a non-configurable error.
 Before cds-compiler v7:  
 The CSN representation of an expression-like annotation value is an object with
 properties `=` and one of `ref`, `xpr`, `val`, `func`, `SELECT`, `list`.
-In `=` we capture the (space-normalized, comments removed) string representation of the expression,
+In `=` we capture the (space-normalized, comments removed) string CDL representation of the expression,
 the other one holds the parsed expression as a token stream.
 
 When the annotation is propagated ...
@@ -222,25 +222,32 @@ Resulting CSN:
 ```
 
 In cds-compiler v7:  
-* For anno-xpr that are a simple ref (simple: can be path, but no filter, no parameters), keep current behavior:
-  - Keep both `=` and `ref`.
+* For anno-xpr that are a simple ref (simple: can be path, but no filter, no parameters)
+  in the compiler and runtime CSN:
+  - In `=`, render the `.`-concatenated `ref` items without CDL escaping
+    (like for unchecked references, but unlike compiler v6);
+    e.g. for a reference, written as `(![in])` in CDL, use `{ '=': 'in', ref: ['in'] }` in CSN.
   - When rewriting is necessary, also adapt the `=`.
+* For expression which are a simple enum symbols, with or without surrounding parentheses:
+  - Just render the `#`, omit the `=` property.
+* For expressions which are represented in CSN by a simple `xpr`:
+  - Do not render a `=` property anymore, just render the `xpr`.
 * For all other expressions:
-  - Remove the `=`
-    + both in original and in propagated annotations
-    + no matter whether rewriting is necessary or not
+  - Use `=` property with value `true`, do not use the CDL source as value,
+    both in original and in propagated annotations.
 
-With the removal of `=`, any object with a `ref` or `xpr` or `val` inside an array
-is regarded as an expression value. This could introduce ambiguities. Outside arrays
-there is no danger of ambiguity due to flattening.
-To avoid such ambiguities in CDL, the parser in v7 throws an error for "ambiguous" sources like
+With the removal of `=`, any object in a CSN with just a `xpr`
+is regarded as an expression value. With that, a structure inside an array
+with just a `xpr` property could not be represented without ambiguity.
+
+Therefore, the parser in v7 reports an error for such invalid structure values:
 ```cds
 @A_xpr: [(2*foo)]
 @A_str: [{xpr: [{val: 2}, '*', {ref: ['foo']}]}]
 entity E { foo : Integer; }
 ```
-For: ref, xpr, val, func, SELECT, list.
-
+The compiler also reports an error for structures inside arrays containing a `=` property and
+a primary expression property (`ref`, `xpr`, `list`, `val`, `#`, `func`, `SELECT` and `SET`).
 
 ### Default for structures
 

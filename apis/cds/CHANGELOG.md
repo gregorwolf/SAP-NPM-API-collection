@@ -4,6 +4,22 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 10.0.5 - 2026-07-28
+
+### Fixed
+
+- Messaging management requests to SAP Event Mesh or Event Mesh in SAP Integration Suite (EMIS) now always send a (possibly empty) body for `PUT`/`POST` requests, as required by EMIS (and compatible with SAP Event Mesh)
+- Only convert `@Common.Text` to `@cds.search` for service entities
+
+## Version 10.0.4 - 2026-07-21
+
+### Fixed
+
+- Default language fallbacks for incomplete `i18n` bundles in Java projects
+- `srv.on/before('READ',...)` handlers registered with a cds-typer singular entity proxy were erroneously rewritten to event `each`
+- Asynchronous plugins (exporting a Promise) were not awaited in ESM projects
+- Fixed context propagation for local app and remote service calls 
+
 ## Version 10.0.3 - 2026-07-02
 
 ### Fixed

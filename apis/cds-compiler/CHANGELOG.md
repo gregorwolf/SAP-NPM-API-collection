@@ -15,6 +15,32 @@ might use a deprecated flag only for a limited period of time.
 
 
 
+## Version 7.0.3 - 2026-07-21
+
+### Bug Fixes
+
+- **compiler:** When a backlink target is at least distantly related to the entity
+  embedding an association with a backlink comparison, the compiler issues a
+  warning ref-deprecated-backlink instead of reporting an error ref-invalid-backlink;
+  this is now also the case if the target entity is auto-exposed.
+- **sql:** Avoid dump in to.sql.migration with complex models.
+
+
+
+## Version 7.0.2 - 2026-07-14
+
+### Bug Fixes
+
+- **compiler:**
+  + Avoid dump for a new association in a projection with backlink comparison while reporting a missing backlink target element.
+  + Soften incompatibility concerning backlink comparisons: missing target elements which are referred to in the foreign keys or ON-condition of the backlink
+    association now only lead to a warning.
+  + Soften incompatibility concerning structure values for annotations: a structure property like `list` won't be rejected; we avoid an ambiguity with an
+    _expression_ `(1, 2, 3)` by putting `'=': true` next to `list: …` in the CSN, like in compiler v6. A `xpr` expression is rendered without a sibling `=`,
+    though.
+
+
+
 ## Version 7.0.1 - 2026-06-18
 
 ### ⚠ BREAKING CHANGES

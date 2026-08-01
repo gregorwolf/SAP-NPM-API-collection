@@ -6,6 +6,43 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 10.0.6 - 2026-07-24
+
+### Added
+
+- `cds add xsuaa` now generates namespace-suffixed XSUAA `role-collections` for Kyma.
+
+### Fixed
+
+- `cds add http` no longer throws `MULTIPLE_DOCS` when `application.yaml` uses `---` separators (Spring Boot multi-profile format).
+- `cds export --data` now reads seed data via in-memory SQLite instead of the configured db driver, so it no longer fails in projects with `requires.db: hana` (e.g. CAP Java).
+- `cds init --java --add mta` now writes `path: srv` for the Java `srv` module in `mta.yaml` instead of `gen/srv`, so `mbt build` no longer fails with `the "gen/srv" path of the "<app>-srv" module does not exist`.
+- `cds version` no longer reports dependency problems if no dependencies are installed at all. It prints an info message instead.
+- `cds add test` creates tests that are green by default. Sample data is provided as commented code.
+
+## Version 10.0.5 - 2026-07-16
+
+### Fixed
+
+- `cds build --for hana` now declares the plugin for native HANA artifacts placed in the build output (e.g. a `.hdbprojectionview` from `db/src`) in the generated `.hdiconfig`.
+- `cds add typer` now generates a `jsconfig.json` file that works with VS Code.
+- `cds debug <app> --force` on Kyma now preserves existing `NODE_OPTIONS` flags (e.g. `--max-old-space-size`) instead of overwriting them when enabling the inspector.
+- `cds add sample` now selects `stock` in the Books list and object pages, so the overstock discount shows up in the UI.
+- `cds add data` now generates correct foreign-key columns for nested compositions of aspects, e.g. `up__up__ID,up__ID,ID,name` instead of a broken `up__up_` header.
+- `cds build` no longer fails with `npm ls -ws: unknown option` on npm 12, which dropped the short `-ws` flag.
+- `cds build` now packages transitive npm workspace dependencies again on npm 12, which changed `npm pack --json` to emit an object keyed by package name instead of an array.
+- `cds up` uses `helm --rollback-on-failure` instead of the deprecated `--atomic`.
+- `cds add portal` on Java + IAS disables JWT proof-of-possession on `srv` (`SAP_SPRING_SECURITY_IDENTITY_PROOFTOKEN=false`) so Portal-proxied tile OData works.
+- `cds add ias` forwards client certificates from the approuter to `srv-api` (`backendDestinations.srv-api.forwardAuthCertificates`).
+- `cds add ias` always enables `xsuaa-cross-consumption` in the identity service parameters.
+- `cds add ias` no longer sets an mTLS `expose.host` on the approuter, restoring a plain approuter host for the browser flow.
+- `cds add portal` on Java multitenant now binds the Portal service instance to `srv` so CAP Java's `getDependencies` reports Portal to the SaaS Registry.
+- `cds add kyma` uses a tenant-agnostic (tcpSocket) startup probe for the multitenant approuter, avoiding 400s from `TENANT_HOST_PATTERN` on kubelet probes.
+- `cds add kyma` no longer emits the dead `Authentication: OAuth2UserTokenExchange` key on `backendDestinations.srv-api`.
+- `cds add github-actions` uses updated versions.
+- `cds watch` now works in ESM scenarios where only a global `cds-dk` is installed, where it would formerly fail with `ERR_MODULE_NOT_FOUND` for `@sap/cds`.
+- `cds watch`no longer shows a `'server.hmr.protocol/host/port/path/clientPort/timeout/server' is deprecated` warning when running a Vite application.
+
 ## Version 10.0.4 - 2026-07-08
 
 ### Fixed
