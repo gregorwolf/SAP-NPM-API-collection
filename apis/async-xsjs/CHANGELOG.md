@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="3.0.4"></a>
+## 3.0.4 - 2026-07-17
+
+### Updated
+- update express version to 4.22.2
+- update @sap/xsodata version to 8.4.0
+- update body-parser version to 2.3.0
+- poolingCheck added and retry is modified.
+  
 <a name="3.0.3"></a>
 ## 3.0.3 - 2026-07-06
 

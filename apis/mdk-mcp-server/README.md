@@ -5,20 +5,19 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/sap/mdk-mcp-server)](https://api.reuse.software/info/github.com/sap/mdk-mcp-server)
 
 
-## What is MCP server for mobile development kit?
+## What is MCP server for Mobile Development Kit (MDK)?
 This open-source server provides AI agents with comprehensive MDK knowledge and tools. By combining best practice guidelines, project-aware context information, templates for creating new projects, and access to the MDK CLI tools, the MDK MCP server transforms AI agents into MDK development experts.
 
-## What is mobile development kit?
-The SAP Mobile Development Kit (MDK) is a powerful framework that enables developers to build cross-platform mobile applications using a metadata-driven approach. It is part of SAP Business Technology Platform and integrates tightly with SAP Mobile Services. 
+## What is Mobile Development Kit?
+The mobile development kit is a powerful framework that enables developers to build cross-platform mobile applications using a metadata-driven approach. It is part of SAP Business Technology Platform and integrates tightly with SAP Mobile Services. 
 Some of SAP’s larger and complex mobile apps are built using MDK. An example is [SAP Service and Asset Manager](https://www.sap.com/sea/products/scm/asset-manager.html).
-
-> [!NOTE]
-> This MCP server is an early release version of the MDK. You may encounter bugs or unfinished features. We'd love your feedback to make it better! Please report issues or share suggestions via [GitHub issues](https://github.com/sap/mdk-mcp-server/issues).
 
 ## Table of Contents
 
 - [Setup](#setup)
 - [Available Tools](#available-tools)
+- [Ingesting GitHub Knowledge (Advanced)](#ingesting-github-knowledge-advanced)
+- [Offline OData Querying (Advanced)](#offline-odata-querying-advanced)
 - [Support, Feedback, Contributing](#support-feedback-contributing)
 - [Telemetry](#telemetry)
 - [Security / Disclosure](#security--disclosure)
@@ -29,14 +28,16 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
 
 ## Setup
 
-1. Install [node.js](https://nodejs.org/en).
+### Installation Steps
 
-2. For installing the MDK MCP server, we offer two options:
+1. Install [node.js 24.11.1](https://nodejs.org/dist/v24.11.1/).
+
+2. To install the MDK MCP server, you have two options:
 
     a. Use npm to install it from the public npmjs registry at [@sap/mdk-mcp-server](https://www.npmjs.com/package/@sap/mdk-mcp-server). 
   
       ```bash
-      npm install -g @sap/mdk-mcp-server 
+      npm install -g @sap/mdk-mcp-server
       ``` 
 
     b. Clone the open-source code repository at https://github.com/SAP/mdk-mcp-server, and use `npm` to install.  
@@ -44,19 +45,19 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
       ```bash 
       git clone https://github.com/SAP/mdk-mcp-server.git 
       cd mdk-mcp-server 
-      npm i --include=optional 
+      npm i
       npm run build
       npm i -g @sap/mdk-mcp-server@. 
       ```
 
-3. Configure your MCP client (AI agent) to connect to the server. Configuration will vary depending on the AI agent used.
+3. Configure your MCP client (AI agent) to connect to the server. Note that configuration will vary depending on the AI agent used.
 
     **Cline in VS Code:** Example using the [Cline extension](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev). 
     
     - With Cline open, look below the prompt box and click **Manage MCP Servers**.
     - In the dialog, click **Settings**. The MCP Servers page opens.
     - Click **Configure MCP Servers**. This will open the `cline_mcp_settings.json` file in your editor.
-    - In the JSON settings file, add a configuration block for MDK MCP server within the `mcpServers` section, and save the file. The supported schema versions include 26.3(default), 25.9, 25.6, 24.11, and 24.7.
+    - In the JSON settings file, add a configuration block for MDK MCP server within the `mcpServers` section, and save the file. The supported schema versions include 26.6 (default), 26.3, 25.9, 25.6, 24.11, and 24.7.
 
     ```
     {
@@ -64,32 +65,78 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
         "mdk-mcp": {
           "type": "stdio",
           "command": "mdk-mcp",
-          "args": ["--schema-version", "26.3"]
+          "args": ["--schema-version", "26.6"]
         }
       }
     }
     ```
 
     > **Note:**  
-    > If the MCP server does not listed with its available tools in the Cline extension immediately, restart VS Code.
+    > If the MCP server is not listed with its available tools in the Cline extension immediately, restart VS Code.
+
+    <details>
+      <summary><b>Expand:</b> Usage in Claude Code (VS Code Extension)</summary>
+
+    Claude Code discovers MCP servers from its configuration.
+
+    1. Open (or create) your Claude Code configuration file:
+
+      ```text
+      ~/.claude.json
+      ```
+
+    2. Add the following MCP server configuration:
+
+      ```json
+      {
+        "mcp": {
+          "mdk-mcp": {
+            "type": "local",
+            "command": [
+              "mdk-mcp",
+              "--schema-version",
+              "26.6"
+            ],
+            "enabled": true
+          }
+        }
+      }
+      ```
+
+   > **Note:** If `~/.claude.json` already exists, merge the `mdk-mcp` entry into the existing `mcp` section rather than replacing the entire file.
+
+    3. Reload the VS Code window (or restart VS Code).
+
+    ### Verify the installation
+
+    Open the Claude Code panel in VS Code and run:
+
+    ```text
+    /mcp
+    ```
+
+    You should see **`mdk-mcp`** listed as an available MCP server.
+
+    </details>
 
     <details>
       <summary><b>Expand:</b> Usage in OpenCode</summary>
 
-    Example using [OpenCode](https://github.com/sst/opencode):
+    An example using [OpenCode](https://github.com/sst/opencode):
 
     ```
     {
       "mcp": {
         "mdk-mcp": {
           "type": "local",
-          "command": ["mdk-mcp", "--schema-version", "26.3"],
+          "command": ["mdk-mcp", "--schema-version", "26.6"],
           "enabled": true
         }
       }
     }
     ```
     </details>
+
 
     <details>
       <summary><b>Expand:</b> Usage in Cursor</summary>
@@ -101,34 +148,63 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
       "mcpServers": {
         "mdk-mcp": {
           "command": "mdk-mcp",
-          "args": ["--schema-version", "26.3"]
+          "args": ["--schema-version", "26.6"]
         }
       }
     }
     ```
     </details>
 
+
+    <details>
+      <summary><b>Expand:</b> Usage in Claude Desktop</summary>    
+    Use the absolute path to Node.js in your Claude Desktop configuration file.
+
+    1. Find your Node.js installation path by running the terminal command:
+       ```bash
+       which node
+       ```
+       This might output something like `/usr/local/bin/node` or `/opt/homebrew/bin/node`.
+
+    2. Edit `~/Library/Application Support/Claude/claude_desktop_config.json` and update the `command` field to use the absolute path:
+       ```json
+       {
+         "mcpServers": {
+           "mdk-mcp": {
+             "command": "/usr/local/bin/node",
+             "args": ["/usr/local/lib/node_modules/@sap/mdk-mcp-server/build/index.js", "--schema-version", "26.6"]
+           }
+         }
+       }
+       ```
+
+    3. Restart Claude Desktop.
+
+    **Note:** Adjust the paths based on your actual Node.js and MDK MCP server installation locations.
+
+ 
+    </details>
+
     Once configured, your AI agent will have access to the MDK MCP server. Depending on your IDE settings, you may need to approve initial tool calls.
 
-4. **Create a Rule File**: To ensure your AI coding assistant uses the MCP servers appropriately for your project, define rules and guidelines in a file named [`AGENTS.md`](https://agents.md/). In the Cline extension for VS Code, click the **Manage Cline Rules & Workflows** icon below the prompt box, click **+** to create a new rule file (e.g., `AGENTS.md`) and add the above contents. 
 
-    Example rules to guide agent behavior:
+4. **Create a Rule File**: To ensure your AI coding assistant uses the MCP servers appropriately for your project, define rules and guidelines in a file named [`AGENTS.md`](https://agents.md/). In the Cline extension for VS Code, click the **Manage Cline Rules & Workflows** icon below the prompt box, click **+** to create a new rule file (e.g., `AGENTS.md`) and  add the example rules shown below:
 
     ```markdown
-    - Don't generate `.service.metadata` file.
-    - Don't generate `.xml` file in the `Services` folder.
-    - Don't change `.project.json` file.
+    - Do not generate `.service.metadata` file.
+    - Do not generate `.xml` file in the `Services` folder.
+    - Do not change `.project.json` file.
     ```
 
 5. Verify your LLM Provider and AI model.
  
-    When you add Cline to VS Code, it uses Cline as the default API provider. You can choose a different LLM provider, such as SAP AI core.
+    When you add Cline to VS Code, it serves as the default API provider. You can choose a different LLM provider, such as SAP AI Core.
     To add an SAP AI Core API provider in the Cline extension for VS Code, follow these steps:
       - With Cline open, look below the prompt box and click **Select Model / API Providers**.
-      - Choose your API provider (such as SAP AI Core) and enter your details. See the instructions [here](https://docs.cline.bot/provider-config/sap-aicore#sap-ai-core) for detailed setup.
+      - Choose your API provider (such as SAP AI Core) and enter your details. See the instructions [here](https://docs.cline.bot/provider-config/sap-aicore#sap-ai-core) for a detailed setup.
       - Select your preferred AI model.
 
-6. **Integration with SAP Mobile Services:** For creating a new MDK application, the MCP server uses the Cloud Foundry CLI and a `.service.metadata` file containing:
+6. **Integration with SAP Mobile Services:** To create a new MDK application, the MCP server uses the Cloud Foundry CLI and a `.service.metadata` file containing:
     - The mobile application defined in the SAP Mobile Services instance. 
       - Mobile Services API Endpoint
       - Mobile Services App ID
@@ -141,7 +217,7 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
       3.	Log in to your SAP BTP Cloud Foundry environment. For more details you can refer to [this help documentation](https://help.sap.com/docs/btp/sap-business-technology-platform/log-on-to-cloud-foundry-environment-using-cloud-foundry-command-line-interface).
 
       ```bash
-      cf login <your target endpoint> --sso
+      cf login -a <your target endpoint> --sso
       ```
 
       4. Create an empty folder on your machine and open it in VS Code.
@@ -153,12 +229,12 @@ Some of SAP’s larger and complex mobile apps are built using MDK. An example i
 7. Your environment is now ready for the MDK development with MCP server. You can now enter a prompt to:
 
     - Generate a new MDK project displaying OData entities information.
-    - Enhance an existing project adding additional UI controls on a given page.
+    - Enhance an existing project by adding additional UI controls on a given page.
     - Validate your current MDK project schema.
     - Migrate old MDK projects to latest schema.
     - Deploy your MDK project.
     - Generate onboarding QR code.
-    - Explain specific properties. 
+    - Explain specific properties.
     - Find information about control properties or any aspect of the documentation.
 
 ## Available Tools
@@ -170,14 +246,174 @@ This release of the MDK MCP server includes the following tools, which can be ac
 
 | Tools     | Description | Parameters      |
 |----------|-----|-----------|
-| `mdk-create`    | Creates MDK projects or entity metadata using templates (CRUD, List Detail, Base). Use this for initializing new projects or adding entity metadata to existing projects.  | - `folderRootPath:` The path of the current project root folder. <br> - `scope:` The scope of creation:<br>• `project`: Initialize a new MDK project with full structure<br>• `entity`: Add entity metadata to an existing project<br> - `templateType:` The type of template to use (crud, list detail, base). Note: 'base' template is only valid for project scope.<br> - `oDataEntitySets:` The OData entity sets relevant to the user prompt, separated by commas.<br> - `offline:` Whether to generate the project in offline mode (only applicable for project scope). Set to false unless offline is explicitly specified. |
-| `mdk-gen`    | Generates MDK artifacts including pages, actions, i18n files, and rule references. Returns prompts for LLM processing (pages, actions, i18n) or searches for rule examples.  | - `artifactType:` The type of artifact to generate:<br>• `page`: Generate MDK page files (.page) with databinding or layout<br>• `action`: Generate MDK action files (.action)<br>• `i18n`: Generate internationalization files (.properties)<br>• `rule`: Search for and return relevant JavaScript rule examples<br> - `folderRootPath:` The path of the current project root folder (not required for rule artifact type).<br><br>**For page artifacts:**<br> - `pageType:` Type of page (required when artifactType is 'page'):<br>• `databinding`: Data-driven pages with controls bound to OData<br>• `layout`: Structure-focused pages with specific layouts<br> - `controlType:` The control type for databinding pages (required when pageType is 'databinding'). Available types: ObjectTable, FormCell, KeyValue, ObjectHeader, ContactTable, SimplePropertyCollection, ObjectCard, DataTable, KPIHeader, ProfileHeader, ObjectCollection, Timeline, TimelinePreview, Calendar.<br> - `oDataEntitySets:` Optional: The OData entity sets to use for page generation, separated by commas (required only when pageType is 'databinding').<br> - `layoutType:` The layout type for layout pages (required when pageType is 'layout'). Available types: Section, BottomNavigation, FlexibleColumnLayout, SideDrawerNavigation, Tabs, Extension.<br><br>**For action artifacts:**<br> - `actionType:` The type of action (required when artifactType is 'action'). Available types: CreateODataEntity, UpdateODataEntity, DeleteODataEntity, CreateODataMedia, InitializeOfflineOData, DownloadOfflineOData, UploadOfflineOData, CancelDownloadOfflineOData, CancelUploadOfflineOData, ClearOfflineOData, CloseOfflineOData, CreateODataRelatedEntity, CreateODataRelatedMedia, CreateODataService, DeleteODataMedia, DownloadMediaOData, LogMessage, Message, Navigation, OpenODataService, ProgressBanner, PushNotificationRegister, PushNotificationUnregister, ReadODataService, RemoveDefiningRequest, SendRequest, SetLevel, SetState, ToastMessage, UndoPendingChanges, UploadLog, UploadODataMedia, UploadStreamOData, ChatCompletion, PopoverMenu, CheckRequiredFields, ChangeSet, OpenDocument, Banner, Filter.<br> - `oDataEntitySets:` Optional: The OData entity sets to use for action generation, separated by commas (required only when artifactType is 'action').<br><br>**For i18n artifacts:**<br> - No additional parameters required beyond folderRootPath.<br><br>**For rule artifacts:**<br> - `query:` Search query for rule reference (required when artifactType is 'rule'). Examples: 'get app name', 'handle form validation', 'navigate to page', etc. |
-| `mdk-manage`    | Comprehensive MDK project management tool that handles build, deploy, validate, migrate, show QR code, and mobile app editor operations.  | - `folderRootPath:` The path of the current project root folder. <br> - `operation:` The operation to perform on the MDK project. Available operations:<br>• `build`: Build an MDK project<br>• `deploy`: Deploy an MDK project to the Mobile Services<br>• `validate`: Validate an MDK project<br>• `migrate`: Migrate an MDK project to the latest MDK version<br>• `show-qrcode`: Show QR code for an MDK project<br>• `open-mobile-app-editor`: Instruct how to open the Mobile App Editor to create .service.metadata file<br> - `externals:` Optional: Array of external package names to include in the deployment (e.g., ['@nativescript/geolocation']). If not specified, will automatically read from `mdk.bundlerExternals` in `.vscode/settings.json` of the project. Defaults to empty array if neither is provided. |
-| `mdk-docs`    | Unified tool for accessing MDK documentation including search, component schemas, property details, and examples.  | - `operation:` The type of documentation operation to perform:<br>• `search`: Returns the top N results from MDK documentation by semantic search, sorted by relevance<br>• `component`: Returns the schema of an MDK component based on the name of the component<br>• `property`: Returns the documentation of a specific property of an MDK component<br>• `example`: Returns an example usage of an MDK component <br> - `folderRootPath:` The path of the current project root folder. Used to determine the appropriate MDK schema version. <br> - `query:` Search query string (required for 'search' operation). <br> - `component_name:` Name of the component (required for 'component', 'property', and 'example' operations). <br> - `property_name:` Name of the property (required for 'property' operation). <br> - `N:` Number of results to return for search operation (default: 5). |
+| `mdk-create`    | Creates MDK projects or entity metadata using templates (CRUD, List Detail, Base). Use this for initializing new projects or adding entity metadata to existing projects.  | - `folderRootPath:` The path of the current project root folder. <br> - `scope:` The scope of creation:<br>• `project`: Initialize a new MDK project with full structure<br>• `entity`: Add entity metadata to an existing project<br> - `templateType:` The type of template to use (crud, list detail, base). Note: `base` template is only valid for project scope.<br> - `oDataEntitySets:` The OData entity sets relevant to the user prompt, separated by commas.<br> - `offline:` Whether to generate the project in offline mode (only applicable for project scope). Set to false unless offline is explicitly specified. |
+| `mdk-gen`    | Generates MDK artifacts including pages, actions, i18n files, and rule references. Returns prompts for LLM processing (pages, actions, i18n) or searches for rule examples.  | - `artifactType:` The type of artifact to generate:<br>• `page`: Generate MDK page files (`.page`) with databinding or layout<br>• `action`: Generate MDK action files (`.action`)<br>• `i18n`: Generate internationalization files (`.properties`)<br>• `rule`: Search for and return relevant JavaScript rule examples<br> - `folderRootPath:` The path of the current project root folder (not required for rule artifact type).<br><br>**For page artifacts:**<br> - `pageType:` Type of page `page`):<br>• `databinding`: Data-driven pages with controls bound to OData<br>• `layout`: Structure-focused pages with specific layouts<br> - `controlType:` The control type for databinding pages (required when pageType is `databinding`). Available types: ObjectTable, FormCell, KeyValue, ObjectHeader, ContactTable, SimplePropertyCollection, ObjectCard, DataTable, KPIHeader, ProfileHeader, ObjectCollection, Timeline, TimelinePreview, Calendar.<br> - `oDataEntitySets:` Optional: The OData entity sets to use for page generation, separated by commas (required only when pageType is `databinding`).<br> - `layoutType:` The layout type for layout pages (required when pageType is `layout`). Available types: Section, BottomNavigation, FlexibleColumnLayout, SideDrawerNavigation, Tabs, Extension.<br><br>**For action artifacts:**<br> - `actionType:` The type of action (required when artifactType is `action`). Available types: CreateODataEntity, UpdateODataEntity, DeleteODataEntity, CreateODataMedia, InitializeOfflineOData, DownloadOfflineOData, UploadOfflineOData, CancelDownloadOfflineOData, CancelUploadOfflineOData, ClearOfflineOData, CloseOfflineOData, CreateODataRelatedEntity, CreateODataRelatedMedia, CreateODataService, DeleteODataMedia, DownloadMediaOData, LogMessage, Message, Navigation, OpenODataService, ProgressBanner, PushNotificationRegister, PushNotificationUnregister, ReadODataService, RemoveDefiningRequest, SendRequest, SetLevel, SetState, ToastMessage, UndoPendingChanges, UploadLog, UploadODataMedia, UploadStreamOData, ChatCompletion, PopoverMenu, CheckRequiredFields, ChangeSet, OpenDocument, Banner, Filter.<br> - `oDataEntitySets:` Optional: The OData entity sets to use for action generation, separated by commas (required only when artifactType is `action`).<br><br>**For i18n artifacts:**<br> - No additional parameters required beyond folderRootPath.<br><br>**For rule artifacts:**<br> - `query:` Search query for rule reference (required when artifactType is `rule`). Examples: `get app name`, `handle form validation`, `navigate to page`, etc. |
+| `mdk-manage`    | Comprehensive MDK project management tool that handles build, deploy, validate, migrate, show QR code, and mobile app editor operations.  | - `folderRootPath:` The path of the current project root folder. <br> - `operation:` The operation to perform on the MDK project. Available operations:<br>• `build`: Build an MDK project<br>• `deploy`: Deploy an MDK project to the Mobile Services<br>• `validate`: Validate an MDK project<br>• `migrate`: Migrate an MDK project to the latest MDK version<br>• `show-qrcode`: Show QR code for an MDK project<br>• `open-mobile-app-editor`: Instruct how to open the Mobile App Editor to create .service.metadata file<br> - `externals:` Optional: Array of external package names to include in the deployment (e.g., [`@nativescript/geolocation`]). If not specified, will automatically read from `mdk.bundlerExternals` in `.vscode/settings.json` of the project. Defaults to empty array if neither is provided. |
+| `mdk-docs`    | Unified tool for accessing MDK documentation including search, component schemas, property details, and examples.  | - `operation:` The type of documentation operation to perform:<br>• `search`: Returns the top N results from MDK documentation by semantic search, sorted by relevance<br>• `component`: Returns the schema of an MDK component based on the name of the component<br>• `property`: Returns the documentation of a specific property of an MDK component<br>• `example`: Returns an example usage of an MDK component<br>• `search-samples`: Search through [MDK tutorial samples](https://github.com/SAP-samples/cloud-mdk-tutorial-samples) and [code examples](https://github.com/SAP-samples/cloud-mdk-samples) from GitHub<br> - `folderRootPath:` The path of the current project root folder. Used to determine the appropriate MDK schema version. <br> - `query:` Search query string (required for `search` and `search-samples` operations). <br> - `component_name:` Name of the component (required for `component`, `property`, and `example` operations). <br> - `property_name:` Name of the property (required for `property` operation). <br> - `N:` Number of results to return for search operation (default: 5). |
+| `mdk-fetch-mobile-metadata`    | Fetches OData `$metadata` document from a Mobile Services destination and saves it as a `.service.metadata` file in the MDK project. This file is required by `mdk-create` and `mdk-gen` tools for data-bound page/action generation. Requires CF CLI authentication (cf login). | - `folderRootPath:` The path of the MDK project root folder where `.service.metadata` will be saved.<br> - `appId:` The Mobile Services application ID (e.g., `myapp.mdk.demo`).<br> - `destination:` The destination name configured in Mobile Services (e.g., `IncidentManagement`).<br> - `pathSuffix:` Optional path suffix to append before /$metadata (e.g., `/api/v1`). Leave empty if not needed.<br> - `landscapeType:` The Mobile Services landscape type. Use `Standard` for production environments (default) or `Preview` for preview environments. |
+
+## Ingesting GitHub Knowledge (Advanced)
+
+The MDK MCP server can ingest additional knowledge from GitHub repositories to enhance the `search-samples` operation. This allows the AI agent to search through MDK tutorial samples and code examples.
+
+### What Gets Ingested
+
+By default, the server ingests knowledge from:
+- **MDK Tutorial Samples**: https://github.com/SAP-samples/cloud-mdk-tutorial-samples
+- **MDK Sample and Showecase Apps**: https://github.com/SAP-samples/cloud-mdk-samples
+
+### When to Run Ingestion
+
+You typically only need to run ingestion in these scenarios:
+- **First-time setup** (if you want to use `search-samples` operation)
+- **Updating knowledge base** (when new samples are added to GitHub repositories)
+- **After cloning the repository** (ingested data is not included in the repo)
+
+> **Note:** The ingestion process is optional. The server will work without it, but the `search-samples` operation will not return results until ingestion is completed.
+
+### How to Ingest
+
+**Basic ingestion** (uses cached data if available):
+```bash
+npm run ingest
+```
+
+**Fresh ingestion** (ignores cache, re-downloads everything):
+```bash
+npm run ingest:fresh
+```
+
+**With GitHub token** (recommended for better rate limits):
+```bash
+export GITHUB_TOKEN="your_github_token_here"
+npm run ingest
+```
+
+**Custom options**:
+```bash
+npm run build
+node build/ingest-github-knowledge.js --no-cache --github-token "your_token" --chunk-size 800
+```
+
+
+### Command Line Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--no-cache` | Force re-download of all content, ignoring cache | Uses cache |
+| `--github-token <token>` | GitHub personal access token for API requests | `$GITHUB_TOKEN` env var |
+| `--vector-db <path>` | Path to store the vector database | `./knowledge.db` |
+| `--chunk-size <number>` | Size of text chunks for embedding | `1000` |
+| `--chunk-overlap <number>` | Overlap between chunks | `200` |
+
+### GitHub Token Setup
+
+To avoid GitHub API rate limits, create a personal access token:
+
+1. Go to https://github.com/settings/tokens
+2. Click **Generate new token** (classic)
+3. Select scopes: `public_repo` (read access to public repositories)
+4. Copy the token and set it as an environment variable:
+   ```bash
+   export GITHUB_TOKEN="ghp_your_token_here"
+   ```
+
+### Ingestion Output
+
+The ingestion process will:
+1. Fetch content from configured GitHub repositories
+2. Chunk the content into manageable pieces
+3. Generate embeddings using the AI model
+4. Store embeddings in a vector database
+5. Enable semantic search via the `search-samples` operation
+
+**Example output:**
+```
+Fetching from MDK Tutorial Samples...
+Chunking content: 150 chunks created
+Generating embeddings: 150/150 (100%)
+✓ Ingestion complete!
+```
+
+### Troubleshooting
+
+**Issue: GitHub API rate limit exceeded**
+- **Solution**: Set up a GitHub token (see above)
+
+**Issue: Ingestion takes too long**
+- **Solution**: Use `--no-cache` only when necessary; cached runs are much faster
+
+**Issue: Out of memory**
+- **Solution**: Reduce `--chunk-size` or process fewer repositories
+
+## Offline OData Querying (Advanced)
+
+The MDK MCP server can help you query offline OData stores using the `ilodata` command-line tool. This is useful for debugging offline applications or inspecting data stored locally on devices during development.
+
+### Prerequisites
+
+1. **MDK SDK**
+2. **ilodata Tool**: Extract from `SAPOfflineOData-xx.xx.xx-Tools.zip` in the MDK SDK
+3. **Offline Store Files**: A pair of `.udb` and `.rq.udb` files from your offline application
+
+### Setup Steps
+
+1. **Extract the ilodata tool**:
+   ```bash
+   # Download MDK SDK and locate the tools zip file
+   unzip SAPOfflineOData-*.zip -d ~/ilodata-tools
+   ```
+
+2. **Prepare your offline store files**:
+   ```bash
+   # Copy your offline store files to the ilodata folder
+   cp /path/to/your/app/*.udb ~/ilodata-tools/
+   cp /path/to/your/app/*.rq.udb ~/ilodata-tools/
+   ```
+
+### Querying Offline Stores
+
+Once set up, you can use natural language prompts with the MDK MCP server to query offline stores:
+
+#### Example Prompts:
+
+**Basic query**:
+```
+Open and query the CustomerStore offline store located at ~/ilodata-tools/CustomerStore.udb 
+and retrieve the top 5 entities from the Customers entity set
+```
+
+**Filtered query**:
+```
+Query the SalesOrders offline store at ~/ilodata-tools/SalesOrders.udb 
+and get all orders where CustomerID equals `ALFKI`
+```
+
+**Specific fields**:
+```
+Open the Products offline store at ~/ilodata-tools/Products.udb 
+and retrieve ProductID, ProductName, and UnitPrice from the Products entity set
+```
+
+**Count entities**:
+```
+Query the Employees offline store at ~/ilodata-tools/Employees.udb 
+and count the total number of records in the Employees entity set
+```
+
+### How It Works
+
+The AI agent will:
+1. Understand your natural language query
+2. Construct the appropriate `ilodata` command
+3. Execute the command against your offline store
+4. Return the results in a readable format
 
 ## Support, Feedback, Contributing
 
-This project is open to feature requests/suggestions, bug reports, and so on, via [GitHub issues](https://github.com/sap/mdk-mcp-server/issues). Contribution and feedback are encouraged and always welcome. 
+This project is open to feature requests/suggestions, bug reports, and so on, via [GitHub issues](https://github.com/sap/mdk-mcp-server/issues). Contribution and feedback are encouraged and always welcome.
+
+### Contributing
 
 These instructions help contributors set up, test, and maintain code quality for this project. All commands should be run from your project folder in a terminal.
 
@@ -189,11 +425,13 @@ For more information about how to contribute, the project structure, as well as 
 
 ## Telemetry
 
-You can enable and disable the collection of analytics. By default, non-personally identifiable information is used to help understand how you use the product to improve the MDK MCP Server. In case you want to opt-out there exist two ways to disable the telemetry.
+You can enable or disable the collection of analytics. By default, non-personally identifiable information is collected to help understand how you use the product and improve the MDK MCP Server. If you want to opt-out, there are two ways to disable telemetry:
 
-Method 1: Configuration File
-Create or change the file ~/.fioritools/telemetrysettings.json:
+### Method 1: Configuration File
 
+Create or change the file `~/.fioritools/telemetrysettings.json`:
+
+```json
 {
   "telemetrysettings": {
     "telemetrySetting": {
@@ -201,23 +439,29 @@ Create or change the file ~/.fioritools/telemetrysettings.json:
     }
   }
 }
-Set enableTelemetry to false to disable telemetry collection.
+```
 
-Method 2: Environment Variable
-Set the environment variable SAP_UX_FIORI_TOOLS_DISABLE_TELEMETRY to true:
+Set `enableTelemetry` to `false` to disable telemetry collection.
 
+### Method 2: Environment Variable
+
+Set the environment variable `SAP_UX_FIORI_TOOLS_DISABLE_TELEMETRY` to `true`:
+
+```bash
 export SAP_UX_FIORI_TOOLS_DISABLE_TELEMETRY=true
-Setting this environment variable will disable the telemetry client.
+```
+
+Setting this environment variable disables the telemetry client.
 
 ## Security / Disclosure
 
-If you find any bug that may be a security problem, please follow our instructions at [in our security policy](https://github.com/sap/mdk-mcp-server/security/policy) on how to report it. Please don't create GitHub issues for security-related doubts or problems.
+If you find a bug that may pose a security problem, please follow our instructions in our [security policy](https://github.com/sap/mdk-mcp-server/security/policy) on how to report it. Please do not create GitHub issues for security-related doubts or problems.
 
 
 
 ## Code of Conduct
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone. By participating in this project, you agree to abide by its [Code of Conduct](https://github.com/cap-js/.github/blob/main/CODE_OF_CONDUCT.md) at all times.
+As members, contributors, and leaders, we pledge to make participation in our community a harassment-free experience for everyone. By participating in this project, you agree to abide by its [Code of Conduct](https://github.com/cap-js/.github/blob/main/CODE_OF_CONDUCT.md) at all times.
 
 
 

@@ -6,6 +6,34 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.30.0] - 2026-07-23
+### Added
+- Added support for adding the "Page" building block with a full layout in custom pages
+
+### Fixed
+- Fixed an issue where some properties were not displayed in the "Add Properties" popup when adding a custom column in the Page Editor
+- Fixed an issue where a malformed flex `.change` file in OData V2 applications caused ESLint to unexpectedly terminate with the error "Cannot read properties of undefined (reading 'id')"
+- Fixed an issue where the "View Issue" link was incorrectly displayed without an accompanying message in the validation results
+- Fixed an issue in the Page Editor where new annotation changes were written to a shared, top-level `.cds` file instead of the existing app-specific annotations file in CAP projects
+- Fixed an issue where the CAP preview failed to start with an "@sap/cds loaded from different locations" error when using `@sap/cds` version 10
+- Fixed an issue in the full-page layout of the "Page" building block where the template was not updated when adding multiple aggregations for navigation actions, title content, actions, or header content
+- Fixed an issue in the Page Editor where the "Go to Code" action for the Notes section showed two empty dropdown items instead of navigating directly to the referenced facet
+
+## [1.29.0] - 2026-07-09
+### Added
+- Enhanced the Application Information page for CAP Node.js applications to support configuring and launching the Card Editor
+- Added placeholder text for empty options in dropdown menus
+
+### Changed
+- Improved tooltips and hover effects in the Page Editor
+
+### Fixed
+- Fixed an issue where options for the Card Editor were incorrectly displayed when `fiori-tools-proxy` middleware was not available
+- Fixed an issue where no warning text was visible for the "Table Type" property on macOS
+- Fixed an issue where an incorrect project type was displayed for downloaded apps using the Custom Page floorplan
+- Fixed an issue where incorrect UUID generation prevented the preview from displaying mock data
+- Fixed an issue where subsequent generated mock data was incorrect
+
 ## [1.28.0] - 2026-06-25
 ### Added
 - Added support for actions in the chart toolbar in the Page Editor

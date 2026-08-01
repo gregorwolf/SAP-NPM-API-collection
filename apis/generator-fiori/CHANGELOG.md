@@ -3,6 +3,19 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.30.0] - 2026-07-23
+### Added
+- Added the ability to choose the "Page" building block with a full layout for a custom page floorplan
+- Added support for setting the tree table type as default for hierarchy-enabled CAP applications
+
+### Fixed
+  - Fixed an issue in the headless generator where `deployConfig` was incorrectly handled when deploying LCAP or CAP projects to Cloud Foundry
+  - Fixed an issue where non-relevant systems were displayed when downloading an app from the ABAP repository
+
+## [1.29.0] - 2026-07-09
+### Added
+- Support for CDS 10
+
 ## [1.28.0] - 2026-06-25
 ### Changed
 - Replaced webpack with esbuild for improved build performance in the SAP Fiori generator

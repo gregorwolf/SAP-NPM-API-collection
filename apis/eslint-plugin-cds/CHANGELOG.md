@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [4.2.5] - 2026-07-06
+### Fixed
+- Fixed `TypeError: scopeManager.addGlobals is not a function`, preventing compatibility with ESLint 10.
+
 ## [4.2.4] - 2026-06-22
 ### Fixed
 - `auth-valid-restrict-grant` no longer crashes on JOINs with three or more tables.

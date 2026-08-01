@@ -125,6 +125,33 @@ npm run dev
 - **Upload fails**: Verify your credentials in `lxr.json` (run `npx lxr login` to re-authenticate)
 - **Report not loading**: Check browser console for JavaScript errors
 
+## Internal-only: `lxr store-upload`
+
+> ⚠️ **INTERNAL SAP LeanIX USE ONLY.** Regular customers publish reports with `vite build --mode upload` (see step 5 above). The `store-upload` command exists so LeanIX-internal reports can be published to the Extension Hub and is documented here only for internal contributors.
+
+Publishes a compiled report bundle to the Extension Hub for a given store asset id:
+
+```bash
+npx lxr store-upload <asset-id>
+```
+
+Prerequisites:
+
+- You must be authenticated (`npx lxr login` or a project-level `lxr.json` with an API token).
+- `package.json` must include a `leanixReport.id` (in addition to the fields required for regular uploads):
+
+```json
+{
+  "leanixReport": {
+    "title": "Your Report Title",
+    "id": "net.leanix.myreport",
+    "defaultConfig": {}
+  }
+}
+```
+
+The command runs `vite build` from the project root, packages `dist/` into `bundle.tgz`, and POSTs it to `https://store.leanix.net/services/torg/v1/assetversions/<asset-id>/payload`. It reuses the same credentials as the reports-service upload (OAuth or apitoken from `lxr.json`).
+
 ## Learn More
 
 - [SAP LeanIX Custom Reports](https://help.sap.com/docs/leanix/ea/custom-reports)

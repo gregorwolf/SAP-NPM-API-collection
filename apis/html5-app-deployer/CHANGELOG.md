@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
- 
+
+## 7.4.0 - 2026-07-12
+### Added
+- Node.js 24 support (NGPBUG-501383)
+
+### Removed
+- EOL Node.js 18 removed from declared `engines.node` range (Node 18 reached end-of-life on 2025-04-30)
+
+### Update Dependencies
+- deps: @sap/xsenv@6.2.1
+
 ## 7.3.0 - 2026-06-25
 ### Added
 - Support for SAP appFront (`app-front`) service binding as an alternative to `html5-apps-repo`. When an `app-front` service instance (developer plan) is bound its `content_endpoint` credential is used as the upload target and the GACD async upload path is used automatically.

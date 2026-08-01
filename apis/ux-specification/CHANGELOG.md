@@ -8,6 +8,48 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 You have [Node.js](https://nodejs.org/en/download/) version `22.13.0` or higher installed
 
+## [1.144.9] - 2026-07-23
+
+### Added
+- Added support for the Note section, which includes validation and prerequisite checks
+- Enhanced the API to support generating aggregations for the "Page" building block 
+
+### Fixed
+- Fixed the `enum` for custom column properties to use the entity type instead of the line items annotation
+- Fixed incorrect `enum` entries for table type in table views
+- Excluded the `RelatedApps` action ID from the allowed anchor list for custom header actions
+- Fixed multiple parsing issues related to the "Page" building block and its aggregations
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+| --- | --- |
+| [prettier](https://prettier.io) | [`3.8.4` -> `3.9.5`] |
+| [tar](https://github.com/isaacs/node-tar) | [`^7.5.11` -> `^7.5.20`] |
+| [eslint](https://eslint.org) | [`9.39.4` -> `9.39.5`] |
+| [@sap/ux-annotations](https://github.tools.sap/ux/annotations) | [`1.27.0` -> `1.28.0`] |
+| [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser) | [`^5.3.6` -> `^5.10.1`] |
+
+## [1.144.8] - 2026-07-09
+
+### Added
+- Added the `popinLayout` property for tables in an analytical list page
+- Added `includeAnnotationProperties` to `readApp` to include annotation properties in `TreeModel`
+- Added the service namespace to the `Application.json` schema
+
+### Fixed
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+| --- | --- |
+| [semver](https://github.com/npm/node-semver) | [`7.8.4` -> `7.8.5`] |
+| [axios](https://axios-http.com) | [`1.18.0` -> `1.18.1`] |
+
 ## [1.144.7] - 2026-06-25
 
 ### Added

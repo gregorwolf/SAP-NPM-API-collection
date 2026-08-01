@@ -15,6 +15,14 @@ CAP Node.js Applications should **not** need to make changes when updating to ve
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
 
+## 3.8.0
+
+- `IdentityServiceAuthProvider` now populates any String/String[] `$user` attributes from the AMS schema based on token claims with the same name (e.g. department -> $user.department), not just the default `$user` attributes.
+- The `IdentityServiceBundleLoader` now uses a default request timeout of 30s
+- `AuthorizationManagementService#getPolicyAssignments` is now explicitly marked as Internal/Deprecated API. To be safe from breaking changes if the bundle distribution architecture is changed, please use `IdentityServiceAuthProvider#getAuthorizations` instead to construct an `Authorizations` object for named users.
+- Added a check to reject DCN versions != 1
+- [CAP] Changed error message for when plugin configuration is missing on startup
+
 ## 3.7.0
 - [CAP] Support additional CXL operators (`NOT_LIKE`, `IS_NULL`, `IS_NOT_NULL`, `BETWEEN`, `NOT_BETWEEN`) when translating DCL operators to CXL.
 - Fix: [CAP] Fixed merging of generated CXL condition with static where conditions when static conditions have complex format (e.g. EXISTS predicates).

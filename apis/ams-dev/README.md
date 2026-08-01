@@ -15,9 +15,7 @@ For details, refer to the documentation of [@sap/ams](https://www.npmjs.com/pack
 ## DCL compilation
 This module provides a *bin* script called `compile-dcl` which compiles `.dcl` files to `.dcn` files which serve as input for running an application using AMS on the *DCL* bundle locally, e.g. for unit tests.
 
-```markdown
- **Info:** As the DCL compiler is written in Java, the script requires a Java installation.
-```
+> **Note:** The DCL compiler now runs entirely in Node.js using WebAssembly. **Java is no longer required.**
 
 If you install this module globally via npm, you can call the `compile-dcl` CLI script from any shell. If you install it locally in a project, you can run it via `npx compile-dcl` (or `npx --package=@sap/ams-dev compile-dcl` to make 100% sure you are running the `compile-dcl` script from this module).
 

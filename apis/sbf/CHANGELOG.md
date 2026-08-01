@@ -8,6 +8,19 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.11.9"></a>
+## 6.11.9 - 2026-07-30
+### Changed
+- replace uuid with crypto
+
+### Updated
+- update axios to version 1.18.1
+
+<a name="6.11.8"></a>
+## 6.11.8 - 2026-07-28
+### Added
+- Add uuid dependency for generating unique identifiers
+
 <a name="6.11.7"></a>
 ## 6.11.7 - 2026-06-28
 ### Updated
