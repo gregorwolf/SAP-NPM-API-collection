@@ -19,6 +19,7 @@ while read package; do
   cp node_modules/$package/LICENS* apis$packageNoPrefix
   cp node_modules/$package/npm-shrinkwrap.json apis$packageNoPrefix
   cp -r node_modules/$package/doc apis$packageNoPrefix/doc
+  find "apis$packageNoPrefix" -name "*.md" -exec sed -i 's|](/\([^)]*\.md\))|](\1)|g' {} +
 done <packages.txt
 #mkdocs build -f mkdocs.yml
 cp package-original.json package.json
