@@ -552,6 +552,7 @@ The `Token` class provides easier access to the most common claims of the **jwt*
 Instances of `IdentityServiceToken` additionally have
 
 - **appTid** (*string*) application tenant id
+- **azpAppTid** (*string*) or *undefined* — the application tenant id (`azp_app_tid` claim) of the application identified by the `azp` claim (authorized party). In app2app flows this is the tenant of the sender application, which can differ from `appTid` (the receiver's tenant).
 - **customIssuer** (*string*) or *null* if no custom issuer has been configured
 - **scimId** (*string*)
 - **idType** ("app"|"user") the ID type of the token principal from claim `sap_id_type`.
@@ -640,6 +641,7 @@ There are three values that are used to control the cache:
 - `refresh period` *(integer)* When a JWKS is needed for validation whose cache entry is within the refresh period (`time until expiration` < `refresh_period`), the cached JWKS will be used for validation (unless it has expired completely) and the JWKS will be refreshed asynchronously in the background.
 - `shared` *(boolean)* when true, shares the cache with all `Service` instances of the same subclass (e.g. `IdentityService`) created with `shared=true`.\
 The shared cache's configuration will be determined by the first instance created with `shared=true`!
+- `impl` *(object)* an optional custom cache implementation used as the persistent store instead of the built-in in-memory one (e.g. to share the JWKS across processes via a distributed cache). See [Custom cache implementation](#custom-cache-implementation) below. When set, `shared` is ignored because the custom cache is managed externally.
 
 Only **one HTTP request at a time** will be performed to refresh the JWKS.
 
@@ -678,6 +680,32 @@ const authService = new IdentityService(identityServiceCredentials,
 
 
 
+##### Custom cache implementation
+By default, the JWKS cache stores its entries in a built-in in-memory cache. You can alternatively provide any Node.js cache implementation with the standard `get/set` signature via the `impl` option, e.g. to share the JWKS across multiple processes or instances using a distributed cache.
+
+The custom cache only ever stores **serializable snapshots** of the shape `{ data, lastRefresh }` (plain JSON) — it never has to deal with the internal `Jwks` objects or refresh callbacks.
+
+The `get`/`set` methods may be **synchronous or asynchronous** (Promise-based) — the library awaits them either way, so you can back the cache with an asynchronous client such as a promise-based Redis client without a synchronous facade.
+
+The following configuration snippet is an example that uses the well-known [lru-cache](https://www.npmjs.com/package/lru-cache) module as a custom cache implementation:
+
+```js
+const LRUCache = require("lru-cache");
+const jwksCache = new LRUCache({ max: 100 });
+
+const authService = new IdentityService(identityServiceCredentials,
+  {
+    validation: {
+      jwks: {
+        impl: jwksCache
+      }
+    }
+  }
+);
+```
+
+
+
 ### Token Fetch Cache
 A Token FetchCache is a cache for the responses of token fetch requests. It is used by the [cached token getter methods](#cached-token-flows) (`getClientCredentialsToken`, `getJwtBearerToken`, `getPasswordToken`) to prevent unnecessary performance overhead and reduce the number of requests to the authentication server for repeated token fetches with the same parameters.
 
@@ -693,7 +721,7 @@ The token fetch cache is a **per-instance** cache that is **enabled by default**
 }
 ```
 
-To disable or customize the token fetch cache, specify the `tokenfetch.cache` property in the `Service` configuration. You can use the simple, built-in LRU cache or alternatively provide any Node.js cache implementation with the standard `get/set` signature.
+To disable or customize the token fetch cache, specify the `tokenfetch.cache` property in the `Service` configuration. You can use the simple, built-in LRU cache or alternatively provide any Node.js cache implementation with the standard `get/set` signature. The `get`/`set` methods may be synchronous or asynchronous (Promise-based); the library awaits them either way.
 
 The following configuration snippets are examples that use the built-in LRU cache:
 
@@ -755,6 +783,8 @@ Each cache entry consists of the size of the cached JWT as string plus the boole
 
 To enable this cache, you can enable the simple, built-in LRU cache or alternatively, provide any Node.js cache implementation with the standard `get/set` signature. The entries of the cache do **not** need to be timed out with a TTL for secure operation because a signature that is (in)valid now will always be (in)valid in the future. The validation result is only used when the JWKS still contains a valid key for the token's `kid`, so JWKS rotation can still be used to invalidate tokens by removing the corresponding public key.
 
+:exclamation: Unlike the JWKS/token/legacy-extension caches, the signature cache's `get`/`set` methods must be **synchronous** (they are called during the synchronous signature validation and their return value is not awaited). An asynchronous implementation is not supported here.
+
 The following configuration snippet is an example that uses the built-in LRU cache:
 
 ```js
@@ -802,6 +832,8 @@ The Token Decode Cache is a cache for the base64 decoded *header/payload* object
 Each cache entry consists of the size of the cached JWT as string plus the header/payload objects.
 
 To enable this cache, you can enable the simple, built-in LRU cache or alternatively, provide any Node.js cache implementation with the standard `get/set` signature.
+
+:exclamation: Unlike the JWKS/token/legacy-extension caches, the decode cache's `get`/`set` methods must be **synchronous** (they are called from the synchronous `Token` constructor and their return value is not awaited). An asynchronous implementation is not supported here.
 
 The following configuration snippets are examples that use the built-in LRU cache:
 
@@ -1102,10 +1134,12 @@ const identityService = new IdentityService(identityServiceCredentials, {
 ```
 
 **Custom cache implementation:**
+
+The `get`/`set` methods may be synchronous or asynchronous (Promise-based); the library awaits them either way.
 ```js
 const customCache = {
-  get: (key) => { /* your implementation */ },
-  set: (key, value) => { /* your implementation */ }
+  get: (key) => { /* your implementation, may be async */ },
+  set: (key, value) => { /* your implementation, may be async */ }
 };
 
 const identityService = new IdentityService(identityServiceCredentials, {

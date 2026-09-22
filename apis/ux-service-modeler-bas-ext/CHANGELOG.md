@@ -3,6 +3,12 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.32.0] - 2026-08-20
+- No update
+
+## [1.31.0] - 2026-08-06
+- No update
+
 ## [1.30.0] - 2026-07-23
 ### Fixed
 - Fixed an issue where the Service Manager incorrectly prompted for credentials after switching the selected system

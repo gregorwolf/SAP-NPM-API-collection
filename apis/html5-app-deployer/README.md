@@ -1,5 +1,5 @@
 @sap/html5-app-deployer
-==============
+============== 
 
 [![Build Status](https://gkehtml5appsrepo.jaas-gcp.cloud.sap.corp/buildStatus/icon?job=Dependency-Check-html5-app-deployer-voter%2Fmaster)](https://gkehtml5appsrepo.jaas-gcp.cloud.sap.corp/view/voter/job/Dependency-Check-html5-app-deployer-voter/job/master/)
 
@@ -17,6 +17,7 @@
   * [Deploying HTML5 Applications with Service Instances Binding to the HTML5 Application Deployer](#Deploying-HTML5-Applications-with-Service-Instances-Binding-to-the-HTML5-Application-Deployer)
     * [Defining a Business Solution as a Content Provider](#defining-a-business-solution-as-a-content-provider)
 - [Enable Process Exit After Upload](#enable-process-exit-after-upload)
+- [Reuse Library App-Host Support](#reuse-library-app-host-support)
 - [SAP Application Frontend Service Support](#sap-application-frontend-service-support)
 
 
@@ -138,7 +139,7 @@ For example:
    }
    ```
 
-The `@sap/html5-app-deployer` consumer application should be bound to a single html5-apps-repo service instance of the app-host service plan.
+The `@sap/html5-app-deployer` consumer application should be bound to a single html5-apps-repo service instance of the app-host service plan. When `ASYNC_UPLOAD` is enabled, multiple app-host instances can be bound — see [Reuse Library App-Host Support](#reuse-library-app-host-support) below.
 When the `@sap/html5-app-deployer` consumer application is started, the `@sap/html5-app-deployer` module creates a zip archive for each folder in the “resources” folder - if it is not zipped already - and triggers the upload of all zip archives to the HTML5 application repository via multi-part request.
 
 Note that different app-host service instances cannot be used to upload applications with the same application id/name.
@@ -344,21 +345,9 @@ spec:
 If you use the HTML5 application deployer together with an application router managed by SAP, you can bind the required service instances directly to the HTML5 application deployer application.
 These service instance bindings can refer to the following service types: XSUAA (for authentication/authorization), destination service (for backend destination configuration on instance level) and other business solutions, such as SBPA or document service. 
 
-**Important**: a precondition for this modelling to work is that the ASYNC_UPLOAD environment variable is set to true. For more details see [asynchronous upload](#asynchronous-upload).
+**Important**: a precondition for this modeling to work is that the ASYNC_UPLOAD environment variable is set to true. For more details see [asynchronous upload](#asynchronous-upload).
 
-### Additional Configuration Options for the HTML5 Application Deployer
-You can make additional configurations using environment variables for the HTML5 application deployer.
-
-- Destinations Configurations
-You can specify destinations that can be used to access backend applications using the destinations environment variable. The destination configurations are then uploaded to the SAP HTML5 Application Repository service. Note that the destination configuration should match the schema of the  application router environment destinations as described in the [Approuter documentation](https://www.npmjs.com/package/@sap/approuter#environment-destinations)
-
-- IAS_DEPENDENCY_NAME
-  To enable app-to-app navigation, you have to add the environment variable IAS_DEPENDENCY_NAME and provide the name of the dependency that has been configured for the Identity Authentication token exchange that is required for app-to-app navigation. For more information about how to configure the dependency for app-to-app navigation, see [Consume an API from Another Application](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/consume-api-from-another-application?version=Cloud).
-
-- HTML5Runtime_enabled
-  If no XSUAA binding to an SAP Authorization and Trust Management (XSUAA) service instance or dependency name for the Identity Authentication token exchange (IAS_DEPENDENCY_NAME) is provided you can use this environment variable to enable the HTML5 applications consumption from the application router managed by SAP Managed Approuter. Note that in this case, no token exchange takes place during the navigation to the HTML5 application. The login token of the application router managed by SAP will be forwarded to backend application if destination property HTML5.ForwardAuthToken is configured.
-
-See destinations configuration example (Kubernetes deployment.yaml) :
+See destinations configuration example (Kubernetes deployment.yaml):
 ```
 ---
 apiVersion: batch/v1
@@ -408,6 +397,37 @@ spec:
           secret:
             secretName: myapp-xsuaa-binding
 ```
+
+### Additional Configuration Options for the HTML5 Application Deployer
+You can make additional configurations using environment variables for the HTML5 application deployer.
+
+- Destinations Configurations
+You can specify destinations that can be used to access backend applications using the destinations environment variable. The destination configurations are then uploaded to the SAP HTML5 Application Repository service. Note that the destination configuration should match the schema of the  application router environment destinations as described in the [Approuter documentation](https://www.npmjs.com/package/@sap/approuter#environment-destinations)
+
+- IAS_DEPENDENCY_NAME
+  To enable app-to-app navigation, you have to add the environment variable IAS_DEPENDENCY_NAME and provide the name of the dependency that has been configured for the Identity Authentication token exchange that is required for app-to-app navigation. For more information about how to configure the dependency for app-to-app navigation, see [Consume an API from Another Application](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/consume-api-from-another-application?version=Cloud).
+
+- HTML5Runtime_enabled
+  If no XSUAA binding to an SAP Authorization and Trust Management (XSUAA) service instance or dependency name for the Identity Authentication token exchange (IAS_DEPENDENCY_NAME) is provided you can use this environment variable to enable the HTML5 applications consumption from the application router managed by SAP Managed Approuter. Note that in this case, no token exchange takes place during the navigation to the HTML5 application. The login token of the application router managed by SAP will be forwarded to backend application if destination property HTML5.ForwardAuthToken is configured.
+
+## Reuse Library App-Host Support
+
+When deploying an HTML5 application that depends on reuse libraries deployed to **other** app-host service instances, you need to bind those app-host instances to your deployer module. This allows the HTML5 Application Repository to resolve cross-app-host dependencies at runtime.
+
+You can bind **one or more** reuse-library app-host service instances alongside your own. To do this:
+
+1. Set `ASYNC_UPLOAD=true`.
+2. Bind all required reuse-library app-host service instances to the deployer, in addition to your own app-host instance.
+3. Set `CONTENT_TARGET` to the name of your own app-host — this tells the deployer which instance to deploy content to. All other bound app-host instances are automatically picked up as dependencies.
+
+> **Note**: `CONTENT_TARGET` requires `ASYNC_UPLOAD=true`. The value must match the name of one of the bound app-host instances.
+
+### Important Constraints
+
+- **Shared `sap.cloud.service`**: All applications — both your own and those from reuse app-hosts — must share the same `sap.cloud.service` value in their `manifest.json`.
+
+- **Shared XSUAA**: Service bindings from the reuse app-host are **not** respected at runtime. Only services bound to the **target** app-host (identified by `CONTENT_TARGET`) are used. This means that if a reuse application's `xs-app.json` defines routes with scope protection, the `xsappname` in those scopes must belong to the target app-host's XSUAA instance. In practice, all app-hosts must share the same XSUAA instance — a reuse app-host cannot provide its own.
+
 #### Defining a Business Solution as a Content Provider
 The HTML5 application deployer can be used to deploy HTML5 applications that belong to a specific business solution. 
 To enable integration of this business solution into SAP Build Work Zone, standard edition or SAP Build Work Zone, advanced edition you can also define the business solution as a content provider by providing a cdm.json file. This file contains the common data model (CDM) definition for this business solution.

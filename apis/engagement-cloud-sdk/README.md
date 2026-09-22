@@ -4,9 +4,9 @@
 
 > __`Important!`__
 >
-> The SAP Engagement Cloud SDK is currently available in a pilot release for a select group of clients. If you wish to participate, please reach out to your client success manager.
+> The SAP Engagement Cloud SDK is currently available as part of an Early Adopter Care program for a select group of clients. See [Joining the Early Adopter Care Program](https://emartech.github.io/engagement-cloud-sdk/docs/integration/onboarding) for next steps.
 >
-> Implementation should only begin after receiving confirmation of your pilot status from SAP.
+> Implementation should only begin after receiving confirmation of your Early Adopter status from SAP.
 
 ## About this project
 

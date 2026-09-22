@@ -3,6 +3,16 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.32.0] - 2026-08-20
+### Added
+- Added versioning to OPA5 project templates based on the best practices for the project's SAPUI5 version
+
+## [1.31.0] - 2026-08-06
+### Fixed
+- Fixed an issue where migrated projects incorrectly referenced the non-existing `@sap-ux/specification` and `@sap-ux/ui5-tooling` dependencies instead of `@sap/ux-specification` and `@sap/ux-ui5-tooling`
+- Fixed an issue where `fiori deploy` with the `--scp` flag emitted `--cloud 'true'` (string) instead of `--cloud` (boolean flag), causing Commander to throw a "too many arguments" error
+- Fixed an issue where OPA tests were generated with incorrect content based on the UI5 version of the project
+
 ## [1.30.0] - 2026-07-23
 ### Added
 - Added the ability to choose the "Page" building block with a full layout for a custom page floorplan

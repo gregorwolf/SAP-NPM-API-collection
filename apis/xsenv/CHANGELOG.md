@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.2.2 - 2026-08-11
+
+### Updated
+- Updated `filter-node-package` dependency to 6.2.2
+- Updated `mocha` dependency to 11.8.0
+- Updated `diff` dependency to 9
+
 ## 6.2.1 - 2026-05-13
 
 ### Updated

@@ -15,6 +15,10 @@ CAP Node.js Applications should **not** need to make changes when updating to ve
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
 
+## 3.9.0
+
+- Added support for SAP "act-as" support users: `IdentityServiceAuthProvider` now builds `Authorizations` with a preference for claims from the `sap_support_act_as` claim structure over top-level claims.
+
 ## 3.8.0
 
 - `IdentityServiceAuthProvider` now populates any String/String[] `$user` attributes from the AMS schema based on token claims with the same name (e.g. department -> $user.department), not just the default `$user` attributes.

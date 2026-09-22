@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 7.5.0 - 2026-08-16
+### Added
+- Support dependent app-host instances
+
+### Update Dependencies
+- deps: @sap/xssec@4.13.3
+- deps: axios@1.18.0 (security — fixes GHSA-xj6q-8x83-jv6g prototype pollution in Basic auth subfields)
+- deps: form-data@4.0.6 (security)
+- deps: fast-uri override ^3.1.5 (security, with npm override to fix host confusion CVEs in transitive dependency chain)
+- Remove uuid dependency, replaced with Node.js built-in crypto.randomUUID()
+
 ## 7.4.0 - 2026-07-12
 ### Added
 - Node.js 24 support (NGPBUG-501383)

@@ -1,12 +1,12 @@
 {
   "name": "@sap/hana-client",
-  "version": "2.29.25",
+  "version": "2.29.27",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@sap/hana-client",
-      "version": "2.29.25",
+      "version": "2.29.27",
       "hasInstallScript": true,
       "license": "SEE LICENSE IN developer-license-3_2.txt",
       "dependencies": {

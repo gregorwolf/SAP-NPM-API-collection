@@ -8,6 +8,13 @@ For the latest updates please see SAP Note 3744083 - SAP HANA Client 2.29 Releas
 
 https://me.sap.com/notes/3744083
 
+## Version 2.29.27
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 363034: An ABAP application internally using Input Table Parameter may have failed to re-route against an ECN.
+ - Issue Number 362319: An ABAP application using input table parameters may have encountered an unexpected -10914 error.
+
 ## Version 2.29.25
 
 ### Underlying SQLDBC changes:

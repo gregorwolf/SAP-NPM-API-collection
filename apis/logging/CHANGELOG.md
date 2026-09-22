@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.2.2 - 2026-08-12
+- updated `filter-node-package` dependency to 6.2.2
+- updated `@sap/e2e-trace` dependency to 6.2.2
+- updated `@babel/eslint-parser` to 7.29.7
+- updated `sinon` to 22.1.0
+- updated `mocha` to 11.8.0
+- updated `node-style` to 2.1.0
+- updated `got` to 15.1.0
+- pinned devDependencies
+- added overrides for mocha's `serialize-javascript` and `diff` transitive dependencies
+
 ## 9.2.1 - 2026-04-22
 - update `lodash` dependency to 4.18.1
 

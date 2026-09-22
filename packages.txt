@@ -91,6 +91,8 @@
 @sap/iq-client
 @sap/jobs-client
 @sap/joule-studio-cli
+@sap/joule-studio-cli-core
+@sap/joule-work-dev-cli-early-adopters
 @sap/logger-for-bas-extensions
 @sap/logging
 @sap/low-code-event-handler

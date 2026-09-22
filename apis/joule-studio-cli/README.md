@@ -1,13 +1,14 @@
 # Joule Studio Command Line Interface
 
-The Joule Studio Command Line Interface can be used to interact with the Joule assistant and provides capabilities to
+The Joule Studio Command Line Interface can be used to interact with the Joule assistant and provides capabilities to:
 
 -   Compile the designtime artifact into a runtime artifact
 -   Deploy a digital assistant via its runtime artifact
+-   Test deployed Joule assistant
 -   Get a list of all deployed digital assistants
 -   Delete deployed digital assistants
 -   Launch deployed digital assistants
--   Run static lint checks
+-   Run static lint checks and convert YAML test scenarios into `.feature` files
 
 ## Installation
 
@@ -15,7 +16,7 @@ You can install Joule Studio Command Line Interface globally using npm.
 
 ### Requirements
 
-- Node.js v20.12.0 – v24
+- Node.js v22 – v24
 - For Linux: libsecret or a compatible keyring (for secure credential storage)
 
 ### Install
@@ -38,6 +39,7 @@ You can install Joule Studio Command Line Interface globally using npm.
 
 | Command                             | Description                                     |
 | ----------------------------------- |-------------------------------------------------|
+| `joule login`                       | Log in to the CLI                               |
 | `joule compile <source> <target>`   | Compile a DTA folder into an RTA artifact       |
 | `joule deploy <assistant>`          | Deploy a digital assistant to Joule             |
 | `joule list`                        | List all deployed assistants                    |
@@ -90,11 +92,11 @@ To connect to a custom API URL, use:
 
 ## Documentation
 
-Full product documentation is available at: [SAP Help Portal – Joule Studio Tools](https://help.sap.com/docs/joule/joule-editor-user-guide/)
+Full product documentation is available at: [SAP Help Portal – Joule Studio Tools](https://help.sap.com/docs/joule/joule-development-guide-ba88d1ec6a1b442098863d577c19b0c0/joule-development?version=LATEST&locale=en-US)
 
 ## License
 
 Copyright © SAP SE
 
 
-This project is licensed under the [SAP Developer License](LICENSE)
+This project is licensed under the [SAP Developer License](https://tools.hana.ondemand.com/developer-license-3_2.txt)

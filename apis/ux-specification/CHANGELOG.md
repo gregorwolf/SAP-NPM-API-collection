@@ -8,6 +8,52 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 You have [Node.js](https://nodejs.org/en/download/) version `22.13.0` or higher installed
 
+## [1.144.11] - 2026-08-20
+
+### Added
+
+### Fixed
+- DataFieldForAction-based toolbar actions and their manifest entries are now correctly removed when converted to inline actions
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+|---|---|
+| [esbuild](https://esbuild.github.io/) | [`0.28.1` -> `0.28.2`] |
+| [@sap-ux/annotation-converter](https://github.com/SAP/open-ux-tools) | [`0.10.21` -> `0.10.22`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) | [`1.3.13` -> `1.3.14`] |
+| [axios](https://github.com/axios/axios) | [`1.18.1` -> `1.19.0`] |
+| [typescript-json-schema](https://github.com/YousefED/typescript-json-schema) | [`0.67.2` -> `0.68.0`] |
+| [@sap-ux/vocabularies-types](https://github.com/SAP/open-ux-tools) | [`0.15.0` -> `0.16.0`] |
+| [@sap-ux/project-access](https://github.com/SAP/open-ux-tools) | [`2.1.9` -> `2.1.11`] |
+
+## [1.144.10] - 2026-08-06
+
+### Added
+- Added support for the `aiNotice` property to table columns, which displays an AI icon and customizable text or fragment, to show that the column contains AI-generated content
+- Added support for the `aiNotice` property in the header of  an object page, which displays an AI icon and customizable text or fragment, to show that the page contains AI-generated content
+
+### Fixed
+- A warning is now displayed on `DataFieldForActionGroup` nodes that are missing an `ID` property, which prevents malformed `"DataFieldForActionGroup::undefined"` keys in the `manifest.json` file
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+|---|---|
+| [@ui5/manifest](https://www.npmjs.com/package/@ui5/manifest) | [1.60.0 -> 1.88.0] |
+| [typescript-json-schema](https://github.com/YousefED/typescript-json-schema) | [0.67.1 -> 0.67.2] |
+| [tar](https://github.com/isaacs/node-tar) | [7.5.21 -> 7.5.22] |
+| [minimatch](https://github.com/isaacs/minimatch) | [10.2.5 -> 10.2.6] |
+| [@sap/ux-annotations](https://www.npmjs.com/package/@sap/ux-annotations) | [1.28.0 -> 1.30.0] |
+| [ts-jest](https://kulshekhar.github.io/ts-jest/) | [29.4.11 -> 29.4.12] |
+| [prettier](https://prettier.io) | [3.9.5 -> 3.9.6] |
+| [@sap-ux/project-access](https://github.com/SAP/open-ux-tools) | [2.1.4 -> 2.1.9] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) | [1.3.9 -> 1.3.13] |
+
 ## [1.144.9] - 2026-07-23
 
 ### Added

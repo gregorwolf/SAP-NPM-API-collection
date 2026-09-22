@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.16.0] - 2026-07-16
+
+### Enhanced
+- The `config` command shows server version (if available)
+
+### Updated Dependencies
+- deps: archiver@8.0.0
+- deps: open@11.0.0
+- deps: yaml@2.9.0
+
+### Changed
+- The `ai-analyze` command is now hidden (removed from documentation and help)
+
 ## [1.15.4] - 2026-04-14
 
 ### Added
@@ -20,22 +33,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Enhanced
 - The `push` command retries to call upload/deploy GACD APIs in case of network errors.
 
-
 ## [1.15.1] - 2026-01-15
 
 ### Fixed
 - Implemented a persistent beta acceptance mechanism (per user profile) for the `ai-analyze` command, replacing the previous static warning with an interactive prompt. 
 
-
-### Updated Dependencies
-- deps: yaml@2.8.2
-
-
 ## [1.15.0] - 2025-12-07
 
 ### Added
 - Support of `ai-analyze` command 
-
 
 ### Updated Dependencies
 - deps: yaml@2.8.2

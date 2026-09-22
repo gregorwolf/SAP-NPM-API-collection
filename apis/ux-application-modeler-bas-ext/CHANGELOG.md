@@ -6,6 +6,27 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.32.0] - 2026-08-20
+### Fixed
+- Fixed an issue in the Page Editor where the error "Creation of node with type filterField not supported in parent node (type filterFields)" was incorrectly displayed when adding a new custom filter field after all properties had been used
+- Fixed an issue where a duplicate "Custom Action" entry remained in the "Actions" section after dragging an annotation-based action into the "Columns" section or an action group
+- Fixed an issue in the Page Map where warning indicators on page tiles were not cleared after page-level manifest warnings had been fixed externally, for example using `eslint --fix` or `npm run lint:manifest:fix`
+- Fixed an issue where the Page Editor displayed a blank screen after clicking a quick fix link
+- Fixed an issue where annotation features were disabled when an "External ID" was defined in the local annotation file for value help
+
+## [1.31.0] - 2026-08-06
+### Added
+- Added support for configuring the AI notice at the page level to indicate to end users that a page contains AI-generated content
+- Added support for configuring the AI notice in column headers to indicate to end users that a column contains AI-generated content
+
+### Changed
+- Improved the consistency of terminology for the Card Generator by removing references to the Card Editor
+
+### Fixed
+- Fixed an issue where ESLint warnings for annotations were not shown on the "Application Info" page and the Page Map
+- Fixed an issue in the Page Editor where the "Aggregation on Leaf Level" property was missing when the table type was set to "Analytical"
+- Fixed an issue in the Page Editor where the action group ID was not resolved when it was referenced by the position anchor of another action
+
 ## [1.30.0] - 2026-07-23
 ### Added
 - Added support for adding the "Page" building block with a full layout in custom pages

@@ -1,15 +1,62 @@
-# Change Log
+# Change Log 
 All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
-## 22.0.3 -2026-06-28
+
+## 23.0.0 - 2026-07-28
+
+### Added
+- OAuth state parameter (CSRF protection) and PKCE are now enabled by default without requiring `STATE_PARAMETER_SECRET` to be set
+- Session memory consumption optimization
+
+### Fixed
+- Strip `proxy-authorization`, `sap-connectivity-authentication`, `sap-connectivity-scc-location_id` headers from outgoing backend requests
+- Fix inverted OU predicate in SMS subscription certificate validation
+- WebSocket proxy: add backpressure control to prevent unbounded memory growth when the backend is slow
+- Fix unhandled promise rejection in memstore when Redis store fails during session retrieval
+- HMAC signature on `x-approuter-ext-session-id` is now verified before loading the external session
+- Reject multi-encoded and Unicode-lookalike path traversal bypasses.
+- Restore `login_hint` parameter for XSUAA identity provider hint in XSA environments
+
+### Updated Dependencies
+- deps: body-parser@2.3.0
+- deps: axios@1.18.0
+
+## 22.0.5 - 2026-07-19
+
+### Fixed
+- Destination token URL resolution
+- tokenInfo.exp field name
+- Business service token cache expiry — use remaining lifetime
+- Handling of destination empty `authTokens` array response
+- oauthOptions in-place mutation
+- req.app.tenantInfo merging
+- Handle isAuthorized as a promise in WebSocket connections
+- authorization-middleware unhandled rejection in checkAuthorization
+
+## 22.0.4 - 2026-07-12
+
+### Fixed
+- Return 404 immediately when consumer subaccount is not found during client credentials token exchange
+- Back-channel logout endpoint body handling
+- Disabled legacy subscriber provisioning handling
+- Hardened OAuth2 error handling
+- Fix user-api endpoints failing under HTTP/2
+- x-approuter-access-token input validation
+
+### Updated Dependencies
+- deps: express-session@1.19.0
+- deps: ws@7.5.11
+
+## 22.0.3 - 2026-06-18
 
 ### Fixed
 - Fix passport strategy race condition
 - Fix async callback error swallowing in `getAuthenticator`
+- Fix wrong-tenant token caching in IAS deployments when SWR background refresh is triggered
 
 ## 22.0.2 - 2026-06-14
 

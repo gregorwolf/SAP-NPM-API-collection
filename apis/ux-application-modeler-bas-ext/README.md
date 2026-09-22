@@ -1,8 +1,8 @@
 # Application Modeler
 
-The application modeler extension allows you to visualize and change the page routing of SAP Fiori elements applications (Page Map), and to configure individual pages using `manifest.json` file settings, annotation properties, and UI flexibility changes (Page Editor).
+The application modeler extension allows you to visualize and change the page routing of SAP Fiori elements applications (Page Map), and to configure individual pages using `manifest.json` file settings, annotation properties, and UI flexibility changes (Page Editor). The Page Editor also supports adding and maintaining properties of [SAP Fiori elements building blocks](https://ui5.sap.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/buildingBlockOverview) for OData V4-based applications.
 
-Starting as of version 1.10.1, the Page Editor supports adding and maintaining properties of [SAP Fiori elements building blocks](https://ui5.sap.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/buildingBlockOverview) for OData V4-based applications. This feature is experimental and is subject to changes and enhancements based on customer feedback.
+When installed on VS Code, the extension additionally provides the MCP server for SAP Fiori, which can be used directly by the GitHub Copilot AI assistant. When using SAP Business Application Studio with a Full-Stack or SAP Fiori dev space, the MCP server is available automatically.
 
 ## Migration
 
@@ -81,9 +81,7 @@ As of version 1.4.1 of the application modeler and [`@sap/ux-specification`](htt
 
 #### Building Block Support
 
-As of version 1.10.1 of the application modeler and [`@sap/ux-specification`](https://www.npmjs.com/package/@sap/ux-specification) version 1.108.8, 1.96.41 or higher, the Page Editor supports adding and maintaining the properties of [SAP Fiori elements building blocks](https://ui5.sap.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/buildingBlockOverview) for OData V4-based applications. Building blocks within a custom page or custom section can be shown in the outline and their properties can be modified in the property panel. The building blocks for the chart, filter bar, and table can be created from the outline using a link to the corresponding feature guides in the Guided Development tool.
-
-This feature is experimental and subject to changes and enhancements based on customer feedback.
+As of version 1.10.1 of the application modeler and [`@sap/ux-specification`](https://www.npmjs.com/package/@sap/ux-specification) version 1.108.8, 1.96.41 or higher, the Page Editor supports adding and maintaining the properties of [SAP Fiori elements building blocks](https://ui5.sap.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/buildingBlockOverview) for OData V4-based applications. Building blocks within a custom page or custom section can be shown in the outline and their properties can be modified in the property panel.
 
 #### Supported Templates of SAP Fiori Elements
 

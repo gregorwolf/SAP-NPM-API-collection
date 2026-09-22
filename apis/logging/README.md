@@ -134,7 +134,7 @@ assuming the _HOME_ environment variable is set to the root of the application (
 
 - [ListLog](http://help.sap.com/saphelp_nw73ehp1/helpdata/en/53/82dae7c2f5439a8afd1b0ee95c2e45/content.htm) format is used for logs in XS Advanced and during local development
 - [Trace](http://help.sap.com/saphelp_nw74/helpdata/en/48/4f3966e39472d2e10000000a42189c/content.htm) format is used for traces in XS Advanced and during local development
-- [CF Log](https://github.com/SAP/cf-java-logging-support/blob/master/cf-java-logging-support-core/beats/request-metrics/docs/fields.asciidoc) format is used for logs and traces in Cloud Foundry
+- [CF Log](https://github.com/SAP/cf-java-logging-support/blob/main/cf-java-logging-support-core/src/main/java/com/sap/hcp/cf/logging/common/Fields.java) format is used for logs and traces in Cloud Foundry
 
 **Note**: Instead of thread-name (in ListLog and Trace formats), a context id is used. This is an identifier that helps to distinguish which entries are logged/traced because of which requests/events.
 More info on that is available in [this section](#log-context-id).

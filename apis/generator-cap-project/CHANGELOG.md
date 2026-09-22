@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
 
+## [2.1.4] - 2026-08-10
+### Changed
+- this generator is now based on `yeoman-generator@8`
+
 ## [2.1.3] - 2026-07-09
 ### Added
 - bundle dependencies into the npm tarball via `bundledDependencies`.

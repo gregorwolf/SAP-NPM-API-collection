@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="3.0.5"></a>
+## 3.0.5 - 2026-09-11
+
+### Updated
+- update @sap/audit-logging version to 7.0.2
+- update @sap/e2e-trace version to 6.2.2
+- update @sap/hana-client version to 2.29.27
+- update @sap/logging version to 9.2.2
+- update @sap/textbundle version to 6.3.0
+- update @sap/xsenv version to 6.2.2
+- update @sap/xsodata version to 8.4.1
+- update @sap/xss-secure version to 6.2.1
+- update nodemailer version to 10.0.3
+- update sax version to 1.6.1
+- Fixed socket timeouts and process crashes that occurred when retrieving jobs with a large number of schedules.
+
 <a name="3.0.4"></a>
 ## 3.0.4 - 2026-07-17
 

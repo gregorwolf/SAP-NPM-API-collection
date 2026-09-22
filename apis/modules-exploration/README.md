@@ -1,4 +1,3 @@
-
 # @sap/modules-exploration
 
 This is an npm package which provides the ability to explore the available modules/generators installed in a specific predefined folder at runtime.
@@ -38,7 +37,6 @@ The modules.json for service-provider should include the following parameters:
   ]
 }
 ```
-
 
 # API
 

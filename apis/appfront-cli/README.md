@@ -55,27 +55,6 @@ Arguments:
   VERSION      Name of the application version
 ```
 
-#### ai-analyze
-
-<details><summary>History</summary>
-
-| Version  | Changes                                                  |
-|----------|----------------------------------------------------------|
-| `v1.15.0` | Added                                                    |
-
-</details>
-
-```
-Analyze application version logs with AI
-
-Usage:
-  afctl ai-analyze APPLICATION [VERSION]
-
-Arguments:
-  APPLICATION  Name of the deployed application
-  VERSION      Name of the application version
-```
-
 #### config
 
 <details><summary>History</summary>
@@ -514,6 +493,236 @@ In this case `apps.zip` will be saved to current working directory.
 
 #### AFCTL_TRACE
 The path to the file, which will contain the traces of executed command.
+
+## Extensibility
+
+The Application Frontend Command Line Interface (appfront-cli) functionality can be extended through plugins.
+Each plugin is a globally installed NPM package with an `appfront-cli-plugin` keyword in its `package.json`. Its main file must export a `commands` array of objects implementing the [command interface](#command-interface).
+Plugins may be added or removed from appfront-cli with [`install`](#install) and [`uninstall`](#uninstall) commands respectively.
+The list of currently installed plugins can be viewed with the [`config`](#config) command.
+
+### Why Use a Plugin?
+
+Plugins have several advantages over standalone command-line tools:
+- plugins focus on business logic, while common CLI capabilities (prompting the user, parsing input, formatting output, logging, configuration management) are handled by appfront-cli
+- plugins are context-aware and can easily call Application Frontend service design-time APIs with API server URL and access token obtained from appfront-cli configuration
+- plugins may extend built-in commands by running some business logic before, after or even instead of original commands
+
+### Plugin Boilerplate
+
+#### Package Structure
+
+```
+my-plugin
+├─ lib
+│  ├─ cmd0.js
+│  ├─ cmd1.js
+├─ index.js
+└─ package.json
+```
+
+<details><summary>index.js</summary>
+
+```js
+import * as cmd0 from './lib/cmd0.js';
+import * as cmd1 from './lib/cmd1.js';
+
+export const commands = [ cmd0, cmd1 ];
+```
+
+</details>
+
+<details><summary>package.json</summary>
+
+```json
+{
+  "type": "module",
+  "name": "my-plugin",
+  "keywords": ["appfront-cli-plugin"],
+  "main": "index.js"
+}
+```
+
+</details>
+
+### Command Interface
+
+To implement the Command Interface, a command object should have at least the following functions:
+- `getMetadata()` - returns a JavaScript object that describes the command and its arguments
+- `run(ctx)` - returns a `Promise` that resolves with a result printed to `stdout` on success, or rejects with an `Error` on failure
+
+### Context Interface
+
+The `run(ctx)` function receives a context object as its argument, which includes useful information and utilities available to the plugin.
+
+```js
+ctx = {
+  args: {}, // parsed command line arguments
+  cli: {}, // information about CLI tool itself
+  config: {}, // CLI configuration
+  console: {}, // logger that respects log level and color preferences
+  env: {}, // environment variables
+  fetch: async (url, opts) => {}, // pre-configured network client with native `fetch` interface
+  prompt: async (opts) => '', // function to request user input
+};
+```
+
+> **Note:** `ctx` may include additional properties not listed above.
+> Their presence is not guaranteed and may change between versions.
+
+#### Add New Command
+
+<details><summary><code>getMetadata()</code></summary>
+
+```js
+export const getMetadata = () => {
+  return {
+    name: 'my-plugin-name',
+    desc: 'Description of my-plugin-name',
+    usage: 'afctl my-plugin-name --key KEY_VALUE [--force] [FILE_PATH, ...]',
+    options: {
+      key: {
+        keys: ['--key'], // should have at least one item for named arguments
+        type: 'string', // may be 'string' or 'boolean'
+        mandatory: true, // used by arguments parser
+        multiple: false, // used by arguments parser; if true, even empty or single value will be converted to array
+        helpLiteral: 'KEY_VALUE', // used to display command help, omit it if type of argument is 'boolean'
+        helpText: 'Description of how argument is used by command', // used to display command help
+        index: 0 // impacts order in which argument appears in command help
+      },
+      force: {
+        keys: ['--force', '-f'], // every key must start with '--' or '-'
+        type: 'boolean',
+        mandatory: false,
+        multiple: false,
+        helpText: 'Force command execution',
+        index: 1
+      },
+      files: {
+        keys: [], // empty array for positional arguments
+        type: 'string',
+        mandatory: false,
+        multiple: true,
+        helpLiteral: 'FILE_PATH',
+        helpText: 'Path to file',
+        index: 2
+      }
+    }
+  };
+};
+```
+
+</details>
+
+<details><summary><code>run(ctx)</code></summary>
+
+```js
+export const run = async (ctx) => {
+  // ctx.cli
+  const [majorVersion, minorVersion] = (ctx?.cli?.version ?? '0.0.0').split('.').map(v => parseInt(v, 10));
+  if (majorVersion !== 1 || minorVersion < 16) {
+    throw new Error('version not supported'); // <- exit with code=1 and print error message
+  }
+  // ctx.env (AFCTL_MY_PLUGIN_NAME)
+  if (ctx.env.MY_PLUGIN_NAME) {
+    return 'hello'; // <- exit with code=0 and print message
+  }
+  // ctx.config
+  const activeProfile = ctx.config.profiles[ctx.config.active_profile];
+  const serverUrl = activeProfile.server_url;
+  const token = activeProfile.token?.access_token;
+  // ctx.console
+  ctx.console.debug(`You are connected to ${serverUrl}`);
+  // ctx.args
+  if (ctx.args.force === true) {
+    return ['force', 'hello']; // <- multiple values are printed on separate lines
+  } else {
+    // ctx.prompt
+    const consent = await ctx.prompt({
+      type: 'input', // use 'password' for sensitive data
+      message: 'Are you sure y/n',
+      default: 'y'
+    });
+    if (consent === 'y') {
+      // returning objects allows structured JSON and YAML output (using `--output` global flag),
+      // implementing toString() allows to customize raw output
+      return {
+        key: 'value',
+        toString() { 
+          return '[key = value]'
+        }
+      };
+    }
+  }
+  // ctx.fetch
+  const res = await ctx.fetch(`${serverUrl}/v1/applications`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  if (res.ok) {
+    return {
+      'my-key': 42,
+      apps: await res.json()
+    }
+  }
+  // returning value is optional
+};
+```
+
+</details>
+
+#### Extend Built-in Command
+
+<details><summary><code>getMetadata(originalGetMetadata)</code></summary>
+
+```js
+export const getMetadata = (originalGetMetadata) => {
+  if (typeof originalGetMetadata === 'function') {
+    const metadata = originalGetMetadata();
+    const index = Object.values(metadata.options)
+      .reduce((acc, cur) => Math.max(cur?.index ?? 0, acc), 0) + 1;
+    metadata.options.force = {
+      keys: ['--force', '-f'],
+      type: 'boolean',
+      mandatory: false,
+      multiple: false,
+      helpText: 'Force push to productive environment',
+      index
+    };
+    return metadata;
+  }
+  return { name: 'push' };
+};
+```
+
+</details>
+
+<details><summary><code>run(ctx, originalRun)</code></summary>
+
+```js
+export const run = async (ctx, originalRun) => {
+  const profile = ctx.config.profiles[ctx.config.active_profile];
+  if (profile.apptid === ctx.env.PROD_ACCOUNT) {
+    const consent = 
+      ctx.args.force 
+      || (await ctx.prompt({
+        type: 'input',
+        message: 'Are you sure you want to deploy to productive account y/n',
+        default: 'n'
+      }) === 'y');
+    if (consent) {
+      ctx.console.debug('Pushing to productive account');
+      return originalRun();
+    }
+    return 'Nothing pushed';
+  }
+  ctx.console.debug('Pushing to non-productive account');
+  return originalRun();
+};
+```
+
+</details>
 
 ## Troubleshooting
 

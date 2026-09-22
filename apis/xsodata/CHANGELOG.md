@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 
+## [8.4.1] - 2026-08-26
+
+* FOSS related security updates
+
 ## [8.4.0] - 2026-06-11
 
 * Revert change of sap xml namespace from "https" to "http"

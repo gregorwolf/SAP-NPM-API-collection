@@ -21,22 +21,84 @@ greeting = Hello {0}, you are {1} years old.
 greeting = Hallo {0}, Sie sind {1} Jahre alt.
 ```
 
-## Single quote inconsistency
-When there is a single quote in a resource, then several cases must be kept in mind:
-- whether there is one or more placeholders in the resources
-- whether the textbundle user is passing an array for the placeholders to `getText`
+## Single Quotes (Apostrophes) in Messages
 
-The result is summarized in the following table, where `N/A` means that no parameters were provided (not even an empty array of parameters):
+### Natural Apostrophes Now Work (Fixed in v6.3.0)
 
-| Resource (example) | Parameters          | `getText()` result      | Counter intuitive |
-|--------------------|---------------------|-------------------------|:-----------------:|
-| `It's me`          | N/A                 | `It's me`               |                   |
-| `It's me`          | `[]`                | `Its me`                |        :x:        |
-| `It's {0}`         | N/A                 | `It's {0}`              |                   |
-| `It's {0}`         | `[]` or `['Bryan']` | `Its {0}`               |      :x: :x:      |
-| `It''s really {0}` | N/A                 | `It''s really {0}`      |        :x:        |
-| `It''s really {0}` | `[]`                | `It's really undefined` |                   |
-| `It''s really {0}` | `['Bryan']`         | `It's really Bryan`     |                   |
+> **Background:** `getText(key)` (no second argument) returns the raw property value without any placeholder processing, so apostrophes were never affected. The bug only occurred when `getText(key, params)` was called \u2014 even with an empty array `[]` \u2014 because that triggers `formatMessage`, which previously treated lone `'` as an escape opener.
+
+Starting with version 6.3.0, natural apostrophes in contractions work correctly with placeholders:
+
+```js
+// This now works as expected:
+bundle.getText("Don't use {0}", ['X']);        // "Don't use X"
+bundle.getText("It's working: {0}", ['X']);    // "It's working: X"
+bundle.getText("This {0} isn't a test for {1}", ['one', 'two']); 
+// "This one isn't a test for two"
+```
+
+**How it works:** Single quotes are now treated as literal apostrophes unless they immediately precede a MessageFormat special character (`{`, `}`, or `'`). This matches natural language usage while maintaining MessageFormat escaping capability.
+
+> **Note on Java MessageFormat compatibility:** This behavior intentionally differs from strict `java.util.MessageFormat`, which treats *all* single quotes as escape starters. Our approach prioritizes natural language usability while maintaining escaping capability when needed.
+
+### MessageFormat Escaping
+
+To use MessageFormat special characters literally, prefix them with a single quote:
+
+```js
+// Escape curly braces to display them literally:
+bundle.getText("Use '{'braces'}' in {0}", ['text']);
+// "Use {braces} in text"
+
+// Show a literal placeholder:
+bundle.getText("Type '{0}' to use {0}", ['value']);
+// "Type {0} to use value"
+```
+
+### Doubled Apostrophes
+
+Anywhere in a message, writing two consecutive single quotes `''` produces a single literal apostrophe. This works whether or not the message has placeholders:
+
+```js
+bundle.getText("It''s escaped: {0}", ['X']);   // "It's escaped: X"
+bundle.getText("Don''t worry, it''s {0}", ['fine']); // "Don't worry, it's fine"
+```
+
+> **Note:** Since natural apostrophes (contractions like `don't`) now work directly, you only need `''` in the rare case where you want a literal apostrophe immediately before or after a MessageFormat special character.
+
+### Behavior Summary
+
+| Resource Pattern | Parameters | Result | Notes |
+|-----------------|------------|---------|-------|
+| `Don't use {0}` | `['X']` | `Don't use X` | ✅ Natural apostrophe works |
+| `It's {0}` | `['value']` | `It's value` | ✅ Apostrophe preserved |
+| `It''s {0}` | `['X']` | `It's X` | Doubled apostrophe → single |
+| `Use '{'braces'}' in {0}` | `['text']` | `Use {braces} in text` | Quote escapes braces |
+| `No placeholders` | `[]` | `It's working` | ✅ Apostrophes always preserved |
+
+### Migration from Previous Versions
+
+**If you previously wrote property files like this:**
+```properties
+# Old workaround (avoiding apostrophes):
+message=Do not use {0}
+```
+✅ This still works - no changes needed.
+
+**If you followed Java MessageFormat spec:**
+```properties
+# Doubled apostrophes (MessageFormat escape):
+message=It''s {0}
+```
+✅ This still works correctly - produces `It's <value>`.
+
+**If you had broken messages:**
+```properties
+# This was broken in older versions:
+message=Don't use {0}
+# Old behavior: "Dont use {0}" (apostrophe removed, placeholder ignored)
+```
+✅ **Now fixed** - produces `Don't use <value>` as expected.
 
 ### Creating a TextBundle
 #### Old API

@@ -5,6 +5,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 6.3.0 - 2026-08-12
+
+### Fixed
+- **Behavior Change (Bugfix)**: Single quotes (apostrophes) in natural language contractions (e.g., `don't`, `it's`, `won't`) are now preserved correctly when `getText` is called with parameters. Previously, a lone single quote would silently start a MessageFormat quoted section, stripping the apostrophe and suppressing placeholder replacement (e.g., `"It's {0}"` with `['Bryan']` returned `"Its {0}"` instead of `"It's Bryan"`). See the [Single Quotes section in README](./README.md#single-quotes-apostrophes-in-messages) for full details and migration guidance.
+
+**Migration impact:**
+- Messages using natural apostrophes with placeholders are now fixed automatically — no property file changes needed.
+- Messages using intentional MessageFormat quoting syntax (a single quote before a non-special character to suppress processing, e.g., `'some text {0}'`) will behave differently: the opening quote is now treated as a literal apostrophe. Use `'{0}'` syntax to escape placeholders literally, or `''` for a literal apostrophe in a substitution context.
+- All existing `''` (doubled apostrophe) usage continues to work unchanged.
+
+### Updated
+- updated `filter-node-package` dependency to 6.2.2
+- updated `@babel/eslint-parser` dependency to 7.29.7
+- updated `@eslint/eslintrc` dependency to 3.3.6
+- updated `@eslint/js` dependency to 9.39.5
+- updated `eslint` dependency to 9.39.5
+- updated `globals` dependency to 17.10.0
+- updated `mocha` dependency to 11.8.0
+- pinned devDependencies
+- added overrides for mocha's `serialize-javascript`, `diff` and `glob` transitive dependencies
+
 ## 6.2.0 - 2026-04-26
 
 ### Updated 
