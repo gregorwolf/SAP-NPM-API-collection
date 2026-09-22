@@ -1,7 +1,7 @@
 # Incompatible Changes in CDS Compiler Version 7
 
 This document lists (potentially) incompatible changes
-which came with Compiler Version 7.
+which came with Compiler Version 7, including the fixes of Version 7.0.2.
 
 <!-- toc: start -->
 
@@ -17,15 +17,16 @@ which came with Compiler Version 7.
    1. [name-deprecated-$self](#name-deprecated-self)
    2. [String representation for expression-like annotation values](#string-representation-for-expression-like-annotation-values)
    3. [Default for structures](#default-for-structures)
-   4. [Default for arrays)](#default-for-arrays-ic-v7-33)
+   4. [Default for arrays](#default-for-arrays)
    5. [Extend builtin with type properties](#extend-builtin-with-type-properties)
-   6. [Key propagation](#key-propagation)
-   7. [Annotate with invalid target](#annotate-with-invalid-target)
-   8. [Duplicate element via extend with aspect](#duplicate-element-via-extend-with-aspect)
-   9. [Extend ... with definitions](#extend--with-definitions)
-   10. [Propagate value null](#propagate-value-null)
-   11. [Expression as UP TO value](#expression-as-up-to-value)
-   12. [Associations defined via backlink associations](#associations-defined-via-backlink-associations)
+   6. [Key propagation in projections](#key-propagation-in-projections)
+   7. [Key propagation for types](#key-propagation-for-types)
+   8. [Annotate with invalid target](#annotate-with-invalid-target)
+   9. [Duplicate element via extend with aspect](#duplicate-element-via-extend-with-aspect)
+   10. [Extend ... with definitions](#extend--with-definitions)
+   11. [Propagate value null](#propagate-value-null)
+   12. [Expression as UP TO value](#expression-as-up-to-value)
+   13. [Associations defined via backlink associations](#associations-defined-via-backlink-associations)
 6. [Changes in OData/EDM](#changes-in-odataedm)
    1. [Vocabulary change for Common.SideEffectsType](#vocabulary-change-for-commonsideeffectstype)
 7. [Changes in to.sql()](#changes-in-tosql)
@@ -53,7 +54,7 @@ Such changes always have a reason, and we don't introduce them "just for the sak
 | Default for structures              | 2   | low      |
 | Default for arrays                  | 2   | low      |
 | Extend builtin with type properties | 2   | very low |
-| Key propagation                     | 3   | low      |
+| Key propagation                     | 3+4 | medium   |
 | Sec-Annotate with invalid target    | 2   | high     |
 | Duplicate elem by extend w/ aspect  | 2   | low      |
 | Extend ... with definitions         | 4   | zero     |
@@ -136,7 +137,7 @@ It was ...
 
 The error could be downgraded with
 ```sh
-cdsc b51.<file> --warn syntax-unsupported-masked --deprecated downgradableErrors
+cdsc <file> --warn syntax-unsupported-masked --deprecated downgradableErrors
 ```
 
 In cds-compiler v7:  
@@ -195,7 +196,7 @@ entity E {
   a : Integer;
   b : Integer;
 }
-entity P as projection on E { a as x, b as y};
+entity P as projection on E { a as x, b as y };
 ```
 Resulting CSN:
 ```jsonc
@@ -334,9 +335,9 @@ the compiler throws configurable errors for these situations.
 Planned to make non-configurable in v8.
 
 
-### Key propagation
+### Key propagation in projections
 
-Before cds-compiler v7:  
+Before cds-compiler v7 or when the v7 option `v6KeyPropagation` is set with truthy value:  
 A view or projection inherits the key of the underlying base entity, if ...
 * no explicit key is set in the query
 * all key elements of the primary base entity are selected
@@ -346,25 +347,51 @@ A view or projection inherits the key of the underlying base entity, if ...
 (key = the entirety of the key elements)
 
 Essentially this means: we propagate the key only in situations
-where we are (almost) sure that the result is a valid key. "Almost", because
+where we are (almost) sure that the result is a valid key. This was the intention, but
 a path with a to-many association isn't recognized inside an expression.
 
 These rules are unnecessarily complex.
 
-In cds-compiler v7:  
+In cds-compiler v7 or when the v6.9 option `v7KeyPropagation` is set with truthy value:  
 Simplify rules: a view or projection inherits the key of the
 underlying base entity, if ...
 * no explicit key is set in the query
 * all key elements of the primary base entity and all key elements of joined
   entities are selected
 
-Note: second rule is very strict, as oftentimes not all key elements of the target need
+Note: second rule is very strict, as often not all key elements of the target need
 to be selected because they are tied to a key element of the source via the ON condition.
 In these situations no key is propagated and we basically have the same situation as before v7.
 
 This change means:
-we would propagate the key also in many situations where we are not sure the
-result is a valid key.
+we would propagate the key also in situations where we are not sure the
+result is a valid key, e.g. with a union query.
+
+
+### Key propagation for types
+
+An element of an entity can be key with implications for the compiler-calculated foreign keys
+of an association, SQL constraints in the OData protocol, ….
+
+Inconsistencies arise when a _sub element_ of an entity is declared to be a key,
+especially if structure flattening comes into play.
+Thus, the compiler issues a warning for `key` on a sub element, and for `key` inside a structured type.
+
+Before cds-compiler v7 or when the v7 option `v6KeyPropagation` is set with truthy value:  
+
+* an element in a structure type doesn't inherit the key of the underlying base element
+  if the structure type is a derived type (`type D: T`) or is defined via `projection on`,
+* an element in a structure type _does inherit_ the key of the underlying base element
+  if the structure type includes a structure.
+
+In cds-compiler v7 or when the v6.9 option `v7KeyPropagation` is set with truthy value:  
+
+* an element in a structure type _never inherits_ the key of an underlying base element.
+
+This way, key sub elements (with their inconsistencies) only arise
+with dubious user-provided element definitions, never for compiler-inferred elements.
+
+Users who use a type basically as include should consider using an aspect instead.
 
 
 ### Annotate with invalid target

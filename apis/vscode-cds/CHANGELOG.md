@@ -5,7 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [10.1.0] - 2026-09-08
 
+### Added
+- Formatting: new option `maxAlignmentWhitespace` to disable an alignment that would leave more than the configured number of blanks before any of its members, counting the mandatory separating blank
+- User setting to compile as many model files as possible in one compilation. To enable set `cds.workspace.compileFilesSeparately` to `false`.
+  This will **boost performance** for many larger models. In case `duplicate definition` diagnostics appear check
+  the files involved, and in case some files should not be picked up, add the glob patterns to `cds.workspace.additionalIgnorePatterns`
+  (as _workspace_ setting).
+
+### Changed
+- Minimum VSCode version is now 1.123.0
+
+### Fixed
+- Syntax highlighting for CQL strings now also works when there are spaces between `cds.ql` and the opening string. Having a newline between `cds.ql` and the opening backtick is still not supported.
+- Syntax highlighting: delimited and quoted identifiers in `using`, `namespace`, `context` and `extend`
+- Syntax highlighting: multiple `;`-separated elements or enum values on a single line
+- Syntax highlighting: first segment of a qualified type path (`Foo:bar`)
+
+### Also see
+- `@sap/cds-lsp` 10.1.0
+- `@sap/cds-compiler` 7.1.0
+
+
+## [10.0.2] - 2026-07-14
+
+### Added
+- Syntax highlighting for CQL strings within the tagged template string following `cds.ql`.
+
+### Changed
+- Project Explorer now shows all configuration files including defaults.
 
 ## [10.0.1] - 2026-06-29
 
@@ -13,7 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 - CAP Project Explorer in sidebar, can be disabled via user setting `cds.explorer.enabled`
   + user setting `cds.explorer.alignLeafArtifacts` (default off): aligns childless services, entities, views, actions, functions, and events with their expandable siblings by reserving an inert chevron
   + user setting `cds.explorer.smartStructure...` (default on): streamline artificial group nodes e.g. combine inbound and outbound services nodes
-- Formatting: 
+- Formatting:
   + option `annotationInNewLine` to start elements on a new line after their annotation in `annotate` blocks
   + option `asProjectionInNewLine` to start `as projection on` / `as select from` in a new line (indented)
   + option `conditionInNewLine` to put ON conditions on a separate line
@@ -26,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 - CAP Project Explorer: every group container (Aspects, ValueHelp, Autoexposed, Types, Enums, Entities & Views, Functions & Actions, per-entity Actions, Requires) now renders with its own colored codicon instead of the user's theme folder icon. Files / Config Files groups continue to use the theme folder. Individual aspect / type / enum / namespace / context / using / annotation / element / composition / association artifacts now carry their own `NodeType` and render with a distinct icon instead of being collapsed onto the generic `field` / `group_types` rendering.
 
 ### Fixed
-- Formatting: 
+- Formatting:
   + align post-annotations (e.g. `@mandatory`) in parameter lists
   + align `virtual` and `element` keyword modifiers with element name if `alignAfterKey` is set
 - Node.js spawn warning when running CLI commands with `shell: true`
@@ -117,12 +146,12 @@ and this project adheres to [Semantic Versioning](https://semver.org).
   + `cds.workspace.persistency.enabled`: general enablement. All other settings have no effect if this is disabled.
   + `cds.workspace.persistency.persistAfterSave`: when a file is saved its index is persisted.
   + `cds.workspace.persistency.persistAfterCompile`: when (closed) CDS files are compiled (also as part of another model compilation) their index gets persisted.
-  + `cds.workspace.persistency.restoreBeforeCompile`: when CDS files are part of a compilation their persisted index is used if matching 
+  + `cds.workspace.persistency.restoreBeforeCompile`: when CDS files are part of a compilation their persisted index is used if matching
   + `cds.workspace.persistency.restoreAfterStartup`: restore all persisted indexes after start-up
   + `cds.workspace.persistency.indexAllAfterStartup`: index all files not yet persisted
   + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterStartup`: index files are written per content. Delete index files with outdated content after start-up
-  + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterNSaves`: Delete index files with outdated content after specified number of `Save` requests 
-  + `cds.workspace.persistency.reindexAfterCompileIfRestored`: If files are part of a compilation and a matching index exist, still index again.  
+  + `cds.workspace.persistency.garbageCollectOrphanedIndexesAfterNSaves`: Delete index files with outdated content after specified number of `Save` requests
+  + `cds.workspace.persistency.reindexAfterCompileIfRestored`: If files are part of a compilation and a matching index exist, still index again.
 
 ### Fixed
 - Syntax highlighting in bracketed expressions

@@ -6,6 +6,37 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 10.1.0 - 2026-09-04
+
+### Added
+- Formatting: new option `maxAlignmentWhitespace` to disable an alignment that would leave more than the configured number of blanks before any of its members, counting the mandatory separating blank
+- User setting to compile as many model files as possible in one compilation. To enable set `cds.workspace.compileFilesSeparately` to `false`.
+  This will **boost performance** for many larger models. In case `duplicate definition` diagnostics appear check
+  the files involved, and in case some files should not be picked up, add the glob patterns to `cds.workspace.additionalIgnorePatterns`
+  (as _workspace_ setting).
+
+### Changed
+- Important: minimum required NodeJS version is now 24.16.0
+
+### Fixed
+- Syntax highlighting: delimited and quoted identifiers in `using`, `namespace`, `context` and `extend`
+- Syntax highlighting: multiple `;`-separated elements or enum values on a single line
+- Syntax highlighting: first segment of a qualified type path (`Foo:bar`)
+
+
+## 10.0.2 - 2026-07-14
+
+### Changed
+- workspace/symbols:
+  + nested entities e.g. "texts" now include parent entity's short name in its own short name
+  + ignoring "last-dev" and "test" folders by default
+
+### Fixed
+- workspace/symbols:
+  + files which were picked up by the compiler during indexing are now considered (refresh problem in Project Explorer)
+  + pure annotation files are now included under service containerName
+- cds-typer settings containing spaces no longer trips up LSP on Windows
+
 ## 10.0.1 - 2026-06-29
 
 ### Added

@@ -4,6 +4,49 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 10.1.0 - 2026-09-02
+
+### Added
+
+- New `sqlite:memory` preset for `cds.requires.db` runs an in-memory SQLite database, now also in production
+- New `hana-serverless` kind for `cds.requires.db` connects to a HANA Cloud serverless instance (Beta)
+- Node.js-native `fetch` client now resolves named destinations through the SAP BTP Destination service for `NoAuthentication`, `BasicAuthentication`, and `OAuth2ClientCredentials` (proxy type `Internet` only) (beta)
+
+### Changed
+
+- `cds.spawn` uses dedicated, short-lived transaction for fetching extended models
+- Messaging webhook endpoints are no longer registered anonymously in production when neither `cds.requires.auth` nor `cds.requires.messaging.xsuaa` is configured.
+- UCL tenant mapping notification handlers will be scheduled as `tenant: receiverTenant` instead of anonymously
+
+### Fixed
+
+- `@assert` messages using `{i18n>...}` placeholders are no longer mistaken for structured `error(...)` results
+- JSON `$batch` requests now reject invalid `atomicityGroup` identifiers
+- Scheduling a task via `srv.schedule(...).after(<delay>)` or `.every(<interval>)` with a delay above Node's 32-bit `setTimeout` limit (~24.8 days, e.g. `.after('30d')`) no longer emits a `TimeoutOverflowWarning` or fires almost immediately. Such delays are now armed as chained timers, so the task still fires at its exact scheduled time.
+- OData requests with unknown key names in the key predicate (e.g. `Books(ID=1,sad=2)`) are now rejected with `400 Bad Request` instead of causing a `500` error
+- `cds-rc.js` schema now has a `$id` so `jsonschema` 1.5 resolves internal `$ref`s correctly
+- REST `HEAD` responses now report byte-accurate `Content-Length` headers for Unicode JSON payloads
+- Query properties like `limit` and `recurse` are no longer lost when forwarded to remote services
+- `cds.requires.<name>.service = <name>` (a required service naming itself) no longer fails with a spurious `conflicts with` error on server start
+- `UPDATE` and `DELETE` remote-service-queries, that use `.where` instead of a key to specify their subject, will throw
+- Navigating to or creating under a parent protected by an instance-based `@restrict.where` now returns `404` when the parent is not readable
+- A static `@restrict.where` on a collection-bound action is now enforced, rejecting callers who do not satisfy the condition — previously it was silently ignored
+
+### Removed
+
+- UCL GraphQL interface adapter as dead code after UCL deprecated the GraphQL on-boarding flow
+
+## Version 10.0.6 - 2026-08-18
+
+### Fixed
+
+- `$apply=filter(...)/groupby(...)/aggregate($count)` with non-UTC `DateTimeOffset` filter values now returns correct results on HANA
+- Generated index page now uses relative hrefs, fixing links when served behind an approuter with a path prefix
+- `$batch` sub-requests returned an empty body and headers when `@opentelemetry/instrumentation-express` (or any instrumentation that wraps Express handlers to arity 2) was active
+- `cds.xt.ModelProviderService` can be served in mtx sidecar
+- Modeled service events were not properly ignored in OData adapter
+- Generic handler for draft-specific actions not correctly being bound to the transaction context
+
 ## Version 10.0.5 - 2026-07-28
 
 ### Fixed
@@ -142,6 +185,20 @@
 - Internal function `getDBTable` used by old cds-dbs versions
 - Internal `_initial` phase
 - Removed support for `async activate()` functions returned from `cds-plugin.js` modules, which was never documented, and deprecated since Oct 2023. If you need to run async code during plugin loading, just return a promise as default export.
+
+## Version 9.9.3 - 2026-07-21
+
+### Fixed
+
+- Fixed context propagation for local app and remote service calls
+
+## Version 9.9.2 - 2026-06-29
+
+### Fixed
+
+- `srv.model` propagation in extensibility scenarios
+- Restored `err.target:'in'` during draft activation with `cds.fiori.draft_messages=false` to avoid the `MULTIPLE_ERRORS` popup
+- `resolveView` prioritizes the original foreign key `parent_ID` if exposed multiple times, e.g., through `*, parent.ID as parentId`
 
 ## Version 9.9.1 - 2026-04-29
 

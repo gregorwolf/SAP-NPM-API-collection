@@ -6,12 +6,70 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.1.0 - 2026-09-04
+
+### Added
+
+- Beta: Multitenant provisioning now supports HANA Cloud serverless, resolving one HDI container per tenant through the serverless Tenant API.
+- Beta: The MTX job service can now use native javascript workers to make the MTX sidecar more responsive while jobs (e. g. tenant upgrade) are running.
+Native workers can be enabled by `nativeWorkers` in the jobs configuration, e. g.
+  ```jsonc
+  "cds.xt.SaasProvisioningService":  {
+        "jobs": {
+          "nativeWorkers": true,
+          "workerSize": 3,
+          "clusterSize": 3
+        }
+      },
+  ```
+  - With configuration `cds.requires['cds.xt.SaasProvisioning'].upgrade.skipAlreadyUpgraded: true` or `cds.requires['cds.xt.SmsProvisioning'].upgrade.skipAlreadyUpgraded: true`,
+already upgraded tenants are skipped when running an upgrade of all tenants (`tenants: ['*']`). Tenants are considered as already upgraded if the last upgrade was run after the
+last deployment of the application.
+
+### Fixed
+
+- `SmsProvisioningService` certificate check is now better aligned with the Java implementation.
+- Extension validation checks have been refined.
+- `POST /-/cds/model-provider/getEdmx` now checks the requested service name more exactly.
+- Callback url for Saas Registry and Subscription Manager is now determined in a more robust way.
+
+## Version 4.0.4 - 2026-08-21
+
+### Fixed
+
+- Version bump
+
+## Version 4.0.3 - 2026-08-21
+
+### Added
+
+- `cds-mtx subscribe`, `unsubscribe`, and `upgrade` now take more than one tenant at once, e.g. `cds-mtx upgrade t1 t2` or `cds-mtx upgrade t1,t2`.
+
+### Changed
+
+- Login endpoints renamed to `/-/cds/login/grant` and `/-/cds/login/grant-metadata` with redirects from former paths.
+
+### Fixed
+
+- HANA credential health-check now detects the available driver via `require.resolve()` instead of reading `package.json`, fixing `MODULE_NOT_FOUND` for apps that follow the "Plug & Play" guidance and don't declare `hdb` or `@sap/hana-client` directly.
+- Tenant upgrade now reports a clear per-tenant `422` error when a stored extension is incompatible with the changed base model, instead of aborting with an uncaught compilation error.
+- `cds-mtx-migrate` now runs more robust with uncommon model configurations.
+
+## Version 4.0.2 - 2026-08-07
+
+### Fixed
+
+- `PUT /-/cds/extensibility/Extensions/<id>` with a status that is not active (0 or 1), now returns the correct entry.
+- Extensions table is now resolved properly again when `cds.sql.names = quoted` is set.
+
+### Changed
+- When updating from `@sap/cds-mtxs@<3.6.0`, you now need to upgrade your tenant database before you can add new extensions.
+
 ## Version 4.0.1 - 2026-06-23
 
 ### Changed
 
 - Migration from `@sap/cds-mtx` has been removed.
-- Calling endpoint `POST /-/cds/sms-provisioning/upgrade` is now requires more permissions.
 - Annotation `@Common.FieldControl` is now also blocked for extensions.
 - Annotations `@Capabilities.*` are now also blocked for extensions.
 - The MTX sidecar now logs a warning if `cds.sql` is configured differently in both the project root and the sidecar. By setting `cds.env.requires['cds.xt.ModelProviderService']['use-root-sql-config'] === true`,
@@ -20,7 +78,24 @@ you can enforce the configuration of the project root.
 ### Fixed
 
 - Default value 3 for `cds.requires.multitenancy.jobs.clusterSize` is now effective for upgrade. When using HANA TMS v2, the default for `clusterSize` is set to 1.
+
+## Version 3.9.6 - 2026-08-07
+
+### Fixed
+
 - Parallel single-tenant upgrades no longer fail with `tar: Cannot open: File exists` when extensibility is disabled.
+- Deployment to tenant containers is more stable with a large number of service bindings provided via `VCAP_SERVICES_FILE_PATH`.
+- More robust error handling for HDI deployment logs on read-only file system on Kyma.
+- Configuration `cds.requires.multitenancy.retries` is now effective.
+- Reading tenants no longer logs a spurious `Failed to parse metadata to JSON` error for tenants without metadata.
+- A tenant's HANA connection pool now reliably recovers once valid credentials are restored, as cache-bypassing Service Manager lookups no longer overwrite the shared bindings cache with transiently invalid credentials.
+- More robust handling of Service Manager errors.
+
+## Version 3.9.5 - 2026-07-01
+
+### Changed
+
+- Calling endpoint `POST /-/cds/sms-provisioning/upgrade` now checks the correct permissions.
 
 ## Version 3.9.4 - 2026-06-17
 

@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## Version 0.5.5 - 2026-09-15
+
+### Add
+
+- eval, Function, _oy and Javy to forbidden globals
+
+### Fixed
+
+- Invalid JavaScript in extension handlers no longer crashes the sidecar. Syntax errors are now reported as validation findings (422) instead of causing a server error (500).
+- Symlinks in extension handler directories are now rejected. This prevents potential file disclosure attacks where symlinks could point to server-side files outside the extension.
+- Path traversal protection added when reading extension handler files.
+- Use CQN vals while setting limit and offset in wasm code
+- Nested @extensible.code annotations by bound actions
+
+## Version 0.5.4 - 2026-08-11
+
+### Fixed
+
+- Entities contributed by a tenant extension are now exposed via `this.entities` inside extension code. Previously the map was built from the cached `srv.entities` reflection, which does not include tenant-pushed entities, so `this.entities.<ExtEntity>` was `undefined` and querying it (e.g. `SELECT.from(this.entities.ExtEntity)`) failed. The map is now reflected from the effective (tenant-extended) model.
+- `cds add ext-handler` now correctly generates import paths for services with dots in their names
+
+## Version 0.5.3 - 2026-08-05
+
+### Fixed
+
+- Parsing and compiling extension in local MTX deployment without production profile
+
+
 ## Version 0.5.2 - 2026-07-15
 
 ### Fixed

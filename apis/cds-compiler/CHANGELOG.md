@@ -15,6 +15,60 @@ might use a deprecated flag only for a limited period of time.
 
 
 
+## Version 7.1.1 - 2026-09-08
+
+### Bug Fixes
+
+- **effective:**
+  + Fix dump in flattening for actions with entity parameters.
+  + Ensure consistent handling of reference-like annotation expressions during flattening.
+- **sql:**
+  + Add missing `@hierarchy` columns to localized convenience views.
+  + Avoid crash on mixin backlink with renamed target element.
+  + The generated SQL for a reference `assoc.elem` where `assoc` is an association defined with duplicate backlink comparisons with `$self` is now more likely
+    to be correct. Usually, there is an error for the definition of such an `assoc`, but the corresponding message can be downgraded to a warning.
+
+
+
+## Version 7.1.0 - 2026-08-27
+
+### Features
+
+- **compiler:**
+  + It is now possible to extend a view/projection with a `where` or `having` clause, even if it already had one.
+    Extensions are joined with `and` if such a clause already exists.
+  + Publishing an association with an empty filter is now supported. For a managed association, this turns it
+    into an unmanaged one. For an unmanaged association, it has no effect.
+  + `select one` is now supported in `parse.cql` and `parse.expr`.
+  + Compiler adds helper property `$backlink` to CSN. It enables compiler backends and other CSN consumers
+    to better handle backlink comparisons with `$self`. This property may vanish in future releases.
+- **odata:**
+  + Update OData vocabularies: Common and UI.
+- **sql:**
+  + Wrap predicate columns in `CASE ... WHEN` for SAP HANA.
+  + Support common `cds.Vector` functions on SAP HANA and Postgres.
+
+### Bug Fixes
+
+- **compiler:**
+  + Properly render structures with property `...` in CDL.
+  + Extending a `where`, `having` or `group by` clause from unrelated layers no longer results in an error.
+    A warning is emitted when extending an `order by` clause from unrelated layers.
+- **effective:**
+  + Correctly rewrite references in annotation expressions inside arrays.
+  + Add option to replace annotation expressions by strings to evade error situations.
+- **sql:**
+  + Don't dump while reporting an error for `$self` in a filter of a `from` reference.
+  + Correctly handle renamed target elements in backlink comparisons.
+
+### Improvements
+
+- **compiler:**
+  + Issue a warning that a type with an unmanaged association can only be used as an include.
+  + Omit empty extend for `extend … with definitions` from parsed CSN.
+
+
+
 ## Version 7.0.3 - 2026-07-21
 
 ### Bug Fixes
@@ -34,10 +88,10 @@ might use a deprecated flag only for a limited period of time.
 - **compiler:**
   + Avoid dump for a new association in a projection with backlink comparison while reporting a missing backlink target element.
   + Soften incompatibility concerning backlink comparisons: missing target elements which are referred to in the foreign keys or ON-condition of the backlink
-    association now only lead to a warning.
+    association now only lead to a warning, not an error.
   + Soften incompatibility concerning structure values for annotations: a structure property like `list` won't be rejected; we avoid an ambiguity with an
-    _expression_ `(1, 2, 3)` by putting `'=': true` next to `list: …` in the CSN, like in compiler v6. A `xpr` expression is rendered without a sibling `=`,
-    though.
+    _expression_ `(1, 2, 3)` by putting `'=': true` next to `list: …` in the CSN, like in compiler v6.
+    A `xpr` expression and an `#` enum symbol are rendered without a sibling `=`, though.
 
 
 
@@ -55,9 +109,9 @@ might use a deprecated flag only for a limited period of time.
     unless the expression is a simple reference. An object as annotation value with a “primary expression property” like
     `ref` or `xpr` is always interpreted as an expression. Before, it was only interpreted as expression if the object also
     contained a property `=`.  In order to avoid ambiguities, it is not allowed to provide structured annotation values that
-    could be confused with expressions.
-  + Expression-like values that are not simple references are no longer allowed as comparator value for `... up to` when
-    extending array like annotation values. Simple references now are handled correctly.
+    could be confused with expressions. See also the fix in Version 7.0.2 (`=` is only omitted for `xpr` and `#`).
+  + Expression-like values that are not simple references or literals are no longer allowed (and partly ignored) as comparator value
+    for `... up to` when extending array-like annotation values. Simple references now are handled correctly.
   + `null` as annotation value is now propagated like any other value. Exceptions are `includes` with multiple structures/aspects:
     value `null` from a later include does not overwrite a value from an earlier include (no change compared to previous releases).
   + The compiler now reports an error when multiple `extend ... with <aspect>` statements introduce the same element or action.
@@ -66,6 +120,7 @@ might use a deprecated flag only for a limited period of time.
   + The rules for the propagation of `key` in queries have been simplified: Keys are propagated, if no explicit key is set in
     the query and all key elements of the primary base entity and of joined entities are selected.
   + No longer propagate the `key` property of the elements of structures which are included into a structured type.
+  + Replace option `v7KeyPropagation` by option `v6KeyPropagation` with inverted semantics.
   + It is no longer possible to extend built-in types by adding type properties.
   + Always propagate annotation with `elements` and `enum` expansion.
   + Ensure that recompiling a CSN of flavor `gensrc` / `xtended` does not change the element order.
@@ -111,6 +166,16 @@ might use a deprecated flag only for a limited period of time.
   + Performance of the SQL backend has been improved: wildcard `*` in views and projections is only expanded lazily.
   + No errors are reported anymore for non-persisted entities, as they are irrelevant for database deployment
     (for the message IDs `type-missing-argument`, `type-unexpected-argument`, `ref-unsupported-type`, and `ref-unexpected-args`).
+
+
+## Version 6.9.4 - 2026-07-29
+
+### Bug Fixes
+
+- **effective:**
+  + Correctly rewrite references in annotation expressions inside arrays.
+  + Add option to replace annotation expressions by strings to evade error situations.
+
 
 
 ## Version 6.9.3 - 2026-06-17
@@ -367,8 +432,10 @@ whose target does not exist.
 
 ### Added
 
-- compiler: `annotate … with @extension.code: [..., 'additional code']` even works
-  if no value for that annotation has been provided with the base definition.
+- compiler:
+  + `annotate … with @extension.code: [..., 'additional code']` even works
+    if no value for that annotation has been provided with the base definition.
+  + In the query section of a view definitions, `key` can now also be specified in top level inlines.
 - to.sql: Calculated elements can now be used next to (but not in) nested projections.
 - to.edm(x): The `@cds.api.ignore` annotation can now be applied to actions, functions, and their parameters.
 
