@@ -6,11 +6,254 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 9.9.6 - 2026-09-11
+## Version 10.1.2 - 2026-09-17
+
+### Fixed
+
+- `cds` no longer crashes with an `ENOENT` (`uv_cwd`) stack trace when the shell's current directory has been deleted, e.g. during tab-completion.
+- `cds build --for java` no longer writes Node.js runtime messages.
+- `cds build` preserves line breaks in merged `messages.properties` bundles.
+- `cds add xsuaa` no longer generates an invalid `mta.yaml` when added after `workzone`.
+- `cds add cloud-logging` now binds existing approuter and multitenancy modules when `mta` is added later.
+- `cds add enterprise-messaging` and `cds add event-mesh` now contribute to an MTA descriptor added later.
+- `cds add destination` now binds existing approuter and multitenancy modules when `mta` is added later.
+
+## Version 10.1.1 - 2026-09-09
+
+### Added
+
+- Various `cds` commands now offer shell completions for their options, including folder suggestions for positional arguments and path options like `--run`, `--from`, and `--with`.
+
+### Fixed
+
+- `cds up` now forwards `BP_DEPENDENCY_MIRROR_*` variables to Paketo buildpacks.
+- `cds init` uses CAP Java 5.1.1
+- `cds add data` no longer includes excluded bounds when generating scaled decimals for open `@assert.range` intervals.
+
+## Version 10.1.0 - 2026-09-03
+
+### Added
+
+- `cds add hana-serverless` sets up SAP HANA Cloud serverless as the database, provisioning one HDI container per tenant through the serverless Tenant API.
+- `cds add ai` now supports a `--plan` option to set the AI Core service plan in `mta.yaml` (default: `standard`).
+- `cds add data` now supports a `--keys-only` option that, together with `--records`, fills only key columns in the generated CSV files and leaves all other columns empty.
+- `cds add data` now generates values for `Binary`/`LargeBinary` (base64) and `Vector` (JSON array) elements instead of leaving them empty.
+- `cds add data` now supports a `--composition-records` option to control how many records are generated per to-many composition (default 2).
+- `cds add` now accepts space-separated features in addition to comma-separated, e.g. `cds add xsuaa hana nodejs`.
+- `cds add extensibility` now adds an `ExtensionDeveloper` role collection to `mta.yaml` (suffixed `${org}-${space}`) and `chart/values.yaml` (suffixed with the Kyma namespace), so it can be assigned immediately after deployment.
+- `cds version` now also shows the npm version and executable path.
+
+### Fixed
+
+- `cds add data` now generates values across the full `@assert.range` when the range lies outside the default `[0,100]`, instead of emitting the lower bound for every record (integers) or exceeding the upper bound (decimals).
+- `cds add data` now generates varying `Time` values instead of the same fixed `22:59:53` for every record.
+- `cds add data` now honors `@assert.range` on `Double` elements instead of generating values across the default `[0,100]` regardless of the annotation.
+- `cds add data` now generates whole numbers for `Integer` elements whose `@assert.range` uses fractional bounds, instead of emitting fractional values.
+- `cds add data` now generates varied values for `Decimal` elements whose scale equals their precision (such as `Decimal(2,2)`), instead of emitting `0` for every record.
+- `cds add data` now honors `@assert.range` on `Timestamp` elements instead of always generating dates in the default `2000-2024` window.
+- `cds add data` no longer crashes with `Invalid time value` when a `Date` element has a single-day `@assert.range`.
+- `cds add data` now generates varied dates within `@assert.range` bounds on `Date`, `DateTime` and `Timestamp` elements when the range lies entirely outside the default `2000-2024` window, instead of emitting the same out-of-range value for every record.
+- `cds add data` now honors open-interval and infinity `@assert.range` bounds (such as `[(0),_]` or `[(5),(10)]`) on numeric and date elements, instead of ignoring them and generating values across the default range.
+- `cds add data` now generates the exact day for `Date` elements regardless of the local timezone, instead of occasionally emitting the day before the intended date.
+- `cds add data` now generates multiple distinct rows for link entities whose key consists of two or more associations, instead of collapsing them to a single row.
+- `cds add data` now writes the foreign-key column for to-one compositions into the parent CSV, instead of leaving the parent unlinked to its generated child.
+- `cds add data` now honors an `@assert.range` on an `array of` scalar element, so the generated array elements stay within the annotated bounds.
+- `cds add data` now generates the requested number of distinct rows for a standalone link entity whose key associations point to entities created on demand, instead of collapsing them to a single row.
+- `cds add data` now pairs two distinct target rows in a self-referential link entity (two key associations to the same entity), instead of pointing both foreign keys at the same row.
+- `cds build --ws-pack` now also packs the workspace root package into a module's `gen/srv` when the module depends on it via a `file:` spec, so monorepos whose root package is itself a dependency no longer need to pack it by hand.
+- `cds bind --to-app-services` no longer classifies a machine-to-machine `identity` binding that consumes another service (carrying `consumed-services`) as the application's user authentication, so it no longer overwrites the real `xsuaa` auth binding.
+- `cds build` now copies the workspace root `package-lock.json` into a module's `gen/srv` when the module has none, so npm workspaces monorepo deployments get frozen dependencies instead of freshly resolved ranges.
+- `cds build` now copies `.cdsrc.yaml` into the deployment output folder alongside `.cdsrc.json`, so YAML-based CDS configuration works correctly when deployed to Cloud Foundry.
+- `cds import --from asyncapi` now correctly imports types referenced via `$ref` in AsyncAPI schemas, including `allOf` composition, and no longer loses types from earlier events when a service has multiple events.
+- `cds build` now correctly resolves `manifest.json` for UI5 CLI v5 component projects, which use a `src/` folder instead of `webapp/`.
+- `cds build --for fiori` now honors custom `resources.configuration.paths` mappings in `ui5.yaml` when locating a UI module's `manifest.json`.
+- `cds add html5-repo`, `cds add workzone`, and `cds add portal` no longer emit an HTML5 application content deployer module into `mta.yaml` when the project has no UI apps, avoiding the `could not find the ".../gen/app" path` build failure.
+- `cds up` now pushes buildpack images directly to the registry via `pack build --publish`, avoiding the `manifest invalid` error on containerd-backed Docker daemons.
+- `cds add app-front` avoids duplicates for `srv-api` in `xs-app.json` if entries pre-exist.
+- `cds add ias` (and `cds add ams`) with an approuter no longer leaves a stray `properties.name: srv-api` on the approuter's `srv-api` destination in `mta.yaml`, which uses certificate-based forwarding instead.
+- `cds add sample` fixes cds files such that `const { Books } = cds.entities` works, i.e. the default namespace is set.
 
 ### Changed
 
-- Use cds-mtxs 3.9.8
+- `cds watch` now ignores the `.cds` folder by default, alongside the existing defaults like `node_modules` and `gen`. `.cds` model files and `.cdsrc.json` are unaffected.
+- `cds compile -2 asyncapi` and `cds import --asyncapi` are now provided by `@cap-js/asyncapi` as a CDS plugin. The plugin is currently still bundled with `@sap/cds-dk`. Add it explicitly to your `devDependencies` as it will be removed in a future version.
+- `cds build` now packages npm workspace dependencies as tarballs by default, use `--no-ws-pack` to disable.
+- `cds completion` now comes with pre-calculated shell scripts for faster tab-completion.  Also, it no longer disturbs shell completion in VS Code debug terminals.
+- `cds add approuter` now uses `@sap/approuter@^23.0.0` instead of `@sap/approuter@^22.0.0`.
+
+## Version 10.0.9 - tbd
+
+### Fixed
+
+- `cds login`, `cds pull`, and `cds push` again support non-interactive machine login with `--client` and `--mtls`, now performed directly against the authorization server. See `cds login --help` for the credentials and environment variables.
+
+## Version 10.0.8 - 2026-08-24
+
+### Changed
+
+- `cds login` now uses the renamed login endpoints `/-/cds/login/grant` and `/-/cds/login/grant-metadata` with a legacy fallback, and updates saved legacy token URLs.
+
+## Version 10.0.7 - 2026-08-07
+
+### Fixed
+
+- Bundle `@sap/cds-mtxs` 4 again, instead of 3.
+- `cds import --from asyncapi` now correctly imports types referenced via `$ref` in AsyncAPI schemas, including `allOf` composition, and no longer loses types from earlier events when a service has multiple events.
+- `cds add html5-repo`, `cds add workzone`, and `cds add portal` no longer emit an HTML5 application content deployer module into `mta.yaml` when the project has no UI apps, avoiding the `could not find the ".../gen/app" path` build failure.
+- `cds init --nodejs` creates the ESLint and VS Code config files again
+
+### Changed
+
+- `cds init --nodejs` creates a cleaned-up .gitignore file
+
+## Version 10.0.6 - 2026-07-24
+
+### Added
+
+- `cds add xsuaa` now generates namespace-suffixed XSUAA `role-collections` for Kyma.
+
+### Changed
+
+- `cds init` and `cds add` now detect app folders by the UI framework in their `package.json` (`@ui5/cli`, `react`, `vue`, `svelte`, `@angular/core`, `vite`) or a `webapp/manifest.json`, instead of matching against well-known folder names.
+- `cds add approuter` now generates the approuter into `.deploy/app-router` by default instead of `app/router`, still respecting an existing `app/router` folder.
+- `cds add html5-repo`, `cds add app-frontend`, and `cds add portal` now place the HTML5 application content deployer in `.deploy/html5-deployer` by default instead of `app/html5-deployer`, still respecting an existing `app/html5-deployer` folder.
+
+### Fixed
+
+- `cds add http` now respects capability restrictions, emitting only supported requests for `@Capabilities.*Restrictions: false`, `@odata.singleton`, and `@insertonly` entities.
+- `cds add http` now generates requests for bound actions and functions on an instance, including draft-enabled entities (e.g. `POST .../E(ID=…,IsActiveEntity=true)/S.approve`), and `GET` requests for OData functions.
+- `cds add http` now omits readonly, computed and managed fields (`@readonly`, `@Core.Computed`, `@cds.on.insert`/`@cds.on.update`) from `POST`/`PATCH` bodies, since clients cannot set them.
+- `cds add http` now slugs `# @name` handles and suffixes collisions, so delimited names (`![a.b]`) and entities that slug alike (`A.sub` vs. `Asub`) yield valid, unique handles.
+- `cds add http` now flattens nested composition entity-set names to underscores in URLs (e.g. `E_addr` instead of the unroutable `E.addr`).
+- `cds add http` now includes all keys in composite-key draft requests instead of only the first, and single-quotes single string keys (e.g. `Books/'abc'`), matching composite string keys.
+- `cds add http` now addresses parameterized entities as `Entity(p=…)/Set`, omitting the invalid `POST`/`PATCH`/`DELETE` requests it previously generated for them.
+- `cds add http` no longer emits `PATCH`/`DELETE` requests with `undefined` or `[object Object]` in the URL for keys without a sample value, structured keys, or entities without a scalar key.
+- `cds add http` no longer produces a double slash in request URLs for a service mounted at the root path (`@path: '/'`).
+- `cds add http` and `cds add data` no longer crash with `Cannot convert undefined or null to object` for a keyless entity whose composition's `on` condition references `$self`.
+- `cds add http` no longer throws `MULTIPLE_DOCS` when `application.yaml` uses `---` separators (Spring Boot multi-profile format).
+- `cds export --data` now reads seed data via in-memory SQLite instead of the configured db driver, so it no longer fails in projects with `requires.db: hana` (e.g. CAP Java).
+- `cds init --java --add mta` now writes `path: srv` for the Java `srv` module in `mta.yaml` instead of `gen/srv`, so `mbt build` no longer fails with `the "gen/srv" path of the "<app>-srv" module does not exist`.
+- `cds build --for nodejs --production` now also bundles _messages.properties_ files from plugins found via neighborhood resolution. `cds build --for java` retains the previous behaviour and does not use neighborhood resolution for plugin message files.
+- `cds version` no longer reports dependency problems if no dependencies are installed at all. It prints an info message instead.
+- `cds add test` creates tests that are green by default. Sample data is provided as commented code.
+
+## Version 10.0.5 - 2026-07-16
+
+### Fixed
+
+- `cds build --for hana` now declares the plugin for native HANA artifacts placed in the build output (e.g. a `.hdbprojectionview` from `db/src`) in the generated `.hdiconfig`.
+- `cds add typer` now generates a `jsconfig.json` file that works with VS Code.
+- `cds debug <app> --force` on Kyma now preserves existing `NODE_OPTIONS` flags (e.g. `--max-old-space-size`) instead of overwriting them when enabling the inspector.
+- `cds add sample` now selects `stock` in the Books list and object pages, so the overstock discount shows up in the UI.
+- `cds add data` now generates correct foreign-key columns for nested compositions of aspects, e.g. `up__up__ID,up__ID,ID,name` instead of a broken `up__up_` header.
+- `cds build` no longer fails with `npm ls -ws: unknown option` on npm 12, which dropped the short `-ws` flag.
+- `cds build` now packages transitive npm workspace dependencies again on npm 12, which changed `npm pack --json` to emit an object keyed by package name instead of an array.
+- `cds up` uses `helm --rollback-on-failure` instead of the deprecated `--atomic`.
+- `cds add portal` on Java + IAS disables JWT proof-of-possession on `srv` (`SAP_SPRING_SECURITY_IDENTITY_PROOFTOKEN=false`) so Portal-proxied tile OData works.
+- `cds add ias` forwards client certificates from the approuter to `srv-api` (`backendDestinations.srv-api.forwardAuthCertificates`).
+- `cds add ias` always enables `xsuaa-cross-consumption` in the identity service parameters.
+- `cds add ias` no longer sets an mTLS `expose.host` on the approuter, restoring a plain approuter host for the browser flow.
+- `cds add portal` on Java multitenant now binds the Portal service instance to `srv` so CAP Java's `getDependencies` reports Portal to the SaaS Registry.
+- `cds add kyma` uses a tenant-agnostic (tcpSocket) startup probe for the multitenant approuter, avoiding 400s from `TENANT_HOST_PATTERN` on kubelet probes.
+- `cds add kyma` no longer emits the dead `Authentication: OAuth2UserTokenExchange` key on `backendDestinations.srv-api`.
+- `cds add github-actions` uses updated versions.
+- `cds watch` now works in ESM scenarios where only a global `cds-dk` is installed, where it would formerly fail with `ERR_MODULE_NOT_FOUND` for `@sap/cds`.
+- `cds watch`no longer shows a `'server.hmr.protocol/host/port/path/clientPort/timeout/server' is deprecated` warning when running a Vite application.
+
+## Version 10.0.4 - 2026-07-08
+
+### Fixed
+
+- `cds watch` now starts apps with a SQLite database again in cases where they don't have a `@cap-js/sqlite` dependency or a `package.json`.
+
+## Version 10.0.3 - 2026-07-02
+
+### Fixed
+
+- `cds import` now wraps arrays-of-arrays in a `{ value: [...] }` struct when importing OpenAPI/Swagger specs, avoiding the OData `chained-array-of` compiler error.
+- `cds version` now also prints versions of secondary packages likes `@sap/cds-compiler` and `@cap-js/db-service`.
+- `cds build --production` no longer overrides collected message bundles with empty default bundles.
+
+## Version 10.0.2 - 2026-06-29
+
+### Fixed
+
+- `cds init` uses CAP Java 5.0.0
+- `cds upgrade --fix` now sets proper versions in `pom.xml` and `package.json` and detects them in `mtx/sidecar`.
+- `cds upgrade` gives a hint that `--fix` fixes Java code.
+
+## Version 10.0.1 - 2026-06-24
+
+### Added
+
+- `cds add event-mesh` and `cds add event-mesh-shared` set up configuration and deployment descriptors for Event Mesh of SAP Integration Suite.
+- `cds upgrade` now detects Java/Spring Boot migration issues and integrates OpenRewrite for automated fixes via `--fix`.
+- `cds upgrade --report` writes `report.md` and `report.yaml` to `.cds-upgrade/` for AI agent and human consumption.
+- `cds upgrade` groups findings by capire section with links to the migration guide.
+
+### Changed
+
+- `@sap/cds-dk` now comes with `bundleDependencies` for reproducible installs.  This is a replacement for the `npm-shrinkwrap.json` that is no longer supported by NPM 12 and higher.
+- `cds init` no longer assumes `--nodejs` when running in SAP Business Application Studio.
+- `cds init` no longer omits the `.vscode` folder when running in SAP Business Application Studio.
+- `cds init/add --nodejs` now creates ESM projects by default.  For CommonJS projects, use `cds init --add cjs`.
+- `cds add data` no longer creates random strings for fields annotated with `@assert.format`.
+- `cds add ias` does not use the `HTML5.` prefix for HTML5 repo settings.
+- `cds add node` now adds a devDependency to `@cap-js/sqlite@^3`
+- `cds upgrade` now produces concise CLI output (count + title per rule) and a structured report with capire-aligned sections.
+- The preferred way of calling `cds export` for Maven is now `cds export --mvn groupId:artifactId`. When using the old `cds export -4 mvn` syntax, groupId and artifactId must be passed via the `--artifact` parameter instead.
+
+### Fixed
+
+- `cds subscribe`, `cds unsubscribe`, and `cds upgrade` default to mock credentials on localhost, removing the need for explicit `-u user:password`.
+- `cds bind` will throw an error when `--to` is specified without providing a path.
+- `cds build --for hana` now correctly relocates generated _.hdbsynonymconfig_ files containing `*.configure` properties (e.g. `schema.configure`).
+- `cds add html5-repo` and `cds add app-frontend` detect UI5 modules per app via each app's `@ui5/cli` devDependency, instead of relying on a project-wide flag.
+- Removed undocumented `dp-cli` data product import method. Use `dp-metadata` repository import or direct JSON file import instead.
+- `cds add html5-repo`, `cds add app-frontend`, and `cds add typescript` now add `ui5-tooling-transpile-task` to existing `ui5.yaml` for TypeScript projects.
+- `cds version` no longer fails if `@sap/cds` < 9.8 is installed.
+- `cds build` no longer fails with `EEXIST` when the MTX sidecar has its own `.npmrc`, and dereferences symlinks during copy so `gen/` is self-contained and portable.
+- `cds upgrade` no longer fails when ast-grep exits with non-zero on certain file patterns.
+- Removed undocumented `dp-cli` data product import method. Use `dp-metadata` repository import or direct JSON file import instead.
+- `cds import` for OData v2 now can import annotations.
+- `cds lint` no longer silently swallows any error.
+
+## Version 10.0.0 - 2026-06-02
+
+### Added
+
+- `cds upgrade` analyzes project code and configuration for CDS 10 compatibility issues.
+- `cds add react|vue` without `--into` scaffolds the Vite app directly into `app/`; `cds watch` mounts it at `/`.
+- `cds add portal` uses the `sapse/application-content-deployer-buildpack` for Kyma to simplify HTML5 repo content and SAP BTP Portal service deployment.
+- `cds add ai` adds out-of-the-box AI integration with `@cap-js/ai` via the SAP BTP AI Core service.
+- `cds debug` warns about `http` health checks on Cloud Foundry that would kill the container while paused at a breakpoint.
+
+### Changed
+
+- `cds add` and `cds build` create `engines` fields using caret dependencies of LTS Node.js versions, such as `^24`.
+- `cds version` now always prints entries in a new formatting, even in Java projects and when running in BAS. For a stable output that can be parsed by scripts, use `--json`.
+- `cds add hana` does not generate _db/undeploy.json_ any more.
+- `cds build --for hana` generates _gen/db/undeploy.json_, merging an existing _db/undeploy.json_ if present.
+
+### Removed
+
+- `cds add helm`, `cds add helm-unified-runtime`, and `cds add containerize` are removed. Use `cds add kyma` instead, which generates the same Helm chart and `containerize.yaml`.
+
+### Fixed
+
+- `cds bind` now correctly handles CF org, space, and service instance names containing commas.
+- `cds up` deploys to Kyma with `helm --atomic`, so failed deployments no longer block the next run.
+- `cds add vue` uses correct placeholder values for book and author in `App.vue`.
+- `cds build --production` now also bundles _message.properties_ files from plugins.
+- `cds push` provides support for CAP plugins.
+- `cds add dynatrace` in combination with `nodejs` makes sure the `nodejs` MTA changes are correctly applied.
+- The `NO_COLOR` environment variable also accepts values other than `true`.
+
+### Removed
+
+- `cds extend` is removed as it was only kept for `@sap/cds-mtx` compatibility.
+- `cds migrate` is removed as `@sap/cds-mtx` to `@sap/cds-mtxs` migration is now effectively complete.
+- `cds login`, `cds logout`, `cds pull`, `cds push`: the project-folder argument and the `--directory` (`-d`) option are removed; run these commands from the project directory instead.
 
 ## Version 9.9.5 - 2026-08-24
 

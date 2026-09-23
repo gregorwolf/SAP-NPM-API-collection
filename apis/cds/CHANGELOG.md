@@ -4,6 +4,25 @@
 - The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## Version 10.1.1 - 2026-09-17
+
+### Fixed
+
+- Messaging consumers (Event Mesh AMQP, Kafka, Redis) no longer crash with `TypeError: Cannot use 'in' operator to search for 'data' in null` when a message with a `null` payload is received
+- `cds.env` now correctly replaces an array default with an object project override instead of assigning object properties onto the array
+- SQLite now uses its default pool config (single, non-evicting connection) even when `@cap-js/sqlite` is installed globally rather than as a local dependency
+- Stripping of `IsActiveEntity` in programmatic deep updates to draft instances
+- Server crash when string keys contain control characters in OData `Location` response header
+- Binary keys in OData `Location` response header are now formatted as binary literals (`binary'...'`)
+- Skip periodic message processing when no provider tenant is configured
+- The parent-readable check during CREATE/navigation no longer swallows system errors (e.g. database failures); such errors are now propagated instead of being masked as a `404`
+- Support X.509 in `enterprise-messaging`'s deploy task
+- Incompatibility of global config `cds.sql.lock_acquire_timeout` and event-queue implementation
+- Outbox messages written before `appid` was introduced are now processed after an upgrade instead of being skipped
+- A queued outbox message whose target service cannot be resolved is now dead-lettered instead of crashing the application
+- Recurring scheduled tasks (`.every()`) are no longer resurrected when unscheduled while running, and re-submitting one while it runs no longer discards the updated schedule and payload
+- Convenience handling of `/$count` requests for custom handlers simply returning arrays
+
 ## Version 10.1.0 - 2026-09-02
 
 ### Added

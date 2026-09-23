@@ -12,6 +12,8 @@
    *-a | --as* <csn|cdl>
    *-4 | --for* <npm|mvn>
 
+   *--mvn* <groupId:artifactId>   Export for Maven (implies --for mvn)
+
    *-c | --cleanse* <properties>
    *-k | --keep* <kinds>
    *-x | --skip* <kinds>
@@ -36,3 +38,4 @@
    *cds export* -s cat*s --inspect=2
    *cds export* -s cat*s --as cdl
    *cds export* -s cat*s
+   *cds export* --mvn com.example:my-service --to java-module
