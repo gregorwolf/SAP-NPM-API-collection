@@ -1,3 +1,32 @@
+# Hana Client 2.30.x Drivers
+
+Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.30 documentation:
+
+https://help.sap.com/viewer/product/SAP_HANA_CLIENT/2.30/en-US
+
+For the latest updates please see SAP Note 3792276 - SAP HANA Client 2.30 Release Notes
+
+https://me.sap.com/notes/3792276
+
+## Version 2.30.27
+
+### Changes:
+
+ - Issue Number 363966: The Node.js driver could have produced incorrect results when binary buffers were passed to string parameters.
+ - Issue Number 363776: The Node.js driver was missing several TypeScript type definitions.
+ - Issue Number 363637: Connection.setClientInfo erroneously treated an empty string value as an intent to unset the client info.
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 365485: A misleading error could have been returned because of an incorrect parameter binding.
+ - Issue Number 363640: An out of memory condition could have caused SQLDBC to hang.
+
+## Version 2.30.24
+
+### Underlying SQLDBC changes:
+
+ - Issue Number 359393: Error parameter substitution was missing for some hdbsqldbc_cons error messages.
+
 # Hana Client 2.29.x Drivers
 
 Please see the "What’s new in the SAP HANA Client" section in the official HANA client 2.29 documentation:

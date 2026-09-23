@@ -1,5 +1,62 @@
 # SQL analyzer tool for SAP HANA Changelog
 
+## Version 1.11.0
+
+The SQL analyzer tool for SAP HANA version 1.11.0 includes the following improvements and bug fixes.
+
+### Improvements
+
+- **Plan Graph Tab**
+
+  - Extended operator colors to HEX-specific operator types, using the same color categories as their non-HEX counterparts. Colors are applied automatically when **Operator Colors** is set to **Operator Type**.
+  - Added a **Show Underlying Operators** section to the **Details** pane for aggregated edges, displaying the original source and target operator names as clickable links.
+
+- **Operators & Table Access Tabs**
+
+  - Updated the **Operators** and **Table Access** tabs to handle plans with more than 10,000 relations. Instead of rendering the table, the tabs now show a message indicating the table isn't available due to plan size, along with an option to export the data as a `CSV` file.
+
+- **Properties View**
+
+  - Added **Optimization Model** and **Python Trace** to the **Properties** view. Use the **Copy** or **Export/Open** button for each item to copy or export its content directly from the **Properties** view
+
+- **Function Profiler Tab**
+
+  - Added support for viewing function profiler data as an interactive flame chart in the default browser.
+
+- **Large Data and Operator Navigation**
+
+  - Added support for handling data larger than 5 MB across the Properties view, Performance Trace tab, and Function Profiler tab:
+    - Properties: Export property data as `JSON` and open it in Visual Studio Code.
+    - Performance Trace: Open oversized performance trace data as raw `JSON` in Visual Studio Code.
+    - Function Profiler: When data exceeds 5 MB, the table is replaced with a link to open the flame chart in the default browser.
+  - Updated operator interaction in the **Function Profiler** and **Performance Trace** tabs:
+    - Updated row-click behavior to load operator details without automatically navigating to or highlighting the operator in the **Plan Graph**, improving responsiveness and avoiding unnecessary graph rendering.
+    - Updated operator name links to load operator details and automatically navigate to and highlight the corresponding operator in the **Plan Graph**.
+
+- **Large PLV File Support**
+
+  - Improved rendering performance for large plans by loading content only when needed, resulting in faster and more responsive plan views.
+  - Added a warning when an operator's detail data exceeds 100 MB and cannot be loaded. The affected operator's data may be unavailable in the **Properties** view, **Function Profiler** tab, and **Performance Trace** tab.
+
+### Bug Fixes
+
+- **Overview Tab**
+
+  - Fixed an issue where **Dominant Operators** showed execution time percentages above 100% on plans with multiple parallel operations. Overlapping execution times are now calculated correctly.
+  - Fixed SQLScript plans where timeline bars started at an incorrect negative offset and the `STATEMENT` operator showed an unrealistically high execution time percentage. The **Timeline** now uses the actual execution window to calculate the plan start time.
+
+- **Plan Graph Tab**
+
+  - Fixed an issue where virtual edges remained visible after expanding an inner plan operator. Virtual edges are now correctly removed when they are no longer relevant.
+  - Fixed incomplete location information in **Simple** mode for plans executed across multiple locations. All execution locations are now displayed, including locations belonging to operators hidden in **Simple** mode.
+
+- **SQL Plan Execution Monitor**
+
+  - Fixed an issue where the **Refresh** and other action buttons did not respond.
+  - Added a loading indicator while the database list is being retrieved, making the loading state clear.
+  - Fixed an issue where the **Graph Settings** tab remained available when viewing an execution plan for a running SQL query.
+  - Added an empty-state message when no statements are stored in SQL Plan Execution Monitor.
+
 ## 1.10.0
 The SQL analyzer tool version 1.10.0 includes the following improvements and bug fixes.
 

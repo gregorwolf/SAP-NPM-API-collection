@@ -6,6 +6,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 7.6.0 - 2026-09-15
+### Fixed
+- Support `reference-instance` plan in app-host service binding
+
+### Removed
+- EOL Node.js 20 from declared `engines.node` range (Node 20 reached end-of-life on 2026-04-30)
+- `async` dependency, replaced with native implementation
+- `read-chunk` dependency, replaced with native implementation
+
+### Update Dependencies
+- deps: archiver@8.0.0
+- deps: cf-nodejs-logging-support@8.0.0
+- deps: file-type@22.0.2
+- deps: @sap/xsenv@6.2.2
+- deps: @sap/xssec@4.15.0
+- deps: axios@1.20.0
+- deps: fast-uri override ^4.1.4 (security)
+
 ## 7.5.0 - 2026-08-16
 ### Added
 - Support dependent app-host instances

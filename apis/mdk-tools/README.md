@@ -27,7 +27,7 @@ CLI tools for the **mobile development kit (MDK)** — build, deploy, migrate, a
 
 | Requirement | Notes |
 |-------------|-------|
-| Node.js ≥ 22.13.1, npm ≥ 10.9.2 | LTS recommended |
+| Node.js ≥ 24.16.0, npm ≥ 11.13.0 | LTS recommended |
 | [Space Developer role](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/09076385086b4da3bd1808d5ef572862.html) | Required for CF deployments |
 | [Cloud Foundry CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) + `cf login` | Required for all CF targets |
 | [MTA Build Tool](https://sap.github.io/cloud-mta-build-tool/) | Required for web (`cf`) deployments |
