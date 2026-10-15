@@ -5,6 +5,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="3.0.6"></a>
+## 3.0.6 - 2026-10-05
+
+### Updated
+- update @sap/xssec version to 4.15.0 (migrated from JWTStrategy to XssecPassportStrategy + XsuaaService)
+- update @sap/hana-client version to 2.30.27
+- update @sap/xsodata version to 8.4.2
+- update @sap/logging version to 9.2.3
+- update accept-language version to 3.0.20
+- update compression version to 1.8.2
+- update multiparty version to 4.3.1
+- update nodemailer version to 10.0.12
+- update axios version to 1.20.0
+- update statuses version to 2.0.2
+- update yazl version to 3.3.1
+- update express version to 4.22.3
+- update moment version to 2.31.0
+- update @sap/hdbext to 8.1.15
+
+### Removed
+- removed media-typer dependency (replaced by already-present content-type package)
+- removed verror dependency (replaced with native NodeJS Error + util.format)
+- removed callsite dependency (replaced with native Error.captureStackTrace)
+
 <a name="3.0.5"></a>
 ## 3.0.5 - 2026-09-11
 

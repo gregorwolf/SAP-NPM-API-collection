@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 
+## 7.6.1 - 2026-09-30
+### Fixed
+- Consumer `ELSPROBLEMS` error caused by incompatible `fast-uri` override; downgraded override from `^4.1.4` to `^3.1.8` which patches the original CVE within the 3.x line and is compatible with `ajv@8.x` (NGPBUG-517491)
+
+### Update Dependencies
+- deps: multer@2.4.0 (security — fixes CVE-2026-88932 orphaned disk writes on aborted uploads)
+- deps: fast-uri override ^3.1.8 (compatibility fix, ^4.x conflicts with ajv@8.x `^3.0.1` requirement)
+
 ## 7.6.0 - 2026-09-15
 ### Fixed
 - Support `reference-instance` plan in app-host service binding

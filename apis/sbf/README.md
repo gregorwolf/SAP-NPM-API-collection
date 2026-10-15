@@ -1,4 +1,4 @@
-# @sap/sbf
+# @sap/sbf.
 
 A Node.js framework to create a service broker in SAP Business Technology Platform (SAP BTP)
  
@@ -1031,6 +1031,11 @@ These credentials can be provided via the option `brokerCredentialsHash` or the 
 **Note:** To generate such hashed credentials, you can use the [hash-broker-password](#hash-broker-password) script.
 #### mTLS Authentication
 ##### Out-of-the-Box mTLS
+
+> **Deprecation Notice**
+>
+> SAP Service Manager is retiring out-of-the-box mTLS, the option in which Service Manager provides the client certificate (`--use-sm-tls` in the btp CLI). Do not use this option for new brokers, and switch existing brokers to [Customized mTLS](#customized-mtls) or [Basic authentication](#basic-authentication). For the scope, the timeline, and the migration steps, see [Broker Authentication](https://pages.github.tools.sap/SvcManager/service-manager-guide/#/docs/provide/developer-guide?id=broker-authentication) in the Service Manager Developer Guide and the [SAP BTP Release Notes for 2609b](https://wiki.one.int.sap/wiki/spaces/JPaaS/pages/5787783676/SAP+BTP+Release+Notes+for+2609b).
+
 ***Note:*** For those of you who use out-of-the-box mTLS, ***we recommend using unique credentials, i.e. Basic authentication, alongside out-of-the-box*** mTLS, to ensure accurate identification in relation to your brokers. This can assist in identifying potential misconfiguration incidents.
 
 
@@ -1066,12 +1071,21 @@ For example, calling https://service-manager.cfapps.stagingaws.hanavlab.ondemand
  With this hook, you can perform your own validations.
 
 ##### Customized mTLS
-Alternatively, you can register your broker with your own certificate. 
+This is the recommended way to configure mTLS. Register your broker with your own certificate. 
 
-Once the service broker has been registered, it will send the client certificate you configured each time it communicates with SBF. 
+Once the service broker has been registered, Service Manager will send the client certificate you configured each time it communicates with the broker. 
 
 To enable this verification, make sure to create your broker with  the `secureIncomingConnections` option set to true, or set the `SBF_SECURE_INCOMING_CONNECTIONS` environment variable to true.
-You have to implement  [verifyClientCertificate](#verifyclientcertificateparams-callback) hook to verify the received certificate.
+
+To enable automatic subject verification for your own certificate, set the `certificateSubject` option or the `SBF_CERTIFICATE_SUBJECT` environment variable to the subject DN of your certificate.
+You can also implement the [verifyClientCertificate](#verifyclientcertificateparams-callback) hook together with the automatic subject check to perform additional validations on top of the built-in subject verification.
+If you do not configure `certificateSubject` or `SBF_CERTIFICATE_SUBJECT`, you must implement the [verifyClientCertificate](#verifyclientcertificateparams-callback) hook to verify the received certificate. 
+
+***Note:*** The built-in subject verification relies on the `X-SSL-Client-Subject-DN` header, which is automatically set when the broker is deployed in **Cloud Foundry**.
+
+Do not configure `serviceManagerCertificateSubject` or `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` together with your own certificate. 
+
+For more guidance on certificate verification please refer to the [certificate service docs](https://pages.github.tools.sap/sap-pki-certificate-service/consumer-guide/). If the docs are not sufficient, please contact the [certificate service team](https://pages.github.tools.sap/sap-pki-certificate-service/consumer-guide/#contact).
 
 ### Audit logging
 
@@ -1130,6 +1144,7 @@ Creates a new ServiceBroker instance.
   * [`secureOutgoingConnections`](#secure-outgoing-connections) *Boolean* If *false*, unencrypted outgoing connections will be allowed. Default value is **true**.
   * [`secureIncomingConnections`](#mtls-authentication) *Boolean* If set to *true*, secure connection is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate's subject, you also have to configure the `serviceManagerCertificateSubject`. Default value is **false**.
   * [`serviceManagerCertificateSubject`](#out-of-the-box-mtls) *String* If `secureIncomingConnections` is set to true and `serviceManagerCertificateSubject` is configured to the Service Manager certificate's subject in the broker's landscape, the Service Manager [client certificate](#out-of-the-box-mtls) is verified in each public landscape.
+  * [`certificateSubject`](#customized-mtls) *String* If `secureIncomingConnections` is set to true and `certificateSubject` is configured to your own certificate's subject DN, SBF will accept certificates whose subject matches this value.
   * [`clientCertificateKey`](#authentication-using-x509-client-certificates) *String* the private key corresponding to the client certificate used for authentication with XSUAA.
   * [`secureUAAScopes`](#xsuaa) *Boolean* Relevant for [XSUAA as a credentials provider](#xsuaa). When set to `true` and no `authorities` section was provided in [Additional service configuration](#additional-service-configuration) (`extend_xssecurity`), SBF will pass an empty `authorities` array in create/update requests to XSUAA, regardless of the `authorities` provided by the consumer. Default: `true`.<br/> **Note: This behavior and environment variable form an incompatible change from release v6.4.9**.
   * [`k8sSecretsPath`](#credentials-providers) *String* the path to the mounted volume containing service secrets when running on K8S. Default is '/etc/secrets/sapcp/'.
@@ -1838,6 +1853,7 @@ Otherwise the broker will return HTTP status code 500 with a generic error messa
 - `SBF_SECURE_OUTGOING_CONNECTIONS` - if set to false `false`, unencrypted outgoing connections will be allowed, see [Secure outgoing connections](#secure-outgoing-connections)
 - `SBF_SECURE_INCOMING_CONNECTIONS` - if set to true `true`, a [secured connection](#mtls-authentication) is established and the custom hook [verifyClientCertificate](#verifyclientcertificateparams-callback) is called . For the automatic verification of the Service Manager certificate, you also have to configure the `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` environment variable.
 - `SBF_SERVICE_MANAGER_CERTIFICATE_SUBJECT` - the Service Manager client certificate's subject. This variable has to be configured so that the Service Manager [client certificate](#out-of-the-box-mtls) is verified. Also, set `SBF_SECURE_INCOMING_CONNECTIONS` to true. You can retrieve the Service Manager certificate's subject at `https://service-manager.cfapps.<landscape domain>/v1/info` from the `service_manager_certificate_subject` field. The URL changes depending on your landscape domains. For example, https://service-manager.cfapps.eu10.hana.ondemand.com/v1/info.
+- `SBF_CERTIFICATE_SUBJECT` - the subject DN of your own client certificate. When set together with `SBF_SECURE_INCOMING_CONNECTIONS=true`, SBF will accept certificates whose subject matches this value. Use this for [customized mTLS](#customized-mtls) scenarios where you register the broker with your own certificate.
 - `SBF_ENABLE_AUDITLOG` - if `false` disable audit logging, otherwise it is enabled.
 - `SBF_TENANT_ID` - Mandatory if the broker application is running on Cloud Foundry and audit logging is *enabled*.
 - `SBF_SECURE_UAA_SCOPES` - Relevant for [XSUAA as a credentials provider](#xsuaa). When set to `true` and no `authorities` section was provided in [Additional service configuration](#additional-service-configuration) (`extend_xssecurity`), SBF will pass an empty `authorities` array in create/update requests to XSUAA, regardless of the `authorities` provided by the consumer. Default: `true`.<br/> **Note: This behavior and environment variable form an incompatible change from release v6.4.9**.
@@ -1934,3 +1950,4 @@ There are two possible solutions:
 If `create-service` operation fails with error "Client already exists", you are probably attempting to create a second service instance with the same *xsappname* in the parameters. Note that *xsappname* should be different for each service instance.
 
 [xs-security.json]: https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.03/en-US/6d3ed64092f748cbac691abc5fe52985.html
+

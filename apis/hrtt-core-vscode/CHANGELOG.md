@@ -1,3 +1,16 @@
+## 1.48.1
+
+### Fixes
+
+- Fixed an issue in the proxy sending thre wrong x-forwarded-host header
+
+## 1.48.0
+
+### Fixes
+
+- Fixed access to SAP HANA Cloud Database Explorer on the US11 region from SAP Business Application Studio
+- Updated HRTT to version 260716-1786561604-e19f094
+
 ## 1.47.0
 
 ### Fixes

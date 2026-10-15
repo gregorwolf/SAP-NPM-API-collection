@@ -8,6 +8,28 @@ See the [migration guide](migration.md) how to adapt.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="6.12.1"></a>
+## 6.12.1 - 2026-10-12
+### Added
+- Kubernetes Secret Path Support for XSUAA Bindings
+- Custom Certificate Subject Validation for mTLS
+- Retry UAA Requests on Transient DNS Errors
+
+<a name="6.12.0"></a>
+## 6.12.0 - 2026-09-22
+### Added
+- Hybrid credential providers support that orchestrates XSUAA and IAS providers together.
+
+### Updated
+- @sap/logging to 9.2.2
+- qs to 6.16.0
+
+### Deprecated
+- Out-of-the-Box mTLS Authentication support.
+
+### Fixed
+- https://github.wdf.sap.corp/xs2/node-sbf/issues/1076 - limit XSUAA token size.
+
 <a name="6.11.9"></a>
 ## 6.11.9 - 2026-07-30
 ### Changed

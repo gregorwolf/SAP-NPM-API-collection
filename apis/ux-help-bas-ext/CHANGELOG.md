@@ -7,6 +7,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 ### Project Accelerator
 - **Note**: Joule capabilities are only available for SAP Build Code subscribers using SAP Business Application Studio
 
+## [1.33.0] - 2026-09-17
+### Project Accelerator
+- Fixed an issue where importing a DOCX file failed during DOCX-to-Markdown conversion
+
+### Fixed
+- Fixed an issue where the chart was not visible in the preview for the XML version of the "Add Micro chart column to a table" guide for OData V4 applications
+- Fixed an issue where focus was lost while initializing a parameter collection based on a source field
+- Fixed an issue where an empty string was not accepted as a valid model name
+
 ## [1.23.0] - 2026-04-16
 ### Project Accelerator
 - Updated the large language model used by the Project Accelerator to gpt-4.1-mini

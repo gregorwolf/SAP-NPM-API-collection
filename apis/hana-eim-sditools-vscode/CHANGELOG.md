@@ -1,3 +1,9 @@
+## 1.2.3
+
+### Fixes
+- UI5 upgrade - URL encoded module IDs not supported
+- add package-lock.json to client folder
+
 ## 1.2.2
 
 ### Fixes

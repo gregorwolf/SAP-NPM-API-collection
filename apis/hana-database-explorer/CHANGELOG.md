@@ -1,5 +1,19 @@
 # SAP HANA Database Explorer Change Log
 
+## 1.40.0
+
+### New Features
+- AI-generated test data can be copied to the clipboard from the data generation dialog
+- SAP HANA tools MCP server to expose database tools to AI agents
+- Support X.509 certificate authentication for SAP HANA Cloud connections
+- Select and delete multiple plan traces at once
+
+### Fixes
+- Fixed a regression in the Dependency Viewer search
+- Fixed SAP HANA Database Explorer not opening correctly in the us11 region
+- Fixed plan trace metadata not being updated when stopping plan trace mode
+- Fixed AI data generation failing for tables with many columns
+
 ## 1.39.0
 
 ### New Features

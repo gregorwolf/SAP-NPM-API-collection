@@ -8,6 +8,29 @@ This project adheres to [Semantic Versioning](http://semver.org/) and the change
 
 You have [Node.js](https://nodejs.org/en/download/) version `22.13.0` or higher installed
 
+## [1.144.12] - 2026-09-17
+
+### Added
+- Added support for defining columns for merging cells in responsive tables
+- Enhanced the validation for displaying table properties depending on the table type
+- Added support for configuring the AI notice in columns in the "Table" building block
+- Enhanced the property visibility logic to support the removal of deprecated SAPUI5 versions `1.142` and `1.139` 
+
+### Fixed
+
+### Quality
+
+Upgrades:
+
+| Package | Change |
+|---|---|
+| [@sap/ux-annotations](https://github.com/SAP/ux-annotations) | [`1.30.0` -> `1.32.0`] |
+| [axios](https://github.com/axios/axios) | [`1.19.0` -> `1.20.0`] |
+| [js-yaml](https://github.com/nodeca/js-yaml) | [`4.3.1` -> `4.3.2`] [security] |
+| [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser) | [`5.11.0` -> `5.11.1`] |
+| [@sap-ux/fe-fpm-writer](https://github.com/SAP/open-ux-tools) | [`1.3.14` -> `1.3.18`] |
+| [@sap-ux/project-access](https://github.com/SAP/open-ux-tools) | [`2.1.11` -> `2.2.0`] |
+
 ## [1.144.11] - 2026-08-20
 
 ### Added

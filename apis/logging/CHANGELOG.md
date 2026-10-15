@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## 9.2.3 - 2026-09-30
+- updated `moment` dependency to 2.31.0
+- updated `got` dependency to 16.0.0
+- updated `@eslint/eslintrc` dependency to 3.3.7
+
 ## 9.2.2 - 2026-08-12
 - updated `filter-node-package` dependency to 6.2.2
 - updated `@sap/e2e-trace` dependency to 6.2.2

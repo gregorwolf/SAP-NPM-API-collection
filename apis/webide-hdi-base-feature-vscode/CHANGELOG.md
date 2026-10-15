@@ -1,3 +1,8 @@
+## 1.46.0
+
+### New Features
+- Calculation View Add Source dialogs now offer a SQL expression search mode, letting users apply SQL wildcards (%, _, *) directly instead of the default auto-wrapped contains search
+
 ## 1.45.0
 
 ### New Features

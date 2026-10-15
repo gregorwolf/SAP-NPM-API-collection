@@ -5,6 +5,52 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## 23.3.0 - 2026-10-01
+
+### Fixed
+- Prevent process crash when OAuth state validation fails in `connect`-based deployments with `PRESERVE_FRAGMENT=false`
+
+### Updated Dependencies
+- deps: compression@1.8.2
+- deps: @sap/logging@9.2.3
+- deps: axios@1.20.0
+
+## 23.2.0 - 2026-09-22
+
+### Added
+- Fetch subaccount level destination configurations by label support
+
+### Fixed
+- Undefined tenant on anonymous request when `ENABLE_FORWARD_CORPORATE_IDP_TOKEN` is true
+- Fix `TimeoutOverflowWarning` when destination `HTML5.Timeout` exceeds the Node.js 32-bit timer limit
+- Preserve `transfer-encoding: chunked` when proxying streaming requests to backends
+- Replace `node-forge` dependency with Node.js built-in `crypto.X509Certificate` for FIPS compliance
+- Destroy client response immediately when backend aborts mid-stream to prevent browser hanging indefinitely instead of receiving a connection reset
+- WebSocket extension middleware failure when sync middleware calls `next()`
+- `HANDLE_WEBSOCKET_EXT=async` is now redundant — `true` handles both sync and async middleware. The `async` value remains supported for backward compatibility
+- Prevent cached credentials mutation when CACHE_SERVICE_CREDENTIALS is enabled
+- Fix 401 on OAuth callback caused by stale session cookie in sticky-session mode
+- Path matching for WebSocket extension middleware with absolute-form URLs
+- WebSocket connections are now correctly closed on session expiry
+
+### Removed Dependencies
+- deps: query-string replaced with bare string handling
+
+### Updated Dependencies
+- deps: ws@8.21.3
+
+## 23.1.0 - 2026-08-16
+
+### Added
+- IAS consumed services support
+
+### Fixed
+- Prevent infinite recursion in `addDestinationKey` when `getApplicationKey` triggers a re-entrant call
+- Nested reuse lib support UI navigation
+
+### Updated Dependencies
+- deps: cf-nodejs-logging-support@8.0.0
+- deps: axios@1.19.0
 
 ## 23.0.0 - 2026-07-28
 
@@ -39,12 +85,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
 ## 22.0.4 - 2026-07-12
 
+### Updated Dependencies
+- deps: `express-session` to 1.19.0
+
 ### Fixed
 - Return 404 immediately when consumer subaccount is not found during client credentials token exchange
 - Back-channel logout endpoint body handling
 - Disabled legacy subscriber provisioning handling
 - Hardened OAuth2 error handling
 - Fix user-api endpoints failing under HTTP/2
+- Fix wrong-tenant token caching in IAS deployments when SWR background refresh is triggered
 - x-approuter-access-token input validation
 
 ### Updated Dependencies

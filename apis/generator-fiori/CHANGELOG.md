@@ -3,6 +3,14 @@ All notable changes to this project are documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.33.0] - 2026-09-17
+### Added
+- Added support for generating OPA5 tests for list report pages
+
+### Fixed
+- Fixed an issue where generator errors were reported as `this.env.error is not a function`
+- Fixed an issue where text in an input field from a generator wizard was not fully visible on Windows
+
 ## [1.32.0] - 2026-08-20
 ### Added
 - Added versioning to OPA5 project templates based on the best practices for the project's SAPUI5 version

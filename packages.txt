@@ -42,6 +42,7 @@
 @sap/cf-tools
 @sap/cf-tools-local
 @sap/cli-core
+@sap/consume-services-types
 @sap/create-hana-database-artifact
 @sap/create-leanix-custom-report
 @sap/csn-interop-renderer
@@ -59,7 +60,6 @@
 @sap/eslint-config
 @sap/eslint-plugin-cds
 @sap/external-service-mashup
-@sap/generator-adaptation-project
 @sap/generator-add-hdb-module
 @sap/generator-aicore
 @sap/generator-base-mta-module
@@ -92,6 +92,7 @@
 @sap/jobs-client
 @sap/joule-studio-cli
 @sap/joule-studio-cli-core
+@sap/joule-studio-cli-core-v2
 @sap/joule-work-dev-cli-early-adopters
 @sap/logger-for-bas-extensions
 @sap/logging

@@ -1,3 +1,15 @@
+## 1.20.0
+
+### New Features
+- Added support for binding to hana-multitenancy service instances in the project explorer
+
+### Fixes
+- Only tenants in ready status are shown when binding to a multi-tenant HDI service during project creation
+- Fixed SAP HANA Cloud Database Explorer access for the us11 region in SAP Business Application Studio
+- Fixed connection errors when accessing remote sources in the eu22 region
+- Added missing `hdblogicalschemaconfig` artifact type to the generated `.hdiconfig` file
+- An error is now shown when an invalid SAP HANA Cloud instance ID is entered during multi-tenant module generation
+
 ## 1.19.0
 
 ### Fixes

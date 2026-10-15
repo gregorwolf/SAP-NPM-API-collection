@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+<a name="8.1.15"></a>
+## 8.1.15 - 2026-10-01
+
+### Updated
+- Updated @sap/e2e-trace version to 6.2.2
+- Updated @sap/hana-client version to 2.30.27
+
 <a name="8.1.14"></a>
 ## 8.1.14 - 2026-07-02
 

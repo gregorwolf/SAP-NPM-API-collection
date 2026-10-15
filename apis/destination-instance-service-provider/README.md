@@ -30,9 +30,8 @@ This API initializes a provider repository representing a given destination inst
 
 This API retrieves systems exposed by the service instance that initialized the provider..
 
-`async getSystems(filter?: Filter): Promise<ProviderSystem[]>`
+`async getSystems(): Promise<ProviderSystem[]>`
 
-**filter (this is optional)**: Only retrieves systems that comply with the given filter.  
 **throws ServiceProviderError**: If there is an error, this throws a "ServiceProviderError" error message.  
 &nbsp;&nbsp;&nbsp;&nbsp; _RETRIEVE_DATA_: This error is displayed if data cannot be retrieved from the system.  
 &nbsp;&nbsp;&nbsp;&nbsp; _INTERNAL_ERROR_: This error is displayed for any other exception.
@@ -175,5 +174,5 @@ Bump the version in the "package.json" GitHub file.
 **_Notes:_**
 Make sure to follow this versioning concept:
 
-- When providing new features (when releasing at the end of the sprint or when a new feature is ready), bump a major version (for example, from 1.1.0 to 1.2.0).
-- When providing a bug fix to an existing version ("hotfix"), bump a minor version (for example, from 1.1.0 to 1.1.1)..
+- When providing new features (when releasing at the end of the sprint or when a new feature is ready), bump a minor version (for example, from 1.1.0 to 1.2.0).
+- When providing a bug fix to an existing version ("hotfix"), bump a patch version (for example, from 1.1.0 to 1.1.1).

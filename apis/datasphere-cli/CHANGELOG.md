@@ -5,6 +5,33 @@ All notable changes to this project SAP Datasphere Command-Line Interface (DS CL
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2026.21.0
+
+### Added
+
+- **Isolated session API** via `createIsolatedSession()`. Enables running CLI commands programmatically with full state isolation — each session gets its own in-memory storage, config, secrets, and Commander instance. Concurrent sessions do not share or corrupt state.
+
+  ```ts
+  import { createIsolatedSession } from "@sap/datasphere-cli";
+
+  const session = createIsolatedSession({
+    discoveryDocument,
+    secret: {
+      tenantUrl: "https://tenant.hcs.cloud.sap",
+      client_id: "sb-my-client-id",
+      client_secret: "my-client-secret",
+      token_url:
+        "https://tenant.authentication.eu10.hana.ondemand.com/oauth/token",
+      authorization_url:
+        "https://tenant.authentication.eu10.hana.ondemand.com/oauth/authorize",
+      authorization_flow: "authorization_code",
+    },
+  });
+
+  const commands = await session.getCommands("https://tenant.hcs.cloud.sap");
+  await commands["spaces list"]();
+  ```
+
 ## 2026.10.0
 
 ### Added

@@ -49,6 +49,7 @@
 - [Support of SAP Statistics](#support-of-sap-statistics)
 - [Connectivity](#connectivity)
   * [Support for Corporate Identity Provider Token Propagation](#support-for-corporate-identity-provider-token-propagation)
+  * [Identity Service Token for Destination Calls](#identity-service-token-for-destination-calls)
 - [SaaS Application Registration in SAP BTP](#saas-application-registration-in-SAP-BTP)
   * [How To Expose Approuter for SaaS Subscription](#how-to-expose-approuter-for-saas-subscription)
 - [Authentication with Identity Service (IAS)](#authentication-with-identity-service-ias)
@@ -210,6 +211,7 @@ The environment variables that the application router takes into account are:
 | [Allowlist service](#whitelist-service)                                        | `CJ_PROTECT_WHITELIST`                          | Configuration for the allowlist that is preventing clickjack attacks.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | [Web Sockets origins allowlist](#web-sockets)                                  | `WS_ALLOWED_ORIGINS`                            | An allowlist configuration that is used for verifying the `Origin` header of the initial upgrade request when establishing a web socket connection.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | JWT Token refresh                                                              | `JWT_REFRESH`                                   | The time in minutes before a JWT token expires and the application router should trigger a token refresh routine.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| IAS consumed services token propagation                                        | `ENABLE_IAS_CONSUMED_SERVICES`                  | When set to `true`, the application router uses the identity service token when calling the destination service API for destinations whose service instance is listed as a consumed service in the identity service binding. The identity service token is passed in the Authorization header using a secure mTLS connection. See [Identity Service Token for Destination Calls](#identity-service-token-for-destination-calls) for prerequisites and configuration details.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Incoming connection timeout                                                    | `INCOMING_CONNECTION_TIMEOUT`                   | Maximum time in milliseconds for a client connection. After that time the connection is closed. If set to 0, the timeout is disabled. Default: 120000 (2 min)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Incoming request timeout                                                       | `INCOMING_REQUEST_TIMEOUT`                      | Maximum time in milliseconds for an incoming request. After that time the request is rejected with 408 status. If set to 0, the timeout is disabled. Default: 300000 (5 min)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Tenant host pattern                                                            | `TENANT_HOST_PATTERN`                           | String containing a regular expression with a capturing group. The request host is matched against this regular expression. The value of the first capturing group is used as tenant id.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -333,7 +335,7 @@ HTML5.Timeout |          x          | Positive integer representing the maximum 
 HTML5.PreserveHostHeader |          x          | If `true` , the application router preserves the host header in the backend request.<br />This is expected by some back-end systems like AS ABAP, which do not process x-forwarded-* headers.
 HTML5.DynamicDestination |          x          | If `true` , the application router allows to use this destination dynamically on host or path level.
 HTML5.SetXForwardedHeaders |          x          | If `true` , the application router adds X-Forwarded-(Host, Path, Proto) headers to the backend request.Default value is true.
-HTML5.IASDependencyName |          x          | Configures the name of the IAS dependency that is used to exchange the IAS login token. The exchanged token is also forwarded to the backend application.
+HTML5.IASDependencyName |          x          | Configures the name of the IAS dependency that is used to exchange the IAS login token. The exchanged token is also forwarded to the backend application.<br> **Note:** When `HTML5.IASDependencyName` is set, the destination `Authentication` type must be `NoAuthentication`.
 HTML5.StrictConnectionMode |          x          | If `true`, the application router uses strict HTTP agents with conservative connection pooling settings (shorter socket timeouts, FIFO scheduling) for this destination. This is recommended for mTLS/certificate-based authentication scenarios. Default value is `false`.
 sap-client |          x          | If provided, the application router propagates the sap-client and its value as a header in the backend request.<br />This is expected by ABAP back-end systems.
 URL.headers.`<header-name>` |          x          | If provided, the application router propagates this special attribute in the destination as the header. The application router can get the headers list from the destination API. Existing request headers are not overwritten.
@@ -637,6 +639,7 @@ service | String | x | The name of the service to which the incoming request sho
 endpoint | String | x | The name of the endpoint within the service to which the incoming request should be forwarded. Can only be used in a route containing a service attribute.
 localDir | String | x | Folder in the [working directory](#working-directory) from which the application router will serve static content **Note:** localDir routes support only HEAD and GET requests; requests with any other method receive a 405 Method Not Allowed.
 preferLocal | Boolean | x | Defines from which subaccount the destination is retrieved. If preferLocal is true, the destination is retrieved from the provider subaccount. If preferLocal is false or undefined, the destination is retrieved from the subscriber subaccount.
+destinationAuth | String | x | Specifies the authentication method used when calling the destination service API. Possible value: `ias`. When set to `ias`, the application router passes the user's identity service token in the Authorization header using a secure mTLS connection to the destination service. Can only be used on a route that has a `destination` property. Requires identity service-based login flow and specific binding configuration — see [Identity Service Token for Destination Calls](#identity-service-token-for-destination-calls).
 replace | Object | x | An object that contains the configuration for replacing placeholders with values from the environment. *It is only relevant for static resources*. Its structure is described in [Replacements](#replacements).
 authenticationType | String | x | Specifies the authentication method for the route.</br></br>**Values:**</br>• `ias` - Identity Authentication service (redirects to IAS login)</br>• `xsuaa` - User Account and Authentication service (redirects to XSUAA login)</br>• `basic` - HTTP Basic authentication (supports HANA users, SAP ID service, IAS)</br>• `none` - No authentication required</br></br>**If `authenticationType` is not defined:**</br>• Bound to IAS only: uses `ias`</br>• Bound to XSUAA only: uses `xsuaa`</br>• Bound to both services: prefers ias if both authentication services can be used in the current subaccount, determined via BTP security endpoint (may impact response time)</br></br>**Note:** For Basic authentication options, see SAP Note 3015211.
 csrfProtection | Boolean | x | Enable [CSRF protection](#csrf-protection) for this route. The default value is `true`.
@@ -1809,6 +1812,8 @@ In a multi-tenancy landscape, the application router will calculate the tenant i
 By default the application router enables CSRF protection for any HTTP method that is not `HEAD` or `GET` and the route is not public.
 A path is considered _public_, if it does not require authentication. This is the case for routes with `authenticationType: none` or if authentication is disabled completely via the top level property `authenticationMethod: none`.
 
+> **Note:** `authenticationType: none` only disables CSRF for requests that are matched directly by that route in the same application router instance. When an HTML5 application is served through the managed application router via the HTML5 Application Repository (e.g. Fiori Launchpad-launched requests using the `/appKey/~hash~/...` URL pattern), the CSRF check is performed by the **central/managed application router** against its own `xs-app.json` route — not the inner application's route. Setting `authenticationType: none` in the HTML5 application's own `xs-app.json` does **not** disable CSRF for such FLP-routed requests. To unconditionally disable CSRF for a specific path regardless of how it is accessed, set `csrfProtection: false` explicitly on the route.
+
 To obtain a CSRF token one must send a `GET` or `HEAD` request with a `x-csrf-token: fetch` header to the application router.
 The application router will return the created token in a `x-csrf-token: <token>` header, where `<token>` will be the value of the CSRF token.
 
@@ -1856,6 +1861,100 @@ To enable the token propagation with the application router, follow these steps:
 * Make sure that the authentication type for the login is based on Identity Authentication service (IAS).
 
 **Note** : Token propagation from a corporate identity provider is only supported for destinations defined at the subaccount level.
+
+## Identity Service Token for Destination Calls
+
+The application router can forward the user's identity service access token to the destination service API, bypassing the token exchange flow and using a secure mTLS connection backed by the identity service x.509 binding. This eliminates the IAS → XSUAA token exchange, preserving all IAS token custom properties and avoiding XSUAA shadow user creation.
+
+### Why Use This Flow
+
+When this feature is enabled, the application router passes the IAS access token directly to the destination service instead of performing an IAS → XSUAA token exchange. This is the recommended approach for IAS-based applications and provides the following advantages:
+
+1. **Reduced CPU and memory consumption** — No token exchange computation or caching of intermediate XSUAA tokens.
+2. **Better performance** — Eliminates the round-trip to the XSUAA token endpoint during destination service calls.
+3. **Reduced XSUAA traffic** — Fewer token exchange requests to XSUAA, lowering the risk of hitting rate limits under high load.
+4. **Preserves IAS token custom properties** — Custom claims and attributes in the IAS token are not lost during an IAS → XSUAA exchange, ensuring downstream services receive the full identity context.
+5. **Avoids XSUAA shadow user creation** — IAS → XSUAA token exchanges create XSUAA shadow users for each IAS user. At scale (e.g. large SAP Launchpad deployments), this creates significant overhead that can be avoided entirely with this flow.
+
+There are three ways to enable this behavior:
+
+### Option 1: Route-Level Configuration (`destinationAuth: 'ias'`)
+
+Add the `destinationAuth: 'ias'` property to a specific route in `xs-app.json`:
+
+```json
+{
+  "source": "^/my-destination/(.*)$",
+  "destination": "my-destination-name",
+  "authenticationType": "ias",
+  "destinationAuth": "ias"
+}
+```
+
+### Option 2: Global Configuration (`ENABLE_IAS_CONSUMED_SERVICES`)
+
+Set the environment variable `ENABLE_IAS_CONSUMED_SERVICES=true`. When enabled, the application router automatically uses the identity service access token for any destination whose service instance GUID is listed in the identity service binding's `consumed-services` property.
+
+### Option 3: Corporate Identity Provider Token (`ENABLE_FORWARD_CORPORATE_IDP_TOKEN`)
+
+This is the original mechanism for IAS token forwarding. When `ENABLE_FORWARD_CORPORATE_IDP_TOKEN=true` (or a comma-separated list of tenant subdomains), the application router forwards the IAS access token if the session token contains the `forwardCorpIdpToken` claim and the destination binding has `token-type` containing `ias`.
+
+### Authorization Header Behavior
+
+The application router calls the destination service differently depending on the login type and `preferLocal` configuration:
+
+| Login type | `preferLocal` | IAS token forwarding | `Authorization` header | `x-user-token` header |
+|------------|--------------|---------------------|----------------------|----------------------|
+| IAS (`authenticationType: ias`) | `false` | Enabled | IAS access token (mTLS) | — |
+| IAS (`authenticationType: ias`) | `false` | Not enabled | XSUAA token (after IAS→XSUAA exchange) | — |
+| IAS (`authenticationType: ias`) | `true` | Enabled | Provider subaccount client_credentials token | IAS access token |
+| IAS (`authenticationType: ias`) | `true` | Not enabled | Provider subaccount client_credentials token | XSUAA token (after IAS→XSUAA exchange) |
+| XSUAA (`authenticationType: xsuaa`) | `false` | N/A | XSUAA token (after XSUAA→XSUAA exchange) | — |
+| XSUAA (`authenticationType: xsuaa`) | `true` | N/A | Provider subaccount client_credentials token | XSUAA token (after XSUAA→XSUAA exchange) |
+| No authentication (`authenticationType: none`) | `false` | N/A | Subscriber subaccount client_credentials token (multi-tenant) or Provider client_credentials token (single-tenant) | — |
+| No authentication (`authenticationType: none`) | `true` | N/A | Provider subaccount client_credentials token | — |
+
+**Note:** When `preferLocal: true` is set and IAS token forwarding is enabled, the IAS access token is placed in the `x-user-token` header and the destination service uses the provider subaccount client_credentials token in `Authorization` to fetch destination configuration from the provider subaccount.
+
+### Prerequisites
+
+Options 1 and 2 share the following prerequisites:
+
+1. **Identity service-based login flow**: The session token must have `authenticationType === 'ias'`. When a user logs in with XSUAA, the standard token exchange flow applies.
+
+2. **Identity service binding with x.509 certificate**: The identity service instance must be bound using x.509 certificate credentials:
+   ```json
+   {
+     "credential-type": "X509_GENERATED",
+     "x509": { "key-length": 2048, "validity": 365, "validity-type": "DAYS" }
+   }
+   ```
+
+3. **Consumed-services in identity service binding**: The identity service binding must declare the destination service instance as a consumed service using its service instance name:
+   ```json
+   {
+     "consumed-services": [
+       { "service-instance-name": "<destination-service-instance-name>" }
+     ]
+   }
+   ```
+   > **Note:** You may also include the connectivity service instance name as a consumed service. In that case, the application router will create IAS-based connectivity client-credentials tokens for on-premise connectivity flows.
+
+4. **Route-level only (`destinationAuth`)**: The `destinationAuth` property can only be set on routes that also define a `destination` property. It cannot be used with `service` or `localDir` routes.
+
+### Validation at Startup
+
+The application router validates the configuration at startup:
+- If `destinationAuth: 'ias'` is set on a route, it verifies that the identity service binding exists, uses x.509 credentials, defines consumed-services, and that the destination service instance is listed in `consumed-services`.
+- If `ENABLE_IAS_CONSUMED_SERVICES=true` is set, it verifies that the identity service binding exists, uses x.509 credentials, and defines at least one consumed service.
+
+### Limitations
+
+- **Customer-provided destination instances not supported in Managed Approuter**: In SAP Managed Approuter flows (e.g. SAP Launchpad/Workzone), customers may provide their own destination service instances. Because these instances are owned by the customer and not the Managed Approuter provider, their instance GUIDs cannot be registered in the central Managed Approuter identity service binding's `consumed-services` configuration. As a result, identity service token forwarding via `ENABLE_IAS_CONSUMED_SERVICES` or `destinationAuth: 'ias'` is not available for customer-provided destination instances — the standard IAS→XSUAA or XSUAA→XSUAA token exchange applies for those routes.
+
+- **`OAuth2UserTokenExchange` authentication type not supported**: Destination configurations using `Authentication = OAuth2UserTokenExchange` are not compatible with identity service token forwarding. The destination service attempts to create a refresh token during the OAuth2UserTokenExchange flow, which will fail because the IAS token cannot be used for refresh token creation. Use `Authentication = OAuth2JWTBearer` instead, which performs a direct JWT bearer token exchange without requiring a refresh token.
+
+- **Disable XSUAA cross-consumption if not needed**: If no service in the application requires an IAS→XSUAA token exchange, the `"xsuaa-cross-consumption": true` statement in the identity service application configuration should be removed. Keeping it when unused adds unnecessary overhead — the identity service will attempt to set up XSUAA trust even when all destination calls are handled directly via the identity service token forwarding flow described in this section.
 
 ## SaaS Application Registration in SAP BTP
 

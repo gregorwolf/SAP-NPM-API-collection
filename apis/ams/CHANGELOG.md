@@ -15,6 +15,11 @@ CAP Node.js Applications should **not** need to make changes when updating to ve
 
 For Non-CAP Node.js applications, please refer to the [migration guide](./doc/V2_V3_Migration_Guide.md).
 
+## 3.10.0
+
+- Finalized the `HybridAuthProvider` with combined authorization functionality for AMS applications with XSUAA legacy. A usage guide will eventually follow in the SCI Developer Guide.
+- Fix DCN version check to accept both version "1" and 1 for improved resilience with previous compilation results.
+
 ## 3.9.0
 
 - Added support for SAP "act-as" support users: `IdentityServiceAuthProvider` now builds `Authorizations` with a preference for claims from the `sap_support_act_as` claim structure over top-level claims.

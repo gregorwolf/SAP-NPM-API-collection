@@ -1,6 +1,17 @@
-# Joule Studio Command Line Interface
+# Joule Studio CLI
 
-The Joule Studio Command Line Interface can be used to interact with the Joule assistant and provides capabilities to:
+Installing `@sap/joule-studio-cli` gives you two commands:
+
+| Command | Description |
+|---|---|
+| `joule` | Joule Studio Legacy CLI — compile, deploy and manage digital assistants |
+| `jl` | Joule Work CLI — create and manage solutions, agents, MCP servers, and more |
+
+---
+
+## joule — Joule Studio Legacy CLI
+
+The `joule` command provides capabilities to:
 
 -   Compile the designtime artifact into a runtime artifact
 -   Deploy a digital assistant via its runtime artifact
@@ -12,7 +23,7 @@ The Joule Studio Command Line Interface can be used to interact with the Joule a
 
 ## Installation
 
-You can install Joule Studio Command Line Interface globally using npm.
+You can install both CLIs globally using npm.
 
 ### Requirements
 
@@ -21,20 +32,26 @@ You can install Joule Studio Command Line Interface globally using npm.
 
 ### Install
 
-`npm install -g @sap/joule-studio-cli`
+```bash
+npm install -g @sap/joule-studio-cli
+```
 
+### Update
 
-## Update
+```bash
+npm install -g -f @sap/joule-studio-cli
+```
 
-`npm install -g -f @sap/joule-studio-cli`
+### Uninstall
 
-## Uninstall
-
-`npm uninstall -g @sap/joule-studio-cli`
+```bash
+npm uninstall -g @sap/joule-studio-cli
+```
 
 ## Usage
 ### Important Security Notice
 **The Joule Studio Command Line Interface is designed solely for testing and development purposes and is not intended to manage personal or confidential data. Users should ensure that any content provided for testing contains only non-real, non-sensitive information to maintain security and privacy.**
+
 ### Available Commands
 
 | Command                             | Description                                     |
@@ -49,6 +66,7 @@ You can install Joule Studio Command Line Interface globally using npm.
 | `joule update <assistant>`          | Update a deployed capability                    |
 | `joule remove <assistant>`          | Delete a deployed capability                    |
 | `joule lint <path>`                 | Run the static linter                           |
+| `joule config`                      | Manage configuration for the digital assistant  |
 | `joule status`                      | Display current login status                    |
 | `joule logout`                      | Log out from the CLI                            |
 
@@ -89,6 +107,70 @@ To connect to a custom API URL, use:
 - Launch it in the web client:
 
   `joule launch my_assistant_name`
+
+---
+
+## jl — Joule Work CLI
+
+The `jl` command provides capabilities to:
+
+- Create and manage solutions composed of typed assets (agents, MCP servers, workflows, etc.)
+- Set up pro-code projects for AI coding agents
+- Validate and build solution artifacts
+- Deploy solutions to Joule Studio runtime
+- Manage assets (create, delete) across all supported asset types
+- Interact with MCP servers (list, inspect tools, call tools)
+- Send agent-to-agent messages
+
+> **Note:** `jl` requires Node.js ≥ 24.
+
+### Usage
+
+```bash
+jl login <joule-studio-url>                        # log in
+jl solution create --name <name>                   # create a solution
+jl solution validate                               # validate
+jl solution build                                  # build zip
+jl solution deploy                                 # deploy to backend
+```
+
+### Example Workflow
+
+Log in to the backend:
+
+```bash
+jl login 'https://my-backend.cfapps.eu12.hana.ondemand.com?issuerUrl=https://myias.accounts.cloud.sap&clientId=<client-id>&appTid=<app-tid>'
+```
+
+> **Where do I find this URL?** In your Joule Studio tenant, go to **Settings → Develop** and copy the URL shown there.
+
+Create a solution and add an asset:
+
+```bash
+jl solution create --name my-solution
+jl asset create agent --name my-agent
+```
+
+Validate, build, and deploy:
+
+```bash
+jl solution validate
+jl solution build
+jl solution deploy
+```
+
+The following are required depending on which skills you use after running `jl init <agent>`:
+
+| Requirement                                       | Skills that need it                                        |
+| ------------------------------------------------- | ---------------------------------------------------------- |
+| **Python 3**                                      | `sap-agent-bootstrap` — scaffold and run Python A2A agents |
+| **`@sap/cds` CLI** (`npm install -g @sap/cds-dk`) | `cap-development` — build and run CAP Node.js applications |
+
+See the **[CLI Reference](https://help.sap.com/docs/joule-studio/joule-studio/joule-studio-for-cli-pro-code-development-in-joule-studio)** for all commands and options.
+
+> Built on [@sap/joule-studio-cli-core-v2](https://www.npmjs.com/package/@sap/joule-studio-cli-core-v2).
+
+---
 
 ## Documentation
 

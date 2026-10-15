@@ -6,6 +6,24 @@ Items marked as [experimental] are subject to change.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and the changelog is formatted based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.33.0] - 2026-09-17
+  ### Added
+  - Enabled showing table properties based on the selected table type
+  - Added support for configuring cell merging in columns inside a responsive table
+  - Added support for displaying section fields in a content form on demand so that they are hidden behind a "Show Details" link
+  - Added support for configuring the AI notice in column headers in the "Table" building block
+
+  ### Fixed
+  - Fixed an issue where the "Edit in Source Code" button for the "Form" building block used an incorrect navigation link
+  - Fixed an issue where the table type did not persist when adding a table section with a `SelectionPresentationVariant` annotation
+  - Fixed an issue where creating an archive failed
+  - Fixed an issue where the Page Map incorrectly used the new page format for SAPUI5 version 1.84 and below instead of the legacy format
+  - Fixed an issue where clicking a quick fix link caused the Page Editor to display a blank screen
+  - Fixed an issue where the "Display on Demand" property disappeared when "Hidden" was enabled
+  - Fixed an issue where each manifest change created duplicate undo steps in the Page Editor
+  - Fixed an issue where Page Map warnings remained visible after a value from a flex change property was corrected
+  - Fixed an issue where the `Requires context` label was displayed with incorrect capitalization
+
 ## [1.32.0] - 2026-08-20
 ### Fixed
 - Fixed an issue in the Page Editor where the error "Creation of node with type filterField not supported in parent node (type filterFields)" was incorrectly displayed when adding a new custom filter field after all properties had been used

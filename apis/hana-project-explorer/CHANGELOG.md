@@ -1,3 +1,15 @@
+## 1.39.0
+
+### New Features
+
+- Add a registration panel for configuring and registering the HANA AI toolkit MCP server
+- Set up the HANA AI toolkit MCP server with support for HANA connections via env file or manual credentials
+- Allow binding a project to a HANA multitenancy service instance from the Project Explorer
+
+### Fixes
+
+- Fix duplicate command registration reported by the Project Explorer on startup
+
 ## 1.38.0
 
 ### New Features

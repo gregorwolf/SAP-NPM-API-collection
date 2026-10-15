@@ -1,3 +1,43 @@
+## 1.48.0
+
+### New Features
+- Support finding root cause of missing records in a calculation view
+- Data preview results are no longer overwritten when previewing multiple nodes; each preview opens in a separate console
+- SQL expression search is now available in Add Source dialogs
+- Snapshot queries no longer include the schema prefix in the default query
+- Column impact visualization now shows how a column is used across the calculation view, similar to lineage
+- Calculation view editor provides an option to display and copy the calculation view ID
+- Calculation view editor supports labeling Dimension views in Star Join nodes
+
+### Fixes
+- Opening Filter Mapping Creation on a join node converted to expression mode no longer crashes
+- Label is no longer lost when a mapped column is created via the column name unique dialog
+- Show Impact now detects columns used inside calculated column expressions
+- Properties of Dimensions are no longer lost when switching directly to another dimension
+- Input parameters are now correctly copied when using Copy with Descendants
+- Propagate To Semantics of a column now correctly overwrites existing labels
+- Hierarchy function node no longer discards parent/child columns when switching multi-definition
+- Unexpected deletion of hierarchy function multi-definition has been fixed
+- Hierarchy function node multi-definition checkbox now shows a clearer label
+- Pasted nodes are now placed at the location where the user right-clicked
+- Undoing a Data Category change now correctly refreshes dropdown options
+- Analytic privilege editor now correctly handles objects and patterns sharing the same name
+- Extract to New View now shows a warning instead of failing silently when the selected node is named 'Projection'
+- Copying and pasting calculated columns between different views now correctly handles input parameter references
+- Hierarchy function node level column value help now uses output columns
+- Hierarchy function parent field value help no longer converts source column names to uppercase
+- Hierarchy function node sibling order column is no longer invalid after renaming the input column
+- Open dialog now shows a message when the calculation view requires SAP HANA XS Advanced compatibility mode
+- Temporal join properties are no longer cleared when unchecking "Optimize Join Columns"
+- Review dialog is no longer empty when opening a calculation view in read-only mode
+- Hierarchy function node input Type field is now correctly shown or hidden based on the input source type
+- Alias name input field error state is now correctly cleared when switching dimensions in the Star Join editor
+- Calculation view ID is now displayed and copyable in a plain text field instead of a generic tag
+- Hierarchy Function Node now shows all child definitions
+- Creating a filter mapping on a Semi Join node now shows a warning instead of silently creating an invalid mapping
+- Undo for changing a hierarchy parent field now works correctly
+- Calculation view editor no longer renders a view node at an incorrect position when its coordinates are (0, 0)
+
 ## 1.47.0
 
 ### New Features

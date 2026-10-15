@@ -150,10 +150,9 @@ A WebSocket extension is defined by an object with the following properties:
 
 **Environment Configuration:**
 * `HANDLE_WEBSOCKET_EXT=false` - WebSocket extensions disabled (default)
-* `HANDLE_WEBSOCKET_EXT=true` - Synchronous WebSocket extensions
-* `HANDLE_WEBSOCKET_EXT=async` - Async WebSocket extensions with proper await handling
+* `HANDLE_WEBSOCKET_EXT=true` - WebSocket extensions enabled
 
-**Async Example (requires `HANDLE_WEBSOCKET_EXT=async`):**
+**Example:**
 ```js
 module.exports = {
   insertMiddleware: {
