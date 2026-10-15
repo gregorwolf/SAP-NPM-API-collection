@@ -15,6 +15,15 @@ might use a deprecated flag only for a limited period of time.
 
 
 
+## Version 7.1.2 - 2026-09-15
+
+### Bug Fixes
+
+- **compiler:** don't issue error with competing includes extensions
+- **sql:** resolve named-argument refs to their FROM subquery alias
+
+
+
 ## Version 7.1.1 - 2026-09-08
 
 ### Bug Fixes
@@ -166,6 +175,16 @@ might use a deprecated flag only for a limited period of time.
   + Performance of the SQL backend has been improved: wildcard `*` in views and projections is only expanded lazily.
   + No errors are reported anymore for non-persisted entities, as they are irrelevant for database deployment
     (for the message IDs `type-missing-argument`, `type-unexpected-argument`, `ref-unsupported-type`, and `ref-unexpected-args`).
+
+
+## Version 6.9.5 - 2026-09-08
+
+### Bug Fixes
+
+- **effective:**
+  + Fix dump in flattening for actions with entity parameters.
+  + Ensure consistent handling of reference-like annotation expressions during flattening.
+- **sql:** Add missing `@hierarchy` columns to localized convenience views.
 
 
 ## Version 6.9.4 - 2026-07-29

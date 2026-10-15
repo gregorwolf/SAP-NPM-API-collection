@@ -6,30 +6,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## Version 10.1.2 - 2026-09-17
-
-### Fixed
-
-- `cds` no longer crashes with an `ENOENT` (`uv_cwd`) stack trace when the shell's current directory has been deleted, e.g. during tab-completion.
-- `cds build --for java` no longer writes Node.js runtime messages.
-- `cds build` preserves line breaks in merged `messages.properties` bundles.
-- `cds add xsuaa` no longer generates an invalid `mta.yaml` when added after `workzone`.
-- `cds add cloud-logging` now binds existing approuter and multitenancy modules when `mta` is added later.
-- `cds add enterprise-messaging` and `cds add event-mesh` now contribute to an MTA descriptor added later.
-- `cds add destination` now binds existing approuter and multitenancy modules when `mta` is added later.
-
-## Version 10.1.1 - 2026-09-09
-
-### Added
-
-- Various `cds` commands now offer shell completions for their options, including folder suggestions for positional arguments and path options like `--run`, `--from`, and `--with`.
-
-### Fixed
-
-- `cds up` now forwards `BP_DEPENDENCY_MIRROR_*` variables to Paketo buildpacks.
-- `cds init` uses CAP Java 5.1.1
-- `cds add data` no longer includes excluded bounds when generating scaled decimals for open `@assert.range` intervals.
-
 ## Version 10.1.0 - 2026-09-03
 
 ### Added

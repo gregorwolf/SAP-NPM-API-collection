@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 10.1.1 - 2026-09-24
+
+### Fixed
+- Formatting: no longer inserts whitespace after the colon of a colon-prefixed variable (e.g. `:config`) when aligning expressions and conditions
+- CDS files with >65k lines
+- JSON configs with null values
+- indexing of CSN files
+
+
 ## 10.1.0 - 2026-09-04
 
 ### Added

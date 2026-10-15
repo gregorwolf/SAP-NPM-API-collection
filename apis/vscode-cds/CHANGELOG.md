@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [10.1.1] - 2026-09-25
+
+### Added
+- CQL template literal language features (beta) for `cds.ql\`...\`` tagged template literals in `.js`/`.ts` files, each individually opt-in via user settings (all default off):
+  + `cds.ql.completion` — field and entity completions inside the template
+  + `cds.ql.hover` — hover info for fields, entities, and the inferred result type on the variable
+  + `cds.ql.diagnostics` — CQL error diagnostics (unknown entities/fields)
+  + `cds.ql.typeInference` — TypeScript type inference for the query result variable
+
+### Fixed
+- Welcome Page: fixed rendering glitches so content now displays correctly
+- Formatter: no longer inserts whitespace after the colon of a colon-prefixed variable (e.g. `:config`) when aligning expressions and conditions
+- CDS files with >65k lines
+- JSON configs with null values
+- indexing of CSN files
+
+### Also see
+- `@sap/cds-lsp` 10.1.1
+- `@sap/cds-compiler` 7.1.1
+
+
 ## [10.1.0] - 2026-09-08
 
 ### Added

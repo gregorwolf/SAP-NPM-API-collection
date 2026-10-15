@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## Version 4.1.1 - 2026-09-24
+
+### Fixed
+
+- `cds-mtx` also accepts space-separated tenant lists such as `cds-mtx upgrade t1 t2 t3`.
+- HANA Cloud serverless token requests now include the IAS application tenant ID when the client ID is not unique.
+- `cds-mtx` now prints the complete error with stack and causes when an operation fails.
+- A malformed extension `csn` string is now rejected with status `422` instead of `500`.
+- The Service Manager client now recreates an HDI container whose last operation was a succeeded deletion, instead of reusing the deleted instance.
+- The upgrade check that aborts on existing extensions when extensibility is disabled now reliably detects the `cds.xt.Extensions` table even if it is not part of the model.
+- More robust handling of faulty archives sent to `cds.xt.ExtensibilityService.push`.
+- MTX now always uses node-tar for archive handling for more stability.
+
 ## Version 4.1.0 - 2026-09-04
 
 ### Added
@@ -25,6 +38,10 @@ Native workers can be enabled by `nativeWorkers` in the jobs configuration, e. g
   - With configuration `cds.requires['cds.xt.SaasProvisioning'].upgrade.skipAlreadyUpgraded: true` or `cds.requires['cds.xt.SmsProvisioning'].upgrade.skipAlreadyUpgraded: true`,
 already upgraded tenants are skipped when running an upgrade of all tenants (`tenants: ['*']`). Tenants are considered as already upgraded if the last upgrade was run after the
 last deployment of the application.
+
+### Added
+
+- `cds.env.features.native_hdi_deploy` can now enable native HANA tenant deployment with delta uploads, bulk HDI inputs, and streaming for large artifacts.
 
 ### Fixed
 
